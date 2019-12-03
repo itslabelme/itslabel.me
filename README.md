@@ -23,4 +23,4 @@ Things you may want to cover:
 
 * ...
 
-* Added by Krishna Prasad Varma
+* Added by kpvarma
