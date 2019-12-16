@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+  <!-- Head -->
+  <%= render partial: 'layouts/admin/head' %>
+
+  <body class="font-montserrat light_version">
+
+    <!-- Page Loader -->
+    <%= render partial: 'layouts/admin/loader' %>
+
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+
+    <div id="wrapper">
+        <!-- Top Navigation -->
+        <%= render partial: 'layouts/admin/navbar' %>
+
+        <!-- Search Container -->
+        <%= render partial: 'layouts/admin/search' %>
+
+        <!-- Left Sidebar -->
+         <%= render partial: 'layouts/admin/left_sidebar' %>
+
+        <!-- Main container -->
+        <div id="main-content">
+
+          <!-- Show Success / Error / Info Messages If any set by the controller action -->
+          <%= flash_message(false) if defined?(flash) -%>
+          <%= yield %>
+
+        </div>
+        <!-- End of Main container -->
+        
+    </div>
+
+    <!-- Javascript -->
+    <%= render partial: 'layouts/admin/javascript' %>
+    
+  </body>
+</html>
