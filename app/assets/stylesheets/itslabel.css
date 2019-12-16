@@ -1,0 +1,128 @@
+/** Register Page **/
+
+.auth_brand .navbar-brand{
+	margin: 0px;
+}
+
+
+.form-control{
+	height: 40px;
+	border-radius: 0px;
+}
+
+.btn-group-lg>.btn, .btn-lg{
+	border-radius: 0px;
+}
+
+.light_version #left-sidebar{
+	border:none;
+}
+
+/** Dashboard **/
+
+.header h2 {
+    font-size: 20px;
+	color: rgb(33, 40, 52);
+	color: #0d8241;
+    position: relative;
+}
+
+.its-upload-container h3{
+	font-size: 20px;
+}
+
+.its-upload-container h4{
+	font-size: 14px;
+}
+
+#left-sidebar .navbar-brand .logo{
+	width: 100px;
+}
+
+.its-export-btn i{
+	position: relative;
+	top: 2px;
+	margin-right: 5px;
+}
+
+#mainTable{
+	margin-top: 20px;
+}
+
+#mainTable tr,
+#mainTable tr td,
+#mainTable tr th{
+	border: 1px solid #dedede;
+}
+
+.remove-border .bootstrap-tagsinput.form-control{
+	border:none !important;
+}
+
+.remove-border{
+	border:none;
+}
+
+.remove-border.p-0{
+	background: none !important;
+	color: #6c757d !important;
+	border-radius: 0px !important;
+}
+
+.remove-border.p-0:focus{
+	box-shadow: none !important;
+}
+
+.remove-border.p-0:hover{
+	background-color: none !important;
+	background: none !important;
+	color: #212529;
+	box-shadow: none;
+}
+
+
+.its-lang-drop{
+	padding: 10px;
+	border-radius: 0px;
+
+}
+
+.its-lang-drop li a{
+	color: #6c757d !important;
+	font-weight: 100;
+	font-size: 14px;
+	border-bottom: 1px solid #e0e0e0;
+	display: block;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+.its-lang-drop li:last-child a{
+	border:none;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+
+.pricing.body .fancy-checkbox{
+	background: #0d8241;
+	margin: 0px;
+	color: #fff;
+	padding: 5px;
+}
+
+.pricing.body .fancy-checkbox label{
+	margin:0px;
+}
+
+.pricing.body .plan-btn{
+	margin-top: 15px;
+}
+
+#Profile{
+	text-align: center;
+}
+
+#Profile img{
+	max-width: 30%;
+}

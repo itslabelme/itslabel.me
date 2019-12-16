@@ -13,4 +13,9 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+
+//= require bundles/libscripts.bundle.js
+//= require bundles/vendorscripts.bundle.js
+//= require bundles/mainscripts.bundle.js
+
+// require_tree .

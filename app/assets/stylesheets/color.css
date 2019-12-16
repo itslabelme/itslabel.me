@@ -1,0 +1,58 @@
+a{
+	color: #0d8241;
+}
+
+a:hover{
+	color: #6e62f6;
+}
+
+
+.btn-primary{
+	color: #fff;
+    background-color: #0d8241;
+    border-color: #0d8241;
+}
+
+.btn-primary:hover{
+    background-color: #6e62f6;
+    border-color: #6e62f6;	
+}
+
+.sidebar-nav .metismenu>li.active>a{
+	color: #0d8241;
+}
+
+.badge-success{
+	border-color: #0d8241;
+    color: #0d8241;
+}
+
+.bg-green{
+	background-color: #0d8241;
+}
+
+
+.light_version .table tr th{
+	background-color: #0d8241 !important;
+	color: #fff;
+}
+
+.light_version .table thead tr th .remove-border.p-0{
+	color: #fff !important;
+}
+
+.light_version .table tbody tr th{
+	background-color: #fff !important;
+	color: #0d8241 !important;
+}
+
+.light_version .navbar-nav .icon-menu{
+	color: #fff;
+}
+
+.light_version #left-sidebar .navbar-brand{
+	background-color: #0d8241 !important;
+	margin: 0px;
+	padding: 9px;	
+}
+
