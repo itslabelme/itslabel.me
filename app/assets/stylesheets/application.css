@@ -11,8 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
 
- *= require bootstrap/bootstrap.min.css
- *= require font-awesome/font-awesome.min.css
+ *= require bootstrap/bootstrap.css
+ *= require font-awesome/font-awesome.css
  *= require animate-css/vivify.min.css
  *= require c3/c3.min.css
 
