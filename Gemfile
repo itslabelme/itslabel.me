@@ -41,6 +41,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 
+gem 'pry', '~> 0.12.2'
 
 
 group :development, :test do

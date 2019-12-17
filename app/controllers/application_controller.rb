@@ -28,12 +28,17 @@ class ApplicationController < ActionController::Base
     @page_title = "ITS Label"
   end
 
+  def welcome_path
+    resource.is_a?(ClientUser) ? :user_home : :admin_home
+  end
+
   def after_sign_in_path_for(resource)
     stored_location_for(resource) || welcome_path
   end
 
-  def welcome_path
-    resource.is_a?(ClientUser) ? :user_home : :admin_home
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource)
+    welcome_path
   end
 
   def after_sign_up_path_for(resource)
@@ -43,6 +48,5 @@ class ApplicationController < ActionController::Base
   def after_inactive_sign_up_path_for(resource)
     welcome_path
   end
-
 
 end
