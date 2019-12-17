@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
 
   include Devise::Controllers::Helpers
-  
-  layout 'login'
+
+  layout 'user'
 
   def index
   end

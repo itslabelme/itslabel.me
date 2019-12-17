@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :authenticate_user!, except: [:home]
 
+  # include BreadcrumbsHelper
+  include MetaTagsHelper
+  include NavigationHelper
+  include NotificationHelper
+  include FlashHelper
+  include PaginationHelper
+
   protected
 
   def configure_permitted_parameters
