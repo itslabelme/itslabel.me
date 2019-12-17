@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
 
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource)
-    welcome_path
+    resource == :client_user ? :user_home : :admin_home
   end
 
   def after_sign_up_path_for(resource)
