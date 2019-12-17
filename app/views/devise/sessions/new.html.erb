@@ -10,7 +10,8 @@
 
                   <div id="USER_LOGIN_ERRORS">
                     <!-- Display Errors if Any -->
-                    <%= felix_compact_form_errors(resource) if resource.errors.any? %>
+                    <%= flash_message(false) if defined?(flash) -%>
+                    <%= error_message(resource) if resource.errors.any? %>
                   </div>
 
                     <div class="mb-3">
