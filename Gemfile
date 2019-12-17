@@ -41,12 +41,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 
-gem 'pry', '~> 0.12.2'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry', '~> 0.10.4'
+  gem 'pry', '~> 0.12.2'
 end
 
 group :development do
