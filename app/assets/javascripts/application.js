@@ -12,10 +12,11 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+// require turbolinks
 
 //= require bundles/libscripts.bundle.js
 //= require bundles/vendorscripts.bundle.js
+//= require bundles/c3.bundle.js
 //= require bundles/mainscripts.bundle.js
 
 // require_tree .

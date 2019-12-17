@@ -1,6 +1,6 @@
 <!-- Left Sidebar -->
 <div id="left-sidebar" class="sidebar">
-  
+
   <div class="navbar-brand">
     <%= link_to "#" do %>
       <%= image_tag "itsme-logo.png", alt: "ITSLabel Logo", class: "img-fluid logo" %>
@@ -9,55 +9,45 @@
   </div>
 
   <div class="sidebar-scroll">
-      <div class="user-account">
-          <div class="user_div">
-              <img src="assets/images/user.png" class="user-photo" alt="User Profile Picture">
-          </div>
-          <div class="dropdown">
-              <span>Welcome,</span>
-              <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong>Krishna</strong></a>
-              <ul class="dropdown-menu dropdown-menu-right account vivify flipInY">
-                  <li><a href="#"><i class="icon-user"></i>My Profile</a></li>
-                  <li><a href="#"><i class="icon-envelope-open"></i>Messages</a></li>
-                  <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
-                  <li class="divider"></li>
-                  <li><a href="login.html"><i class="icon-power"></i>Logout</a></li>
-              </ul>
-          </div>                
-      </div>  
-      <nav id="left-sidebar-nav" class="sidebar-nav">
-          <ul id="main-menu" class="metismenu">
-                  <li class="header">Translation</li>
-                  <li><a href="dashboard.html"><i class="fa fa-plus"></i><span>New Translation</span></a></li>
-                  <li><a href="document-list.html"><i class="icon-folder"></i><span>Translation list</span></a></li>
-                  <li><a href="#"><i class="fa fa-star"></i><span>Favorites</span></a></li>
-                  <li><a href="#"><i class="icon-trash"></i><span>Trash</span></a></li>
+    <div class="user-account">
+      <div class="admin_div">
+        <%= image_tag "user.png", alt: "User Profile Picture", class: "user-photo"%>
+      </div>
+      <div class="dropdown">
+          <span>Welcome,</span>
+          <!-- add dropdown-toggle class to below to make it a drop down link -->
+          <a href="javascript:void(0);" class="user-name" data-toggle="dropdown">
+            <strong><%= current_admin_user.try(:email) %></strong>
+          </a>
+          <!-- <ul class="dropdown-menu dropdown-menu-left account vivify flipInY">
+            <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
+            <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
+            <li class="divider"></li>
+            <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
+          </ul> -->
+      </div>                
+    </div> 
 
-              <li class="header">Main</li>
-              <li class="active"><a href="index.html"><i class="icon-speedometer"></i><span>Dashboard</span></a></li>
-              <li><a href="page-profile.html"><i class="icon-user"></i><span>User Profile</span></a></li>
-              <li><a href="invoice.html"><i class="icon-wallet"></i><span>Invoices</span></a></li>
-              
+    <nav id="left-sidebar-nav" class="sidebar-nav">
+      <ul id="main-menu" class="metismenu">
 
+        <li class="header">Main</li>
+        <li class="active"><%= link_to content_tag(:i, "", class: "icon-speedometer") + "home", admin_home_path %></li>
+        
+        <li class="header">Admin</li>
+        <li><%= link_to content_tag(:i, "", class: "icon-files") + "Documents", "#" %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-users") + "Users", "#" %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-users") + "Admin", "#" %></li>
+        
+        <li class="header">My Account</li>
+        <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
+        
 
-              <li class="header">App</li>
-              <li>
-                  <a href="#Contact" class="has-arrow"><i class="icon-book-open"></i><span>Contact</span></a>
-                  <ul>
-                      <li><a href="#">List View</a></li>
-                      <li><a href="#">Grid View</a></li>
-                  </ul>
-              </li>
-              <li><a href="#"><i class="icon-envelope"></i><span>Email</span></a></li>
-              <li><a href="#"><i class="icon-bubbles"></i><span>Messenger</span></a></li>
-              <li><a href="#"><i class="icon-calendar"></i><span>Calendar</span></a></li>
-
-
-              <li class="header">Extra</li>                    
-              <li><a href="#"><i class="icon-doc"></i><span>Documentation</span></a></li>
-          </ul>
-      </nav>     
+      </ul>
+    </nav>     
   </div>
-  
+
 </div>
-<!-- End Left Sidebar -->
+<!-- End Left Sidebar

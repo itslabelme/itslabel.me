@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_default_page_title
+
   # before_action :authenticate_user!, except: [:home]
 
   # include BreadcrumbsHelper
@@ -11,6 +13,8 @@ class ApplicationController < ActionController::Base
   include FlashHelper
   include PaginationHelper
 
+  include Devise::Controllers::Helpers
+
   protected
 
   def configure_permitted_parameters
@@ -19,12 +23,26 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  
-  # def layout
-  #   # only turn it off for login pages:
-  #   is_a?(Devise::SessionsController) ? "login" : "user"
-  #   # or turn layout off for every devise controller:
-  #   #devise_controller? && "application"
-  # end
+
+  def set_default_page_title 
+    @page_title = "ITS Label"
+  end
+
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || welcome_path
+  end
+
+  def welcome_path
+    resource.is_a?(ClientUser) ? :user_home : :admin_home
+  end
+
+  def after_sign_up_path_for(resource)
+    welcome_path
+  end
+
+  def after_inactive_sign_up_path_for(resource)
+    welcome_path
+  end
+
 
 end
