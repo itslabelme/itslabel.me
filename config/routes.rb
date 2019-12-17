@@ -16,6 +16,12 @@ Rails.application.routes.draw do
 
   namespace :admin, module: :admin do
     get '/home', to: 'home#index', as: 'home'
+
+    # CRUD Client Users
+    resources :client_users
+
+    # CRUD Admin Users
+    resources :admin_users
   end
   
 end
