@@ -45,3 +45,4 @@ report.html
 spec/dummy/storage
 
 *.keep
+/nbproject/private/

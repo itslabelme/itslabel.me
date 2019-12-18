@@ -1,6 +1,6 @@
 module Admin
   class BaseController < ApplicationController
-
+    
     layout 'admin'
 
     protected

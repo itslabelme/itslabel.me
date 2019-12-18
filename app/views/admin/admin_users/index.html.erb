@@ -1,2 +1,238 @@
-<br><br>
-<h2>Admin Users</h2>
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row clearfix">
+                    <div class="col-md-6 col-sm-12">
+                        <h2>User List</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">It's Label</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">User List</li>
+                            </ol>
+                        </nav>
+                    </div>            
+                    <div class="col-md-6 col-sm-12 text-right hidden-xs">
+                        <a href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Add New</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Users">Users</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addUser">Add User</a></li>        
+                        </ul>
+                        <div class="tab-content mt-0">
+                            <div class="tab-pane active show" id="Users">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-custom spacing8">
+                                        <thead>
+                                            <tr>
+                                                <th class="w60">Name</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Created Date</th>
+                                                <th>Organisation</th>
+                                                <th class="w100">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                             <% @admin_users.each do |user | %>
+                                            <tr>
+                                                <td>
+                                                    <img src="<%= asset_path( 'xs/avatar5.jpg' ) %>" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35" data-original-title="Avatar Name">
+                                                </td>
+                                                <td>
+                                                    <h6 class="mb-0"><%= user.first_name %>&nbsp<%= user.last_name %></h6>
+                                                    <span><%= user.email %></span>
+                                                </td>
+                                                <td><span class="badge badge-info"></span></td>
+                                                <td><%= user.created_at.strftime("%d %b,%Y") %></td>
+                                                <td><%= user.organisation %></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-default" title="Edit"><i class="fa fa-edit"><%= link_to 'Edit', edit_admin_admin_user_path(user) %></i></button>
+                                                    <%= link_to 'Destroy', admin_admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+                                                    <button type="button" class="btn btn-sm btn-default js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+                                                </td>
+                                            </tr>
+                                             <% end %>
+                                           
+                                           
+                                        </tbody>
+                                    </table>                
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="addUser">
+                                <%= form_for @admin_user, url: {action: :create} do |form| %> 
+                                <div class="body mt-2">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <%= form.text_field :first_name,class:"form-control",placeholder:"First Name *",required: true %>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <%= form.text_field :last_name,class:"form-control",placeholder:"Last Name *",required: true %>
+                                            </div>
+                                        </div>
+            
+                                        <div class="col-lg-3 col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <%= form.text_field :email,class:"form-control",placeholder:"email *" ,required: true %>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <%= form.password_field :password,class:"form-control",placeholder:"Password *",required: true %>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <%= form.password_field :confirm_password,class:"form-control",placeholder:"Confirm Password *" %>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                               <%= form.text_field :phone,class:"form-control",placeholder:"Mobile No" %>
+                                            </div>
+                                        </div>                            
+            
+                                        <div class="col-lg-3 col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <%= form.text_field :organisation,class:"form-control",placeholder:"Organisation" %>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-12">
+                                            <div class="form-group">                                   
+                                                <input type="text" class="form-control" placeholder="Username *">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <select class="form-control show-tick">
+                                                    <option>Select Role Type</option>
+                                                    <option>Super Admin</option>
+                                                    <option>Admin</option>
+                                                    <option>Employee</option>
+                                                </select>
+                                            </div>
+                                        </div>
+            
+                                        <div class="col-12">
+                                            <h6>Module Permission</h6>
+                                            <div class="table-responsive hidden">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Read</th>
+                                                            <th>Write</th>
+                                                            <th>Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Super Admin</td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Admin</td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Employee</td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>HR Admin</td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="fancy-checkbox">
+                                                                    <input class="checkbox-tick" type="checkbox" name="checkbox">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <%= form.submit 'Add',class:"btn btn-primary" %>
+                                             <%= link_to 'CLOSE', { controller: 'admin_users', action: 'index'},class:"btn btn-secondary" %>  
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+

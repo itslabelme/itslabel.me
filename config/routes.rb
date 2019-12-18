@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
     # CRUD Admin Users
     resources :admin_users
+    get 'admin_users/check_email', to:'admin_users#check_email'
   end
   
 end

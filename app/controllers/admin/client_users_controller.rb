@@ -6,7 +6,7 @@ module Admin
     def index
 
       @page_title = "Client Users | Admin"
-
+      @client_users = ClientUser.all
     end
 
   end
