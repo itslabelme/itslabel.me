@@ -41,6 +41,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 
+gem "kaminari", '~> 1.0', '>= 1.0.1'
+gem 'bootstrap4-kaminari-views'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
