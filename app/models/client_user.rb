@@ -3,4 +3,5 @@ class ClientUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+      # max_paginates_per 2
 end
