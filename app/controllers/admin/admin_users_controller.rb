@@ -6,6 +6,7 @@ module Admin
     def index
 
       @page_title = "Admin Users | Admin"
+      @per_page=params[:page]
       @admin_users = AdminUser.page(@per_page).per(@current_page)
       @admin_user = AdminUser.new   
     end
