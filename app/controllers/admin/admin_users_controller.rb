@@ -2,18 +2,18 @@ module Admin
   class AdminUsersController < Admin::BaseController
     before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_admin_user!
-     respond_to :html, :json
+    respond_to :html, :json
     def index
 
       @page_title = "Admin Users | Admin"
       @per_page=params[:page]
       if (params.has_key? (:q))
-         key = "%#{params[:q]}%"
-         @admin_users = AdminUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@per_page).per(@current_page)
+        key = "%#{params[:q]}%"
+        @admin_users = AdminUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@per_page).per(@current_page)
       else
-       @admin_users = AdminUser.page(@per_page).per(@current_page)
+        @admin_users = AdminUser.page(@per_page).per(@current_page)
       end
-        @admin_user = AdminUser.new   
+      @admin_user = AdminUser.new   
     end
     
     def new   
@@ -22,24 +22,47 @@ module Admin
    
     # POST method for processing form data   
     def create   
-      @user = AdminUser.new(admin_user_params)  
+      @admin_user = AdminUser.new(admin_user_params)  
       
-      
+      @errorEmail = []
+      @errorFirstName = []
+      @errorLastName = []
+      @errorPassword = []
+      @errorConfirmsPassword=[]
       respond_to do |format|
 
-          if @user.save
-            format.html { redirect_to '/admin/admin_users/', notice: 'User was successfully created.' }
-            format.js
-            format.json { render json: @user, status: :created, location: @user }
-          else
-             @per_page=params[:page]
-             @admin_users = AdminUser.all
-             @admin_user = AdminUser.new   
-             format.html { render :index }
-             format.js {render :index}
+        if @admin_user.save
+          format.html { redirect_to '/admin/admin_users/', notice: 'User was successfully created.' }
+          
+          format.js { render :js => "window.location.href = ('/admin/admin_users/');"}
+          format.json { render json: @admin_user, status: :created, location: @admin_user }
+        else
+          @per_page=params[:page]
+          @admin_users = AdminUser.all
+          @admin_user.errors.any?
+          @admin_user.errors.any?
+          if (@admin_user.errors["email"] != nil)
+            @errorEmail.push(@admin_user.errors["email"][0])
           end
-      end 
-  end  
+          if (@admin_user.errors["first_name"] != nil)
+            @errorFirstName.push(@admin_user.errors["first_name"][0])
+          end
+          if (@admin_user.errors["last_name"] != nil)
+            @errorLastName.push(@admin_user.errors["last_name"][0])
+          end
+          if (@admin_user.errors["password"] != nil)
+            @errorPassword.push(@admin_user.errors["password"][0])
+          end
+          if (@admin_user.errors["confirm_password"] != nil)
+            @errorConfirmsPassword.push(@admin_user.errors["confirm_password"][0])
+          end
+            
+          format.html { render :index }
+          format.js {render :index}
+        end
+      end
+     
+    end  
      
     
     def edit

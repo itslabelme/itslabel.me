@@ -1,0 +1,6 @@
+alert("Hello from index.js.erb")
+$("#emailBlock").append('<div class="notice"><%= escape_javascript(@errorEmail[0])%></div>');
+$("#firstNameBlock").append('<div class="notice"><%= escape_javascript(@errorFirstName[0])%></div>');
+$("#lastNameBlock").append('<div class="notice"><%= escape_javascript(@errorLastName[0])%></div>');
+$("#passwordBlock").append('<div class="notice"><%= escape_javascript(@errorPassword[0])%></div>');
+$("#confirmlBlock").append('<div class="notice"><%= escape_javascript(@errorConfirmsPassword[0])%></div>');
