@@ -19,7 +19,7 @@ module Admin
       end
     end
     
-     # GET /client_iser/1
+     # GET /client_user/1
     def show
       @user = ClientUser.find(params[:id])  
     end
