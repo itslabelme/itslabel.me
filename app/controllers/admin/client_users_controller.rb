@@ -18,5 +18,10 @@ module Admin
        @client_users = ClientUser.page(@per_page).per(@current_page)  
       end
     end
+    
+     # GET /client_iser/1
+    def show
+      @user = ClientUser.find(params[:id])  
+    end
   end
 end

@@ -48,7 +48,9 @@
                                                     <img src="<%= asset_path( 'xs/avatar5.jpg' ) %>" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35" data-original-title="Avatar Name">
                                                 </td>
                                                 <td>
-                                                    <h6 class="mb-0"><%= user.first_name %>&nbsp<%= user.last_name %></h6>
+                                                    <h6 class="mb-0">
+                                                        <%= link_to "#{user.first_name} #{user.last_name}", admin_client_user_path(user) %>
+                                                    </h6>
                                                     <span><%= user.email %></span>
                                                 </td>
                                                 <td><span class="badge badge-info"><%= user.phone %></span></td>
