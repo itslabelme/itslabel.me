@@ -5,7 +5,7 @@ module Itslabel::Scopes::TranslationScopes
   included do
 
     # Scopes
-    scope :search, lambda {|query| .where("
+    scope :search, lambda {|query| where("
       LOWER(translations.input_phrase) LIKE LOWER('%#{query}%') OR\
       LOWER(translations.input_description) LIKE LOWER('%#{query}%') OR\
       LOWER(translations.input_language) LIKE LOWER('%#{query}%') OR\

@@ -8,6 +8,8 @@ module Admin
   
     def index
       @page_title = "Translations List | Admin"
+      @translations = Translation.all
+      # @translation = Translation.new
     end
 
     def show
@@ -16,6 +18,7 @@ module Admin
 
     def new
       @page_title = "Create Translation | Admin"
+      @translation = Translation.new
     end
 
     def edit

@@ -1,31 +1,46 @@
 <div class="table-responsive">
   <table class="table table-hover table-custom spacing8">
     <thead>
-      <tr>
-        <th class="w60">Name</th>
-        <th></th>
-        <th></th>
-        <th>Created Date</th>
-        <th>Role</th>
-        <th class="w100">Action</th>
+      <tr> 
+        <th style="width: 20px;">#</th>
+        <th>Input Phrase</th>
+        <th style="width: 50px;">Input Description</th>
+        <th style="width: 300px;">Input Language</th>
+        <th style="width: 50px;">Output Phrase</th>
+        <th style="width: 110px;">Output Description</th>
+        <th style="width: 110px;">Output Language</th>
+        <th style="width: 110px;">Action</th>
       </tr>
     </thead>
 
     <tbody>
+      <% @translations.each_with_index do |translation, i| %>
       <tr>
-        <td class="width45">
-          <div class="avtar-pic w35 bg-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name"><span>MN</span></div>
-        </td>
-        <td>
-          <h6 class="mb-0">Marshall Nichols</h6>
-          <span>marshall-n@gmail.com</span>
-        </td>
-        <td><span class="badge badge-danger">Super Admin</span></td>
-        <td>24 Jun, 2015</td>
-        <td>CEO and Founder</td>
-        <td>
-        </td>
+          <td>
+              <span>01</span>
+          </td>
+          <td>
+              <div class="d-flex align-items-center">
+                  <div>
+                      <%= link_to translation.input_phrase, "#" %> 
+                  </div>
+              </div>
+          </td>
+          <td><%=  translation.input_description %></td>
+          <td class="its-tag"><%=  translation.input_language %></td>
+
+          <td><%=  translation.output_phrase %></td>
+          <td><%=  translation.output_description %></td>
+          <td><%=  translation.output_language %></td>
+          <td>
+              <button type="button" class="btn btn-sm btn-default active" title="" data-toggle="tooltip" data-placement="top" data-original-title="Remove Favorite"><i class="icon-star"></i></button>
+              <button type="button" class="btn btn-sm btn-default " title="" data-toggle="tooltip" data-placement="top" data-original-title="Print"><i class="icon-printer"></i></button>
+              <button type="button" class="btn btn-sm btn-default" title="" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="icon-trash"></i></button>
+          </td>
       </tr>
+      <% end %>
     </tbody>
   </table>                
 </div>
+
+

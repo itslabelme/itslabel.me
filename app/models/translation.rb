@@ -26,40 +26,40 @@ class Translation < ApplicationRecord
     "#{id}-#{input_phrase_was}".parameterize[0..32]
   end
 
-  def translate_from_english_to_arabic(word)
-    self.where(self.input_language: 'ENGLISH', self.output_language: "ARABIC", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
-  end
+  # def translate_from_english_to_arabic(word)
+  #   self.where(self.input_language: 'ENGLISH', self.output_language: "ARABIC", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
+  # end
 
-  def translate_from_english_to_french(word)
-    self.where(self.input_language: 'ENGLISH', self.output_language: "FRENCH", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
-  end
+  # def translate_from_english_to_french(word)
+  #   self.where(self.input_language: 'ENGLISH', self.output_language: "FRENCH", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
+  # end
 
-  def translate_from_arabic_to_french(word)
-    self.where(self.input_language: 'ARABIC', self.output_language: "FRENCH", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
-  end
+  # def translate_from_arabic_to_french(word)
+  #   self.where(self.input_language: 'ARABIC', self.output_language: "FRENCH", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
+  # end
 
-  def translate_from_arabic_to_english(word)
-    self.where(self.input_language: 'ARABIC', self.output_language: "ENGLISH", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
-  end
+  # def translate_from_arabic_to_english(word)
+  #   self.where(self.input_language: 'ARABIC', self.output_language: "ENGLISH", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
+  # end
 
-  def translate_from_french_to_english(word)
-    self.where(self.input_language: 'FRENCH', self.output_language: "ENGLISH", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
-  end
+  # def translate_from_french_to_english(word)
+  #   self.where(self.input_language: 'FRENCH', self.output_language: "ENGLISH", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
+  # end
 
-  def translate_from_french_to_arabic(word)
-    self.where(self.input_language: 'FRENCH', self.output_language: "ARABIC", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
-  end
+  # def translate_from_french_to_arabic(word)
+  #   self.where(self.input_language: 'FRENCH', self.output_language: "ARABIC", LOWER(input_phrase): LOWER(word)).select(:output_phrase)
+  # end
 
-  def lookup_word_in_english(word)
-    self.where("LOWER(self.input_phrase) LIKE LOWER('%#{word}%') AND self.input_language = 'ENGLISH' " ).select(:output_phrase)
-  end
+  # def lookup_word_in_english(word)
+  #   self.where("LOWER(self.input_phrase) LIKE LOWER('%#{word}%') AND self.input_language = 'ENGLISH' " ).select(:output_phrase)
+  # end
 
-  def lookup_word_in_arabic(word)
-    self.where("LOWER(self.input_phrase) LIKE LOWER('%#{word}%') AND self.input_language = 'ARABIC' " ).select(:output_phrase)
-  end
+  # def lookup_word_in_arabic(word)
+  #   self.where("LOWER(self.input_phrase) LIKE LOWER('%#{word}%') AND self.input_language = 'ARABIC' " ).select(:output_phrase)
+  # end
 
-  def lookup_word_in_french(word)
-    self.where("LOWER(self.input_phrase) LIKE LOWER('%#{word}%') AND self.input_language = 'FRENCH' " ).select(:output_phrase)
-  end
+  # def lookup_word_in_french(word)
+  #   self.where("LOWER(self.input_phrase) LIKE LOWER('%#{word}%') AND self.input_language = 'FRENCH' " ).select(:output_phrase)
+  # end
   
 end
