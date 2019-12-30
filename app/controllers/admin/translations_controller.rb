@@ -3,8 +3,8 @@ module Admin
 
     before_action :authenticate_admin_user!
 
-    include Manava::ControllerConfigurations::SelfService::LeaveRequestsCc
-    include Manava::TableSettings::SelfService::LeaveRequestsTs
+    # include ControllerConfigurations::SelfService::LeaveRequestsCc
+    # include TableSettings::SelfService::LeaveRequestsTs
   
     def index
       @page_title = "Translations List | Admin"
