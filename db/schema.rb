@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_061525) do
+ActiveRecord::Schema.define(version: 2019_12_30_064905) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 2019_12_05_061525) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.bigint "phone"
+    t.string "organisation"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
@@ -32,8 +36,23 @@ ActiveRecord::Schema.define(version: 2019_12_05_061525) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "phone"
+    t.string "organisation"
     t.index ["email"], name: "index_client_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_client_users_on_reset_password_token", unique: true
+  end
+
+  create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "input_phrase", limit: 256, null: false
+    t.string "input_description", limit: 1024
+    t.string "input_language", limit: 16, null: false
+    t.string "output_phrase", limit: 256, null: false
+    t.string "output_description", limit: 1024
+    t.string "output_language", limit: 16, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
