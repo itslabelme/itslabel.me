@@ -1,6 +1,6 @@
 <tr id='TRANSLATIONS_ROW_<%= translation.id %>'>
   <td>
-    <span> - </span>
+    <span><% translation.try(:id) || ' - ' %></span>
   </td>
   <td>
     <div class="d-flex align-items-center">

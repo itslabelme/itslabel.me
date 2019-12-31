@@ -1,0 +1,31 @@
+<% if @translation.errors.blank? %>
+  
+  // Showing Growl Like Message
+  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  
+  // Add the Row to the table and highlight it
+  $("#TRANSLATIONS_ROW_<%= @translation.id %>").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/index/row.html.erb', locals: { translation: @translation })) %>");
+  
+  // Reload the form to show errors
+  <% @translation = Translation.new %>
+  $("#TRANSLATION_FORM").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
+
+  // Hide the form
+  showTab('TRANSLATIONS_LIST');
+
+  // Set Focus on the First Input after loading the form
+  setFocusOnFirstInput("TRANSLATIONS_FORM");
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+  // Reload the form to show errors
+  $("#TRANSLATION_FORM").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
+
+  // Set Focus on the First Input after loading the form
+  setFocusOnFirstInput("TRANSLATIONS_FORM");
+
+<% end %>
+

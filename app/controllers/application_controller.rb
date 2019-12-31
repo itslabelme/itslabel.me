@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   before_action :set_default_page_title
 
   before_action :configure_notification
+  before_action :parse_pagination_params
   # before_action :authenticate_user!, except: [:home]
 
   protected

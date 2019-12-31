@@ -1,0 +1,8 @@
+// Reload the form with editable data
+$("#TRANSLATION_FORM").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
+
+// Hide the form
+showTab('TRANSLATIONS_FORM');
+
+// Set Focus on the First Input after loading the form
+setFocusOnFirstInput("TRANSLATIONS_FORM");
