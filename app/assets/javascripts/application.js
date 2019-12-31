@@ -19,4 +19,7 @@
 //= require bundles/c3.bundle.js
 //= require bundles/mainscripts.bundle.js
 
+//= require others/utilities.js
+//= require others/toastr.js
+
 // require_tree .

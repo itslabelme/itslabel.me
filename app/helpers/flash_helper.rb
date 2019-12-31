@@ -20,7 +20,7 @@ module FlashHelper
     strong_text = "Info!"
     strong_text = 'Success!' if flash.now[:success] || flash[:success]
     strong_text = 'Warning!' if flash.now[:alert] || flash[:alert]
-    strong_text = 'Danger!' if flash.now[:error] || flash[:error]
+    strong_text = 'Error!' if flash.now[:error] || flash[:error]
 
     message = message.strip if message
 

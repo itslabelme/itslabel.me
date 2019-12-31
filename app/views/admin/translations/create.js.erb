@@ -1,0 +1,30 @@
+<% if @translation.errors.blank? %>
+  
+  // Showing Growl Like Message
+  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  
+  // Add the Row to the table and highlight it
+  <%= render(:partial=>"admin/translations/index/row.js.erb", locals: { row_action: "create", obj: @translation }) %>
+
+  // Reset the form to add more
+  <%#= wf_reset_form(partial_name: "new_form") %>
+
+  // Set Focus on the First Input after loading the form
+  // setFocusOnFirstInput("<%#= dom_id_for(:form) %>");
+
+  // Hide the form 
+  $("#TRANSLATION_FORM").hide();
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+  // Reload the form to show errors
+  $("#TRANSLATION_FORM").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
+
+  // Set Focus on the First Input after loading the form
+  // setFocusOnFirstInput("<%#= dom_id_for(:form) %>");
+
+<% end %>
+

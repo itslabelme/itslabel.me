@@ -5,7 +5,7 @@ class Translation < ApplicationRecord
 
 
   # Includes
-  include Itslabel::Status::TranslationStatus
+  # include Itslabel::Status::TranslationStatus
   include Itslabel::Scopes::TranslationScopes
   include Itslabel::Permissions::TranslationPermissions
   include Itslabel::Validations::TranslationValidations

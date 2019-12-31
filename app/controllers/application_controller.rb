@@ -1,11 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  protect_from_forgery with: :exception
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_default_page_title
-
-  # before_action :authenticate_user!, except: [:home]
-
   # include BreadcrumbsHelper
   include MetaTagsHelper
   include NavigationHelper
@@ -13,7 +7,15 @@ class ApplicationController < ActionController::Base
   include FlashHelper
   include PaginationHelper
 
+  include General::FlashConcern
   include Devise::Controllers::Helpers
+
+  protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_default_page_title
+
+  before_action :configure_notification
+  # before_action :authenticate_user!, except: [:home]
 
   protected
 

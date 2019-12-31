@@ -19,6 +19,8 @@
  *= require site.min.css
  *= require color.css
  *= require itslabel.css
+
+ *= require others/toastr.css
  
  *= require_self
  */
