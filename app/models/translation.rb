@@ -2,6 +2,7 @@ class Translation < ApplicationRecord
 
   # Set Table Name
   self.table_name = "translations"
+  LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH"].freeze
 
 
   # Includes
@@ -12,9 +13,9 @@ class Translation < ApplicationRecord
 
   # Validations
   validates :input_phrase, presence: true, length: {maximum: 256}, allow_blank: false
-  validates :input_language, presence: true, length: {maximum: 16}, allow_blank: false
+  validates :input_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "%{value} is not a valid language" }
   validates :output_phrase, presence: true, length: {maximum: 256}, allow_blank: false
-  validates :output_language, presence: true, length: {maximum: 16}, allow_blank: false
+  validates :output_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "%{value} is not a valid language" }
   
   # Associations
 

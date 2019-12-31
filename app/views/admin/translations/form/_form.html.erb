@@ -36,12 +36,14 @@
         <div class="row">
           <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="form-group">
-              <%= f.text_field :input_phrase, class: "form-control", placeholder: 'Input Phrase' %>
+              <% error_class = @translation.errors[:input_phrase].any? ? 'parsley-error' : '' %>
+              <%= f.text_field :input_phrase, class: "form-control #{error_class}", placeholder: 'Input Phrase' %>
             </div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
-              <select class="form-control show-tick" name='translation[input_language]'>
+              <% error_class = @translation.errors[:input_language].any? ? 'parsley-error' : '' %>
+              <select class="form-control <%= error_class %> show-tick" name='translation[input_language]'>
                 <option>--- Select ---</option>
                 <option value='ENGLISH'>English</option>
                 <option value='ARABIC'>Arabic</option>
@@ -51,7 +53,8 @@
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
-              <%= f.text_field :input_description, class: "form-control", placeholder: 'Input Description' %>
+              <% error_class = @translation.errors[:input_description].any? ? 'parsley-error' : '' %>
+              <%= f.text_field :input_description, class: "form-control #{error_class}", placeholder: 'Input Description' %>
             </div>
           </div>
         </div>
@@ -62,12 +65,14 @@
         <div class="row">
           <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="form-group">
-              <%= f.text_field :output_phrase, class: "form-control", placeholder: 'Output Phrase' %>
+              <% error_class = @translation.errors[:output_phrase].any? ? 'parsley-error' : '' %>
+              <%= f.text_field :output_phrase, class: "form-control #{error_class}", placeholder: 'Output Phrase' %>
             </div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
-              <select class="form-control show-tick" name='translation[output_language]'>
+              <% error_class = @translation.errors[:output_language].any? ? 'parsley-error' : '' %>
+              <select class="form-control <%= error_class %> show-tick" name='translation[output_language]'>
                 <option>--- Select ---</option>
                 <option value='ENGLISH'>English</option>
                 <option value='ARABIC'>Arabic</option>
@@ -77,7 +82,8 @@
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
-              <%= f.text_field :output_description, class: "form-control", placeholder: 'Output Description' %>
+              <% error_class = @translation.errors[:output_description].any? ? 'parsley-error' : '' %>
+              <%= f.text_field :output_description, class: "form-control #{error_class}", placeholder: 'Output Description' %>
             </div>
           </div>
         </div>
