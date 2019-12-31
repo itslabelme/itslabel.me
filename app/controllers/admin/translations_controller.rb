@@ -23,6 +23,7 @@ module Admin
 
     def edit
       @page_title = "Edit Translation | Admin"
+      render "index"
     end
 
     def create

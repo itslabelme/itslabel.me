@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table table-hover table-custom spacing8">
+  <table class="table table-hover table-custom spacing8" id="translation_listing_table">
     <thead>
       <tr> 
         <th style="width: 20px;">#</th>
@@ -34,6 +34,12 @@
           <td><%=  translation.output_language %></td>
           <td>
               <button type="button" class="btn btn-sm btn-default active" title="" data-toggle="tooltip" data-placement="top" data-original-title="Remove Favorite"><i class="icon-star"></i></button>
+              <button type="button" class="btn btn-sm btn-default " title="" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="icon-pencil"></i></button>
+
+              <%= link_to edit_admin_translation_path(translation), class: "btn btn-sm btn-default" do %>
+                <i class="icon-pencil"></i>
+              <% end %>
+
               <button type="button" class="btn btn-sm btn-default " title="" data-toggle="tooltip" data-placement="top" data-original-title="Print"><i class="icon-printer"></i></button>
               <button type="button" class="btn btn-sm btn-default" title="" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="icon-trash"></i></button>
           </td>
