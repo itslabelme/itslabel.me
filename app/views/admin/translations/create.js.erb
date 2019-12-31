@@ -4,16 +4,17 @@
   notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
   
   // Add the Row to the table and highlight it
-  <%= render(:partial=>"admin/translations/index/row.js.erb", locals: { row_action: "create", obj: @translation }) %>
+  $("#TRANSLATIONS_TABLE > table:first-child tr:first").after("<%= escape_javascript(render(:partial=>'admin/translations/index/row.html.erb', locals: { translation: @translation })) %>");
+  
+  // Reload the form to show errors
+  <% @translation = Translation.new %>
+  $("#TRANSLATION_FORM").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
 
-  // Reset the form to add more
-  <%#= wf_reset_form(partial_name: "new_form") %>
+  // Hide the form
+  showTab('TRANSLATIONS_LIST');
 
   // Set Focus on the First Input after loading the form
-  // setFocusOnFirstInput("<%#= dom_id_for(:form) %>");
-
-  // Hide the form 
-  $("#TRANSLATION_FORM").hide();
+  setFocusOnFirstInput("TRANSLATIONS_FORM");
 
 <% else %>
 
@@ -24,7 +25,7 @@
   $("#TRANSLATION_FORM").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
 
   // Set Focus on the First Input after loading the form
-  // setFocusOnFirstInput("<%#= dom_id_for(:form) %>");
+  setFocusOnFirstInput("TRANSLATIONS_FORM");
 
 <% end %>
 

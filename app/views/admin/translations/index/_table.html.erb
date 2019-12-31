@@ -1,7 +1,7 @@
-<div class="table-responsive">
+<div id="TRANSLATIONS_TABLE" class="table-responsive">
   <table class="table table-hover table-custom spacing8" id="translation_listing_table">
     <thead>
-      <tr> 
+      <tr>
         <th style="width: 20px;">#</th>
         <th>Input Phrase</th>
         <th style="width: 50px;">Input Description</th>
@@ -15,16 +15,16 @@
 
     <tbody>
       <% @translations.each_with_index do |translation, i| %>
-      <tr>
+      <tr id='TRANSLATIONS_ROW_<%= translation.id %>'>
           <td>
-              <span>01</span>
+            <span><%= serial_number(i) %></span>
           </td>
           <td>
-              <div class="d-flex align-items-center">
-                  <div>
-                      <%= link_to translation.input_phrase, "#" %> 
-                  </div>
+            <div class="d-flex align-items-center">
+              <div>
+                <%= link_to translation.input_phrase, "#" %> 
               </div>
+            </div>
           </td>
           <td><%=  translation.input_description %></td>
           <td class="its-tag"><%=  translation.input_language %></td>
@@ -33,15 +33,13 @@
           <td><%=  translation.output_description %></td>
           <td><%=  translation.output_language %></td>
           <td>
-              <button type="button" class="btn btn-sm btn-default active" title="" data-toggle="tooltip" data-placement="top" data-original-title="Remove Favorite"><i class="icon-star"></i></button>
-              <button type="button" class="btn btn-sm btn-default " title="" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="icon-pencil"></i></button>
+            <%= link_to edit_admin_translation_path(translation), class: "btn btn-sm btn-default", remote: true do %>
+              <i class="icon-pencil"></i>
+            <% end %>
 
-              <%= link_to edit_admin_translation_path(translation), class: "btn btn-sm btn-default" do %>
-                <i class="icon-pencil"></i>
-              <% end %>
-
-              <button type="button" class="btn btn-sm btn-default " title="" data-toggle="tooltip" data-placement="top" data-original-title="Print"><i class="icon-printer"></i></button>
-              <button type="button" class="btn btn-sm btn-default" title="" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="icon-trash"></i></button>
+            <%= link_to admin_translation_path(translation), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this translation?"} do %>
+              <i class="icon-trash"></i>
+            <% end %>
           </td>
       </tr>
       <% end %>

@@ -11,18 +11,18 @@
       
       <div class="card">
         <ul class="nav nav-tabs">
-          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#linst_translation">Translations Database</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#add_translation">Add  a Translation</a></li>        
+          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#TRANSLATIONS_LIST">Translations Database</a></li>
+          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#TRANSLATIONS_FORM">Add  a Translation</a></li>        
         </ul>
 
         <div class="tab-content mt-0">
           <!-- Table -->
-          <div class="tab-pane active show" id="linst_translation">
+          <div class="tab-pane active show" id="TRANSLATIONS_LIST">
             <%= render partial: 'admin/translations/index/table' %>
           </div>
           
           <!-- Form -->
-          <div class="tab-pane" id="add_translation">
+          <div class="tab-pane" id="TRANSLATIONS_FORM">
             <%= render partial: 'admin/translations/form/form' %>
           </div>
         </div>            

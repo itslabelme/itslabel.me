@@ -1,3 +1,7 @@
+function showTab(tab){
+  $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+};
+
 function notifySuccess(title, message, positionClass){
   var dfltPositionClass = "toast-top-right";
   if(positionClass){
