@@ -60,6 +60,21 @@ module Admin
 
     def destroy
       get_translation
+
+      if @translation
+        if @translation.can_be_deleted?
+          @translation.destroy
+          
+          set_notification(false, I18n.t('status.success', item: "Translation"), I18n.t('success.deleted', item: "Translation"))
+          set_flash_message(I18n.t('success.deleted', item: "Translation"), :success, false)
+          @destroyed = true
+        else
+          message = I18n.t('errors.cannot_be_deleted', item: "Translation", reason: @translation.errors.full_messages.join("<br>"))
+          set_flash_message(message, :failure)
+          set_notification(false, I18n.t('status.error'), message)
+          @destroyed = false
+        end
+      end
     end
 
     private

@@ -1,6 +1,6 @@
 <tr id='TRANSLATIONS_ROW_<%= translation.id %>'>
   <td>
-    <span><% translation.try(:id) || ' - ' %></span>
+    <span> - </span>
   </td>
   <td>
     <div class="d-flex align-items-center">
@@ -9,11 +9,9 @@
       </div>
     </div>
   </td>
-  <td><%=  translation.input_description %></td>
   <td class="its-tag"><%=  translation.input_language %></td>
 
   <td><%=  translation.output_phrase %></td>
-  <td><%=  translation.output_description %></td>
   <td><%=  translation.output_language %></td>
   <td>
     <%= link_to edit_admin_translation_path(translation), class: "btn btn-sm btn-default", remote: true do %>

@@ -10,8 +10,10 @@
         </ol>
       </nav>
     </div>            
-    <div class="col-md-6 col-sm-12 text-right hidden-xs">
-      <a href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Add New Translation</a>
+    <div class="col-md-6 col-sm-12 text-right">
+      <%= link_to new_admin_translation_path, remote: true, class: "btn btn-sm btn-primary" do %>
+        <i class="fa fa-plus"></i> New Translation
+      <% end %>
     </div>
   </div>
 </div>
