@@ -1,7 +1,7 @@
 <% if @admin_user.errors.blank? %>
   
   // Showing Growl Like Message
-  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+   notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
   
   // Add the Row to the table and highlight it
   $("#USER_ROW_<%= @admin_user.id %>").replaceWith("<%= escape_javascript(render(:partial=>'admin/admin_users/index/row.html.erb', locals: { admin_user: @admin_user })) %>");

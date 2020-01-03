@@ -12,6 +12,7 @@
     </thead>
 
     <tbody>
+        <% if @admin_users.present? %>
       <% @admin_users.each_with_index do |admin_user, i| %>
       <tr id='USER_ROW_<%= admin_user.id %>'>
           <td>
@@ -40,6 +41,9 @@
           </td>
       </tr>
       <% end %>
+       <% else %>
+      <tr><td> No result found</tr>
+       <% end %>
     </tbody>
   </table>                
 </div>
