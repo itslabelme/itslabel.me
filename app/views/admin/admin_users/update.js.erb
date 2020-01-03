@@ -1,0 +1,35 @@
+<% if @admin_user.errors.blank? %>
+  
+  // Showing Growl Like Message
+  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  
+  // Add the Row to the table and highlight it
+  $("#USER_ROW_<%= @admin_user.id %>").replaceWith("<%= escape_javascript(render(:partial=>'admin/admin_users/index/row.html.erb', locals: { admin_user: @admin_user })) %>");
+  
+  // Highlight the background color of the newly added data to the datatable
+  $("#USER_ROW_<%= @admin_user.id %> td").css( "animation", "highlightAfterUpdate 10000ms ease-out" );
+
+  // Reload the form to show errors
+  <% @admin_user = AdminUser.new %>
+  $("#USER_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/admin_users/form/form')) %>");
+
+  // Hide the form
+  showTab('USER_LIST');
+  $('#LI_USER_EDIT_FORM').hide();
+
+  // Set Focus on the First Input after loading the form
+  setFocusOnFirstInput("USER_EDIT_FORM");
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+  // Reload the form to show errors
+  $("#USER_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/admin_users/form/form')) %>");
+
+  // Set Focus on the First Input after loading the form
+  setFocusOnFirstInput("USER_EDIT_FORM");
+
+<% end %>
+
