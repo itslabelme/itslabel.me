@@ -6,7 +6,8 @@ module Admin
     def index
 
       @page_title = "Admin Users | Admin"
-       get_collection
+      @per_page=2
+      get_collection
       if (params.has_key? (:q))
         get_search
         new_adminuser

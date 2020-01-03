@@ -3,30 +3,30 @@ module Admin
 
     before_action :authenticate_admin_user!
    
-   # include PaginationHelper
+    # include PaginationHelper
     def index
 
       @page_title = "Client Users | Admin"
-     
-      @per_page=params[:page]
+      get_collection  
+      @per_page=2
      
       if (params.has_key? (:q))
-         key = "%#{params[:q]}%"
-            get_search
+        # key = "%#{params[:q]}%"
+        get_search
       else
-       get_collection  
+        get_collection  
       end
     end
     
-     # GET /client_user/1
+    # GET /client_user/1
     def show
       get_user 
     end
   
   
-  private 
+    private 
   
-  def get_collection
+    def get_collection
       #@per_page=params[:page]
       @order_by = "created_at DESC" unless @order_by
       @client_users = ClientUser.
