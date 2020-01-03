@@ -12,16 +12,36 @@ module Admin
      
       if (params.has_key? (:q))
          key = "%#{params[:q]}%"
-      
-      @client_users = ClientUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@per_page).per(@current_page)
+            get_search
       else
-       @client_users = ClientUser.page(@per_page).per(@current_page)  
+       get_collection  
       end
     end
     
      # GET /client_user/1
     def show
-      @user = ClientUser.find(params[:id])  
+      get_user 
+    end
+  
+  
+  private 
+  
+  def get_collection
+      #@per_page=params[:page]
+      @order_by = "created_at DESC" unless @order_by
+      @client_users = ClientUser.
+        order(@order_by).
+        page(@current_page).per(@per_page)
+    end
+    
+    def get_search
+      #s @per_page=params[:page]
+      key = "%#{params[:q]}%"
+      @admin_users = ClientUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@current_page).per(@per_page)
+    end
+     
+    def get_user
+      @user = ClientUsers.find(params[:id])
     end
   end
 end

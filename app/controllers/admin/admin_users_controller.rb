@@ -9,6 +9,7 @@ module Admin
        get_collection
       if (params.has_key? (:q))
         get_search
+        new_adminuser
       else
         get_collection
         new_adminuser
@@ -51,8 +52,8 @@ module Admin
       get_user
       @admin_user.assign_attributes(admin_user_params)
       
-      if @admin_user.save
-       # @admin_user.save
+      if @admin_user.valid?
+        @admin_user.save
         set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "AdminUser"))
         set_flash_message(I18n.translate("success.updated", item: "AdminUsers"), :success)
       else
@@ -104,7 +105,10 @@ module Admin
     def get_search
       #s @per_page=params[:page]
       key = "%#{params[:q]}%"
-      @admin_users = AdminUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@per_page).per(@current_page)
+      
+      @admin_users = AdminUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@current_page).per(@per_page)
+      
+      
     end
      
     def get_user

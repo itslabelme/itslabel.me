@@ -1,21 +1,8 @@
         <div class="container-fluid">
-            <div class="block-header">
-                <div class="row clearfix">
-                    <div class="col-md-6 col-sm-12">
-                        <h2>User List</h2>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">It's Label</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">User List</li>
-                            </ol>
-                        </nav>
-                    </div>            
-                    <div class="col-md-6 col-sm-12 text-right hidden-xs">
-                        <a href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Add New</a>
-                    </div>
-                </div>
-            </div>
+            <%= render partial: 'admin/client_users/index/header' %>
+
+    <!-- Controls -->
+           <%= render partial: 'admin/client_users/index/controls' %>
             <div class="row clearfix">
                 <div class="col-lg-12">
                     <div class="card">
@@ -29,45 +16,11 @@
                                     <div class="float-lg-right"><form action="" method="get">
                                             <input type="text" name="q"><input type="submit" value="Go">
                                         </form></div>
-                                    <table class="table table-hover table-custom spacing8">
-                                        <thead>
-                                            <tr>
-                                                <th class="w60"></th>
-                                                <th>Name</th>
-                                                <th>Mobile No</th>
-                                                <th>Created Date</th>
-                                                <th>Organisation</th>
-                                                <th class="w100">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                             <% @client_users.each do |user | %>
-                                            <tr>
-                                                <td>
-                                                                                                  
-                                                    <img src="<%= asset_path( 'xs/avatar5.jpg' ) %>" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35" data-original-title="Avatar Name">
-                                                </td>
-                                                <td>
-                                                    <h6 class="mb-0">
-                                                        <%= link_to "#{user.first_name} #{user.last_name}", admin_client_user_path(user) %>
-                                                    </h6>
-                                                    <span><%= user.email %></span>
-                                                </td>
-                                                <td><span class="badge badge-info"><%= user.phone %></span></td>
-                                                <td><%= user.created_at.strftime("%d %b,%Y") %></td>
-                                                <td><%= user.organisation %></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-sm btn-default" title="Edit"><i class="fa fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-sm btn-default js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
-                                                </td>
-                                            </tr>
-                                             <% end %>
-                                           
-                                           
-                                        </tbody>
-                                    </table>   
+                                    <%= render partial: 'admin/client_users/index/table' %> 
+                                    <% if @client_users.present? %> 
                                     
                                     <%= paginate @client_users %>
+                                    <% end  %>
                                 </div>
                             </div>
                             
