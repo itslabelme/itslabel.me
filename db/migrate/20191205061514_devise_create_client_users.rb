@@ -3,6 +3,12 @@
 class DeviseCreateClientUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :client_users do |t|
+
+      t.string :first_name, null: false
+      t.string :last_name
+      t.bigint :phone
+      t.string :organisation
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

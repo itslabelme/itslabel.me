@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_091917) do
+ActiveRecord::Schema.define(version: 2019_12_05_061525) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name"
+    t.bigint "phone"
+    t.string "organisation"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -20,15 +24,15 @@ ActiveRecord::Schema.define(version: 2019_12_18_091917) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "phone"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "organisation"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "client_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name"
+    t.bigint "phone"
+    t.string "organisation"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -36,10 +40,6 @@ ActiveRecord::Schema.define(version: 2019_12_18_091917) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.integer "phone"
-    t.string "organisation"
     t.index ["email"], name: "index_client_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_client_users_on_reset_password_token", unique: true
   end
