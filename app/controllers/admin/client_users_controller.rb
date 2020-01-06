@@ -41,7 +41,7 @@ module Admin
     end
      
     def get_user
-      @user = ClientUsers.find(params[:id])
+      @user = ClientUser.find(params[:id])
     end
   end
 end
