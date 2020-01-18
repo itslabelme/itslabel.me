@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_30_064905) do
+ActiveRecord::Schema.define(version: 2020_01_18_085234) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
@@ -24,10 +24,6 @@ ActiveRecord::Schema.define(version: 2019_12_30_064905) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.bigint "phone"
-    t.string "organisation"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
@@ -44,12 +40,39 @@ ActiveRecord::Schema.define(version: 2019_12_30_064905) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.bigint "phone"
-    t.string "organisation"
     t.index ["email"], name: "index_client_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_client_users_on_reset_password_token", unique: true
+  end
+
+  create_table "document_trasnlations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", limit: 256, null: false
+    t.bigint "document_id", null: false
+    t.string "row_heading", limit: 256, null: false
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_document_trasnlations_on_document_id"
+    t.index ["tag_id"], name: "index_document_trasnlations_on_tag_id"
+  end
+
+  create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", limit: 256, null: false
+    t.bigint "user_id"
+    t.string "documnet_type", limit: 256
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "label_eng", limit: 256, null: false
+    t.string "label_french", limit: 256
+    t.string "label_arbi", limit: 256
+    t.string "label_russian", limit: 256
+    t.string "ingradiant_value", limit: 256
+    t.string "daily_value", limit: 256
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,4 +86,7 @@ ActiveRecord::Schema.define(version: 2019_12_30_064905) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "document_trasnlations", "documents", on_delete: :cascade
+  add_foreign_key "document_trasnlations", "tags"
+  add_foreign_key "documents", "client_users", column: "user_id"
 end
