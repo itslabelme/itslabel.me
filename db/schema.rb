@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_085234) do
+ActiveRecord::Schema.define(version: 2020_01_18_091731) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
@@ -44,21 +44,21 @@ ActiveRecord::Schema.define(version: 2020_01_18_085234) do
     t.index ["reset_password_token"], name: "index_client_users_on_reset_password_token", unique: true
   end
 
-  create_table "document_trasnlations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", limit: 256, null: false
-    t.bigint "document_id", null: false
-    t.string "row_heading", limit: 256, null: false
+  create_table "document_translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
     t.bigint "tag_id"
+    t.string "name", limit: 256, null: false
+    t.string "row_heading", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["document_id"], name: "index_document_trasnlations_on_document_id"
-    t.index ["tag_id"], name: "index_document_trasnlations_on_tag_id"
+    t.index ["document_id"], name: "index_document_translations_on_document_id"
+    t.index ["tag_id"], name: "index_document_translations_on_tag_id"
   end
 
   create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", limit: 256, null: false
     t.bigint "user_id"
-    t.string "documnet_type", limit: 256
+    t.string "name", limit: 256, null: false
+    t.string "type", limit: 128
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_documents_on_user_id"
@@ -86,7 +86,4 @@ ActiveRecord::Schema.define(version: 2020_01_18_085234) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "document_trasnlations", "documents", on_delete: :cascade
-  add_foreign_key "document_trasnlations", "tags"
-  add_foreign_key "documents", "client_users", column: "user_id"
 end
