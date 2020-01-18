@@ -21,7 +21,8 @@ Rails.application.routes.draw do
     resources :client_users
 
     # CRUD Admin Users
-    resources :admin_users
+    resources :admin_users    
+
     # CRUD Translations
     resources :translations
   end

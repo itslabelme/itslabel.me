@@ -1,5 +1,4 @@
 module ApplicationHelper
-  
    def display_parsley_error(obj, field_name)
     if obj.errors[field_name].any?
       content_tag(:ul, class: "parsley-errors-list filled", style: "padding-left:15px;") do
