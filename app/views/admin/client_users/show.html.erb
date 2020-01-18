@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h2>User Detail</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">It's Label</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">User Details</li>
+                    </ol>
+                </nav>
+            </div>            
+
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Users">User</a></li>
+                         
+                </ul>
+                <div class="tab-content mt-0">
+                    <div class="tab-pane active show" id="Users">
+                        <div class="table-responsive">
+                           
+                            <table class="table table-hover table-custom spacing8">
+
+                                <tbody>
+
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>
+                                            <h6 class="mb-0"><%= @user.first_name %>&nbsp<%= @user.last_name %></h6>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>   <span><%= @user.email %></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mobile</td>
+                                        <td><span class="badge badge-info"><%= @user.phone %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created At</td>
+                                        <td><%= @user.created_at.strftime("%d %b,%Y") %></td>
+                                    </tr>
+                                    <tr>
+                                        <td> Organisation </td>
+                                        <td><%= @user.organisation %></td>
+
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>   
+
+
+                        </div>
+                    </div>
+
+                </div>            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
