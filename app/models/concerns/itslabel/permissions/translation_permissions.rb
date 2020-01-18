@@ -6,16 +6,12 @@ module Itslabel::Permissions::TranslationPermissions
   # ------------------
 
   def can_be_edited?
-    active? || inactive? || pending?
+    true
   end
 
-  def can_be_edited_by_admin?
-    active? || inactive? || pending?
-    # !(removed? || cancelled?)
-  end
-
+  # FIXME - Do not allow to delete a translation if it is being used in any of the document
   def can_be_deleted?
-    inactive? || pending?
+    true
   end
   
 end

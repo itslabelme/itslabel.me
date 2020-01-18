@@ -24,3 +24,45 @@
  
  *= require_self
  */
+
+ @keyframes highlightAfterAdd {
+  0% {
+    background-color: #c3ffd0;
+    border-size: 1px;
+    border-color: #aee2b9;
+  }
+  100% {
+    background-color: #fff;
+    border-color: #fff;
+  }
+}
+@keyframes highlightAfterUpdate {
+  0% {
+    background-color: #fffbdd;
+    border-color: #b7b4a0;
+    border-size: 1px;
+  }
+  100% {
+    background-color: #fff;
+    border-color: #fff;
+  }
+}
+@keyframes highlightFailedDestroy {
+  0% {
+    background-color: #ffc9c5;
+    border-color: #b1908d;
+    border-size: 1px;
+  }
+  100% {
+    background-color: #fff;
+    border-color: #fff;
+  }
+}
+@keyframes highlightForAttention {
+  0% {
+    background-color: #fffbdd;
+  }
+  100% {
+    background-color: #fff;
+  }
+}

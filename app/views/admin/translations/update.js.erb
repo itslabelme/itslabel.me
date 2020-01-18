@@ -6,15 +6,19 @@
   // Add the Row to the table and highlight it
   $("#TRANSLATIONS_ROW_<%= @translation.id %>").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/index/row.html.erb', locals: { translation: @translation })) %>");
   
+  // Highlight the background color of the newly added data to the datatable
+  $("#TRANSLATIONS_ROW_<%= @translation.id %> td").css( "animation", "highlightAfterUpdate 10000ms ease-out" );
+
   // Reload the form to show errors
   <% @translation = Translation.new %>
-  $("#TRANSLATION_FORM").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
+  $("#TRANSLATIONS_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
 
   // Hide the form
   showTab('TRANSLATIONS_LIST');
+  $('#LI_TRANSLATIONS_EDIT_FORM').hide();
 
   // Set Focus on the First Input after loading the form
-  setFocusOnFirstInput("TRANSLATIONS_FORM");
+  setFocusOnFirstInput("TRANSLATIONS_EDIT_FORM");
 
 <% else %>
 
@@ -22,10 +26,10 @@
   notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
 
   // Reload the form to show errors
-  $("#TRANSLATION_FORM").replaceWith("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
+  $("#TRANSLATIONS_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
 
   // Set Focus on the First Input after loading the form
-  setFocusOnFirstInput("TRANSLATIONS_FORM");
+  setFocusOnFirstInput("TRANSLATIONS_EDIT_FORM");
 
 <% end %>
 
