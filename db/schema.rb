@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_091731) do
+ActiveRecord::Schema.define(version: 2020_01_20_060637) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
@@ -44,17 +44,6 @@ ActiveRecord::Schema.define(version: 2020_01_18_091731) do
     t.index ["reset_password_token"], name: "index_client_users_on_reset_password_token", unique: true
   end
 
-  create_table "document_translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "document_id"
-    t.bigint "tag_id"
-    t.string "name", limit: 256, null: false
-    t.string "row_heading", limit: 256, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["document_id"], name: "index_document_translations_on_document_id"
-    t.index ["tag_id"], name: "index_document_translations_on_tag_id"
-  end
-
   create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "name", limit: 256, null: false
@@ -64,15 +53,29 @@ ActiveRecord::Schema.define(version: 2020_01_18_091731) do
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
-  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "label_eng", limit: 256, null: false
-    t.string "label_french", limit: 256
-    t.string "label_arbi", limit: 256
-    t.string "label_russian", limit: 256
-    t.string "ingradiant_value", limit: 256
-    t.string "daily_value", limit: 256
+  create_table "table_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
+    t.string "source_langage", limit: 256, null: false
+    t.string "output_language", limit: 256
+    t.string "input_phrase", limit: 256
+    t.string "output_phrase", limit: 256
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_table_tags_on_document_id"
+  end
+
+  create_table "template_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
+    t.string "source_langage", limit: 256, null: false
+    t.string "output_language", limit: 256
+    t.string "input_phrase", limit: 256
+    t.string "output_phrase", limit: 256
+    t.string "phrase_group", limit: 256
+    t.string "ingradiant_weight", limit: 256
+    t.string "ingradiant_percentage", limit: 256
+    t.string "footer_text", limit: 1024
+    t.string "tags", limit: 1024
+    t.index ["document_id"], name: "index_template_tags_on_document_id"
   end
 
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -86,4 +89,7 @@ ActiveRecord::Schema.define(version: 2020_01_18_091731) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "documents", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "table_tags", "documents", on_delete: :cascade
+  add_foreign_key "template_tags", "documents", on_delete: :cascade
 end
