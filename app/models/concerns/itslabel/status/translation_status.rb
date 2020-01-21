@@ -3,46 +3,46 @@ module Itslabel::Status::TranslationStatus
   extend ActiveSupport::Concern
 
   # Constants
-  ACTIVE = "ACTIVE"
-  INACTIVE = "INACTIVE" 
   PENDING = "PENDING" 
+  APPROVED = "APPROVED"
+  REJECTED = "REJECTED" 
   REMOVED = "REMOVED"
   
-  STATUS_LIST = {ACTIVE => "Active", INACTIVE => "Inactive", PENDING => "Pending", REMOVED => "Removed"}
-  REVERSED_STATUS_LIST = {"Active" => ACTIVE, "Inactive" => INACTIVE, PENDING => "Pending", "Removed" => REMOVED}
-  STATUS_UI_CLASS = {ACTIVE => "success", INACTIVE => "dark", PENDING => "warning", REMOVED => "danger"}
-  STATUS_UI_ICON = {ACTIVE => "fa-check", INACTIVE => "fa-eye-slash", PENDING => "fa-clock-o", REMOVED => "fa-trash"}
-  STATUS_UI_COLOR = {ACTIVE => "#63b94c", INACTIVE => "#4b4b4b", PENDING => "#FFCC00", REMOVED => "#ec407a"}
+  STATUS_LIST = {PENDING => "Pending", APPROVED => "Approved", REJECTED => "Rejected", REMOVED => "Removed"}
+  REVERSED_STATUS_LIST = {"Pending" => PENDING, "Approved" => APPROVED, "Rejected" => REJECTED, "Removed" => REMOVED}
+  STATUS_UI_CLASS = {PENDING => "dark", APPROVED => "success", REJECTED => "warning", REMOVED => "danger"}
+  STATUS_UI_ICON = {PENDING => "fa-clock-o", APPROVED => "fa-check", REJECTED => "fa-ban", REMOVED => "fa-trash"}
+  STATUS_UI_COLOR = {PENDING => "#FFCC00", APPROVED => "#63b94c", REJECTED => "#4b4b4b", REMOVED => "#ec407a"}
 
   included do
 
     validates :status, :presence=> true, :inclusion => {:in => STATUS_LIST.keys, :presence_of => :status, :message => "%{value} is not a valid status" }
 
-    # Active
-    def active?
-      self.status == ACTIVE
+    # Approved
+    def approved?
+      self.status == APPROVED
     end
 
-    def can_active?
-      self.inactive? || self.removed?
+    def can_approve?
+      self.pending? || self.rejected?
     end
 
-    def active!
-      self.can_active? && self.update_attribute(:status, ACTIVE)
+    def approve!
+      self.can_approve? && self.update_attribute(:status, APPROVED)
     end
 
 
     # Reject
-    def inactive?
-      self.status == INACTIVE
+    def rejected?
+      self.status == REJECTED
     end
 
-    def can_inactive?
-      self.active? || self.removed?
+    def can_reject?
+      self.approved? || self.pending?
     end
 
-    def inactive!
-      self.can_inactive? && self.update_attribute(:status, INACTIVE)
+    def reject!
+      self.can_reject? && self.update_attribute(:status, REJECTED)
     end
 
 
@@ -52,7 +52,7 @@ module Itslabel::Status::TranslationStatus
     end
 
     def can_pending?
-      self.active? || self.removed?
+      self.approved? || self.rejected?
     end
 
     def pending!
@@ -66,7 +66,7 @@ module Itslabel::Status::TranslationStatus
     end
 
     def can_remove?
-      self.inactive? || self.active?
+      self.pending? || self.rejected?
     end
 
     def remove!
@@ -83,20 +83,24 @@ module Itslabel::Status::TranslationStatus
     # This method is helpful if you are changing status in bulk
     def update_status(status)
       case status
-      when ACTIVE
-        self.active!
-      when INACTIVE
-        self.inactive!
+      when PENDING
+        self.pending!
+      when APPROVED
+        self.approve!
+      when REJECTED
+        self.reject!
       when REMOVED
         self.remove!
       end
     end
 
-    scope :activated, -> { where("#{table_name}": {status: ACTIVE} ) }
-    scope :inactivated, -> { where("#{table_name}": {status: INACTIVE} ) }
+    scope :pending, -> { where("#{table_name}": {status: PENDING} ) }
+    scope :approved, -> { where("#{table_name}": {status: APPROVED} ) }
+    scope :rejected, -> { where("#{table_name}": {status: REJECTED} ) }
     scope :removed, -> { where("#{table_name}": {status: REMOVED} ) }
 
     scope :status, lambda { |status| where("UPPER(#{table_name}.status)='#{status}'") }
+    scope :any_of_the_statuses, lambda { |status| where("UPPER(#{table_name}.status) IN (?)", status) }
     scope :all_statuses_expect, lambda { |status| where("UPPER(#{table_name}.status) NOT IN (?)", status) }
   end
 

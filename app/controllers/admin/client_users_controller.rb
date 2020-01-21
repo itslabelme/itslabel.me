@@ -2,11 +2,13 @@ module Admin
   class ClientUsersController < Admin::BaseController
 
     before_action :authenticate_admin_user!
-   
     # include PaginationHelper
+
     def index
 
       @page_title = "Client Users | Admin"
+      @nav = "admin/registrations"
+      
       get_collection  
       @per_page=2
      

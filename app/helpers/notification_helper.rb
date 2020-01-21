@@ -43,14 +43,14 @@ module NotificationHelper
 
   # Displays Full errors with basic alert styles
   # Example
-  #   felix_compact_form_errors(@user)
+  #   notify_form_errors(@user)
   def notify_form_errors(object, **options)
     options.reverse_merge!(
       row_class: "row m-b-1",
       col_class: "col-md-12",
       alert_class: "alert alert-danger",
       ul_class: "",
-      ul_style: "margin-bottom: 0px;",
+      ul_style: "margin-bottom: 0px;text-align:left;",
       li_class: "",
       li_style: ""
     )

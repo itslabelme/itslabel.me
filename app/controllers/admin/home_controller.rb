@@ -6,6 +6,7 @@ module Admin
     def index
 
       @page_title = "Home | Admin"
+      @nav = "admin/home"
 
     end
 

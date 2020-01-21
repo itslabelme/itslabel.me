@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem "kaminari", '~> 1.0', '>= 1.0.1'
 gem 'bootstrap4-kaminari-views'
+gem 'country_select'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

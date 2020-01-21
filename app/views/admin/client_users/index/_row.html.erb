@@ -6,11 +6,11 @@
     <div class="d-flex align-items-center">
       <div>
         <h6 class="mb-0"><%= admin_user.display_name %></h6>
-                                              <span><%= admin_user.email %></span> 
+          <span><%= admin_user.email %></span> 
       </div>
     </div>
   </td>
-  <td class="its-tag"><%=  admin_user.phone %></td>
+  <td class="its-tag"><%=  number_to_phone(admin_user.mobile_number) if admin_user.mobile_number %></td>
 
   <td><%=  admin_user.created_at %></td>
   <td><%=  admin_user.organisation %></td>

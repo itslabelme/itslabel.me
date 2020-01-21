@@ -3,10 +3,12 @@ module Admin
     
     before_action :authenticate_admin_user!
     before_action :get_user, except: [:new, :create, :index]
+    
     def index
 
       @page_title = "Admin Users | Admin"
-      @per_page=2
+      @nav = 'admin/admin_users'
+
       get_collection
       if (params.has_key? (:q))
         get_search
@@ -15,7 +17,7 @@ module Admin
         get_collection
         new_adminuser
       end
-        
+
     end
     
     def new   
@@ -45,8 +47,11 @@ module Admin
     
     def edit
       @page_title = "Edit User | Admin"
+      @nav = 'admin/admin_users'
+
       get_user
     end
+
     # PATCH/PUT /admin_user/1
     def update
       
@@ -94,7 +99,8 @@ module Admin
       @admin_user = AdminUser.new
     end
     
-    private 
+    private
+
     def get_collection
       #@per_page=params[:page]
       @order_by = "created_at DESC" unless @order_by
@@ -109,7 +115,6 @@ module Admin
       
       @admin_users = AdminUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@current_page).per(@per_page)
       
-      
     end
      
     def get_user
@@ -121,11 +126,10 @@ module Admin
         :id,
         :first_name,
         :last_name,
-        :password,
-        :password_confirmation,
+        :mobile_number,
         :email,
-        :organisation,
-        :phone)
+        :password,
+        :password_confirmation)
     end
      
       

@@ -6,6 +6,7 @@ module Admin
 
     def index
       @page_title = "Translations Database"
+      @nav = 'admin/translations'
 
       get_collection
       new_translation
@@ -13,16 +14,19 @@ module Admin
 
     def show
       @page_title = "Translation"
+      @nav = 'admin/translations'
       get_translation
     end
 
     def new
       @page_title = "Add a Translation"
+      @nav = 'admin/translations'
       new_translation
     end
 
     def edit
       @page_title = "Edit Translation"
+      @nav = 'admin/translations'
       get_translation
     end
 

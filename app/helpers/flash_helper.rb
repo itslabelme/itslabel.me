@@ -34,7 +34,7 @@ module FlashHelper
 
   # Displays Full errors with basic alert styles
   # Example
-  #   felix_compact_form_errors(@user)
+  #   error_message(@user)
   def error_message(object, **options)
     options.reverse_merge!(
       row_class: "row m-b-1",
