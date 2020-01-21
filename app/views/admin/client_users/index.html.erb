@@ -1,29 +1,23 @@
 <div class="container-fluid">
+
+  <!-- Header -->
   <%= render partial: 'admin/client_users/index/header' %>
+  
   <!-- Controls -->
   <%= render partial: 'admin/client_users/index/controls' %>
+
   <div class="row clearfix">
     <div class="col-lg-12">
       <div class="card">
-        <ul class="nav nav-tabs">
-          <!-- <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Users">Users</a></li>
-           --><!-- <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addUser">Add User</a></li> -->
-        </ul>
-        <div class="tab-content mt-0">
-          <div class="tab-pane active show" id="Users">
-            <div class="table-responsive">
-              <div class="float-lg-right"><form action="" method="get">
-                <input type="text" name="q"><input type="submit" value="Go">
-              </form></div>
-              <%= render partial: 'admin/client_users/index/table' %>
-              <% if @client_users.present? %>
-              
-              <%= paginate @client_users %>
-              <% end  %>
-            </div>
-          </div>
-          
+        
+        <div class="table-responsive">
+          <!-- Table -->
+          <%= render partial: 'admin/client_users/index/table' %>
+
+          <!-- Pagination -->
+          <%= paginate @client_users if @client_users.any? %>
         </div>
+
       </div>
     </div>
   </div>
