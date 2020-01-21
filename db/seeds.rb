@@ -9,9 +9,9 @@ AdminUser.create([
 
 puts "Adding Client Users".green
 ClientUser.create([
-                  { first_name: 'Tom',  last_name: "Sawyer", mobile_number: "12345678", organisation: "Disney", email: "sawyer@yopmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
-                  { first_name: 'Huckleburry',  last_name: "Finn", mobile_number: "12345678", organisation: "DM Studios", email: "finn@yopmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
-                  { first_name: 'Mark',  last_name: "Twain", mobile_number: "12345678", organisation: "Micky Productions", email: "mark@yopmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
+                  { first_name: 'Sherlock',  last_name: "Holmes", country: "United Kingdom", mobile_number: "12345678", organisation: "Conon Doyle", email: "holmes@yopmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
+                  { first_name: 'Huckleburry',  last_name: "Finn", country: "United States", mobile_number: "12345678", organisation: "DM Studios", email: "finn@yopmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
+                  { first_name: 'Joan',  last_name: "Arc", country: "France", mobile_number: "12345678", organisation: "French Ltd", email: "joan@yopmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
                 ])
 
 admin_user = AdminUser.first

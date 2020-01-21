@@ -20,10 +20,5 @@ class ClientUser < ApplicationRecord
   def display_name
     [first_name, last_name].compact.join(" ")
   end
-
-  def country_name
-   country = Country[country_code]
-   country.translations[I18n.locale.to_s] || country.name
-  end
-
+  
 end
