@@ -1,45 +1,45 @@
 <div id="left-sidebar" class="sidebar">
   <div class="navbar-brand">
     <%= link_to "#" do %>
-      <%= image_tag "itsme-logo.png", alt: "ITSLabel Logo", class: "img-fluid logo" %>
-      <button type="button" class="btn-toggle-offcanvas btn btn-sm float-right"><i class="lnr lnr-menu icon-close"></i></button>
+    <%= image_tag "itsme-logo.png", alt: "ITSLabel Logo", class: "img-fluid logo" %>
+    <button type="button" class="btn-toggle-offcanvas btn btn-sm float-right"><i class="lnr lnr-menu icon-close"></i></button>
     <% end %>
   </div>
   <div class="sidebar-scroll">
-      <div class="user-account">
-          <div class="user_div">
-              <%= image_tag "user.png", alt: "User Profile Picture", class: "user-photo" %>
-          </div>
-          <div class="dropdown">
-              <span>Welcome,</span>
-              <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong><%= current_admin_user.display_name %></strong></a>
-                 <ul class="dropdown-menu dropdown-menu-left account vivify flipInY">
-                  <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
-                  <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
-                  <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
-                </ul> 
-          </div>                
-      </div>  
-      <nav id="left-sidebar-nav" class="sidebar-nav">
-          <ul id="main-menu" class="metismenu">
-              <li class="header">Admin</li> 
+    <div class="user-account">
+      <div class="user_div">
+        <%= image_tag "user.png", alt: "User Profile Picture", class: "user-photo" %>
+      </div>
+      <div class="dropdown">
+        <span>Welcome,</span>
+        <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong><%= current_admin_user.display_name %></strong></a>
+        <ul class="dropdown-menu dropdown-menu-left account vivify flipInY">
+          <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
+          <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
+          <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
+        </ul>
+      </div>
+    </div>
 
-              <li class="active"><%= link_to content_tag(:i, "", class: "icon-speedometer") + "Home", admin_home_path %></li>
-              <li><%= link_to content_tag(:i, "", class: "icon-users") + "Registrations", admin_admin_users_path %></li>
-              <li><%= link_to content_tag(:i, "", class: "icon-folder") + "Translation Documents", admin_translations_path %></li>
-              <li><%= link_to content_tag(:i, "", class: "icon-user") + "Admin Users", admin_client_users_path %></li>
-              <li><%= link_to content_tag(:i, "", class: "icon-folder") + "Label Templates", admin_admin_users_path %></li>
-              
-              <li class="header">Reports</li>
-              <li><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 1", admin_admin_users_path %></li>
-              <li><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 2", admin_admin_users_path %></li>
-
-              <li class="header">My Account</li>
-              <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
-              <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
-              <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
-
-          </ul>
-      </nav>     
+    <nav id="left-sidebar-nav" class="sidebar-nav">
+      <ul id="main-menu" class="metismenu">
+        <li class="header">Admin</li>
+        
+        <li class="<%= nav_active?('admin/home') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-speedometer") + "Home", admin_home_path %></li>
+        <li class="<%= nav_active?('admin/registrations') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-users") + "Registrations", admin_client_users_path %></li>
+        <li class="<%= nav_active?('admin/translations') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Translation Database", admin_translations_path %></li>
+        <li class="<%= nav_active?('admin/admin_users') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "Admin Users", admin_admin_users_path %></li>
+        <li class="<%= nav_active?('admin/label_templates') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Label Templates", admin_admin_users_path %></li>
+        
+        <li class="header">Reports</li>
+        <li class="<%= nav_active?('admin/reports') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 1", admin_admin_users_path %></li>
+        <li class="<%= nav_active?('admin/reports') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 2", admin_admin_users_path %></li>
+        
+        <li class="header">My Account</li>
+        <li class="<%= nav_active?('admin/my_account') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
+        <li class="<%= nav_active?('admin/my_profile') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
+        <li class="<%= nav_active?('admin/settings') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
+      </ul>
+    </nav>
   </div>
 </div>

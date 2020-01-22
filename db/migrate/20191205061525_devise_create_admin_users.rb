@@ -4,13 +4,13 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :admin_users do |t|
 
-      t.string :first_name, null: false
-      t.string :last_name
-      t.bigint :phone
-      t.string :organisation
+      t.string :first_name, limit: 256, null: false
+      t.string :last_name, limit: 256
+
+      t.string :mobile_number, null: false, limit: 24
       
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
+      t.string :email, limit: 256, null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
@@ -43,6 +43,7 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration[5.2]
     end
 
     add_index :admin_users, :email,                unique: true
+    add_index :admin_users, :mobile_number
     add_index :admin_users, :reset_password_token, unique: true
     # add_index :admin_users, :confirmation_token,   unique: true
     # add_index :admin_users, :unlock_token,         unique: true

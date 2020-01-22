@@ -1,47 +1,44 @@
 <div class="container-fluid">
-
-    <!-- Header -->
-    <%= render partial: 'admin/admin_users/index/header' %>
-
-    <!-- Controls -->
-    <%= render partial: 'admin/admin_users/index/controls' %>
-    <div class="row clearfix">
-        <div class="col-lg-12">
-            <div class="card">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#USER_LIST">Users</a></li>
-                    <li class="nav-item"  style='display: none;' id='LI_USER_NEW_FORM'><a class="nav-link" data-toggle="tab" href="#USER_NEW_FORM">Add  User</a></li>        
-                    <li class="nav-item" style='display: none;' id='LI_USER_EDIT_FORM'><a class="nav-link" data-toggle="tab" href="#USER_EDIT_FORM">Edit User</a></li>        
-
-                </ul>
-                <div class="tab-content mt-0">
-                    <div class="tab-pane active show" id="USER_LIST">
-                        <div class="table-responsive">
-                            <div class="float-lg-right"><form action="" method="get" >
-                                    <input type="text" name="q"><input type="submit" value="Go">
-                                </form></div>
-                            <div class="tab-pane active show" id="USERS_LIST">
-                                <%= render partial: 'admin/admin_users/index/table' %>
-                            </div>
-                            <% if @admin_users.present? %> 
-
-                              <%= paginate @admin_users %>
-                            <% end  %>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="USER_NEW_FORM">
-                        <%= render partial: 'admin/admin_users/form/form' %>
-
-                    </div>
-                    <div class="tab-pane" id="USER_EDIT_FORM">
-                    </div>
-                </div>            
+  
+  <!-- Header -->
+  <%= render partial: 'admin/admin_users/index/header' %>
+  
+  <!-- Controls -->
+  <%= render partial: 'admin/admin_users/index/controls' %>
+  
+  <div class="row clearfix">
+    <div class="col-lg-12">
+      <div class="card">
+        <ul class="nav nav-tabs">
+          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#USER_LIST">Users</a></li>
+          <li class="nav-item"  style='display: none;' id='LI_USER_NEW_FORM'><a class="nav-link" data-toggle="tab" href="#USER_NEW_FORM">Add  User</a></li>
+          <li class="nav-item" style='display: none;' id='LI_USER_EDIT_FORM'><a class="nav-link" data-toggle="tab" href="#USER_EDIT_FORM">Edit User</a></li>
+        </ul>
+        <div class="tab-content mt-0">
+          <div class="tab-pane active show" id="USER_LIST">
+            <div class="table-responsive">
+              <div class="float-lg-right"><form action="" method="get" >
+                <input type="text" name="q"><input type="submit" value="Go">
+              </form></div>
+              <div class="tab-pane active show" id="USERS_LIST">
+                <%= render partial: 'admin/admin_users/index/table' %>
+              </div>
+              <% if @admin_users.present? %>
+              <%= paginate @admin_users %>
+              <% end  %>
             </div>
+          </div>
+          <div class="tab-pane" id="USER_NEW_FORM">
+            <%= render partial: 'admin/admin_users/form/form' %>
+          </div>
+          <div class="tab-pane" id="USER_EDIT_FORM">
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <%= content_for :javascript_footer do %>
-  <%= render :partial=>"admin/admin_users/index/table.js.erb"  %>
+<%= render :partial=>"admin/admin_users/index/table.js.erb"  %>
 <% end %>
-

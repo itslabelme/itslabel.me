@@ -2,50 +2,49 @@
   <table class="table table-hover table-custom spacing8" id="user_listing_table">
     <thead>
       <tr>
-        <th style="width: 10%;">#</th>
+        <th style="width: 5%;">#</th>
         <th style="width: 25%;">Name</th>
         <th style="width: 15%;">Mobile No.</th>
-        <th style="width: 25%;">Created Date</th>
         <th style="width: 15%;">Organisation</th>
-        <th style="width: 10%;">Action</th>
+        <th style="width: 10%;">Country</th>
+        <th style="width: 10%;">Created Date</th>
+        <!-- <th style="width: 20%;">Action</th> -->
       </tr>
     </thead>
-
     <tbody>
-        <% if @client_users.present? %>
+      <% if @client_users.present? %>
       <% @client_users.each_with_index do |client_user, i| %>
       <tr id='USER_ROW_<%= client_user.id %>'>
-          <td>
-            <span><%= serial_number(i) %></span>
-          </td>
-          <td>
-            <div class="d-flex align-items-center">
-              <div>
-                <h6 class="mb-0"><%= link_to "#{client_user.display_name}", admin_client_user_path(client_user) %></h6>
-                                              <span><%= client_user.email %></span>
-              </div>
+        
+        <td><span><%= serial_number(i) %></span></td>
+        <td>
+          <div class="d-flex align-items-center">
+            <div>
+              <h6 class="mb-0"><%= link_to "#{client_user.display_name}", 'javascript:void(0);' %></h6>
+              <span><%= client_user.email %></span>
             </div>
-          </td>
-          <td class="its-tag"><%=  client_user.phone %></td>
+          </div>
+        </td>
+        
+        <td class="its-tag"><%=  number_to_phone(client_user.mobile_number) if client_user.mobile_number %></td>
 
-          <td><%=  client_user.created_at.strftime("%d %b,%Y") %></td>
-          <td><%=  client_user.organisation %></td>
-          <td>
-            <%= link_to edit_admin_client_user_path(client_user), class: "btn btn-sm btn-default", remote: true do %>
-              <i class="icon-pencil"></i>
-            <% end %>
+        <td><%=  client_user.organisation %></td>
+        <td><%=  client_user.country %></td>
+        <td><%=  client_user.created_at.strftime("%d %b,%Y") %></td>
 
-            <%= link_to admin_client_user_path(client_user), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this user?"} do %>
-              <i class="icon-trash"></i>
-            <% end %>
-          </td>
+        <!-- <td> -->
+          <%#= link_to edit_admin_client_user_path(client_user), class: "btn btn-sm btn-default", remote: true do %>
+          <!-- <i class="icon-pencil"></i> -->
+          <%# end %>
+          <%#= link_to admin_client_user_path(client_user), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this user?"} do %>
+          <!-- <i class="icon-trash"></i> -->
+          <%# end %>
+        <!-- </td> -->
       </tr>
       <% end %>
       <%  else %>
       <tr><td>No result found.</td></tr>
       <% end %>
     </tbody>
-  </table>                
+  </table>
 </div>
-
-
