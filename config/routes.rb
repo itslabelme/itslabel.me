@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
 
   devise_scope :client_user do
+    
     root to: "devise/sessions#new"
+
+    # CRUD Documents
+    resources :documents
   end
 
   namespace :user, module: :user do
@@ -25,6 +29,9 @@ Rails.application.routes.draw do
 
     # CRUD Translations
     resources :translations
+
+    # CRUD Translations
+    resources :templates
   end
   
 end

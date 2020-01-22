@@ -65,15 +65,15 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.string "input_phrase", limit: 256, null: false
     t.string "input_language", limit: 16, null: false
     t.string "output_1_phrase", limit: 256
-    t.string "output_1_language", limit: 16, null: false
+    t.string "output_1_language", limit: 16
     t.string "output_2_phrase", limit: 256
-    t.string "output_2_language", limit: 16, null: false
+    t.string "output_2_language", limit: 16
     t.string "output_3_phrase", limit: 256
-    t.string "output_3_language", limit: 16, null: false
+    t.string "output_3_language", limit: 16
     t.string "output_4_phrase", limit: 256
-    t.string "output_4_language", limit: 16, null: false
+    t.string "output_4_language", limit: 16
     t.string "output_5_phrase", limit: 256
-    t.string "output_5_language", limit: 16, null: false
+    t.string "output_5_language", limit: 16
     t.boolean "translated", default: false
     t.bigint "translation_id"
     t.datetime "created_at", null: false
@@ -87,10 +87,10 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.string "description", limit: 1024, null: false
     t.string "input_language", limit: 16, null: false
     t.string "output_1_language", limit: 16, null: false
-    t.string "output_2_language", limit: 16, null: false
-    t.string "output_3_language", limit: 16, null: false
-    t.string "output_4_language", limit: 16, null: false
-    t.string "output_5_language", limit: 16, null: false
+    t.string "output_2_language", limit: 16
+    t.string "output_3_language", limit: 16
+    t.string "output_4_language", limit: 16
+    t.string "output_5_language", limit: 16
     t.string "status", limit: 16, default: "ACTIVE", null: false
     t.string "type", limit: 128
     t.bigint "template_id"

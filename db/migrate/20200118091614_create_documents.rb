@@ -6,10 +6,10 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       
       t.string :input_language, limit: 16, null: false
       t.string :output_1_language, limit: 16, null: false
-      t.string :output_2_language, limit: 16, null: false
-      t.string :output_3_language, limit: 16, null: false
-      t.string :output_4_language, limit: 16, null: false
-      t.string :output_5_language, limit: 16, null: false
+      t.string :output_2_language, limit: 16, null: true
+      t.string :output_3_language, limit: 16, null: true
+      t.string :output_4_language, limit: 16, null: true
+      t.string :output_5_language, limit: 16, null: true
 
       t.string :status, default: "ACTIVE", limit: 16, null: false
 
@@ -34,19 +34,19 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       t.string :input_language, limit: 16, null: false
       
       t.string :output_1_phrase, limit: 256, null: true
-      t.string :output_1_language, limit: 16, null: false
+      t.string :output_1_language, limit: 16, null: true
 
       t.string :output_2_phrase, limit: 256, null: true
-      t.string :output_2_language, limit: 16, null: false
+      t.string :output_2_language, limit: 16, null: true
 
       t.string :output_3_phrase, limit: 256, null: true
-      t.string :output_3_language, limit: 16, null: false
+      t.string :output_3_language, limit: 16, null: true
 
       t.string :output_4_phrase, limit: 256, null: true
-      t.string :output_4_language, limit: 16, null: false
+      t.string :output_4_language, limit: 16, null: true
 
       t.string :output_5_phrase, limit: 256, null: true
-      t.string :output_5_language, limit: 16, null: false
+      t.string :output_5_language, limit: 16, null: true
 
       t.boolean :translated, default: false
       t.belongs_to :translation
