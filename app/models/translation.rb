@@ -1,8 +1,10 @@
 class Translation < ApplicationRecord
 
+  # Constants
+  LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH"].freeze
+
   # Set Table Name
   self.table_name = "translations"
-  LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH"].freeze
 
   # Imports
   extend Importer

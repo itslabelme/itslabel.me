@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_060637) do
+ActiveRecord::Schema.define(version: 2020_01_20_060638) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", limit: 256, null: false
@@ -60,38 +60,92 @@ ActiveRecord::Schema.define(version: 2020_01_20_060637) do
     t.index ["unlock_token"], name: "index_client_users_on_unlock_token", unique: true
   end
 
-  create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "name", limit: 256, null: false
-    t.string "type", limit: 128
+  create_table "document_translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
+    t.string "input_phrase", limit: 256, null: false
+    t.string "input_language", limit: 16, null: false
+    t.string "output_1_phrase", limit: 256
+    t.string "output_1_language", limit: 16, null: false
+    t.string "output_2_phrase", limit: 256
+    t.string "output_2_language", limit: 16, null: false
+    t.string "output_3_phrase", limit: 256
+    t.string "output_3_language", limit: 16, null: false
+    t.string "output_4_phrase", limit: 256
+    t.string "output_4_language", limit: 16, null: false
+    t.string "output_5_phrase", limit: 256
+    t.string "output_5_language", limit: 16, null: false
+    t.boolean "translated", default: false
+    t.bigint "translation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_document_translations_on_document_id"
+    t.index ["translation_id"], name: "index_document_translations_on_translation_id"
+  end
+
+  create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.string "description", limit: 1024, null: false
+    t.string "input_language", limit: 16, null: false
+    t.string "output_1_language", limit: 16, null: false
+    t.string "output_2_language", limit: 16, null: false
+    t.string "output_3_language", limit: 16, null: false
+    t.string "output_4_language", limit: 16, null: false
+    t.string "output_5_language", limit: 16, null: false
+    t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.string "type", limit: 128
+    t.bigint "template_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["template_id"], name: "index_documents_on_template_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
-  create_table "table_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "documents_tags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "document_id"
-    t.string "source_langage", limit: 256, null: false
-    t.string "output_language", limit: 256
-    t.string "input_phrase", limit: 256
-    t.string "output_phrase", limit: 256
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["document_id"], name: "index_table_tags_on_document_id"
+    t.bigint "tag_id"
+    t.index ["document_id"], name: "index_documents_tags_on_document_id"
+    t.index ["tag_id"], name: "index_documents_tags_on_tag_id"
   end
 
-  create_table "template_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "document_id"
-    t.string "source_langage", limit: 256, null: false
-    t.string "output_language", limit: 256
-    t.string "input_phrase", limit: 256
-    t.string "output_phrase", limit: 256
-    t.string "phrase_group", limit: 256
-    t.string "ingradiant_weight", limit: 256
-    t.string "ingradiant_percentage", limit: 256
-    t.string "footer_text", limit: 1024
-    t.string "tags", limit: 1024
-    t.index ["document_id"], name: "index_template_tags_on_document_id"
+  create_table "nutrition_facts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256
+    t.string "sub_title", limit: 256
+    t.string "input_langage", limit: 256, null: false
+    t.string "output_language", limit: 256, null: false
+    t.integer "total_weight"
+    t.integer "total_quantity"
+    t.integer "serving_size"
+    t.integer "no_of_servings"
+    t.integer "total_calories"
+    t.string "footer", limit: 1024
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "nutrition_facts_tags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "nutrition_fact_id"
+    t.bigint "tag_id"
+    t.index ["nutrition_fact_id"], name: "index_nutrition_facts_tags_on_nutrition_fact_id"
+    t.index ["tag_id"], name: "index_nutrition_facts_tags_on_tag_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", limit: 256, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", limit: 256
+    t.string "description", limit: 1024
+    t.string "style", limit: 64
+    t.text "ltr_html_source"
+    t.text "rtl_html_source"
+    t.bigint "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_templates_on_admin_user_id"
   end
 
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -109,6 +163,5 @@ ActiveRecord::Schema.define(version: 2020_01_20_060637) do
   end
 
   add_foreign_key "documents", "client_users", column: "user_id", on_delete: :cascade
-  add_foreign_key "table_tags", "documents", on_delete: :cascade
-  add_foreign_key "template_tags", "documents", on_delete: :cascade
+  add_foreign_key "templates", "admin_users"
 end
