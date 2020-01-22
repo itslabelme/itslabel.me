@@ -5,7 +5,8 @@ class ClientUser < ApplicationRecord
   # :lockable, :timeoutable and :omniauthable
   # max_paginates_per 2
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :trackable
+         # :recoverable, :rememberable, :validatable, :confirmable, :trackable
+         :recoverable, :rememberable, :validatable, :trackable  # Edited By Sanoop:- Remove 'confirmable', to avoid email conformation remove conformable feature
 
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
   validates :last_name, length: {maximum: 256}, allow_blank: true
