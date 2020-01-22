@@ -7,7 +7,7 @@ class DeviseCreateClientUsers < ActiveRecord::Migration[5.2]
       t.string :first_name, limit: 256, null: false
       t.string :last_name, limit: 256
 
-      t.bigint :mobile_number, null: false
+      t.string :mobile_number, null: false, limit: 24
       t.string :organisation, limit: 256
       t.string :country, limit: 256
 

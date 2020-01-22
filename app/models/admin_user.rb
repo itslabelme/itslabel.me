@@ -9,7 +9,7 @@ class AdminUser < ApplicationRecord
 
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
   validates :last_name, length: {maximum: 256}, allow_blank: true
-  validates :mobile_number, length: {maximum: 256}, allow_blank: true
+  validates :mobile_number, length: {maximum: 24}, allow_blank: true
   
   # validates :email, presence: true, uniqueness: true, on: :create
   # validates :password, presence: true, on: :create
