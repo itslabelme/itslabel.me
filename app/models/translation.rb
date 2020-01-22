@@ -4,13 +4,16 @@ class Translation < ApplicationRecord
   self.table_name = "translations"
   LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH"].freeze
 
+  # Imports
+  extend Importer
 
   # Includes
   include Itslabel::Status::TranslationStatus
   include Itslabel::Scopes::TranslationScopes
   include Itslabel::Permissions::TranslationPermissions
   include Itslabel::Validations::TranslationValidations
-
+  include Itslabel::Imports::TranslationImports
+  
   # Validations
   validates :input_phrase, presence: true, length: {maximum: 256}, allow_blank: false
   validates :input_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
@@ -18,7 +21,7 @@ class Translation < ApplicationRecord
   validates :output_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
   
   # Associations
-
+  belongs_to :admin_user, class_name: "AdminUser", optional: true
   
   
   # Generic Methods
