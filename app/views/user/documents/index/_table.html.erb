@@ -2,11 +2,11 @@
   <table class="table table-hover table-custom spacing8" id="document_listing_table">
     <thead>
       <tr>
-        <th style="width: 10%;">#</th>
-        <th style="width: 25%;">Input Phrase</th>
+        <th style="width: 5%;">#</th>
+        <th style="width: 25%;">Tittle</th>
         <th style="width: 15%;">Input Language</th>
-        <th style="width: 25%;">Output Phrase</th>
-        <th style="width: 15%;">Output Language</th>
+        <th style="width: 15%;">Output Language 1</th>
+        <th style="width: 15%;">Output Language 2</th>
         <th style="width: 10%;">Action</th>
       </tr>
     </thead>
@@ -25,15 +25,14 @@
             </div>
           </td>
           <td class="its-tag"><%=  document.input_language %></td>
-
-          <td><%=  document.output_phrase %></td>
-          <td><%=  document.output_language %></td>
+          <td><%=  document.output_1_language %></td>
+          <td><%=  document.output_2_language %></td>
           <td>
-            <%= link_to edit_admin_document_path(document), class: "btn btn-sm btn-default", remote: true do %>
+            <%= link_to edit_user_document_path(document), class: "btn btn-sm btn-default", remote: true do %>
               <i class="icon-pencil"></i>
             <% end %>
 
-            <%= link_to admin_document_path(document), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
+            <%= link_to user_document_path(document), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
               <i class="icon-trash"></i>
             <% end %>
           </td>

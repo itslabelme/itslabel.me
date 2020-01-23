@@ -10,12 +10,13 @@ Rails.application.routes.draw do
     
     root to: "devise/sessions#new"
 
-    # CRUD Documents
-    resources :documents
   end
 
   namespace :user, module: :user do
     get '/home', to: 'home#index', as: 'home'
+    
+    # CRUD Documents
+    resources :documents
   end
 
   namespace :admin, module: :admin do
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     resources :client_users
 
     # CRUD Admin Users
+    resources :admin_users    
     resources :admin_users    
 
     # CRUD Translations

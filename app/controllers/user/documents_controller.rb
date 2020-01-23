@@ -9,6 +9,7 @@ module User
       @page_title = "Documents Database"
       @nav = 'user/documents'
 
+      get_document_class
       get_collection
       new_document
     end
@@ -32,8 +33,12 @@ module User
     end
 
     def create
+      get_document_class
       new_document
-      @document.assign_attributes(permitted_params)
+      @document.assign_attributes(permitted_doument_template_based_params)
+      @document.user = @current_client_user
+
+      binding.pry
       
       if @document.valid?
         @document.save
@@ -49,7 +54,7 @@ module User
 
     def update
       get_document
-      @document.assign_attributes(permitted_params)
+      @document.assign_attributes(permitted_doument_template_based_params)
       
       if @document.valid?
         @document.user = @current_page
@@ -106,17 +111,30 @@ module User
     end
 
     def new_document
-      @document = cls.new
+      @document = @document_class.new
     end
 
-    def permitted_params
+    def permitted_doument_params
       params.require("document").permit(
-         :input_phrase,
-         :input_description,
-         :input_language,
-         :output_phrase,
-         :output_description,
-         :output_language,
+        :input_language,
+        :input_phrase,
+        :input_description,
+        :output_phrase,
+        :output_description,
+        :output_language,
+      )      
+    end
+
+    def permitted_doument_template_based_params
+      params.require("document_template_based").permit(
+        :title,
+        :description,
+        :input_language,
+        :output_1_language,
+        :output_2_language,
+        :output_3_language,
+        :output_4_language,
+        :output_5_language,
       )
     end
 

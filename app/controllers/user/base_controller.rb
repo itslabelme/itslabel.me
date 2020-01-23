@@ -1,7 +1,9 @@
 module User
-  class BaseController < ApplicationController
+  class BaseController < ApplicationController 
 
     layout 'user'
+    
+    # include Devise::Controllers::Helpers 
 
     protected
 
