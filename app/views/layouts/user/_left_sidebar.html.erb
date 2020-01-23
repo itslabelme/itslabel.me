@@ -17,7 +17,7 @@
           <span>Welcome,</span>
           <!-- add dropdown-toggle class to below to make it a drop down link -->
           <a href="javascript:void(0);" class="user-name" data-toggle="dropdown">
-            <strong><%= current_client_user.try(:email) %></strong>
+            <strong><%= current_client_user.display_name %></strong>
           </a>
           <!-- <ul class="dropdown-menu dropdown-menu-left account vivify flipInY">
             <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
@@ -35,8 +35,17 @@
         <li class="active"><%= link_to content_tag(:i, "", class: "icon-speedometer") + "Home", user_home_path %></li>
         
         <li class="header">Translation Documents</li>
-        <li><%= link_to content_tag(:i, "", class: "icon-plus") + "New Translation", "#" %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-folder") + "Recent Translations", "#" %></li>
+        
+        <li class="">
+          <a href="#" class="has-arrow" aria-expanded="false"><i class="fa fa-plus"></i><span>New Translation</span></a>
+          <ul aria-expanded="false" class="collapse" style="height: 0px;">
+            <li><%= link_to "Text Based", "#" %></li>
+            <li><%= link_to "Template Based", "#" %></li>
+          </ul>
+        </li>
+
+        <li><%= link_to content_tag(:i, "", class: "icon-folder") + "All Translations", "#" %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-clock") + "Recent Translations", "#" %></li>
         <li><%= link_to content_tag(:i, "", class: "fa fa-star") + "Favorites", "#" %></li>
         <!-- <li>
           <a href="#Tag" aria-expanded="true" class="has-arrow"><i class="icon-tag"></i><span>Most Used Tags</span></a>

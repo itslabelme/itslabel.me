@@ -6,6 +6,7 @@ module User
     def index
 
       @page_title = "Home | User"
+      @nav = 'user/home'
       
     end
 

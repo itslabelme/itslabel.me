@@ -1,0 +1,25 @@
+<tr id='TRANSLATIONS_ROW_<%= template.id %>'>
+  <td>
+    <span> - </span>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+      <div>
+        <%= link_to template.name, "#" %> 
+      </div>
+    </div>
+  </td>
+  <td class="its-tag"><%=  template.description[0..40] %></td>
+
+  <td><%=  template.output_phrase %></td>
+  <td><%=  template.output_language %></td>
+  <td>
+    <%= link_to edit_admin_template_path(template), class: "btn btn-sm btn-default", remote: true do %>
+      <i class="icon-pencil"></i>
+    <% end %>
+
+    <%= link_to admin_template_path(template), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this template?"} do %>
+      <i class="icon-trash"></i>
+    <% end %>
+  </td>
+</tr>

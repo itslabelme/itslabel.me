@@ -1,0 +1,46 @@
+<div id="TRANSLATIONS_TABLE" class="table-responsive">
+  <table class="table table-hover table-custom spacing8" id="template_listing_table">
+    <thead>
+      <tr>
+        <th style="width: 5%;">#</th>
+        <th style="width: 25%;">Name</th>
+        <th style="width: 30%;">Description</th>
+        <th style="width: 15%;">Style</th>
+        <th style="width: 15%;">Created By</th>
+        <th style="width: 10%;">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @templates.each_with_index do |template, i| %>
+      <tr id='TRANSLATIONS_ROW_<%= template.id %>'>
+          <td>
+            <span><%= serial_number(i) %></span>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div>
+                <%= link_to template.name, "#" %> 
+              </div>
+            </div>
+          </td>
+          <td class="its-tag"><%=  template.description[0..40] %></td>
+
+          <td><%=  template.style %></td>
+          <td><%=  template.admin_user.try(:display_name) %></td>
+          <td>
+            <%= link_to edit_admin_template_path(template), class: "btn btn-sm btn-default", remote: true do %>
+              <i class="icon-pencil"></i>
+            <% end %>
+
+            <%= link_to admin_template_path(template), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this template?"} do %>
+              <i class="icon-trash"></i>
+            <% end %>
+          </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>                
+</div>
+
+

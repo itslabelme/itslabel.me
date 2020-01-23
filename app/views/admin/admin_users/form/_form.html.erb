@@ -62,20 +62,24 @@
                                                <%= display_parsley_error(@admin_user, :email) %>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-4 col-sm-12">
-                                            <div class="form-group">
-                                                <% error_class = @admin_user.errors[:password].any? ? 'parsley-error' : '' %>
-                                                <%= f.password_field :password,class: "form-control #{error_class}",placeholder:"Password *" %>
-                                                <%= display_parsley_error(@admin_user, :password) %>
-                                              </div>
-                                          </div>
+
+                                        <% if @admin_user.new_record? %>
                                           <div class="col-lg-3 col-md-4 col-sm-12">
                                               <div class="form-group">
-                                                  <% error_class = @admin_user.errors[:password_confirmation].any? ? 'parsley-error' : '' %>
-                                                  <%= f.password_field :password_confirmation,class: "form-control #{error_class}",placeholder:"Confirm Password *"  %>
-                                                   <%= display_parsley_error(@admin_user, :password_confirmation) %>
+                                                  <% error_class = @admin_user.errors[:password].any? ? 'parsley-error' : '' %>
+                                                  <%= f.password_field :password,class: "form-control #{error_class}",placeholder:"Password *" %>
+                                                  <%= display_parsley_error(@admin_user, :password) %>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-12">
+                                                <div class="form-group">
+                                                    <% error_class = @admin_user.errors[:password_confirmation].any? ? 'parsley-error' : '' %>
+                                                    <%= f.password_field :password_confirmation,class: "form-control #{error_class}",placeholder:"Confirm Password *"  %>
+                                                     <%= display_parsley_error(@admin_user, :password_confirmation) %>
+                                                  </div>
+                                              </div>
+
+                                            <% end %>
                                             <div class="col-lg-3 col-md-4 col-sm-12">
                                                 <div class="form-group">
                                                     <% error_class = @admin_user.errors[:mobile_number].any? ? 'parsley-error' : '' %>

@@ -1,5 +1,5 @@
 module Itslabel::Validations::TranslationValidations
   
-  # Code for Validations
+  extend ActiveSupport::Concern
   
 end
