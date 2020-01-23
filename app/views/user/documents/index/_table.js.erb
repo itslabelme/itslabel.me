@@ -1,0 +1,50 @@
+// Partial template to load JS code for Data table and other general functionalities
+var $leaveRequestsTable;
+function initialize_leave_requests_table(){
+  $leaveRequestsTable = $('#document_listing_table').DataTable({
+    dom: 'Bfrtip',
+
+    buttons: [
+      'colvis','pageLength',
+      {
+        extend: 'excel',
+        title: "Leave Request As on ",
+        exportOptions: {
+          columns: [0, 1, 2, 3, 4, 5, 6, 7,8 ,9]
+        }
+      }
+    ],
+    bInfo: false,
+    paging: false,
+    pageLength: 100,
+    responsive: true,
+    searching: false,
+    ordering: true,
+    // order: [[ 11, "desc" ]],
+
+    // These columns are set by the function configure_data_tables in the table_settings controller
+    "columnDefs": [
+       // { className: "text-center", "targets": [ 0, 6, 8, 9 ] },
+    ],
+    scrollY: "400px",
+    scrollX: true,
+    scrollCollapse: true,
+    fixedHeader: true,
+    fixedColumns: {
+      leftColumns: 2,
+      rightColumns: 2
+    }
+  });
+}
+
+$(document).ready(function() {
+  
+  // Initialize Datatables for Leave Request
+  initialize_leave_requests_table();
+
+  // Export Button Events
+  $("#LEAVE_REQUESTS_TABLE_EXPORT_TO_EXCEL").on("click", function() {
+    $leaveRequestsTable.button( '.buttons-excel' ).trigger();
+  });
+
+});

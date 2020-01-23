@@ -26,7 +26,7 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       t.belongs_to :tag
     end
 
-    create_table :document_translations do |t|
+    create_table :document_items do |t|
       
       t.belongs_to :document
 
