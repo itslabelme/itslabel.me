@@ -21,7 +21,7 @@ module User
     end
 
     def new
-      @page_title = "Add a Document"
+      @page_title = "Create new Translation Document from Template"
       @nav = 'user/documents'
       new_document
     end
@@ -38,8 +38,6 @@ module User
       @document.assign_attributes(permitted_doument_template_based_params)
       @document.user = @current_client_user
 
-      binding.pry
-      
       if @document.valid?
         @document.save
         set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Document"))
