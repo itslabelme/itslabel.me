@@ -15,6 +15,15 @@ require "capistrano/deploy"
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
 
+require 'capistrano/rbenv'
+require 'capistrano/bundler'
+require 'capistrano/rails/migrations'
+require 'capistrano/puma'
+require 'capistrano/memcached'
+
+# https://stackoverflow.com/questions/43014993/dont-know-how-to-build-task-start-when-run-cap-production-deploy-for-capist
+install_plugin Capistrano::Puma
+
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
