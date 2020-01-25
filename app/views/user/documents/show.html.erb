@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="block-header">
+    <div class="row clearfix">
+      <div class="col-md-6 col-sm-12">
+        <h1>Document -
+        <%= @document.title %>
+        </h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Documents</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <%= @document.title %>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <%= render partial: 'user/documents/show/translation_ui' %>
+
+
+
+  
+  <div class="row clearfix">
+    <%#= render partial: 'user/home/index/recent_translation' %>
+    <%#= render partial: 'user/home/index/user_profile' %>
+  </div>
+</div>

@@ -19,7 +19,12 @@
 //= require bundles/c3.bundle.js
 //= require bundles/mainscripts.bundle.js
 
+//= require bootstrap-tagsinput/bootstrap-tagsinput.js
+
 //= require others/utilities.js
 //= require others/toastr.js
+//= require others/handsontable.full.min.js
+//= require others/handsontable2.js
+//= require others/tinymce.min.js
 
 // require_tree .
