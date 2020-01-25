@@ -1,51 +1,112 @@
-<div class="row clearfix its-upload-container">
+<div class="row clearfix">
   <div class="col-lg-12 col-md-12">
     <div class="card">
       <div class="body">
-        <div class="mt-4">
-          <div class="row its-language-switcer">
-            <div class="col-md-5 mb-3">
-              <h4>Detected Language</h4>
-              <select class="form-control form-control-xs selectpicker" name="" data-size="7" data-live-search="true" data-title="Location" id="state_list" data-width="100%">
-                <option value="" selected>English</option>
-                <option value="">Arabic</option>
-                <option value="">French</option>
-              </select>
-            </div>
-            <div class="col-md-1"><a href="#" title="swap language"> <i class="fa fa-exchange" aria-hidden="true"></i></a></div>
-            <div class="col-md-5">
-              <h4>Translated Language</h4>
-              <select class="form-control form-control-xs selectpicker" name="" data-size="7" data-live-search="true" data-title="Location" id="state_list" data-width="100%">
-                <option value="">English</option>
-                <option value="" selected>Arabic</option>
-                <option value="">French</option>
-              </select>
-            </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <ul class="list-group felix-ul-table-style">
+              <li class="list-group-item"><div class="row"><div class="col-sm-6">Tittle :</div><div class="col-sm-6"><b><%= @document.try(:title) %></b></div></div></li>
+              <li class="list-group-item"><div class="row"><div class="col-sm-6">Input Language :</div><div class="col-sm-6"><b><%= @document.try(:input_language) %> </b></div></div></li>
+            </ul>
           </div>
-          <div class="row its-language-switcer">
-            <div class="col-md-6">
-              <textarea id="ckeditor">
-              <h2>WYSIWYG Editor</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper sapien non nisl facilisis bibendum in quis tellus. Duis in urna bibendum turpis pretium fringilla. Aenean neque velit, porta eget mattis ac, imperdiet quis nisi. Donec non dui et tortor vulputate luctus. Praesent consequat rhoncus velit, ut molestie arcu venenatis sodales.</p>
-              <h3>Lacinia</h3>
-              <ul>
-                <li>Suspendisse tincidunt urna ut velit ullamcorper fermentum.</li>
-                <li>Nullam mattis sodales lacus, in gravida sem auctor at.</li>
-                <li>Praesent non lacinia mi.</li>
-                <li>Mauris a ante neque.</li>
-                <li>Aenean ut magna lobortis nunc feugiat sagittis.</li>
-              </ul>
-              <h3>Pellentesque adipiscing</h3>
-              <p>Maecenas quis ante ante. Nunc adipiscing rhoncus rutrum. Pellentesque adipiscing urna mi, ut tempus lacus ultrices ac. Pellentesque sodales, libero et mollis interdum, dui odio vestibulum dolor, eu pellentesque nisl nibh quis nunc. Sed porttitor leo adipiscing venenatis vehicula. Aenean quis viverra enim. Praesent porttitor ut ipsum id ornare.</p>
-              </textarea>
-            </div>
-            <div class="col-md-6">
-              <textarea style="width: 100%;height: 435px;" class=""></textarea>
-            </div>
+          <div class="col-sm-6">
+            <ul class="list-group felix-ul-table-style">
+              <li class="list-group-item"><div class="row"><div class="col-sm-6">Output Language 1 :</div><div class="col-sm-6"><b><%= @document.try(:output_1_language) %></b></div></div></li>
+              <li class="list-group-item"><div class="row"><div class="col-sm-6">Output Language 2 :</div><div class="col-sm-6"><b><%= @document.try(:output_2_language) %> </b></div></div></li>
+            </ul>
+          </div>
+          <br>
+          <div class="col-sm-12 mt-3">
+            <ul class="list-group felix-ul-table-style">
+              <li class="list-group-item"><div class="row"><div class="col-sm-6">Description :</div><div class="col-sm-6"><b><%= raw(@document.try(:output_2_language)) %></b></div></div></li>
+            </ul>
           </div>
         </div>
+        <br>
+        <hr>
+        <form id="basic-form" method="post" novalidate="">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label>Name of the label</label>
+              <input type="text" class="form-control" required="">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Input Language</label>
+              <div class="input-group mb-3">
+                <select class="form-control">
+                  <option value="">-- Choose --</option>
+                  <option value="En">English</option>
+                  <option value="Ar">Arabic</option>
+                  <option value="Fr">French</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Output Language</label>
+              <div class="input-group mb-3">
+                <select class="form-control">
+                  <option value="">-- Choose --</option>
+                  <option value="En">English</option>
+                  <option value="Ar">Arabic</option>
+                  <option value="Fr">French</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content mt-0">
+            <div class="tab-pane vivify fadeIn active">
+              <div class="row">
+                <div class="col-md-6">
+                  <textarea class="tinymce-editor" id="default">
+                  <div class="table-responsive its-preview-table">
+                    <!--                     <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="font-family: 'Montserrat', sans-serif;font-size:20px;">INGREDIENTS</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="text-align: center;font-family: 'Montserrat', sans-serif;font-weight: 400;font-size: 14px;color: #77797c;">CORN, VEGETABLE OILS, CHEESE POWDER (MILK), SALT,BUTTERMILK POWDER (MILK), WHEAT FLOUR, WHEY PROTEIN, CONCENTRATE (MILK), TOMATO POWDER, FLAVOUR ENHANCERS, (621,631,627),ONION POWDER, WHEY POWDER (MILK), GARLIC POWDER, DEXTROSE, SUGAR, NATURAL FLAVOUR, MINIERAL, SALT (339), FOOD ACIDS (LACTIC ACID, CITRIC ACID), SPICE (WHITEPEPPER), COLOURS (110, 150D).</td>
+                        </tr>
+                      </tbody>
+                    </table> -->
+                  </div>
+                  </textarea>
+                  
+                </div>
+                <div class="col-md-6">
+                  <textarea style="width: 100%;height: 400px;" class="">
+                  
+                  </textarea>
+                </div>
+                <div class="col-lg-12 mt-4">
+                  <div class="card">
+                    <div class="header">
+                      <h2>Tags:</h2>
+                    </div>
+                    <div class="body p-10">
+                      <div class="input-group demo-tagsinput-area remove-border">
+                        <input type="text" class="form-control" data-role="tagsinput" value="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <button class="btn btn-primary float-right ml-3" type="button">Save</button>
+                    <button class="btn btn-primary float-right" type="button">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
       </div>
     </div>
   </div>
 </div>
-
+<script type="text/javascript">
+</script>
