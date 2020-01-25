@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get '/user/auth/:provider' => 'user/omniauth_callbacks#passthru'
   end
   devise_scope :client_user do
-    
-    root to: "devise/sessions#new"
+    root to:'home#index'
+   # root to: "devise/sessions#new"
 
     # CRUD Documents
     resources :documents

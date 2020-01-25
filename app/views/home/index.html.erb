@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
+ <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<style>
+body {
+  font-family: Arial;
+  color: white;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: #ffffff;
+  color: #0d8241;
+}
+
+.right {
+  right: 0;
+  background-color: #0d8241;
+  color: #ffffff;
+}
+
+.left p a{
+    background-color: #0d8241; 
+    border-color: #0d8241; 
+}
+
+.right p a{
+    background-color: #ffffff;
+    border-color: #ffffff; 
+    color: #0d8241;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+
+<div class="split left">
+  <div class="centered">
+      <%= image_tag "admin.png" %>
+    
+    <h2>Click below link to login Admin Dashboard</h2>
+    <p><a href="/admin/login" class="btn btn-primary">Login</a></p>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+    <%= image_tag "user.jpg" %>
+      <br>
+      <button class="btn btn-signin-social"><a href="/user/auth/facebook"><i class="fa fa-facebook-official facebook-color"></i>Sign In</a> </button>
+      <button class="btn btn-signin-social"><a href="/user/auth/google"><i class="fa fa-google-plus-square google-color"></i> Sign In</a></button>
+    <h2>Click below link to login User Dashboard</h2>
+    <p><a href="/user/login" class="btn btn-primary">Login</a></p>
+  </div>
+</div>
+     
+</body>
+</html> 
