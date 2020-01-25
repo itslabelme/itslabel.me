@@ -37,8 +37,6 @@ module User
       new_document
       @document.assign_attributes(permitted_doument_template_based_params)
       @document.user = @current_client_user
-
-      binding.pry
       
       if @document.valid?
         @document.save
