@@ -18,6 +18,7 @@ module User
       @page_title = "Document"
       @nav = 'user/documents'
       get_document
+      # binding.pry
     end
 
     def new
