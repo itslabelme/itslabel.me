@@ -1,8 +1,9 @@
 # Server IP
 server '54.171.129.113', port: 22, roles: [:web, :app, :db], primary: true
 
+set :repo_url,        'git@its.github.com:itslabelme/itslabel.me.git'
 set :application,     'demo.itslabel.me'
-set :user,            'ubunty'
+set :user,            'ubuntu'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
