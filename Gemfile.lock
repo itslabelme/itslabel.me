@@ -260,11 +260,11 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap4-kaminari-views
-  capistrano (~> 3.11)
+  capistrano
   capistrano-bundler
-  capistrano-memcached (~> 1.0)
+  capistrano-memcached
   capistrano-rails
-  capistrano-rbenv (~> 2.1)
+  capistrano-rbenv
   capistrano3-puma
   coffee-rails (~> 4.2)
   colorize

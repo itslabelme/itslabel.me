@@ -47,12 +47,11 @@ gem 'devise'
 
 # for import data
 gem 'iconv', "~> 1.0"
-
+gem 'colorize'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry', '~> 0.12.2'
-  gem 'colorize'
 end
 
 group :development do
@@ -81,13 +80,12 @@ group :development do
   # See https://github.com/rails/execjs#readme for more supported runtimes
   # gem 'therubyracer', platforms: :ruby
 
-  gem "capistrano", "~> 3.11", require: false
-  #gem 'capistrano-rbenv',   require: false,   github: "capistrano/rbenv"
-  gem 'capistrano-rbenv', '~> 2.1',   require: false
+  gem "capistrano", require: false
+  gem 'capistrano-rbenv',   require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
-  gem 'capistrano-memcached', '~> 1.0',   require: false
+  gem 'capistrano-memcached',   require: false
 end
 
 group :test do
