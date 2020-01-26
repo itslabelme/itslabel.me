@@ -136,10 +136,10 @@ template = LabelTemplate.first
 
 puts "Adding Documents".green
 Document::TemplateBased.create([
-  {title: "Sample Document 1", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
-  {title: "Sample Document 2", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
-  {title: "Sample Document 3", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
-  {title: "Sample Document 4", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
-  {title: "Sample Document 5", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
-  {title: "Sample Document 6", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
+  {title: "Sample Document 1", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
+  {title: "Sample Document 2", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
+  {title: "Sample Document 3", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
+  {title: "Sample Document 4", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
+  {title: "Sample Document 5", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
+  {title: "Sample Document 6", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
 ])
