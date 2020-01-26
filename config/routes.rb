@@ -10,13 +10,21 @@ Rails.application.routes.draw do
     root to:'home#index'
    # root to: "devise/sessions#new"
 
-    # CRUD Documents
-    resources :documents
   end
 
   namespace :user, module: :user do
+
     get '/home', to: 'home#index', as: 'home'
+
     root to: 'home#index' 
+    
+    # CRUD Documents
+    resources :documents do
+      collection do
+        get '/select_template', to: 'documents#select_template', as: 'select_template'
+      end
+    end
+
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
@@ -31,12 +39,13 @@ Rails.application.routes.draw do
 
     # CRUD Admin Users
     resources :admin_users    
+    resources :admin_users    
 
     # CRUD Translations
     resources :translations
 
     # CRUD Translations
-    resources :templates
+    resources :label_templates
   end
   
 end

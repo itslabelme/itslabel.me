@@ -39,12 +39,12 @@
         <li class="">
           <a href="#" class="has-arrow" aria-expanded="false"><i class="fa fa-plus"></i><span>New Translation</span></a>
           <ul aria-expanded="false" class="collapse" style="height: 0px;">
-            <li><%= link_to "Text Based", "#" %></li>
-            <li><%= link_to "Template Based", "#" %></li>
+            <li><%= link_to "Template Based", select_template_user_documents_path(dt: 'template') %></li>
+            <li><%= link_to "Table Based", new_user_document_path(dt: 'table') %></li>
           </ul>
         </li>
 
-        <li><%= link_to content_tag(:i, "", class: "icon-folder") + "All Translations", "#" %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-folder") + "All Translations", user_documents_path(dt: 'template') %></li>
         <li><%= link_to content_tag(:i, "", class: "icon-clock") + "Recent Translations", "#" %></li>
         <li><%= link_to content_tag(:i, "", class: "fa fa-star") + "Favorites", "#" %></li>
         <!-- <li>

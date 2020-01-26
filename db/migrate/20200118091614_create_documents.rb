@@ -16,6 +16,9 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       # Single Table Inheritance
       t.string :type, limit: 128 # should be 'table_based' or 'template_based' 
 
+      t.text :input_html_source
+      t.text :output_html_source
+      
       t.references :template, index: true
       t.references :user, index: true, foreign_key: {to_table: :client_users, on_delete: :cascade}
       t.timestamps null: false
@@ -26,7 +29,7 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       t.belongs_to :tag
     end
 
-    create_table :document_items do |t|
+    create_table :document_items do |t| # only table based 
       
       t.belongs_to :document
 

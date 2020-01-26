@@ -6,6 +6,8 @@ class Document::Base < ApplicationRecord
   # Set Table Name
   self.table_name = "documents"
 
+  attr_accessor :skip_callback
+
   # Includes
   include Itslabel::Status::DocumentStatus
   include Itslabel::Scopes::DocumentScopes
@@ -15,7 +17,7 @@ class Document::Base < ApplicationRecord
 
   # Validations
   validates :title, presence: true, length: {maximum: 256}
-  validates :description, presence: true, length: {maximum: 1024}
+  validates :description, length: {maximum: 1024}, allow_blank: true
   
   validates :input_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
   validates :output_1_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
@@ -26,7 +28,7 @@ class Document::Base < ApplicationRecord
 
   # Associations
   belongs_to :user, class_name: "ClientUser"
-  has_and_belongs_to_many :tags, class_name: "Tag"
+  has_and_belongs_to_many :tags, class_name: "Tag", foreign_key: :document_id
 
   
 

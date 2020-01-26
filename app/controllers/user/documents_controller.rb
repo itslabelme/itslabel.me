@@ -2,13 +2,14 @@ module User
   class DocumentsController < User::BaseController
 
     before_action :authenticate_client_user!
-    before_action :get_document, except: [:new, :create, :index]
+    before_action :get_document, except: [:new, :create, :index, :select_template]
     before_action :get_document_class
 
     def index
       @page_title = "Documents Database"
       @nav = 'user/documents'
 
+      get_document_class
       get_collection
       new_document
     end
@@ -19,8 +20,13 @@ module User
       get_document
     end
 
+    def select_template
+      @page_title = "Choose a Template"
+      @nav = 'user/documents'
+    end
+
     def new
-      @page_title = "Add a Document"
+      @page_title = "Create new Translation Document from Template"
       @nav = 'user/documents'
       new_document
     end
@@ -32,11 +38,22 @@ module User
     end
 
     def create
+      get_document_class
       new_document
       @document.assign_attributes(permitted_params)
-      
+      @document.input_html_source = @document.template.ltr_html_source if @document.template
+      @document.user = @current_client_user
+
       if @document.valid?
-        @document.save
+        begin
+          @document.save
+
+          params[:tags].split(',').each do |tag_name|
+            @document.tags.create(name: tag_name.strip)
+          end
+        rescue
+          binding.pry
+        end
         set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Document"))
         set_flash_message(I18n.translate("success.created", item: "Document"), :success)
       else
@@ -106,17 +123,20 @@ module User
     end
 
     def new_document
-      @document = cls.new
+      @document = @document_class.new(input_language: "ENGLISH", output_1_language: "ARABIC")
     end
 
     def permitted_params
-      params.require("document").permit(
-         :input_phrase,
-         :input_description,
-         :input_language,
-         :output_phrase,
-         :output_description,
-         :output_language,
+      params.require("document_template_based").permit(
+        :title,
+        :description,
+        :input_language,
+        :output_1_language,
+        :output_2_language,
+        :output_3_language,
+        :output_4_language,
+        :output_5_language,
+        :template_id,
       )
     end
 
