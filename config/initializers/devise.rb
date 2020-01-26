@@ -296,6 +296,10 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-  config.omniauth :facebook, "1501372176687110", "b6e7e64d9251e94d0687be3cb95bbac9",callback_url: "http://localhost:3000/user/auth/facebook/callback"
-  config.omniauth :google_oauth2, "383144426923-aoakf4j3vfa4l2b89sg0omctm6p5omnh.apps.googleusercontent.com", "8tWMSzgzbgP4-tKTHVNYto2S", { name: "google" }
+
+  # Facebook & Google Auth
+  domain = Rails.env.staging? ? "http://demo.itslabel.me" : "http://localhost:3000"
+  config.omniauth :facebook, ENV['ITS_FACEBOOK_APP_ID'], ENV['ITS_FACEBOOK_APP_SECRET'], callback_url: "#{domain}/user/auth/facebook/callback"
+  config.omniauth :google_oauth2, ENV['ITS_GOOGLE_CLIENT_ID'], ENV['ITS_GOOGLE_CLIENT_SECRET'], callback_url: "#{domain}/user/auth/facebook/callback"
+
 end
