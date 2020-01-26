@@ -44,6 +44,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Gems used in this Application
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 # for import data
 gem 'iconv', "~> 1.0"

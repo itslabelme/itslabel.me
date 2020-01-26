@@ -1,23 +1,32 @@
-<div class="auth-main2 particles_js">
-    <div class="auth_div vivify fadeInTop">
-        <div class="card">            
-            <div class="body">
-                <div class="login-img">
-                    <%= image_tag "login-img.png", alt: "Login Image", class: "img-fluid" %>
-                </div>
-                <!-- <form class="form-auth-small" action="index.html"> -->
-                <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-auth-small'}) do |f| %>
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+        <div class="bar4"></div>
+        <div class="bar5"></div>
+    </div>
+</div>
 
+<div class="auth-main2 particles_js">
+    <div class="vivify">
+        <div class="auth_brand m-t-60" style="text-align: center;">
+            <a class="navbar-brand" href="javascript:void(0);">
+                <%= image_tag("itsme-logo-1.png",'width'=>'100','height'=>'60','class'=>'d-inline-block') %>
+                </a>
+        </div>
+
+        <div class="card m-t-20">            
+            <div class="body">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-auth-small'}) do |f| %>
                   <div id="USER_LOGIN_ERRORS">
                     <!-- Display Errors if Any -->
                     <%= flash_message(false) if defined?(flash) -%>
                     <%= error_message(resource) if resource.errors.any? %>
                   </div>
-
                     <div class="mb-3">
                         <p class="lead">Login to your account</p>
                     </div>
-
                     <!-- Email -->
                     <div class="form-group">
                       <%= f.label :emails, :class => "control-label sr-only" %>
@@ -48,17 +57,14 @@
                         </span>
                     </div>
                 <% end %>
-                <!-- </form> -->
                 <div class="pattern">
-                    <span class="red"></span>
-                    <span class="indigo"></span>
-                    <span class="blue"></span>
                     <span class="green"></span>
-                    <span class="orange"></span>
                 </div>
             </div>            
         </div>
     </div>
     <div id="particles-js"></div>
 </div>
+
+
 <!-- END WRAPPER -->
