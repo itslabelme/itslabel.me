@@ -86,6 +86,20 @@ function hideLoader(){
   $("#LOADER").hide();
 }
 
+
+$(document).ready(function() {
+
+  tinymce.remove('.tinymce-editor');
+  // tinymce.init({ selector:'.tinymce-editor', oninit : "setPlainText", plugins : "paste" });
+
+  tinymce.init({
+    selector: '.tinymce-editor',  // change this value according to your HTML
+    height: 400,
+    statusbar: false
+  }); 
+}); 
+
+
 // Show Loader till the page loads completely.
 // $(window).load(function() {
 $(document).ready(function() {

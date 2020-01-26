@@ -1,0 +1,35 @@
+<% if @label_template.errors.blank? %>
+  
+  // Showing Growl Like Message
+  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  
+  // Add the Row to the table and highlight it
+  $("#TRANSLATIONS_TABLE > table:first-child tr:first").after("<%= escape_javascript(render(:partial=>'admin/label_templates/index/row.html.erb', locals: { label_template: @label_template })) %>");
+  
+  // Highlight the background color of the newly added data to the datatable
+  $("#TRANSLATIONS_ROW_<%= @label_template.id %> td").css( "animation", "highlightAfterAdd 10000ms ease-out" );
+  
+  // Hide the form
+  showTab('TRANSLATIONS_LIST');
+  $('#LI_TRANSLATIONS_NEW_FORM').hide();
+
+  // Reload the form to show errors
+  <% @label_template = LabelTemplate.new %>
+  $("#TRANSLATIONS_NEW_FORM").html("<%= escape_javascript(render(:partial=>'admin/label_templates/form/form')) %>");
+
+  // Set Focus on the First Input after loading the form
+  setFocusOnFirstInput("TRANSLATIONS_NEW_FORM");
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+  // Reload the form to show errors
+  $("#TRANSLATIONS_NEW_FORM").html("<%= escape_javascript(render(:partial=>'admin/label_templates/form/form')) %>");
+
+  // Set Focus on the First Input after loading the form
+  setFocusOnFirstInput("TRANSLATIONS_NEW_FORM");
+
+<% end %>
+
