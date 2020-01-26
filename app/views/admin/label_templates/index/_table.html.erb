@@ -1,5 +1,5 @@
 <div id="TRANSLATIONS_TABLE" class="table-responsive">
-  <table class="table table-hover table-custom spacing8" id="template_listing_table">
+  <table class="table table-hover table-custom spacing8" id="label_template_listing_table">
     <thead>
       <tr>
         <th style="width: 5%;">#</th>
@@ -12,28 +12,28 @@
     </thead>
 
     <tbody>
-      <% @templates.each_with_index do |template, i| %>
-      <tr id='TRANSLATIONS_ROW_<%= template.id %>'>
+      <% @label_templates.each_with_index do |label_template, i| %>
+      <tr id='TRANSLATIONS_ROW_<%= label_template.id %>'>
           <td>
             <span><%= serial_number(i) %></span>
           </td>
           <td>
             <div class="d-flex align-items-center">
               <div>
-                <%= link_to template.name, "#" %> 
+                <%= link_to label_template.name, "#" %> 
               </div>
             </div>
           </td>
-          <td class="its-tag"><%=  template.description[0..40] %></td>
+          <td class="its-tag"><%=  label_template.description[0..40] %></td>
 
-          <td><%=  template.style %></td>
-          <td><%=  template.admin_user.try(:display_name) %></td>
+          <td><%=  label_template.style %></td>
+          <td><%=  label_template.admin_user.try(:display_name) %></td>
           <td>
-            <%= link_to edit_admin_template_path(template), class: "btn btn-sm btn-default", remote: true do %>
+            <%= link_to edit_admin_label_template_path(label_template), class: "btn btn-sm btn-default", remote: true do %>
               <i class="icon-pencil"></i>
             <% end %>
 
-            <%= link_to admin_template_path(template), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this template?"} do %>
+            <%= link_to admin_label_template_path(label_template), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this label_template?"} do %>
               <i class="icon-trash"></i>
             <% end %>
           </td>

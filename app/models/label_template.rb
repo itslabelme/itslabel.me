@@ -1,18 +1,18 @@
-class Template < ApplicationRecord
+class LabelTemplate < ApplicationRecord
 
   # Set Table Name
-  self.table_name = "templates"
+  self.table_name = "label_templates"
 
   # Imports
   extend Importer
 
   # Includes
-  # include Itslabel::Status::TemplateStatus
-  # include Itslabel::Scopes::TemplateScopes
-  # include Itslabel::Permissions::TemplatePermissions
-  # include Itslabel::Validations::TemplateValidations
-  # include Itslabel::Callbacks::TemplateCallbacks
-  # include Itslabel::Imports::TemplateImports
+  # include Itslabel::Status::LabelTemplateStatus
+  # include Itslabel::Scopes::LabelTemplateScopes
+  # include Itslabel::Permissions::LabelTemplatePermissions
+  # include Itslabel::Validations::LabelTemplateValidations
+  # include Itslabel::Callbacks::LabelTemplateCallbacks
+  # include Itslabel::Imports::LabelTemplateImports
   
   # Validations
   validates :name, presence: true, length: {maximum: 256}, allow_blank: false
@@ -28,7 +28,7 @@ class Template < ApplicationRecord
   # Generic Methods
   # ---------------
   def display_name
-    self.name
+    "#{self.name} - #{self.style}"
   end
   
   

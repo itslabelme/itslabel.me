@@ -2,7 +2,7 @@ module User
   class DocumentsController < User::BaseController
 
     before_action :authenticate_client_user!
-    before_action :get_document, except: [:new, :create, :index]
+    before_action :get_document, except: [:new, :create, :index, :select_template]
     before_action :get_document_class
 
     def index
@@ -18,7 +18,11 @@ module User
       @page_title = "Document"
       @nav = 'user/documents'
       get_document
-      # binding.pry
+    end
+
+    def select_template
+      @page_title = "Choose a Template"
+      @nav = 'user/documents'
     end
 
     def new
@@ -36,11 +40,20 @@ module User
     def create
       get_document_class
       new_document
-      @document.assign_attributes(permitted_doument_template_based_params)
+      @document.assign_attributes(permitted_params)
+      @document.input_html_source = @document.template.ltr_html_source if @document.template
       @document.user = @current_client_user
 
       if @document.valid?
-        @document.save
+        begin
+          @document.save
+
+          params[:tags].split(',').each do |tag_name|
+            @document.tags.create(name: tag_name.strip)
+          end
+        rescue
+          binding.pry
+        end
         set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Document"))
         set_flash_message(I18n.translate("success.created", item: "Document"), :success)
       else
@@ -53,7 +66,7 @@ module User
 
     def update
       get_document
-      @document.assign_attributes(permitted_doument_template_based_params)
+      @document.assign_attributes(permitted_params)
       
       if @document.valid?
         @document.user = @current_page
@@ -110,21 +123,10 @@ module User
     end
 
     def new_document
-      @document = @document_class.new
+      @document = @document_class.new(input_language: "ENGLISH", output_1_language: "ARABIC")
     end
 
-    def permitted_doument_params
-      params.require("document").permit(
-        :input_language,
-        :input_phrase,
-        :input_description,
-        :output_phrase,
-        :output_description,
-        :output_language,
-      )      
-    end
-
-    def permitted_doument_template_based_params
+    def permitted_params
       params.require("document_template_based").permit(
         :title,
         :description,
@@ -134,6 +136,7 @@ module User
         :output_3_language,
         :output_4_language,
         :output_5_language,
+        :template_id,
       )
     end
 

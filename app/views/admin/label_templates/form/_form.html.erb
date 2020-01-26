@@ -1,16 +1,16 @@
 <%
-  if @template.new_record?
+  if @label_template.new_record?
     form_method = :post
-    form_url = admin_templates_path
+    form_url = admin_label_templates_path
   else
     form_method = :put
-    form_url = admin_template_path(@template)
+    form_url = admin_label_template_path(@label_template)
   end
 %>
 
 <%= form_with(url: form_url,  
       class: "form-floating", 
-      model: @template,
+      model: @label_template,
       method: form_method, 
       html: { autocomplete: "off" }) do |f| %>
 
@@ -20,7 +20,7 @@
 
     <div class="row clearfix">
       <div class="header p-3 mb-4">
-        <h2><%= @template.new_record? ? 'Add a New Template' : 'Edit Template' %></h2>
+        <h2><%= @label_template.new_record? ? 'Add a New LabelTemplate' : 'Edit LabelTemplate' %></h2>
       </div>
     </div>
 
@@ -30,9 +30,9 @@
         <%= flash_message(false) if defined?(flash) -%>
 
         <!-- Display Errors if Any
-        <%# if @template.errors.any? %>
+        <%# if @label_template.errors.any? %>
         <div id="TRANSLATIONS_NEW_FORM_ERRORS">
-          <%#= notify_form_errors(@template) %>
+          <%#= notify_form_errors(@label_template) %>
         </div>
         <%# end %>
          -->
@@ -45,28 +45,28 @@
         <div class="row">
           <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="form-group">
-              <% error_class = @template.errors[:input_phrase].any? ? 'parsley-error' : '' %>
+              <% error_class = @label_template.errors[:input_phrase].any? ? 'parsley-error' : '' %>
               <%= f.text_field :input_phrase, class: "form-control #{error_class}", placeholder: 'Input Phrase' %>
-              <%= display_parsley_error(@template, :input_phrase) %>
+              <%= display_parsley_error(@label_template, :input_phrase) %>
             </div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
-              <% error_class = @template.errors[:input_language].any? ? 'parsley-error' : '' %>
-              <select class="form-control <%= error_class %> show-tick" name='template[input_language]'>
+              <% error_class = @label_template.errors[:input_language].any? ? 'parsley-error' : '' %>
+              <select class="form-control <%= error_class %> show-tick" name='label_template[input_language]'>
                 <option>--- Select ---</option>
-                <option value='ENGLISH' <%= @template.input_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
-                <option value='ARABIC' <%= @template.input_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
-                <option value='FRENCH' <%= @template.input_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
+                <option value='ENGLISH' <%= @label_template.input_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
+                <option value='ARABIC' <%= @label_template.input_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
+                <option value='FRENCH' <%= @label_template.input_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
               </select>
-              <%= display_parsley_error(@template, :input_language) %>
+              <%= display_parsley_error(@label_template, :input_language) %>
             </div>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
-              <% error_class = @template.errors[:input_description].any? ? 'parsley-error' : '' %>
+              <% error_class = @label_template.errors[:input_description].any? ? 'parsley-error' : '' %>
               <%= f.text_field :input_description, class: "form-control #{error_class}", placeholder: 'Input Description' %>
-              <%= display_parsley_error(@template, :input_description) %>
+              <%= display_parsley_error(@label_template, :input_description) %>
             </div>
           </div>
         </div>
@@ -77,28 +77,28 @@
         <div class="row">
           <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="form-group">
-              <% error_class = @template.errors[:output_phrase].any? ? 'parsley-error' : '' %>
+              <% error_class = @label_template.errors[:output_phrase].any? ? 'parsley-error' : '' %>
               <%= f.text_field :output_phrase, class: "form-control #{error_class}", placeholder: 'Output Phrase' %>
-              <%= display_parsley_error(@template, :output_phrase) %>
+              <%= display_parsley_error(@label_template, :output_phrase) %>
             </div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
-              <% error_class = @template.errors[:output_language].any? ? 'parsley-error' : '' %>
-              <select class="form-control <%= error_class %> show-tick" name='template[output_language]'>
+              <% error_class = @label_template.errors[:output_language].any? ? 'parsley-error' : '' %>
+              <select class="form-control <%= error_class %> show-tick" name='label_template[output_language]'>
                 <option>--- Select ---</option>
-                <option value='ENGLISH' <%= @template.output_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
-                <option value='ARABIC' <%= @template.output_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
-                <option value='FRENCH' <%= @template.output_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
+                <option value='ENGLISH' <%= @label_template.output_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
+                <option value='ARABIC' <%= @label_template.output_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
+                <option value='FRENCH' <%= @label_template.output_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
               </select>
-              <%= display_parsley_error(@template, :output_language) %>
+              <%= display_parsley_error(@label_template, :output_language) %>
             </div>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
-              <% error_class = @template.errors[:output_description].any? ? 'parsley-error' : '' %>
+              <% error_class = @label_template.errors[:output_description].any? ? 'parsley-error' : '' %>
               <%= f.text_field :output_description, class: "form-control #{error_class}", placeholder: 'Output Description' %>
-              <%= display_parsley_error(@template, :output_description) %>
+              <%= display_parsley_error(@label_template, :output_description) %>
             </div>
           </div>
         </div>

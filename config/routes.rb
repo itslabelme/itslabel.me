@@ -13,10 +13,15 @@ Rails.application.routes.draw do
   end
 
   namespace :user, module: :user do
+
     get '/home', to: 'home#index', as: 'home'
     
     # CRUD Documents
-    resources :documents
+    resources :documents do
+      collection do
+        get '/select_template', to: 'documents#select_template', as: 'select_template'
+      end
+    end
   end
 
   namespace :admin, module: :admin do
@@ -33,7 +38,7 @@ Rails.application.routes.draw do
     resources :translations
 
     # CRUD Translations
-    resources :templates
+    resources :label_templates
   end
   
 end

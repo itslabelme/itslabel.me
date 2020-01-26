@@ -1,0 +1,12 @@
+<div class="row pb-4">
+  <div class="col-md-6">
+    <textarea class="tinymce-editor" id="default">
+      <%= raw @document.input_html_source %>
+    </textarea>
+  </div>
+  <div class="col-md-6">
+    <div class="body">
+      <%= raw @document.output_html_source %>
+    </div>
+  </div>
+</div>

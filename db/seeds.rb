@@ -19,22 +19,69 @@ client_user = ClientUser.first
 
 puts "Adding Translations".green
 Translation.create([
-                  {
-                    input_phrase: "Biotin", input_description: "Biotin", input_language: "ENGLISH", 
-                    output_phrase: "بيوتين", output_description: "بيوتين", output_language: "ARABIC",
-                    admin_user_id: admin_user.id, status: "APPROVED" 
-                  },
-                  {
-                    input_phrase: "Xylitol", input_description: "Xylitol", input_language: "ENGLISH", 
-                    output_phrase: "إكسيليتول", output_description: "إكسيليتول", output_language: "ARABIC",
-                    admin_user_id: admin_user.id, status: "APPROVED" 
-                  },
-                  {
-                    input_phrase: "Amino Acids", input_description: "Amino Acids", input_language: "ENGLISH", 
-                    output_phrase: "أحماض أمينية", output_description: "أحماض أمينية", output_language: "ARABIC",
-                    admin_user_id: admin_user.id, status: "APPROVED" 
-                  }
-                ])
+  { input_phrase: "Corn",               input_description: "Corn",                input_language: "ENGLISH", output_phrase: "لأن",                      output_description: "لأن",                    output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Vegetable Oils",     input_description: "Vegetable Oils",      input_language: "ENGLISH", output_phrase: "ويلز في",                  output_description: "ويلز في",                output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Cheese Powder",      input_description: "Cheese Powder",       input_language: "ENGLISH", output_phrase: "Poudre de fromage",        output_description: "Poudre de fromage",      output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Milk",               input_description: "Milk",                input_language: "ENGLISH", output_phrase: "Lait",                     output_description: "Lait",                   output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Salt",               input_description: "Salt",                input_language: "ENGLISH", output_phrase: "Sel",                      output_description: "Sel",                    output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Buttermilk Powder",  input_description: "Buttermilk Powder",   input_language: "ENGLISH", output_phrase: "Poudre de papillon",       output_description: "Poudre de papillon",     output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Wheat Flour",        input_description: "Wheat Flour",         input_language: "ENGLISH", output_phrase: "Farine de blé",            output_description: "Farine de blé",          output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Whey Protein",       input_description: "Whey Protein",        input_language: "ENGLISH", output_phrase: "Protéine de whey",         output_description: "Protéine de whey",       output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Concentrate",        input_description: "Concentrate",         input_language: "ENGLISH", output_phrase: "Concentrer",               output_description: "Concentrer",             output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Tomato Powder",      input_description: "Tomato Powder",       input_language: "ENGLISH", output_phrase: "Poudre de tomate",         output_description: "Poudre de tomate",       output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Flavour Enhancers",  input_description: "Flavour Enhancers",   input_language: "ENGLISH", output_phrase: "Exhausteurs de goût",      output_description: "Exhausteurs de goût",    output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Onion Powder",       input_description: "Onion Powder",        input_language: "ENGLISH", output_phrase: "Poudre d'oignon",          output_description: "Poudre d'oignon",        output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Whey Powder",        input_description: "Whey Powder",         input_language: "ENGLISH", output_phrase: "La poudre de lactosérum",  output_description: "La poudre de lactosérum",output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Garlic Powder",      input_description: "Garlic Powder",       input_language: "ENGLISH", output_phrase: "Poudre d'ail",             output_description: "Poudre d'ail",           output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Dextrose",           input_description: "Dextrose",            input_language: "ENGLISH", output_phrase: "Dextrose",                 output_description: "Dextrose",               output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Sugar",              input_description: "Sugar",               input_language: "ENGLISH", output_phrase: "Sucre",                    output_description: "Sucre",                  output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Natural Flavour",    input_description: "Natural Flavour",     input_language: "ENGLISH", output_phrase: "Saveur naturelle",         output_description: "Saveur naturelle",       output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Minieral",           input_description: "Minieral",            input_language: "ENGLISH", output_phrase: "Minéral",                  output_description: "Minéral",                output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Food Acids",         input_description: "Food Acids",          input_language: "ENGLISH", output_phrase: "Acides alimentaires",      output_description: "Acides alimentaires",    output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Lactic Acid",        input_description: "Lactic Acid",         input_language: "ENGLISH", output_phrase: "Acide lactique",           output_description: "Acide lactique",         output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Citric Acid",        input_description: "Citric Acid",         input_language: "ENGLISH", output_phrase: "Acide citrique",           output_description: "Acide citrique",         output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Spice",              input_description: "Spice",               input_language: "ENGLISH", output_phrase: "Pimenter",                 output_description: "Pimenter",               output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Whitepepper",        input_description: "Whitepepper",         input_language: "ENGLISH", output_phrase: "Poivre blanc",             output_description: "Poivre blanc",           output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Colours",            input_description: "Colours",             input_language: "ENGLISH", output_phrase: "Couleurs",                 output_description: "Couleurs",               output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"}
+
+  { input_phrase: "Corn",               input_description: "Corn",                input_language: "ENGLISH", output_phrase: "blé",                      output_description: "blé",                    output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Vegetable Oils",     input_description: "Vegetable Oils",      input_language: "ENGLISH", output_phrase: "Les Huiles végétales",     output_description: "Les Huiles végétales",   output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Cheese Powder",      input_description: "Cheese Powder",       input_language: "ENGLISH", output_phrase: "Poudre de fromage",        output_description: "Poudre de fromage",      output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Milk",               input_description: "Milk",                input_language: "ENGLISH", output_phrase: "Lait",                     output_description: "Lait",                   output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Salt",               input_description: "Salt",                input_language: "ENGLISH", output_phrase: "Sel",                      output_description: "Sel",                    output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Buttermilk Powder",  input_description: "Buttermilk Powder",   input_language: "ENGLISH", output_phrase: "Poudre de papillon",       output_description: "Poudre de papillon",     output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Wheat Flour",        input_description: "Wheat Flour",         input_language: "ENGLISH", output_phrase: "Farine de blé",            output_description: "Farine de blé",          output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Whey Protein",       input_description: "Whey Protein",        input_language: "ENGLISH", output_phrase: "Protéine de whey",         output_description: "Protéine de whey",       output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Concentrate",        input_description: "Concentrate",         input_language: "ENGLISH", output_phrase: "Concentrer",               output_description: "Concentrer",             output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Tomato Powder",      input_description: "Tomato Powder",       input_language: "ENGLISH", output_phrase: "Poudre de tomate",         output_description: "Poudre de tomate",       output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Flavour Enhancers",  input_description: "Flavour Enhancers",   input_language: "ENGLISH", output_phrase: "Exhausteurs de goût",      output_description: "Exhausteurs de goût",    output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Onion Powder",       input_description: "Onion Powder",        input_language: "ENGLISH", output_phrase: "Poudre d'oignon",          output_description: "Poudre d'oignon",        output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Whey Powder",        input_description: "Whey Powder",         input_language: "ENGLISH", output_phrase: "La poudre de lactosérum",  output_description: "La poudre de lactosérum",output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Garlic Powder",      input_description: "Garlic Powder",       input_language: "ENGLISH", output_phrase: "Poudre d'ail",             output_description: "Poudre d'ail",           output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Dextrose",           input_description: "Dextrose",            input_language: "ENGLISH", output_phrase: "Dextrose",                 output_description: "Dextrose",               output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Sugar",              input_description: "Sugar",               input_language: "ENGLISH", output_phrase: "Sucre",                    output_description: "Sucre",                  output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Natural Flavour",    input_description: "Natural Flavour",     input_language: "ENGLISH", output_phrase: "Saveur naturelle",         output_description: "Saveur naturelle",       output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Minieral",           input_description: "Minieral",            input_language: "ENGLISH", output_phrase: "Minéral",                  output_description: "Minéral",                output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Food Acids",         input_description: "Food Acids",          input_language: "ENGLISH", output_phrase: "Acides alimentaires",      output_description: "Acides alimentaires",    output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Lactic Acid",        input_description: "Lactic Acid",         input_language: "ENGLISH", output_phrase: "Acide lactique",           output_description: "Acide lactique",         output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Citric Acid",        input_description: "Citric Acid",         input_language: "ENGLISH", output_phrase: "Acide citrique",           output_description: "Acide citrique",         output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Spice",              input_description: "Spice",               input_language: "ENGLISH", output_phrase: "Pimenter",                 output_description: "Pimenter",               output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Whitepepper",        input_description: "Whitepepper",         input_language: "ENGLISH", output_phrase: "Poivre blanc",             output_description: "Poivre blanc",           output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Colours",            input_description: "Colours",             input_language: "ENGLISH", output_phrase: "Couleurs",                 output_description: "Couleurs",               output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"}
+
+  { input_phrase: "Biotin", input_description: "Biotin", input_language: "ENGLISH",  output_phrase: "بيوتين", output_description: "بيوتين", output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED" },
+  { input_phrase: "Xylitol", input_description: "Xylitol", input_language: "ENGLISH",  output_phrase: "إكسيليتول", output_description: "إكسيليتول", output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED" },
+  { input_phrase: "Amino Acids", input_description: "Amino Acids", input_language: "ENGLISH",  output_phrase: "أحماض أمينية", output_description: "أحماض أمينية", output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED" },
+
+  { input_phrase: "Apple", input_description: "Apple", input_language: "ENGLISH", output_phrase: "تفاحة", output_description: "تفاحة", output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Mango", input_description: "Mango", input_language: "ENGLISH", output_phrase: "مانجو", output_description: "مانجو", output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Grapes", input_description: "Grapes", input_language: "ENGLISH", output_phrase: "عنب", output_description: "عنب", output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+
+  { input_phrase: "Apple", input_description: "Apple", input_language: "ENGLISH", output_phrase: "Pomme", output_description: "Pomme", output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Mango", input_description: "Mango", input_language: "ENGLISH", output_phrase: "Mangue", output_description: "Mangue", output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Grapes", input_description: "Grapes", input_language: "ENGLISH", output_phrase: "Les Raisins", output_description: "Les Raisins", output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
+
+])
 
 puts "Adding Tags".green
 Tag.create([
@@ -46,7 +93,7 @@ Tag.create([
 ])
 
 puts "Adding Templates".green
-Template.create([
+LabelTemplate.create([
   {
     name: "Simple Template 1",
     description: "Simple Template 1",
@@ -85,14 +132,14 @@ Template.create([
   
 ])
 
-template = Template.first
+template = LabelTemplate.first
 
 puts "Adding Documents".green
 Document::TemplateBased.create([
-  {title: "Sample Document 1", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 2", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 3", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 4", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 5", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 6", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
+  {title: "Sample Document 1", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
+  {title: "Sample Document 2", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
+  {title: "Sample Document 3", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
+  {title: "Sample Document 4", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
+  {title: "Sample Document 5", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
+  {title: "Sample Document 6", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user, template: template},
 ])

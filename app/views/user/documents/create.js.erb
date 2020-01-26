@@ -1,9 +1,7 @@
 <% if @document.errors.blank? %>
   
-  // Showing Growl Like Message
-  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
-  
-  window.location.href = "<%= user_documents_path(dt: 'template') %>";
+  window.location.href = "<%= user_document_path(@document) %>";
+
 <% else %>
 
   // Showing Growl Like Message

@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.string "output_5_language", limit: 16
     t.string "status", limit: 16, default: "ACTIVE", null: false
     t.string "type", limit: 128
-    t.text "ltr_html_source"
-    t.text "rtl_html_source"
+    t.text "input_html_source"
+    t.text "output_html_source"
     t.bigint "template_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -108,6 +108,18 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.bigint "tag_id"
     t.index ["document_id"], name: "index_documents_tags_on_document_id"
     t.index ["tag_id"], name: "index_documents_tags_on_tag_id"
+  end
+
+  create_table "label_templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", limit: 256
+    t.string "description", limit: 1024
+    t.string "style", limit: 64
+    t.text "ltr_html_source"
+    t.text "rtl_html_source"
+    t.bigint "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
   create_table "nutrition_facts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -138,18 +150,6 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", limit: 256
-    t.string "description", limit: 1024
-    t.string "style", limit: 64
-    t.text "ltr_html_source"
-    t.text "rtl_html_source"
-    t.bigint "admin_user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["admin_user_id"], name: "index_templates_on_admin_user_id"
-  end
-
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "input_phrase", limit: 256, null: false
     t.string "input_description", limit: 1024
@@ -166,5 +166,5 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
   end
 
   add_foreign_key "documents", "client_users", column: "user_id", on_delete: :cascade
-  add_foreign_key "templates", "admin_users"
+  add_foreign_key "label_templates", "admin_users"
 end

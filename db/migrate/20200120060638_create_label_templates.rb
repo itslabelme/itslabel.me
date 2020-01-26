@@ -1,6 +1,6 @@
-class CreateTemplates < ActiveRecord::Migration[5.2]
+class CreateLabelTemplates < ActiveRecord::Migration[5.2]
   def change
-    create_table :templates do |t|
+    create_table :label_templates do |t|
       t.string :name, limit: 256
       t.string :description, limit: 1024
 
