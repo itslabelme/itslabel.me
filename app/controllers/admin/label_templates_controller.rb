@@ -1,5 +1,5 @@
 module Admin
-  class LabelLabelTemplatesController < Admin::BaseController
+  class LabelTemplatesController < Admin::BaseController
 
     before_action :authenticate_admin_user!
     before_action :get_label_template, except: [:new, :create, :index]
