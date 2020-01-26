@@ -11,11 +11,16 @@
       <div class="card">
         
         <div class="table-responsive">
+            <div class="float-lg-right"><form action="" method="get" >
+                <input type="text" name="q"><input type="submit" value="Go">
+              </form></div>
           <!-- Table -->
           <%= render partial: 'admin/client_users/index/table' %>
 
           <!-- Pagination -->
+           <% if @client_users .present? %>
           <%= paginate @client_users if @client_users.any? %>
+          <% end  %>
         </div>
 
       </div>

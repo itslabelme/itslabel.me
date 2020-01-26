@@ -7,9 +7,9 @@ module Admin
     def index
       @page_title = "Client Users"
       @nav = "admin/registrations"
-       @current_page=params[:page]
-     
-       if (params.has_key? (:q))
+      @current_page=params[:page]
+     # get_collection 
+      if (params.has_key? (:q))
         get_search
       else
         get_collection  
@@ -20,7 +20,11 @@ module Admin
     end
   
     private 
-
+    def get_search
+      
+      key = "%#{params[:q]}%"
+      @client_user = ClientUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@current_page).per(@per_page)
+    end
     def get_client_user
       @client_user = ClientUser.find_by_id(params[:id])
     end
