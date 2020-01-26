@@ -28,7 +28,7 @@
         <li class="<%= nav_active?('admin/home') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-speedometer") + "Home", admin_home_path %></li>
         <li class="<%= nav_active?('admin/registrations') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-users") + "Registrations", admin_client_users_path %></li>
         <li class="<%= nav_active?('admin/translations') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Translation Database", admin_translations_path %></li>
-        <li class="<%= nav_active?('admin/templates') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Templates", admin_label_templates_path %></li>
+        <li class="<%= nav_active?('admin/label_templates') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Templates", admin_label_templates_path %></li>
         
         <li class="<%= nav_active?('admin/admin_users') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "Admin Users", admin_admin_users_path %></li>
         
