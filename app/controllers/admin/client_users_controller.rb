@@ -7,8 +7,13 @@ module Admin
     def index
       @page_title = "Client Users"
       @nav = "admin/registrations"
-      
-      get_collection
+       @current_page=params[:page]
+     
+       if (params.has_key? (:q))
+        get_search
+      else
+        get_collection  
+      end
     end
     
     def show
