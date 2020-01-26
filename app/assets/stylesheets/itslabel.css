@@ -176,10 +176,10 @@
 	color: #fff;
 }
 
-.light_version .top-navbar{
+/*.light_version .top-navbar{
 	z-index: 999;
   width: 50px;
-}
+}*/
 
 .light_version .table tr td.its-tag span{
   border: 1px solid #0d8241;
