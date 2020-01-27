@@ -20,6 +20,12 @@ module User
       get_document
     end
 
+    def translate
+      get_document
+      @document.input_html_source = params[:input_html_source]
+      @document.save
+    end
+
     def select_template
       @page_title = "Choose a Template"
       @nav = 'user/documents'

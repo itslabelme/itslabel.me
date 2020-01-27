@@ -20,8 +20,11 @@ Rails.application.routes.draw do
     
     # CRUD Documents
     resources :documents do
+      member do
+        put 'translate', to: 'documents#translate', as: 'translate'
+      end
       collection do
-        get '/select_template', to: 'documents#select_template', as: 'select_template'
+        get 'select_template', to: 'documents#select_template', as: 'select_template'
       end
     end
 

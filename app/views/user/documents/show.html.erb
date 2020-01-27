@@ -27,16 +27,16 @@
           <%= render partial: 'user/documents/show/details' %>
 
           <!-- Display Template -->
-          <%= render partial: 'user/documents/show/template' %>
+          <div id="DOCUMENT_TRANSLATE_FORM">
+            <%= render partial: 'user/documents/show/template' %>
+          </div>
 
           <!-- Display Tags -->
           <div class="body p-10">
-          <% @document.tags.each do |tag| %>
-            <span class='tag badge badge-info'><% tag.name %></span>
-          <% end %>
+            <% @document.tags.each do |tag| %>
+              <span class='tag badge badge-info'><% tag.name %></span>
+            <% end %>
           </div>
-
-          <%#= render partial: 'user/documents/show/translation_ui' %>
 
         </div>
       </div>
