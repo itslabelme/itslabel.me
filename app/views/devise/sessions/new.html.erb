@@ -1,70 +1,64 @@
 <div class="page-loader-wrapper">
-    <div class="loader">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-        <div class="bar4"></div>
-        <div class="bar5"></div>
-    </div>
+  <div class="loader">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <div class="bar4"></div>
+    <div class="bar5"></div>
+  </div>
 </div>
-
 <div class="auth-main2 particles_js">
-    <div class="vivify">
-        <div class="auth_brand m-t-60" style="text-align: center;">
-            <a class="navbar-brand" href="javascript:void(0);">
-                <%= image_tag("itsme-logo-1.png",'width'=>'100','height'=>'60','class'=>'d-inline-block') %>
-                </a>
-        </div>
-
-        <div class="card m-t-20">            
-            <div class="body">
-                <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-auth-small'}) do |f| %>
-                  <div id="USER_LOGIN_ERRORS">
-                    <!-- Display Errors if Any -->
-                    <%= flash_message(false) if defined?(flash) -%>
-                    <%= error_message(resource) if resource.errors.any? %>
-                  </div>
-                    <div class="mb-3">
-                        <p class="lead">Login to your account</p>
-                    </div>
-                    <!-- Email -->
-                    <div class="form-group">
-                      <%= f.label :emails, :class => "control-label sr-only" %>
-                      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "signin-email", placeholder: "Email" %>
-                    </div>
-
-                    <!-- Password -->
-                    <div class="form-group">
-                      <%= f.label :password, :class => "control-label sr-only" %>
-                      <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "signin-password", placeholder: "Password" %>
-                    </div>
-
-                    <!-- Remember Me -->
-                    <div class="form-group clearfix">
-                        <label class="fancy-checkbox element-left">
-                            <input type="checkbox">
-                            <span>Remember me</span>
-                        </label>                
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
-                    <div class="mt-4">
-                        <span class="helper-text m-b-10"><i class="fa fa-lock"></i> 
-                          <%= link_to "Forgot password?", new_client_user_password_path %>
-                        </span>
-                        <span>
-                          Don't have an account? 
-                          <%= link_to "Register", new_client_user_registration_path %>
-                        </span>
-                    </div>
-                <% end %>
-                <div class="pattern">
-                    <span class="green"></span>
-                </div>
-            </div>            
-        </div>
+  <div class="vivify">
+    <div class="auth_brand m-t-60" style="text-align: center;">
+      <a class="navbar-brand" href="javascript:void(0);">
+        <%= image_tag("itsme-logo-1.png",'width'=>'100','class'=>'d-inline-block') %>
+      </a>
     </div>
-    <div id="particles-js"></div>
+    <div class="card m-t-20">
+      <div class="body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-auth-small'}) do |f| %>
+        <div id="USER_LOGIN_ERRORS">
+          <!-- Display Errors if Any -->
+          <%= flash_message(false) if defined?(flash) -%>
+          <%= error_message(resource) if resource.errors.any? %>
+        </div>
+        <div class="mb-3">
+          <p class="lead">Login to your account</p>
+        </div>
+        <!-- Email -->
+        <div class="form-group">
+          <%= f.label :emails, :class => "control-label sr-only" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "signin-email", placeholder: "Email" %>
+        </div>
+        <!-- Password -->
+        <div class="form-group">
+          <%= f.label :password, :class => "control-label sr-only" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "signin-password", placeholder: "Password" %>
+        </div>
+        <!-- Remember Me -->
+        <div class="form-group clearfix">
+          <label class="fancy-checkbox element-left">
+            <input type="checkbox">
+            <span>Remember me</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
+        <div class="mt-4">
+          <span class="helper-text m-b-10"><i class="fa fa-lock"></i>
+            <%= link_to "Forgot password?", new_client_user_password_path %>
+          </span>
+          <span>
+            Don't have an account?
+            <%= link_to "Register", new_client_user_registration_path %>
+          </span>
+        </div>
+        <% end %>
+        <div class="pattern">
+          <span class="green"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="particles-js"></div>
 </div>
-
-
 <!-- END WRAPPER -->
