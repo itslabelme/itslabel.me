@@ -4,12 +4,12 @@ Rails.application.routes.draw do
 
   # devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: 'settings' }
   devise_for :client_users, path: "user", path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: 'settings' },:controllers => { :omniauth_callbacks => "user/omniauth_callbacks" } do
-  get '/user/auth/:provider' => 'user/omniauth_callbacks#passthru'
+    get '/user/auth/:provider' => 'user/omniauth_callbacks#passthru'
   end
+
   devise_scope :client_user do
     root to:'home#index'
-   # root to: "devise/sessions#new"
-
+    # root to: "devise/sessions#new"
   end
 
   namespace :user, module: :user do
@@ -28,8 +28,6 @@ Rails.application.routes.draw do
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
-
-  
 
   namespace :admin, module: :admin do
     get '/home', to: 'home#index', as: 'home'
