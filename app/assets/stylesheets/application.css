@@ -18,6 +18,7 @@
  *= require bootstrap-tagsinput/bootstrap-tagsinput.css
 
  *= require others/toastr.css
+ *= require others/handsontable.full.min.css
 
  *= require site.css
  *= require color.css
