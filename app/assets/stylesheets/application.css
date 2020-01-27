@@ -17,11 +17,12 @@
  *= require c3/c3.min.css
  *= require bootstrap-tagsinput/bootstrap-tagsinput.css
 
- *= require site.min.css
+ *= require others/toastr.css
+
+ *= require site.css
  *= require color.css
  *= require itslabel.css
-
- *= require others/toastr.css
+ *= require ad-search.css
  
  *= require_self
  */
