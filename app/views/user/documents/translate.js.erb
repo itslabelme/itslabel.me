@@ -1,0 +1,50 @@
+<% if @document.errors.blank? %>
+
+  // Reload the form to show errors
+  $("#DOCUMENT_TRANSLATE_FORM").html("<%= escape_javascript(render(:partial=>'user/documents/show/template.html.erb')) %>");
+
+  // FIXME
+  $(document).ready(function() {
+
+    // Set IFrame Contents
+    $("iframe").contents().find('html').html("<%= escape_javascript(raw(@document.output_html_source)) %>");
+
+    // TinyMCE OnChange Method
+    function onChangeInputTinyMCE() {
+      console.log("The HTML is now:" + $('#input_tinymce').innerHTML);
+    }
+
+    // Remove TinyMCE First 
+    tinymce.remove('.tinymce-editor');
+
+    // tinymce.init({ 
+    //  selector:'.tinymce-editor', 
+    //  oninit : "setPlainText", 
+    //  plugins : "paste" });
+
+    tinymce.init({
+      selector: '.tinymce-editor',
+      height: 400,
+      menubar: false,
+      branding: false,
+      statusbar: false,
+      setup: function(editor) {
+        editor.on('Paste Change input Undo Redo', function () {
+          onChangeInputTinyMCE();
+          // if (editorChangeHandler) {clearTimeout(editorChangeHandler);}
+          // editorChangeHandler = setTimeout(function() {
+          // }, 100);
+        });
+      }
+    }); 
+    
+  }); 
+
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("Error!");
+
+<% end %>
+

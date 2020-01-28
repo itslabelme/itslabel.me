@@ -1,0 +1,65 @@
+<div class="row clearfix">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="body">
+
+        <%= form_tag(url: admin_client_users_url,  
+                      class: "form-floating", 
+                      method: :get, 
+                      html: { autocomplete: "off" }) do |f| %>
+
+        <div class="input-group" id="adv-search">
+          
+          <!-- Search Query -->
+          <%= text_field_tag :q, params[:q], class: "form-control", placeholder: "Search ...", name: "q",  autocomplete: "off" %>
+          <!-- <input type="text" class="form-control" placeholder="Search ..." name="q" /> -->
+          
+          <!-- Country Dropdown -->
+          <div class="input-group-btn">
+            <div class="btn-group" role="group">
+              <div class="dropdown dropdown-lg">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                    
+                  <div class="form-group">
+
+                    <%#= country_select_tag :country, [ "US", "GB", "FR", "DE", "AE", "SA", "CN", "IN", "RU" ], {}, {class: "form-control", :id => "country_id"} %>
+                    <%= select_tag :country, options_for_select(ISO3166::Country.all, params[:country]) %>
+
+                    <label for="filter">Filter by</label>
+                    <select class="form-control">
+                      <option value="0" selected>All Snippets</option>
+                      <option value="1">Featured</option>
+                      <option value="2">Most popular</option>
+                      <option value="3">Top rated</option>
+                      <option value="4">Most commented</option>
+                    </select>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contain">Author</label>
+                    <input class="form-control" type="text" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contain">Contains the words</label>
+                    <input class="form-control" type="text" />
+                  </div>
+
+                  <div class="its-mright">
+                    <button type="submit" class="btn btn-primary">Reset</button>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

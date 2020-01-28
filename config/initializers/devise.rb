@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'omniauth-google-oauth2'
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -296,4 +296,10 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  # Facebook & Google Auth
+  domain = Rails.env.staging? ? "http://demo.itslabel.me" : "http://localhost:3000"
+  config.omniauth :facebook, ENV['ITS_FACEBOOK_APP_ID'], ENV['ITS_FACEBOOK_APP_SECRET'], callback_url: "#{domain}/user/auth/facebook/callback"
+  config.omniauth :google_oauth2, ENV['ITS_GOOGLE_CLIENT_ID'], ENV['ITS_GOOGLE_CLIENT_SECRET'], callback_url: "#{domain}/user/auth/facebook/callback"
+
 end

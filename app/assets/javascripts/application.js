@@ -18,6 +18,9 @@
 //= require bundles/vendorscripts.bundle.js
 //= require bundles/c3.bundle.js
 //= require bundles/mainscripts.bundle.js
+//= require bundles/handsontable.full.min.js
+//= require bundles/tinymce.min.js
+//= require bundles/bootstrap-tagsinput/bootstrap-tagsinput.js
 
 //= require others/utilities.js
 //= require others/toastr.js

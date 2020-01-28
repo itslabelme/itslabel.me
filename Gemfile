@@ -34,35 +34,52 @@ gem 'country_select'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
 
 # Gems used in this Application
-
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 # for import data
 gem 'iconv', "~> 1.0"
-
+gem 'colorize'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry', '~> 0.12.2'
-  gem 'colorize'
 end
 
 group :development do
+
+  # FIXME - This is not working for some reason
+  # gem "awesome_print", require:"ap"
+  # gem 'meta_request'
+
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  # gem 'web-console', '>= 3.3.0'
+  # gem 'listen', '>= 3.0.5', '< 3.2'
+
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  # gem 'web-console', '>= 3.3.0'
+  # gem 'listen', '>= 3.0.5', '< 3.2'
   
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # See https://github.com/rails/execjs#readme for more supported runtimes
+  # gem 'therubyracer', platforms: :ruby
+
+  gem "capistrano", require: false
+  gem 'capistrano-rbenv',   require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+  gem 'capistrano-memcached',   require: false
 end
 
 group :test do

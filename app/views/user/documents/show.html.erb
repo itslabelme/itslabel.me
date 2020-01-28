@@ -1,0 +1,46 @@
+<div class="container-fluid">
+
+  <div class="block-header">
+    <div class="row clearfix">
+      <div class="col-md-6 col-sm-12">
+        <h1><%= @document.title %></h1>
+        <p class="pt-2"><%= @document.description %></p>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <nav aria-label="breadcrumb" style="float:right">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", user_home_path %></li>
+            <li class="breadcrumb-item"><%= link_to "Translations", user_documents_path(dt: "template") %></li>
+            <li class="breadcrumb-item active"><%= @document.title %></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="row clearfix">
+    <div class="col-lg-12 col-md-12">
+      <div class="card">
+        <div class="body">
+          
+          <!-- Display Document Title, Description & Language -->
+          <%= render partial: 'user/documents/show/details' %>
+
+          <!-- Display Template -->
+          <div id="DOCUMENT_TRANSLATE_FORM">
+            <%= render partial: 'user/documents/show/template' %>
+          </div>
+
+          <!-- Display Tags -->
+          <div class="body p-10">
+            <% @document.tags.each do |tag| %>
+              <span class='tag badge badge-info'><% tag.name %></span>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

@@ -116,7 +116,7 @@ module ControllerConfigurations
           # theme_color: "#898989",
           # page_theme: "#{@current_theme}",
           # page_font: "felix-font-small",
-        }
+        },
 
         partials_path: {
           new_form: "/admin/translations/form/form",

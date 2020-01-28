@@ -1,0 +1,25 @@
+<% @templates = LabelTemplate.all %>
+<div class="row clearfix">
+  <% @templates.each do |template| %>
+  <div class="col-lg-3 cool-md-3 col-sm-12">
+    <div class="card">
+      <ul class="pricing body">
+        <li class="plan-img">
+          <%= image_tag("template_preview.jpg", class: "img-fluid", alt: template.display_name) %>
+        </li>
+        <li><b><%= template.display_name %></b></li>
+        <li><p><%= template.description %></p></li>
+        
+        <li class="plan-btn">
+          <div class="fancy-checkbox">
+            <label>
+              <input type="checkbox" onclick="window.location.href = '<%= new_user_document_path(dt: 'template', template_id: template.id) %>';">
+              <span>Select</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+</div>

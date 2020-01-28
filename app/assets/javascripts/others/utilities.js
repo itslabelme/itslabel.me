@@ -86,6 +86,7 @@ function hideLoader(){
   $("#LOADER").hide();
 }
 
+
 // Show Loader till the page loads completely.
 // $(window).load(function() {
 $(document).ready(function() {

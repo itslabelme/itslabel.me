@@ -1,0 +1,43 @@
+<%= form_tag(translate_user_document_path(@document), 
+              method: :put, class: "form-floating",
+              id: "DOCUMENT_TRANSLATE_FORM", remote: true,
+              html: { autocomplete: "off" }) do |f| %>
+
+  <div class="row pb-4">
+    <div class="col-md-6">
+      <textarea class="tinymce-editor" id="input_tinymce" name='input_html_source'>
+        <%= raw @document.input_html_source %>
+      </textarea>
+    </div>
+    <div class="col-md-6">
+      <div class="body" style="height:400px;">
+        <iframe frameborder="0" id="iframe">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pb-4">
+    <div class="form-group col-md-12">
+      <button class="btn btn-primary float-right mt-4" type="submit" >Translate</button>
+    </div>
+  </div>
+
+<% end %>
+
+
+<style type="text/css">
+  iframe {
+    width: 100%;
+    height: 100%
+    border: 0;
+    display: block;
+    padding: 0;
+    margin: 100px 0 0 0;
+    /*margin: 10px 20px;*/
+  }
+</style>
+
+<%= content_for :javascript_footer do %>
+  <%= render :partial=>"user/documents/show/template.js.erb" %>
+<% end %>

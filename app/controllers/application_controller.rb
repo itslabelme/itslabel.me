@@ -36,7 +36,12 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || welcome_path
+   if resource.is_a?(AdminUser)
+        admin_root_path
+    else
+        user_root_path
+    end
+    #stored_location_for(resource) || welcome_path
   end
 
   # Overwriting the sign_out redirect path method
@@ -51,5 +56,5 @@ class ApplicationController < ActionController::Base
   def after_inactive_sign_up_path_for(resource)
     welcome_path
   end
-
+   
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_060638) do
+ActiveRecord::Schema.define(version: 2020_01_21_123156) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", limit: 256, null: false
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
+    t.text "image"
     t.index ["confirmation_token"], name: "index_client_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_client_users_on_email", unique: true
     t.index ["mobile_number"], name: "index_client_users_on_mobile_number"
@@ -60,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.index ["unlock_token"], name: "index_client_users_on_unlock_token", unique: true
   end
 
-  create_table "document_translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "document_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "document_id"
     t.string "input_phrase", limit: 256, null: false
     t.string "input_language", limit: 16, null: false
@@ -78,8 +81,8 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.bigint "translation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["document_id"], name: "index_document_translations_on_document_id"
-    t.index ["translation_id"], name: "index_document_translations_on_translation_id"
+    t.index ["document_id"], name: "index_document_items_on_document_id"
+    t.index ["translation_id"], name: "index_document_items_on_translation_id"
   end
 
   create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -93,6 +96,8 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.string "output_5_language", limit: 16
     t.string "status", limit: 16, default: "ACTIVE", null: false
     t.string "type", limit: 128
+    t.text "input_html_source"
+    t.text "output_html_source"
     t.bigint "template_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -106,6 +111,27 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.bigint "tag_id"
     t.index ["document_id"], name: "index_documents_tags_on_document_id"
     t.index ["tag_id"], name: "index_documents_tags_on_tag_id"
+  end
+
+  create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "client_user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_user_id"], name: "index_identities_on_client_user_id"
+  end
+
+  create_table "label_templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", limit: 256
+    t.string "description", limit: 1024
+    t.string "style", limit: 64
+    t.text "ltr_html_source"
+    t.text "rtl_html_source"
+    t.bigint "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
   create_table "nutrition_facts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -136,18 +162,6 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", limit: 256
-    t.string "description", limit: 1024
-    t.string "style", limit: 64
-    t.text "ltr_html_source"
-    t.text "rtl_html_source"
-    t.bigint "admin_user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["admin_user_id"], name: "index_templates_on_admin_user_id"
-  end
-
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "input_phrase", limit: 256, null: false
     t.string "input_description", limit: 1024
@@ -155,6 +169,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
     t.string "output_phrase", limit: 256, null: false
     t.string "output_description", limit: 1024
     t.string "output_language", limit: 16, null: false
+    t.string "category", limit: 16
     t.bigint "admin_user_id"
     t.string "status", limit: 16, default: "PENDING", null: false
     t.datetime "created_at", null: false
@@ -163,5 +178,6 @@ ActiveRecord::Schema.define(version: 2020_01_20_060638) do
   end
 
   add_foreign_key "documents", "client_users", column: "user_id", on_delete: :cascade
-  add_foreign_key "templates", "admin_users"
+  add_foreign_key "identities", "client_users"
+  add_foreign_key "label_templates", "admin_users"
 end

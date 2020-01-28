@@ -35,7 +35,6 @@ config/database.yml
 # For Mac
 *.DS_Store
 
-Gemfile.lock
 *.gem
 spec/dummy/public/uploads
 spec/dummy/uploads

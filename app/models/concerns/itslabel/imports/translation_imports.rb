@@ -21,6 +21,7 @@ module Itslabel::Imports::TranslationImports
       output_phrase = hsh[:output_phrase].to_s.strip
       output_description = hsh[:output_description].to_s.strip
       output_language = hsh[:output_language].to_s.strip
+      category = hsh[:category].to_s.strip
       
       translation = Translation.where(input_phrase: input_phrase, output_phrase: output_phrase, input_language: input_language, output_language: output_language).first || Translation.new
           
@@ -32,6 +33,7 @@ module Itslabel::Imports::TranslationImports
       translation.output_phrase = output_phrase
       translation.output_description = output_description
       translation.output_language = output_language
+      translation.category = category if category
 
 
       if translation.valid?

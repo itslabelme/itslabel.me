@@ -15,12 +15,15 @@
  *= require font-awesome/font-awesome.css
  *= require animate-css/vivify.min.css
  *= require c3/c3.min.css
-
- *= require site.min.css
- *= require color.css
- *= require itslabel.css
+ *= require bootstrap-tagsinput/bootstrap-tagsinput.css
 
  *= require others/toastr.css
+ *= require others/handsontable.full.min.css
+
+ *= require site.css
+ *= require color.css
+ *= require itslabel.css
+ *= require ad-search.css
  
  *= require_self
  */

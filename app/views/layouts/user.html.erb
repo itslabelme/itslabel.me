@@ -36,6 +36,11 @@
 
     <!-- Application Javascripts  -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Yielding Javascript Footer -->
+    <script type="text/javascript">
+      <%= yield :javascript_footer -%>
+    </script>
     
   </body>
 </html>
