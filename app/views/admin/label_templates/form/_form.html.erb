@@ -90,6 +90,8 @@
               <% error_class = @label_template.errors[:picture].any? ? 'parsley-error' : '' %>
               <%= f.file_field :picture, class: "form-control #{error_class}", placeholder: 'picture' %>
               <%= display_parsley_error(@label_template, :picture) %>
+                
+                <%= image_tag url_for(@label_template.picture) if @label_template.picture.attached? %>
             </div>
           </div>
         </div>
