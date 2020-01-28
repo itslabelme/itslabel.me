@@ -47,3 +47,4 @@ spec/dummy/storage
 *.keep
 /nbproject/private/
 /node_modules/
+/nbproject
