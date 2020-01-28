@@ -33,9 +33,9 @@ module Admin
     def create
       new_label_template
       @label_template.assign_attributes(permitted_params)
-      
+       @label_template.admin_user = @current_admin_user
       if @label_template.valid?
-        @label_template.admin_user = @current_user
+       
         @label_template.save
         set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Label Template"))
         set_flash_message(I18n.translate("success.created", item: "Label Template"), :success)
@@ -100,13 +100,14 @@ module Admin
     end
 
     def permitted_params
-      params.require("label_templates").permit(
+      params.require(:label_template).permit(
        :name,
        :description,
        :style,
        :ltr_html_source,
-       :rtl_html_source
-      )
+       :rtl_html_source,
+       :picture,
+       :admin_user)
     end
 
   end

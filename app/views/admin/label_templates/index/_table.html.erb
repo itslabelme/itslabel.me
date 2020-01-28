@@ -1,4 +1,4 @@
-<div id="TRANSLATIONS_TABLE" class="table-responsive">
+<div id="TEMPLATES_TABLE" class="table-responsive">
   <table class="table table-hover table-custom spacing8" id="label_template_listing_table">
     <thead>
       <tr>
@@ -13,7 +13,7 @@
 
     <tbody>
       <% @label_templates.each_with_index do |label_template, i| %>
-      <tr id='TRANSLATIONS_ROW_<%= label_template.id %>'>
+      <tr id='TEMPLATES_ROW_<%= label_template.id %>'>
           <td>
             <span><%= serial_number(i) %></span>
           </td>

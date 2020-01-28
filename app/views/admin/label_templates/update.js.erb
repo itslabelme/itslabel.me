@@ -4,21 +4,21 @@
   notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
   
   // Add the Row to the table and highlight it
-  $("#TRANSLATIONS_ROW_<%= @label_template.id %>").replaceWith("<%= escape_javascript(render(:partial=>'admin/label_templates/index/row.html.erb', locals: { label_template: @label_template })) %>");
+  $("#TEMPLATES_ROW_<%= @label_template.id %>").replaceWith("<%= escape_javascript(render(:partial=>'admin/label_templates/index/row.html.erb', locals: { label_template: @label_template })) %>");
   
   // Highlight the background color of the newly added data to the datatable
-  $("#TRANSLATIONS_ROW_<%= @label_template.id %> td").css( "animation", "highlightAfterUpdate 10000ms ease-out" );
+  $("#TEMPLATES_ROW_<%= @label_template.id %> td").css( "animation", "highlightAfterUpdate 10000ms ease-out" );
 
   // Reload the form to show errors
   <% @label_template = LabelTemplate.new %>
-  $("#TRANSLATIONS_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/label_templates/form/form')) %>");
+  $("#TEMPLATES_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/label_templates/form/form')) %>");
 
   // Hide the form
-  showTab('TRANSLATIONS_LIST');
-  $('#LI_TRANSLATIONS_EDIT_FORM').hide();
+  showTab('TEMPLATES_LIST');
+  $('#LI_TEMPLATES_EDIT_FORM').hide();
 
   // Set Focus on the First Input after loading the form
-  setFocusOnFirstInput("TRANSLATIONS_EDIT_FORM");
+  setFocusOnFirstInput("TEMPLATES_EDIT_FORM");
 
 <% else %>
 
@@ -26,10 +26,10 @@
   notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
 
   // Reload the form to show errors
-  $("#TRANSLATIONS_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/label_templates/form/form')) %>");
+  $("#TEMPLATES_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/label_templates/form/form')) %>");
 
   // Set Focus on the First Input after loading the form
-  setFocusOnFirstInput("TRANSLATIONS_EDIT_FORM");
+  setFocusOnFirstInput("TEMPLATES_EDIT_FORM");
 
 <% end %>
 

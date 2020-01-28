@@ -2,7 +2,7 @@ class LabelTemplate < ApplicationRecord
 
   # Set Table Name
   self.table_name = "label_templates"
-
+   has_one_attached :picture
   # Imports
   extend Importer
 

@@ -20,7 +20,7 @@
 
     <div class="row clearfix">
       <div class="header p-3 mb-4">
-        <h2><%= @label_template.new_record? ? 'Add a New LabelTemplate' : 'Edit LabelTemplate' %></h2>
+        <h2><%= @label_template.new_record? ? 'Add a New Template' : 'Edit Template' %></h2>
       </div>
     </div>
 
@@ -29,12 +29,12 @@
         <!-- Show Success / Error / Info Messages If any set by the controller action -->
         <%= flash_message(false) if defined?(flash) -%>
 
-        <!-- Display Errors if Any
+        <!-- Display Errors if Any 
         <%# if @label_template.errors.any? %>
-        <div id="TRANSLATIONS_NEW_FORM_ERRORS">
-          <%#= notify_form_errors(@label_template) %>
+        <div id="TEMPLATES_NEW_FORM_ERRORS">
+          <%# = notify_form_errors(@label_template) %>
         </div>
-        <%# end %>
+        <%#  end %>
          -->
       </div>
     </div>
@@ -43,62 +43,53 @@
       <div class="col-lg-6 col-md-6 col-sm-12">
         
         <div class="row">
+         
           <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="form-group">
-              <% error_class = @label_template.errors[:input_phrase].any? ? 'parsley-error' : '' %>
-              <%= f.text_field :input_phrase, class: "form-control #{error_class}", placeholder: 'Input Phrase' %>
-              <%= display_parsley_error(@label_template, :input_phrase) %>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12">
-            <div class="form-group">
-              <% error_class = @label_template.errors[:input_language].any? ? 'parsley-error' : '' %>
-              <select class="form-control <%= error_class %> show-tick" name='label_template[input_language]'>
-                <option>--- Select ---</option>
-                <option value='ENGLISH' <%= @label_template.input_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
-                <option value='ARABIC' <%= @label_template.input_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
-                <option value='FRENCH' <%= @label_template.input_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
-              </select>
-              <%= display_parsley_error(@label_template, :input_language) %>
+              <% error_class = @label_template.errors[:name].any? ? 'parsley-error' : '' %>
+               <%= f.text_field :name, class: "form-control #{error_class}", placeholder: 'Template Name' %>
+              <%= display_parsley_error(@label_template, :name) %>
             </div>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
-              <% error_class = @label_template.errors[:input_description].any? ? 'parsley-error' : '' %>
-              <%= f.text_field :input_description, class: "form-control #{error_class}", placeholder: 'Input Description' %>
-              <%= display_parsley_error(@label_template, :input_description) %>
+              <% error_class = @label_template.errors[:description].any? ? 'parsley-error' : '' %>
+              <%= f.text_field :description, class: "form-control #{error_class}", placeholder: 'Template Description' %>
+              <%= display_parsley_error(@label_template, :description) %>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-9 col-md-9 col-sm-12">
 
         <div class="row">
           <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="form-group">
-              <% error_class = @label_template.errors[:output_phrase].any? ? 'parsley-error' : '' %>
-              <%= f.text_field :output_phrase, class: "form-control #{error_class}", placeholder: 'Output Phrase' %>
-              <%= display_parsley_error(@label_template, :output_phrase) %>
+              <% error_class = @label_template.errors[:style].any? ? 'parsley-error' : '' %>
+              <%= f.text_field :style , class: "form-control #{error_class}", placeholder: 'Style' %>
+              <%= display_parsley_error(@label_template, :style) %>
             </div>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-12">
+          <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="form-group">
-              <% error_class = @label_template.errors[:output_language].any? ? 'parsley-error' : '' %>
-              <select class="form-control <%= error_class %> show-tick" name='label_template[output_language]'>
-                <option>--- Select ---</option>
-                <option value='ENGLISH' <%= @label_template.output_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
-                <option value='ARABIC' <%= @label_template.output_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
-                <option value='FRENCH' <%= @label_template.output_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
-              </select>
-              <%= display_parsley_error(@label_template, :output_language) %>
+              <% error_class = @label_template.errors[:ltr_html_source].any? ? 'parsley-error' : '' %>
+               <%= f.text_area :ltr_html_source, class: "form-control #{error_class}", placeholder: 'LEFT HTML SOURCE',id:'ckeditor' %>
+              <%= display_parsley_error(@label_template, :description) %>
             </div>
           </div>
-          <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="form-group">
-              <% error_class = @label_template.errors[:output_description].any? ? 'parsley-error' : '' %>
-              <%= f.text_field :output_description, class: "form-control #{error_class}", placeholder: 'Output Description' %>
-              <%= display_parsley_error(@label_template, :output_description) %>
+              <% error_class = @label_template.errors[:rtl_html_source].any? ? 'parsley-error' : '' %>
+              <%= f.text_area :rtl_html_source, class: "form-control #{error_class}", placeholder: 'RIGHT HTML SOURCE' %>
+              <%= display_parsley_error(@label_template, :rtl_html_source) %>
+            </div>
+          </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <% error_class = @label_template.errors[:picture].any? ? 'parsley-error' : '' %>
+              <%= f.file_field :picture, class: "form-control #{error_class}", placeholder: 'picture' %>
+              <%= display_parsley_error(@label_template, :picture) %>
             </div>
           </div>
         </div>
@@ -114,5 +105,4 @@
   </div>
 
 <% end %>
-
 
