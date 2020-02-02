@@ -1,7 +1,7 @@
 // Partial template to load JS code for Data table and other general functionalities
-var $leaveRequestsTable;
+var $adminUsersTable;
 function initialize_leave_requests_table(){
-  $leaveRequestsTable = $('#user_listing_table').DataTable({
+  $adminUsersTable = $('#user_listing_table').DataTable({
     dom: 'Bfrtip',
 
     buttons: [
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
   // Export Button Events
   $("#LEAVE_REQUESTS_TABLE_EXPORT_TO_EXCEL").on("click", function() {
-    $leaveRequestsTable.button( '.buttons-excel' ).trigger();
+    $adminUsersTable.button( '.buttons-excel' ).trigger();
   });
 
 });

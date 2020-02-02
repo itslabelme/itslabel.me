@@ -14,36 +14,36 @@
     <tbody>
       <% if @client_users.present? %>
       <% @client_users.each_with_index do |client_user, i| %>
-      <tr id='USER_ROW_<%= client_user.id %>'>
-        
-        <td><span><%= serial_number(i) %></span></td>
-        <td>
-          <div class="d-flex align-items-center">
-            <div>
-              <h6 class="mb-0"><%= link_to "#{client_user.display_name}", 'javascript:void(0);' %></h6>
-              <span><%= client_user.email %></span>
+        <tr id='USER_ROW_<%= client_user.id %>'>
+          
+          <td><span><%= serial_number(i) %></span></td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div>
+                <h6 class="mb-0"><%= link_to "#{client_user.display_name}", 'javascript:void(0);' %></h6>
+                <span><%= client_user.email %></span>
+              </div>
             </div>
-          </div>
-        </td>
-        
-        <td class="its-tag"><%=  number_to_phone(client_user.mobile_number) if client_user.mobile_number %></td>
+          </td>
+          
+          <td class="its-tag"><%=  number_to_phone(client_user.mobile_number) if client_user.mobile_number %></td>
 
-        <td><%=  client_user.organisation %></td>
-        <td><%=  client_user.country %></td>
-        <td><%=  client_user.created_at.strftime("%d %b,%Y") %></td>
+          <td><%=  client_user.organisation %></td>
+          <td><%=  client_user.country %></td>
+          <td><%=  client_user.created_at.strftime("%d %b,%Y") %></td>
 
-        <!-- <td> -->
-          <%#= link_to edit_admin_client_user_path(client_user), class: "btn btn-sm btn-default", remote: true do %>
-          <!-- <i class="icon-pencil"></i> -->
-          <%# end %>
-          <%#= link_to admin_client_user_path(client_user), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this user?"} do %>
-          <!-- <i class="icon-trash"></i> -->
-          <%# end %>
-        <!-- </td> -->
-      </tr>
+          <!-- <td> -->
+            <%#= link_to edit_admin_client_user_path(client_user), class: "btn btn-sm btn-default", remote: true do %>
+            <!-- <i class="icon-pencil"></i> -->
+            <%# end %>
+            <%#= link_to admin_client_user_path(client_user), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this user?"} do %>
+            <!-- <i class="icon-trash"></i> -->
+            <%# end %>
+          <!-- </td> -->
+        </tr>
       <% end %>
       <%  else %>
-      <tr><td>No result found.</td></tr>
+        <tr><td>No result found.</td></tr>
       <% end %>
     </tbody>
   </table>
