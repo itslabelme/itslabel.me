@@ -21,8 +21,8 @@
           <%= render partial: 'admin/client_users/index/table' %>
 
           <!-- Pagination -->
-           <% if @client_users .present? %>
-          <%= paginate @client_users if @client_users.any? %>
+          <% if @client_users .present? %>
+            <%= paginate @client_users if @client_users.any? %>
           <% end  %>
         </div>
 
