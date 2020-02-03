@@ -4,7 +4,7 @@
   <%= render partial: 'admin/client_users/index/header' %>
   
   <!-- Filters -->
-  <%= render partial: 'admin/client_users/index/filters' %>
+  <%#= render partial: 'admin/client_users/index/filters' %>
 
   <!-- Controls -->
   <%= render partial: 'admin/client_users/index/controls' %>
@@ -14,9 +14,7 @@
       <div class="card">
         
         <div class="table-responsive">
-            <div class="float-lg-right"><form action="" method="get" >
-                <input type="text" name="q"><input type="submit" value="Go">
-              </form></div>
+            
           <!-- Table -->
           <%= render partial: 'admin/client_users/index/table' %>
 

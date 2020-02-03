@@ -4,7 +4,7 @@
   <%= render partial: 'admin/admin_users/index/header' %>
   
   <!-- Controls -->
-  <%= render partial: 'admin/admin_users/index/controls' %>
+  <%#= render partial: 'admin/admin_users/index/controls' %>
   
   <div class="row clearfix">
     <div class="col-lg-12">
@@ -17,15 +17,13 @@
         <div class="tab-content mt-0">
           <div class="tab-pane active show" id="USER_LIST">
             <div class="table-responsive">
-              <div class="float-lg-right"><form action="" method="get" >
-                <input type="text" name="q"><input type="submit" value="Go">
-              </form></div>
+              <%= render partial: 'admin/admin_users/index/controls' %>
               <div class="tab-pane active show" id="USERS_LIST">
                 <%= render partial: 'admin/admin_users/index/table' %>
               </div>
-              <% if @admin_users.present? %>
+             
               <%= paginate @admin_users %>
-              <% end  %>
+              
             </div>
           </div>
           <div class="tab-pane" id="USER_NEW_FORM">
