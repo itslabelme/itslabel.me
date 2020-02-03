@@ -22,7 +22,9 @@
                 <%= render partial: 'admin/admin_users/index/table' %>
               </div>
              
+            <% if @admin_users.present? %>
               <%= paginate @admin_users %>
+              <% end  %>
               
             </div>
           </div>
