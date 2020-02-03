@@ -13,11 +13,14 @@ module Admin
       if (params.has_key? (:q))
         get_search
         new_adminuser
+      else if(params.has_key?( params[:country]) || (params[:name]) || (params[:mobile_number]))
+        get_advancesearch
+        new_adminuser
       else
         get_collection
         new_adminuser
       end
-
+      end 
     end
     
     def new   
@@ -116,7 +119,26 @@ module Admin
       @admin_users = AdminUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@current_page).per(@per_page)
       
     end
-     
+         def get_advancesearch
+      condition = " 1=1 "
+        if(params[:country].blank? and params[:name].blank? and params[:mobile_number].blank? )
+            @order_by = "created_at DESC" unless @order_by
+            @admin_users = AdminUser.
+            order(@order_by).
+            page(@current_page).per(@per_page)
+        else
+            if params[:country].present?
+            condition += " AND country='#{params[:country]}'" if params.key?(:country)
+            end
+            if params[:mobile_number].present?
+            condition += " AND mobile_number='#{params[:mobile_number]}'" if params.key?(:mobile_number)
+            end
+            if params[:name].present?
+            condition += " AND (first_name LIKE '%#{params[:name]}%' OR last_name LIKE '%#{params[:name]}%' OR email LIKE '%#{params[:name]}%' ) " if params.key?(:name)
+            end 
+            @admin_users= AdminUser.where("#{condition}").page(@current_page).per(@per_page)
+        end
+    end
     def get_user
       @admin_user = AdminUser.find(params[:id])
     end

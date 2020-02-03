@@ -7,24 +7,18 @@
                     <div class="dropdown dropdown-lg">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                         <div class="dropdown-menu dropdown-menu-right" role="menu">
-                            <form class="form-horizontal" action="" method="post" role="form">
+                            <form class="form-horizontal" name="adv_search" action="" method="get" role="form">
                                 <div class="form-group">
                                     <label for="filter">Filter by</label>
-                                    <select class="form-control">
-                                        <option value="0" selected>All Snippets</option>
-                                        <option value="1">Featured</option>
-                                        <option value="2">Most popular</option>
-                                        <option value="3">Top rated</option>
-                                        <option value="4">Most commented</option>
-                                    </select>
+                                    <%= select_tag :country, options_for_select(ISO3166::Country.all.sort_by { |country| country.name }, params[:country]) , :include_blank => true%>
                                 </div>
                                 <div class="form-group">
-                                    <label for="contain">Author</label>
-                                    <input class="form-control" type="text" />
+                                    <label for="contain">Phone</label>
+                                    <input class="form-control" name="mobile_number" type="text" />
                                 </div>
                                 <div class="form-group">
                                     <label for="contain">Contains the words</label>
-                                    <input class="form-control" type="text" />
+                                    <input class="form-control" name="name" type="text" />
                                 </div>
                                 <div class="its-mright">
                                     <button type="submit" class="btn btn-primary">Reset</button>

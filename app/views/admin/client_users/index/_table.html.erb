@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <% if @client_users.present? %>
-      <% @client_users.each_with_index do |client_user, i| %>
+      <% @client_users.each_with_index do | client_user, i | %>
         <tr id='USER_ROW_<%= client_user.id %>'>
           
           <td><span><%= serial_number(i) %></span></td>
