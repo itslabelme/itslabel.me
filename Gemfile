@@ -44,6 +44,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
+gem 'active_storage_validations'
 # for import data
 gem 'iconv', "~> 1.0"
 gem 'colorize'

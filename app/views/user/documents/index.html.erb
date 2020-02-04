@@ -11,6 +11,9 @@
         <div class="tab-pane active show" id="TRANSLATIONS_LIST">
           <%= render partial: 'user/documents/index/table' %>
         </div>
+        <% if @documents.present? %>
+              <%= paginate @documents %>
+        <% end  %>
       </div>
     </div>
   </div>

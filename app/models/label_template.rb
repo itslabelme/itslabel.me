@@ -2,14 +2,15 @@ class LabelTemplate < ApplicationRecord
 
   # Set Table Name
   self.table_name = "label_templates"
-
+   has_one_attached :picture
+   validates :picture, content_type: ['image/png', 'image/jpg', 'image/jpeg']
   # Imports
   extend Importer
 
   # Includes
   # include Itslabel::Status::LabelTemplateStatus
   # include Itslabel::Scopes::LabelTemplateScopes
-  # include Itslabel::Permissions::LabelTemplatePermissions
+   include Itslabel::Permissions::LabelTemplatePermissions
   # include Itslabel::Validations::LabelTemplateValidations
   # include Itslabel::Callbacks::LabelTemplateCallbacks
   # include Itslabel::Imports::LabelTemplateImports
