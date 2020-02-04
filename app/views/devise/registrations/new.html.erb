@@ -2,7 +2,7 @@
   <div class="auth_div vivify popIn">
     <div class="auth_brand m-t-60">
       <a class="navbar-brand" href="javascript:void(0);">
-        <%= image_tag "itsme-logo.png", alt: "Login Image", class: "d-inline-block align-top", width: "142", height: "60" %>
+        <%= image_tag "itsme-logo-1.png", alt: "Login Image", class: "d-inline-block align-top", width: "142", height: "60" %>
       </a>                                                
     </div>
 
@@ -120,10 +120,13 @@
           </div>
           <button type="submit" class="btn btn-primary btn-block">Register</button>                                
         </form>
-        
-        <div class="separator-linethrough"><span>OR</span></div>
-        <button class="btn btn-signin-social"><a href="/user/auth/facebook"><i class="fa fa-facebook-official facebook-color"></i>Sign In</a></button>
-        <button class="btn btn-signin-social"><a href="/user/auth/google"><i class="fa fa-google-plus-square google-color"></i> Sign In</a></button>
+          
+                            <div class="separator-linethrough"><span>OR SIGN IN USING</span></div>
+                            <ul class="its-login-social">
+                                <li><button class="btn btn-signin-social"><a href="/user/auth/facebook"><i class="fa fa-facebook-official facebook-color"></i> Facebook</a></button></li>
+                                <li><button class="btn btn-signin-social"><a href="/user/auth/google"><i class="fa fa-google google-color"></i> Google</a></button></li>
+                            </ul>
+     
       </div>
     </div>
   </div>
