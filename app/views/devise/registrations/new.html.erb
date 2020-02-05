@@ -1,133 +1,136 @@
 <div class="auth-main particles_js m-t-40">
-  <div class="auth_div vivify popIn">
-    <div class="auth_brand m-t-60">
-      <a class="navbar-brand" href="javascript:void(0);">
-        <%= image_tag "itsme-logo.png", alt: "Login Image", class: "d-inline-block align-top", width: "142", height: "60" %>
-      </a>                                                
-    </div>
-
-    <div class="card">
-      <div class="body">
-        <p class="lead" style="margin-bottom: 20px;">Create an Account</p>
-
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-          <div id="USER_REGI_ERRORS">
-            <!-- Display Errors if Any -->
-            <%= notify_form_errors(resource) if resource.errors.any? %>
-          </div>
-          
-          <div class="row">
-
-            <!-- First Name -->
-            <div class="form-group input-group col-md-6">
-              <%= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First Name"  %>
-            </div>
-
-            <!-- Last Name -->
-            <div class="form-group input-group col-md-6">
-              <%= f.text_field :last_name, autofocus: true, class: "form-control", placeholder: "Last Name"  %>
-            </div>
-
-            <!-- Organisation -->
-            <div class="form-group input-group col-md-6">
-              <!-- <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-              </div> -->
-              <%= f.text_field :organisation, autofocus: true, class: "form-control", placeholder: "Organisation"  %>
-            </div>
-
-            <!-- Country -->
-            <div class="form-group input-group col-md-6">
-              <%= f.country_select :country, [ "US", "GB", "FR", "DE", "AE", "SA", "CN", "IN", "RU" ], {}, {class: "form-control", :id => "country_id"} %>
-              <%#= f.country_select :country, ([ "GB", "FR", "DE" ]), iso_codes: true, id: :element_id, class: "form-control", autofocus: true %>
-            </div>
-
-            <!-- Mobile Number -->
-            <div class="form-group input-group col-md-6">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-              </div>
-              <%= f.telephone_field :mobile_number, autofocus: true, class: "form-control", placeholder: "Mobile Number"  %>
-            </div>
-
-            <!-- Email Address -->
-            <div class="form-group input-group col-md-6">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-               </div>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email Address"  %>
-            </div>
-
-            <!-- Create Password -->
-            <div class="form-group input-group col-md-6">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-              </div>
-              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Create Password" %>
-            </div>
-
-            <!-- Repeat Password -->
-            <div class="form-group input-group col-md-6">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-              </div>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Repeat Password" %>
-            </div>
-
-            <!-- 
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-                </div>
-                <select class="custom-select" style="max-width: 120px;">
-                    <option selected="">+971</option>
-                    <option value="1">+972</option>
-                    <option value="2">+198</option>
-                    <option value="3">+701</option>
-                </select>
-                <input name="" class="form-control" placeholder="Phone number" type="text">
-            </div> 
-            -->
-            <!-- 
-              <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-building-o"></i> </span>
-                 </div>
-                <input name="" class="form-control" placeholder="Organization" type="text">
-              </div>
-            -->
-
-          </div>
-                            
-          <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+    <div class="auth_div vivify popIn">
+        <div class="auth_brand m-t-60">
+            <a class="navbar-brand" href="javascript:void(0);">
+                <%= image_tag "itsme-logo-1.png", alt: "Login Image", class: "d-inline-block align-top", width: "142", height: "60" %>
+              </a>                                                
           </div>
 
-          <p class="text-center">
-            Have an account? 
-            <%= link_to "Log In", new_client_user_session_path %>
-          </p>       
-          
-        <% end %>
+          <div class="card">
+              <div class="body">
+                  <p class="lead" style="margin-bottom: 20px;">Create an Account</p>
 
-        <form class="form-auth-small m-t-20" style="display: none;">
-          <div class="form-group">
-            <input type="email" class="form-control" placeholder="Your email">
-          </div>
-          <div class="form-group">                            
-            <input type="password" class="form-control" placeholder="Password">
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Register</button>                                
-        </form>
-        
-        <div class="separator-linethrough"><span>OR</span></div>
-        <button class="btn btn-signin-social"><a href="/user/auth/facebook"><i class="fa fa-facebook-official facebook-color"></i>Sign In</a></button>
-        <button class="btn btn-signin-social"><a href="/user/auth/google"><i class="fa fa-google-plus-square google-color"></i> Sign In</a></button>
-      </div>
-    </div>
-  </div>
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-  <%# Fix Me - Do we really need Particles? %>
-  <!-- <div id="particles-js"></div> -->
-</div>
+                    <div id="USER_REGI_ERRORS">
+                        <!-- Display Errors if Any -->
+                        <%= notify_form_errors(resource) if resource.errors.any? %>
+                    </div>
+
+                    <div class="row">
+
+                        <!-- First Name -->
+                        <div class="form-group input-group col-md-6">
+                            <%= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First Name"  %>
+                          </div>
+
+                          <!-- Last Name -->
+                          <div class="form-group input-group col-md-6">
+                              <%= f.text_field :last_name, autofocus: true, class: "form-control", placeholder: "Last Name"  %>
+                            </div>
+
+                            <!-- Organisation -->
+                            <div class="form-group input-group col-md-6">
+                                <!-- <div class="input-group-prepend">
+                                  <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                                </div> -->
+                                <%= f.text_field :organisation, autofocus: true, class: "form-control", placeholder: "Organisation"  %>
+                              </div>
+
+                              <!-- Country -->
+                              <div class="form-group input-group col-md-6">
+                                  <%= f.country_select :country, [ "US", "GB", "FR", "DE", "AE", "SA", "CN", "IN", "RU" ], {}, {class: "form-control", :id => "country_id"} %>
+            <%#= f.country_select :country, ([ "GB", "FR", "DE" ]), iso_codes: true, id: :element_id, class: "form-control", autofocus: true %>
+                                </div>
+
+                                <!-- Mobile Number -->
+                                <div class="form-group input-group col-md-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                    </div>
+                                    <%= f.telephone_field :mobile_number, autofocus: true, class: "form-control", placeholder: "Mobile Number"  %>
+                                  </div>
+
+                                  <!-- Email Address -->
+                                  <div class="form-group input-group col-md-6">
+                                      <div class="input-group-prepend">
+                                          <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                      </div>
+                                      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email Address"  %>
+                                    </div>
+
+                                    <!-- Create Password -->
+                                    <div class="form-group input-group col-md-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                        </div>
+                                        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Create Password" %>
+                                      </div>
+
+                                      <!-- Repeat Password -->
+                                      <div class="form-group input-group col-md-6">
+                                          <div class="input-group-prepend">
+                                              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                          </div>
+                                          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Repeat Password" %>
+                                        </div>
+
+                                        <!-- 
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                            </div>
+                                            <select class="custom-select" style="max-width: 120px;">
+                                                <option selected="">+971</option>
+                                                <option value="1">+972</option>
+                                                <option value="2">+198</option>
+                                                <option value="3">+701</option>
+                                            </select>
+                                            <input name="" class="form-control" placeholder="Phone number" type="text">
+                                        </div> 
+                                        -->
+                                        <!-- 
+                                          <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-building-o"></i> </span>
+                                             </div>
+                                            <input name="" class="form-control" placeholder="Organization" type="text">
+                                          </div>
+                                        -->
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                                    </div>
+
+                                    <p class="text-center">
+                                        Have an account? 
+                                        <%= link_to "Log In", new_client_user_session_path %>
+                                    </p>       
+
+                                  <% end %>
+
+                                  <form class="form-auth-small m-t-20" style="display: none;">
+                                      <div class="form-group">
+                                          <input type="email" class="form-control" placeholder="Your email">
+                                      </div>
+                                      <div class="form-group">                            
+                                          <input type="password" class="form-control" placeholder="Password">
+                                      </div>
+                                      <button type="submit" class="btn btn-primary btn-block">Register</button>                                
+                                  </form>
+
+                                  <div class="separator-linethrough"><span>OR SIGN IN USING</span></div>
+                                  <ul class="its-login-social">
+                                      <li><button class="btn btn-signin-social"><a href="/user/auth/facebook"><i class="fa fa-facebook-official facebook-color"></i> Facebook</a></button></li>
+                                      <li><button class="btn btn-signin-social"><a href="/user/auth/google"><i class="fa fa-google google-color"></i> Google</a></button></li>
+                                  </ul>
+
+                              </div>
+                          </div>
+                      </div>
+
+                  <%# Fix Me - Do we really need Particles? %>
+                      <!-- <div id="particles-js"></div> -->
+                  </div>

@@ -10,29 +10,28 @@ module Admin
       @nav = 'admin/admin_users'
 
       get_collection
-      if (params.has_key? (:q))
-        get_search
-        new_adminuser
-      else if(params.has_key?( params[:country]) || (params[:name]) || (params[:mobile_number]))
-        get_advancesearch
-        new_adminuser
-      else
-        get_collection
-        new_adminuser
-      end
-      end 
+      new_admin_user
+
+      # if (params.has_key? (:q))
+      #   get_search
+      # else
+      #   if (params.has_key?( params[:country]) || (params[:name]) || (params[:mobile_number]))
+      #     get_advanced_search
+      #   else
+      #     get_collection
+      #   end
+      # end 
     end
     
     def new   
-      new_adminuser  
+      new_admin_user  
     end   
    
     # POST method for processing form data   
     def create   
-      new_adminuser
+      new_admin_user
       @admin_user.assign_attributes(admin_user_params)
      
-
       if @admin_user.valid?
         @admin_user.save
         set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "AdminUsers"))
@@ -44,21 +43,15 @@ module Admin
         set_notification(false, I18n.t('status.error'), message)
         set_flash_message('The form has some errors. Please correct them and submit again', :error)
       end
-   
     end  
      
-    
     def edit
       @page_title = "Edit User | Admin"
       @nav = 'admin/admin_users'
-
-      get_user
     end
 
     # PATCH/PUT /admin_user/1
     def update
-      
-      get_user
       @admin_user.assign_attributes(admin_user_params)
       
       if @admin_user.valid?
@@ -73,15 +66,8 @@ module Admin
       end
     end
     
-    
-    def show
-      get_user
-    end
-   
     # DELETE method for deleting a user from database based on id   
     def destroy   
-      get_user
-
       if @admin_user
         if @admin_user.can_be_deleted?
           @admin_user.destroy
@@ -98,47 +84,28 @@ module Admin
       end  
     end
     
-    def new_adminuser
-      @admin_user = AdminUser.new
-    end
-    
     private
 
+    def new_admin_user
+      @admin_user = AdminUser.new
+    end
+
     def get_collection
-      #@per_page=params[:page]
+      @per_page=1
       @order_by = "created_at DESC" unless @order_by
-      @admin_users = AdminUser.
-        order(@order_by).
-        page(@current_page).per(@per_page)
+
+      @relation = AdminUser.where("")
+
+      apply_filters
+
+      @admin_users = @relation.order(@order_by).page(@current_page).per(@per_page)
+    end
+
+    def apply_filters
+      @query = params[:q]
+      @relation = @relation.search(@query) if @query && !@query.blank?
     end
     
-    def get_search
-      #s @per_page=params[:page]
-      key = "%#{params[:q]}%"
-      
-      @admin_users = AdminUser.where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: key).page(@current_page).per(@per_page)
-      
-    end
-         def get_advancesearch
-      condition = " 1=1 "
-        if(params[:country].blank? and params[:name].blank? and params[:mobile_number].blank? )
-            @order_by = "created_at DESC" unless @order_by
-            @admin_users = AdminUser.
-            order(@order_by).
-            page(@current_page).per(@per_page)
-        else
-            if params[:country].present?
-            condition += " AND country='#{params[:country]}'" if params.key?(:country)
-            end
-            if params[:mobile_number].present?
-            condition += " AND mobile_number='#{params[:mobile_number]}'" if params.key?(:mobile_number)
-            end
-            if params[:name].present?
-            condition += " AND (first_name LIKE '%#{params[:name]}%' OR last_name LIKE '%#{params[:name]}%' OR email LIKE '%#{params[:name]}%' ) " if params.key?(:name)
-            end 
-            @admin_users= AdminUser.where("#{condition}").page(@current_page).per(@per_page)
-        end
-    end
     def get_user
       @admin_user = AdminUser.find(params[:id])
     end
@@ -153,8 +120,6 @@ module Admin
         :password,
         :password_confirmation)
     end
-     
-      
-    
+
   end
 end
