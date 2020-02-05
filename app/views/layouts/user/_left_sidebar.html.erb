@@ -14,17 +14,17 @@
         <%= image_tag "user.png", alt: "User Profile Picture", class: "user-photo"%>
       </div>
       <div class="dropdown">
-          <span>Welcome,</span>
-          <!-- add dropdown-toggle class to below to make it a drop down link -->
-          <a href="javascript:void(0);" class="user-name" data-toggle="dropdown">
-            <strong><%= current_client_user.display_name %></strong>
-          </a>
-          <!-- <ul class="dropdown-menu dropdown-menu-left account vivify flipInY">
-            <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
-            <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
-            <li class="divider"></li>
-            <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_client_user_session_url, method: :delete %></li>
-          </ul> -->
+        <span>Welcome,</span>
+        <!-- add dropdown-toggle class to below to make it a drop down link -->
+        <a href="javascript:void(0);" class="user-name" data-toggle="dropdown">
+          <strong><%= current_client_user.display_name %></strong>
+        </a>
+        <!-- <ul class="dropdown-menu dropdown-menu-left account vivify flipInY">
+          <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
+          <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
+          <li class="divider"></li>
+          <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_client_user_session_url, method: :delete %></li>
+        </ul> -->
       </div>                
     </div> 
 
@@ -67,7 +67,7 @@
 
         <li class="header">My Account</li>
         <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
+        <!-- <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li> -->
         <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_client_user_session_url, method: :delete %></li>
         
 

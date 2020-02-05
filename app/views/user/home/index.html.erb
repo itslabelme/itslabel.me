@@ -1,22 +1,28 @@
 <div class="container-fluid">
-    <div class="block-header">
-        <div class="row clearfix">
-            <div class="col-md-6 col-sm-12">
-                <h1>Dashboard</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Welcome to It's Label</a></li>
-                    </ol>
-                </nav>
-            </div>   
-        </div>
-    </div>
 
-    <%= render partial: 'user/home/index/translation_ui' %>
-    <%#= render partial: 'user/home/index/select_documnet_type' %>
-
+  <!-- Header -->
+  <div class="block-header">
     <div class="row clearfix">
-        <%= render partial: 'user/home/index/recent_translation' %>
-        <%#= render partial: 'user/home/index/user_profile' %>
+      <div class="col-md-6 col-sm-12">
+        <h1>Home</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Welcome to Ingredients Translation Service</a></li>
+          </ol>
+        </nav>
+      </div>
     </div>
+  </div>
+
+  <!-- Widget - Try Translation -->
+  <%= render partial: 'user/home/widgets/try_translation' %>
+
+  <!-- Recent Translations -->
+  <div class="row clearfix">
+    <%= render partial: 'user/home/widgets/recent_translations' %>
+  </div>
+
+  
+  <%#= render partial: 'user/home/widgets/select_documnet_type' %>
+  <%#= render partial: 'user/home/widgets/user_profile' %>
 </div>

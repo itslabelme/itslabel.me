@@ -28,17 +28,17 @@
         <li class="<%= nav_active?('admin/home') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-speedometer") + "Home", admin_home_path %></li>
         <li class="<%= nav_active?('admin/registrations') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-users") + "Registrations", admin_client_users_path %></li>
         <li class="<%= nav_active?('admin/translations') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Translation Database", admin_translations_path %></li>
-        <li class="<%= nav_active?('admin/label_templates') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Templates", admin_label_templates_path %></li>
+        <li class="<%= nav_active?('admin/label_templates') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-settings") + "Templates", admin_label_templates_path %></li>
         
         <li class="<%= nav_active?('admin/admin_users') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "Admin Users", admin_admin_users_path %></li>
         
-        <li class="header">Reports</li>
+        <!-- <li class="header">Reports</li>
         <li class="<%= nav_active?('admin/reports') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 1", admin_admin_users_path %></li>
-        <li class="<%= nav_active?('admin/reports') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 2", admin_admin_users_path %></li>
+        <li class="<%= nav_active?('admin/reports') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 2", admin_admin_users_path %></li> -->
         
         <li class="header">My Account</li>
         <li class="<%= nav_active?('admin/my_account') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
-        <li class="<%= nav_active?('admin/my_profile') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
+        <!-- <li class="<%= nav_active?('admin/my_profile') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li> -->
         <li class="<%= nav_active?('admin/settings') ? '' : 'active' %>"><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
       </ul>
     </nav>

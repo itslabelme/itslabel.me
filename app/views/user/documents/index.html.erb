@@ -12,12 +12,14 @@
           <%= render partial: 'user/documents/index/table' %>
         </div>
         <% if @documents.present? %>
-              <%= paginate @documents %>
+          <%= paginate @documents %>
         <% end  %>
       </div>
     </div>
   </div>
+
 </div>
-<%= content_for :javascript_footer do %>
-  <%= render :partial=>"user/documents/index/table.js.erb"  %>
-<% end %>
+
+<%#= content_for :javascript_footer do %>
+  <%#= render :partial=>"user/documents/index/table.js.erb"  %>
+<%# end %>
