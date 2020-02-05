@@ -1,6 +1,7 @@
 class AdminUser < ApplicationRecord
   
   include Itslabel::Permissions::AdminUserPermissions
+  include Itslabel::Scopes::AdminUserScopes
 
   devise :database_authenticatable, :recoverable, :rememberable, :validatable
   # Include default devise modules. Others available are:
