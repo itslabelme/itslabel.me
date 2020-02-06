@@ -3,13 +3,15 @@ class ClientUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include Itslabel::Scopes::ClientUserScopes
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :validatable,:omniauthable
+    :recoverable, :rememberable, :validatable,:omniauthable, :trackable
   # max_paginates_per 2
       
   def display_name
     [first_name, last_name].compact.join(" ")
   end
-  
+  def display_initials
+     [first_name[0], last_name[0]].compact.join("")
+  end
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
