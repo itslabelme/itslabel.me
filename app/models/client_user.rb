@@ -1,6 +1,7 @@
 class ClientUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include Itslabel::Scopes::ClientUserScopes
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable,:omniauthable
   # max_paginates_per 2

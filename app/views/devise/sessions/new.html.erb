@@ -44,13 +44,25 @@
         </div>
         <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
         <div class="mt-4">
+          
+             <% if request.path=="/user/login" %>
           <span class="helper-text m-b-10"><i class="fa fa-lock"></i>
+             
             <%= link_to "Forgot password?", new_client_user_password_path %>
+              
           </span>
           <span>
             Don't have an account?
             <%= link_to "Register", new_client_user_registration_path %>
           </span>
+            <% end  %>
+             <% if request.path=="/admin/login" %>
+             <span class="helper-text m-b-10"><i class="fa fa-lock"></i>
+             
+            <%= link_to "Forgot password?", new_admin_user_password_path %>
+              
+          </span>
+            <% end  %>
         </div>
         <% end %>
         <div class="pattern">
