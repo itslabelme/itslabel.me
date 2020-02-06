@@ -12,10 +12,13 @@ module Itslabel::Scopes::TranslationScopes
 
       LOWER(translations.output_phrase) LIKE LOWER('%#{query}%') OR\
       LOWER(translations.output_language) LIKE LOWER('%#{query}%') OR\
-      LOWER(translations.output_description) LIKE LOWER('%#{query}%') OR\
+      LOWER(translations.output_description) LIKE LOWER('%#{query}%') 
 
     ")}
-    
+     scope :advsearch, lambda {|query| where("
+      #{query}
+
+    ")}
     scope :upcoming, lambda { where("translations.created_at >= ?", Time.now) }
     scope :past, lambda { where("translations.created_at < ?", Time.now) }
 
