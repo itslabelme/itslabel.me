@@ -14,15 +14,13 @@
 //= require activestorage
 // require turbolinks
 
-//= require bundles/libscripts.bundle.js
-//= require bundles/vendorscripts.bundle.js
-//= require bundles/c3.bundle.js
-//= require bundles/mainscripts.bundle.js
-//= require bundles/handsontable.full.min.js
-//= require bundles/tinymce.min.js
-//= require bundles/bootstrap-tagsinput/bootstrap-tagsinput.js
+//= require vendor/libscripts.bundle.js
+//= require vendor/vendorscripts.bundle.js
+//= require vendor/mainscripts.bundle.js
+//= require vendor/bootstrap-tagsinput.js
+// require vendor/c3.bundle.js
 
-//= require others/utilities.js
-//= require others/toastr.js
+//= require utilities.js
+//= require custom.js
 
 // require_tree .
