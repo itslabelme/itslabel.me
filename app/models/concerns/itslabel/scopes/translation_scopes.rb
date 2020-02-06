@@ -7,12 +7,12 @@ module Itslabel::Scopes::TranslationScopes
     # Scopes
     scope :search, lambda {|query| where("
       LOWER(translations.input_phrase) LIKE LOWER('%#{query}%') OR\
-      LOWER(translations.input_description) LIKE LOWER('%#{query}%') OR\
+      
       LOWER(translations.input_language) LIKE LOWER('%#{query}%') OR\
 
       LOWER(translations.output_phrase) LIKE LOWER('%#{query}%') OR\
-      LOWER(translations.output_language) LIKE LOWER('%#{query}%') OR\
-      LOWER(translations.output_description) LIKE LOWER('%#{query}%') 
+      LOWER(translations.output_language) LIKE LOWER('%#{query}%') 
+    
 
     ")}
      scope :advsearch, lambda {|query| where("

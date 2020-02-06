@@ -15,11 +15,11 @@ module Itslabel::Imports::TranslationImports
       # return error_object unless admin_user
 
       input_phrase = hsh[:input_phrase].to_s.strip
-      input_description = hsh[:input_description].to_s.strip
+      #input_description = hsh[:input_description].to_s.strip
       input_language = hsh[:input_language].to_s.strip
 
       output_phrase = hsh[:output_phrase].to_s.strip
-      output_description = hsh[:output_description].to_s.strip
+      #output_description = hsh[:output_description].to_s.strip
       output_language = hsh[:output_language].to_s.strip
       category = hsh[:category].to_s.strip
       
@@ -27,11 +27,11 @@ module Itslabel::Imports::TranslationImports
           
       translation.admin_user_id = admin_user.id if admin_user
       translation.input_phrase = input_phrase
-      translation.input_description = input_description
+     # translation.input_description = input_description
       translation.input_language = input_language
 
       translation.output_phrase = output_phrase
-      translation.output_description = output_description
+     # translation.output_description = output_description
       translation.output_language = output_language
       translation.category = category if category
 

@@ -24,8 +24,8 @@ class Translation < ApplicationRecord
   validates :output_phrase, presence: true, length: {maximum: 256}, allow_blank: false
   validates :output_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
 
-  validates :input_description, length: {maximum: 1024}, allow_blank: true
-  validates :output_description, length: {maximum: 1024}, allow_blank: true
+  #validates :input_description, length: {maximum: 1024}, allow_blank: true
+ # validates :output_description, length: {maximum: 1024}, allow_blank: true
   
   # Associations
   belongs_to :admin_user, class_name: "AdminUser", optional: true
