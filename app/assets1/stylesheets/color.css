@@ -1,0 +1,130 @@
+a{
+  color: #0d8241;
+}
+
+a:hover{
+  color: #1dc166;
+}
+
+
+.btn-primary{
+  color: #fff;
+    background-color: #0d8241;
+    border-color: #0d8241;
+}
+
+.btn-primary:hover{
+    background-color: #1dc166;
+    border-color: #1dc166;  
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+  background-color: #1dc166;
+    border-color: #1dc166;  
+}
+
+.sidebar-nav .metismenu>li.active>a{
+  color: #0d8241;
+}
+
+.badge-success{
+  border-color: #0d8241;
+    color: #0d8241;
+}
+
+.bg-green{
+  background-color: #0d8241;
+}
+
+
+.light_version .table tr th{
+  background-color: #0d8241 !important;
+  color: #fff;
+}
+
+.light_version .table thead tr th .remove-border.p-0{
+  color: #fff !important;
+}
+
+.light_version .table tbody tr th{
+  background-color: #fff !important;
+  color: #0d8241 !important;
+}
+
+.light_version .navbar-nav .icon-menu{
+  color: #fff;
+  padding-left: 0px;
+}
+
+.light_version #left-sidebar .navbar-brand{
+  background-color: #0d8241 !important;
+  margin: 0px;
+  padding: 14px 20px 14px;  
+}
+
+.custom-select:focus{
+  background: white;
+  color: #0d8241;
+}
+
+.btn-success{
+  background:  #0d8241;
+}
+
+.its-export-btn{
+  color: #fff;
+}
+
+.badge-info{
+  border-color: #0d8241;
+    color: #0d8241;
+}
+
+.social .profile-header{
+  background:  #0d8241;
+  box-shadow: none;
+}
+
+.light_version .pagination .page-link{
+  border-color: #0d8241 !important;
+}
+
+.light_version .pagination {
+  float: right;
+}
+
+
+.pagination>li>a, .pagination>li>span{
+  color: #0d8241; 
+}
+
+.body .bg-azura{
+  background:  #0d8241 !important;
+}
+
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus{
+  background:  #0d8241 !important;
+}
+
+.its-login-social li{
+  border:1px solid #0d8241;
+  background:  #0d8241;
+}
+
+.its-login-social li:hover{
+  background:  #1dc166;
+  border-color: #1dc166;
+}
+
+.its-login-social li:hover,
+.its-login-social li:hover button i,
+.its-login-social li:hover button{
+  color: #fff !important;
+}
+
+.its-login-social li,
+.its-login-social li button i,
+.its-login-social li button{
+  color: #fff !important;
+}
+  

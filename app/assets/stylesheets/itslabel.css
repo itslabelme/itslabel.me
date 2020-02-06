@@ -3,126 +3,126 @@
 /** Register Page **/
 
 .auth_brand .navbar-brand{
-  margin: 0px;
+	margin: 0px;
 }
 
 
 .form-control{
-  height: 40px;
-  border-radius: 0px;
+	height: 40px;
+	border-radius: 0px;
 }
 
 .btn-group-lg>.btn, .btn-lg{
-  border-radius: 0px;
+	border-radius: 0px;
 }
 
 .light_version #left-sidebar{
-  border:none;
+	border:none;
 }
 
 /** Dashboard **/
 
 .header h2 {
     font-size: 20px;
-  color: rgb(33, 40, 52);
-  color: #0d8241;
+	color: rgb(33, 40, 52);
+	color: #0d8241;
     position: relative;
 }
 
 .its-upload-container h3{
-  font-size: 20px;
+	font-size: 20px;
 }
 
 .its-upload-container h4{
-  font-size: 14px;
+	font-size: 14px;
 }
 
 #left-sidebar .navbar-brand .logo{
-  width: 80px;
+	width: 80px;
 }
 
 .its-export-btn i{
-  position: relative;
-  top: 2px;
-  margin-right: 5px;
+	position: relative;
+	top: 2px;
+	margin-right: 5px;
 }
 
 #mainTable{
-  margin-top: 20px;
+	margin-top: 20px;
 }
 
 #mainTable tr,
 #mainTable tr td,
 #mainTable tr th{
-  border: 1px solid #dedede;
+	border: 1px solid #dedede;
 }
 
 .remove-border .bootstrap-tagsinput.form-control{
-  border:none !important;
+	border:none !important;
 }
 
 .remove-border{
-  border:none;
+	border:none;
 }
 
 .remove-border.p-0{
-  background: none !important;
-  color: #6c757d !important;
-  border-radius: 0px !important;
+	background: none !important;
+	color: #6c757d !important;
+	border-radius: 0px !important;
 }
 
 .remove-border.p-0:focus{
-  box-shadow: none !important;
+	box-shadow: none !important;
 }
 
 .remove-border.p-0:hover{
-  background-color: none !important;
-  background: none !important;
-  color: #212529;
-  box-shadow: none;
+	background-color: none !important;
+	background: none !important;
+	color: #212529;
+	box-shadow: none;
 }
 
 
 .its-lang-drop{
-  padding: 10px;
-  border-radius: 0px;
+	padding: 10px;
+	border-radius: 0px;
 
 }
 
 .its-lang-drop li a{
-  color: #6c757d !important;
-  font-weight: 100;
-  font-size: 14px;
-  border-bottom: 1px solid #e0e0e0;
-  display: block;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+	color: #6c757d !important;
+	font-weight: 100;
+	font-size: 14px;
+	border-bottom: 1px solid #e0e0e0;
+	display: block;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .its-lang-drop li:last-child a{
-  border:none;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
+	border:none;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
 }
 
 
 .pricing.body .fancy-checkbox{
-  background: #0d8241;
-  margin: 0px;
-  color: #fff;
-  padding: 5px;
+	background: #0d8241;
+	margin: 0px;
+	color: #fff;
+	padding: 5px;
 }
 
 .pricing.body .fancy-checkbox label{
-  margin:0px;
+	margin:0px;
 }
 
 .pricing.body .plan-btn{
-  margin-top: 15px;
+	margin-top: 15px;
 }
 
 #Profile{
-  text-align: center;
+	text-align: center;
 }
 
 #Profile img{
@@ -135,12 +135,7 @@
 
 .light_version .fancy-checkbox.its-login-me input[type="checkbox"]+span:before{
 	border-color: #0d8241;
-  max-width: 30%;
-  color: #0d8241;
-}
-
-.pattern .green {
-  background-color: #0d8241;
+    color: #0d8241;
 }
 
 .light_version .table tr td.its-tag{
@@ -148,11 +143,12 @@
 }
 
 .light_version .table tr td.its-tag span{
-	border: 1px solid #0d8241;
-	padding: 2px;
+	border: 1px solid #2f3338;
+	padding: 2px 5px;
 	margin: 3px;
 	border-radius: 5px;
 	float: left;
+  font-size: 12px;
 }
 
 .search_toggle.btn.bg-green i{
@@ -176,42 +172,8 @@
 	color: #fff;
 }
 
-/*.light_version .top-navbar{
-	z-index: 999;
-  width: 50px;
-}*/
-
-.light_version .table tr td.its-tag span{
-  border: 1px solid #0d8241;
-  padding: 2px;
-  margin: 3px;
-  border-radius: 5px;
-  float: left;
-}
-
-.search_toggle.btn.bg-green i{
-  position: relative;
-  top: 4px;
-}
-
-.light_version .table tr td button:hover{
-  background:  #0d8241;
-}
-
-.light_version .table tr td button:hover i{
-  color: #fff;
-}
-
-.light_version .table tr td button.active{
-  background:  #0d8241;
-}
-
-.light_version .table tr td button.active i{
-  color: #fff;
-}
-
 .light_version .top-navbar{
-  z-index: 999;
+	z-index: 999;
 }
 
 /** HAndontable **/
@@ -236,41 +198,24 @@
 
 .its-language-switcer .col-md-5{
 	flex: 0 0 48%;
-  line-height: 50px;
-}
-
-.handsontable tr{
-  background: #ccc;
-  text-align: left;
-}
-
-.handsontable thead tr th{
-  background:  #0d8241;
-  color: #fff;
-}
-
-.handsontable .changeType{
-  margin-top: 20px;
-}
-
-.its-language-switcer .col-md-5{
-  flex: 0 0 48%;
-  max-width: 48%;
+    max-width: 48%;
 }
 
 .its-language-switcer .col-md-1{
 	flex: 0 0 4%;
-  max-width: 4%;
-  text-align: center;
-  padding: 0px;
-  font-size: 20px;
-  vertical-align: middle;
-  position: relative;
-  top: 30px;
+    max-width: 4%;
+    text-align: center;
+    padding: 0px;
+    font-size: 20px;
+    vertical-align: middle;
+    position: relative;
+    top: 30px;
 }
 
+
 .its-language-switcer textarea{
-  border-color: #d3d9df;
+  border: 1px solid #d3d9df;
+	border-color: #d3d9df;
 }
 
 
@@ -649,7 +594,7 @@ select.selectpicker {
 /** Preview **/
 
 .its-preview-table{
-  min-height: 325px;
+  min-height: 350px;
   text-align: center;
 }
 
@@ -751,4 +696,56 @@ fieldset legend{
 
 .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus{
   box-shadow: none;
+}
+
+
+.pricing .plan-img img{
+  max-width: 100% !important;
+}
+
+/** Toggle Button **/
+
+.custom-control-input:checked~.custom-control-label::before{
+  border-color: #0d8241;
+  background-color: #0d8241;
+}
+
+/** Preview PAge **/
+
+.its-preview-intro .icon-in-bg{
+  width: 20%;
+  height: auto;
+  background: none !important;
+}
+
+.its-preview-intro img{
+  max-width: 100%;
+}
+
+.its-preview-intro h3{
+  font-size: 18px;
+}
+
+.itslabel-olang ul{
+  margin: 0px;
+  padding: 0px;
+}
+
+.itslabel-olang ul li{
+  list-style: none;
+  display: inline-block;
+  text-transform: uppercase;
+  line-height: 20px;
+}
+
+.itslabel-olang ul li:after{
+  content: "|";
+  margin-left: 8px;
+  margin-right: 5px;
+  position: relative;
+  top: -1px;
+}
+
+.itslabel-olang ul li:last-child:after{
+  display: none;
 }
