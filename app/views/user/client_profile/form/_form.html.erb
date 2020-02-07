@@ -4,8 +4,8 @@ form_method = :put
 %>
 <%= form_with(url: form_url,  
       class: "form-floating", 
-      model: @admin_user,
-      id:current_admin_user.id,
+      model: @client_user,
+      id:current_client_user.id,
       method: form_method, 
       html: { autocomplete: "off" }) do |f| %>
 
@@ -50,9 +50,14 @@ form_method = :put
       <% end %>
       <%
 form_method = :patch
-    form_url = {action: :update_password}
+    form_url = {action: :update_client_password}
 %>
-<%= form_for(@admin_user, :url => { :action => "update_password" } ) do |f| %>
+<%= form_with(url: form_url,  
+      class: "form-floating", 
+      model: @client_user,
+      id:current_client_user.id,
+      method: form_method, 
+      html: { autocomplete: "off" }) do |f| %>
 
 
   <%= hidden_field_tag "called_from", params[:called_from] %>
@@ -67,10 +72,10 @@ form_method = :patch
                                         <input type="text" class="form-control" value="louispierce" disabled placeholder="Username">
                                     </div>
                                 </div>-->
-                                      <%= f.hidden_field :first_name,class:"form-control",placeholder:"First Name *" %>    
+                                       <%= f.hidden_field :first_name,class:"form-control",placeholder:"First Name *" %>    
                                  <%= f.hidden_field :last_name,class:"form-control",placeholder:"Last Name *" %>
                                 <%= f.hidden_field :email,class: "form-control ",placeholder:"email *"  %>
-                                <%= f.hidden_field :mobile_number,class: "form-control ",placeholder:"Mobile No" %>                            
+                                <%= f.hidden_field :mobile_number,class: "form-control ",placeholder:"Mobile No" %>
                                 <div class="col-lg-12 col-md-12">
                                     <hr>
                                     <h6>Change Password</h6>

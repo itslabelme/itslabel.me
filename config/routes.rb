@@ -27,7 +27,12 @@ Rails.application.routes.draw do
         get 'select_template', to: 'documents#select_template', as: 'select_template'
       end
     end
-
+    
+    resources :client_profile, only: [:edit, :update] do
+      collection do
+        patch :update_client_password # /transactions/sum or the sum of all transactions.
+     end
+end
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
