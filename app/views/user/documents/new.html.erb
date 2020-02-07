@@ -3,7 +3,8 @@
     <div class="row clearfix">
       <div class="col-md-6 col-sm-12">
         <h1>New Translation</h1>
-        <p class="pt-2">Create new Template Based Translation Document</p>
+        <%  params[:dt] == 'template' ? temp_str = "Template" : temp_str = "Table"  %>
+        <p class="pt-2">Create new <%= temp_str %> Based Translation Document</p>
       </div>
       <div class="col-md-6 col-sm-12">
         <nav aria-label="breadcrumb" style="float:right">
@@ -22,7 +23,13 @@
       <div class="card">
         <div class="body">
           <!-- <h5 class="mb-4">Create a Document</h5> -->
-          <%= render partial: 'user/documents/form/form' %>
+
+          <% if params[:dt] == 'template' %>
+            <%= render partial: 'user/documents/form/template_based_form' %>
+          <% else %>
+            <%= render :partial=>"user/documents/form/table_based_form" %>
+          <% end %>
+
         </div>
       </div>
     </div>

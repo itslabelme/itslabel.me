@@ -75,12 +75,12 @@
     <div class="col-md-6">
       <%= f.text_area :input_html_source, id: "input_tinymce", class: "tinymce-editor" %>
     </div>
-    <div class="col-md-6">
-      <%= f.text_area :output_html_source, id: "output_tinymce", class: "tinymce-editor" %>
-<!--         <div class="body" style="height:400px;">
+    <div class="col-md-6"  >
+      <div class="body" style="height:400px;">
         <iframe frameborder="0" id="iframe">
         </iframe>
-      </div> -->
+      </div>
+       <%#= f.text_area :output_html_source, id: "output_tinymce", class: "tinymce-editor" %>
     </div>
   </div>
 
@@ -104,5 +104,5 @@
 <% end %>
 
 <%= content_for :javascript_footer do %>
-  <%= render :partial=>"user/documents/form/form.js.erb" %>
+  <%= render :partial=>"user/documents/form/template_based_form.js.erb" %>
 <% end %>

@@ -1,0 +1,334 @@
+var table_translation_HOT = {};
+
+$(document).ready(function() {
+
+  // Initializing the Translation Data
+  table_translation_HOT.data =[
+    <% @attendances.each do |attendance| %>
+      <% 
+        if attendance.lock?
+          lock_button_style = "background-color:#28a745"
+        else
+          lock_button_style = "background-color:darkred"
+        end
+        action_buttons = content_tag(:span) do
+          if attendance.persisted?
+            if attendance.lock?
+              content_tag(:button, class: "btn btn-small-size text-white lock-button mr-2", 
+                                style: lock_button_style, 
+                                "data-attendance-id": attendance.id, 
+                                "data-employee-id": attendance.employee_id, 
+                                "data-lock-status": "unlock", 
+                                "data-nav": "attendance" ) do
+                content_tag(:span, "", class: "fa fa-unlock")
+              end
+            else
+              content_tag(:button, class: "btn btn-small-size text-white lock-button mr-2", 
+                                style: lock_button_style, 
+                                "data-attendance-id": attendance.id, 
+                                "data-employee-id": attendance.employee_id, 
+                                "data-lock-status": "lock", 
+                                "data-nav": "attendance" ) do
+                content_tag(:span, "", class: "fa fa-lock")
+              end
+            end
+          end
+        end
+
+        if attendance.errors_to_be_fixed?
+           error_button = content_tag(:span, "", 
+                            "data-title": "<b>Error!</b>",
+                            "data-container": "body",
+                            "data-trigger": "hover",
+                            "data-toggle": "popover",
+                            "data-placement": "bottom",
+                            "data-html": "true",
+                            "data-content": attendance.errors_to_be_fixed.join("<br>"),
+                        class: "fa fa-exclamation-triangle error-button")
+        else
+          error_button = nil
+        end
+
+
+      %>
+      {
+        "action_buttons": "<%= escape_javascript(raw(action_buttons)) -%>",
+        "checkbox": "<input class='htCheckboxRendererInput select_checkbox' type='checkbox' data-id='<%= attendance.employee_id %>'>",
+        "employee_code": "<%= attendance.employee.code %>",
+        "biometric_code": "<%= attendance.employee.biometric_code %>",
+        "employee_name": "<%= attendance.employee.display_name %>",
+        "in_time": "<%= attendance.in_time.strftime('%I:%M%p') if attendance.in_time %>",
+        "out_time": "<%= attendance.out_time.strftime('%I:%M%p') if attendance.out_time %>",
+        "hours_worked": "<%= attendance.hours_worked %>",
+        "overtime": "<%= attendance.overtime %>",
+        "status": "<%= attendance.display_status %>",
+        "errors": "<%= attendance.errors_to_be_fixed %>",
+        "date": "<%= attendance.date.strftime("%m/%d/%Y") %>",
+
+        // We may need these to display in future
+        "site": "<%= attendance.site.display_name %>",
+
+        // We need these following data for various checks
+        "is_valid": <%= attendance.is_valid? ? 'true' : 'false' %>,
+        "lock": <%= attendance.lock? ? 'true' : 'false' %>,
+        "errors_to_be_fixed": "<%= escape_javascript(raw(error_button)) -%>",
+        "attendance_id": "<%= attendance.id %>",
+        "employee_id": "<%= attendance.employee.id %>",
+      },
+    <% end %>
+  ];
+
+  if(table_translation_HOT.data.length == 0 ){
+    $("#TABLE_TRANSLATION_HOT").hide();
+    $(".no-data-table").show();
+  }else{
+
+    // Initializing the HandsonTable
+    table_translation_HOT.domTable = document.getElementById("TABLE_TRANSLATION_HOT");
+    table_translation_HOT.table = new Handsontable(table_translation_HOT.domTable,{
+      data: table_translation_HOT.data,
+      search: {
+        searchResultClass: 'customClass'
+      },
+      height: 500,
+      columns: [
+
+        <% if @table_settings[:action_buttons] && @table_settings[:action_buttons][:col_visible] %>
+        {type: 'text', renderer: 'html', readOnly: true, data:'action_buttons', className: "htCenter htMiddle"},
+        <% end %>
+
+        <% if @table_settings[:checkbox] && @table_settings[:checkbox][:col_visible] %>
+        {type: 'text', renderer: 'html', readOnly: false, data:'checkbox', className: "htCenter htMiddle"},
+        <% end %>
+
+        <% if @table_settings[:employee_code] && @table_settings[:employee_code][:col_visible] %>
+        {type: 'text', data: 'employee_code', readOnly: true, className: "htCenter htMiddle"},
+        <% end %>
+
+        <% if @table_settings[:employee] && @table_settings[:employee][:col_visible] %>
+        {type: 'text', data: 'employee_name', readOnly: true, className: "htLeft htMiddle"},
+        <% end %>
+        
+        <% if @table_settings[:biometric_code] && @table_settings[:biometric_code][:col_visible] %>
+        {type: 'text', data: 'biometric_code', readOnly: true, className: "htCenter htMiddle"},
+        <% end %>  
+
+        <% if @table_settings[:date] && @table_settings[:date][:col_visible] %>
+          {type: 'text', data: 'date', readOnly: true},
+        <% end %>
+
+        <% if @table_settings[:in_time] && @table_settings[:in_time][:col_visible] %>
+        {type: 'time', timeFormat: 'h:mm a', correctFormat: true, data: 'in_time', readOnly: false, className: "htCenter htMiddle"},
+        <% end %>        
+
+        <% if @table_settings[:out_time] && @table_settings[:out_time][:col_visible] %>
+        {type: 'time', timeFormat: 'h:mm a', correctFormat: true, data: 'out_time', readOnly: false, className: "htCenter htMiddle"},
+        <% end %>
+
+        <% if @table_settings[:hours_worked] && @table_settings[:hours_worked][:col_visible] %>
+        {type: 'numeric', data: 'hours_worked', readOnly: false, className: "htCenter htMiddle"},
+        <% end %>
+
+        <% if @table_settings[:overtime] && @table_settings[:overtime][:col_visible] %>
+        {type: 'numeric', data: 'overtime', readOnly: false, className: "htCenter htMiddle"},
+        <% end %>
+
+        <% if @table_settings[:status] && @table_settings[:status][:col_visible] %>
+        {editor: 'select', data: 'status', selectOptions: <%= raw(Manava::Translation::STATUS_LIST.values.to_json) %>, className: "htCenter htMiddle"},
+        <% end %>
+
+        <% if @table_settings[:errors] && @table_settings[:errors][:col_visible] %>
+          {type: 'text', renderer: 'html', readOnly: true, data:'errors_to_be_fixed', className: "htCenter htMiddle"},
+        <% end %>
+        
+        <% if @table_settings[:site] && @table_settings[:site][:col_visible] %>
+          {type: 'text', data: 'site', readOnly: true},
+        <% end %>
+      ],
+      colHeaders: [
+        <% @table_settings.each do |code, col_data| %>
+          <% next unless col_data["col_visible"] %>
+          '<%= col_data[:name] %>',
+        <% end %>
+      ],
+      hiddenColumns: {
+        columns: [5],
+        indicators: true
+      },
+      
+      fixedColumnsLeft: 5,
+      // fixedColumnsRight: 4,
+      rowHeaders: true,
+      manualRowMove: true,
+      manualColumnMove: false,
+      contextMenu: false,
+      filters: false,
+      searching: true,
+      dropdownMenu: false,
+      stretchH: 'all',
+      currentRowClassName: 'currentRow',
+      currentColClassName: 'currentCol',
+      // fixedRowsBottom: 1,
+      // dropdownMenu: true, // header dropdown Menu
+      exportFile: true,  // Export to CSV
+      licenseKey: '46437-f3524-dcc94-04c1a-ae440', // license key
+      
+      afterChange: function (changes, source) {
+
+        // Ignore the changes happening at the time of loading the table
+        if (source === 'loadData') {
+          return;
+        }
+
+        // Ignore if there are no changes
+        if (!changes) {
+          return;
+        }
+
+        table_translation_HOT.instance = table_translation_HOT.table.getInstance();
+        $.each(changes, function (index, element) {
+          var change = element;
+          var rowIndex = change[0];
+          var columnIndex = change[1];
+          var oldValue = change[2];
+          var newValue = change[3];
+          
+          // Ignore if there are no changes
+          if ((newValue === oldValue) || (oldValue == undefined && newValue == '')) {
+            return true;
+          }
+
+          var employee_id = table_translation_HOT.data[rowIndex]["employee_id"];
+          var attendance_id = table_translation_HOT.data[rowIndex]["attendance_id"];
+          var day = <%= @day %>;
+          var month = <%= @month %>;
+          var year = <%= @year %>;
+
+          //To avoid double trigering of 'correctFormat' plugin for time formating
+          if (source == 'timeValidator'){
+            $.ajax({
+              url: "/<%= @current_site.id %>/attendances/save_cell.js",
+              type: 'PUT',
+              data: { id: attendance_id, 
+                      employee_id: employee_id, 
+                      day: day, 
+                      month: month, 
+                      year: year,
+                      new_value: newValue, 
+                      column_name: columnIndex, 
+                      hot_row: rowIndex }
+            });
+          }
+        });
+      },
+    });
+
+    // Export as CSV
+    var exportButton = document.getElementById('TranslationsExportCSV');
+    const exportPlugin = table_translation_HOT.table.getPlugin('exportFile');
+    
+    exportButton.addEventListener('click', function() {
+      exportPlugin.downloadFile('csv', {
+        bom: false,
+        columnDelimiter: ',',
+        columnHeaders: true,
+        exportHiddenColumns: false,
+        exportHiddenRows: false,
+        fileExtension: 'csv',
+        filename: '<%= @current_site.display_name %> Translation - [DD]-[MM]-[YYYY]',
+        mimeType: 'text/csv',
+        rowDelimiter: '\r\n',
+        rowHeaders: false,
+        range: [1, 2, <%= @attendances.length || 1000 %>, 10]
+      });
+    });
+
+    // Export Translation Template
+    var exportTemplateButton = document.getElementById('DownloadTranslationTemplate');
+    const exportTemplatePlugin = table_translation_HOT.table.getPlugin('exportFile');
+    
+    exportTemplateButton.addEventListener('click', function() {
+      exportTemplatePlugin.downloadFile('csv', {
+        bom: false,
+        columnDelimiter: ',',
+        columnHeaders: true,
+        exportHiddenColumns: true,
+        exportHiddenRows: false,
+        fileExtension: 'csv',
+        filename: 'Translation Template - [DD]-[MM]-[YYYY]',
+        mimeType: 'text/csv',
+        rowDelimiter: '\r\n',
+        rowHeaders: false,
+        range: [1, 2, <%= @attendances.length || 1000 %>, 7]
+      });
+    });
+
+    // Search Data Table Table 
+    SettingsTableSearch = document.getElementById('TranslationsSearch');
+    Handsontable.dom.addEvent(SettingsTableSearch, 'keyup', function (event) {
+      var search = table_translation_HOT.table.getPlugin('search');
+      var queryResult = search.query(this.value);
+      table_translation_HOT.table.render();
+    });
+
+    // update spreadsheet setting
+    table_translation_HOT.table.updateSettings({
+      cells: function (row, col, prop) {
+
+        // Defining Cell Properties
+        var cellProperties = {};
+
+        // Get the cell for the row and column
+        var cell = table_translation_HOT.table.getCell(row,col);   
+
+        if (cell == undefined) {
+          return cellProperties;
+        }
+
+        if (table_translation_HOT.data[row]) {
+          if (table_translation_HOT.data[row]["is_valid"] == false) {
+            cell.style.backgroundColor = "#ffcfcf";
+          }
+
+          // Do not allow to enter in out time for all rows whose status is not ON_DUTY
+          var readOnlyCols = [
+            table_translation_HOT.table.propToCol("in_time"),
+            table_translation_HOT.table.propToCol("out_time"),
+            table_translation_HOT.table.propToCol("overtime"),
+            table_translation_HOT.table.propToCol("hours_worked"),
+          ]
+          if (readOnlyCols.includes(col)) {
+            if (table_translation_HOT.data[row]["status"] !=  "On Duty" && table_translation_HOT.data[row]["status"] !=  "") {
+              cellProperties.readOnly = true;
+              cell.style.backgroundColor = "#f1f1f1";
+            }
+          }
+        }
+
+        return cellProperties;
+      }
+    });
+
+
+  // Trigger Popover function
+  $(function () {
+    $('.error-button').popover({
+      container: 'body'
+    })
+  })
+
+
+$(document).off('click', ".lock-button");
+$(document).on('click', '.lock-button', function (e) {
+  attendance_id = $(this).data("attendance-id");
+  employee_id = $(this).data("employee-id");
+  lock_status = $(this).data("lock-status");
+  $.ajax({
+    url: "/<%= @current_site.id %>/attendances/"+attendance_id+"/update_lock.js",
+    type: 'PUT',
+    data: { employee_id: employee_id, lock_status: lock_status}
+  });
+});
+  }
+  
+});
