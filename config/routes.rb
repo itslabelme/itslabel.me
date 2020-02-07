@@ -47,6 +47,10 @@ Rails.application.routes.draw do
 
     # CRUD Translations
     resources :label_templates
+    
+    # CRUD Translations
+    resources :profile
+     patch 'update_password', to: 'profile#update_password'
   end
   
 end
