@@ -1,10 +1,27 @@
-<% @documents = Document::Base.activated.limit(5).order("created_at DESC").all %>
+<%
+@documents = Document::Base.preload(:tags).activated.limit(5).order("created_at DESC").all
+@documents = []
+%>
 
 <div class="col-lg-12 col-md-12">
   <div class="header">
     <h2>Recent Translations</h2>
   </div>
+  
+  <% if @documents.any? %>
+  
+    <!-- Rendering the Table -->
+    <%= render partial: 'user/documents/index/table', locals: {display_actions: false} %>
 
-  <!-- Rendering the Table -->
-  <%= render partial: 'user/documents/index/table' %>
-</div> 
+  <% else %>
+
+    <a class="card">
+      <div class="body text-center">
+        <h6 class="mt-3">You haven't started yet</h6>
+        <div class="text-center text-muted">Click on a button above. Its easy.</div>
+      </div>
+    </a>
+
+  <% end %>
+
+</div>

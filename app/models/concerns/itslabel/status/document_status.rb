@@ -6,12 +6,13 @@ module Itslabel::Status::DocumentStatus
   ACTIVE = "ACTIVE"
   INACTIVE = "INACTIVE" 
   REMOVED = "REMOVED"
+  ARCHIVED = "ARCHIVED"
   
-  STATUS_LIST = {ACTIVE => "Active", INACTIVE => "Inactive", REMOVED => "Removed"}
-  REVERSED_STATUS_LIST = {"Active" => ACTIVE, "Inactive" => INACTIVE, "Removed" => REMOVED}
-  STATUS_UI_CLASS = {ACTIVE => "success", INACTIVE => "dark", REMOVED => "danger"}
-  STATUS_UI_ICON = {ACTIVE => "fa-check", INACTIVE => "fa-eye-slash", REMOVED => "fa-trash"}
-  STATUS_UI_COLOR = {ACTIVE => "#63b94c", INACTIVE => "#4b4b4b", REMOVED => "#ec407a"}
+  STATUS_LIST = {ACTIVE => "Active", INACTIVE => "Inactive", REMOVED => "Removed", ARCHIVED => "Archived"}
+  REVERSED_STATUS_LIST = {"Active" => ACTIVE, "Inactive" => INACTIVE, "Removed" => REMOVED, "Archived" => ARCHIVED}
+  STATUS_UI_CLASS = {ACTIVE => "active", INACTIVE => "inactive", REMOVED => "removed", ARCHIVED => "archived"}
+  STATUS_UI_ICON = {ACTIVE => "fa-check", INACTIVE => "fa-eye-slash", REMOVED => "fa-trash", ARCHIVED => "fa-archive"}
+  STATUS_UI_COLOR = {ACTIVE => "#63b94c", INACTIVE => "#4b4b4b", REMOVED => "#ec407a", ARCHIVED => "#898989"}
 
   included do
 
@@ -59,6 +60,19 @@ module Itslabel::Status::DocumentStatus
       self.can_remove? && self.update_attribute(:status, REMOVED)
     end
 
+    # Archive
+    def archived?
+      self.status == ARCHIVED
+    end
+
+    def can_archive?
+      !self.removed?
+    end
+
+    def archive!
+      self.can_archive? && self.update_attribute(:status, ARCHIVED)
+    end
+
 
     # Check status?
     def status?(st)
@@ -75,15 +89,19 @@ module Itslabel::Status::DocumentStatus
         self.inactive!
       when REMOVED
         self.remove!
+      when ARCHIVED
+        self.archive!
       end
     end
 
     scope :activated, -> { where("#{table_name}": {status: ACTIVE} ) }
     scope :inactivated, -> { where("#{table_name}": {status: INACTIVE} ) }
     scope :removed, -> { where("#{table_name}": {status: REMOVED} ) }
+    scope :archived, -> { where("#{table_name}": {status: ARCHIVED} ) }
 
     scope :status, lambda { |status| where("UPPER(#{table_name}.status)='#{status}'") }
     scope :all_statuses_expect, lambda { |status| where("UPPER(#{table_name}.status) NOT IN (?)", status) }
+    scope :any_of_the_statuses, lambda { |status| where("UPPER(#{table_name}.status) IN (?)", status) }
   end
 
   def display_status

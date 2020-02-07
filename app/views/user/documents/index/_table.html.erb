@@ -1,15 +1,21 @@
+<%
+  # Display Actions only if required - 
+  # No need to display when called from dashboard
+  display_actions = true if display_actions.nil?
+%>
 <div id="TRANSLATIONS_TABLE" class="table-responsive">
   <table class="table table-hover table-custom spacing8" id="document_listing_table">
     <thead>
       <tr>
         <th style="width: 5%;">#</th>
         <th style="width: 25%;">Title</th>
-        <th style="width: 15%;">Document Type</th>
         <th style="width: 15%;">Input Language</th>
         <th style="width: 15%;">Output Languages</th>
-        <th style="width: 10%;">Template</th>
+        <th style="width: 10%;">Tags</th>
         <th style="width: 10%;">Status</th>
-        <th style="width: 10%;">Action</th>
+        <% if display_actions %>
+          <th style="width: 10%;">Action</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -20,22 +26,34 @@
         </td>
         <td>
           <div class="d-flex align-items-center">
-            <div>
-              <%= link_to document.title, user_document_path(document, dt: 'template') %>
+            <% icon = document.type == "Document::TableBased" ? "icon-grid" : "icon-folder" %>
+            <div class="avtar-pic w35 bg-indigo mr-2">
+              <span><i class="<%= icon %>"></i></span>
             </div>
+            <%= link_to document.title, user_document_path(document, dt: 'template'), title: document.title %>
           </div>
         </td>
-        <td class="its-tag"><%=  document.input_language %></td>
-        <td><%=  document.output_1_language %></td>
-        <td><%=  document.output_2_language %></td>
-        <td>
-          <%= link_to edit_user_document_path(document), class: "btn btn-sm btn-default", remote: true do %>
-          <i class="icon-pencil"></i>
-          <% end %>
-          <%= link_to user_document_path(document), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
-          <i class="icon-trash"></i>
+        <td><%=  document.display_input_language %></td>
+        <td><%=  document.display_output_languages.join(" | ") %></td>
+        <td class="its-tag">
+          <% document.tags.each do |tag| %>
+            <span><%= tag.name %></span>
           <% end %>
         </td>
+        <td>
+          <span class="badge badge-info badge-<%= document.status_ui_class %>">Active</span>
+        </td>
+        
+        <% if display_actions %>
+        <td>
+          <%= link_to edit_user_document_path(document), class: "btn btn-sm btn-default", remote: true do %>
+            <i class="fa fa-edit"></i>
+          <% end %>
+          <%= link_to user_document_path(document), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
+            <i class="fa fa-trash-o text-danger"></i>
+          <% end %>
+        </td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>
