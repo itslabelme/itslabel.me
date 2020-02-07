@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   end
 
   devise_scope :client_user do
-    root to:'home#index'
-    # root to: "devise/sessions#new"
+    # root to:'home#index'
+    root to: "devise/sessions#new"
   end
 
   namespace :user, module: :user do
