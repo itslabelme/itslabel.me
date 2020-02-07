@@ -4,6 +4,12 @@ class ClientUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable,:omniauthable
   # max_paginates_per 2
+
+  validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
+  validates :last_name, length: {maximum: 256}, allow_blank: true
+  validates :mobile_number, length: {maximum: 24}, allow_blank: true
+  validates :organisation, presence: true
+  validates :country, presence: true
       
   def display_name
     [first_name, last_name].compact.join(" ")
@@ -16,6 +22,7 @@ class ClientUser < ApplicationRecord
       end
     end
   end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -29,7 +36,6 @@ class ClientUser < ApplicationRecord
       #user.image = auth.info.image # assuming the user model has an image
     end
   end
-  
   
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info

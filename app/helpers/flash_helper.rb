@@ -24,7 +24,7 @@ module FlashHelper
 
     message = message.strip if message
 
-    content_tag(:div, class: "alert #{cls_name} alert-dismissible fade show", data: "alert") do
+    content_tag(:div, class: "alert #{cls_name} alert-dismissible fade show", data: "alert", style: "padding: .75rem .5rem;text-align:left") do
       content_tag(:strong, strong_text, class: "mr-3") + raw(message) + 
       content_tag(:button, class: "close", "data-dismiss" => "alert") do
         content_tag(:span, raw("&times;"), "aria-hidden" => "true")
@@ -41,9 +41,9 @@ module FlashHelper
       col_class: "col-md-12",
       alert_class: "alert alert-danger",
       ul_class: "",
-      ul_style: "margin-bottom: 0px;",
+      ul_style: "margin-bottom: 0px;text-align:left",
       li_class: "",
-      li_style: ""
+      li_style: "text-align:left"
     )
     if object.errors.any?
       content_tag(:div, class: options[:row_class]) do 

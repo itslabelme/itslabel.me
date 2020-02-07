@@ -14,6 +14,9 @@
     </div>
   </div>
 
+  <!-- Show Success / Error / Info Messages If any set by the controller action -->
+  <%= flash_message(false) if defined?(flash) -%>
+
   <!-- Widget - Try Translation -->
   <%= render partial: 'user/home/widgets/try_translation' %>
 
