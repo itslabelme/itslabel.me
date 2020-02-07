@@ -766,3 +766,27 @@ fieldset legend{
 .its-table-remove-border.table.table-custom td{
   border:none !important;
 }
+
+
+/** TemplateBased **/
+
+.pricing.body{
+  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.pricing.body li a{
+  background: #0d8241;
+  display: block;
+  color: #fff;
+  padding: 10px;
+}
+.pricing.body li a:hover{
+    background-color: #1dc166;
+    border-color: #1dc166;
+}
+
+.itslabel-secondary-pagination ul{
+  background: #fff;
+}

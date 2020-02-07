@@ -154,3 +154,13 @@ a:hover{
 	color: #fff;
 	border-color: #a3a3a3;	
 }
+
+
+.light_version .fancy-radio input[type="radio"]+span i, .light_version .fancy-checkbox input[type="checkbox"]+span:before{
+	border-color: #0d8241;
+    color: #0d8241;
+}
+
+.btn-primary.focus, .btn-primary:focus{
+	box-shadow: none;
+}
