@@ -18,7 +18,7 @@ class Document::Base < ApplicationRecord
 
   # Validations
   validates :title, presence: true, length: {maximum: 256}
-  validates :description, length: {maximum: 1024}, allow_blank: true
+  # validates :description, length: {maximum: 1024}, allow_blank: true, presence: true
   
   validates :input_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
   validates :output_1_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }

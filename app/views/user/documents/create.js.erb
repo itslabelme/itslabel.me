@@ -1,6 +1,7 @@
 <% if @document.errors.blank? %>
+
   
-  window.location.href = "<%= user_document_path(@document) %>";
+  window.location.href = "<%= user_documents_path(@document, dt: 'template') %>";
 
 <% else %>
 

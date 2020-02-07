@@ -1,0 +1,105 @@
+var table_translation_HOT = {};
+
+$(document).ready(function() {
+  // Initializing the Translation Data
+  table_translation_HOT.data =[
+
+      {
+        "title": "Title 1",
+        "input_language": "In Language 1",
+        "out_put_language1": "First Out Language 1",
+        "out_put_language2": "Second Out Language 1",
+        "out_put_language3": "Third Out Language 1",
+      },
+      {
+        "title": "Title 2",
+        "input_language": "In Language 2",
+        "out_put_language1": "First Out Language 2",
+        "out_put_language2": "Second Out Language 2",
+        "out_put_language3": "Third Out Language 2",
+      },
+      {
+        "title": "Title 3",
+        "input_language": "In Language 3",
+        "out_put_language1": "First Out Language 3",
+        "out_put_language2": "Second Out Language 3",
+        "out_put_language3": "Third Out Language 3",
+      },
+      {
+        "title": "Title 4",
+        "input_language": "In Language 4",
+        "out_put_language1": "First Out Language 4",
+        "out_put_language2": "Second Out Language 4",
+        "out_put_language3": "Third Out Language 4",
+      },
+      {
+        "title": "Title 5",
+        "input_language": "In Language 5",
+        "out_put_language1": "First Out Language 5",
+        "out_put_language2": "Second Out Language 5",
+        "out_put_language3": "Third Out Language 5",
+      },
+  ];
+
+  if(table_translation_HOT.data.length == 0 ){
+    $("#TABLE_TRANSLATION_HOT").hide();
+    $(".no-data-table").show();
+  }else{
+
+    // Initializing the HandsonTable
+    table_translation_HOT.domTable = document.getElementById("TABLE_TRANSLATION_HOT");
+    table_translation_HOT.table = new Handsontable(table_translation_HOT.domTable,{
+      data: table_translation_HOT.data,
+      // search: {
+      //   searchResultClass: 'customClass'
+      // },
+      // height: 500,
+      columns: [
+
+        {type: 'text', renderer: 'html', readOnly: true, data:'title', className: "htCenter htMiddle"},
+        {type: 'text', renderer: 'html', readOnly: true, data:'input_language', className: "htCenter htMiddle"},
+        {type: 'text', renderer: 'html', readOnly: true, data:'out_put_language1', className: "htCenter htMiddle"},
+        {type: 'text', renderer: 'html', readOnly: true, data:'out_put_language2', className: "htCenter htMiddle"},
+        {type: 'text', renderer: 'html', readOnly: true, data:'out_put_language3', className: "htCenter htMiddle"},
+        
+
+
+      ],
+      colHeaders: [
+        'Title', 'Input Language', 'Out Put Language 1', 'Out Put Language 2', 'Out Put Language 3'
+      ],
+      // hiddenColumns: {
+      //   // columns: [5],
+      //   indicators: true
+      // },
+      
+      // fixedColumnsLeft: 1,
+      // // fixedColumnsRight: 4,
+      // rowHeaders: true,
+      // manualRowMove: true,
+      // manualColumnMove: false,
+      // contextMenu: false,
+      // filters: false,
+      // searching: true,
+      // dropdownMenu: false,
+      // stretchH: 'all',
+      // // currentRowClassName: 'currentRow',
+      // // currentColClassName: 'currentCol',
+      // // fixedRowsBottom: 1,
+      // // dropdownMenu: true, // header dropdown Menu
+      // exportFile: true,  // Export to CSV
+      licenseKey: 'non-commercial-and-evaluation', // license key
+      
+
+    });
+
+
+
+
+
+
+
+
+  }
+  
+});

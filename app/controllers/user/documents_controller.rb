@@ -49,8 +49,10 @@ module User
       @document.assign_attributes(permitted_params)
       @document.input_html_source = @document.template.ltr_html_source if @document.template
       @document.user = @current_client_user
+      @document.description = @document.title
 
       if @document.valid?
+        # binding.pry
         begin
           @document.save
 
@@ -58,7 +60,6 @@ module User
             @document.tags.create(name: tag_name.strip)
           end
         rescue
-          binding.pry
         end
         set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Document"))
         set_flash_message(I18n.translate("success.created", item: "Document"), :success)

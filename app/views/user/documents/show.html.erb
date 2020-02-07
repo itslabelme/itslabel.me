@@ -4,7 +4,7 @@
     <div class="row clearfix">
       <div class="col-md-6 col-sm-12">
         <h1><%= @document.title %></h1>
-        <p class="pt-2"><%= @document.description %></p>
+        <p class="pt-2">Template Based Translation Document</p>
       </div>
       <div class="col-md-6 col-sm-12">
         <nav aria-label="breadcrumb" style="float:right">
@@ -38,9 +38,10 @@
                       <h2>Tags:</h2>
                   </div>
                   <div class="body p-10">
+
                       <div class="input-group demo-tagsinput-area remove-border">
                           <% @document.tags.each do |tag| %>
-                            <span class='tag badge badge-info'><% tag.name %></span>
+                            <span class='tag badge badge-info'><%= tag.name %></span>
                           <% end %>
                           <!-- <input type="text" class="form-control" data-role="tagsinput" value="Marnum, Gulf food"> -->
                       </div>
