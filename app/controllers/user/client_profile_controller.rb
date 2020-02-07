@@ -43,7 +43,7 @@ module User
     
     def update_client_password
           @user=current_client_user
-          raise params.inspect
+        #  raise params.inspect
        if @user.update_with_password(client_user_params)
       set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "ClientUser"))
        set_flash_message(I18n.translate("success.updated", item: "ClientUser"), :success)
