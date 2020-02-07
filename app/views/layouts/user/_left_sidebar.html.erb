@@ -69,7 +69,7 @@
         <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 5", "#" %></li> -->
 
         <li class="header">My Account</li>
-        <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile",  edit_user_client_profile_path(current_client_user.id) %></li>
         <!-- <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li> -->
         <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_client_user_session_url, method: :delete %></li>
         

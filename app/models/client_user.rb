@@ -2,7 +2,7 @@ class ClientUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :validatable,:omniauthable
+    :recoverable, :rememberable, :validatable,:omniauthable, :trackable
   # max_paginates_per 2
 
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
@@ -13,6 +13,10 @@ class ClientUser < ApplicationRecord
       
   def display_name
     [first_name, last_name].compact.join(" ")
+  end
+  
+  def display_initials
+     [first_name[0], last_name[0]].compact.join("")
   end
   
   def self.new_with_session(params, session)

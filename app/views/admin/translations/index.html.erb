@@ -4,13 +4,14 @@
   <%= render partial: 'admin/translations/index/header' %>
 
   <!-- Controls -->
-  <%= render partial: 'admin/translations/index/controls' %>
+  <%#=# render partial: 'admin/translations/index/controls' %>
 
   <div class="row clearfix">
+      <%= render partial: 'admin/translations/index/controls' %>
     <div class="col-lg-12">
       
       <div class="card">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs hidden">
           <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#TRANSLATIONS_LIST">Translations Database</a></li>
           
           <li class="nav-item"  style='display: none;' id='LI_TRANSLATIONS_NEW_FORM'><a class="nav-link" data-toggle="tab" href="#TRANSLATIONS_NEW_FORM">Add  a Translation</a></li>        
@@ -22,7 +23,9 @@
           <div class="tab-pane active show" id="TRANSLATIONS_LIST">
             <%= render partial: 'admin/translations/index/table' %>
           </div>
-          
+           <% if @translations.present? %>
+              <%= paginate @translations %>
+              <% end  %>
           <!-- New Form -->
           <div class="tab-pane" id="TRANSLATIONS_NEW_FORM">
             <%= render partial: 'admin/translations/form/form' %>
