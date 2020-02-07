@@ -46,15 +46,27 @@
           <!-- Links -->
           <div class="mt-4">
             <span class="helper-text m-b-10"><i class="fa fa-lock"></i>
-              <%= link_to "Forgot password?", new_client_user_password_path %>
+              <% url = resource_name == :client_user ? new_client_user_password_path : new_admin_user_password_path %>
+              <%= link_to "Forgot password?", url %>
             </span>
+
+            <%# Display the registration links only if its client user %>
+            <% if resource_name == :client_user %>
             <span>
               Don't have an account?
               <%= link_to "Register", new_client_user_registration_path %>
             </span>
+            <% end %>
+
+            <% if resource_name == :admin_user %>
+              <p class="text-center">
+                <%= link_to "Log In as Client User?", new_client_user_session_path %>
+              </p>
+            <% end %>
           </div>
 
-          <!-- Social Icons -->
+          <!-- Display Social Icons only for client user -->
+          <% if resource_name == :client_user %>
           <div class="separator-linethrough"><span>OR</span></div>
 
           <ul class="its-login-social">
@@ -73,6 +85,7 @@
               </button>
             </li>
           </ul>
+          <% end %>
 
         <% end %>
       </div>
