@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", limit: 256, null: false
     t.string "last_name", limit: 256
-    t.bigint "mobile_number", null: false
+    t.string "mobile_number", limit: 24, null: false
     t.string "email", limit: 256, default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
   create_table "client_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", limit: 256, null: false
     t.string "last_name", limit: 256
-    t.bigint "mobile_number", null: false
+    t.string "mobile_number", limit: 24, null: false
     t.string "organisation", limit: 256
     t.string "country", limit: 256
     t.string "email", limit: 256, default: "", null: false
@@ -117,6 +117,8 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
     t.string "output_5_language", limit: 16
     t.string "status", limit: 16, default: "ACTIVE", null: false
     t.string "type", limit: 128
+    t.text "input_html_source"
+    t.text "output_html_source"
     t.bigint "template_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -139,6 +141,18 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_user_id"], name: "index_identities_on_client_user_id"
+  end
+
+  create_table "label_templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", limit: 256
+    t.string "description", limit: 1024
+    t.string "style", limit: 64
+    t.text "ltr_html_source"
+    t.text "rtl_html_source"
+    t.bigint "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
   create_table "nutrition_facts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -169,25 +183,12 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", limit: 256
-    t.string "description", limit: 1024
-    t.string "style", limit: 64
-    t.text "ltr_html_source"
-    t.text "rtl_html_source"
-    t.bigint "admin_user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["admin_user_id"], name: "index_templates_on_admin_user_id"
-  end
-
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "input_phrase", limit: 256, null: false
-    t.string "input_description", limit: 1024
     t.string "input_language", limit: 16, null: false
     t.string "output_phrase", limit: 256, null: false
-    t.string "output_description", limit: 1024
     t.string "output_language", limit: 16, null: false
+    t.string "category", limit: 16
     t.bigint "admin_user_id"
     t.string "status", limit: 16, default: "PENDING", null: false
     t.datetime "created_at", null: false
@@ -198,5 +199,5 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "documents", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "identities", "client_users"
-  add_foreign_key "templates", "admin_users"
+  add_foreign_key "label_templates", "admin_users"
 end

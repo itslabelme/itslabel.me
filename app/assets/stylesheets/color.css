@@ -123,6 +123,7 @@ a:hover{
 }
 
 .its-login-social li,
+.its-login-social a,
 .its-login-social li button i,
 .its-login-social li button{
   color: #fff !important;
