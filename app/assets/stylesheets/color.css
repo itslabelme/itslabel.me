@@ -86,7 +86,7 @@ a:hover{
 }
 
 .light_version .pagination .page-link{
-	border-color: #0d8241 !important;
+	border-color: #f1f1f1 !important;
 }
 
 .light_version .pagination {
@@ -95,7 +95,11 @@ a:hover{
 
 
 .pagination>li>a, .pagination>li>span{
-	color: #0d8241; 
+	color: #77797c; 
+}
+
+.pagination>li.active a{
+	background: #0d8241 !important;
 }
 
 .body .bg-azura{

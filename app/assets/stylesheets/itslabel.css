@@ -148,7 +148,7 @@
 	margin: 3px;
 	border-radius: 5px;
 	float: left;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .search_toggle.btn.bg-green i{
@@ -748,4 +748,21 @@ fieldset legend{
 
 .itslabel-olang ul li:last-child:after{
   display: none;
+}
+
+.mce-item-table, .mce-item-table caption, .mce-item-table td, .mce-item-table th{
+  border:none !important;
+}
+
+
+.its-table-remove-border.table.table-custom{
+  border-collapse: collapse !important;
+}
+
+.its-table-remove-border.table.table-custom tr{
+  border:1px solid #f1f1f1;
+}
+
+.its-table-remove-border.table.table-custom td{
+  border:none !important;
 }
