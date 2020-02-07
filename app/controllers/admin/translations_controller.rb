@@ -83,12 +83,45 @@ module Admin
 
     private
 
+        def apply_filters
+      @query = params[:q]
+      @relation = @relation.search(@query) if @query && !@query.blank?
+      
+      @condition=" 1=1 ";
+       if params[:input_language].present?
+            @condition += " AND LOWER(translations.input_language) LIKE LOWER ('%#{params[:input_language]}%') " if params.key?(:input_language)
+            end
+            if params[:output_language].present?
+            @condition += " AND LOWER(translations.output_language) LIKE LOWER ('%#{params[:output_language]}%') " if params.key?(:output_language)
+            end
+            if params[:status ].present?
+            @condition += " AND  LOWER(translations.status) LIKE LOWER ('%#{params[:status]}%') " if params.key?(:status)
+            end
+            if params[:input_phrase ].present?
+            @condition += " AND  LOWER(translations.input_phrase) LIKE LOWER ('%#{params[:input_phrase]}%') " if params.key?(:input_phrase)
+            end
+            if params[:output_phrase].present?
+            @condition += " AND  LOWER(translations.output_phrase) LIKE LOWER ('%#{params[:output_phrase]}%') " if params.key?(:output_phrase)
+            end
+           
+       @relation = @relation.advsearch(@condition)if @condition && !@condition.blank?
+      
+    end
+    
     def get_collection
+       
       @order_by = "created_at DESC" unless @order_by
-      @translations = Translation.
+
+      @relation = Translation.where("")
+
+      apply_filters
+      
+      @translations = @relation.
                         order(@order_by).
                         page(@current_page).per(@per_page)
     end
+    
+  
 
     def get_translation
       @translation = Translation.find_by_id(params[:id])
