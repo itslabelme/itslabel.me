@@ -1,0 +1,19 @@
+<% if @client_user.errors.blank? %>
+  
+  // Showing Growl Like Message
+   notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+ 
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+  // Reload the form to show errors
+  $("#USER_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'user/client_profile/form/form')) %>");
+
+  // Set Focus on the First Input after loading the form
+  setFocusOnFirstInput("USER_EDIT_FORM");
+
+<% end %>
+
