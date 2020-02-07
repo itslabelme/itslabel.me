@@ -18,6 +18,7 @@
 //= require vendor/vendorscripts.bundle.js
 //= require vendor/mainscripts.bundle.js
 //= require vendor/bootstrap-tagsinput.js
+//= require tribute
 // require vendor/c3.bundle.js
 
 //= require utilities.js
