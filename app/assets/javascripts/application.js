@@ -20,7 +20,7 @@
 //= require vendor/bootstrap-tagsinput.js
 //= require tribute
 // require vendor/c3.bundle.js
-// require vendor/handsontable.full.min.js
+// require vendor/formula.min.js
 
 //= require utilities.js
 //= require custom.js
