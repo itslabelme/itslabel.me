@@ -13,6 +13,7 @@ module Admin
       get_total_tags
       get_new_users
       get_return_users
+      get_total_translation
     end
     
     private
@@ -38,6 +39,9 @@ module Admin
     
     def get_return_users
      @total_return_users= ClientUser.where('sign_in_count > ?', 1).count
+    end
+    def get_total_translation
+      @total_translation=Translation.all.count
     end
   end
 end
