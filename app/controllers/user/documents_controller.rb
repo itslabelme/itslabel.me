@@ -117,15 +117,18 @@ module User
     end
 
     def get_document_class
+      @document_class if @document_class
       if params[:dt] == 'template'
         @document_class = Document::TemplateBased
       else
         @document_class = Document::TableBased
       end
+      @document_class
     end
 
     def get_document
-      @document = Document::Base.find_by_id(params[:id])
+      @document_class = get_document_class
+      @document = @document_class.find_by_id(params[:id])
       @document_class = @document.type.constantize
     end
 

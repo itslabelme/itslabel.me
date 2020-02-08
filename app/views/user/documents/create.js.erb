@@ -9,7 +9,18 @@
   notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
 
   // Reload the form to show errors
-  $("#DOCUMENT_FORM").html("<%= escape_javascript(render(:partial=>'user/documents/form/form')) %>");
+  <% if params[:dt] == 'table' %>
+    $("#DOCUMENT_FORM").html("<%= escape_javascript(render(:partial=>'user/documents/form/table_based_form.html.erb')) %>");
+  <% else %>
+    $("#DOCUMENT_FORM").html("<%= escape_javascript(render(:partial=>'user/documents/form/template_based_form.html.erb')) %>");
+  <% end %>
+
+  // Loan JS
+  <% if params[:dt] == 'table' %>
+    <%= render(:partial=>'user/documents/form/table_based_form.js.erb') %>
+  <% else %>
+    <%= render(:partial=>'user/documents/form/template_based_form.js.erb') %>
+  <% end %>
 
   // Set Focus on the First Input after loading the form
   setFocusOnFirstInput("DOCUMENT_FORM");
