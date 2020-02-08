@@ -20,7 +20,10 @@
           <td>
             <div class="d-flex align-items-center">
               <div>
-                <h6 class="mb-0"><%= link_to "#{client_user.display_name}", 'javascript:void(0);' %></h6>
+                <h6 class="mb-0"><%= link_to admin_client_user_path(client_user) , remote: true do%>
+                    <%=  client_user.display_name %>
+                <% end %>
+                </h6>
                 <span><%= client_user.email %></span>
               </div>
             </div>

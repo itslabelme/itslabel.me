@@ -20,7 +20,9 @@
           <td>
             <div class="d-flex align-items-center">
               <div>
-                <%= link_to label_template.name, "#" %> 
+                <%= link_to  admin_label_template_path(label_template), remote: true do %> 
+                  <%= label_template.name %>
+                  <% end  %>
               </div>
             </div>
           </td>

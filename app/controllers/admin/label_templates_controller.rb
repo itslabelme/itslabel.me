@@ -2,7 +2,7 @@ module Admin
   class LabelTemplatesController < Admin::BaseController
 
     before_action :authenticate_admin_user!
-    before_action :get_label_template, except: [:new, :create, :index]
+    before_action :get_label_template, except: [:new, :create, :index,:show]
 
     def index
       @page_title = "Label Templates Database"

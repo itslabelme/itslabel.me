@@ -185,10 +185,8 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
 
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "input_phrase", limit: 256, null: false
-
     t.string "input_language", limit: 16, null: false
     t.string "output_phrase", limit: 256, null: false
-
     t.string "output_language", limit: 16, null: false
     t.string "category", limit: 16
     t.bigint "admin_user_id"

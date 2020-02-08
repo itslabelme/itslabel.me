@@ -1,0 +1,8 @@
+$("#CLIENT_SHOW").html("<%= escape_javascript(render(:partial=>'admin/client_users/index/show')) %>");
+// Hide the form
+showTab('CLIENT_SHOW');
+$('#LI_CLIENT_SHOW').show();
+$('#LI_CLIENT_LIST').hide();
+
+// Set Focus on the First Input after loading the form
+setFocusOnFirstInput("CLIENT_SHOW");
