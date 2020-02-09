@@ -1,0 +1,69 @@
+<div class="card mt-4">
+  <div class="card-body">
+    
+    <div class="row">
+
+      <div class="col-sm-6">
+        <ul class="list-group felix-ul-table-style">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> Template Name :</div>
+              <div class="col-sm-7"><b> <%=@label_template.name%></b></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> Description :</div>
+              <div class="col-sm-7"><b><%= raw @label_template.description %></b></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> Image :</div>
+              <div class="col-sm-7"><%= image_tag @label_template.picture,size: "250x250" if @label_template.picture.attached?  %></b></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> </div>
+              <div class="col-sm-7"></b></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-sm-6">
+        <ul class="list-group felix-ul-table-style">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> Style :</div>
+              <div class="col-sm-7"><b><%= raw @label_template.style%></b></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> LTR HTML  :</div>
+              <div class="col-sm-7"><b><%= raw @label_template.ltr_html_source%></b></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> RTL HTML  :</div>
+              <div class="col-sm-7"><b><%= raw @label_template.rtl_html_source%></b></div>
+            </div>
+          </li>
+           
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5">Created At :</div>
+              <div class="col-sm-7"><b><%= @label_template.created_at&.strftime("%d %b %Y - %I:%M %p") %></b></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
