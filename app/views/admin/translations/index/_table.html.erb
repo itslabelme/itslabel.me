@@ -20,7 +20,9 @@
           <td>
             <div class="d-flex align-items-center">
               <div>
-                <%= link_to translation.input_phrase, "#" %> 
+                <%= link_to  admin_translation_path(translation) ,remote: true do%> 
+                  <%=translation.input_phrase%>
+                  <% end  %>
               </div>
             </div>
           </td>

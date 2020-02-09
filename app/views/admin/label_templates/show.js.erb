@@ -1,9 +1,10 @@
 // Reload the form with editable data
-$("#TEMPLATES_SHOW").html("<%= escape_javascript(render(:partial=>'admin/label_templates/index/show')) %>");
+$("#TEMPLATES_SHOW").html("<%= escape_javascript(render(:partial=>'admin/label_templates/show/show')) %>");
 // Hide the form
 showTab('TEMPLATES_SHOW');
 $('#LI_TEMPLATES_SHOW').show();
 $('#LI_TEMPLATES_NEW_FORM').hide();
-
+// Show the Client Name as Tab Heading
+$('#LI_TEMPLATES_SHOW a').html("<%= @label_template.name %>");
 // Set Focus on the First Input after loading the form
 setFocusOnFirstInput("TEMPLATES_SHOW");

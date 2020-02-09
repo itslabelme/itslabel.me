@@ -4,7 +4,7 @@
   <%= render partial: 'admin/label_templates/index/header' %>
 
   <!-- Controls -->
-  <%= render partial: 'admin/label_templates/index/controls' %>
+  
 
   <div class="row clearfix">
     <div class="col-lg-12">
@@ -21,7 +21,9 @@
         <div class="tab-content mt-0">
           <!-- Table -->
           <div class="tab-pane active show" id="TEMPLATES_LIST">
+              <%= render partial: 'admin/label_templates/index/controls' %>
             <%= render partial: 'admin/label_templates/index/table' %>
+               <%= paginate @label_templates if @label_templates && @label_templates.any? %>
           </div>
           
           <!-- New Form -->
@@ -34,7 +36,7 @@
           
           </div>
               <div class="tab-pane" id="TEMPLATES_SHOW">
-             <%= render partial: 'admin/label_templates/index/show' %>
+             <%= render partial: 'admin/label_templates/show/show' %>
           </div>
         </div>            
       </div>
