@@ -91,7 +91,6 @@ module Admin
     end
 
     def get_collection
-      @per_page=1
       @order_by = "created_at DESC" unless @order_by
 
       @relation = AdminUser.where("")

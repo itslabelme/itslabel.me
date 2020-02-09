@@ -35,6 +35,14 @@ module User
       @page_title = "Create new Translation Document from Template"
       @nav = 'user/documents'
       new_document
+      get_template
+
+      @document.title = "New Document - #{Time.now.to_i}" unless @document.title
+
+      if @template
+        @document.template = @template
+        @document.input_html_source = @template.ltr_html_source
+      end
     end
 
     def edit
@@ -52,7 +60,6 @@ module User
       @document.description = @document.title
 
       if @document.valid?
-        # binding.pry
         begin
           @document.save
 
@@ -134,6 +141,10 @@ module User
 
     def new_document
       @document = @document_class.new(input_language: "ENGLISH", output_1_language: "ARABIC")
+    end
+
+    def get_template
+      @template = LabelTemplate.find(params[:template_id]) if params[:template_id]
     end
 
     def permitted_params
