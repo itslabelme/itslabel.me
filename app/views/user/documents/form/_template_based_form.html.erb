@@ -35,7 +35,7 @@
   </div>
 
   <div class="row">
-    <div class="form-group col-md-4">
+    <div class="form-group a-md-4">
       <% error_class = @document.errors[:title].any? ? 'parsley-error' : '' %>
       <label>Title</label>
       <%= f.text_field :title, class: "form-control #{error_class}", placeholder: 'Title' %>
