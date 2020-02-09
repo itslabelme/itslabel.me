@@ -62,13 +62,7 @@
               <%= display_parsley_error(@translation, :input_language) %>
             </div>
           </div>
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="form-group">
-              <% error_class = @translation.errors[:input_description].any? ? 'parsley-error' : '' %>
-              <%= f.text_field :input_description, class: "form-control #{error_class}", placeholder: 'Input Description' %>
-              <%= display_parsley_error(@translation, :input_description) %>
-            </div>
-          </div>
+          
         </div>
       </div>
 
@@ -94,13 +88,7 @@
               <%= display_parsley_error(@translation, :output_language) %>
             </div>
           </div>
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="form-group">
-              <% error_class = @translation.errors[:output_description].any? ? 'parsley-error' : '' %>
-              <%= f.text_field :output_description, class: "form-control #{error_class}", placeholder: 'Output Description' %>
-              <%= display_parsley_error(@translation, :output_description) %>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>

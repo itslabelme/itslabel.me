@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   namespace :user, module: :user do
 
     get '/home', to: 'home#index', as: 'home'
+    post '/try', to: 'home#try', as: 'try'
 
     root to: 'home#index' 
     

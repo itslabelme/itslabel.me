@@ -32,14 +32,6 @@ RSpec.describe Translation, type: :model do
       it { should validate_presence_of :output_language }
       it { should_not allow_value("x"*257).for(:output_language )}
 
-      it { should allow_value(nil).for(:input_description )}
-      it { should allow_value("").for(:input_description )}
-      it { should_not allow_value("x"*1025).for(:input_description )}
-
-      it { should allow_value(nil).for(:output_description )}
-      it { should allow_value("").for(:output_description )}
-      it { should_not allow_value("x"*1025).for(:output_description )}
-
       it { should validate_presence_of :status }
       it { should validate_inclusion_of(:status).in_array(Translation::STATUS_LIST.keys).with_message(/is not a valid status/) }
 

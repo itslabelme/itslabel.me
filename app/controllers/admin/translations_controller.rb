@@ -134,10 +134,8 @@ module Admin
     def permitted_params
       params.require("translation").permit(
          :input_phrase,
-         :input_description,
          :input_language,
          :output_phrase,
-         :output_description,
          :output_language,
       )
     end
