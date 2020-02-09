@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
     t.string "style", limit: 64
     t.text "ltr_html_source"
     t.text "rtl_html_source"
+    t.boolean "latest", default: true
     t.bigint "admin_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

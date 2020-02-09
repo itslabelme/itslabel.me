@@ -8,6 +8,8 @@ class CreateLabelTemplates < ActiveRecord::Migration[5.2]
 
       t.text :ltr_html_source
       t.text :rtl_html_source
+
+      t.boolean :latest, default: true
       
       t.references :admin_user, index: true, foreign_key: {to_table: :admin_users}
 
