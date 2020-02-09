@@ -1,0 +1,61 @@
+<%
+  @total_users_count = ClientUser.count
+  @new_users_count = ClientUser.where('created_at >= ?', 1.week.ago).count
+  @returning_users_count = ClientUser.where('sign_in_count > ?', 1).count
+  @total_documents = Document::Base.count
+%>
+
+<div class="row clearfix">
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="body">
+          <div class="d-flex align-items-center">
+            <div class="icon-in-bg bg-indigo text-white rounded-circle"><i class="icon-users"></i></div>
+            <div class="ml-4">
+              <span>Total Users</span>
+              <h4 class="mb-0 font-weight-medium"><%= @total_users_count %></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="body">
+          <div class="d-flex align-items-center">
+            <div class="icon-in-bg bg-azura text-white rounded-circle"><i class="icon-folder"></i></div>
+            <div class="ml-4">
+              <span>New Users</span>
+              <h4 class="mb-0 font-weight-medium"><%= @new_users_count   %></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="body">
+          <div class="d-flex align-items-center">
+            <div class="icon-in-bg bg-orange text-white rounded-circle"><i class="icon-docs"></i></div>
+            <div class="ml-4">
+              <span>Returning Users</span>
+              <h4 class="mb-0 font-weight-medium"><%= @returning_users_count %></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="body">
+          <div class="d-flex align-items-center">
+            <div class="icon-in-bg bg-pink text-white rounded-circle"><i class="icon-tag"></i></div>
+            <div class="ml-4">
+              <span>Documents</span>
+              <h4 class="mb-0 font-weight-medium"><%= @total_documents %></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

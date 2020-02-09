@@ -11,11 +11,11 @@
       
       <div class="card">
         <ul class="nav nav-tabs">
-          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#TEMPLATES_LIST">LabelTemplates</a></li>
+          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#TEMPLATES_LIST">Label Templates</a></li>
           
-          <li class="nav-item"  style='display: none;' id='LI_TEMPLATES_NEW_FORM'><a class="nav-link" data-toggle="tab" href="#TEMPLATES_NEW_FORM">Add  a LabelTemplate</a></li>        
-          <li class="nav-item" style='display: none;' id='LI_TEMPLATES_EDIT_FORM'><a class="nav-link" data-toggle="tab" href="#TEMPLATES_EDIT_FORM">Edit LabelTemplate</a></li> 
-          <li class="nav-item" style='display: none;' id='LI_TEMPLATES_SHOW'><a class="nav-link" data-toggle="tab" href="#TEMPLATES_SHOW">View LabelTemplate</a></li>        
+          <li class="nav-item"  style='display: none;' id='LI_TEMPLATES_NEW_FORM'><a class="nav-link" data-toggle="tab" href="#TEMPLATES_NEW_FORM">Add  a Label Template</a></li>        
+          <li class="nav-item" style='display: none;' id='LI_TEMPLATES_EDIT_FORM'><a class="nav-link" data-toggle="tab" href="#TEMPLATES_EDIT_FORM">Edit Label Template</a></li> 
+          <li class="nav-item" style='display: none;' id='LI_TEMPLATES_SHOW'><a class="nav-link" data-toggle="tab" href="#TEMPLATES_SHOW">View Label Template</a></li>        
         </ul>
 
         <div class="tab-content mt-0">
@@ -46,4 +46,5 @@
 
 <%= content_for :javascript_footer do %>
   <%#= render :partial=>"admin/label_templates/index/table.js.erb"  %>
+  <%= render :partial=>"admin/label_templates/form/form.js.erb" %>
 <% end %>

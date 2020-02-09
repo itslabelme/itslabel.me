@@ -3,7 +3,6 @@ $("#TRANSLATIONS_SHOW").html("<%= escape_javascript(render(:partial=>'admin/tran
 // Show Client Detaiks
 showTab('TRANSLATIONS_SHOW');
 $('#LI_TRANSLATIONS_SHOW').show();
-$('#TRANSLATIONS_LIST').hide();
 
 // Show the Client Name as Tab Heading
 $('#LI_TRANSLATIONS_SHOW a').html("<%= @translation.input_phrase %>");

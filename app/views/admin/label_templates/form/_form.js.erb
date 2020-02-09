@@ -1,0 +1,27 @@
+$(document).ready(function() {
+
+  // Remove TinyMCE First 
+  tinymce.remove('.tinymce-editor');
+
+  // tinymce.init({ 
+  //  selector:'.tinymce-editor', 
+  //  oninit : "setPlainText", 
+  //  plugins : "paste" });
+
+  tinymce.init({
+    selector: '.tinymce-editor',
+    height: 400,
+    menubar: false,
+    branding: false,
+    statusbar: false,
+    setup: function(editor) {
+      editor.on('Paste Change input Undo Redo', function () {
+        onChangeInputTinyMCE();
+        // if (editorChangeHandler) {clearTimeout(editorChangeHandler);}
+        // editorChangeHandler = setTimeout(function() {
+        // }, 100);
+      });
+    }
+  }); 
+  
+}); 
