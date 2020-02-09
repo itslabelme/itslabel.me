@@ -17,6 +17,17 @@
     </div>
   </div>
 
+  <!-- Display Tags -->
+  <div class="col-lg-12 ">
+    <div class="card">
+      <div class="body p-10">
+        <div class="input-group demo-tagsinput-area remove-border">
+          <input type="text" class="form-control" data-role="tagsinput" value="<%= @document.tags.pluck(:name).join(",") %>">
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row pb-4">
     <div class="form-group col-md-12">
       <button class="btn btn-primary float-right mt-4" type="submit" >Translate</button>

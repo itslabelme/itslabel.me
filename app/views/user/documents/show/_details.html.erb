@@ -1,10 +1,8 @@
 <div class="row pb-4">
-  <div class="col-sm-4">
-      <label>Title</label>
-      <input type="text" class="form-control" value="<%= @document.try(:title) %>" required="">
+  <div class="form-group col-md-12">
+    <input type="text" class="form-control" value="<%= @document.try(:title) %>" required="">
   </div>
-  <div class="form-group col-md-4">
-      <label>Input Language</label>
+  <div class="form-group col-md-6">
       <div class="input-group mb-3">
           <select class="form-control">
               <option value="">-- Choose --</option>
@@ -14,8 +12,7 @@
           </select>
       </div>
   </div>
-  <div class="form-group col-md-4">
-      <label>Output Language 1 </label>
+  <div class="form-group col-md-6">
       <div class="input-group mb-3">
           <select class="form-control">
               <option value="">-- Choose --</option>

@@ -35,16 +35,14 @@
   </div>
 
   <div class="row">
-    <div class="form-group a-md-4">
+    <div class="form-group col-md-12">
       <% error_class = @document.errors[:title].any? ? 'parsley-error' : '' %>
-      <label>Title</label>
       <%= f.text_field :title, class: "form-control #{error_class}", placeholder: 'Title' %>
       <%= display_parsley_error(@document, :title) %>
     </div>
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
       <% error_class = @document.errors[:input_language].any? ? 'parsley-error' : '' %>
-      <label>Input Language</label>
       <div class="input-group mb-3">
         <select class="form-control <%= error_class %> show-tick" name='document_template_based[input_language]'>
           <option>Select Input Language</option>
@@ -56,9 +54,8 @@
       <%= display_parsley_error(@document, :input_language) %>
     </div>
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
       <% error_class = @document.errors[:output_1_language].any? ? 'parsley-error' : '' %>
-      <label>Output Language 1 </label>
       <div class="input-group mb-3">
         <select class="form-control <%= error_class %> show-tick" name='document_template_based[output_1_language]'>
           <option>Select Out Put Language 1 </option>
@@ -71,7 +68,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-md-6">
       <%= f.text_area :input_html_source, id: "input_tinymce", class: "tinymce-editor" %>
     </div>
@@ -88,10 +85,10 @@
     <% tags_text = @document.tags.pluck(:name).join(", ") %>
     <div class="col-lg-12 mt-4">
       <div class="card">
-        <div class="header"><h2>Tags:</h2></div>
+        <!-- <div class="header"><h2>Tags:</h2></div> -->
         <div class="body p-10">
           <div class="input-group demo-tagsinput-area remove-border">
-            <input type="text" name="tags" class="form-control" data-role="tagsinput" value="<%= tags_text %>">
+            <input type="text" name="tags" class="form-control" data-role="tagsinput" placeholder="Tags" value="<%= tags_text %>">
           </div>
         </div>
       </div>

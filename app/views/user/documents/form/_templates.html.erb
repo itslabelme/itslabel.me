@@ -1,29 +1,30 @@
 <% @templates = LabelTemplate.all %>
 <div class="row clearfix">
   <% @templates.each do |template| %>
-  <div class="col-lg-3 cool-md-3 col-sm-12">
-    <div class="card">
-      <ul class="pricing body">
-        <li class="plan-img">
-          <%# begin %>
-            <%#= image_tag("/dummy/#{template.style}.png", class: "img-fluid", alt: template.display_name) %>
-          <%# rescue %>
-            <%= image_tag("demo/template_preview_2.png", class: "img-fluid", alt: template.display_name) %>
-          <%# end %>
-        </li>
-        <li><b><%= template.display_name %></b></li>
-        <li><p><%= template.description %></p></li>
-        
-        <li class="plan-btn">
-          <div class="fancy-checkbox element-left its-login-me">
-            <label>
-              <input type="checkbox" onclick="window.location.href = '<%= new_user_document_path(dt: 'template', template_id: template.id) %>';">
-              <span>Select</span>
-            </label>
-          </div>
-        </li>
-      </ul>
+    <div class="col-lg-4 cool-md-3 col-sm-12">
+        <div class="card">
+            <div class="box">
+                <ul class="pricing body">
+                    <li class="plan-img">
+                      <%#= image_tag("demo/template_preview_2.png", class: "img-fluid", alt: template.display_name) %>
+                      <%= image_tag("label-Template.jpg", class: "img-fluid", alt: template.display_name) %>
+                    </li>
+                    <li><%= template.display_name %></li>
+                    <li><%= template.description %></li>
+                    <li class="plan-btn">
+                      <%= link_to content_tag(:span, "Select"), new_user_document_path(dt: 'template', template_id: template.id), class: "btn-primary" %></li>
+                    </li>
+                </ul>
+                  <!-- Latest template has ribbon with text 'new' -->
+                <% if template.latest %> 
+                  <div class="ribbon"><span>New</span></div>
+                <% end %>
+              </div>
+        </div>
     </div>
-  </div>
   <% end %>
 </div>
+
+
+
+

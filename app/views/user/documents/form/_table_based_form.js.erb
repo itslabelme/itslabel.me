@@ -3,42 +3,14 @@ var table_translation_HOT = {};
 $(document).ready(function() {
   // Initializing the Translation Data
   table_translation_HOT.data =[
-
+    <% @documents.each do |document| %>
       {
-        "title": "Title 1",
-        "input_language": " English",
-        "out_put_language1": "First Out Language 1",
-        "out_put_language2": "Second Out Language 1",
-        "out_put_language3": "Third Out Language 1",
+        "input_language": " <%= document.input_language -%>",
+        "out_put_1_language": "<%= document.output_1_language -%>",
+        "out_put_2_language": "<%= document.output_2_language -%>",
+        "out_put_3_language": "<%= document.output_3_language -%>",
       },
-      {
-        "title": "Title 2",
-        "input_language": " English",
-        "out_put_language1": "First Out Language 2",
-        "out_put_language2": "Second Out Language 2",
-        "out_put_language3": "Third Out Language 2",
-      },
-      {
-        "title": "Title 3",
-        "input_language": " English",
-        "out_put_language1": "First Out Language 3",
-        "out_put_language2": "Second Out Language 3",
-        "out_put_language3": "Third Out Language 3",
-      },
-      {
-        "title": "Title 4",
-        "input_language": " English",
-        "out_put_language1": "First Out Language 4",
-        "out_put_language2": "Second Out Language 4",
-        "out_put_language3": "Third Out Language 4",
-      },
-      {
-        "title": "Title 5",
-        "input_language": " English",
-        "out_put_language1": "First Out Language 5",
-        "out_put_language2": "Second Out Language 5",
-        "out_put_language3": "Third Out Language 5",
-      },
+    <% end %>
   ];
 
   if(table_translation_HOT.data.length == 0 ){
@@ -57,17 +29,17 @@ $(document).ready(function() {
       height: 500,
       columns: [
 
-        {type: 'text', width: 100, renderer: 'html', readOnly: true, data:'title', className: "htCenter htMiddle"},
-        {type: 'dropdown', width: 150, renderer: 'html', readOnly: false, data:'input_language', className: "htCenter htMiddle", source: ['English', 'Arabic', 'French']},
-        {type: 'text', width: 150, renderer: 'html', readOnly: false, data:'out_put_language1', className: "htCenter htMiddle"},
-        {type: 'text', width: 180, renderer: 'html', readOnly: false, data:'out_put_language2', className: "htCenter htMiddle"},
-        {type: 'text', width: 200, renderer: 'html', readOnly: false, data:'out_put_language3', className: "htCenter htMiddle"},
+        {type: 'text', width: 150, renderer: 'html', readOnly: false, data:'input_language', className: "htCenter htMiddle"},
+        {type: 'text', width: 150, renderer: 'html', readOnly: true, data:'out_put_1_language', className: "htCenter htMiddle"},
+        {type: 'text', width: 180, renderer: 'html', readOnly: true, data:'out_put_2_language', className: "htCenter htMiddle"},
+        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'out_put_3_language', className: "htCenter htMiddle"},
         
-
-
       ],
       colHeaders: [
+        <%# @documents.each do |document| %>
+          <%#= document %>
         'Title', 'Input Language', 'Out Put Language 1', 'Out Put Language 2', 'Out Put Language 3'
+        <%# end %>
       ],
       // hiddenColumns: {
       //   // columns: [5],

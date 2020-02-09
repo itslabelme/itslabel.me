@@ -10,7 +10,7 @@
               <div class="row">
                 <h4 class="col-md-6">Input Language</h4>
                 <div class="col-md-6">
-                  <select class="form-control form-control-xs selectpicker1" name="" data-size="7" data-live-search="true" data-title="Location" id="state_list" data-width="100%">
+                  <select class="form-control form-control-xs selectpicker1" name="" data-size="7" data-live-search="true" data-title="Location" id="INPUT_LANGUAGE" data-width="100%">
                     <option value="" selected>English</option>
                     <option value="">Arabic</option>
                     <option value="">French</option>
@@ -22,7 +22,7 @@
             <div class="col-md-6">
               <div class="row">
                 <div class="col-md-6">
-                  <select class="form-control form-control-xs selectpicker1" name="" data-size="7" data-live-search="true" data-title="Location" id="state_list" data-width="100%">
+                  <select class="form-control form-control-xs selectpicker1" name="" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
                     <option value="">English</option>
                     <option value="" selected>Arabic</option>
                     <option value="">French</option>
@@ -35,10 +35,10 @@
 
           <div class="row">
             <div class="col-md-6">
-              <textarea style="width: 100%;height: 300px;" onchange="alert(this.value)"></textarea>
+              <textarea style="width: 100%;height: 300px;" id="TRANS_PLAYGROUND"></textarea>
             </div>
             <div class="col-md-6">
-              <textarea style="width: 100%;height: 300px;" readonly></textarea>
+              <textarea style="width: 100%;height: 300px;" id="TRANSLATION_PREVIEW" readonly></textarea>
             </div>
           </div>
         </div>
@@ -49,6 +49,14 @@
 
 <%# Need to integrate tribute.js and load translations from server %>
 <%= content_for :javascript_footer do %>
-  $(document).ready(function() {
-  })
+  $("#TRANS_PLAYGROUND").on('change', function(e){
+    let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
+    let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
+    let ajaxData = {text: e.target.value, input_language: inputLanguage, output_language: outputLanguage };
+    $.ajax({
+      url: '/user/try.js %>',
+      type: 'POST',
+      data: ajaxData
+    });
+  });
 <% end %>
