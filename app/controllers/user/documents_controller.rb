@@ -140,7 +140,8 @@ module User
     end
 
     def new_document
-      @document = @document_class.new(input_language: "ENGLISH", output_1_language: "ARABIC")
+      @document = @document_class.new(input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "ARABIC")
+      # @document = @document_class.new([{input_language: "ENGLISH", output_1_language: "ARABIC"},{input_language: "ENGLISH", output_1_language: "ARABIC"}, {input_language: "ENGLISH", output_1_language: "ARABIC"}])
     end
 
     def get_template
