@@ -26,3 +26,8 @@ $(document).ready(function() {
   }); 
   
 }); 
+$(document).on("click",".cancel",function(){
+ $('#LI_TEMPLATES_EDIT_FORM').hide();
+$('#LI_TEMPLATES_NEW_FORM').hide();
+showTab('TEMPLATES_LIST');
+});

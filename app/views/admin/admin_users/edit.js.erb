@@ -8,3 +8,8 @@ $('#LI_USER_NEW_FORM').hide();
 
 // Set Focus on the First Input after loading the form
 setFocusOnFirstInput("USER_EDIT_FORM");
+$(document).on("click",".cancel",function(){
+ $('#LI_USER_EDIT_FORM').hide();
+$('#LI_USER_NEW_FORM').hide();
+showTab('USER_LIST');
+});
