@@ -20,12 +20,6 @@ module User
       get_document
     end
 
-    def translate
-      get_document
-      @document.input_html_source = params[:input_html_source]
-      @document.save
-    end
-
     def select_template
       @page_title = "Choose a Template"
       @nav = 'user/documents'
@@ -81,10 +75,15 @@ module User
     def update
       get_document
       @document.assign_attributes(permitted_params)
-      
+
       if @document.valid?
-        @document.user = @current_page
+        @document.user = @current_client_user
         @document.save
+
+        params[:tags].split(',').each do |tag_name|
+          @document.tags.first_or_create(name: tag_name.strip)
+        end if params[:tags] and params[:tags].any?
+
         set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Document"))
         set_flash_message(I18n.translate("success.updated", item: "Document"), :success)
       else
@@ -125,10 +124,10 @@ module User
 
     def get_document_class
       @document_class if @document_class
-      if params[:dt] == 'template'
-        @document_class = Document::TemplateBased
-      else
+      if params[:dt] == 'table'
         @document_class = Document::TableBased
+      else
+        @document_class = Document::TemplateBased
       end
       @document_class
     end
@@ -137,6 +136,9 @@ module User
       @document_class = get_document_class
       @document = @document_class.find_by_id(params[:id])
       @document_class = @document.type.constantize
+
+      @input_language = @document.input_language ||= "ENGLISH"
+      @output_language = @document.output_1_language ||= "ARABIC"
     end
 
     def new_document
@@ -149,16 +151,15 @@ module User
     end
 
     def permitted_params
-      params.require("document_template_based").permit(
+      params.require("document").permit(
         :title,
-        :description,
         :input_language,
         :output_1_language,
         :output_2_language,
         :output_3_language,
         :output_4_language,
         :output_5_language,
-        :template_id,
+        :input_html_source,
       )
     end
 
