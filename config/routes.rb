@@ -22,9 +22,12 @@ Rails.application.routes.draw do
     # CRUD Documents
     resources :documents do
       member do
+        put 'translate', to: 'documents#translate', as: 'translate'
+        put :update_status
         get 'print', to: 'documents#print', as: 'print'
         put 'save_and_translate', to: 'documents#save_and_translate', as: 'save_and_translate'
       end
+
       collection do
         get 'select_template', to: 'documents#select_template', as: 'select_template'
       end

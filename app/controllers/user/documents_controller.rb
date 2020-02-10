@@ -91,6 +91,15 @@ module User
       end
     end
 
+
+    def update_status
+      if @document
+        @document.update_status(params[:status].upcase)
+        # @document.save
+      end
+    end
+
+
     def print
       get_document
 
@@ -100,6 +109,7 @@ module User
         end
       end
     end
+
 
 
     private
