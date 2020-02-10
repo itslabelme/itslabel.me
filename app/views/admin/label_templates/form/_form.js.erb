@@ -14,14 +14,15 @@ $(document).ready(function() {
     menubar: false,
     branding: false,
     statusbar: false,
-    setup: function(editor) {
-      editor.on('Paste Change input Undo Redo', function () {
-        onChangeInputTinyMCE();
-        // if (editorChangeHandler) {clearTimeout(editorChangeHandler);}
-        // editorChangeHandler = setTimeout(function() {
-        // }, 100);
-      });
-    }
+    plugins : 'advlist autolink link image lists charmap print preview'
+    // setup: function(editor) {
+    //   editor.on('Paste Change input Undo Redo', function () {
+    //     onChangeInputTinyMCE();
+    //     // if (editorChangeHandler) {clearTimeout(editorChangeHandler);}
+    //     // editorChangeHandler = setTimeout(function() {
+    //     // }, 100);
+    //   });
+    // }
   }); 
   
 }); 
