@@ -1,0 +1,17 @@
+<div class="block-header">
+  <div class="row clearfix">
+    <div class="col-md-6 col-sm-12">
+      <h1><%= @document.title %></h1>
+      <p class="pt-2">Template Based Translation Document</p>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <nav aria-label="breadcrumb" style="float:right">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link_to "Home", user_home_path %></li>
+          <li class="breadcrumb-item"><%= link_to "Translations", user_documents_path(dt: "template") %></li>
+          <li class="breadcrumb-item active"><%= @document.title %></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
