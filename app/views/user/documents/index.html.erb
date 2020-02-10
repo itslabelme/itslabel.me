@@ -9,6 +9,10 @@
       <div class="card">
         <!-- Table -->
         <div class="tab-pane active show" id="TRANSLATIONS_LIST">
+
+            <!-- Controls -->
+          <%= render partial: 'user/documents/index/controls' %>
+            
           <%= render partial: 'user/documents/index/table' %>
         </div>
         <% if @documents.present? %>
