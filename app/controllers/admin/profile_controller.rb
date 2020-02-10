@@ -28,7 +28,8 @@ module Admin
     
     def update_password
           @user=current_admin_user
-       if @user.update_with_password(admin_user_params)
+      if @user.valid? 
+      @user.update_with_password(admin_user_params)
       set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "AdminUser"))
        set_flash_message(I18n.translate("success.updated", item: "AdminUser"), :success)
       else
