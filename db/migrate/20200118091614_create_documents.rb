@@ -2,7 +2,7 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
   def change
     create_table :documents do |t|
       t.string :title, limit: 256, null: false
-      t.string :description, limit: 1024, null: false
+      t.string :description, limit: 1024
       
       t.string :input_language, limit: 16, null: false
       t.string :output_1_language, limit: 16, null: false
