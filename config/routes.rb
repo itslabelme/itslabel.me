@@ -23,7 +23,9 @@ Rails.application.routes.draw do
     resources :documents do
       member do
         put 'translate', to: 'documents#translate', as: 'translate'
+        put :update_status
       end
+
       collection do
         get 'select_template', to: 'documents#select_template', as: 'select_template'
       end

@@ -41,7 +41,7 @@
           <% end %>
         </td>
         <td>
-          <span class="badge badge-info badge-<%= document.status_ui_class %>">Active</span>
+          <span class="badge badge-info badge-<%= document.status_ui_class %>"><%=  document.status %></span>
         </td>
         
         <% if display_actions %>
@@ -49,8 +49,17 @@
           <%= link_to edit_user_document_path(document), class: "btn btn-sm btn-default", remote: true do %>
             <i class="fa fa-edit"></i>
           <% end %>
+          <%= link_to update_status_user_document_path(document, status: 'active', dt: params[:dt]), class: "btn btn-sm btn-default",  method: :put, remote: true do %>
+            <i class="fa fa-check" style="color1: #6c757d !important;" ></i>
+          <% end %>          
+          <%= link_to update_status_user_document_path(document, status: 'inactive', dt: params[:dt]), class: "btn btn-sm btn-default", method: :put, remote: true do %>
+            <i class="fa fa-ban"></i>
+          <% end %>  
           <%= link_to user_document_path(document), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
             <i class="fa fa-trash-o text-danger"></i>
+          <% end %>        
+          <%= link_to update_status_user_document_path(document, status: 'archived', dt: params[:dt]), class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
+            <i class="fa fa-archive"></i>
           <% end %>
         </td>
         <% end %>

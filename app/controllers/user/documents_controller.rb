@@ -114,6 +114,13 @@ module User
       end
     end
 
+    def update_status
+      if @document
+        @document.update_status(params[:status].upcase)
+        # @document.save
+      end
+    end
+
     private
 
     def apply_filters
