@@ -116,10 +116,24 @@ module User
 
     private
 
+    def apply_filters
+      @query = params[:q]
+      @relation = @relation.search(@query) if @query && !@query.blank?
+      
+      @relation = @relation.search_only_title(params[:filters].try(:[], :title))
+      @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
+      # @relation = @relation.search_only_output_language(params[:filters].try(:[], :output_language))
+      @relation = @relation.search_only_status(params[:filters].try(:[], :status))
+      
+    end
+
     def get_collection
       @order_by = "created_at DESC" unless @order_by
-      @documents = @document_class.
-                      order(@order_by).
+      @relation = @document_class
+
+      apply_filters
+
+      @documents = @relation.order(@order_by).
                       page(@current_page).per(@per_page)
     end
 

@@ -83,7 +83,7 @@ module Admin
 
     private
 
-        def apply_filters
+    def apply_filters
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
       
