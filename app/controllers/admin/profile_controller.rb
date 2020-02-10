@@ -3,24 +3,9 @@ module Admin
     before_action :set_profile, only: [:index,:edit, :update,:update_password]
     before_action :authenticate_admin_user!
     
-    def index
-      @page_title = "User Profile | Admin"
-      @nav = 'admin/profile'
-    
-    end
-    
-    def show
-    end
-    
-    def new   
-    end 
-    
-    def create
-    end
-    
     def edit
-      @page_title = "Edit Translation"
-      @nav = 'admin/translations'
+      @page_title = "My Profile | Admin"
+      @nav = 'admin/profile'
       set_profile
     end
     

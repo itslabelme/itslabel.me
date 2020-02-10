@@ -25,9 +25,7 @@ FactoryBot.define do
 
   factory :english_to_arabic_translation, parent: :translation do
     input_phrase { "Amino Acids" }
-    input_description { "Amino Acids" }
     output_phrase { "أحماض أمينية" }
-    output_description { "أحماض أمينية" }
 
     input_language { "ENGLISH" }
     output_language { "ARABIC" }
@@ -35,9 +33,7 @@ FactoryBot.define do
 
   factory :english_to_french_translation, parent: :translation do
     input_phrase { "Amino Acids" }
-    input_description { "Amino Acids" }
     output_phrase { "Acides aminés" }
-    output_description { "Acides aminés" }
 
     input_language { "ENGLISH" }
     output_language { "FRENCH" }

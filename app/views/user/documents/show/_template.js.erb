@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // Set IFrame Contents
-  $("iframe").contents().find('html').html("<%= escape_javascript(raw(@document.output_html_source)) %>");
+  $("#DOC_PREVIEW").contents().find('html').html("<%= escape_javascript(raw(@document.output_html_source)) %>");
 
   // TinyMCE OnChange Method
   function onChangeInputTinyMCE() {

@@ -83,28 +83,15 @@ module Admin
 
     private
 
-        def apply_filters
+    def apply_filters
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
       
-      @condition=" 1=1 ";
-       if params[:input_language].present?
-            @condition += " AND LOWER(translations.input_language) LIKE LOWER ('%#{params[:input_language]}%') " if params.key?(:input_language)
-            end
-            if params[:output_language].present?
-            @condition += " AND LOWER(translations.output_language) LIKE LOWER ('%#{params[:output_language]}%') " if params.key?(:output_language)
-            end
-            if params[:status ].present?
-            @condition += " AND  LOWER(translations.status) LIKE LOWER ('%#{params[:status]}%') " if params.key?(:status)
-            end
-            if params[:input_phrase ].present?
-            @condition += " AND  LOWER(translations.input_phrase) LIKE LOWER ('%#{params[:input_phrase]}%') " if params.key?(:input_phrase)
-            end
-            if params[:output_phrase].present?
-            @condition += " AND  LOWER(translations.output_phrase) LIKE LOWER ('%#{params[:output_phrase]}%') " if params.key?(:output_phrase)
-            end
-           
-       @relation = @relation.advsearch(@condition)if @condition && !@condition.blank?
+      @relation = @relation.search_only_input_phrase(params[:filters].try(:[], :input_phrase))
+      @relation = @relation.search_only_output_phrase(params[:filters].try(:[], :output_phrase))
+      @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
+      @relation = @relation.search_only_output_language(params[:filters].try(:[], :output_language))
+      @relation = @relation.search_only_status(params[:filters].try(:[], :status))
       
     end
     
@@ -134,10 +121,8 @@ module Admin
     def permitted_params
       params.require("translation").permit(
          :input_phrase,
-         :input_description,
          :input_language,
          :output_phrase,
-         :output_description,
          :output_language,
       )
     end

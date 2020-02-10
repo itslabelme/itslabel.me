@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
 
   create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 256, null: false
-    t.string "description", limit: 1024, null: false
+    t.string "description", limit: 1024
     t.string "input_language", limit: 16, null: false
     t.string "output_1_language", limit: 16, null: false
     t.string "output_2_language", limit: 16
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
     t.string "style", limit: 64
     t.text "ltr_html_source"
     t.text "rtl_html_source"
+    t.boolean "latest", default: true
     t.bigint "admin_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -185,10 +186,8 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
 
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "input_phrase", limit: 256, null: false
-
     t.string "input_language", limit: 16, null: false
     t.string "output_phrase", limit: 256, null: false
-
     t.string "output_language", limit: 16, null: false
     t.string "category", limit: 16
     t.bigint "admin_user_id"

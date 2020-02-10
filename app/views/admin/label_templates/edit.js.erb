@@ -1,5 +1,5 @@
 // Reload the form with editable data
-$("#TEMPLATES_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/label_templates/form/form')) %>");
+$("#TEMPLATES_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/label_templates/form/form.html.erb')) %>");
 
 // Hide the form
 showTab('TEMPLATES_EDIT_FORM');
@@ -8,3 +8,6 @@ $('#LI_TEMPLATES_NEW_FORM').hide();
 
 // Set Focus on the First Input after loading the form
 setFocusOnFirstInput("TEMPLATES_EDIT_FORM");
+
+// reload tinymce
+<%= raw(render(:partial=>'admin/label_templates/form/form.js.erb')) %>

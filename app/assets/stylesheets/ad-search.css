@@ -58,7 +58,8 @@
         position: static !important;
     }
     #adv-search .dropdown.dropdown-lg .dropdown-menu {
-        min-width: 1144px;
+        /*min-width: 1144px;*/
+        width: 120vh;
         border-radius: 0px;
     }
 }

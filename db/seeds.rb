@@ -2,6 +2,9 @@ require 'colorize'
 
 puts "Adding Admin Users".green
 AdminUser.create([
+                  { first_name: 'Ben',  last_name: "Castree", mobile_number: "12345678", email: "Ben.castree@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
+                  { first_name: 'Abdul Karim',  last_name: "Samaan", mobile_number: "12345678", email: "akarim.samaan@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
+                  { first_name: 'Hari',  last_name: "Kuppuswamy", mobile_number: "12345678", email: "harishsmc@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
                   { first_name: 'Krishna Prasad',  last_name: "Varma", mobile_number: "12345678", email: "krishna@rightsolutions.ae", password: "Password@1", password_confirmation: "Password@1"}, 
                   { first_name: 'Sanoop',  last_name: "Nair", mobile_number: "12345678", email: "sanoop@rightsolutions.ae", password: "Password@1", password_confirmation: "Password@1"}, 
                   { first_name: 'Vedaditya',  last_name: "Nirankar", mobile_number: "12345678", email: "nirankar@rightsolutions.ae", password: "Password@1", password_confirmation: "Password@1"}, 
@@ -19,8 +22,10 @@ client_user = ClientUser.first
 
 puts "Adding Translations".green
 Translation.create([
-  { input_phrase: "Ingredients",                input_language: "ENGLISH", output_phrase: "مكونات",                                   output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
-  { input_phrase: "Please type your ingredients below",        input_language: "ENGLISH", output_phrase: "يرجى كتابة المكونات الخاصة بك أدناه",                output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "and",                      input_language: "ENGLISH", output_phrase: "و",      output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  
+  { input_phrase: "Ingredients",              input_language: "ENGLISH", output_phrase: "مكونات", output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Please type your ingredients below",        input_language: "ENGLISH",         output_phrase: "يرجى كتابة المكونات الخاصة بك أدناه",                output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
 
   { input_phrase: "Ingredients",                 input_language: "ENGLISH", output_phrase: "",                                    output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
   { input_phrase: "Please type your ingredients below",                 input_language: "ENGLISH", output_phrase: "",                   output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
@@ -101,37 +106,42 @@ Tag.create([
 puts "Adding Templates".green
 LabelTemplate.create([
   {
-    name: "Simple Template 1",
-    description: "A Basic template with some ingedients put as an example",
-    style: "template_preview_1",
+    name: "Square Template",
+    latest: true,
+    description: "A Simple template with some ingedients put as an example",
+    style: "Basic",
     ltr_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">CORN, VEGETABLE OILS, CHEESE POWDER (MILK), SALT,BUTTERMILK POWDER (MILK), WHEAT FLOUR, WHEY PROTEIN, CONCENTRATE (MILK), TOMATO POWDER, FLAVOUR ENHANCERS, (621,631,627),ONION POWDER, WHEY POWDER (MILK), GARLIC POWDER, DEXTROSE, SUGAR, NATURAL FLAVOUR, MINIERAL, SALT (339), FOOD ACIDS (LACTIC ACID, CITRIC ACID), SPICE (WHITEPEPPER), COLOURS (110, 150D).</td></tr></tbody></table></body></html>},
     rtl_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">CORN, VEGETABLE OILS, CHEESE POWDER (MILK), SALT,BUTTERMILK POWDER (MILK), WHEAT FLOUR, WHEY PROTEIN, CONCENTRATE (MILK), TOMATO POWDER, FLAVOUR ENHANCERS, (621,631,627),ONION POWDER, WHEY POWDER (MILK), GARLIC POWDER, DEXTROSE, SUGAR, NATURAL FLAVOUR, MINIERAL, SALT (339), FOOD ACIDS (LACTIC ACID, CITRIC ACID), SPICE (WHITEPEPPER), COLOURS (110, 150D).</td></tr></tbody></table></body></html>}
   },
   {
-    name: "Simple Template 2",
+    name: "Square Template",
+    latest: true,
     description: "Simple Template 1",
+    style: "with Distributor",
+    ltr_html_source: %{},
+    rtl_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">Please type your ingredients below</td></tr></tbody></table></body></html>}
+  },
+  {
+    name: "Vertical Template",
+    latest: true,
+    description: "Basic",
     style: "template_preview_2",
     ltr_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">Please type your ingredients below</td></tr></tbody></table></body></html>},
     rtl_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">Please type your ingredients below</td></tr></tbody></table></body></html>}
   },
   {
-    name: "Simple Template 3",
-    description: "Simple Template 2",
+    name: "Vertical Template - 300",
+    latest: false,
+    description: "with Distributor",
     style: "template_preview_2",
     ltr_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">Please type your ingredients below</td></tr></tbody></table></body></html>},
     rtl_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">Please type your ingredients below</td></tr></tbody></table></body></html>}
   },
   {
-    name: "Simple Template 4",
-    description: "Simple Template 3",
-    style: "template_preview_2",
-    ltr_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">Please type your ingredients below</td></tr></tbody></table></body></html>},
-    rtl_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">Please type your ingredients below</td></tr></tbody></table></body></html>}
-  },
-  {
-    name: "Simple Template 5",
-    description: "Simple Template 4",
-    style: "template_preview_2",
+    name: "Old Template",
+    latest: false,
+    description: "the First Template we created",
+    style: "Old Style",
     ltr_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">Please type your ingredients below</td></tr></tbody></table></body></html>},
     rtl_html_source: %{<html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">Please type your ingredients below</td></tr></tbody></table></body></html>}
   },

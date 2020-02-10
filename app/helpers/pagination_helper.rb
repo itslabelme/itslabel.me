@@ -10,7 +10,7 @@ module PaginationHelper
   end
 
   def parse_pagination_params
-    items_per_list = (@controller_options && @controller_options[:items_per_list] ? @controller_options[:items_per_list] : nil) || 2
+    items_per_list = (@controller_options && @controller_options[:items_per_list] ? @controller_options[:items_per_list] : nil) || 40
     max_items_per_list = (@controller_options && @controller_options[:max_items_per_list] ? @controller_options[:max_items_per_list] : nil) || 501
     
     @current_page = params[:page] || "1"

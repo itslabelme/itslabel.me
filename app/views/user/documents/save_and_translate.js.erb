@@ -1,0 +1,21 @@
+<% if @document.errors.blank? %>
+  
+  <% if @redirect_to_show_page %>
+    window.location.href = "<%= user_document_path(@document) %>";
+  <% end %>
+
+  $(document).ready(function() {
+    // Set IFrame Contents
+    $("#DOC_PREVIEW").contents().find('html').html("<%= escape_javascript(raw(@document.output_html_source)) %>");
+  }); 
+
+  // Showing Growl Like Message
+  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+<% end %>
+

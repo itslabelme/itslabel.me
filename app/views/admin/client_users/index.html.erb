@@ -3,27 +3,38 @@
   <!-- Header -->
   <%= render partial: 'admin/client_users/index/header' %>
   
-  <!-- Filters -->
-  <%#= render partial: 'admin/client_users/index/filters' %>
-
-  <!-- Controls -->
-  <%= render partial: 'admin/client_users/index/controls' %>
+  <!-- Counts -->
+  <%= render partial: 'admin/client_users/index/counts' %>
 
   <div class="row clearfix">
     <div class="col-lg-12">
       <div class="card">
         
-        <div class="table-responsive">
+        <ul class="nav nav-tabs">
+          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#CLIENT_LIST">Clients</a></li>
+          
+          <li class="nav-item" style='display: none;' id='LI_CLIENT_SHOW'><a class="nav-link" data-toggle="tab" href="#CLIENT_SHOW"> Client Details </a></li>
+        </ul>
+
+        <div class="tab-content">
+          
+          <div class="tab-pane active show" id="CLIENT_LIST">
+
+            <!-- Controls -->
+            <%= render partial: 'admin/client_users/index/controls' %>
+
+            <!-- Table -->
+            <%= render partial: 'admin/client_users/index/table' %>
             
-          <!-- Table -->
-          <%= render partial: 'admin/client_users/index/table' %>
+            <!-- Pagination -->
+            <%= paginate @client_users if @client_users && @client_users.any? %>
+          </div>
+          
+          <div class="tab-pane" id="CLIENT_SHOW">
+          </div>
 
-          <!-- Pagination -->
-          <% if @client_users .present? %>
-            <%= paginate @client_users if @client_users.any? %>
-          <% end  %>
         </div>
-
+        
       </div>
     </div>
   </div>

@@ -1,0 +1,56 @@
+<div class="card mt-4">
+  <div class="card-body">
+    
+    <div class="row">
+
+      <div class="col-sm-6">
+        <ul class="list-group felix-ul-table-style">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> Input Phrase :</div>
+              <div class="col-sm-7"><b><%= @translation.input_phrase %></b></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> Input Language :</div>
+              <div class="col-sm-7"><b><%= @translation.input_language %></b></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> Status :</div>
+              <div class="col-sm-7"><b><%= @translation.status %></b></div>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="col-sm-6">
+        <ul class="list-group felix-ul-table-style">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> Output Phrase :</div>
+              <div class="col-sm-7"><b><%= @translation.output_phrase %></b></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5"> Output Language :</div>
+              <div class="col-sm-7"><b><%= @translation.output_language %></b></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-5">Created At :</div>
+              <div class="col-sm-7"><b><%= @translation.created_at.strftime("%d %b %Y - %I:%M %p") %></b></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>

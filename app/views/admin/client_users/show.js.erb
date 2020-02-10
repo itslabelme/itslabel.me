@@ -1,0 +1,12 @@
+$("#CLIENT_SHOW").html("<%= escape_javascript(render(:partial=>'admin/client_users/show/show')) %>");
+
+// Show Client Detaiks
+showTab('CLIENT_SHOW');
+$('#LI_CLIENT_SHOW').show();
+$('#LI_CLIENT_LIST').hide();
+
+// Show the Client Name as Tab Heading
+$('#LI_CLIENT_SHOW a').html("<%= @client_user.display_name %>");
+
+// Set Focus on the First Input after loading the form
+setFocusOnFirstInput("CLIENT_SHOW");

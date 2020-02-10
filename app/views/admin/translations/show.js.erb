@@ -1,0 +1,11 @@
+$("#TRANSLATIONS_SHOW").html("<%= escape_javascript(render(:partial=>'admin/translations/show/show')) %>");
+
+// Show Client Detaiks
+showTab('TRANSLATIONS_SHOW');
+$('#LI_TRANSLATIONS_SHOW').show();
+
+// Show the Client Name as Tab Heading
+$('#LI_TRANSLATIONS_SHOW a').html("<%= @translation.input_phrase %>");
+
+// Set Focus on the First Input after loading the form
+setFocusOnFirstInput("TRANSLATIONS_SHOW");

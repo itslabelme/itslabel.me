@@ -35,6 +35,10 @@ class Document::Base < ApplicationRecord
 
   # General Methods
   # ---------------
+
+  def to_param
+    "#{id}-#{title}".parameterize[0..32]
+  end
   
   def display_name
     self.title
