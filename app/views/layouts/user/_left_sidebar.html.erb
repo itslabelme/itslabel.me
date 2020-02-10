@@ -58,8 +58,8 @@
           </ul>
         </li> -->
 
-        <li><%= link_to content_tag(:i, "", class: "fa fa-trash") + "Trash", "#" %></li>
-        <li><%= link_to content_tag(:i, "", class: "fa fa-archive") + "Archives", "#" %></li>
+        <li><%= link_to content_tag(:i, "", class: "fa fa-trash") + "Trash", user_documents_path(dt: 'template', status: 'removed') %></li>
+        <li><%= link_to content_tag(:i, "", class: "fa fa-archive") + "Archives", user_documents_path(dt: 'template', status: 'archived') %></li>
 
         <!-- <li class="header">Tags</li>
         <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 1", "#" %></li>

@@ -111,13 +111,16 @@ module User
     end
 
 
-
     private
 
     def apply_filters
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
-      
+
+      if params[:status] 
+        @relation = @relation.status(params[:status].upcase)  
+      end
+
       @relation = @relation.search_only_title(params[:filters].try(:[], :title))
       @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
       # @relation = @relation.search_only_output_language(params[:filters].try(:[], :output_language))
