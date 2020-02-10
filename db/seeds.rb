@@ -22,8 +22,10 @@ client_user = ClientUser.first
 
 puts "Adding Translations".green
 Translation.create([
-  { input_phrase: "Ingredients",                input_language: "ENGLISH", output_phrase: "مكونات",                                   output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
-  { input_phrase: "Please type your ingredients below",        input_language: "ENGLISH", output_phrase: "يرجى كتابة المكونات الخاصة بك أدناه",                output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "and",                      input_language: "ENGLISH", output_phrase: "و",      output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  
+  { input_phrase: "Ingredients",              input_language: "ENGLISH", output_phrase: "مكونات", output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
+  { input_phrase: "Please type your ingredients below",        input_language: "ENGLISH",         output_phrase: "يرجى كتابة المكونات الخاصة بك أدناه",                output_language: "ARABIC", admin_user_id: admin_user.id, status: "APPROVED"},
 
   { input_phrase: "Ingredients",                 input_language: "ENGLISH", output_phrase: "",                                    output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},
   { input_phrase: "Please type your ingredients below",                 input_language: "ENGLISH", output_phrase: "",                   output_language: "FRENCH", admin_user_id: admin_user.id, status: "APPROVED"},

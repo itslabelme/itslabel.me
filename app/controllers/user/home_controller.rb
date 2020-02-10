@@ -3,6 +3,7 @@ module User
 
     before_action :authenticate_client_user!
     skip_before_action :verify_authenticity_token
+    before_action :get_languages
 
     def index
 
@@ -13,12 +14,22 @@ module User
 
     def try
 
-      input_language = params[:input_language]
-      output_language = params[:output_language]
-      text = params[:text]
-      @translated_text = Translation.translate(text, input_language: input_language, output_language: output_language)
+      @translated_text = Translation.translate(params[:text], 
+                            input_language: @input_language, 
+                            output_language: @output_language)
       
     end
+
+    private
+
+    def get_languages
+      @input_language = params[:input_language].to_s.strip unless params[:input_language].to_s.strip.blank?
+      @output_language = params[:output_language].to_s.strip unless params[:output_language].to_s.strip.blank?
+
+      @input_language = "ENGLISH" unless @input_language
+      @output_language = "ARABIC" unless @output_language
+    end
+
 
   end
 end

@@ -2,18 +2,25 @@
   <div class="col-lg-12 col-md-12">
     <div class="card">
       <div class="body" style="background: #f9fdf9;border: 1px solid gainsboro;">
-        <div class="mt-4">
+        <div class="mt-2">
 
           <div class="row its-language-switcer mb-2">
+
+            <div class="col-md-12">
+              <div class="mb-4 text-center">
+                <h3>Try it yourselves!</h3>
+                <p>Type or Copy Paste your text and Press <span class='badge badge-info'>Tab</span> to Translate! </p>
+              </div>
+            </div>
 
             <div class="col-md-6">
               <div class="row">
                 <h4 class="col-md-6">Input Language</h4>
                 <div class="col-md-6">
                   <select class="form-control form-control-xs selectpicker1" name="" data-size="7" data-live-search="true" data-title="Location" id="INPUT_LANGUAGE" data-width="100%">
-                    <option value="" selected>English</option>
-                    <option value="">Arabic</option>
-                    <option value="">French</option>
+                    <option value="ENGLISH" <%= @input_language == "ENGLISH" ? "selected" : "" %> >English</option>
+                    <option value="ARABIC" <%= @input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+                    <option value="FRENCH" <%= @input_language == "FRENCH" ? "selected" : "" %> >French</option>
                   </select>
                 </div>
               </div>
@@ -23,9 +30,9 @@
               <div class="row">
                 <div class="col-md-6">
                   <select class="form-control form-control-xs selectpicker1" name="" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
-                    <option value="">English</option>
-                    <option value="" selected>Arabic</option>
-                    <option value="">French</option>
+                    <option value="ENGLISH" <%= @output_language == "ENGLISH" ? "selected" : "" %> >English</option>
+                    <option value="ARABIC" <%= @output_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+                    <option value="FRENCH" <%= @output_language == "FRENCH" ? "selected" : "" %> >French</option>
                   </select>
                 </div>
                 <h4 class="col-md-6" style="text-align: right;">Output Language</h4>
@@ -38,7 +45,8 @@
               <textarea style="width: 100%;height: 300px;" id="TRANS_PLAYGROUND"></textarea>
             </div>
             <div class="col-md-6">
-              <textarea style="width: 100%;height: 300px;" id="TRANSLATION_PREVIEW" readonly></textarea>
+              <% styles = @output_language == "ARABIC" ? "text-align:right;" : "" %>
+              <textarea style="width: 100%;height: 300px;padding:10px;<%= styles %>" id="TRANSLATION_PREVIEW" readonly></textarea>
             </div>
           </div>
         </div>
@@ -49,14 +57,26 @@
 
 <%# Need to integrate tribute.js and load translations from server %>
 <%= content_for :javascript_footer do %>
-  $("#TRANS_PLAYGROUND").on('change', function(e){
+  
+  function ITSTranslate() {
     let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
     let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
-    let ajaxData = {text: e.target.value, input_language: inputLanguage, output_language: outputLanguage };
+    let inputText = $("#TRANS_PLAYGROUND").val();
+    let ajaxData = {text: inputText, input_language: inputLanguage, output_language: outputLanguage };
     $.ajax({
       url: '/user/try.js %>',
       type: 'POST',
       data: ajaxData
     });
+  }
+
+  $("#TRANS_PLAYGROUND").on('change', function(){
+    ITSTranslate()
+  });
+  $("#INPUT_LANGUAGE").on('change', function(){
+    ITSTranslate()
+  });
+  $("#OUTPUT_LANGUAGE").on('change', function(){
+    ITSTranslate()
   });
 <% end %>
