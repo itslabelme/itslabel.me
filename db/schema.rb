@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
 
   create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 256, null: false
-    t.string "description", limit: 1024, null: false
+    t.string "description", limit: 1024
     t.string "input_language", limit: 16, null: false
     t.string "output_1_language", limit: 16, null: false
     t.string "output_2_language", limit: 16

@@ -75,14 +75,14 @@
       <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
           <% error_class = @label_template.errors[:ltr_html_source].any? ? 'parsley-error' : '' %>
-           <%= f.text_area :ltr_html_source, class: "form-control #{error_class} tinymce-editor" %>
+           <%= f.text_area :ltr_html_source, class: "form-control #{error_class} tinymce-editor1" %>
           <%= display_parsley_error(@label_template, :description) %>
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
           <% error_class = @label_template.errors[:rtl_html_source].any? ? 'parsley-error' : '' %>
-          <%= f.text_area :rtl_html_source, class: "form-control #{error_class} tinymce-editor" %>
+          <%= f.text_area :rtl_html_source, class: "form-control #{error_class} tinymce-editor1" %>
           <%= display_parsley_error(@label_template, :rtl_html_source) %>
         </div>
       </div>
