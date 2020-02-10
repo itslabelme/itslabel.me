@@ -1,5 +1,5 @@
 // Reload the form with editable data
-$("#TRANSLATIONS_NEW_FORM").html("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
+$("#TRANSLATIONS_NEW_FORM").html("<%= escape_javascript(render(:partial=>'admin/translations/form/form.html.erb')) %>");
 
 // Hide the form
 showTab('TRANSLATIONS_NEW_FORM');
@@ -8,3 +8,4 @@ $('#LI_TRANSLATIONS_EDIT_FORM').hide();
 
 // Set Focus on the First Input after loading the form
 setFocusOnFirstInput("TRANSLATIONS_NEW_FORM");
+<%= raw(render(:partial=>'admin/translations/form/form.js.erb')) %>
