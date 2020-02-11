@@ -1,5 +1,5 @@
 module User
-  class DocumentsController < User::BaseController
+  class TableDocumentsController < User::BaseController
 
     before_action :authenticate_client_user!
     before_action :get_document, except: [:new, :create, :index, :select_template]
