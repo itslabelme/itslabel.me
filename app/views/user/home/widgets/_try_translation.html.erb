@@ -64,7 +64,7 @@
     let inputText = $("#TRANS_PLAYGROUND").val();
     let ajaxData = {text: inputText, input_language: inputLanguage, output_language: outputLanguage };
     $.ajax({
-      url: '/user/try.js %>',
+      url: '/user/try.js',
       type: 'POST',
       data: ajaxData
     });
