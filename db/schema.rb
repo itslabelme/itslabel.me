@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_065106) do
+ActiveRecord::Schema.define(version: 2020_01_28_065108) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -84,56 +84,6 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
     t.index ["unlock_token"], name: "index_client_users_on_unlock_token", unique: true
   end
 
-  create_table "document_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "document_id"
-    t.string "input_phrase", limit: 256, null: false
-    t.string "input_language", limit: 16, null: false
-    t.string "output_1_phrase", limit: 256
-    t.string "output_1_language", limit: 16
-    t.string "output_2_phrase", limit: 256
-    t.string "output_2_language", limit: 16
-    t.string "output_3_phrase", limit: 256
-    t.string "output_3_language", limit: 16
-    t.string "output_4_phrase", limit: 256
-    t.string "output_4_language", limit: 16
-    t.string "output_5_phrase", limit: 256
-    t.string "output_5_language", limit: 16
-    t.boolean "translated", default: false
-    t.bigint "translation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["document_id"], name: "index_document_items_on_document_id"
-    t.index ["translation_id"], name: "index_document_items_on_translation_id"
-  end
-
-  create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", limit: 256, null: false
-    t.string "description", limit: 1024
-    t.string "input_language", limit: 16, null: false
-    t.string "output_1_language", limit: 16, null: false
-    t.string "output_2_language", limit: 16
-    t.string "output_3_language", limit: 16
-    t.string "output_4_language", limit: 16
-    t.string "output_5_language", limit: 16
-    t.string "status", limit: 16, default: "ACTIVE", null: false
-    t.string "type", limit: 128
-    t.text "input_html_source"
-    t.text "output_html_source"
-    t.bigint "template_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["template_id"], name: "index_documents_on_template_id"
-    t.index ["user_id"], name: "index_documents_on_user_id"
-  end
-
-  create_table "documents_tags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "document_id"
-    t.bigint "tag_id"
-    t.index ["document_id"], name: "index_documents_tags_on_document_id"
-    t.index ["tag_id"], name: "index_documents_tags_on_tag_id"
-  end
-
   create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "client_user_id"
     t.string "provider"
@@ -156,32 +106,66 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
     t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
-  create_table "nutrition_facts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", limit: 256
-    t.string "sub_title", limit: 256
-    t.string "input_langage", limit: 256, null: false
-    t.string "output_language", limit: 256, null: false
-    t.integer "total_weight"
-    t.integer "total_quantity"
-    t.integer "serving_size"
-    t.integer "no_of_servings"
-    t.integer "total_calories"
-    t.string "footer", limit: 1024
+  create_table "table_document_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "table_document_id"
+    t.string "input_phrase", limit: 256, null: false
+    t.string "input_language", limit: 16, null: false
+    t.string "output_1_phrase", limit: 256
+    t.string "output_1_language", limit: 16
+    t.bigint "output_1_translation_id"
+    t.string "output_2_phrase", limit: 256
+    t.string "output_2_language", limit: 16
+    t.bigint "output_2_translation_id"
+    t.string "output_3_phrase", limit: 256
+    t.string "output_3_language", limit: 16
+    t.bigint "output_3_translation_id"
+    t.string "output_4_phrase", limit: 256
+    t.string "output_4_language", limit: 16
+    t.bigint "output_4_translation_id"
+    t.string "output_5_phrase", limit: 256
+    t.string "output_5_language", limit: 16
+    t.bigint "output_5_translation_id"
+    t.boolean "translated", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["output_1_translation_id"], name: "index_table_document_items_on_output_1_translation_id"
+    t.index ["output_2_translation_id"], name: "index_table_document_items_on_output_2_translation_id"
+    t.index ["output_3_translation_id"], name: "index_table_document_items_on_output_3_translation_id"
+    t.index ["output_4_translation_id"], name: "index_table_document_items_on_output_4_translation_id"
+    t.index ["output_5_translation_id"], name: "index_table_document_items_on_output_5_translation_id"
+    t.index ["table_document_id"], name: "index_table_document_items_on_table_document_id"
   end
 
-  create_table "nutrition_facts_tags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "nutrition_fact_id"
-    t.bigint "tag_id"
-    t.index ["nutrition_fact_id"], name: "index_nutrition_facts_tags_on_nutrition_fact_id"
-    t.index ["tag_id"], name: "index_nutrition_facts_tags_on_tag_id"
-  end
-
-  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", limit: 256, null: false
+  create_table "table_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.string "input_language", limit: 16, null: false
+    t.string "output_1_language", limit: 16, null: false
+    t.string "output_2_language", limit: 16
+    t.string "output_3_language", limit: 16
+    t.string "output_4_language", limit: 16
+    t.string "output_5_language", limit: 16
+    t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.boolean "favorite", default: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_table_documents_on_user_id"
+  end
+
+  create_table "template_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.string "input_language", limit: 16, null: false
+    t.string "output_language", limit: 16, null: false
+    t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.text "input_html_source"
+    t.text "output_html_source"
+    t.boolean "favorite", default: false
+    t.bigint "template_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["template_id"], name: "index_template_documents_on_template_id"
+    t.index ["user_id"], name: "index_template_documents_on_user_id"
   end
 
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -198,7 +182,8 @@ ActiveRecord::Schema.define(version: 2020_01_28_065106) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "documents", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "identities", "client_users"
   add_foreign_key "label_templates", "admin_users"
+  add_foreign_key "table_documents", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "template_documents", "client_users", column: "user_id", on_delete: :cascade
 end

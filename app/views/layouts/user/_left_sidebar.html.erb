@@ -39,14 +39,14 @@
         <li class="">
           <a href="#" class="has-arrow" aria-expanded="false"><i class="icon-plus"></i><span>New Translation</span></a>
           <ul aria-expanded="false" class="collapse" style="height: 0px;">
-            <li><%= link_to "Template Based", select_template_user_documents_path(dt: 'template') %></li>
-            <li><%= link_to "Table Based", new_user_document_path(dt: 'table') %></li>
+            <li><%= link_to "Template Based", select_template_user_template_documents_path() %></li>
+            <li><%= link_to "Table Based", new_user_table_document_path() %></li>
           </ul>
         </li>
 
-        <li><%= link_to content_tag(:i, "", class: "icon-folder") + "All Translations", user_documents_path(dt: 'template') %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-clock") + "Recent Translations", "#" %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-star") + "Favorites", "#" %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-folder") + "Your Translations", user_documents_path %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-clock") + "Recent Translations", user_documents_path(recent: true) %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-star") + "Favorites", user_documents_path(favorite: true) %></li>
         
         <!-- <li>
           <a href="#Tag" aria-expanded="true" class="has-arrow"><i class="icon-tag"></i><span>Most Used Tags</span></a>
@@ -58,8 +58,8 @@
           </ul>
         </li> -->
 
-        <li><%= link_to content_tag(:i, "", class: "fa fa-trash") + "Trash", user_documents_path(dt: 'template', status: 'removed') %></li>
-        <li><%= link_to content_tag(:i, "", class: "fa fa-archive") + "Archives", user_documents_path(dt: 'template', status: 'archived') %></li>
+        <li><%= link_to content_tag(:i, "", class: "fa fa-trash") + "Trash", user_documents_path(status: 'REMOVED') %></li>
+        <li><%= link_to content_tag(:i, "", class: "fa fa-archive") + "Archives", user_documents_path(status: 'ARCHIVED') %></li>
 
         <!-- <li class="header">Tags</li>
         <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 1", "#" %></li>
@@ -70,6 +70,7 @@
 
         <li class="header">My Account</li>
         <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile",  edit_user_client_profile_path(current_client_user.id) %></li>
+        <li><%= link_to content_tag(:i, "", class: "icon-question") + "FAQ",  "#" %></li>
         <!-- <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li> -->
         <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_client_user_session_url, method: :delete %></li>
         

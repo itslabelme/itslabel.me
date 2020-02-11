@@ -11,7 +11,9 @@
         </div>
         <div class="mt-4">
           <p>Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum infancy. Various versions have evolved over the years, sometimes by accident</p>
-          <button class="btn btn-primary btn-block" type="button"><a href="select-template.html" style="color: #fff;display: block;">Select a Template</a></button>
+          <button class="btn btn-primary btn-block" type="button">
+            <%= link_to "Select a Template", select_template_user_template_documents_path, style: "color: #fff;display: block;" %>
+          </button>
         </div>
       </div>
     </div>
@@ -23,7 +25,7 @@
         <div class="d-flex align-items-center">
           <div class="icon-in-bg bg-azura text-white rounded-circle"><i class="fa fa-table"></i></div>
           <div class="ml-4">
-            <h3>Excel Mode</h3>
+            <h3>Table Entry Mode</h3>
           </div>
         </div>
         <div class="mt-4">

@@ -4,15 +4,14 @@ module Itslabel::Status::DocumentStatus
 
   # Constants
   ACTIVE = "ACTIVE"
-  INACTIVE = "INACTIVE" 
   REMOVED = "REMOVED"
   ARCHIVED = "ARCHIVED"
   
-  STATUS_LIST = {ACTIVE => "Active", INACTIVE => "Inactive", REMOVED => "Removed", ARCHIVED => "Archived"}
-  REVERSED_STATUS_LIST = {"Active" => ACTIVE, "Inactive" => INACTIVE, "Removed" => REMOVED, "Archived" => ARCHIVED}
-  STATUS_UI_CLASS = {ACTIVE => "active", INACTIVE => "inactive", REMOVED => "removed", ARCHIVED => "archived"}
-  STATUS_UI_ICON = {ACTIVE => "fa-check", INACTIVE => "fa-eye-slash", REMOVED => "fa-trash", ARCHIVED => "fa-archive"}
-  STATUS_UI_COLOR = {ACTIVE => "#63b94c", INACTIVE => "#4b4b4b", REMOVED => "#ec407a", ARCHIVED => "#898989"}
+  STATUS_LIST = {ACTIVE => "Active", REMOVED => "Removed", ARCHIVED => "Archived"}
+  REVERSED_STATUS_LIST = {"Active" => ACTIVE, "Removed" => REMOVED, "Archived" => ARCHIVED}
+  STATUS_UI_CLASS = {ACTIVE => "active", REMOVED => "removed", ARCHIVED => "archived"}
+  STATUS_UI_ICON = {ACTIVE => "fa-check", REMOVED => "fa-trash", ARCHIVED => "fa-archive"}
+  STATUS_UI_COLOR = {ACTIVE => "#63b94c", REMOVED => "#ec407a", ARCHIVED => "#898989"}
 
   included do
 
@@ -24,7 +23,7 @@ module Itslabel::Status::DocumentStatus
     end
 
     def can_active?
-      self.inactive? || self.removed?
+      !active?
     end
 
     def active!
@@ -32,33 +31,19 @@ module Itslabel::Status::DocumentStatus
     end
 
 
-    # Reject
-    def inactive?
-      self.status == INACTIVE
-    end
-
-    def can_inactive?
-      self.active? || self.removed?
-    end
-
-    def inactive!
-      self.can_inactive? && self.update_attribute(:status, INACTIVE)
-    end
-
-
-    
     # Remove
     def removed?
       self.status == REMOVED
     end
 
     def can_remove?
-      self.inactive? || self.active?
+      !removed?
     end
 
     def remove!
       self.can_remove? && self.update_attribute(:status, REMOVED)
     end
+
 
     # Archive
     def archived?
@@ -66,7 +51,7 @@ module Itslabel::Status::DocumentStatus
     end
 
     def can_archive?
-      !self.removed?
+      self.active?
     end
 
     def archive!
@@ -84,18 +69,15 @@ module Itslabel::Status::DocumentStatus
     def update_status(status)
       case status
       when ACTIVE
-        self.active!
-      when INACTIVE
-        self.inactive!
+        self.active! if self.can_active?
       when REMOVED
-        self.remove!
+        self.remove! if self.can_remove?
       when ARCHIVED
-        self.archive!
+        self.archive! if self.can_archive?
       end
     end
 
     scope :activated, -> { where("#{table_name}": {status: ACTIVE} ) }
-    scope :inactivated, -> { where("#{table_name}": {status: INACTIVE} ) }
     scope :removed, -> { where("#{table_name}": {status: REMOVED} ) }
     scope :archived, -> { where("#{table_name}": {status: ARCHIVED} ) }
 

@@ -2,7 +2,7 @@
   @total_users_count = ClientUser.count
   @new_users_count = ClientUser.where('created_at >= ?', 1.week.ago).count
   @returning_users_count = ClientUser.where('sign_in_count > ?', 1).count
-  @total_documents = Document::Base.count
+  @total_documents = TemplateDocument.count + TableDocument.count
 %>
 
 <div class="row clearfix">

@@ -1,0 +1,70 @@
+<%
+  # Display Actions only if required - 
+  # No need to display when called from dashboard
+  display_actions = true if display_actions.nil?
+%>
+<div id="TRANSLATIONS_TABLE" class="table-responsive">
+  <table class="table table-hover table-custom spacing8" id="document_listing_table">
+    <thead>
+      <tr>
+        <th style="width: 5%;">#</th>
+        <th style="width: 25%;">Title</th>
+        <th style="width: 15%;">Input Language</th>
+        <th style="width: 15%;">Output Languages</th>
+        <th style="width: 10%;">Tags</th>
+        <th style="width: 10%;">Status</th>
+        <% if display_actions %>
+          <th style="width: 10%;">Action</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @documents.each_with_index do |document, i| %>
+      <tr id='TRANSLATIONS_ROW_<%= document.id %>'>
+        <td>
+          <span><%= serial_number(i) %></span>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">
+            <% icon = document.class.name == "TableDocument" ? "icon-grid" : "icon-folder" %>
+            <div class="avtar-pic w35 bg-indigo mr-2">
+              <span><i class="<%= icon %>"></i></span>
+            </div>
+            <%= link_to document.title, user_document_path(document, dt: 'template'), title: document.title %>
+          </div>
+        </td>
+        <td><%=  document.display_input_language %></td>
+        <td><%=  document.display_output_languages.join(" | ") %></td>
+        <td class="its-tag">
+          <% document.tags.each do |tag| %>
+            <span><%= tag.name %></span>
+          <% end %>
+        </td>
+        <td>
+          <span class="badge badge-info badge-<%= document.status_ui_class %>"><%=  document.status %></span>
+        </td>
+        
+        <% if display_actions %>
+        <td>
+          <%= link_to edit_user_document_path(document), class: "btn btn-sm btn-default", remote: true do %>
+            <i class="fa fa-edit"></i>
+          <% end %>
+          <%= link_to update_status_user_document_path(document, status: 'active', dt: params[:dt]), class: "btn btn-sm btn-default",  method: :put, remote: true do %>
+            <i class="fa fa-check" style="color1: #6c757d !important;" ></i>
+          <% end %>          
+          <%= link_to update_status_user_document_path(document, status: 'inactive', dt: params[:dt]), class: "btn btn-sm btn-default", method: :put, remote: true do %>
+            <i class="fa fa-ban"></i>
+          <% end %>  
+          <%= link_to user_document_path(document), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
+            <i class="fa fa-trash-o text-danger"></i>
+          <% end %>        
+          <%= link_to update_status_user_document_path(document, status: 'archived', dt: params[:dt]), class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
+            <i class="fa fa-archive"></i>
+          <% end %>
+        </td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

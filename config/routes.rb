@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   end
 
   devise_scope :client_user do
-    # root to:'home#index'
+    
+    # Landing Page will always be Client Login
     root to: "devise/sessions#new"
+    
   end
 
   namespace :user, module: :user do
@@ -19,17 +21,42 @@ Rails.application.routes.draw do
 
     root to: 'home#index'
     
-    # CRUD Documents
-    resources :documents do
+    # Listing All Kinds of Documents
+    resources :documents, only: :index
+
+    # CRUD Template Documents
+    resources :template_documents do
       member do
-        put 'translate', to: 'documents#translate', as: 'translate'
+
+        # Update the status of the document
         put :update_status
-        get 'print', to: 'documents#print', as: 'print'
-        put 'save_and_translate', to: 'documents#save_and_translate', as: 'save_and_translate'
+        
+        # Create or Update the Document and Translate
+        put 'save_and_translate', to: 'template_documents#save_and_translate', as: 'save_and_translate'
+
+        # Print the Document in the PDF format
+        get 'print', to: 'template_documents#print', as: 'print'
+
       end
 
       collection do
-        get 'select_template', to: 'documents#select_template', as: 'select_template'
+        get 'select_template', to: 'template_documents#select_template', as: 'select_template'
+      end
+    end
+
+    # CRUD Table Documents
+    resources :table_documents do
+      member do
+
+        # Update Status of the document
+        put :update_status
+
+        # Save Methods
+        put 'translate_input_phrase', to: 'table_documents#translate_input_phrase', as: 'translate_input_phrase'
+        put 'save_everything', to: 'table_documents#save_everything', as: 'save_everything'
+
+        # Export to Excel
+        get 'export_to_excel', to: 'table_documents#export_to_excel', as: 'export_to_excel'
       end
     end
     
@@ -37,30 +64,38 @@ Rails.application.routes.draw do
       collection do
         patch :update_client_password # /transactions/sum or the sum of all transactions.
      end
-end
+    end
+  
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
 
   namespace :admin, module: :admin do
+
+    # Admin Home
     get '/home', to: 'home#index', as: 'home'
+    
+    # FIXME - not sure why we need this
     root to: 'home#index'
+
     # CRUD Client Users
     resources :client_users
 
     # CRUD Admin Users
     resources :admin_users    
-    resources :admin_users    
 
     # CRUD Translations
     resources :translations
 
-    # CRUD Translations
+    # CRUD Label Templates
     resources :label_templates
+
+    # CRUD Nutrition Fact Templates
+    # resources :nutrition_fact_templates
     
-    # CRUD Translations
+    # Update Admin Profile
     resources :profile
-     patch 'update_password', to: 'profile#update_password'
+    patch 'update_password', to: 'profile#update_password'
   end
   
 end
