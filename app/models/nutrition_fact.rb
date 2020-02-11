@@ -10,7 +10,6 @@ class NutritionFact < ApplicationRecord
   include Itslabel::Status::DocumentStatus
   include Itslabel::Scopes::DocumentScopes
   include Itslabel::Permissions::DocumentPermissions
-  include Itslabel::Validations::DocumentValidations
   include Itslabel::Callbacks::DocumentCallbacks
 
   # Validations

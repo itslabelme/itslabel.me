@@ -13,8 +13,6 @@ module Itslabel::Scopes::TableDocumentScopes
 
     ")}
 
-    # binding.pry
-
     scope :search_only_title, lambda {|title| title.to_s.blank? ? where("") : where("
       LOWER(table_documents.title) LIKE LOWER('%#{title}%')
     ")}
