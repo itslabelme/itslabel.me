@@ -4,13 +4,13 @@ class NutritionFact < ApplicationRecord
   LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH"].freeze
 
   # Set Table Name
-  self.table_name = "documents"
+  self.table_name = "tempalte_documents"
 
   # Includes
   include Itslabel::Status::DocumentStatus
-  include Itslabel::Scopes::DocumentScopes
+  # include Itslabel::Scopes::DocumentScopes
   include Itslabel::Permissions::DocumentPermissions
-  include Itslabel::Callbacks::DocumentCallbacks
+  # include Itslabel::Callbacks::DocumentCallbacks
 
   # Validations
   validates :title, presence: true, length: {maximum: 256}
