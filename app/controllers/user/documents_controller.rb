@@ -30,10 +30,9 @@ module User
 
       # Filter by Favorite
       @relation = @relation.only_favorites if params[:favorite]
-      
-      # @relation = @relation.search_only_title(params[:filters].try(:[], :title))
-      # @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
-      # @relation = @relation.search_only_output_language(params[:filters].try(:[], :output_language))
+      @relation = @relation.search_only_title(params[:filters].try(:[], :title))
+      @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
+      @relation = @relation.search_only_status(params[:filters].try(:[], :status))
     end
 
   end

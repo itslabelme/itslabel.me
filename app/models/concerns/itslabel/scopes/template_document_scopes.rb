@@ -23,7 +23,9 @@ module Itslabel::Scopes::TemplateDocumentScopes
     scope :search_only_input_language, lambda {|input_language| input_language.to_s.blank? ? where("") : where("
       LOWER(template_documents.input_language) LIKE LOWER('%#{input_language}%')
     ")}
-
+     scope :search_only_status, lambda {|status| status.to_s.blank? ? where("") : where("
+      LOWER(template_documents.status) LIKE LOWER('%#{status}%')
+    ")}
     # scope :search_only_output_language, lambda {|output_language| output_language.to_s.blank? ? where("") : where("
     #   LOWER(template_documents.output_language) LIKE LOWER('%#{output_language}%')
     # ")}
