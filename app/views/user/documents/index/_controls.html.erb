@@ -11,46 +11,49 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="filter">Title</label>
-                  <input type="text" class="form-control" name="filters[title]" id="output_phrase">
+                  <input type="text" class="form-control" name="f_title" id="output_phrase" value="<%= params[:f_title] %>">
                 </div>
               </div>
+              
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="filter">Input Language</label>
-                  <select name="filters[input_language]" class="form-control">
-                    <option value="" selected>All Language</option>
-                    <option value="English">English</option>
-                    <option value="Arabic">Arabic</option>
-                    <option value="French">French</option>
+                  <select name="f_ilang" class="form-control">
+                    <option value="" selected>All</option>
+                    <option value="ENGLISH" <%= params[:f_ilang] == "ENGLISH" ? "selected='selected'" : '' %> >English</option>
+                    <option value="ARABIC" <%= params[:f_ilang] == "ARABIC" ? "selected='selected'" : '' %>>Arabic</option>
+                    <option value="FRENCH" <%= params[:f_ilang] == "FRENCH" ? "selected='selected'" : '' %>>French</option>
                   </select>
                 </div>
               </div>
-<!--               <div class="col-md-3">
+
+              <div class="col-md-3">
                 <div class="form-group">
                   <label for="filter">Output Language</label>
-                  <select name="filters[output_language]" class="form-control">
-                    <option value="" selected>All Language</option>
-                    <option value="English">English</option>
-                    <option value="Arabic">Arabic</option>
-                    <option value="French">French</option>
+                  <select name="f_olang" class="form-control">
+                    <option value="" selected>All</option>
+                    <option value="ENGLISH" <%= params[:f_olang] == "ENGLISH" ? "selected='selected'" : '' %> >English</option>
+                    <option value="ARABIC" <%= params[:f_olang] == "ARABIC" ? "selected='selected'" : '' %>>Arabic</option>
+                    <option value="FRENCH" <%= params[:f_olang] == "FRENCH" ? "selected='selected'" : '' %>>French</option>
                   </select>
                 </div>
-              </div> -->
+              </div>
+
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="filter">Status</label>
-                  <select name="filters[status]" class="form-control">
+                  <select name="status" class="form-control">
                     <option value="" selected>All</option>
                     <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="removed">Removed</option>
+                    <option value="removed">Trashed</option>
                     <option value="archived">Archived</option>
                   </select>
                 </div>
               </div>
+              
             </div>
             <div class="its-mright">
-              <button type="submit" class="btn btn-primary">Reset</button>
+              <%= link_to "Clear All Filters", user_documents_path(), class: "btn btn-secondary" %>
               <button type="submit" class="btn btn-primary">Search</button>
             </div>
           </form>

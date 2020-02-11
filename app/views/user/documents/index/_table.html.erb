@@ -9,8 +9,9 @@
       <tr>
         <th style="width: 2%;">#</th>
         <th style="width: 25%;text-align: left;">Title</th>
-        <th style="width: 15%;">Language</th>
-        <th style="width: 10%;">Status</th>
+        <th style="width: 15%;text-align: center;">Language</th>
+        <th style="width: 10%;text-align: center;">Created At</th>
+        <th style="width: 10%;text-align: center;">Status</th>
         <% if display_actions %>
           <th style="width: 10%;text-align: center;">Action</th>
         <% end %>
@@ -31,11 +32,14 @@
             <%= link_to document.title, user_template_document_path(document), title: document.title %>
           </div>
         </td>
-        <td class="its-tag">
+        <td class="its-tag" style="text-align: center;">
           <span><%= document.display_input_language %></span> <span style="border: 0;font-size:16px;vertical-align: middle;text-align: center;"> > </span>
           <span><%= document.display_output_language %></span>
         </td>
-        <td>
+
+        <td style="text-align: center;"> <%= document.created_at.strftime("%d %b %Y - %I:%M %p") %> </td>
+        
+        <td style="text-align: center;">
           <span class="badge badge-info badge-<%= document.status_ui_class %>"><%=  document.status %></span>
         </td>
         
