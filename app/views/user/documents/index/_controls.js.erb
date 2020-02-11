@@ -1,15 +1,14 @@
 function search(){
   var field1 = $("#q").val();
-  // window.location.href ="/admin/translations/?q="+field1
-  window.location.href ="/user/documents?dt=template&q="+field1
+  window.location.href ="/user/documents?&q="+field1
 }
-$(document).ready(function() {
-$("#q").keypress(function(event) {
-    if (event.which == 13) {
-        event.preventDefault();
-       var field1 = $("#q").val();
-       window.location.href ="/user/documents?dt=template&q="+field1
-    }
-});
 
+$(document).ready(function() {
+  $("#q").keypress(function(event) {
+    if (event.which == 13) {
+      event.preventDefault();
+      var field1 = $("#q").val();
+      window.location.href ="/user/documents?&q="+field1
+    }
+  });
 });
