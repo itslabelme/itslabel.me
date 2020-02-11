@@ -1,5 +1,5 @@
 <%
-  @documents = Document::Base.preload(:tags).activated.limit(5).order("created_at DESC").all
+  @documents = TemplateDocument.preload(:template).activated.limit(5).order("created_at DESC").all
 %>
 
 <div class="col-lg-12 col-md-12">

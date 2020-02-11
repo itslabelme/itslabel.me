@@ -1,0 +1,82 @@
+var table_translation_HOT = {};
+
+$(document).ready(function() {
+  // Initializing the Translation Data
+  table_translation_HOT.data =[
+    <% @documents.each do |document| %>
+      {
+        "input_language": " <%= document.input_language -%>",
+        "out_put_1_language": "<%= document.output_1_language -%>",
+        "out_put_2_language": "<%= document.output_2_language -%>",
+        "out_put_3_language": "<%= document.output_3_language -%>",
+      },
+    <% end %>
+  ];
+
+  if(table_translation_HOT.data.length == 0 ){
+    $("#TABLE_TRANSLATION_HOT").hide();
+    $(".no-data-table").show();
+  }else{
+
+    // Initializing the HandsonTable
+    table_translation_HOT.domTable = document.getElementById("TABLE_TRANSLATION_HOT");
+    table_translation_HOT.table = new Handsontable(table_translation_HOT.domTable,{
+      data: table_translation_HOT.data,
+
+      search: {
+        searchResultClass: 'customClass'
+      },
+      height: 500,
+      columns: [
+
+        {type: 'text', width: 150, renderer: 'html', readOnly: false, data:'input_language', className: "htCenter htMiddle"},
+        {type: 'text', width: 150, renderer: 'html', readOnly: true, data:'out_put_1_language', className: "htCenter htMiddle"},
+        {type: 'text', width: 180, renderer: 'html', readOnly: true, data:'out_put_2_language', className: "htCenter htMiddle"},
+        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'out_put_3_language', className: "htCenter htMiddle"},
+        
+      ],
+      colHeaders: [
+        <%# @documents.each do |document| %>
+          <%#= document %>
+        'Title', 'Input Language', 'Out Put Language 1', 'Out Put Language 2', 'Out Put Language 3'
+        <%# end %>
+      ],
+      // hiddenColumns: {
+      //   // columns: [5],
+      //   indicators: true
+      // },
+      
+      fixedColumnsLeft: 1,
+      // fixedColumnsRight: 4,
+      autoWrapRow: true,
+      rowHeaders: true,
+      manualRowMove: true,
+      manualColumnMove: false,
+      contextMenu: false,
+      filters: true,
+      searching: true,
+      dropdownMenu: false,
+      stretchH: 'all',
+      autoWrapRow: true,
+      rowHeights: 50,
+
+      // currentRowClassName: 'currentRow',
+      // currentColClassName: 'currentCol',
+      // fixedRowsBottom: 1,
+      // dropdownMenu: true, // header dropdown Menu
+      exportFile: true,  // Export to CSV
+      licenseKey: 'non-commercial-and-evaluation', // license key
+      
+
+    });
+
+
+
+
+
+
+
+
+  }
+  
+});

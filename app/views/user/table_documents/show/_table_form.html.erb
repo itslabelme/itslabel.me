@@ -1,0 +1,104 @@
+<%= form_tag(save_table_user_document_path(@document), 
+              method: :put, class: "form-floating",
+              id: "DOCUMENT_TRANSLATE_FORM", remote: true,
+              html: { autocomplete: "off" }) do |f| %>
+
+<%= hidden_field_tag "dt", 'template' %>
+
+<!-- To identify document type -->
+<% template_id = params[:template_id] || @document.template_id %>
+<%= hidden_field_tag "template_id", template_id %>
+
+
+<div class="row clearfix its-upload-container">
+  <div class="col-lg-12 col-md-12">
+    <div class="card">
+      <div class="body" style="background: #f9fdf9;border: 1px solid gainsboro;">
+        <div class="mt-2">
+
+          <div class="row its-language-switcer mb-2">
+
+            <div class="col-md-12">
+              <div class="mb-4 text-center">
+                <h3>Table Translation</h3>
+                <p>Edit the text in the col 1 and Cick on <span class='badge badge-info'>Save</span> button below to Translate and Save. </p>
+              </div>
+              <div class="form-group" style="text-align:center;">
+                <button class="btn btn-primary btn-lg mt-1 mb-1" type="submit"><i class='fa fa-save mr-2'></i>SAVE</button>
+                <%= link_to '#', class: "btn btn-secondary btn-lg mt-1 mb-1", target: "_blank", onclick: 'print()' do %>
+                  <i class='fa fa-print mr-2'></i>PRINT
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="row">
+                <h4 class="col-md-6">Input Language</h4>
+                <div class="col-md-6">
+                  <select class="form-control form-control-xs selectpicker1" name="document[input_language]" data-size="7" data-live-search="true" data-title="Location" id="INPUT_LANGUAGE" data-width="100%">
+                    <option value="ENGLISH" <%= @input_language == "ENGLISH" ? "selected" : "" %> >English</option>
+                    <option value="ARABIC" <%= @input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+                    <option value="FRENCH" <%= @input_language == "FRENCH" ? "selected" : "" %> >French</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label>Output Languages</label>
+              <br>
+              <label class="fancy-checkbox">
+                <input type="checkbox" name="english" data-parsley-multiple="checkbox">
+                <span>English</span>
+              </label>
+              <label class="fancy-checkbox">
+                <input type="checkbox" name="arabic" required="" data-parsley-errors-container="#error-checkbox" data-parsley-multiple="checkbox">
+                <span>Arabic</span>
+              </label>
+              <label class="fancy-checkbox">
+                <input type="checkbox" name="french" data-parsley-multiple="checkbox">
+                <span>French</span>
+              </label>
+              <p id="error-checkbox"></p>
+            </div>
+
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-6">
+                  <select class="form-control form-control-xs selectpicker1" name="document[output_1_language]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
+                    <option value="ENGLISH" <%= @output_language == "ENGLISH" ? "selected" : "" %> >English</option>
+                    <option value="ARABIC" <%= @output_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+                    <option value="FRENCH" <%= @output_language == "FRENCH" ? "selected" : "" %> >French</option>
+                  </select>
+                </div>
+                <h4 class="col-md-6" style="text-align: right;">Output Language</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="row pb-4">
+            <!-- Base HOT Holder Div -->
+            <div id="TABLE_TRANSLATION_HOT" style="width: 100%"></div>
+          </div>
+
+          <!-- Display Tags -->
+          <div class="card">
+            <div class="header"><h2>Tags:</h2></div>
+            <div class="body" style="padding:4px 0px 0px 0px;">
+              <div class="input-group demo-tagsinput-area remove-border">
+                <input type="text" class="form-control" data-role="tagsinput" value="<%= @document.tags.pluck(:name).join(",") %>">
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+<%= content_for :javascript_footer do %>
+  <%= render :partial=>"user/documents/form/table_based_form.js.erb" %>
+<% end %>

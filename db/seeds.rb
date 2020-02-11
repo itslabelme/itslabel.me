@@ -94,14 +94,14 @@ Translation.create([
 
 ])
 
-puts "Adding Tags".green
-Tag.create([
-  {name: "Gulf Food"},
-  {name: "Colman Mustard"},
-  {name: "Marmite (2020)"},
-  {name: "Marmite (2019)"},
-  {name: "Marmite (2018)"}
-])
+# puts "Adding Tags".green
+# Tag.create([
+#   {name: "Gulf Food"},
+#   {name: "Colman Mustard"},
+#   {name: "Marmite (2020)"},
+#   {name: "Marmite (2019)"},
+#   {name: "Marmite (2018)"}
+# ])
 
 puts "Adding Templates".green
 LabelTemplate.create([
@@ -151,11 +151,20 @@ LabelTemplate.create([
 template = LabelTemplate.first
 
 puts "Adding Documents".green
-Document::TemplateBased.create([
-  {title: "Sample Document 1", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 2", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 3", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 4", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 5", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
-  {title: "Sample Document 6", description: "Some Description", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", template: template, user: client_user},
+TemplateDocument.create([
+  {title: "Template Document 1", input_language: "ENGLISH", output_language: "ARABIC", template: template, user: client_user},
+  {title: "Template Document 2", input_language: "ENGLISH", output_language: "FRENCH", template: template, user: client_user},
+  {title: "Template Document 3", input_language: "ENGLISH", output_language: "ARABIC", template: template, user: client_user},
+  {title: "Template Document 4", input_language: "FRENCH", output_language: "ENGLISH", template: template, user: client_user},
+  {title: "Template Document 5", input_language: "FRENCH", output_language: "ARABIC", template: template, user: client_user},
+  {title: "Template Document 6", input_language: "ARABIC", output_language: "ENGLISH", template: template, user: client_user},
+])
+
+TableDocument.create([
+  {title: "Table Document 1", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", user: client_user},
+  {title: "Table Document 2", input_language: "ARABIC", output_1_language: "ENGLISH", output_2_language: "FRENCH", user: client_user},
+  {title: "Table Document 3", input_language: "FRENCH", output_1_language: "ARABIC", output_2_language: "ENGLISH", user: client_user},
+  {title: "Table Document 4", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", user: client_user},
+  {title: "Table Document 5", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", user: client_user},
+  {title: "Table Document 6", input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "FRENCH", user: client_user},
 ])

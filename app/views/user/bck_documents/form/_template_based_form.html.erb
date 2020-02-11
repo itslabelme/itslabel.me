@@ -1,0 +1,105 @@
+<%
+  if @document.new_record?
+    form_method = :post
+    form_url = user_tempate_documents_path
+  else
+    form_method = :put
+    form_url = user_tempate_document_path(@document)
+  end
+%>
+
+<%= form_with(url: form_url,  class: "form-floating", 
+              model: @document, method: form_method, 
+              id: "DOCUMENT_FORM", html: { autocomplete: "off" }) do |f| %>
+
+  <!-- To identify document type -->
+  <% template_id = params[:template_id] || @document.template_id %>
+  <%= hidden_field_tag "document_template_based[template_id]", template_id %>
+  <%= hidden_field_tag "called_from", params[:called_from] %>
+  <%= hidden_field_tag "dt", params[:dt] %>
+
+  <!-- Error Messages -->
+  <div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <!-- Show Success / Error / Info Messages If any set by the controller action -->
+      <%= flash_message(false) if defined?(flash) -%>
+
+      <!-- Display Errors if Any
+      <%# if @document.errors.any? %>
+      <div id="DOCUMENT_NEW_FORM_ERRORS">
+        <%#= notify_form_errors(@document) %>
+      </div>
+      <%# end %>
+       -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <% error_class = @document.errors[:title].any? ? 'parsley-error' : '' %>
+      <%= f.text_field :title, class: "form-control #{error_class}", placeholder: 'Title' %>
+      <%= display_parsley_error(@document, :title) %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <% error_class = @document.errors[:input_language].any? ? 'parsley-error' : '' %>
+      <div class="input-group mb-3">
+        <select class="form-control <%= error_class %> show-tick" name='document_template_based[input_language]'>
+          <option>Select Input Language</option>
+          <option value='ENGLISH' <%= @document.input_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
+          <option value='ARABIC' <%= @document.input_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
+          <option value='FRENCH' <%= @document.input_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
+        </select>
+      </div>
+      <%= display_parsley_error(@document, :input_language) %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <% error_class = @document.errors[:output_1_language].any? ? 'parsley-error' : '' %>
+      <div class="input-group mb-3">
+        <select class="form-control <%= error_class %> show-tick" name='document_template_based[output_1_language]'>
+          <option>Select Out Put Language 1 </option>
+          <option value='ENGLISH' <%= @document.output_1_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
+          <option value='ARABIC' <%= @document.output_1_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
+          <option value='FRENCH' <%= @document.output_1_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
+        </select>
+      </div>
+      <%= display_parsley_error(@document, :output_1_language) %>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <%= f.text_area :input_html_source, id: "input_tinymce", class: "tinymce-editor" %>
+    </div>
+    <div class="col-md-6"  >
+      <div class="body" style="height:400px;">
+        <iframe frameborder="0" id="iframe">
+        </iframe>
+      </div>
+       <%#= f.text_area :output_html_source, id: "output_tinymce", class: "tinymce-editor" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <% tags_text = @document.tags.pluck(:name).join(", ") %>
+    <div class="col-lg-12 mt-4">
+      <div class="card">
+        <!-- <div class="header"><h2>Tags:</h2></div> -->
+        <div class="body p-10">
+          <div class="input-group demo-tagsinput-area remove-border">
+            <input type="text" name="tags" class="form-control" data-role="tagsinput" placeholder="Tags" value="<%= tags_text %>">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-12">
+      <button class="btn btn-primary float-right mt-4" type="submit" >Save</button>
+    </div>
+  </div>
+<% end %>
+
+<%= content_for :javascript_footer do %>
+  <%= render :partial=>"user/documents/form/template_based_form.js.erb" %>
+<% end %>

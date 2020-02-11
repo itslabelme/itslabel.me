@@ -1,9 +1,9 @@
 <%
   @total_registrations = ClientUser.count
   @registrations = ClientUser.order("created_at DESC").limit(5)
-  @total_documents = Document::Base.count
-  @total_tags = Tag.count
+  @total_documents = TemplateDocument.count + TableDocument.count
   @total_translations = Translation.count
+  @total_label_templates = LabelTemplate.count
   @new_users_count = ClientUser.where('created_at >= ?', 1.week.ago).count
   @returning_users_count = ClientUser.where('sign_in_count > ?', 1).count
 %>
@@ -67,8 +67,8 @@
           <div class="d-flex align-items-center">
             <div class="icon-in-bg bg-pink text-white rounded-circle"><i class="icon-tag"></i></div>
             <div class="ml-4">
-              <span>Tags</span>
-              <h4 class="mb-0 font-weight-medium"><%= @total_tags %></h4>
+              <span>Label Templates</span>
+              <h4 class="mb-0 font-weight-medium"><%= @total_label_templates %></h4>
             </div>
           </div>
         </div>

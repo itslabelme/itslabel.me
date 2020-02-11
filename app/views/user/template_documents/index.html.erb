@@ -1,0 +1,29 @@
+<div class="container-fluid">
+
+  <!-- Header -->
+  <%= render partial: 'user/documents/index/header' %>
+
+  <div class="row clearfix">
+    <div class="col-lg-12">
+      
+      <div class="card">
+        <!-- Table -->
+        <div class="tab-pane active show" id="TRANSLATIONS_LIST">
+
+            <!-- Controls -->
+          <%= render partial: 'user/documents/index/controls' %>
+            
+          <%= render partial: 'user/documents/index/table' %>
+        </div>
+        <% if @documents.present? %>
+          <%= paginate @documents %>
+        <% end  %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%#= content_for :javascript_footer do %>
+  <%#= render :partial=>"user/documents/index/table.js.erb"  %>
+<%# end %>
