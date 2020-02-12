@@ -49,7 +49,7 @@
             <i class="fa fa-edit"></i>
           <% end %>
           
-          <%= link_to update_status_user_template_document_path(document, status: 'active', dt: params[:dt]), class: "btn btn-sm btn-default",  method: :put, remote: true do %>
+          <%= link_to update_status_user_document_path(document, status: 'active', dt: params[:dt]), class: "btn btn-sm btn-default",  method: :put, remote: true do %>
             <i class="fa fa-check" style="color: #6c757d !important;" ></i>
           <% end if document.can_active? %>
           
@@ -57,7 +57,7 @@
             <i class="fa fa-trash-o text-danger"></i>
           <% end if document.can_remove? %> 
 
-          <%= link_to update_status_user_template_document_path(document, status: 'archived', dt: params[:dt]), class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
+          <%= link_to update_status_user_document_path(document, status: 'archived', dt: params[:dt]), class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
             <i class="fa fa-archive"></i>
           <% end if document.can_archive? %>
         </td>

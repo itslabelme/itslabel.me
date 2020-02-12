@@ -5,11 +5,10 @@ module User
     before_action :get_document, except: [:new, :create, :index, :select_template]
 
     def index
-      @page_title = "Template Documents"
+      @page_title = "Documents (Template Mode)"
       @nav = 'user/template_documents'
 
       get_collection
-      new_document
     end
 
     def show
@@ -20,6 +19,10 @@ module User
 
       # Redirect to show Page - only if you are on new page
       @redirect_to_show_page = false
+    end
+
+    def preview
+      render layout: 'iframe_preview'
     end
 
     def select_template
@@ -141,7 +144,7 @@ module User
       @document = TemplateDocument.new(input_language: "ENGLISH", output_language: "ARABIC", output_language: "ARABIC")
       
       # Set Default Title
-      @document.title = "New Document - #{Time.now.to_i}" unless @document.title
+      @document.title = "New Template Document - #{Time.now.to_i}" unless @document.title
 
       # Set Template
       if @template

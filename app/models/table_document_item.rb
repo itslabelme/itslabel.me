@@ -6,6 +6,8 @@ class TableDocumentItem < ApplicationRecord
   # Set Table Name
   self.table_name = "table_document_items"
 
+  attr_accessor :temporary_key
+
   # Validations
   validates :input_phrase, presence: true, length: {maximum: 256}, allow_blank: false
   validates :input_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
@@ -26,7 +28,7 @@ class TableDocumentItem < ApplicationRecord
   validates :output_5_language, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }, allow_blank: true
 
   # Associations
-  belongs_to :document, class_name: "TableDocument"
+  belongs_to :table_document, class_name: "TableDocument"
   belongs_to :output_1_translation, class_name: "Translation", optional: true
   belongs_to :output_2_translation, class_name: "Translation", optional: true
   belongs_to :output_3_translation, class_name: "Translation", optional: true
@@ -49,11 +51,12 @@ class TableDocumentItem < ApplicationRecord
   end
 
   def translate_phrases
-    self.output_1_language = self.document.output_1_language
-    self.output_2_language = self.document.output_2_language
-    self.output_3_language = self.document.output_3_language
-    self.output_4_language = self.document.output_4_language
-    self.output_5_language = self.document.output_5_language
+    return if self.translated
+    self.output_1_language = self.table_document.output_1_language
+    self.output_2_language = self.table_document.output_2_language
+    self.output_3_language = self.table_document.output_3_language
+    self.output_4_language = self.table_document.output_4_language
+    self.output_5_language = self.table_document.output_5_language
 
     self.output_1_phrase = Translation.translate(self.input_phrase, output_language: self.output_1_language) if self.output_1_language && self.output_1_phrase.blank?
     self.output_2_phrase = Translation.translate(self.input_phrase, output_language: self.output_2_language) if self.output_2_language && self.output_2_phrase.blank?

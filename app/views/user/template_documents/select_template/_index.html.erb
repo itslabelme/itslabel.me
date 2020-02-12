@@ -7,18 +7,19 @@
                 <ul class="pricing body">
                     <li class="plan-img">
                       <%#= image_tag("demo/template_preview_2.png", class: "img-fluid", alt: template.display_name) %>
-                        <% if template.picture.attached? %>
-                         <%= image_tag(template.picture,class: "img-fluid") %>
-                        <%else%>
-                        <%= image_tag("label-Template.jpg", class: "img-fluid", alt: template.display_name) %>
-                        <%end%>
-                      
-                     
+                      <% if template.picture.attached? %>
+                       <%= image_tag(template.picture,class: "img-fluid") %>
+                      <%else%>
+                      <%= image_tag("label-Template.jpg", class: "img-fluid", alt: template.display_name) %>
+                      <%end%>
                     </li>
-                    <li><%= template.display_name %></li>
-                    <li><%= template.description %></li>
+                    <li><%= template.name %></li>
+                    <% unless template.to_s.strip.blank? %>
+                    <li><span class="template-style"><%= template.style %></span></li>
+                    <% end %>
+                    <!-- <li><%#= template.description %></li> -->
                     <li class="plan-btn">
-                      <%= link_to content_tag(:span, "Select"), new_user_template_document_path(template_id: template.id), class: "btn-primary" %></li>
+                      <%= link_to content_tag(:span, "Select"), new_user_template_document_path(dt: 'template', template_id: template.id), class: "btn-primary" %></li>
                     </li>
                 </ul>
                   <!-- Latest template has ribbon with text 'new' -->
@@ -30,6 +31,14 @@
     </div>
   <% end %>
 </div>
+
+<style type="text/css">
+  .template-style {
+    border: 1px solid #c1c1c1;
+    background-color: aliceblue;
+    padding: 5px;
+  }
+</style>
 
 
 

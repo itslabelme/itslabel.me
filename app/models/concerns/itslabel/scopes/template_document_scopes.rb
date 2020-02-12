@@ -24,6 +24,14 @@ module Itslabel::Scopes::TemplateDocumentScopes
       LOWER(template_documents.output_language) LIKE LOWER('%#{lang}%')
     ")}
 
+     scope :search_only_status, lambda {|status| status.to_s.blank? ? where("") : where("
+      LOWER(template_documents.status) LIKE LOWER('%#{status}%')
+    ")}
+    # scope :search_only_output_language, lambda {|output_language| output_language.to_s.blank? ? where("") : where("
+    #   LOWER(template_documents.output_language) LIKE LOWER('%#{output_language}%')
+    # ")}
+
+
     scope :only_favorites, lambda { where(:favorite, true) }
     scope :not_favorites, lambda { where(:favorite, false) }
 

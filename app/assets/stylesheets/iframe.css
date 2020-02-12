@@ -1,5 +1,7 @@
 body{
 	font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  line-height: 1.5;
 }
 
 .iframe-table{
@@ -8,12 +10,12 @@ body{
 }
 
 .iframe-table tr th {
-    background: none !important;
-    color: #000;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 0px;
-    padding-bottom: 15px;
+  background: none !important;
+  color: #000;
+  font-weight: bold;
+  font-size: 32px;
+  padding: 0px;
+  padding-bottom: 15px;
 }
 
 .iframe-table img{
@@ -22,7 +24,7 @@ body{
 
 .iframe-table span{
 	width: 60%;
-    display: inline-block;
+  display: inline-block;
 }
 
 .iframe-vertical-table{

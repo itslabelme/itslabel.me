@@ -29,6 +29,11 @@ module User
 
       # Filter by Favorite
       @relation = @relation.only_favorites if params[:favorite]
+
+      @relation = @relation.search_only_title(params[:filters].try(:[], :title))
+      @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
+      @relation = @relation.search_only_status(params[:filters].try(:[], :status))
+
       
       f_title = params[:f_title]
       @relation = @relation.search_only_title(f_title) if f_title
@@ -45,6 +50,7 @@ module User
       # Set Default Order
       @order_by = "created_at DESC" unless @order_by
       
+
     end
 
   end
