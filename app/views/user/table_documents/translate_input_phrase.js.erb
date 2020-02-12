@@ -1,0 +1,103 @@
+<% if @item.errors.blank? %>
+
+<%
+  # if @item.budget_balance < 0 
+  #   button_style = "background-color:orange"
+  # elsif @item.unit > 0.0
+  #   button_style = "background-color:#ffc107"
+  # else
+  #   button_style = "background-color:gray"
+  # end
+
+  # if @item.revenue_balance < 0 
+  #   button_style = "background-color:darkred"
+  # elsif @item.unit > 0.0
+  #   button_style = "background-color:#ffc107"
+  # else
+  #   button_style = "background-color:gray"
+  # end
+
+  # desc_text = display_sanitized_text(@item.long_description, remove_newline: true, remove_tab: true)
+  # if @costing_version.data_entry?
+  #   if desc_text.blank?
+  #     desc_text += "<button class='btn btn-outline-secondary btn-small-size show_details ml-2' data-id='#{@item.id}' data-nav='long_description'>Add Description<span class='fa fa-plus ml-1'></span></button>"
+  #   else
+  #     desc_text += "<button class='btn btn-outline-secondary btn-small-size show_details ml-2' data-id='#{@item.id}' data-nav='long_description'><span class='fa fa-pencil'></span></button>"
+  #   end
+  # end
+
+
+  # notes_text = display_sanitized_text(@item.notes, remove_newline: true, remove_tab: true)
+  # if @costing_version.data_entry?
+  #   if notes_text.blank?
+  #     notes_text += "<button class='btn btn-outline-secondary btn-small-size show_details ml-2' data-id='#{@item.id}' data-nav='notes'>Add Notes<span class='fa fa-plus ml-1'></span></button>"
+  #   else
+  #     notes_text += "<button class='btn btn-outline-secondary btn-small-size show_details ml-2' data-id='#{@item.id}' data-nav='notes'><span class='fa fa-pencil'></span></button>"
+  #   end
+  # end
+
+  # short_description = @item.short_description.blank? ? @item.service.try(:short_description) : @item.short_description
+
+  # action_buttons = content_tag(:span) do
+  #   content_tag(:button, class: "btn btn-small-size text-white show_details mr-2", 
+  #                       style: button_style, 
+  #                       "data-id": @item.id, 
+  #                       "data-nav": "general" ) do
+  #     content_tag(:span, "", class: "fa fa-cog")
+  #   end + 
+  #   content_tag(:button, class: "btn btn-small-size text-white matched_costs", 
+  #                         style: button_style, 
+  #                         "data-id": @item.id ) do
+  #     content_tag(:span, "", class: "fa fa-dollar")
+  #   end
+  # end
+-%>
+
+<% key = @item.id || @item.temporary_key %>
+
+translationHOT.data[<%= params[:hot_row] %>]["item_id"] = "<%= key -%>";
+translationHOT.data[<%= params[:hot_row] %>]["document_id"] = "<%= @item.table_document_id %>";
+
+translationHOT.data[<%= params[:hot_row] %>]["input_phrase"] = "<%= @item.input_phrase %>";
+
+translationHOT.data[<%= params[:hot_row] %>]["output_1_phrase"] = "<%= @item.output_1_phrase %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_2_phrase"] = "<%= @item.output_2_phrase %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_3_phrase"] = "<%= @item.output_3_phrase %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_4_phrase"] = "<%= @item.output_4_phrase %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_5_phrase"] = "<%= @item.output_5_phrase %>";
+
+translationHOT.data[<%= params[:hot_row] %>]["input_language"] = "<%= @item.input_language %>";
+
+translationHOT.data[<%= params[:hot_row] %>]["output_1_language"] = "<%= @item.output_1_language %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_2_language"] = "<%= @item.output_2_language %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_3_language"] = "<%= @item.output_3_language %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_4_language"] = "<%= @item.output_4_language %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_5_language"] = "<%= @item.output_5_language %>";
+
+translationHOT.data[<%= params[:hot_row] %>]["translated"] = "<%= @item.translated ? 1 : 0 -%>";
+
+translationHOT.data[<%= params[:hot_row] %>]["output_1_translation_id"] = "<%= @item.output_1_translation_id %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_2_translation_id"] = "<%= @item.output_2_translation_id %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_3_translation_id"] = "<%= @item.output_3_translation_id %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_4_translation_id"] = "<%= @item.output_4_translation_id %>";
+translationHOT.data[<%= params[:hot_row] %>]["output_5_translation_id"] = "<%= @item.output_5_translation_id %>";
+
+translationHOT.table.loadData(translationHOT.data);
+
+// Coloring the Cell
+var colNumber = translationHOT.table.propToCol("<%= params[:column_name] %>");
+var cell = translationHOT.instance.getCell("<%= params[:hot_row] %>", colNumber);
+if(cell != undefined) {
+  cell.style.color = '#124a1f';
+  cell.style.background = '#ccffd8';
+}
+
+// Showing Growl Like Message
+// notifySuccess("Saved!", "The data was successfully saved!");
+
+<% else %>
+
+// Showing Growl Like Message
+notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+<% end %>

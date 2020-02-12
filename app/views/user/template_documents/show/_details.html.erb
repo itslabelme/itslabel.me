@@ -3,8 +3,6 @@
               id: "DOCUMENT_TRANSLATE_FORM", remote: true,
               html: { autocomplete: "off" }) do |f| %>
 
-<%= hidden_field_tag "dt", 'template' %>
-
 <!-- To identify document type -->
 <% template_id = params[:template_id] || @document.template_id %>
 <%= hidden_field_tag "template_id", template_id %>
@@ -65,9 +63,11 @@
               </textarea>
             </div>
             <div class="col-md-6">
-              <div class="body" style="height:500px;">
-                <iframe id="DOC_PREVIEW" frameborder="0" scrolling="no" onload1="resizeIframe(this)">
-                </iframe>
+              <div class="holder" style="height:500px;">
+                <div class="body" style="border:10px solid #e5f3e5;border-top:80px solid #e5f3e5; height:100%;">
+                  <iframe id="DOC_PREVIEW" frameborder="0" scrolling="yes" src="<%= preview_user_template_document_path(@document) %>">
+                  </iframe>
+                </div>
               </div>
             </div>
           </div>

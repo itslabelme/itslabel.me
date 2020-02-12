@@ -1,0 +1,209 @@
+var translationHOT = {};
+
+$(document).ready(function() {
+
+  // Initializing the Translation Data
+  translationHOT.data =[
+  <% @document_items.each do |item| %>
+    <% key = item.id || item.temporary_key %>
+    {
+      "item_id": "<%= key -%>",
+      "document_id": "<%= item.table_document_id -%>",
+      "input_phrase": "<%= item.input_phrase -%>",
+      
+      "output_1_phrase": "<%= item.output_1_phrase -%>",
+      "output_2_phrase": "<%= item.output_2_phrase -%>",
+      "output_3_phrase": "<%= item.output_3_phrase -%>",
+      "output_4_phrase": "<%= item.output_4_phrase -%>",
+      "output_5_phrase": "<%= item.output_5_phrase -%>",
+
+      "input_language": "<%= item.input_language -%>",
+
+      "output_1_language": "<%= item.output_1_language -%>",
+      "output_2_language": "<%= item.output_2_language -%>",
+      "output_3_language": "<%= item.output_3_language -%>",
+      "output_4_language": "<%= item.output_4_language -%>",
+      "output_5_language": "<%= item.output_5_language -%>",
+
+      "translated": "<%= item.translated ? 1 : 0 -%>",
+
+      "output_1_translation_id": "<%= item.output_1_translation_id -%>",
+      "output_2_translation_id": "<%= item.output_2_translation_id -%>",
+      "output_3_translation_id": "<%= item.output_3_translation_id -%>",
+      "output_4_translation_id": "<%= item.output_4_translation_id -%>",
+      "output_5_translation_id": "<%= item.output_5_translation_id -%>"
+    },
+  <% end %>
+  ];
+
+  if(translationHOT.data.length == 0 ){
+    $("#TRANSLATION_HOT").hide();
+    $(".no-data-table").show();
+  }else{
+
+    // Initializing the HandsonTable
+    translationHOT.domTable = document.getElementById("TRANSLATION_HOT");
+    translationHOT.table = new Handsontable(translationHOT.domTable,{
+      data: translationHOT.data,
+
+      search: {
+        searchResultClass: 'highlight'
+      },
+
+      height: 500,
+      columns: [
+
+        {type: 'text', width: 150, renderer: 'html', readOnly: false, data:'input_phrase', className: "<%= @document.output_1_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+
+        <% if @document.input_language != @document.output_1_language && !@document.output_1_language.blank? %>
+        {type: 'text', width: 150, renderer: 'html', readOnly: true, data:'output_1_phrase', className: "<%= @document.output_1_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        <% end %>
+
+        <% if @document.input_language != @document.output_2_language && !@document.output_2_language.blank? %>
+        {type: 'text', width: 180, renderer: 'html', readOnly: true, data:'output_2_phrase', className: "<%= @document.output_2_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        <% end %>
+
+        <% if @document.input_language != @document.output_3_language && !@document.output_3_language.blank? %>
+        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'output_3_phrase', className: "<%= @document.output_3_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        <% end %>
+
+        <% if @document.input_language != @document.output_4_language && !@document.output_4_language.blank? %>
+        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'output_4_phrase', className: "<%= @document.output_4_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        <% end %>
+
+        <% if @document.input_language != @document.output_5_language && !@document.output_5_language.blank? %>
+        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'output_5_phrase', className: "<%= @document.output_5_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        <% end %>
+        
+      ],
+      colHeaders: [
+        '<%= @document.input_language %>', 
+
+        <% if @document.input_language != @document.output_1_language && !@document.output_1_language.blank? %>
+        '<%= @document.output_1_language %>', 
+        <% end %>
+        
+        <% if @document.input_language != @document.output_2_language && !@document.output_2_language.blank? %>
+        '<%= @document.output_2_language %>', 
+        <% end %>
+
+        <% if @document.input_language != @document.output_3_language && !@document.output_3_language.blank? %>
+        '<%= @document.output_3_language %>', 
+        <% end %>
+
+        <% if @document.input_language != @document.output_4_language && !@document.output_4_language.blank? %>
+        '<%= @document.output_4_language %>', 
+        <% end %>
+
+        <% if @document.input_language != @document.output_5_language && !@document.output_5_language.blank? %>
+        '<%= @document.output_5_language %>', 
+        <% end %>
+      ],
+
+      // hiddenColumns: {
+      //   // columns: [5],
+      //   indicators: true
+      // },
+      
+      fixedColumnsLeft: 1,
+      // fixedColumnsRight: 4,
+      autoWrapRow: true,
+      rowHeaders: true,
+      manualRowMove: true,
+      manualColumnMove: false,
+      contextMenu: false,
+      filters: true,
+      searching: true,
+      dropdownMenu: false,
+      stretchH: 'all',
+      autoWrapRow: true,
+      rowHeights: 30,
+
+      // currentRowClassName: 'currentRow',
+      // currentColClassName: 'currentCol',
+      // fixedRowsBottom: 1,
+      // dropdownMenu: true, // header dropdown Menu
+      exportFile: true,  // Export to CSV
+      licenseKey: '46437-f3524-dcc94-04c1a-ae440', // license key
+
+      afterChange: function (changes, source) {
+
+        // Ignore the changes happening at the time of loading the table
+        if (source === 'loadData') {
+          return;
+        }
+
+        // Ignore if there are no changes
+        if (!changes) {
+          return;
+        }
+        translationHOT.instance = translationHOT.table.getInstance();
+        $.each(changes, function (index, element) {
+          var change = element;
+          var rowIndex = change[0];
+          var columnIndex = change[1];
+          var oldValue = change[2];
+          var newValue = change[3];
+
+          // Ignore if there are no changes
+          if ((newValue === oldValue) || (oldValue == undefined && newValue == '')) {
+            return true;
+          }
+
+          // Ignore if there are no changes for columns between 2 and 8 (all others are readonly)
+          if (rowIndex == (translationHOT.table.countRows())) {
+            return true;
+          }
+
+          // Ignore if there are no changes for columns between 2 and 8 (all others are readonly)
+          if (!["input_phrase"].includes(columnIndex)) {
+            return true;
+          }
+
+          ajaxData = { item_id: translationHOT.data[rowIndex]["item_id"], 
+                        new_value: newValue, 
+                        column_name: columnIndex, 
+                        hot_row: rowIndex,
+                        document_id: "<%= @document.id %>",
+                        input_language: "<%= @input_language %>",
+                        output_1_language: "<%= @output_1_language %>",
+                        output_2_language: "<%= @output_2_language %>",
+                        output_3_language: "<%= @output_3_language %>",
+                        output_4_language: "<%= @output_4_language %>",
+                        output_5_language: "<%= @output_5_language %>"
+                     }
+          $.ajax({
+            url: "/user/table_documents/translate_input_phrase.js",
+            type: 'PUT',
+            data: ajaxData,
+          });
+        });
+      },
+
+    });
+
+  }
+  
+});
+
+function saveEverything() {
+  ajaxData = {
+    items: translationHOT.data,
+    id: "<%= @document.id %>",
+    document: {
+      id: "<%= @document.id %>",
+      title: "<%= @document.title %>",
+      input_language: "<%= @document.input_language %>",
+      output_1_language: "<%= @document.output_1_language %>",
+      output_2_language: "<%= @document.output_2_language %>",
+      output_3_language: "<%= @document.output_3_language %>",
+      output_4_language: "<%= @document.output_4_language %>",
+      output_5_language: "<%= @document.output_5_language %>"
+    }
+  } 
+  $.ajax({
+    url: "/user/table_documents/save_everything.js",
+    type: 'PUT',
+    data: ajaxData,
+  });
+}

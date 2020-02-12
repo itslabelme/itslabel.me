@@ -22,17 +22,21 @@ Rails.application.routes.draw do
     root to: 'home#index'
     
     # Listing All Kinds of Documents
-    resources :documents, only: :index
+    resources :documents, only: :index do
+      # Update the status of the document
+      member do
+        put :update_status
+      end
+    end
 
     # CRUD Template Documents
     resources :template_documents do
       member do
 
-        # Update the status of the document
-        put :update_status
-        
         # Create or Update the Document and Translate
         put 'save_and_translate', to: 'template_documents#save_and_translate', as: 'save_and_translate'
+
+        get 'preview', to: 'template_documents#preview', as: 'preview'
 
         # Print the Document in the PDF format
         get 'print', to: 'template_documents#print', as: 'print'
@@ -46,15 +50,14 @@ Rails.application.routes.draw do
 
     # CRUD Table Documents
     resources :table_documents do
-      member do
-
-        # Update Status of the document
-        put :update_status
-
+      
+      collection do
         # Save Methods
-        put 'translate_input_phrase', to: 'table_documents#translate_input_phrase', as: 'translate_input_phrase'
         put 'save_everything', to: 'table_documents#save_everything', as: 'save_everything'
+        put 'translate_input_phrase', to: 'table_documents#translate_input_phrase', as: 'translate_input_phrase'
+      end
 
+      member do
         # Export to Excel
         get 'export_to_excel', to: 'table_documents#export_to_excel', as: 'export_to_excel'
       end

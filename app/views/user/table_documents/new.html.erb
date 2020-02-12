@@ -1,31 +1,26 @@
 <div class="container-fluid">
 
   <!-- Display Header -->
-  <%= render partial: 'user/documents/show/header' %>
+  <%= render partial: 'user/table_documents/common/header' %>
 
   <div class="row clearfix">
     <div class="col-lg-12 col-md-12">
     
       <!-- Display Document Title, Description & Language -->
-      <%= render partial: 'user/documents/show/details' %>
+      <%= render partial: 'user/table_documents/common/form' %>
 
     </div>
   </div>
   
 </div>
 
-<style type="text/css">
-  iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-    padding: 0;
-    margin: 0;
-    /*margin: 10px 20px;*/
-  }
-</style>
-
+<!-- Initialise Handsontable -->
 <%= content_for :javascript_footer do %>
-  <%= render :partial=>"user/documents/show/template.js.erb" %>
+  <%= render :partial=>"user/table_documents/common/table.js.erb" %>
 <% end %>
+
+<script type="text/javascript">
+  function print() {
+    window.open('<%= export_to_excel_user_table_document_path(@document) %>','print-document-<%= @document.id %>','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=350');
+  }
+</script>

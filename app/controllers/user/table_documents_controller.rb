@@ -3,64 +3,146 @@ module User
 
     before_action :authenticate_client_user!
     before_action :get_document, except: [:new, :create, :index, :select_template]
-    before_action :get_document_class
-
+    skip_before_action :verify_authenticity_token, :only => [:translate_input_phrase, :save_everything]
+    
     def index
-      @page_title = "Documents Database"
-      @nav = 'user/documents'
+      @page_title = "Documents (Table Mode)"
+      @nav = 'user/table_documents'
 
-      get_document_class
       get_collection
-      new_document
     end
 
     def show
       get_document
       
-      @nav = 'user/documents'
+      @nav = 'user/table_documents'
       @page_title = @document.title
 
       # Redirect to show Page - only if you are on new page
       @redirect_to_show_page = false
-    end
 
-    def select_template
-      @page_title = "Choose a Template"
-      @nav = 'user/documents'
+      @document_items = @document.items
     end
 
     def new
-      @page_title = "Create new Translation Document from Template"
-      @nav = 'user/documents'
+      @page_title = "New Document (Table Mode)"
+      @nav = 'user/table_documents'
 
-      get_template
       new_document
+
+      @document_items = []
+      16.times.each do |i|
+        @document_items << @document.items.build(
+          temporary_key: "tkey-#{i}",
+          input_language: @document.input_language,
+          translated: false,
+          output_1_language: @document.output_1_language,
+          output_2_language: @document.output_2_language,
+          output_3_language: @document.output_3_language,
+          output_4_language: @document.output_4_language,
+          output_5_language: @document.output_5_language,
+        )
+      end
     end
 
-    def save_and_translate
-      @page_title = "Create new Translation Document from Template"
-      @nav = 'user/documents'
+    def translate_input_phrase
+      @document = TableDocument.find_by_id(params[:document_id])
+      new_document unless @document
+      @document.input_language ||= params[:input_language]
 
-      get_document_class
-      get_document if params[:id]
+      @output_1_language = @document.output_1_language ||= params[:output_1_language]
+      @output_2_language = @document.output_2_language ||= params[:output_2_language]
+      @output_3_language = @document.output_3_language ||= params[:output_3_language]
+      @output_4_language = @document.output_4_language ||= params[:output_4_language]
+      @output_5_language = @document.output_5_language ||= params[:output_5_language]
+
+      set_languages
+
+      if params[:item_id].starts_with?("tkey")
+        @item = TableDocumentItem.new(
+          temporary_key: params[:item_id],
+          input_language: @document.input_language,
+          translated: false,
+          output_1_language: @document.output_1_language,
+          output_2_language: @document.output_2_language,
+          output_3_language: @document.output_3_language,
+          output_4_language: @document.output_4_language,
+          output_5_language: @document.output_5_language,
+        )
+      else
+        @item = TableDocumentItem.where(id: params[:item_id]).first
+      end
+
+      if @item && params[:column_name] && params[:column_name] == 'input_phrase' && params[:new_value] && !params[:new_value].blank?
+        @item.input_phrase = params[:new_value]
+        
+        if @item.input_phrase
+          @item.output_1_phrase = Translation.translate(@item.input_phrase, input_language: @input_language, output_language: @output_1_language) if @output_1_language
+          @item.output_2_phrase = Translation.translate(@item.input_phrase, input_language: @input_language, output_language: @output_2_language) if @output_2_language
+          @item.output_3_phrase = Translation.translate(@item.input_phrase, input_language: @input_language, output_language: @output_3_language) if @output_3_language
+          @item.output_4_phrase = Translation.translate(@item.input_phrase, input_language: @input_language, output_language: @output_4_language) if @output_4_language
+          @item.output_5_phrase = Translation.translate(@item.input_phrase, input_language: @input_language, output_language: @output_5_language) if @output_5_language
+        end
+        @item.translated = true
+
+        if @document.valid?
+          if @item.valid?
+            @item.save
+          else
+            set_notification(false, I18n.t('status.error'), @item.errors.full_messages.join("<br>"))
+          end
+        end
+      end
+    end
+
+    def save_everything
+      @page_title = "New Document (Table Mode)"
+      @nav = 'user/table_documents'
+
+      get_document
 
       # Redirect to show Page - only if you are on new page
       @redirect_to_show_page = false
       @redirect_to_show_page = true unless @document
 
-      get_template
       new_document unless @document
 
       @document.assign_attributes(permitted_params)
       @document.user = @current_client_user
-      @document.description = @document.title
+
+      # Adding Items
+      params[:items].each do |key, value|
+        next if value[:input_phrase].to_s.strip.blank?
+        item = @document.items.find_by_id(value[:item_id]) || @document.items.build()
+        item.table_document = @document
+        item.input_phrase = value[:input_phrase]
+        item.output_1_phrase = value[:output_1_phrase]
+        item.output_2_phrase = value[:output_2_phrase]
+        item.output_3_phrase = value[:output_3_phrase]
+        item.output_4_phrase = value[:output_4_phrase]
+        item.output_5_phrase = value[:output_5_phrase]
+        item.input_language = value[:input_language]
+        item.output_1_language = value[:output_1_language]
+        item.output_2_language = value[:output_2_language]
+        item.output_3_language = value[:output_3_language]
+        item.output_4_language = value[:output_4_language]
+        item.output_5_language = value[:output_5_language]
+        if item.input_phrase_changed?
+          item.translated = false
+        else
+          item.translated = value[:translated]
+          item.output_1_translation_id = value[:output_1_translation_id]
+          item.output_2_translation_id = value[:output_2_translation_id]
+          item.output_3_translation_id = value[:output_3_translation_id]
+          item.output_4_translation_id = value[:output_4_translation_id]
+          item.output_5_translation_id = value[:output_5_translation_id]
+        end
+      end
 
       if @document.valid?
         @document.save
 
-        params[:tags].split(',').each do |tag_name|
-          @document.tags.first_or_create(name: tag_name.strip)
-        end if params[:tags] and params[:tags].any?
+        save_tags
 
         set_notification(true, I18n.t('status.success'), I18n.t('success.saved', item: "Document"))
         set_flash_message(I18n.translate("success.saved", item: "Document"), :success)
@@ -91,16 +173,7 @@ module User
       end
     end
 
-
-    def update_status
-      if @document
-        @document.update_status(params[:status].upcase)
-        # @document.save
-      end
-    end
-
-
-    def print
+    def export_to_excel
       get_document
 
       respond_to do |format|
@@ -110,8 +183,17 @@ module User
       end
     end
 
-
     private
+
+    def get_collection
+      @order_by = "created_at DESC" unless @order_by
+      @relation = TableDocument.where("")
+
+      apply_filters
+
+      @documents = @relation.order(@order_by).
+                      page(@current_page).per(@per_page)
+    end
 
     def apply_filters
       @query = params[:q]
@@ -125,53 +207,18 @@ module User
       @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
       # @relation = @relation.search_only_output_language(params[:filters].try(:[], :output_language))
       @relation = @relation.search_only_status(params[:filters].try(:[], :status))
-      
-    end
-
-    def get_collection
-      @order_by = "created_at DESC" unless @order_by
-      @relation = @document_class
-
-      apply_filters
-
-      @documents = @relation.order(@order_by).
-                      page(@current_page).per(@per_page)
-    end
-
-    def get_document_class
-      return @document_class if @document_class
-      if (params[:template_id] && !params[:template_id].to_s.strip.blank?) || (params[:dt] == 'template')
-        @document_class = Document::TemplateBased
-      elsif params[:dt] == 'table'
-        @document_class = Document::TableBased
-      else
-        doc = Document::Base.find(params[:id])
-        if doc
-          @document_class = doc.type.constantize
-        else
-          raise("Cannot get Document Class")
-        end
-      end
-      @document_class
     end
 
     def get_document
-      @document_class = get_document_class
-      @document = @document_class.find_by_id(params[:id])
+      @document = TableDocument.find_by_id(params[:id])
       set_languages
     end
 
     def new_document
-      @document = @document_class.new(input_language: "ENGLISH", output_1_language: "ARABIC", output_2_language: "ARABIC")
+      @document = TableDocument.new()
       
       # Set Default Title
-      @document.title = "New Document - #{Time.now.to_i}" unless @document.title
-
-      # Set Template
-      if @template
-        @document.template = @template
-        @document.input_html_source = @template.ltr_html_source
-      end
+      @document.title = "New Table Document - #{Time.now.to_i}" unless @document.title
 
       # Set Defaut Languages
       set_languages
@@ -182,16 +229,18 @@ module User
     def set_languages
       if @document
         @input_language = @document.input_language ||= "ENGLISH"
-        @output_language = @document.output_1_language ||= "ARABIC"
+        @output_1_language = @document.output_1_language ||= "ENGLISH"
+        @output_2_language = @document.output_2_language ||= "FRENCH"
+        @output_3_language = @document.output_3_language ||= "ARABIC"
+        # @output_4_language = @document.output_4_language ||= "GERMAN"
+        # @output_5_language = @document.output_5_language ||= "CHINESE"
       end
     end
 
-    def get_template
-      if params[:template_id]
-        @template = LabelTemplate.find(params[:template_id]) 
-      elsif @document
-        @template = @document.template
-      end
+    def save_tags
+      params[:tags].split(',').each do |tag_name|
+          @document.tags.first_or_create(name: tag_name.strip)
+        end if params[:tags] and params[:tags].any?
     end
 
     def permitted_params
@@ -202,8 +251,7 @@ module User
         :output_2_language,
         :output_3_language,
         :output_4_language,
-        :output_5_language,
-        :input_html_source,
+        :output_5_language
       )
     end
 
