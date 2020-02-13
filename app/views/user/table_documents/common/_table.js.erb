@@ -182,6 +182,64 @@ $(document).ready(function() {
 
     });
 
+    translationHOT.table.updateSettings({
+      height:  $('.ht_master .wtHider').height() + 40,
+      cells: function (row, col, prop) {
+
+        // Defining Cell Properties
+        var cellProperties = {};
+
+        // Get the cell for the row and column
+        var cell = translationHOT.table.getCell(row,col);   
+
+        if (cell == undefined) {
+          return cellProperties;
+        }
+
+        // word wrap fix for buttons
+        // cell.style.whiteSpace = "nowrap";
+        if ((col == translationHOT.table.propToCol("output_1_phrase")) ||
+          (col == translationHOT.table.propToCol("output_2_phrase")) || 
+          (col == translationHOT.table.propToCol("output_3_phrase")) || 
+          (col == translationHOT.table.propToCol("output_4_phrase")) || 
+          (col == translationHOT.table.propToCol("output_5_phrase"))) {
+          
+          var o1p = translationHOT.data[row]["output_1_phrase"];
+          if ((o1p == "Word not found") || (o1p == "Mot introuvable") || (o1p == "كلمة غير موجودة")) {
+            // cell.style.backgroundColor = "#fdebed";
+            // cell.style.color = '#FF7F00';
+            cell.style.color = 'red';
+          } else {
+            // cell.style.backgroundColor = "#e6f7ff";
+            cell.style.color = '#4b4b4b';
+          }
+
+          var o2p = translationHOT.data[row]["output_2_phrase"];
+          if ((o2p == "Word not found") || (o2p == "Mot introuvable") || (o2p == "كلمة غير موجودة")) {
+            // cell.style.backgroundColor = "#fdebed";
+            // cell.style.color = '#FF7F00';
+            cell.style.color = 'red';
+          } else {
+            // cell.style.backgroundColor = "#e6f7ff";
+            cell.style.color = '#4b4b4b';
+          }
+
+          var o3p = translationHOT.data[row]["output_3_phrase"];
+          if ((o3p == "Word not found") || (o3p == "Mot introuvable") || (o3p == "كلمة غير موجودة")) {
+            // cell.style.backgroundColor = "#fdebed";
+            // cell.style.color = '#FF7F00';
+            cell.style.color = 'red';
+          } else {
+            // cell.style.backgroundColor = "#e6f7ff";
+            cell.style.color = '#4b4b4b';
+          }
+
+        }
+
+        return cellProperties;
+      }
+    });
+
   }
   
 });

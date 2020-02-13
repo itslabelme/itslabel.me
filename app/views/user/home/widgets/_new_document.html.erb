@@ -2,7 +2,7 @@
   <!-- Block 01 -->
   <div class="col-lg-4 col-md-4">
     <div class="card">
-      <div class="body">
+      <div class="body" style="height:300px;">
         <div class="d-flex align-items-center">
           <div class="icon-in-bg bg-azura text-white rounded-circle"><i class="fa fa-square"></i></div>
           <div class="ml-4">
@@ -21,7 +21,7 @@
   <!-- Block 02 -->
   <div class="col-lg-4 col-md-4">
     <div class="card">
-      <div class="body">
+      <div class="body" style="height:300px;">
         <div class="d-flex align-items-center">
           <div class="icon-in-bg bg-azura text-white rounded-circle"><i class="fa fa-table"></i></div>
           <div class="ml-4">
@@ -30,7 +30,9 @@
         </div>
         <div class="mt-4">
           <p>Use this option for an ingredient-by-ingredient translation. Fill in the relevant fields and choose your preferred output template. Supports group copy/pasting from Microsoft Excel. </p>
-          <button class="btn btn-primary btn-block" type="button"><a href="select-template.html" style="color: #fff;display: block;">Try it Out</a></button>
+          <button class="btn btn-primary btn-block" type="button">
+            <%= link_to "Try it Out", new_user_table_document_path(), style: "color: #fff;display: block;" %>
+          </button>
         </div>
       </div>
     </div>
@@ -38,7 +40,7 @@
   <!-- Block 03 -->
   <div class="col-lg-4 col-md-4">
     <div class="card">
-      <div class="body">
+      <div class="body" style="height:300px;">
         <div class="d-flex align-items-center">
           <div class="icon-in-bg bg-azura text-white rounded-circle"><i class="fa fa-file"></i></div>
           <div class="ml-4">

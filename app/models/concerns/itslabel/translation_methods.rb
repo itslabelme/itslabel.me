@@ -2,7 +2,7 @@ module Itslabel::TranslationMethods
   
   extend ActiveSupport::Concern
 
-  DELIMITERS = ['.', ',', /(\t\r\n|\t|\r|\n)/, ';', '(', ')', '[', ']', ':', '|', "'", '!', ' and ', ' or ']
+  DELIMITERS = ['.', ',', /(\t\r\n|\t|\r|\n|\d+|\d+(mg|gm))/, ';', '(', ')', '[', ']', ':', '|', "'", '!', ' and ', ' or ']
 
   class_methods do
 
