@@ -102,7 +102,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                                             </div>
-                                            <%= f.time_zone_select :time_zone,  ActiveSupport::TimeZone.country_zones('SA'),{},{ class: "form-control",:id=>"time_zone"} %>
+                                            <%= f.time_zone_select :time_zone,  ActiveSupport::TimeZone.all,{},{ class: "form-control",:id=>"time_zone"} %>
                                         </div> <!-- form-group// -->
                                     </div>                                       
 

@@ -19,7 +19,7 @@ $(document).ready(function() {
 });
  
   
-  $(document).on("change", "#country_id", function(){
+  /*$(document).on("change", "#country_id", function(){
   var country = $(this).val();
 
   $.ajax({
@@ -41,4 +41,4 @@ $(document).ready(function() {
       }
     }
   });
-});
+});*/
