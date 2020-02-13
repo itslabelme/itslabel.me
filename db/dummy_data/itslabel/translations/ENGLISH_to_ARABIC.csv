@@ -1,68 +1,1816 @@
 ﻿admin_user_email,input_phrase,input_language,output_phrase,output_language,category
-sanoop@rightsolutions.ae,Biotin,ENGLISH,بيوتين,ARABIC,
-sanoop@rightsolutions.ae,Xylitol,ENGLISH,إكسيليتول,ARABIC,
-sanoop@rightsolutions.ae,Amino Acids,ENGLISH,أحماض أمينية,ARABIC,
-sanoop@rightsolutions.ae,Zinc Acetate,ENGLISH,أسيتات الزنك,ARABIC,
-sanoop@rightsolutions.ae,Acesulfame Potassium,ENGLISH,أسيسلفام البوتاسيوم,ARABIC,
-sanoop@rightsolutions.ae,Yellow Prussiate of Soda,ENGLISH,أصفر سيانيد الصودا,ARABIC,
-sanoop@rightsolutions.ae,Acacia,ENGLISH,أقاقيا,ARABIC,
-sanoop@rightsolutions.ae,Acrolein,ENGLISH,أكرولين,ARABIC,
-sanoop@rightsolutions.ae,Zinc Oxide,ENGLISH,أكسيد الزنك,ARABIC,
-sanoop@rightsolutions.ae,Aldehyde C-16,ENGLISH,ألدهيد سي-16,ARABIC,
-sanoop@rightsolutions.ae,Aldehyde C-18,ENGLISH,ألدهيد سي-18,ARABIC,
-sanoop@rightsolutions.ae,Aldehyde C-9,ENGLISH,ألدهيد سي-9,ARABIC,
-sanoop@rightsolutions.ae,Bay Leaves,ENGLISH,أوراق الغار,ARABIC,
-sanoop@rightsolutions.ae,Bulgur,ENGLISH,برغل,ARABIC,
-sanoop@rightsolutions.ae,Cocoa Powder,ENGLISH,بودرة الكاكاو,ARABIC,
-sanoop@rightsolutions.ae,Alpha-Tocopherol,ENGLISH,توكوفيرول ألفا,ARABIC,
-sanoop@rightsolutions.ae,Coconut,ENGLISH,جوز هند,ARABIC,
-sanoop@rightsolutions.ae,"Coconut, Desiccated",ENGLISH,جوز هند مجفف,ARABIC,
-sanoop@rightsolutions.ae,Acetic Acid,ENGLISH,حمض الاسيتيك,ARABIC,
-sanoop@rightsolutions.ae,Adipic Acid,ENGLISH,حمض الأديبيك,ARABIC,
-sanoop@rightsolutions.ae,Alginic Acid,ENGLISH,حمض الألجنيك,ARABIC,
-sanoop@rightsolutions.ae,Apple Vinegar,ENGLISH,خل التفاح,ARABIC,
-sanoop@rightsolutions.ae,Yeast Extract,ENGLISH,خلاصة الخميرة,ARABIC,
-sanoop@rightsolutions.ae,Baker’s Yeast Extract,ENGLISH,خلاصة الخميرة الخباز,ARABIC,
-sanoop@rightsolutions.ae,Yeast,ENGLISH,خميرة,ARABIC,
-sanoop@rightsolutions.ae,Bleached Flour,ENGLISH,دقيق ابيض,ARABIC,
-sanoop@rightsolutions.ae,Corn Flour,ENGLISH,دقيق الذرة,ARABIC,
-sanoop@rightsolutions.ae,Corn,ENGLISH,ذرة,ARABIC,
-sanoop@rightsolutions.ae,Agave Nectar,ENGLISH,رحيق الصبار,ARABIC,
-sanoop@rightsolutions.ae,Basil,ENGLISH,ريحان,ARABIC,
-sanoop@rightsolutions.ae,Yogurt,ENGLISH,زبادي,ARABIC,
-sanoop@rightsolutions.ae,Cocoa Butter,ENGLISH,زبدة الكاكاو,ARABIC,
-sanoop@rightsolutions.ae,Zinc,ENGLISH,زنك,ARABIC,
-sanoop@rightsolutions.ae,Corn Oil,ENGLISH,زيت الذرة,ARABIC,
-sanoop@rightsolutions.ae,Almond Oil,ENGLISH,زيت اللوز,ARABIC,
-sanoop@rightsolutions.ae,Coconut Oil,ENGLISH,زيت جوز الهند,ARABIC,
-sanoop@rightsolutions.ae,Zinc Citrate,ENGLISH,ستيرات الزنك,ARABIC,
-sanoop@rightsolutions.ae,Zinc Stearate,ENGLISH,ستيرات الزنك,ARABIC,
-sanoop@rightsolutions.ae,Alum,ENGLISH,شبة,ARABIC,
-sanoop@rightsolutions.ae,Cocoa Liquor,ENGLISH,شراب الكاكاو,ARABIC,
-sanoop@rightsolutions.ae,Barley,ENGLISH,شعير,ARABIC,
-sanoop@rightsolutions.ae,Beeswax,ENGLISH,شمع العسل,ARABIC,
-sanoop@rightsolutions.ae,Xanthan Gum,ENGLISH,صمغ الزانثان,ARABIC,
-sanoop@rightsolutions.ae,All-Purpose Flour,ENGLISH,طحين متعدد الاستعمالات,ARABIC,
-sanoop@rightsolutions.ae,Almond Paste,ENGLISH,عجين اللوز,ARABIC,
-sanoop@rightsolutions.ae,Zinc Gluconate,ENGLISH,غلوكونات الزنك,ARABIC,
-sanoop@rightsolutions.ae,Copper Gluconate,ENGLISH,غلوكونات النحاس,ARABIC,
-sanoop@rightsolutions.ae,Allspice,ENGLISH,فلفل حلو,ARABIC,
-sanoop@rightsolutions.ae,Clove,ENGLISH,قرنفل,ARABIC,
-sanoop@rightsolutions.ae,Coarse-Ground Wheat,ENGLISH,قمح خشن مطحون,ARABIC,
-sanoop@rightsolutions.ae,Aluminum Sulfate,ENGLISH,كبريتات الألومنيوم,ARABIC,
-sanoop@rightsolutions.ae,Zinc Sulfate,ENGLISH,كبريتات الزنك,ARABIC,
-sanoop@rightsolutions.ae,Copper Sulfate,ENGLISH,كبريتات النحاس,ARABIC,
-sanoop@rightsolutions.ae,Zinc Carbonate,ENGLISH,كربونات الزنك,ARABIC,
-sanoop@rightsolutions.ae,Coriander,ENGLISH,كزبرة,ARABIC,
-sanoop@rightsolutions.ae,Zinc Chloride,ENGLISH,كلوريد الزنك,ARABIC,
-sanoop@rightsolutions.ae,Collagen,ENGLISH,كولاجين,ARABIC,
-sanoop@rightsolutions.ae,Almond,ENGLISH,لوز,ARABIC,
-sanoop@rightsolutions.ae,Butter Fat,ENGLISH,مخيض اللبن,ARABIC,
-sanoop@rightsolutions.ae,"Buttermilk, Dried",ENGLISH,مخيض اللبن المجفف,ARABIC,
-sanoop@rightsolutions.ae,Yeast-Malt Sprout Extract,ENGLISH,مستخلص خميرة الشعير,ARABIC,
-sanoop@rightsolutions.ae,Yucca Plant Extract,ENGLISH,مستخلص نبات اليوكا,ARABIC,
-sanoop@rightsolutions.ae,Antioxidants,ENGLISH,مضادات الأكسدة,ARABIC,
-sanoop@rightsolutions.ae,Copper,ENGLISH,نحاس,ARABIC,
-sanoop@rightsolutions.ae,Bran,ENGLISH,نخالة,ARABIC,
-sanoop@rightsolutions.ae,Cornstarch,ENGLISH,نشا الذرة,ARABIC,
-sanoop@rightsolutions.ae,Aluminum Nicotinate,ENGLISH,نيكوتينات الألمنيوم,ARABIC,
+sanoop@rightsolutions.ae,Anoxomer,ENGLISH,E323 مكملات غذائية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Lactate,ENGLISH,E328 إضافات مرطب الجلد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Malate,ENGLISH,E349 إضافات غذائية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Phosphatide,ENGLISH,E442 مكملات غذائية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium phosphatides,ENGLISH,E442 مكملات غذائية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Polyphosphate,ENGLISH,E545 مكملات غذائية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bartlett Pear,ENGLISH,اجاص بارتليت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bartlett Pear,ENGLISH,اجاص بارتليت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cadbury Celebrations,ENGLISH,احتفالات كادبوري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Citric acid esters of mono- and diglycerides of fatty acids,ENGLISH,استرات حامض الستريك أحادية وثنائي هليسيريد الأحماض الدهنية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cations,ENGLISH,الايونات الموجبة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aspartame,ENGLISH,الأسبارتام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aspartame,ENGLISH,الأسبارتام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Colors and Coloring Adjuncts (),ENGLISH,الألوان وملحقات التلوين (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Colours and Colouring Adjuncts (),ENGLISH,الألوان وملحقات التلوين (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Fallow Deer,ENGLISH,الأيل الأسمر الأوروبي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aubergine,ENGLISH,الباذنجان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bulgur,ENGLISH,البرغل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bergamot,ENGLISH,البرغموت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Plum,ENGLISH,البرقوق الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dehydrated onions,ENGLISH,البصل المجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chervil,ENGLISH,البقدونس الإفرنجي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Pectinate,ENGLISH,البكتين الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bentonite,ENGLISH,البنتونايت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butane,ENGLISH,البوتان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butane,ENGLISH,البوتان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beta carotene for color,ENGLISH,البيتا كاروتين لإضافة اللون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beta carotene for colour,ENGLISH,البيتا كاروتين لإضافة اللون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Biotin,ENGLISH,البيوتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Birch,ENGLISH,التامول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dehydrated apples,ENGLISH,التفاح المجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blueberry,ENGLISH,التوت البري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cranberries,ENGLISH,التوت البري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cranberry,ENGLISH,التوت البري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chives,ENGLISH,الثوم المعمر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arugula,ENGLISH,الجرجير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Citrus Red 2,ENGLISH,الحمضيات الحمراء 2,ARABIC,batch 1
+sanoop@rightsolutions.ae,Buckwheat,ENGLISH,الحنطة السوداء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bedouin Bread,ENGLISH,الخبز البدوي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bluegill,ENGLISH,الخيشوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aldehyde C-18,ENGLISH,الداهايد سي-18,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aldehyde C-9,ENGLISH,الداهايد سي-9,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dehydrated chicken,ENGLISH,الدجاج المجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chinese White Shrimp,ENGLISH,الروبيان الأبيض الصيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Basil,ENGLISH,الريحان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Citral,ENGLISH,السترال,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Magic,ENGLISH,السحر الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calories from Fat,ENGLISH,السعرات الحرارية من الدهون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chard,ENGLISH,السلق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cellulose,ENGLISH,السلولوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cellulose,ENGLISH,السلولوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blowfish,ENGLISH,السمكة المنتفخة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acacia,ENGLISH,السنط,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cysteine,ENGLISH,السيستين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cysteine,ENGLISH,السيستين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dill,ENGLISH,الشبت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dill and Its Derivatives,ENGLISH,الشبت ومشتقاته,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Barley, Malted",ENGLISH,"الشعير، شراب",ARABIC,batch 1
+sanoop@rightsolutions.ae,Beetroot,ENGLISH,الشمندر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beet Red,ENGLISH,الشمندر الأحمر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beetroot Red - Betanin,ENGLISH,الشمندر الأحمر - البيتانين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beet Greens,ENGLISH,الشمندر الأخضر,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Beets, Dehydrated",ENGLISH,"الشمندر، مجفف",ARABIC,batch 1
+sanoop@rightsolutions.ae,Dark Chocolate Hobnobs,ENGLISH,الشوكولاتة الداكنة هوبس نوبس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dark Chocolate,ENGLISH,الشوكولاته الداكنة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Energy kcal,ENGLISH,الطاقة بالكيلو سعرة حرارية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Onyx,ENGLISH,العقيق الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Deer,ENGLISH,الغزال,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chili,ENGLISH,الفلفل الحار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chili Pepper,ENGLISH,الفلفل الحار,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Chili Pepper, Paprika",ENGLISH,"الفلفل الحار ، الفلفل الحلو",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Chili Pepper, Cayenne Pepper",ENGLISH,"الفلفل الحار ، الفلفل حريف",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Chili Pepper, Habanero",ENGLISH,"الفلفل الحار ، هابانيرو",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Chili Pepper, Jalapeno",ENGLISH,"الفلفل الحار ، هالابينو",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Chili Pepper, Tabasco Pepper",ENGLISH,الفلفل الحار والفلفل الحار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bell Pepper,ENGLISH,الفلفل الحلو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bell Pepper,ENGLISH,الفلفل الحلو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cherry Pepper,ENGLISH,الفلفل الكرزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Capsicum,ENGLISH,الفليفلة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Broad Beans,ENGLISH,الفول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Clove,ENGLISH,القرنفل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Custard Apple,ENGLISH,القشطة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cashew,ENGLISH,الكاجو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carrageenan,ENGLISH,الكاراجينان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carrageenan,ENGLISH,الكاراجينان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carotenes,ENGLISH,الكاروتينات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Casein,ENGLISH,الكازين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cocoa solids,ENGLISH,الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium (Ca),ENGLISH,الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Calcium, Ca",ENGLISH,الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium 5'-ribonucleotides,ENGLISH,الكالسيوم 5'-ريبونوكليوتيدات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium 5'-ribonucleotides,ENGLISH,الكالسيوم 5'-ريبونوكليوتيدات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Saccharin,ENGLISH,الكالسيوم السكرين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Inosinate,ENGLISH,الكالسيوم إينوزينات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Canola,ENGLISH,الكانولا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caramel,ENGLISH,الكراميل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caramel,ENGLISH,الكراميل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caramelle,ENGLISH,الكراميل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caramel I,ENGLISH,الكراميل ١,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caramel II,ENGLISH,الكراميل ٢,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caramel III,ENGLISH,الكراميل ٣,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caramel IV,ENGLISH,الكراميل ٤,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Carbohydrate, by difference",ENGLISH,"الكربوهيدرات ، عن طريق الفرق",ARABIC,batch 1
+sanoop@rightsolutions.ae,Curcumin,ENGLISH,الكركمين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Curcumin,ENGLISH,الكركمين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cabbage,ENGLISH,الكرنب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cassava,ENGLISH,الكسافا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chlorine,ENGLISH,الكلور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chlorophyll,ENGLISH,الكلوروفيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chlorophylls and Chlorophyllins,ENGLISH,الكلوروفيل والكلوروفيلين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amount,ENGLISH,الكمية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amount per 100 grams,ENGLISH,الكمية لكل 100جرام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amount per 100 g,ENGLISH,الكمية لكل 100جرام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coca-Cola,ENGLISH,الكوكا كولا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cola,ENGLISH,الكولا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Collagen,ENGLISH,الكولاجين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Choline,ENGLISH,الكولين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corned Beef,ENGLISH,اللحم البقري المحفوظ,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carmine,ENGLISH,اللون القرمزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carmoisine,ENGLISH,اللون القرمزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Limes,ENGLISH,الليمون الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,English Muffin,ENGLISH,المافن الإنجليزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,"1-Decanol, Natural",ENGLISH,المعامل 504,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crackers,ENGLISH,المقرمشات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Asparagus,ENGLISH,الهليون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Asparagine,ENGLISH,الهليونين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dandelion,ENGLISH,الهندباء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicory,ENGLISH,الهندباء البرية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carbamide,ENGLISH,اليوريا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carbamide,ENGLISH,اليوريا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Enzymes,ENGLISH,انزيمات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl Acrylate,ENGLISH,إثيل أكريليت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl cellulose,ENGLISH,إثيل سيليولوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ergosterol,ENGLISH,إرجوستيرول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ergocalciferol,ENGLISH,إرغوكالسيفرول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Erythrosine,ENGLISH,إريتروسين (اللون الأحمر في بعض الصناعات الطبية),ARABIC,batch 1
+sanoop@rightsolutions.ae,Erythritol,ENGLISH,إريثريتول (سكر من الطحالب),ARABIC,batch 1
+sanoop@rightsolutions.ae,Additional Additives,ENGLISH,إضافات إضافية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amidated Pectin,ENGLISH,إضافات غذائية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Fumarate,ENGLISH,إضافات غذائية E368,ARABIC,batch 1
+sanoop@rightsolutions.ae,100Plus,ENGLISH,إضافة,ARABIC,batch 1
+sanoop@rightsolutions.ae,English,ENGLISH,إنجليزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethanol,ENGLISH,إيثانول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Absinthe,ENGLISH,أبسينيت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Appletiser,ENGLISH,أبلتايزر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Danish Agar,ENGLISH,أجار دنماركي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated Monoglyceride,ENGLISH,أحادي الجليسورد بالأستيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acids (),ENGLISH,أحماض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acids / Acid Regulators (),ENGLISH,أحماض/ منظم أحماض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl lauroyl arginate,ENGLISH,أرجينات لاوريول الأثيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chewing Gum Base,ENGLISH,أساس العلكة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Astaxanthin,ENGLISH,أستازانتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Ascorbate,ENGLISH,أسكوربات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium ascorbate,ENGLISH,أسكوربات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carbon Black,ENGLISH,أسود فحمي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc Acetate,ENGLISH,أسيتات الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc acetate,ENGLISH,أسيتات الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cyclohexyl Acetate,ENGLISH,أسيتات السيكلوهيكسل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium acetate,ENGLISH,أسيتات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Acetate,ENGLISH,أسيتات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetone Peroxide,ENGLISH,أسيتون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alginic Acid,ENGLISH,أسيد الألجني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alginic acid,ENGLISH,أسيد الألجني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amino Acids,ENGLISH,أسيد أحادي البروتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acid Calcium Phosphate,ENGLISH,أسيد فوسفات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Finger,ENGLISH,أصبع الشوكولاتة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Glutamate,ENGLISH,أضافات غذائية E624,ARABIC,batch 1
+sanoop@rightsolutions.ae,Balsam Herb,ENGLISH,أعشاب البلسم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Avocado,ENGLISH,أفوكادو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Frogs Legs,ENGLISH,أقدام الضفدع,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acrolein,ENGLISH,"أكرولين، مركب طيار من الغيليسرين",ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc Oxide,ENGLISH,أكسيد الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Oxide,ENGLISH,أكسيد الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium oxide,ENGLISH,أكسيد الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl Oxyhydrate,ENGLISH,أكسيهايدريت الأثيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aldehyde C-16,ENGLISH,ألداهايد سي-16,ARABIC,batch 1
+sanoop@rightsolutions.ae,Benzoic Aldehyde,ENGLISH,ألدهايد البنزويك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alfabeto,ENGLISH,ألفابيتو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Colors (),ENGLISH,ألوان (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Colors (),ENGLISH,ألوان (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Colours (),ENGLISH,ألوان (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Colours (),ENGLISH,ألوان (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial Colors (),ENGLISH,ألوان صناعية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial Colours (),ENGLISH,ألوان صناعية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminum,ENGLISH,ألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicory Root Fiber,ENGLISH,ألياف جذر الهندباء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicory Root Fibre,ENGLISH,ألياف جذر الهندباء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley Beta Fiber,ENGLISH,ألياف شعير بيتا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley Beta Fibre,ENGLISH,ألياف شعير بيتا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dietary Fiber,ENGLISH,ألياف غذائية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dietary Fibre,ENGLISH,ألياف غذائية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit'n Fibre,ENGLISH,ألياف وفاكهة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alecost,ENGLISH,أليكوست,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium,ENGLISH,أليمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium,ENGLISH,أليمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alewife,ENGLISH,أليوايف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Salts of Fatty Acids,ENGLISH,أملاح الكالسيوم من الأحماض الدهنية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caseinates,ENGLISH,أملاحه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amioca,ENGLISH,أميوكا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Pineapple,ENGLISH,أنانس مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cinnamyl Anthranilate,ENGLISH,أنثرنيلات القرفة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetyl Tartrate Mono- and Diglyceride,ENGLISH,أنزيم خل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amylases,ENGLISH,أنزيم سكري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Europen Anchovy,ENGLISH,أنشوجة أوروبية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Adipic Anhydride,ENGLISH,أنهايدريد دهني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burdock Leaves,ENGLISH,أوراق الأرقطيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Curry Leaf,ENGLISH,أوراق الكاري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cilantro Leaf,ENGLISH,أوراق الكزبرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Fenugreek Leaves,ENGLISH,أوراق حلبة مجففة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium Oleate,ENGLISH,أوليات الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aero,ENGLISH,أيرو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cinnamyl Isobutyrate,ENGLISH,أيزوبوترايت القرفة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl Isobutyrate,ENGLISH,أيزوبوتيرات الأثيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acai,ENGLISH,آساي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ackee,ENGLISH,آقية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aila,ENGLISH,آيلا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Papaya,ENGLISH,بابايا مجففة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Camomile,ENGLISH,بابونج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chamomile,ENGLISH,بابونج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brinjal,ENGLISH,باذنجان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Eggplant,ENGLISH,باذنجان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butylparaben,ENGLISH,بارابين البوتيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Double Decker,ENGLISH,باص بكابينتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Pantothenate,ENGLISH,بانتوثينات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Pantothenate,ENGLISH,بانتوثينات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bounty,ENGLISH,باونتي / شوكولا باونتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anisyl Butyrate,ENGLISH,بترات اليانسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burdock Seeds,ENGLISH,بذور الأرقطيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dill Seed,ENGLISH,بذور الشبت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chia Seed,ENGLISH,بذور الشيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Celery Seed,ENGLISH,بذور الكرفس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carom Seeds,ENGLISH,بذور الينسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cydonia Seed,ENGLISH,بذور سيدونيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caraway Seed,ENGLISH,بذور كراويا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aloo Paratha,ENGLISH,براتا محشوة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bean Sprouts,ENGLISH,براعم الفاصوليا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brussel Sprouts,ENGLISH,براعم بروكسل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brussels Sprouts,ENGLISH,براعم بروكسل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit Brandy,ENGLISH,براندي الفاكهة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brandy Snaps,ENGLISH,براندي سنابس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Brownie,ENGLISH,براوني الشوكولاتة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blood Orange,ENGLISH,برتقال أحمر / برتقال ماوردي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beefburger,ENGLISH,برجر لحم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alfalfa,ENGLISH,برسيم حجازي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bulgur Wheat,ENGLISH,برغل القمح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cask Ale,ENGLISH,برميل مشروب الشعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Citronellyl Propionate,ENGLISH,بروبيونات السترونيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cyclohexyl Propionate,ENGLISH,بروبيونات السيكلوهكسيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium propionate,ENGLISH,بروبيونات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Propionate,ENGLISH,بروبيونات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anisyl Propionate,ENGLISH,بروبيونات اليانسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Albumin,ENGLISH,بروتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milk proteins,ENGLISH,بروتين الحليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Broccoli,ENGLISH,بروكلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Broccoli,ENGLISH,بروكلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Bromate,ENGLISH,بروميت الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brem,ENGLISH,بريم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Biscuit,ENGLISH,بسكوت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cookie,ENGLISH,بسكوت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bath Oliver,ENGLISH,بسكوت أوليفر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beaten Biscuit,ENGLISH,بسكوت بيتن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Digestive,ENGLISH,بسكوت دايجيستف بالشوكولاتة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Biscuit,ENGLISH,بسكويت الشوكولاتة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Basterma,ENGLISH,بصطرمة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Basturma,ENGLISH,بصطرمة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Chives,ENGLISH,بصل أخضر مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corms,ENGLISH,بصيلة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bombay Duck,ENGLISH,بط بومباي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Duck,ENGLISH,بطة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domestic Duck,ENGLISH,بطة محلية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cantaloupe Melon,ENGLISH,بطيخ الشمام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bitter Melon,ENGLISH,بطيخ مر,ARABIC,batch 1
+sanoop@rightsolutions.ae,After Eight,ENGLISH,بعد الثامنة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cicely,ENGLISH,بقدونس إفرنجي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Baklava,ENGLISH,بقلاوة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blue Mussel,ENGLISH,بلح البحر الأزرق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Balm,ENGLISH,بلسم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Balsam,ENGLISH,بلسم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Balsam of Peru,ENGLISH,بلسم من البيرو,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Balm, Lemon",ENGLISH,"بلسم، ليمون",ARABIC,batch 1
+sanoop@rightsolutions.ae,Benzaldehyde,ENGLISH,بنزألدهيد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Benzoate,ENGLISH,بنزوات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium benzoate,ENGLISH,بنزوات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Benzoate of Soda,ENGLISH,بنزيات الصودا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Benzyl Propionate,ENGLISH,بنزيل البروبيونات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Benzyl alcohol,ENGLISH,بنزيل الكحول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acesulfame Potassium,ENGLISH,بوتاسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,BHT ,ENGLISH,بوتيل هيدروكسي تولوين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Borax,ENGLISH,بودرة البوراكس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Almond Powder,ENGLISH,بودرة اللوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dry Mango Powder,ENGLISH,بودرة المانجو المجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milk Powder,ENGLISH,بودرة حليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apple Cider Vinegar Powder,ENGLISH,بودرة خل روح التفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Custard Powder,ENGLISH,بودرة كاستردد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amchoor,ENGLISH,بودرة مانجو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amchoor Powder,ENGLISH,بودرة مانجو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amchur,ENGLISH,بودرة مانجو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arrowroot Powder,ENGLISH,بودرة نبات الطاعة / بودرة جذور الأروروت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cabinet Pudding,ENGLISH,بودينغ انجليزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Eve's Pudding,ENGLISH,بودينغ إيف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Pudding,ENGLISH,بودينغ أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Christmas Pudding,ENGLISH,بودينغ عيد الميلاد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Bourbon,ENGLISH,بوربون الشوكولاته,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Burnet, Salad",ENGLISH,"بورنت ، سلطة",ARABIC,batch 1
+sanoop@rightsolutions.ae,Boza,ENGLISH,بوظة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Polyphosphate,ENGLISH,بولي فوسفات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Egg Albumen,ENGLISH,بياض البيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Egg White,ENGLISH,بياض البيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beta Carotene,ENGLISH,بيتا كاروتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beta-Carotene,ENGLISH,بيتا كاروتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Betanin,ENGLISH,بيتانين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit Beer,ENGLISH,بيرة الفاكهة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ale,ENGLISH,بيرة محلاة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bitter Ale,ENGLISH,بيرة مرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burnet,ENGLISH,بيرنت,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Burnet, Garden",ENGLISH,"بيرنت ، حديقة",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Burnet, Small",ENGLISH,"بيرنت ، صغير",ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Pyrophosphate,ENGLISH,بيروفسفات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Benzoyl Peroxide,ENGLISH,بيروكسيد البنزويل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Peroxide,ENGLISH,بيروكسيد الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,BPA,ENGLISH,بيسفينول A,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Bisulfite,ENGLISH,بيسلفيت الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Bisulphite,ENGLISH,بيسلفيت الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bison,ENGLISH,بيسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Egg,ENGLISH,بيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Eggs,ENGLISH,بيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Bicarbonate,ENGLISH,بيكاربونات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bicarbonate,ENGLISH,بيكربونات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bicarbonate of Soda,ENGLISH,بيكربونات الصودا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bixin,ENGLISH,بيكسين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Baking Powder,ENGLISH,بيكنج باودر,ARABIC,batch 1
+sanoop@rightsolutions.ae,2-Pentanone,ENGLISH,بينتانون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Custard Tart,ENGLISH,تارت الكاسترد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bakewell Tart,ENGLISH,تارت بيكويل / كعكة بيكويل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chinese Date,ENGLISH,تاريخ صيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Truffle,ENGLISH,ترافل الشوكولا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheon Sa Chae,ENGLISH,تشون سا تشاي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheerios,ENGLISH,تشيريوس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheesecake,ENGLISH,تشيز كيك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chile,ENGLISH,تشيلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chile Con Queso,ENGLISH,تشيلي كون كويسو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crab Apple,ENGLISH,تفاح حرجي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apple,ENGLISH,تفاحة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Average Composition,ENGLISH,تكوينات تقريبية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial Coloring (),ENGLISH,تلوين صناعي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial Colouring (),ENGLISH,تلوين صناعي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Date,ENGLISH,تمر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alligator,ENGLISH,تمساح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crocodile,ENGLISH,تمساح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dates,ENGLISH,تمور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Condiments,ENGLISH,توابل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Berbere,ENGLISH,توابل البربري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blackberry,ENGLISH,توت أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Boysenberry,ENGLISH,توت بويسينبيري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chinese Bayberry,ENGLISH,توت صيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bullet Tuna,ENGLISH,تونا بوليت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dogfish,ENGLISH,تونة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Albacore,ENGLISH,تونة الباكور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Albacore Tuna,ENGLISH,تونة الباكور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Esccolar,ENGLISH,تونة بيضاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dogtooth Tuna,ENGLISH,تونة بيضة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bigeye Tuna,ENGLISH,تونة كبيرة العين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chlorine Dioxide,ENGLISH,ثاني أكسيد الكلور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheese Culture,ENGLISH,ثقافة الجبن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dry Ice,ENGLISH,ثلج جاف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Double,ENGLISH,ثنائي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Diacetate,ENGLISH,ثنائي الأسيتات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Diacetyl,ENGLISH,ثنائي الأسيتيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bisphenol A,ENGLISH,ثنائي الفينول أ,ARABIC,batch 1
+sanoop@rightsolutions.ae,Biphenyl,ENGLISH,ثنائي الفينيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated Distarch Adipate,ENGLISH,ثنائي النشا بالأستيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated distarch adipate,ENGLISH,ثنائي النشا بالأستيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated Distarch Phosphate,ENGLISH,ثنائي النشا بالأستيل مع الفوسفات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated distarch phosphate,ENGLISH,ثنائي النشا بالأستيل مع الفوسفات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carbon dioxide,ENGLISH,ثنائي أكسيد الكربون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carbon Dioxide,ENGLISH,ثنائي أكسيد الكربون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acini di Pepe,ENGLISH,ثنائي عنيبات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Biphosphate,ENGLISH,ثنائي فوسفات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,American Bison,ENGLISH,ثور أمريكي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domesticated Yak,ENGLISH,ثور محلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Damson Gin,ENGLISH,جِن دامسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Banbury Cake,ENGLISH,جاتوه بانبيري,ARABIC,batch 1
+sanoop@rightsolutions.ae,(Gamma)-Undecalactone,ENGLISH,جاما أنديكالاكتون,ARABIC,batch 1
+sanoop@rightsolutions.ae,(Gamma)-Octalactone,ENGLISH,جاما أوكتالاكتون,ARABIC,batch 1
+sanoop@rightsolutions.ae,(Gamma)-Nonalactone,ENGLISH,جاما نونالاكتون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Buffalo,ENGLISH,جاموس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Camembert,ENGLISH,جبن الكممبير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Shankleesh Cheese,ENGLISH,جبنة الشنكليش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Shanklish Cheese,ENGLISH,جبنة الشنكليش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Shanklish Cheese,ENGLISH,جبنة الشنكليش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Shinklish Cheese,ENGLISH,جبنة الشنكليش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheddar Cheese,ENGLISH,جبنة الشيدر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cream Cheese,ENGLISH,جبنة الكريمة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Edam,ENGLISH,جبنة إيدام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Emmental Cheese,ENGLISH,جبنة إيمينتال,ARABIC,batch 1
+sanoop@rightsolutions.ae,Emmentaler Cheese,ENGLISH,جبنة إيمينتال,ARABIC,batch 1
+sanoop@rightsolutions.ae,American Cheese,ENGLISH,جبنة أمريكية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brie,ENGLISH,جبنة بري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Baladi Cheese,ENGLISH,جبنة بلدي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chancliche Cheese,ENGLISH,جبنة تشانكليش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Danish Blue Cheese,ENGLISH,جبنة دنماركية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blue Cheese,ENGLISH,جبنة زرقاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blue Stilton,ENGLISH,جبنة ستيلتون الزرقاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Charkassiyea Cheese,ENGLISH,جبنة شركسية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheddar Jack Cheese,ENGLISH,جبنة شيدر جاك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheshire Cheese,ENGLISH,جبنة شيشاير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blue Cheshire,ENGLISH,جبنة شيشاير الزرقاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arab Cheese,ENGLISH,جبنة عربية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arabic Cheese,ENGLISH,جبنة عربية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cottage Cheese,ENGLISH,جبنة قريش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cadinene,ENGLISH,جبنة كادينين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caerphilly Cheese,ENGLISH,جبنة كرفيلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cotija Cheese,ENGLISH,جبنة كوتيجا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Colby Cheese,ENGLISH,جبنة كولبي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Colby Jack Cheese,ENGLISH,جبنة كولبي جالك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cabecou,ENGLISH,جبنة ماعز كوبيكو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Shelal Cheese,ENGLISH,جبنة مشللة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheese,ENGLISH,جبنه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burdock Root,ENGLISH,جذر الأرقطيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dandelion Root,ENGLISH,جذر الهندباء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burdock Root Tea,ENGLISH,جذر شاي الأرقطيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crayfish,ENGLISH,جراد البحر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Energy Shot,ENGLISH,جرعة طاقة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Eruca,ENGLISH,جرير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carrot,ENGLISH,جزرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cellulose Gel,ENGLISH,جل السليلوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Tiger Shrimp,ENGLISH,جمبري أسود عملاق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Camel,ENGLISH,جمل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alpaca,ENGLISH,جمل جموب أمريكي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milk Solids-Not-Fat,ENGLISH,جوامد الحليب - باستثناء الدسم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cashew Nut,ENGLISH,جوز الكاجو,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Coconut, Desiccated",ENGLISH,"جوز الهند، مقطع",ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut,ENGLISH,جوز هند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried coconut,ENGLISH,جوز هند مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dutch Gin,ENGLISH,جين ألماني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Sharp,ENGLISH,حاد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Extra Sharp,ENGLISH,حاد جداً,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aconitic Acid,ENGLISH,حامض الأكونتيك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anise Seed,ENGLISH,حب اليانسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cocoa kernels,ENGLISH,حبات الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cuttlefish,ENGLISH,"حبار
+",ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Grain,ENGLISH,حبة الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Grains,ENGLISH,حبوب الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coffee Bean,ENGLISH,حبوب القهوة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cacao bean,ENGLISH,حبوب الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cocoa bean,ENGLISH,حبوب الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,All-Bran,ENGLISH,حبوب فطور أول- بران,ARABIC,batch 1
+sanoop@rightsolutions.ae,All-Bran Buds,ENGLISH,حبوب فطور أول- بران,ARABIC,batch 1
+sanoop@rightsolutions.ae,Durum Granular,ENGLISH,حبيبات القمح الصلب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Earth Apple,ENGLISH,حرشف القدس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burn,ENGLISH,حرق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dill Weed,ENGLISH,حشائش الشبت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bread Pudding,ENGLISH,حشوة الخبز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Agar,ENGLISH,حشيش صيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Escargot,ENGLISH,حلزون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Angel Delight,ENGLISH,حلوى اسفنجية خالية من صفار البيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit Fool,ENGLISH,حلوى الفاكهة الإنجليزية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit Pastilles,ENGLISH,حلوى الفاكهة الهلامية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit Crumble,ENGLISH,حلوى الفواكه الهشة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fudge,ENGLISH,حلوى منفوشة لينة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arctic Roll,ENGLISH,حلى الأركتيك رول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bombe Glacee,ENGLISH,حلى بومبيه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cherries Jubilee,ENGLISH,حلى تشيري جوبيلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milk,ENGLISH,حليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cow's milk,ENGLISH,حليب الأبقار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milk Chocolate,ENGLISH,حليب الشوكولاتة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milk Chocolate Hobnobs,ENGLISH,حليب الشوكولاتة هوب نوبس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut Milk,ENGLISH,حليب جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Condensed Coconut Milk,ENGLISH,حليب جوز الهند المكثف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Evaporated Coconut Milk,ENGLISH,حليب جوز هند مكثف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Skim Milk,ENGLISH,حليب خالي من الدهن مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Full Cream Milk,ENGLISH,حليب كامل الدسم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dry Whole Milk,ENGLISH,حليب كامل الدسم مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Evaporated Milk,ENGLISH,حليب مبخر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Evapourated Milk,ENGLISH,حليب مبخر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Milk,ENGLISH,حليب مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Condensed Milk,ENGLISH,حليب مكثف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amasi,ENGLISH,حليب ملبن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Donkey,ENGLISH,حمار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domestic Pigeon,ENGLISH,حمام محلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ceci Beans,ENGLISH,حمص,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chick Peas,ENGLISH,حمص,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chickpeas,ENGLISH,حمص,ARABIC,batch 1
+sanoop@rightsolutions.ae,2-Ethylbutyric Acid,ENGLISH,حمض الإثيلبيوتيريك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Erythorbic acid,ENGLISH,حمض الإريثوبيك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aspartic Acid,ENGLISH,حمض الأسبارتيك الأميني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aspartic Acid,ENGLISH,حمض الأسبارتيك الأميني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Benzoic acid,ENGLISH,حمض البنزويك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Benzoic Acid,ENGLISH,حمض البنزويك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Boric Acid,ENGLISH,حمض البوريك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Boric acid,ENGLISH,حمض البوريك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butyric Acid,ENGLISH,حمض البيوتيريك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Citric acid,ENGLISH,حمض الستريك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Citric Acid,ENGLISH,حمض الستريك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cyclamic Acid,ENGLISH,حمض السيكلاميك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cyclamic acid and its Na and Ca salts,ENGLISH,حمض السيكلاميك وأملاحه الصوديوم و الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acid Phosphate,ENGLISH,حمض الفوسفات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fumaric Acid,ENGLISH,حمض الفوماريك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fumaric Acid,ENGLISH,حمض الفوماريك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caprylic Acid,ENGLISH,حمض الكابريليك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium D Pantothenic Acid,ENGLISH,حمض الكالسيوم بانتوثينيك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cholic Acid,ENGLISH,حمض الكوليك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated Tartaric Acid Monoglyceride,ENGLISH,حمض أحادي الجليسريد المؤستل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alanine,ENGLISH,حمض أميني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arginine,ENGLISH,حمض أميني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arginine,ENGLISH,حمض أميني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acid Sodium Pyrophosphate,ENGLISH,حمض بايروفوسفات الصوديوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Adipic Acid,ENGLISH,حمض دهني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Adipic acid,ENGLISH,حمض دهني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cinnamic Acid,ENGLISH,حمض سيناميك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ascorbic Acid,ENGLISH,حمض صمغ الحلتيت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ascorbic acid,ENGLISH,حمض صمغ الحلتيت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acid Casein,ENGLISH,حمض قاني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Acid Phosphate,ENGLISH,حمض كالسيوم الفوسفات,ARABIC,batch 1
+sanoop@rightsolutions.ae,BHA,ENGLISH,حمض هيدروكسي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Elk,ENGLISH,حيوان الإلكة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coypu,ENGLISH,حيوان الكيب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bread,ENGLISH,خبز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bun,ENGLISH,خبز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brown Bread,ENGLISH,خبز اسمر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amish Friendship Bread,ENGLISH,خبز الأميش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beigel,ENGLISH,خبز البيجل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cornbread,ENGLISH,خبز الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anadama Bread,ENGLISH,خبز أسمر بريطاني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Bread,ENGLISH,خبز أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bath Bun,ENGLISH,خبز باث,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brioche,ENGLISH,خبز بريوش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beer Bread,ENGLISH,خبز بمياه الشعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Boule Bread,ENGLISH,خبز بول الفرنسي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chelsea Bun,ENGLISH,خبز تشيلسي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bagel,ENGLISH,خبز صمون مدور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arab Bread,ENGLISH,خبز عربي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arabic Bread,ENGLISH,خبز عربي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arabic Bread Big,ENGLISH,خبز عربي كبير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cuban Bread,ENGLISH,خبز كوبي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Banana Bread,ENGLISH,خبز موز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bhakri,ENGLISH,خبز هندي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bhatoora,ENGLISH,خبز هندي مقلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bhatura,ENGLISH,خبز هندي مقلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bread and Butter Pudding,ENGLISH,خبز وزبدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aarul,ENGLISH,خثارة لبن مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aaruul,ENGLISH,خثارة لبن مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,English Mustard,ENGLISH,خردل إنجليزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Mustard,ENGLISH,خردل أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dijon Mustard,ENGLISH,خردل ديجون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dijon Wholegrain Mustard,ENGLISH,خردل ديجون حبة كاملة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Sapote,ENGLISH,خرمال أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carob,ENGLISH,خروب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domestic Sheep,ENGLISH,خروف محلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Frisee,ENGLISH,خس الفرزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Drum,ENGLISH,خضار جنوب آسوية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Vegetables,ENGLISH,خضار مجففة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apfelwein,ENGLISH,خل التفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cider Vinegar,ENGLISH,خل التفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apple Vinegar,ENGLISH,خل تفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Sugar Vinegar,ENGLISH,خل سكر الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Distilled Vinegar,ENGLISH,خل مقطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Haw Bark Extract,ENGLISH,خلاصة رباطية خوخية الورق أو خلاصة أفلوس خوخي الورق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Electrolyte Blend,ENGLISH,خليط إليكترولايت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Baker's Yeast,ENGLISH,خميرة الخَبز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domestic Pig,ENGLISH,خنزير محلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Armenian Plum,ENGLISH,خوخ أرميني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Damson,ENGLISH,خوخ دامسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cucumber,ENGLISH,خيار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Silk,ENGLISH,خيوط حرير الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,D-Limonene,ENGLISH,د -الليمونين,ARABIC,batch 1
+sanoop@rightsolutions.ae,D1-Alpha-tocopherol,ENGLISH,د١ ألفا توكوفيرول / فيتامين ه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Diet Pepsi,ENGLISH,دايت بيبسي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Diet Coke,ENGLISH,دايت كوكاكولا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Diet Moutain Dew,ENGLISH,دايت ماونتين ديو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Diglyceride,ENGLISH,دايجليسريد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dilauryl Thiodipropionate,ENGLISH,دايلاوريل الثيوديبروبيونات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicken,ENGLISH,دجاج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cornfed Chicken,ENGLISH,دجاج متغذي على الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,BodyArmor,ENGLISH,درع,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milk Fat,ENGLISH,دسم الحليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milkfat,ENGLISH,دسم الحليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milkfat,ENGLISH,دسم الحليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bread Flour,ENGLISH,دقيق الخبز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Flour,ENGLISH,دقيق الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Meal,ENGLISH,دقيق الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley Flour,ENGLISH,دقيق الشعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Entire Wheat Flour,ENGLISH,دقيق القمح الكامل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bromated Whole Wheat Flour,ENGLISH,دقيق القمح الكامل معزز بالبوتاسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Almond Flour,ENGLISH,دقيق اللوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bleached Flour,ENGLISH,دقيق أبيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Enriched Bleached Flour,ENGLISH,دقيق أبيض معزز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Enriched wheat flour (),ENGLISH,دقيق طحين معزز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bleached wheat flour,ENGLISH,دقيق قمح أبيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dry Milled Barley,ENGLISH,دقيق قمح بارلي المجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Almond Flour, Blanched Ground",ENGLISH,دقيق لوز خشن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chlorinated Maida Flour,ENGLISH,دقيق مايدا الكلوريدي,ARABIC,batch 1
+sanoop@rightsolutions.ae,All-Purpose Flour,ENGLISH,دقيق متعدد الاستخدام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Clear Flour,ENGLISH,دقيق مصفى,ARABIC,batch 1
+sanoop@rightsolutions.ae,Enriched Flour,ENGLISH,دقيق معزز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arrowroot Flour,ENGLISH,دقيق نبات الطاعة/ دقيق جذور الأروروت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dr Pepper,ENGLISH,دكتور بيبر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dextrin,ENGLISH,دكسترين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dextrin Roasted Starch,ENGLISH,دكسترين النشاء المحمص,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dolphin,ENGLISH,دلفين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Damiana,ENGLISH,دميانة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butter Fat,ENGLISH,دهن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicken fat,ENGLISH,دهن الدجاج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Shea fat,ENGLISH,دهن الشيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut fat,ENGLISH,دهن جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Doughnut,ENGLISH,دونات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domestic Turkey,ENGLISH,ديك رومي محلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Capon,ENGLISH,ديك مخصي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dicalcium Diphosphate,ENGLISH,ديكالسيوم دايفوسفات,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Dicalcium Phosphate, Anhydrous",ENGLISH,ديكالسيوم فوسفات,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Dicalcium Phosphate, Dihydrate",ENGLISH,"ديكالسيوم فوسفات، دايهايدرات",ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn,ENGLISH,ذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium malates,ENGLISH,ذكور الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Abalone,ENGLISH,ذن البحر,ARABIC,batch 1
+sanoop@rightsolutions.ae,10-K Thirst Quencher,ENGLISH,راوي العطش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Haw,ENGLISH,رباطية خوخية الورق أو أفلوس خوخي الورق,ARABIC,batch 1
+sanoop@rightsolutions.ae,"1,4-heptononolactone",ENGLISH,رباعي الكربون هيبتونونولاكتون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Date and Walnut Loaf,ENGLISH,رغيف التمر بالجوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bedfordshire Clanger,ENGLISH,رفغيف اللحم الإنجليزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cookie Crisp,ENGLISH,رقاقات البسكوت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Flakes,ENGLISH,رقائق الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Flakes,ENGLISH,رقائق الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley Flakes,ENGLISH,رقائق الشعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate chip (),ENGLISH,رقائق الشوكلاته (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate chips (),ENGLISH,رقائق الشوكولاته (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Celery Flakes,ENGLISH,رقائق الكرفس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Frosted Flakes,ENGLISH,رقائق مثلجة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetic Acid,ENGLISH,روح الخل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetic acid,ENGLISH,روح الخل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetic Acid Esters of Mono and Diglycerides of Fatty Acids,ENGLISH,روح الخل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetic acid esters of mono- and diglycerides of fatty acids,ENGLISH,روح الخل,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Acetic Acid, Glacial",ENGLISH,روح الخل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetic Anhydride,ENGLISH,روح الخل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Collin the Caterpillar,ENGLISH,رول شوكولاتة كولين ذا كاتربيلر,ARABIC,batch 1
+sanoop@rightsolutions.ae,All Sport,ENGLISH,رياضي بالكامل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Frozen Yoghurt,ENGLISH,زبادي مثلج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Frozen Yogurt,ENGLISH,زبادي مثلج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butter,ENGLISH,زبدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butter Bean,ENGLISH,زبدة البازلاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butterfat,ENGLISH,زبدة الحليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Buttermilk,ENGLISH,زبدة الحليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Buttermilk, Dried",ENGLISH,"زبدة الحليب، مجففة",ARABIC,batch 1
+sanoop@rightsolutions.ae,Shea butter,ENGLISH,زبدة الشيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cacao Butter,ENGLISH,زبدة الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cocoa Butter,ENGLISH,زبدة الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Buttermilk,ENGLISH,زبدة حليب مجففة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Clarified Butter,ENGLISH,زبدة صافية,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Butter, Clarified",ENGLISH,"زبدة، نقية",ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc,ENGLISH,زنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Zinc, Zn",ENGLISH,زنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burdock Flower,ENGLISH,زهرة الأرقطيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Borage,ENGLISH,زهور لسان الثور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Rose Petals,ENGLISH,زهورات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Argan Oil,ENGLISH,زيت الأرجان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burdock Oil,ENGLISH,زيت الأرقطيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Babassu Oil,ENGLISH,زيت الباباسو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bergamot Essential Oil,ENGLISH,زيت البرغاموت العطري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Balm Oil,ENGLISH,زيت البلسم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carrot Oil,ENGLISH,زيت الجزر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Citrus Oil,ENGLISH,زيت الحمضيات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Castor Oil,ENGLISH,زيت الخروع,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Oil,ENGLISH,زيت الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butter Oil,ENGLISH,زيت الزبدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cinnamon Oil,ENGLISH,زيت القرفة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amaranth Oil,ENGLISH,زيت القطيفة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cashew Oil,ENGLISH,زيت الكاجو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Camellia Oil,ENGLISH,زيت الكاميليا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cananga Oil,ENGLISH,زيت الكانجا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Canola Oil,ENGLISH,زيت الكانولا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cumin Oil,ENGLISH,زيت الكمون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Almond Oil,ENGLISH,زيت اللوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apricot Oil,ENGLISH,زيت المشمش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Avocado Oil,ENGLISH,زيت أفوكادو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blackcurrant Seed Oil,ENGLISH,زيت بذرة الكشمش الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coriander Seed Oil,ENGLISH,زيت بذور الكزبرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ben Oil,ENGLISH,زيت بذور المورينجا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cotton Seed Oil,ENGLISH,زيت بزر القطن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Borage Seed Oil,ENGLISH,زيت بزرة زهور لسان الثور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Balsam Peru Oil,ENGLISH,زيت بلسم البيرو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut Oil,ENGLISH,زيت جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Seed Oil,ENGLISH,زيت حبة البركة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brominated Vegetable Oil,ENGLISH,زيت خضار معزز بالبوتاسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Edible Oil,ENGLISH,زيت صالح للأكل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carob Pod Oil,ENGLISH,زيت قرنة الخروب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cajeput Oil,ENGLISH,زيت كاجيبوت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zivania,ENGLISH,زيفانيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Edible Oils,ENGLISH,زيوت صالح للأكل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc Citrate,ENGLISH,سترات الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Citrate,ENGLISH,سترات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium citrates,ENGLISH,سترات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc Stearate,ENGLISH,ستيرات الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Stearate,ENGLISH,ستيرات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beef Brisket Steak,ENGLISH,ستيك البقر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cervelat,ENGLISH,سجق سيرفيلات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chinese Sausage,ENGLISH,سجق صيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cabanossi,ENGLISH,سجق كابانوسي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chorizo,ENGLISH,سجق كوريزو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Milk Sugar,ENGLISH,سكر الحليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Sugar,ENGLISH,سكر الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beet Sugar,ENGLISH,سكر الشمندر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dextrose,ENGLISH,سكر العنب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit Sugar,ENGLISH,سكر الفاكهة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brown Sugar,ENGLISH,سكر بني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Basket Cheese,ENGLISH,سلة جبنة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crab,ENGLISH,سلطعون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blue Crab,ENGLISH,سلطعون أزرق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dungeness Crab,ENGLISH,سلطعون بحري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domesticated Quail,ENGLISH,سمان محلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Benne,ENGLISH,سمسم أو حبة البركة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alaska Pollock,ENGLISH,سمك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bream,ENGLISH,سمك الأبراميس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anchovies,ENGLISH,سمك الأنشوفة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dory,ENGLISH,سمك الدوري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brook Trout,ENGLISH,سمك السالمون المرقط,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cutthroat Trout,ENGLISH,سمك السلمون المرقط,ARABIC,batch 1
+sanoop@rightsolutions.ae,Catfish,ENGLISH,سمك السلور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Channel Catfish,ENGLISH,سمك السلور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carp,ENGLISH,سمك الشبوط,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bass,ENGLISH,سمك القاروص,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Bass, Sea",ENGLISH,سمك القاروص,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Sea Bass,ENGLISH,سمك القاروص الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Bass, Striped",ENGLISH,سمك القاروص المخطط,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cod,ENGLISH,سمك القد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Cod,ENGLISH,سمك القد الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bluefish,ENGLISH,سمك القنبر / السمكة الزرقاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Angler,ENGLISH,سمك أبو الشص,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brill,ENGLISH,سمك بريب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Basa,ENGLISH,سمك بنغاس بوكورتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bonito,ENGLISH,سمك بونيتو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dorade,ENGLISH,سمك دوراد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dover Sole,ENGLISH,سمك دوفر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chinook Salmon,ENGLISH,سمك سالمون تشينوك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coho Salmon,ENGLISH,سمكا سالمون كوهو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anchovy,ENGLISH,سمكة الأنشوفة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barracuda,ENGLISH,سمكة الباراكودا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Atlantic Bluefin Tuna,ENGLISH,سمكة التونا الأطلنطية ذات الزعنفة الزرقاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bluefin Tuna,ENGLISH,سمكة التونة ذات الزعنفة الزرقاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blackfin Tuna,ENGLISH,سمكة التونة ذات الزعنفة السوداء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Atlantic Ocean Perch,ENGLISH,سمكة الجثم الأطلنطية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Atlantic Herring,ENGLISH,سمكة الرنجة الأطلنطية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butterfish,ENGLISH,سمكة الزبيدي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butterfly Kingfish,ENGLISH,سمكة الزبيدي الملك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chum Salmon,ENGLISH,سمكة السالمون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Atlantic Salmon,ENGLISH,سمكة السالمون الأطلنطية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brown Trout,ENGLISH,سمكة السالمون المرقطة البنية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Common Carp,ENGLISH,سمكة الشبوط الشائعة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chilean Sea Bass,ENGLISH,سمكة القاروس التشيلية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Atlantic Cod,ENGLISH,سمكة القد الأطلنطية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crappie,ENGLISH,سمكة الكراب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Atlantic Bonito,ENGLISH,سمكة بونيتو الأطلنطية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blue Grenadier,ENGLISH,سمكة جرينادير الزرقاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chub Mackerel,ENGLISH,سمكة شب سمكة ماكيريل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Atlantic Mackerel,ENGLISH,سمكة ماكيريل الأطلنطية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blue Mackerel,ENGLISH,سمكة مكاريل الزرقاء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Atlantic Horse Mackerel,ENGLISH,سمكة هورس ماكيريل الأطلنطية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butteroil,ENGLISH,سمنة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Durum Semolina,ENGLISH,سميد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Semolina,ENGLISH,سميد الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Sorbate,ENGLISH,سوربات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alum,ENGLISH,سولفات الأليمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium Sulphate,ENGLISH,سولفات الأليمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium sulphate - Aluminum sulfate,ENGLISH,سولفات الأليمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Sulfate,ENGLISH,سولفات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Sulfite,ENGLISH,سولفات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Sulphate,ENGLISH,سولفات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium sulphate - Ammonium sulfate,ENGLISH,سولفات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Sulphite,ENGLISH,سولفات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Persulfate,ENGLISH,سولفات الأمونيوم الأولية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium Ammonium Sulphate,ENGLISH,سولفات أمونيوم الأليمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium ammonium sulphate,ENGLISH,سولفات أمونيوم الأليمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium Potassium Sulphate,ENGLISH,سولفات بوتاسيوم الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium potassium sulphate - Aluminum potassium sulfate,ENGLISH,سولفات بوتاسيوم الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium Sodium Sulphate,ENGLISH,سولفات صوديوم الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium sodium sulphate - Aluminum sodium sulfate,ENGLISH,سولفات صوديوم الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Diethyl Sebacate,ENGLISH,سيباكيت دايثيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Ammonium Citrate, Dibasic",ENGLISH,سيترات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Ferric Citrate,ENGLISH,سيترات فريك الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Citronellal,ENGLISH,"سيترونيلال
+",ARABIC,batch 1
+sanoop@rightsolutions.ae,Cystine,ENGLISH,سيستين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cyclamates,ENGLISH,سيكلاميتس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl Methyl Cellulose,ENGLISH,سيلولوز ميثيل الأثير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium Silicate,ENGLISH,سيليكا الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium silicate - Aluminum silicate - Kaolin,ENGLISH,سيليكا الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium Calcium Silicate,ENGLISH,سيليكا كالسيوم الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium calcium silicate - Aluminum calcium silicate,ENGLISH,سيليكا كالسيوم الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium silicate,ENGLISH,سيليكات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Silicate,ENGLISH,سيليكات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chapati,ENGLISH,شاباتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Champagne,ENGLISH,شامبانيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,English Breakfast Tea,ENGLISH,شاي إنجليش بريكفاست,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Tea,ENGLISH,شاي أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Breakfast Tea,ENGLISH,شاي فطور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Epazote,ENGLISH,شاي مكسيكي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bay Tree,ENGLISH,شجرة الغار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Egg Cream,ENGLISH,"شراب ""كريم إيج""",ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Syrup,ENGLISH,شراب الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Syrup Solids,ENGLISH,شراب الذرة الجامد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley malt,ENGLISH,شراب الشعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Accelerade,ENGLISH,شراب بروتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Beer,ENGLISH,شراب شعير الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brown Ale,ENGLISH,شراب شعير بني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bock,ENGLISH,شراب شعير بوك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fructose Corn Syrup,ENGLISH,شراب فركتوز الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bacon,ENGLISH,شرائح لحم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bacon and Egg Pie,ENGLISH,شرائح لحم مع بيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley,ENGLISH,شعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Birch Beer,ENGLISH,شعير التامول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barbina,ENGLISH,شعيرية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beeswax,ENGLISH,شمع النحل,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Beeswax, white and yellow",ENGLISH,"شمع النحل، أبيض وأصفر",ARABIC,batch 1
+sanoop@rightsolutions.ae,Candelilla wax,ENGLISH,شمع كانديلا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Candelilla Wax,ENGLISH,شمع كانديلا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carnauba wax,ENGLISH,شمع كرنوبا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carnauba Wax,ENGLISH,شمع كرنوبا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beet,ENGLISH,شمندر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Doogh,ENGLISH,شنينة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Andes Chocolate Mints,ENGLISH,شوكلاتة أنديس بنكهة النعنع,ARABIC,batch 1
+sanoop@rightsolutions.ae,Choco Leibnitz,ENGLISH,شوكو ليبنيتز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate,ENGLISH,شوكولاتة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ciabatta,ENGLISH,شياباتا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chinook,ENGLISH,شينوك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Agave,ENGLISH,صباريات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Azorubine,ENGLISH,صبغة حمراء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Azorubine - Carmoisine,ENGLISH,صبغة حمراء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alkanet,ENGLISH,صبغة حمراء طبيعية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black 7984,ENGLISH,صبغة سوداء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black PN,ENGLISH,صبغة سوداء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allura Red AC,ENGLISH,صبغة غذائية129 E,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allura Red AC,ENGLISH,صبغة غذائية129 E,ARABIC,batch 1
+sanoop@rightsolutions.ae,Egg Yolk,ENGLISH,صفار البيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,ACA,ENGLISH,صفحة المواقع,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chutneys,ENGLISH,صلصات التشاتني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barbecue Sauce,ENGLISH,صلصة الباربيكيو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bechamel Sauce,ENGLISH,صلصة البشاميل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bolognese Sauce,ENGLISH,صلصة البولونيز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Espagnole Sauce,ENGLISH,صلصة أسبانية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brown Sauce,ENGLISH,صلصة بنية اللون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chutney,ENGLISH,صلصة تشاتني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Agrodolce,ENGLISH,صلصة حامض حلو إيطالية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bread Sauce,ENGLISH,صلصة خبز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheddar Sauce,ENGLISH,صلصة شيدر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Currywurst Sauce,ENGLISH,صلصة كوريوورست,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dressing,ENGLISH,صلصلة سلطة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Asafetida,ENGLISH,صمغ الحلتيت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Asafoetida,ENGLISH,صمغ الحلتيت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carob Gum,ENGLISH,صمغ الخروب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cellulose Gum,ENGLISH,صمغ السليلوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cassia gum,ENGLISH,صمغ قرفة صينية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Baguette,ENGLISH,صمون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial,ENGLISH,صناعي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Baking Soda,ENGLISH,صودا الخبز / بيكنج صودا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cream Soda,ENGLISH,صودا الكريمة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cream Soda,ENGLISH,صودا الكريمة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alfalfa Sprouts,ENGLISH,ضمة برسيم حجازي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fresh,ENGLISH,طازج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Common Snipe,ENGLISH,طائر الشنقب الشائع,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chalk,ENGLISH,طبشور,ARABIC,batch 1
+sanoop@rightsolutions.ae,All Natural,ENGLISH,طبيعي بالكامل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carrageen Moss,ENGLISH,طحالب كاراجين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Family Flour,ENGLISH,طحين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Atta Flour,ENGLISH,طحين ؟؟؟؟؟؟,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cracker Flour,ENGLISH,طحين البسكويت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Buckwheat flour,ENGLISH,طحين الحنطة السوداء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cake Flour,ENGLISH,طحين الكيك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chakki Atta Flour,ENGLISH,طحين شاكي أتا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Estragon,ENGLISH,طرخون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Tartrate,ENGLISH,طرطرات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium tartrate,ENGLISH,طرطرات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Tomatoes,ENGLISH,طماطم مجففة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coloring Adjuncts (),ENGLISH,عامل التلوين (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Carbonating Agents (),ENGLISH,عامل الكربنة (),ARABIC,batch 1
+sanoop@rightsolutions.ae,1-Octanol,ENGLISH,عامل عطري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetanisole,ENGLISH,عامل عطري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bleaching Agents (),ENGLISH,عامل مبيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bleaching Agents (),ENGLISH,عامل مبيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Antimicrobial Agents (),ENGLISH,عامل مضاد للبكتيريا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Anthranilate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Caproate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Cinnamate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Hexanoate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Isothiocyanate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Isovalerate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Mercaptan,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Nonanoate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Octanoate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Phenoxyacetate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Phenylacetate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allyl Sorbate,ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Allyl-2,4-Hexadienoate",ENGLISH,عامل معطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ajwain,ENGLISH,عجوة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Choux Pastry,ENGLISH,عجينة الشو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arabic,ENGLISH,عربي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammoniated Glycyrrhizin,ENGLISH,عرق سوس مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bison Grass,ENGLISH,عشب البيسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley Grass,ENGLISH,عشب الشعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Annatto - Bixin - Norbixin,ENGLISH,عصارة نبات أناتو للتلوين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Citrus Zests and Juice Powders,ENGLISH,عصير الحمضيات و مسحوق العصير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apple Brandy,ENGLISH,عصير تفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut Juice,ENGLISH,عصير جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit and Vegetable Juice,ENGLISH,عصير خضار وفواكه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Agave Juice,ENGLISH,عصير صبريات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Agave Syrup,ENGLISH,عصير صبريات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ackawi,ENGLISH,عكاوي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Akkawi,ENGLISH,عكاوي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acacia Gum,ENGLISH,علكة الأقاقيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arabic Gum,ENGLISH,علكة عربية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aged,ENGLISH,عمر,ARABIC,batch 1
+sanoop@rightsolutions.ae,About,ENGLISH,عن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bilberry,ENGLISH,عنبية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chelating Agents,ENGLISH,عوامل كيلات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ayran,ENGLISH,عيران,ARABIC,batch 1
+sanoop@rightsolutions.ae,Argon,ENGLISH,غاز الأرجون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Argon,ENGLISH,غاز الأرجون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Gluten,ENGLISH,غلوتين الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc Gluconate,ENGLISH,غلوكونات الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium gluconate,ENGLISH,غلوكونات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Gluconate,ENGLISH,غلوكونات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Copper Gluconate,ENGLISH,غلوكونات النحاس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Adzuki Bean,ENGLISH,فاصوليا أدزوكي الحمراء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Borlotti Bean,ENGLISH,فاصوليا بورلوتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Beans,ENGLISH,فاصوليا سوداء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aduki Bean,ENGLISH,فاصوليا صينية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Adzuki Bean,ENGLISH,فاصوليا صينية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dragonfruit,ENGLISH,فاكهة الباتايا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cherimoya,ENGLISH,فاكهة القشطة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Durian,ENGLISH,فاكهة تايلاندية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruity,ENGLISH,فاكهي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crumble,ENGLISH,فتات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apple Crumble,ENGLISH,فتات التفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Daikon,ENGLISH,"فجل أبيض
+",ARABIC,batch 1
+sanoop@rightsolutions.ae,Daikon Oroshi,ENGLISH,"فجل أبيض
+",ARABIC,batch 1
+sanoop@rightsolutions.ae,Fructooligosaccharide,ENGLISH,فراكتوليجوساكاريد (F.O.S),ARABIC,batch 1
+sanoop@rightsolutions.ae,Fructose,ENGLISH,فركتوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crystalline Fructose,ENGLISH,فركتوز بلوري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bay Bolete,ENGLISH,فطر باي بوليت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chanterelle,ENGLISH,فطر شانتيريل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amethyst Deceiver,ENGLISH,فطر ملون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blackberry and Apple Pie,ENGLISH,فطيرة التفاح والتوت الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blackberry Pie,ENGLISH,فطيرة التوت الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blueberry Pie,ENGLISH,فطيرة التوت البري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheese and Onion Pie,ENGLISH,فطيرة الجبنة والبصل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicken and Mushroom Pie,ENGLISH,فطيرة الدجاج بالفطر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Shepherd's Pie,ENGLISH,فطيرة الراعي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butter Pie,ENGLISH,فطيرة الزبدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chess Pie,ENGLISH,فطيرة الشطرنج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit Pie,ENGLISH,فطيرة الفاكهة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cashew Pie,ENGLISH,فطيرة الكاجو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Custard Pie,ENGLISH,فطيرة الكاسترد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cherry Pie,ENGLISH,فطيرة الكرز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chestnut Pie,ENGLISH,فطيرة الكستناء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cornish Pasty,ENGLISH,فطيرة الكورنيش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corned Beef Pie,ENGLISH,فطيرة اللحم المفروم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Banoffee Pie,ENGLISH,فطيرة بانوفي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Bottom Pie,ENGLISH,فطيرة بلاك بوتوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Boston Cream Pie,ENGLISH,فطيرة بوسطن كريم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apple Pie,ENGLISH,فطيرة تفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,American Apple Pie,ENGLISH,فطيرة تفاح أمريكية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cottage Pie,ENGLISH,فطيرة جبنة القريش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Buko Pie,ENGLISH,فطيرة جوز الهند بالكاسترد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cream Pie,ENGLISH,فطيرة كريمة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cuury Pie,ENGLISH,فطيرة كيوري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Banana Pepper,ENGLISH,فلفل الموز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Pepper,ENGLISH,فلفل أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chile Pepper,ENGLISH,فلفل تشيلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alligator Pepper,ENGLISH,فلفل تمساح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allspice,ENGLISH,فلفل جمايكي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cayenne Pepper,ENGLISH,فلفل حريف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cuban Pepper,ENGLISH,فلفل كوبي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cubanelle Pepper,ENGLISH,فلفل كوبي حلو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Fruit,ENGLISH,فواكه مجففة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Formate,ENGLISH,فورمات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anisyl Formate,ENGLISH,فورمات اليانسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl Formate,ENGLISH,فورميت الأثيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Phosphate,ENGLISH,فوسفات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Persulphate,ENGLISH,فوسفات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Phosphate Monobasic,ENGLISH,فوسفات الأمونيوم أحادية القاعدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Phosphate Dibasic,ENGLISH,فوسفات الأمونيوم ثنائية القاعدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bone Phosphate,ENGLISH,فوسفات العظام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Phosphate,ENGLISH,فوسفات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium phosphates,ENGLISH,فوسفات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Fumarate,ENGLISH,فومارات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alpha Tocopheryl Acetate,ENGLISH,فيتامين E,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alpha-Tocopherol,ENGLISH,فيتامين E,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alpha-tocopherol,ENGLISH,فيتامين E,ARABIC,batch 1
+sanoop@rightsolutions.ae,Delta-tocopherol,ENGLISH,فيتامين ه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Delta-tocopherol,ENGLISH,فيتامين ه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium ferrocyanide,ENGLISH,فيرو سيانيد الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Ferrocyanide,ENGLISH,فيروسيانيد الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,100 Big Bar,ENGLISH,قالب كبير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caper,ENGLISH,قبار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Shark,ENGLISH,قرش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butternut Squash,ENGLISH,قرع,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cinnamon,ENGLISH,قرفة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cassia,ENGLISH,قرفة صينية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cochineal,ENGLISH,قرمزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cochineal - Carminic acid - Carmines,ENGLISH,قرمزي - حمض الكارمينيك - كارمينيس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cauliflower,ENGLISH,قرنبيط,ARABIC,batch 1
+sanoop@rightsolutions.ae,Broccoflower,ENGLISH,قرنبيط أخضر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carob Pod,ENGLISH,قرنة الخروب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Custard Cream,ENGLISH,قشدة كاسترد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bonito Flakes,ENGLISH,قشر سمك البونيتو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cacao Shell,ENGLISH,قشرة الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,American Cream,ENGLISH,قشطة أمريكية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cane Sugar,ENGLISH,قصب سكر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domestic Cat,ENGLISH,قطة محلية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Catnip,ENGLISH,قطرم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aero Mint,ENGLISH,قطع الأيرو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cacao nibs,ENGLISH,قطع الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apple Mint,ENGLISH,قطع تفاح صغيرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut meat,ENGLISH,قطع جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bread Roll,ENGLISH,قطعة خبز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beef Stock Cube,ENGLISH,قطعة لحم غير مبهرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amaranth,ENGLISH,قطيفة,ARABIC,batch 1
+sanoop@rightsolutions.ae,ADDA,ENGLISH,قعدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Eddo,ENGLISH,قلقاس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Eddoe,ENGLISH,قلقاس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Durum Flour,ENGLISH,قمح صلب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Durum Wheat,ENGLISH,قمح صلب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coarse-Ground Wheat,ENGLISH,قمح مطحون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cracked Wheat,ENGLISH,قمح مطحون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crushed Wheat,ENGLISH,قمح مطحون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coffee,ENGLISH,قهوة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Daily Value,ENGLISH,قيمة يومية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Capellini,ENGLISH,كابليني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Capybara,ENGLISH,كابيبارا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Capelli da Chef,ENGLISH,كابيلي دا شيف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Capelli d'angelo,ENGLISH,كابيلي دي أنجيلو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Capelin Roe,ENGLISH,كابيلين رو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cadbury Dairy Milk,ENGLISH,كادبوري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cadbury Whole Nut,ENGLISH,كادبوري بالجوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cadbury Fruit & Nut,ENGLISH,كادبوري بالفاكهة والجوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cadbury Fruit and Nut,ENGLISH,كادبوري بالفاكهة والجوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carabao,ENGLISH,كاراباو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carabao,ENGLISH,كاراباو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carabao,ENGLISH,كاراباو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carne-de-sol,ENGLISH,كارني دي سول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carotene,ENGLISH,كاروتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Carotene, Alpha",ENGLISH,"كاروتين ، ألفا",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Carotene, Beta",ENGLISH,"كاروتين ، بيتا",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Carotene, Gamma",ENGLISH,"كاروتين ، جاما",ARABIC,batch 1
+sanoop@rightsolutions.ae,Curry,ENGLISH,كاري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Caseinate,ENGLISH,كازينات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Custard,ENGLISH,كاسترد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Frozen Custard,ENGLISH,كاسترد مثلج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Castellane,ENGLISH,كاستيلان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Caseinate,ENGLISH,كاسينات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cavatelli,ENGLISH,كافاتيلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caviar,ENGLISH,كافيار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caffeine,ENGLISH,كافيين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cocoa,ENGLISH,كاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cacao,ENGLISH,كاكلو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium,ENGLISH,كالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Guanylate,ENGLISH,كالسيوم جوانييلات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium guanylate,ENGLISH,كالسيوم جوانييلات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Glycerophosphate,ENGLISH,كالسيوم فوسفات الجلسرين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Full Cream,ENGLISH,كامل الدسم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cannelloni,ENGLISH,كانيلوني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cup Noodle,ENGLISH,كأس النودلز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cup Noodles,ENGLISH,كأس النودلز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cubeb Berry,ENGLISH,كبابة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc Sulfate,ENGLISH,كبريتات الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc Sulphate,ENGLISH,كبريتات الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Sulfate,ENGLISH,كبريتات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Sulfite,ENGLISH,كبريتات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Sulphate,ENGLISH,كبريتات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Sulphite,ENGLISH,كبريتات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium sulphate - Calcium sulfate,ENGLISH,كبريتات الكالسيوم - سلفات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cupric Sulfate,ENGLISH,كبريتات الكبريت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cupric Sulphate,ENGLISH,كبريتات الكبريت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Copper Sulfate,ENGLISH,كبريتات النحاس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Copper Sulphate,ENGLISH,كبريتات النحاس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Hydrogen Sulphite,ENGLISH,كبريتات هيدروجين الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium sulphite - Calcium sulfite,ENGLISH,كبريتيت الكالسيوم - كبريتيت الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Hydrogen Sulfite,ENGLISH,كبريتيت هيدروجين الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium hydrogen sulphite - Calcium hydrogen sulfite,ENGLISH,كبريتيت هيدروجين الكالسيوم - كبريتيت هيدروجين الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alcohol,ENGLISH,كحول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Armagnac,ENGLISH,كحول الأرماجناك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Applejack,ENGLISH,كحول التفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonia caramel,ENGLISH,كراميل الأمونيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caustic sulfite caramel - Caustic sulphite caramel,ENGLISH,كراميل كبريتيت الكاوية - كراميل كبريتيت الكاوية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caraway,ENGLISH,كراوية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carboxy methyl cellulose - Cellulose gum - CMC,ENGLISH,كربوكسي ميثيل السليلوز - سليلوز الصمغ - CMC,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carbonate,ENGLISH,كربونات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Carbonate,ENGLISH,كربونات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium carbonates,ENGLISH,كربونات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc Carbonate,ENGLISH,كربونات الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Carbonate,ENGLISH,كربونات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium carbonate,ENGLISH,كربونات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cherry,ENGLISH,كرز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amarena Cherries,ENGLISH,كرز المارشينو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Celeriac,ENGLISH,كرفس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Celery,ENGLISH,كرفس,ARABIC,batch 1
+sanoop@rightsolutions.ae,American Lobster,ENGLISH,كركند أمريكي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Croissant,ENGLISH,كرواسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl Crotonate,ENGLISH,كروتونات الأثيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crocetin,ENGLISH,كروسيتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crocin,ENGLISH,كروسين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cryptoxanthin,ENGLISH,كريبتوزانتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cocoa Krispies,ENGLISH,كريسبيز الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Creste di Galli,ENGLISH,كريست دي جالي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cream of Tartar,ENGLISH,كريم الترتار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crème de Noyaux,ENGLISH,كريم دي نويو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cream,ENGLISH,كريمة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chantilly Cream,ENGLISH,كريمة شانتيلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Clotted Cream,ENGLISH,كريمة مكثفة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cilantro,ENGLISH,كزبرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coriander,ENGLISH,كزبرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bolivian Coriander,ENGLISH,كزبرة بوليفية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chortan,ENGLISH,كشك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Currant,ENGLISH,كشمش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blackcurrant,ENGLISH,كشمش أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheese Bun,ENGLISH,كعكة الجبن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Butter Cake,ENGLISH,كعكة الزبدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chiffon Cake,ENGLISH,كعكة الشيفون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caraway Seed Cake,ENGLISH,كعكة بذور الكراوية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crumpet,ENGLISH,كعكة مسطحة غير محلاة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cup Cake,ENGLISH,كعكة مكوكبة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dog,ENGLISH,كلب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Clementine,ENGLISH,كلمنتين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chloropentafluoroethane,ENGLISH,كلورو خماسي فلورو الإيثان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chlorophyllins,ENGLISH,كلوروفيلين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chloride,ENGLISH,كلوريد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Chloride,ENGLISH,كلوريد الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zinc Chloride,ENGLISH,كلوريد الزنك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium chloride,ENGLISH,كلوريد الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Chloride,ENGLISH,كلوريد الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cumin,ENGLISH,كمون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Cumin,ENGLISH,كمون أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anhydrous Milkfat,ENGLISH,كمية الدهن في الحليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amount per Serving,ENGLISH,كمية محضرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cup,ENGLISH,كوب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cobalamin,ENGLISH,كوبالامين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Courgette,ENGLISH,كوسا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Zucchini,ENGLISH,كوسة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coffee Crisp,ENGLISH,كوفي كرسب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coke,ENGLISH,كولا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coke,ENGLISH,كولا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cholesterol,ENGLISH,كولسترول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cholecalciferol,ENGLISH,كوليكالسيفيرول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cumian,ENGLISH,كوميان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cognac,ENGLISH,كونياك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cake,ENGLISH,كيك,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blackberry Cake,ENGLISH,كيك التوت الأسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carrot Cake,ENGLISH,كيك الجزر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Eccles Cake,ENGLISH,كيك إيكلس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Battenberg Cake,ENGLISH,كيك باتنبيرغ,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brem Cake,ENGLISH,كيك بريم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Forest Gateau,ENGLISH,كيك بلاك فوريست,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut Cake,ENGLISH,كيك جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chorley Cake,ENGLISH,كيك كورلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Angel Cake,ENGLISH,كيكة اسفنجية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Angel Food Cake,ENGLISH,كيكة اسفنجية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dundee Cake,ENGLISH,كيكة اللوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apple Cake,ENGLISH,كيكة تفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium lactate,ENGLISH,لاكتات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Lactate,ENGLISH,لاكتات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Lactobionate,ENGLISH,لاكتوبيونات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl Lactate,ENGLISH,لاكتيت الأثيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artichoke,ENGLISH,لأرضي شوكي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acacia gum - gum arabic,ENGLISH,لبان عربي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Clabber,ENGLISH,لبن خاثر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chaas,ENGLISH,لبن عيران,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dahi,ENGLISH,لبن هندي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dahi,ENGLISH,لبن هندي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bresaola,ENGLISH,لجم مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bresi,ENGLISH,لجم مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beef,ENGLISH,لحم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bison Meat,ENGLISH,لحم البيسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Buffalo Meat,ENGLISH,لحم الجاموس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Country Ham,ENGLISH,لحم الخنزير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bak Kwa,ENGLISH,لحم باكوا الصيني المقدد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bakkwa,ENGLISH,لحم باكوا الصيني المقدد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beef stock,ENGLISH,لحم بدون بهارات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ch'arki,ENGLISH,لحم تشاركي المجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicken meat,ENGLISH,لحم دجاج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bavette,ENGLISH,لحم ستيك بافيت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cecina,ENGLISH,لحم سيسينا المجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cold Smoked Bacon,ENGLISH,لحم مقدد مدخن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Added to prevent caking,ENGLISH,لمنع التعجين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black-eyed Peas,ENGLISH,لوبيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Almond,ENGLISH,لوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Almonds, Ground",ENGLISH,لوز خشن,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Almonds, Ground Natural",ENGLISH,لوز طبيعي غير مكرر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Brown HT,ENGLISH,لون الشوكولا البني HT,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brilliant Blue,ENGLISH,لون أزرق لامع,ARABIC,batch 1
+sanoop@rightsolutions.ae,BrillIant Blue FCF,ENGLISH,لون أزرق لامع FCF,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brilliant Blue FCF,ENGLISH,لون أزرق لامع FCF,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brilliant Black BN,ENGLISH,لون أسود لامع BN,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brilliant Black BN - Black PN,ENGLISH,لون أسود لامع BN - أسود PN,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brilliant Black PN,ENGLISH,لون أسود لامع PN,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brilliant Black A,ENGLISH,لون أسود لامع أ,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brown FK,ENGLISH,لون بني FK,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brown HT,ENGLISH,لون بني HT,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brilliant Scarlet 4R,ENGLISH,لون قرمزي لامع 4R,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Liqueur,ENGLISH,ليكيور ​​الشوكولاته,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Liquor,ENGLISH,ليكيور ​​الشوكولاته,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cocoa Liquor,ENGLISH,ليكيور الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bitter Lemon,ENGLISH,ليمون مر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Buddha's Hand,ENGLISH,ليمون يد بوذا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicken stock,ENGLISH,ماء الدجاج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Algin,ENGLISH,مادة طبية مستخلصة من الطحالب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alginate,ENGLISH,مادة طبية مستخلصة من الطحالب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cattle,ENGLISH,ماشية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domestic Goat,ENGLISH,ماعز محلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Malate,ENGLISH,مالات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl Maltol,ENGLISH,مالتول الأثيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anticaking Agent (),ENGLISH,مانع للتعجين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anticaking Agents (),ENGLISH,مانع للتعجين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anticaking Agents (),ENGLISH,مانع للتعجين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Antifoaming Agents (),ENGLISH,مانع للرغوة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Azodicarbonamide,ENGLISH,مبيض الدقيق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Creamer,ENGLISH,مبيض القهوة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Frozen,ENGLISH,مثلج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Curly Wurly,ENGLISH,مجعد وملفوف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dehydrated,ENGLISH,مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dehydrated,ENGLISH,مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried,ENGLISH,مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Air-dried,ENGLISH,مجففة بالهواء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bay Scallop,ENGLISH,محار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Clam,ENGLISH,محار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cockle,ENGLISH,محار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Conch,ENGLISH,محار,ARABIC,batch 1
+sanoop@rightsolutions.ae,European Oyster,ENGLISH,محار أوروبي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Eastern Oyster,ENGLISH,محار شرقي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dough Conditioner,ENGLISH,محسن عجين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Advantame,ENGLISH,محلي غير قلوي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial Sweeteners (),ENGLISH,محليات صناعية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acidulants (),ENGLISH,محمضات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acidulants and Acids (),ENGLISH,محمضات وأحماض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cultured,ENGLISH,مخمرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dehydrated chicken broth,ENGLISH,مرق الدجاج المجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Copper complexes of Chlorophyll and Chlorophyllins,ENGLISH,مركبات النحاس من الكلوروفيل والكلوروفيلين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut Water Concentrate,ENGLISH,مركز مياه جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blend,ENGLISH,مزج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acacia Vera,ENGLISH,مستحضر الأقاقيا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acesulfame,ENGLISH,مستحضر بوتاسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acesulfame K,ENGLISH,مستحضر بوتاسيوم K,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acesulfame-K,ENGLISH,مستحضر بوتاسيوم K,ARABIC,batch 1
+sanoop@rightsolutions.ae,Amylcinnamaldehyde,ENGLISH,مستحضر غسيل اليدين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anise Aldehyde,ENGLISH,مستخرج اليانسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Extract,ENGLISH,مستخلص,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cranberry Extract,ENGLISH,مستخلص التوت البري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Berry and Fruit Extracts,ENGLISH,مستخلص التوت والفاكهة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cactus Root Extract,ENGLISH,مستخلص الجذر الصبار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Basil Extract,ENGLISH,مستخلص الريحان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Extract of Malted Barley and Corn,ENGLISH,مستخلص الشعير المملح والذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beet Extract,ENGLISH,مستخلص الشمندر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Agave Nectar,ENGLISH,مستخلص الصباريات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chondrus Extract,ENGLISH,مستخلص الطحالب الإيرلندية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Catechu Extract,ENGLISH,مستخلص الكاتشو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Almond Extract,ENGLISH,مستخلص اللوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Extracts of rosemary,ENGLISH,مستخلص إكليل الجبل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicory Root Extract,ENGLISH,مستخلص جذر الهندباء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Baker’s Yeast Extract,ENGLISH,مستخلص خميرة الخَبز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Silk Extract,ENGLISH,مستخلص خيوط حرير الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley Malt Extract,ENGLISH,مستخلص شراب الشعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Annatto Extract,ENGLISH,مستخلص نبات الأناتو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Yuca Extract,ENGLISH,مستخلص نبات اليوكا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Extracts,ENGLISH,مستخلصات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheese Powder,ENGLISH,مسحوق الجبن,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chili Powder,ENGLISH,مسحوق الشطة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beetroot Powder,ENGLISH,مسحوق الشمندر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coarse Ground,ENGLISH,مسحوق القهوة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Curry Powder,ENGLISH,مسحوق الكاري,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cocoa Powder,ENGLISH,مسحوق الكاكاو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut Milk Powder,ENGLISH,مسحوق حليب جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carob Pod Powder,ENGLISH,مسحوق قرنة الخروب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bird's Custard Powder,ENGLISH,"مسحوق كاسترد ""بيرد""",ARABIC,batch 1
+sanoop@rightsolutions.ae,Boiled,ENGLISH,مسلوق / مغلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Agar,ENGLISH,مسمكات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Agar-Agar,ENGLISH,مسمكات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Awamori,ENGLISH,مشروب الأواموري الياباني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bourbon,ENGLISH,مشروب البوربون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Betsa-betsa,ENGLISH,مشروب البيتسا بيتسا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicha,ENGLISH,مشروب التشيتشا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cider,ENGLISH,مشروب التفاح,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Cider, Apple",ENGLISH,"مشروب التفاح، تفاح",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Cider, Sweet",ENGLISH,"مشروب التفاح، حلو",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Cider, Hard",ENGLISH,"مشروب التفاح، لاذع",ARABIC,batch 1
+sanoop@rightsolutions.ae,Drinking Chocolate,ENGLISH,مشروب الشوكولاتة,ARABIC,batch 1
+sanoop@rightsolutions.ae,5-Hour Energy,ENGLISH,مشروب الطاقة 5 أور إنيرجي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arak,ENGLISH,مشروب العرق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arrack,ENGLISH,مشروب العرق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Eau-de-Vie,ENGLISH,مشروب أو دي في,ARABIC,batch 1
+sanoop@rightsolutions.ae,Baijiu,ENGLISH,مشروب بايجو الصيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brandy,ENGLISH,مشروب براندي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blaand,ENGLISH,مشروب بلاند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burukutu,ENGLISH,مشروب بوروكوتو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chambord,ENGLISH,مشروب تشامبورد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Damassine,ENGLISH,مشروب داماسين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Desi Daru,ENGLISH,مشروب ديسي دارو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cassava Beer,ENGLISH,مشروب شعير الكسافا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Beer,ENGLISH,مشروب شعير أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Choujiu,ENGLISH,مشروب شوجيو الصيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Advocaat,ENGLISH,مشروب كحولي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Akvavit,ENGLISH,مشروب كحولي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ansu Apricot,ENGLISH,مشمش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Apricot,ENGLISH,مشمش,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dried Plum,ENGLISH,مشمش مجفف,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allergen,ENGLISH,مضاد جيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Antioxidants (),ENGLISH,مضادات أكسدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Antioxidants (),ENGLISH,مضادات أكسدة,ARABIC,batch 1
+sanoop@rightsolutions.ae,E Number,ENGLISH,مضاف غذائي E,ARABIC,batch 1
+sanoop@rightsolutions.ae,E100,ENGLISH,مضاف غذائي E100,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1000 - E1599,ENGLISH,مضاف غذائي E1000 - E1599,ARABIC,batch 1
+sanoop@rightsolutions.ae,E101i,ENGLISH,مضاف غذائي E101i,ARABIC,batch 1
+sanoop@rightsolutions.ae,E101ii,ENGLISH,مضاف غذائي E101ii,ARABIC,batch 1
+sanoop@rightsolutions.ae,E102,ENGLISH,مضاف غذائي E102,ARABIC,batch 1
+sanoop@rightsolutions.ae,E104,ENGLISH,مضاف غذائي E104,ARABIC,batch 1
+sanoop@rightsolutions.ae,E110,ENGLISH,مضاف غذائي E110,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1103,ENGLISH,مضاف غذائي E1103,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1105,ENGLISH,مضاف غذائي E1105,ARABIC,batch 1
+sanoop@rightsolutions.ae,E120,ENGLISH,مضاف غذائي E120,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1200,ENGLISH,مضاف غذائي E1200,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1201,ENGLISH,مضاف غذائي E1201,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1202,ENGLISH,مضاف غذائي E1202,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1203,ENGLISH,مضاف غذائي E1203,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1204,ENGLISH,مضاف غذائي E1204,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1205,ENGLISH,مضاف غذائي E1205,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1206,ENGLISH,مضاف غذائي E1206,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1207,ENGLISH,مضاف غذائي E1207,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1208,ENGLISH,مضاف غذائي E1208,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1209,ENGLISH,مضاف غذائي E1209,ARABIC,batch 1
+sanoop@rightsolutions.ae,E122,ENGLISH,مضاف غذائي E122,ARABIC,batch 1
+sanoop@rightsolutions.ae,E123,ENGLISH,مضاف غذائي E123,ARABIC,batch 1
+sanoop@rightsolutions.ae,E124,ENGLISH,مضاف غذائي E124,ARABIC,batch 1
+sanoop@rightsolutions.ae,E127,ENGLISH,مضاف غذائي E127,ARABIC,batch 1
+sanoop@rightsolutions.ae,E129,ENGLISH,مضاف غذائي E129,ARABIC,batch 1
+sanoop@rightsolutions.ae,E131,ENGLISH,مضاف غذائي E131,ARABIC,batch 1
+sanoop@rightsolutions.ae,E132,ENGLISH,مضاف غذائي E132,ARABIC,batch 1
+sanoop@rightsolutions.ae,E133,ENGLISH,مضاف غذائي E133,ARABIC,batch 1
+sanoop@rightsolutions.ae,E140,ENGLISH,مضاف غذائي E140,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1404,ENGLISH,مضاف غذائي E1404,ARABIC,batch 1
+sanoop@rightsolutions.ae,E141,ENGLISH,مضاف غذائي E141,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1410,ENGLISH,مضاف غذائي E1410,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1412,ENGLISH,مضاف غذائي E1412,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1413,ENGLISH,مضاف غذائي E1413,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1414,ENGLISH,مضاف غذائي E1414,ARABIC,batch 1
+sanoop@rightsolutions.ae,E142,ENGLISH,مضاف غذائي E142,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1420,ENGLISH,مضاف غذائي E1420,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1422,ENGLISH,مضاف غذائي E1422,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1440,ENGLISH,مضاف غذائي E1440,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1442,ENGLISH,مضاف غذائي E1442,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1450,ENGLISH,مضاف غذائي E1450,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1451,ENGLISH,مضاف غذائي E1451,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1452,ENGLISH,مضاف غذائي E1452,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1505,ENGLISH,مضاف غذائي E1505,ARABIC,batch 1
+sanoop@rightsolutions.ae,E150a,ENGLISH,مضاف غذائي E150a,ARABIC,batch 1
+sanoop@rightsolutions.ae,E150b,ENGLISH,مضاف غذائي E150b,ARABIC,batch 1
+sanoop@rightsolutions.ae,E150c,ENGLISH,مضاف غذائي E150c,ARABIC,batch 1
+sanoop@rightsolutions.ae,E150d,ENGLISH,مضاف غذائي E150d,ARABIC,batch 1
+sanoop@rightsolutions.ae,E151,ENGLISH,مضاف غذائي E151,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1517,ENGLISH,مضاف غذائي E1517,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1518,ENGLISH,مضاف غذائي E1518,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1519,ENGLISH,مضاف غذائي E1519,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1520,ENGLISH,مضاف غذائي E1520,ARABIC,batch 1
+sanoop@rightsolutions.ae,E1521,ENGLISH,مضاف غذائي E1521,ARABIC,batch 1
+sanoop@rightsolutions.ae,E153,ENGLISH,مضاف غذائي E153,ARABIC,batch 1
+sanoop@rightsolutions.ae,E155,ENGLISH,مضاف غذائي E155,ARABIC,batch 1
+sanoop@rightsolutions.ae,E160a,ENGLISH,مضاف غذائي E160a,ARABIC,batch 1
+sanoop@rightsolutions.ae,E160b,ENGLISH,مضاف غذائي E160b,ARABIC,batch 1
+sanoop@rightsolutions.ae,E160c,ENGLISH,مضاف غذائي E160c,ARABIC,batch 1
+sanoop@rightsolutions.ae,E160d,ENGLISH,مضاف غذائي E160d,ARABIC,batch 1
+sanoop@rightsolutions.ae,E160e,ENGLISH,مضاف غذائي E160e,ARABIC,batch 1
+sanoop@rightsolutions.ae,E161b,ENGLISH,مضاف غذائي E161b,ARABIC,batch 1
+sanoop@rightsolutions.ae,E161g,ENGLISH,مضاف غذائي E161g,ARABIC,batch 1
+sanoop@rightsolutions.ae,E162,ENGLISH,مضاف غذائي E162,ARABIC,batch 1
+sanoop@rightsolutions.ae,E163,ENGLISH,مضاف غذائي E163,ARABIC,batch 1
+sanoop@rightsolutions.ae,E170,ENGLISH,مضاف غذائي E170,ARABIC,batch 1
+sanoop@rightsolutions.ae,E171,ENGLISH,مضاف غذائي E171,ARABIC,batch 1
+sanoop@rightsolutions.ae,E172,ENGLISH,مضاف غذائي E172,ARABIC,batch 1
+sanoop@rightsolutions.ae,E173,ENGLISH,مضاف غذائي E173,ARABIC,batch 1
+sanoop@rightsolutions.ae,E174,ENGLISH,مضاف غذائي E174,ARABIC,batch 1
+sanoop@rightsolutions.ae,E175,ENGLISH,مضاف غذائي E175,ARABIC,batch 1
+sanoop@rightsolutions.ae,E180,ENGLISH,مضاف غذائي E180,ARABIC,batch 1
+sanoop@rightsolutions.ae,E200,ENGLISH,مضاف غذائي E200,ARABIC,batch 1
+sanoop@rightsolutions.ae,E202,ENGLISH,مضاف غذائي E202,ARABIC,batch 1
+sanoop@rightsolutions.ae,E210,ENGLISH,مضاف غذائي E210,ARABIC,batch 1
+sanoop@rightsolutions.ae,E211,ENGLISH,مضاف غذائي E211,ARABIC,batch 1
+sanoop@rightsolutions.ae,E212,ENGLISH,مضاف غذائي E212,ARABIC,batch 1
+sanoop@rightsolutions.ae,E213,ENGLISH,مضاف غذائي E213,ARABIC,batch 1
+sanoop@rightsolutions.ae,E214,ENGLISH,مضاف غذائي E214,ARABIC,batch 1
+sanoop@rightsolutions.ae,E215,ENGLISH,مضاف غذائي E215,ARABIC,batch 1
+sanoop@rightsolutions.ae,E218,ENGLISH,مضاف غذائي E218,ARABIC,batch 1
+sanoop@rightsolutions.ae,E219,ENGLISH,مضاف غذائي E219,ARABIC,batch 1
+sanoop@rightsolutions.ae,E220,ENGLISH,مضاف غذائي E220,ARABIC,batch 1
+sanoop@rightsolutions.ae,E221,ENGLISH,مضاف غذائي E221,ARABIC,batch 1
+sanoop@rightsolutions.ae,E222,ENGLISH,مضاف غذائي E222,ARABIC,batch 1
+sanoop@rightsolutions.ae,E223,ENGLISH,مضاف غذائي E223,ARABIC,batch 1
+sanoop@rightsolutions.ae,E224,ENGLISH,مضاف غذائي E224,ARABIC,batch 1
+sanoop@rightsolutions.ae,E226,ENGLISH,مضاف غذائي E226,ARABIC,batch 1
+sanoop@rightsolutions.ae,E227,ENGLISH,مضاف غذائي E227,ARABIC,batch 1
+sanoop@rightsolutions.ae,E228,ENGLISH,مضاف غذائي E228,ARABIC,batch 1
+sanoop@rightsolutions.ae,E234,ENGLISH,مضاف غذائي E234,ARABIC,batch 1
+sanoop@rightsolutions.ae,E235,ENGLISH,مضاف غذائي E235,ARABIC,batch 1
+sanoop@rightsolutions.ae,E239,ENGLISH,مضاف غذائي E239,ARABIC,batch 1
+sanoop@rightsolutions.ae,E242,ENGLISH,مضاف غذائي E242,ARABIC,batch 1
+sanoop@rightsolutions.ae,E243,ENGLISH,مضاف غذائي E243,ARABIC,batch 1
+sanoop@rightsolutions.ae,E249,ENGLISH,مضاف غذائي E249,ARABIC,batch 1
+sanoop@rightsolutions.ae,E250,ENGLISH,مضاف غذائي E250,ARABIC,batch 1
+sanoop@rightsolutions.ae,E251,ENGLISH,مضاف غذائي E251,ARABIC,batch 1
+sanoop@rightsolutions.ae,E252,ENGLISH,مضاف غذائي E252,ARABIC,batch 1
+sanoop@rightsolutions.ae,E260,ENGLISH,مضاف غذائي E260,ARABIC,batch 1
+sanoop@rightsolutions.ae,E261,ENGLISH,مضاف غذائي E261,ARABIC,batch 1
+sanoop@rightsolutions.ae,E262,ENGLISH,مضاف غذائي E262,ARABIC,batch 1
+sanoop@rightsolutions.ae,E263,ENGLISH,مضاف غذائي E263,ARABIC,batch 1
+sanoop@rightsolutions.ae,E270,ENGLISH,مضاف غذائي E270,ARABIC,batch 1
+sanoop@rightsolutions.ae,E280,ENGLISH,مضاف غذائي E280,ARABIC,batch 1
+sanoop@rightsolutions.ae,E281,ENGLISH,مضاف غذائي E281,ARABIC,batch 1
+sanoop@rightsolutions.ae,E282,ENGLISH,مضاف غذائي E282,ARABIC,batch 1
+sanoop@rightsolutions.ae,E283,ENGLISH,مضاف غذائي E283,ARABIC,batch 1
+sanoop@rightsolutions.ae,E284,ENGLISH,مضاف غذائي E284,ARABIC,batch 1
+sanoop@rightsolutions.ae,E285,ENGLISH,مضاف غذائي E285,ARABIC,batch 1
+sanoop@rightsolutions.ae,E290,ENGLISH,مضاف غذائي E290,ARABIC,batch 1
+sanoop@rightsolutions.ae,E296,ENGLISH,مضاف غذائي E296,ARABIC,batch 1
+sanoop@rightsolutions.ae,E297,ENGLISH,مضاف غذائي E297,ARABIC,batch 1
+sanoop@rightsolutions.ae,E300,ENGLISH,مضاف غذائي E300,ARABIC,batch 1
+sanoop@rightsolutions.ae,E301,ENGLISH,مضاف غذائي E301,ARABIC,batch 1
+sanoop@rightsolutions.ae,E302,ENGLISH,مضاف غذائي E302,ARABIC,batch 1
+sanoop@rightsolutions.ae,E304,ENGLISH,مضاف غذائي E304,ARABIC,batch 1
+sanoop@rightsolutions.ae,E306,ENGLISH,مضاف غذائي E306,ARABIC,batch 1
+sanoop@rightsolutions.ae,E307,ENGLISH,مضاف غذائي E307,ARABIC,batch 1
+sanoop@rightsolutions.ae,E308,ENGLISH,مضاف غذائي E308,ARABIC,batch 1
+sanoop@rightsolutions.ae,E309,ENGLISH,مضاف غذائي E309,ARABIC,batch 1
+sanoop@rightsolutions.ae,E310,ENGLISH,مضاف غذائي E310,ARABIC,batch 1
+sanoop@rightsolutions.ae,E315,ENGLISH,مضاف غذائي E315,ARABIC,batch 1
+sanoop@rightsolutions.ae,E316,ENGLISH,مضاف غذائي E316,ARABIC,batch 1
+sanoop@rightsolutions.ae,E319,ENGLISH,مضاف غذائي E319,ARABIC,batch 1
+sanoop@rightsolutions.ae,E320,ENGLISH,مضاف غذائي E320,ARABIC,batch 1
+sanoop@rightsolutions.ae,E321,ENGLISH,مضاف غذائي E321,ARABIC,batch 1
+sanoop@rightsolutions.ae,E322,ENGLISH,مضاف غذائي E322,ARABIC,batch 1
+sanoop@rightsolutions.ae,E325,ENGLISH,مضاف غذائي E325,ARABIC,batch 1
+sanoop@rightsolutions.ae,E326,ENGLISH,مضاف غذائي E326,ARABIC,batch 1
+sanoop@rightsolutions.ae,E327,ENGLISH,مضاف غذائي E327,ARABIC,batch 1
+sanoop@rightsolutions.ae,E330,ENGLISH,مضاف غذائي E330,ARABIC,batch 1
+sanoop@rightsolutions.ae,E331,ENGLISH,مضاف غذائي E331,ARABIC,batch 1
+sanoop@rightsolutions.ae,E332,ENGLISH,مضاف غذائي E332,ARABIC,batch 1
+sanoop@rightsolutions.ae,E333,ENGLISH,مضاف غذائي E333,ARABIC,batch 1
+sanoop@rightsolutions.ae,E334,ENGLISH,مضاف غذائي E334,ARABIC,batch 1
+sanoop@rightsolutions.ae,E335,ENGLISH,مضاف غذائي E335,ARABIC,batch 1
+sanoop@rightsolutions.ae,E336,ENGLISH,مضاف غذائي E336,ARABIC,batch 1
+sanoop@rightsolutions.ae,E337,ENGLISH,مضاف غذائي E337,ARABIC,batch 1
+sanoop@rightsolutions.ae,E338,ENGLISH,مضاف غذائي E338,ARABIC,batch 1
+sanoop@rightsolutions.ae,E339,ENGLISH,مضاف غذائي E339,ARABIC,batch 1
+sanoop@rightsolutions.ae,E340,ENGLISH,مضاف غذائي E340,ARABIC,batch 1
+sanoop@rightsolutions.ae,E341,ENGLISH,مضاف غذائي E341,ARABIC,batch 1
+sanoop@rightsolutions.ae,E343,ENGLISH,مضاف غذائي E343,ARABIC,batch 1
+sanoop@rightsolutions.ae,E350,ENGLISH,مضاف غذائي E350,ARABIC,batch 1
+sanoop@rightsolutions.ae,E351,ENGLISH,مضاف غذائي E351,ARABIC,batch 1
+sanoop@rightsolutions.ae,E352,ENGLISH,مضاف غذائي E352,ARABIC,batch 1
+sanoop@rightsolutions.ae,E353,ENGLISH,مضاف غذائي E353,ARABIC,batch 1
+sanoop@rightsolutions.ae,E354,ENGLISH,مضاف غذائي E354,ARABIC,batch 1
+sanoop@rightsolutions.ae,E355,ENGLISH,مضاف غذائي E355,ARABIC,batch 1
+sanoop@rightsolutions.ae,E356,ENGLISH,مضاف غذائي E356,ARABIC,batch 1
+sanoop@rightsolutions.ae,E357,ENGLISH,مضاف غذائي E357,ARABIC,batch 1
+sanoop@rightsolutions.ae,E363,ENGLISH,مضاف غذائي E363,ARABIC,batch 1
+sanoop@rightsolutions.ae,E380,ENGLISH,مضاف غذائي E380,ARABIC,batch 1
+sanoop@rightsolutions.ae,E385,ENGLISH,مضاف غذائي E385,ARABIC,batch 1
+sanoop@rightsolutions.ae,E392,ENGLISH,مضاف غذائي E392,ARABIC,batch 1
+sanoop@rightsolutions.ae,E400,ENGLISH,مضاف غذائي E400,ARABIC,batch 1
+sanoop@rightsolutions.ae,E401,ENGLISH,مضاف غذائي E401,ARABIC,batch 1
+sanoop@rightsolutions.ae,E402,ENGLISH,مضاف غذائي E402,ARABIC,batch 1
+sanoop@rightsolutions.ae,E403,ENGLISH,مضاف غذائي E403,ARABIC,batch 1
+sanoop@rightsolutions.ae,E404,ENGLISH,مضاف غذائي E404,ARABIC,batch 1
+sanoop@rightsolutions.ae,E405,ENGLISH,مضاف غذائي E405,ARABIC,batch 1
+sanoop@rightsolutions.ae,E406,ENGLISH,مضاف غذائي E406,ARABIC,batch 1
+sanoop@rightsolutions.ae,E407,ENGLISH,مضاف غذائي E407,ARABIC,batch 1
+sanoop@rightsolutions.ae,E407a,ENGLISH,مضاف غذائي E407a,ARABIC,batch 1
+sanoop@rightsolutions.ae,E410,ENGLISH,مضاف غذائي E410,ARABIC,batch 1
+sanoop@rightsolutions.ae,E412,ENGLISH,مضاف غذائي E412,ARABIC,batch 1
+sanoop@rightsolutions.ae,E413,ENGLISH,مضاف غذائي E413,ARABIC,batch 1
+sanoop@rightsolutions.ae,E414,ENGLISH,مضاف غذائي E414,ARABIC,batch 1
+sanoop@rightsolutions.ae,E415,ENGLISH,مضاف غذائي E415,ARABIC,batch 1
+sanoop@rightsolutions.ae,E416,ENGLISH,مضاف غذائي E416,ARABIC,batch 1
+sanoop@rightsolutions.ae,E417,ENGLISH,مضاف غذائي E417,ARABIC,batch 1
+sanoop@rightsolutions.ae,E418,ENGLISH,مضاف غذائي E418,ARABIC,batch 1
+sanoop@rightsolutions.ae,E420i,ENGLISH,مضاف غذائي E420i,ARABIC,batch 1
+sanoop@rightsolutions.ae,E420ii,ENGLISH,مضاف غذائي E420ii,ARABIC,batch 1
+sanoop@rightsolutions.ae,E421,ENGLISH,مضاف غذائي E421,ARABIC,batch 1
+sanoop@rightsolutions.ae,E422,ENGLISH,مضاف غذائي E422,ARABIC,batch 1
+sanoop@rightsolutions.ae,E423,ENGLISH,مضاف غذائي E423,ARABIC,batch 1
+sanoop@rightsolutions.ae,E425,ENGLISH,مضاف غذائي E425,ARABIC,batch 1
+sanoop@rightsolutions.ae,E426,ENGLISH,مضاف غذائي E426,ARABIC,batch 1
+sanoop@rightsolutions.ae,E427,ENGLISH,مضاف غذائي E427,ARABIC,batch 1
+sanoop@rightsolutions.ae,E431,ENGLISH,مضاف غذائي E431,ARABIC,batch 1
+sanoop@rightsolutions.ae,E432,ENGLISH,مضاف غذائي E432,ARABIC,batch 1
+sanoop@rightsolutions.ae,E433,ENGLISH,مضاف غذائي E433,ARABIC,batch 1
+sanoop@rightsolutions.ae,E434,ENGLISH,مضاف غذائي E434,ARABIC,batch 1
+sanoop@rightsolutions.ae,E435,ENGLISH,مضاف غذائي E435,ARABIC,batch 1
+sanoop@rightsolutions.ae,E436,ENGLISH,مضاف غذائي E436,ARABIC,batch 1
+sanoop@rightsolutions.ae,E440,ENGLISH,مضاف غذائي E440,ARABIC,batch 1
+sanoop@rightsolutions.ae,E442,ENGLISH,مضاف غذائي E442,ARABIC,batch 1
+sanoop@rightsolutions.ae,E444,ENGLISH,مضاف غذائي E444,ARABIC,batch 1
+sanoop@rightsolutions.ae,E445,ENGLISH,مضاف غذائي E445,ARABIC,batch 1
+sanoop@rightsolutions.ae,E450,ENGLISH,مضاف غذائي E450,ARABIC,batch 1
+sanoop@rightsolutions.ae,E451,ENGLISH,مضاف غذائي E451,ARABIC,batch 1
+sanoop@rightsolutions.ae,E452,ENGLISH,مضاف غذائي E452,ARABIC,batch 1
+sanoop@rightsolutions.ae,E459,ENGLISH,مضاف غذائي E459,ARABIC,batch 1
+sanoop@rightsolutions.ae,E460,ENGLISH,مضاف غذائي E460,ARABIC,batch 1
+sanoop@rightsolutions.ae,E461,ENGLISH,مضاف غذائي E461,ARABIC,batch 1
+sanoop@rightsolutions.ae,E462,ENGLISH,مضاف غذائي E462,ARABIC,batch 1
+sanoop@rightsolutions.ae,E463,ENGLISH,مضاف غذائي E463,ARABIC,batch 1
+sanoop@rightsolutions.ae,E464,ENGLISH,مضاف غذائي E464,ARABIC,batch 1
+sanoop@rightsolutions.ae,E465,ENGLISH,مضاف غذائي E465,ARABIC,batch 1
+sanoop@rightsolutions.ae,E466,ENGLISH,مضاف غذائي E466,ARABIC,batch 1
+sanoop@rightsolutions.ae,E468,ENGLISH,مضاف غذائي E468,ARABIC,batch 1
+sanoop@rightsolutions.ae,E469,ENGLISH,مضاف غذائي E469,ARABIC,batch 1
+sanoop@rightsolutions.ae,E470a,ENGLISH,مضاف غذائي E470a,ARABIC,batch 1
+sanoop@rightsolutions.ae,E470b,ENGLISH,مضاف غذائي E470b,ARABIC,batch 1
+sanoop@rightsolutions.ae,E471,ENGLISH,مضاف غذائي E471,ARABIC,batch 1
+sanoop@rightsolutions.ae,E472a,ENGLISH,مضاف غذائي E472a,ARABIC,batch 1
+sanoop@rightsolutions.ae,E472b,ENGLISH,مضاف غذائي E472b,ARABIC,batch 1
+sanoop@rightsolutions.ae,E472c,ENGLISH,مضاف غذائي E472c,ARABIC,batch 1
+sanoop@rightsolutions.ae,E472d,ENGLISH,مضاف غذائي E472d,ARABIC,batch 1
+sanoop@rightsolutions.ae,E472e,ENGLISH,مضاف غذائي E472e,ARABIC,batch 1
+sanoop@rightsolutions.ae,E472f,ENGLISH,مضاف غذائي E472f,ARABIC,batch 1
+sanoop@rightsolutions.ae,E473,ENGLISH,مضاف غذائي E473,ARABIC,batch 1
+sanoop@rightsolutions.ae,E474,ENGLISH,مضاف غذائي E474,ARABIC,batch 1
+sanoop@rightsolutions.ae,E475,ENGLISH,مضاف غذائي E475,ARABIC,batch 1
+sanoop@rightsolutions.ae,E476,ENGLISH,مضاف غذائي E476,ARABIC,batch 1
+sanoop@rightsolutions.ae,E477,ENGLISH,مضاف غذائي E477,ARABIC,batch 1
+sanoop@rightsolutions.ae,E479b,ENGLISH,مضاف غذائي E479b,ARABIC,batch 1
+sanoop@rightsolutions.ae,E481,ENGLISH,مضاف غذائي E481,ARABIC,batch 1
+sanoop@rightsolutions.ae,E482,ENGLISH,مضاف غذائي E482,ARABIC,batch 1
+sanoop@rightsolutions.ae,E483,ENGLISH,مضاف غذائي E483,ARABIC,batch 1
+sanoop@rightsolutions.ae,E491,ENGLISH,مضاف غذائي E491,ARABIC,batch 1
+sanoop@rightsolutions.ae,E492,ENGLISH,مضاف غذائي E492,ARABIC,batch 1
+sanoop@rightsolutions.ae,E493,ENGLISH,مضاف غذائي E493,ARABIC,batch 1
+sanoop@rightsolutions.ae,E494,ENGLISH,مضاف غذائي E494,ARABIC,batch 1
+sanoop@rightsolutions.ae,E495,ENGLISH,مضاف غذائي E495,ARABIC,batch 1
+sanoop@rightsolutions.ae,E499,ENGLISH,مضاف غذائي E499,ARABIC,batch 1
+sanoop@rightsolutions.ae,E500,ENGLISH,مضاف غذائي E500,ARABIC,batch 1
+sanoop@rightsolutions.ae,E501,ENGLISH,مضاف غذائي E501,ARABIC,batch 1
+sanoop@rightsolutions.ae,E503,ENGLISH,مضاف غذائي E503,ARABIC,batch 1
+sanoop@rightsolutions.ae,E504,ENGLISH,مضاف غذائي E504,ARABIC,batch 1
+sanoop@rightsolutions.ae,E507,ENGLISH,مضاف غذائي E507,ARABIC,batch 1
+sanoop@rightsolutions.ae,E508,ENGLISH,مضاف غذائي E508,ARABIC,batch 1
+sanoop@rightsolutions.ae,E509,ENGLISH,مضاف غذائي E509,ARABIC,batch 1
+sanoop@rightsolutions.ae,E511,ENGLISH,مضاف غذائي E511,ARABIC,batch 1
+sanoop@rightsolutions.ae,E512,ENGLISH,مضاف غذائي E512,ARABIC,batch 1
+sanoop@rightsolutions.ae,E513,ENGLISH,مضاف غذائي E513,ARABIC,batch 1
+sanoop@rightsolutions.ae,E514,ENGLISH,مضاف غذائي E514,ARABIC,batch 1
+sanoop@rightsolutions.ae,E515,ENGLISH,مضاف غذائي E515,ARABIC,batch 1
+sanoop@rightsolutions.ae,E516,ENGLISH,مضاف غذائي E516,ARABIC,batch 1
+sanoop@rightsolutions.ae,E517,ENGLISH,مضاف غذائي E517,ARABIC,batch 1
+sanoop@rightsolutions.ae,E520,ENGLISH,مضاف غذائي E520,ARABIC,batch 1
+sanoop@rightsolutions.ae,E521,ENGLISH,مضاف غذائي E521,ARABIC,batch 1
+sanoop@rightsolutions.ae,E522,ENGLISH,مضاف غذائي E522,ARABIC,batch 1
+sanoop@rightsolutions.ae,E523,ENGLISH,مضاف غذائي E523,ARABIC,batch 1
+sanoop@rightsolutions.ae,E524,ENGLISH,مضاف غذائي E524,ARABIC,batch 1
+sanoop@rightsolutions.ae,E525,ENGLISH,مضاف غذائي E525,ARABIC,batch 1
+sanoop@rightsolutions.ae,E526,ENGLISH,مضاف غذائي E526,ARABIC,batch 1
+sanoop@rightsolutions.ae,E527,ENGLISH,مضاف غذائي E527,ARABIC,batch 1
+sanoop@rightsolutions.ae,E528,ENGLISH,مضاف غذائي E528,ARABIC,batch 1
+sanoop@rightsolutions.ae,E529,ENGLISH,مضاف غذائي E529,ARABIC,batch 1
+sanoop@rightsolutions.ae,E530,ENGLISH,مضاف غذائي E530,ARABIC,batch 1
+sanoop@rightsolutions.ae,E535,ENGLISH,مضاف غذائي E535,ARABIC,batch 1
+sanoop@rightsolutions.ae,E536,ENGLISH,مضاف غذائي E536,ARABIC,batch 1
+sanoop@rightsolutions.ae,E538,ENGLISH,مضاف غذائي E538,ARABIC,batch 1
+sanoop@rightsolutions.ae,E541,ENGLISH,مضاف غذائي E541,ARABIC,batch 1
+sanoop@rightsolutions.ae,E551,ENGLISH,مضاف غذائي E551,ARABIC,batch 1
+sanoop@rightsolutions.ae,E552,ENGLISH,مضاف غذائي E552,ARABIC,batch 1
+sanoop@rightsolutions.ae,E553ai,ENGLISH,مضاف غذائي E553ai,ARABIC,batch 1
+sanoop@rightsolutions.ae,E553aii,ENGLISH,مضاف غذائي E553aii,ARABIC,batch 1
+sanoop@rightsolutions.ae,E553b,ENGLISH,مضاف غذائي E553b,ARABIC,batch 1
+sanoop@rightsolutions.ae,E554,ENGLISH,مضاف غذائي E554,ARABIC,batch 1
+sanoop@rightsolutions.ae,E555,ENGLISH,مضاف غذائي E555,ARABIC,batch 1
+sanoop@rightsolutions.ae,E556,ENGLISH,مضاف غذائي E556,ARABIC,batch 1
+sanoop@rightsolutions.ae,E559,ENGLISH,مضاف غذائي E559,ARABIC,batch 1
+sanoop@rightsolutions.ae,E570,ENGLISH,مضاف غذائي E570,ARABIC,batch 1
+sanoop@rightsolutions.ae,E574,ENGLISH,مضاف غذائي E574,ARABIC,batch 1
+sanoop@rightsolutions.ae,E575,ENGLISH,مضاف غذائي E575,ARABIC,batch 1
+sanoop@rightsolutions.ae,E576,ENGLISH,مضاف غذائي E576,ARABIC,batch 1
+sanoop@rightsolutions.ae,E577,ENGLISH,مضاف غذائي E577,ARABIC,batch 1
+sanoop@rightsolutions.ae,E578,ENGLISH,مضاف غذائي E578,ARABIC,batch 1
+sanoop@rightsolutions.ae,E579,ENGLISH,مضاف غذائي E579,ARABIC,batch 1
+sanoop@rightsolutions.ae,E585,ENGLISH,مضاف غذائي E585,ARABIC,batch 1
+sanoop@rightsolutions.ae,E586,ENGLISH,مضاف غذائي E586,ARABIC,batch 1
+sanoop@rightsolutions.ae,E620,ENGLISH,مضاف غذائي E620,ARABIC,batch 1
+sanoop@rightsolutions.ae,E621,ENGLISH,مضاف غذائي E621,ARABIC,batch 1
+sanoop@rightsolutions.ae,E622,ENGLISH,مضاف غذائي E622,ARABIC,batch 1
+sanoop@rightsolutions.ae,E623,ENGLISH,مضاف غذائي E623,ARABIC,batch 1
+sanoop@rightsolutions.ae,E624,ENGLISH,مضاف غذائي E624,ARABIC,batch 1
+sanoop@rightsolutions.ae,E625,ENGLISH,مضاف غذائي E625,ARABIC,batch 1
+sanoop@rightsolutions.ae,E626,ENGLISH,مضاف غذائي E626,ARABIC,batch 1
+sanoop@rightsolutions.ae,E627,ENGLISH,مضاف غذائي E627,ARABIC,batch 1
+sanoop@rightsolutions.ae,E628,ENGLISH,مضاف غذائي E628,ARABIC,batch 1
+sanoop@rightsolutions.ae,E629,ENGLISH,مضاف غذائي E629,ARABIC,batch 1
+sanoop@rightsolutions.ae,E630,ENGLISH,مضاف غذائي E630,ARABIC,batch 1
+sanoop@rightsolutions.ae,E631,ENGLISH,مضاف غذائي E631,ARABIC,batch 1
+sanoop@rightsolutions.ae,E632,ENGLISH,مضاف غذائي E632,ARABIC,batch 1
+sanoop@rightsolutions.ae,E633,ENGLISH,مضاف غذائي E633,ARABIC,batch 1
+sanoop@rightsolutions.ae,E634,ENGLISH,مضاف غذائي E634,ARABIC,batch 1
+sanoop@rightsolutions.ae,E635,ENGLISH,مضاف غذائي E635,ARABIC,batch 1
+sanoop@rightsolutions.ae,E640,ENGLISH,مضاف غذائي E640,ARABIC,batch 1
+sanoop@rightsolutions.ae,E641,ENGLISH,مضاف غذائي E641,ARABIC,batch 1
+sanoop@rightsolutions.ae,E650,ENGLISH,مضاف غذائي E650,ARABIC,batch 1
+sanoop@rightsolutions.ae,E900,ENGLISH,مضاف غذائي E900,ARABIC,batch 1
+sanoop@rightsolutions.ae,E901,ENGLISH,مضاف غذائي E901,ARABIC,batch 1
+sanoop@rightsolutions.ae,E902,ENGLISH,مضاف غذائي E902,ARABIC,batch 1
+sanoop@rightsolutions.ae,E903,ENGLISH,مضاف غذائي E903,ARABIC,batch 1
+sanoop@rightsolutions.ae,E904,ENGLISH,مضاف غذائي E904,ARABIC,batch 1
+sanoop@rightsolutions.ae,E905,ENGLISH,مضاف غذائي E905,ARABIC,batch 1
+sanoop@rightsolutions.ae,E907,ENGLISH,مضاف غذائي E907,ARABIC,batch 1
+sanoop@rightsolutions.ae,E914,ENGLISH,مضاف غذائي E914,ARABIC,batch 1
+sanoop@rightsolutions.ae,E920,ENGLISH,مضاف غذائي E920,ARABIC,batch 1
+sanoop@rightsolutions.ae,E927b,ENGLISH,مضاف غذائي E927b,ARABIC,batch 1
+sanoop@rightsolutions.ae,E938,ENGLISH,مضاف غذائي E938,ARABIC,batch 1
+sanoop@rightsolutions.ae,E939,ENGLISH,مضاف غذائي E939,ARABIC,batch 1
+sanoop@rightsolutions.ae,E941,ENGLISH,مضاف غذائي E941,ARABIC,batch 1
+sanoop@rightsolutions.ae,E942,ENGLISH,مضاف غذائي E942,ARABIC,batch 1
+sanoop@rightsolutions.ae,E943a,ENGLISH,مضاف غذائي E943a,ARABIC,batch 1
+sanoop@rightsolutions.ae,E943b,ENGLISH,مضاف غذائي E943b,ARABIC,batch 1
+sanoop@rightsolutions.ae,E944,ENGLISH,مضاف غذائي E944,ARABIC,batch 1
+sanoop@rightsolutions.ae,E948,ENGLISH,مضاف غذائي E948,ARABIC,batch 1
+sanoop@rightsolutions.ae,E949,ENGLISH,مضاف غذائي E949,ARABIC,batch 1
+sanoop@rightsolutions.ae,E950,ENGLISH,مضاف غذائي E950,ARABIC,batch 1
+sanoop@rightsolutions.ae,E951,ENGLISH,مضاف غذائي E951,ARABIC,batch 1
+sanoop@rightsolutions.ae,E952,ENGLISH,مضاف غذائي E952,ARABIC,batch 1
+sanoop@rightsolutions.ae,E953,ENGLISH,مضاف غذائي E953,ARABIC,batch 1
+sanoop@rightsolutions.ae,E954,ENGLISH,مضاف غذائي E954,ARABIC,batch 1
+sanoop@rightsolutions.ae,E955,ENGLISH,مضاف غذائي E955,ARABIC,batch 1
+sanoop@rightsolutions.ae,E957,ENGLISH,مضاف غذائي E957,ARABIC,batch 1
+sanoop@rightsolutions.ae,E959,ENGLISH,مضاف غذائي E959,ARABIC,batch 1
+sanoop@rightsolutions.ae,E960,ENGLISH,مضاف غذائي E960,ARABIC,batch 1
+sanoop@rightsolutions.ae,E961,ENGLISH,مضاف غذائي E961,ARABIC,batch 1
+sanoop@rightsolutions.ae,E962,ENGLISH,مضاف غذائي E962,ARABIC,batch 1
+sanoop@rightsolutions.ae,E964,ENGLISH,مضاف غذائي E964,ARABIC,batch 1
+sanoop@rightsolutions.ae,E965i,ENGLISH,مضاف غذائي E965i,ARABIC,batch 1
+sanoop@rightsolutions.ae,E965ii,ENGLISH,مضاف غذائي E965ii,ARABIC,batch 1
+sanoop@rightsolutions.ae,E966,ENGLISH,مضاف غذائي E966,ARABIC,batch 1
+sanoop@rightsolutions.ae,E967,ENGLISH,مضاف غذائي E967,ARABIC,batch 1
+sanoop@rightsolutions.ae,E968,ENGLISH,مضاف غذائي E968,ARABIC,batch 1
+sanoop@rightsolutions.ae,E969,ENGLISH,مضاف غذائي E969,ARABIC,batch 1
+sanoop@rightsolutions.ae,E999,ENGLISH,مضاف غذائي E999,ARABIC,batch 1
+sanoop@rightsolutions.ae,Achiote Seed,ENGLISH,مطهر البذور,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cured,ENGLISH,معالج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anticaking Agents and Free-Flow Agents (),ENGLISH,معامل مانع للتعجين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Almond Paste,ENGLISH,معجون اللوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut paste,ENGLISH,معجون جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Busiate,ENGLISH,معكرونة بوسياتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Busiati,ENGLISH,معكرونة بوسياتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bucatini,ENGLISH,معكرونة بوكاتيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bigoli,ENGLISH,معكرونة بيغولي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anelli,ENGLISH,معكرونة دائرية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anellini,ENGLISH,معكرونة دائرية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ditali,ENGLISH,معكرونة ديتاليني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ziti,ENGLISH,معكرونة زيتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cencioni,ENGLISH,معكرونة سيسيوني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Caccavelle,ENGLISH,معكرونة كاتشافيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corzetti,ENGLISH,معكرونة كورزيتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Conchiglie,ENGLISH,معكرونة كونكيليه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Conchigliette,ENGLISH,معكرونة كونكيليه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Conchiglioni,ENGLISH,معكرونة كونكيليه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Conchiglle,ENGLISH,معكرونة كونكيليه,ARABIC,batch 1
+sanoop@rightsolutions.ae,Donderet,ENGLISH,معكرونة محلية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Agnolotti,ENGLISH,معكرونة مربعة محشوة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Canned,ENGLISH,معلب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allergen Information:,ENGLISH,معلومات عن الحساسية,ARABIC,batch 1
+sanoop@rightsolutions.ae,American Muffin,ENGLISH,مفن أمريكي,ARABIC,batch 1
+sanoop@rightsolutions.ae,American Muffins,ENGLISH,مفن أمريكي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Breakfast Muffin,ENGLISH,مفنية صباحية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Brown rice crisp,ENGLISH,مقرمشات الأرز البني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crunchie,ENGLISH,مقرمشة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Diced,ENGLISH,مقطع على شكل مكعبات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Deep-fried,ENGLISH,مقلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fried,ENGLISH,مقلي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dough Strengtheners,ENGLISH,مقوي عجينة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Crunchy Nut,ENGLISH,مكسرات مقرمشة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Broth Cube,ENGLISH,مكعب المرق,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bouillon Cube,ENGLISH,مكعب مرقة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beef Bouillon Cube,ENGLISH,مكعبات لحم البقر,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicken Bouillon Cube,ENGLISH,مكعبات مرقة الدجاج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chicken Stock Cube,ENGLISH,مكعبات مرقة الدجاج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Baker’s Yeast Supplement,ENGLISH,مكملات خميرة الخَبز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Candied,ENGLISH,ملبس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Acetate,ENGLISH,ملح,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Adipates,ENGLISH,ملح E359,ARABIC,batch 1
+sanoop@rightsolutions.ae,Celery Salt,ENGLISH,ملح الكرفس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Epsom Salt,ENGLISH,ملح إنجليزي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Salt,ENGLISH,ملح أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Alginate,ENGLISH,ملح ألجنات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium alginate,ENGLISH,ملح ألجنات الأمونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Curing Salt,ENGLISH,ملح معالِج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bok Choy,ENGLISH,ملفوف صيني,ARABIC,batch 1
+sanoop@rightsolutions.ae,Abietic Acid,ENGLISH,ملمع,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anthocyanins,ENGLISH,ملون نباتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anthocyanins,ENGLISH,ملون نباتي,ARABIC,batch 1
+sanoop@rightsolutions.ae,from,ENGLISH,من,ARABIC,batch 1
+sanoop@rightsolutions.ae,From Concentrate,ENGLISH,من التركيز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cultured Dairy Products,ENGLISH,منتجات الألبان مخمرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cultured Milk Products,ENGLISH,منتجات الحليب المخمرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acidity Regulators,ENGLISH,منظم الحمض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Muriate,ENGLISH,منقح حمى الحليب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alitame,ENGLISH,منكه سكر غير حلو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alkaline Treated Starch,ENGLISH,منكه سكر غير حلو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial Flavors (),ENGLISH,منكهات صناعية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial Flavours (),ENGLISH,منكهات صناعية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit Squash,ENGLISH,مهروس الفاكهة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Banana Squash,ENGLISH,مهروس الموز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acorn Squash,ENGLISH,مهروس جوز البلوط,ARABIC,batch 1
+sanoop@rightsolutions.ae,Digestive,ENGLISH,مهضوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Blancmange,ENGLISH,مهلبية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Allergens: Contains,ENGLISH,مواد مسببة للحسسية: تحتوي على,ARABIC,batch 1
+sanoop@rightsolutions.ae,Banana,ENGLISH,موزة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chocolate Mousse,ENGLISH,موس الشوكولاته,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley Water,ENGLISH,مياه الشعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coconut Water,ENGLISH,مياه جوز الهند,ARABIC,batch 1
+sanoop@rightsolutions.ae,Beer,ENGLISH,مياه شعيرية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carbonated Water,ENGLISH,مياه غازية,ARABIC,batch 1
+sanoop@rightsolutions.ae,3-Methylthiopropionaldehyde,ENGLISH,ميثيلثيوبربيو ألدهايد,ARABIC,batch 1
+sanoop@rightsolutions.ae,Carriers / Carrier Solvents (),ENGLISH,ناقلات / مذيبات الناقل (),ARABIC,batch 1
+sanoop@rightsolutions.ae,Ethyl Nonanoate,ENGLISH,نانونيت الأثيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burdock,ENGLISH,نبات الأرقطيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Burdock Plant,ENGLISH,نبات الأرقطيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Angelica,ENGLISH,نبات الأنجيليكا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barberry,ENGLISH,نبات البرباريس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ginseng,ENGLISH,نبات الجينسنغ,ARABIC,batch 1
+sanoop@rightsolutions.ae,Elderberry,ENGLISH,نبات الخمان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arrowroot,ENGLISH,نبات الطاعة / جذور الأروروت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Arrowroot Plant,ENGLISH,نبات الطاعة / جذور الأروروت,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bay Laurel,ENGLISH,نبات الغار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Echinacea,ENGLISH,نبات القنفذية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Devil's Claw,ENGLISH,نبات الكُلَّاب,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dandelion Leaf,ENGLISH,نبات الهندباء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calamus,ENGLISH,نبات الوج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Annatto,ENGLISH,نبات يستخدم في تلوين الطعام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Barley Wine,ENGLISH,نبيذ الشعير,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fruit Wine,ENGLISH,نبيذ الفاكهة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cherry Wine,ENGLISH,نبيذ الكرز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Coyol Wine,ENGLISH,نبيذ كويول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Copper,ENGLISH,نحاس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bran,ENGLISH,نخالة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Bran,ENGLISH,نخالة الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acai Palm,ENGLISH,نخل الأساي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated Starch,ENGLISH,نشا الأستيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated starch - Starch acetate,ENGLISH,نشا الأستيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cornstarch,ENGLISH,نشا الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acid-Modified Corn Starch,ENGLISH,نشا ذرة معدل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acid Treated Starch,ENGLISH,نشا محمض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Enzyme Treated Starch,ENGLISH,نشا معالج بالإينزيمات,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated Oxidised Starch,ENGLISH,نشا مؤكسد بالأستيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Acetylated oxidised starch,ENGLISH,نشا مؤكسد بالأستيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Starch,ENGLISH,نشاء الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Cornstarch, Oxidized",ENGLISH,"نشاء الذرة ، مأكسد",ARABIC,batch 1
+sanoop@rightsolutions.ae,"Cornstarch, Acid-Modified",ENGLISH,"نشاء الذرة ، معدلة الحموضة",ARABIC,batch 1
+sanoop@rightsolutions.ae,Bleached Starch,ENGLISH,نشاء أبيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Droewors,ENGLISH,نقاق جنوب أفريقية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Frankfurter Sausage,ENGLISH,نقاق على الطريقة الفرانكفورتية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial Flavorings (),ENGLISH,نكهات صناعية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Artificial Flavourings (),ENGLISH,نكهات صناعية,ARABIC,batch 1
+sanoop@rightsolutions.ae,ANT,ENGLISH,نملة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Corn Kernel,ENGLISH,نواة الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anions,ENGLISH,نواة سالبة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Egg noodles,ENGLISH,نودلز البيض,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cellophane Noodles,ENGLISH,نودلز السيلوفان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bakmi,ENGLISH,نودلز باكمي الإندونيسية باللحم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bakmi Noodles,ENGLISH,نودلز باكمي الإندونيسية باللحم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Banh Da Noodles,ENGLISH,نودلز بان دا,ARABIC,batch 1
+sanoop@rightsolutions.ae,Banh Pho Noodles,ENGLISH,نودلز بان فو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Banh Canh Noodles,ENGLISH,نودلز بان كان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Biangbiang Noodles,ENGLISH,نودلز بيانغ بيانغ,ARABIC,batch 1
+sanoop@rightsolutions.ae,Enriched egg noodles (),ENGLISH,نودلز بيض معزز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Daoxiao Noodles,ENGLISH,نودلز داو زياو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Chinkiang Pot Cover Noodles,ENGLISH,نودلز شينكيانج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dragon Beard Noodles,ENGLISH,نودلز صينية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheonsachae,ENGLISH,نودلز كورية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cheonsache Noodles,ENGLISH,نودلز كورية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Dotori Guksu,ENGLISH,نودلز كورية من الذرة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cumian Noodles,ENGLISH,نودلز كوميان,ARABIC,batch 1
+sanoop@rightsolutions.ae,Frozen Noodles,ENGLISH,نودلز مثلج,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cooked Noodles,ENGLISH,نودلز مطبوخة,ARABIC,batch 1
+sanoop@rightsolutions.ae,Fried Noodles,ENGLISH,نودلز مقلية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aluminium Nicotinate,ENGLISH,نيكوتينات الألومونيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,2-hydroxybiphenyl,ENGLISH,هايدروزيبيفينيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium Hydroxide,ENGLISH,هايدروكسيد الأمونيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Ammonium hydroxide,ENGLISH,هايدروكسيد الأمونيون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Hobnobs,ENGLISH,هوب نوبس,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Hydrate,ENGLISH,هيدرات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium hydroxide,ENGLISH,هيدروكسيد الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Hydroxide,ENGLISH,هيدروكسيد الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,4-Hexylresorcinol,ENGLISH,هيكسيلريزورسينول,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cardamom,ENGLISH,هيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cardamon,ENGLISH,هيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Cardamum,ENGLISH,هيل,ARABIC,batch 1
+sanoop@rightsolutions.ae,Black Cardamom,ENGLISH,هيل أسود,ARABIC,batch 1
+sanoop@rightsolutions.ae,and,ENGLISH,و,ARABIC,batch 1
+sanoop@rightsolutions.ae,and/or,ENGLISH,و/أو,ARABIC,batch 1
+sanoop@rightsolutions.ae,and other,ENGLISH,والآخرين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Almond Meal,ENGLISH,وجبة لوز,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bay Leaf,ENGLISH,ورق الغار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bayleaves,ENGLISH,ورق الغار,ARABIC,batch 1
+sanoop@rightsolutions.ae,Avocado Leaf,ENGLISH,ورقة أفوكادو,ARABIC,batch 1
+sanoop@rightsolutions.ae,Domestic Goose,ENGLISH,وز محلية,ARABIC,batch 1
+sanoop@rightsolutions.ae,Buckwheat Whiskey,ENGLISH,ويسكي الحنطة السوداء,ARABIC,batch 1
+sanoop@rightsolutions.ae,Alabama Whiskey,ENGLISH,ويسكي ألاباما,ARABIC,batch 1
+sanoop@rightsolutions.ae,American Whiskey,ENGLISH,ويسكي أمريكي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Bourbon Whiskey,ENGLISH,ويسكي بوربون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Canadian Whisky,ENGLISH,ويسكي كندي,ARABIC,batch 1
+sanoop@rightsolutions.ae,Anise,ENGLISH,يانسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Aniseed,ENGLISH,يانسون,ARABIC,batch 1
+sanoop@rightsolutions.ae,Contains,ENGLISH,يحتوي على,ARABIC,batch 1
+sanoop@rightsolutions.ae,Contains per Gram,ENGLISH,يحتوي على ـــــ في كل غرام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Contains per Gramme,ENGLISH,يحتوي على ـــــ في كل غرام,ARABIC,batch 1
+sanoop@rightsolutions.ae,Contains 2% or less of,ENGLISH,يحتوي على 2 ٪ أو أقل من,ARABIC,batch 1
+sanoop@rightsolutions.ae,Contains less than 2% of:,ENGLISH,يحتوي على أقل من 2 ٪ من:,ARABIC,batch 1
+sanoop@rightsolutions.ae,Contains a source of Phenylalanine,ENGLISH,يحتوي على مصدر للفينيل ألانين,ARABIC,batch 1
+sanoop@rightsolutions.ae,Contains:,ENGLISH,يحتوي على:,ARABIC,batch 1
+sanoop@rightsolutions.ae,"Cicely, Sweet",ENGLISH,"يقدونس إفرنجي ، حلو",ARABIC,batch 1
+sanoop@rightsolutions.ae,Calcium Iodate,ENGLISH,يودات الكالسيوم,ARABIC,batch 1
+sanoop@rightsolutions.ae,Yuca,ENGLISH,يوكا,ARABIC,batch 1
