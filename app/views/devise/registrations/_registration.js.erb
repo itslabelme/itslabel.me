@@ -1,0 +1,10 @@
+ $(document).ready(function(){
+  $('#country_id').change(function(){
+    $.ajax({
+      url:"/ajax/#{$('#country_id').val()}/getTimeZone",
+      type: "GET",
+       success: function(data){
+          $("#country_code_id").html(data);
+      }
+    });
+  });

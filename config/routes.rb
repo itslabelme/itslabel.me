@@ -68,7 +68,7 @@ Rails.application.routes.draw do
         patch :update_client_password # /transactions/sum or the sum of all transactions.
      end
     end
-  
+     get 'get_time_zone', to: 'ajax_call#get_time_zone' 
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
