@@ -1,7 +1,14 @@
 body{
-	font-family: 'Montserrat', sans-serif;
-  font-size: 24px;
-  line-height: 1.5;
+	font-family: 'Roboto', sans-serif;
+}
+
+.iframe-arabic{
+	font-family: 'Cairo', sans-serif;
+	direction: rtl;
+}
+
+.mce-item-table, .mce-item-table caption, .mce-item-table td, .mce-item-table th{
+	border: none !important;
 }
 
 .iframe-table{
@@ -10,12 +17,20 @@ body{
 }
 
 .iframe-table tr th {
-  background: none !important;
-  color: #000;
-  font-weight: bold;
-  font-size: 32px;
-  padding: 0px;
-  padding-bottom: 15px;
+    background: none !important;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0px;
+    padding-bottom: 15px;
+}
+
+.iframe-table.iframe-arabic tr th{
+	line-height: 20px;
+}
+
+.iframe-table.iframe-arabic tr td{
+	line-height: 20px;
 }
 
 .iframe-table img{
@@ -23,12 +38,12 @@ body{
 }
 
 .iframe-table span{
-	width: 60%;
-  display: inline-block;
+	width: 100%;
+    display: inline-block;
 }
 
 .iframe-vertical-table{
-	width: 35%;
+	width: 90%;
 	margin: 0 auto;
 	border: 1px solid #dedede;
 	padding: 20px;
@@ -40,4 +55,25 @@ body{
 
 .vertical-width-300{
 	width: 300px;
+}
+
+.vertical-width-400{
+	width: 400px;
+}
+
+.vertical-width-500{
+	width: 500px;
+}
+
+
+
+
+/** Alignment **/
+
+.iframe-align-left{
+	text-align: left;
+}
+
+.iframe-align-right{
+	text-align: right;
 }
