@@ -10,7 +10,7 @@
                       <% if template.picture.attached? %>
                        <%= image_tag(template.picture,class: "img-fluid") %>
                       <%else%>
-                      <%= image_tag("label-Template.jpg", class: "img-fluid", alt: template.display_name) %>
+                      <%= image_tag("defaults/label-template.jpg", class: "img-fluid", alt: template.display_name) %>
                       <%end%>
                     </li>
                     <li><%= template.name %></li>

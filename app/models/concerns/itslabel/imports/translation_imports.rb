@@ -23,7 +23,7 @@ module Itslabel::Imports::TranslationImports
       
       translation = Translation.where(input_phrase: input_phrase, output_phrase: output_phrase, input_language: input_language, output_language: output_language).first
       if translation
-        puts "#{input_phrase} (#{input_language}) => #{output_phrase} (#{output_language})".yellow
+        # puts "#{input_phrase} (#{input_language}) => #{output_phrase} (#{output_language})".yellow
       else
         translation = Translation.new
       end
