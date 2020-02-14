@@ -242,7 +242,40 @@ $(document).ready(function() {
 
   }
   
+
+  $(document).off('change', "#INPUT_LANGUAGE");
+  $(document).on('change', '#INPUT_LANGUAGE', function (e) {
+    saveEverything();
+  });
+
+  $(document).off('change', "#OUTPUT_1_LANGUAGE");
+  $(document).on('change', '#OUTPUT_1_LANGUAGE', function (e) {
+    saveEverything();
+  });
+
+  $(document).off('change', "#OUTPUT_2_LANGUAGE");
+  $(document).on('change', '#OUTPUT_2_LANGUAGE', function (e) {
+    saveEverything();
+  });
+
+  $(document).off('change', "#OUTPUT_3_LANGUAGE");
+  $(document).on('change', '#OUTPUT_3_LANGUAGE', function (e) {
+    saveEverything();
+  });
+
+  $(document).off('change', "#OUTPUT_4_LANGUAGE");
+  $(document).on('change', '#OUTPUT_4_LANGUAGE', function (e) {
+    saveEverything();
+  });
+
+  $(document).off('change', "#OUTPUT_5_LANGUAGE");
+  $(document).on('change', '#OUTPUT_5_LANGUAGE', function (e) {
+    saveEverything();
+  });
+
 });
+
+
 
 function saveEverything() {
   ajaxData = {

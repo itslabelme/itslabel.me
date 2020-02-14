@@ -9,10 +9,10 @@ class TableDocumentItem < ApplicationRecord
   attr_accessor :temporary_key
 
   # Validations
-  validates :input_phrase, presence: true, length: {maximum: 256}, allow_blank: false
+  validates :input_phrase, presence: true, length: {maximum: 256}, allow_blank: true
   validates :input_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
 
-  validates :output_1_phrase, presence: true, length: {maximum: 256}, allow_blank: false
+  validates :output_1_phrase, presence: true, length: {maximum: 256}, allow_blank: true
   validates :output_1_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
 
   validates :output_2_phrase, length: {maximum: 256}, allow_blank: true
@@ -42,12 +42,12 @@ class TableDocumentItem < ApplicationRecord
   # ---------------
 
   def sanitize_phrases
-    self.input_phrase.strip!
-    self.output_1_phrase.strip!
-    self.output_2_phrase.strip!
-    self.output_3_phrase.strip!
-    self.output_4_phrase.strip!
-    self.output_5_phrase.strip!
+    self.input_phrase.strip! if self.input_phrase
+    self.output_1_phrase.strip! if self.output_1_phrase
+    self.output_2_phrase.strip! if self.output_2_phrase
+    self.output_3_phrase.strip! if self.output_3_phrase
+    self.output_4_phrase.strip! if self.output_4_phrase
+    self.output_5_phrase.strip! if self.output_5_phrase
   end
 
   def translate_phrases

@@ -19,6 +19,7 @@
               </div>
             </div>
 
+            <% unless @document.persisted? %>
             <div class="col-md-12">
               <div class="pull-left">
                 <div class="pull-left mr-4">
@@ -43,21 +44,21 @@
                 <div class="pull-right">
                   <% if @input_language != @output_1_language && !@output_1_language.blank? %>
                   <label class="fancy-checkbox">
-                    <input type="checkbox" value="<%= @output_1_language %>" <%= @output_1_language.blank? ? "": "checked" %> name="output_1_language" data-parsley-errors-container="#error-checkbox" data-parsley-multiple="checkbox">
+                    <input type="checkbox" id="OUTPUT_1_LANGUAGE" value="<%= @output_1_language %>" <%= @output_1_language.blank? ? "": "checked" %> name="output_1_language" data-parsley-errors-container="#error-checkbox" data-parsley-multiple="checkbox">
                     <span><%= @output_1_language %></span>
                   </label>
                   <% end %>
                   
                   <% if @input_language != @output_2_language && !@output_2_language.blank? %>
                   <label class="fancy-checkbox">
-                    <input type="checkbox" value="<%= @output_2_language %>" <%= @output_2_language.blank? ? "": "checked" %> name="output_2_language" data-parsley-multiple="checkbox">
+                    <input type="checkbox" id="OUTPUT_2_LANGUAGE" value="<%= @output_2_language %>" <%= @output_2_language.blank? ? "": "checked" %> name="output_2_language" data-parsley-multiple="checkbox">
                     <span><%= @output_2_language %></span>
                   </label>
                   <% end %>
 
                   <% if @input_language != @output_3_language && !@output_3_language.blank? %>
                   <label class="fancy-checkbox">
-                    <input type="checkbox" value="<%= @output_3_language %>" <%= @output_3_language.blank? ? "": "checked" %> name="output_3_language" data-parsley-multiple="checkbox">
+                    <input type="checkbox" id="OUTPUT_3_LANGUAGE" value="<%= @output_3_language %>" <%= @output_3_language.blank? ? "": "checked" %> name="output_3_language" data-parsley-multiple="checkbox">
                     <span><%= @output_3_language %></span>
                   </label>
                   <% end %>
@@ -81,6 +82,7 @@
                 <div class="clearfix"></div>
               </div>
             </div>
+            <% end %>
             
           </div>
 

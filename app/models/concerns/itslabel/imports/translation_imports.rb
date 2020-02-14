@@ -21,7 +21,12 @@ module Itslabel::Imports::TranslationImports
       output_language = hsh[:output_language].to_s.strip
       category = hsh[:category].to_s.strip
       
-      translation = Translation.where(input_phrase: input_phrase, output_phrase: output_phrase, input_language: input_language, output_language: output_language).first || Translation.new
+      translation = Translation.where(input_phrase: input_phrase, output_phrase: output_phrase, input_language: input_language, output_language: output_language).first
+      if translation
+        puts "#{input_phrase} (#{input_language}) => #{output_phrase} (#{output_language})".yellow
+      else
+        translation = Translation.new
+      end
           
       translation.admin_user_id = admin_user.id if admin_user
       translation.input_phrase = input_phrase
