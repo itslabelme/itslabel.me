@@ -9,7 +9,7 @@
             <div class="col-md-12">
               <div class="mb-4 text-center">
                 <h3>Freeform Ingredient Translation</h3>
-                <p>Please separate ingredients using <span class='badge badge-info'>,</span> or <span class='badge badge-info'>;</span> or new lines for accurate results. Kindly note this is a specialist tool for translating ingredient names and will not process natural language.</p>
+                <p>Please separate ingredients using <span class='badge badge-info'>,</span> or <span class='badge badge-info'>;</span> or new lines for accurate results. <br>Kindly note this is a specialist tool for translating ingredient names and will not process natural language.</p>
               </div>
             </div>
 
@@ -42,13 +42,45 @@
 
           <div class="row">
             <div class="col-md-6">
-              <textarea id="TRANS_PLAYGROUND"></textarea>
+              <div class="playground-wrapper">
+                <% 
+                  case @input_language
+                  when "FRENCH"
+                    enter_text = "Entrer"
+                    sg_dir = "dir-ltr"
+                  when "ARABIC"
+                    enter_text = "أدخل"
+                    sg_dir = "dir-rtl"
+                  when "ENGLISH"
+                    enter_text = "Enter"
+                    sg_dir = "dir-ltr"
+                  end
+                %>
+                <textarea id="TRANS_PLAYGROUND" placeholder="<%= enter_text %>"></textarea>
+                <div id="WORD_SUGGESTIONS">
+                  <div class="sg-container" id="" style="user-select: none;">
+                    <div class="sg-holder" id="" role="menuitem" style="user-select: none;">
+                      <div class="sg-word <%= sg_dir %>" id="">Apple</div>
+                      <span></span>
+                    </div>
+                    <div class="sg-holder" id=":6" role="menuitem" style="user-select: none;">
+                      <div class="sg-word <%= sg_dir %>" id="">Mango</div>
+                      <span></span>
+                    </div>
+                    <div class="sg-holder" id=":6" role="menuitem" style="user-select: none;">
+                      <div class="sg-word <%= sg_dir %>" id="">Grapes</div>
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-md-6">
               <% styles = @output_language.upcase == "ARABIC" ? "text-align:right;" : "text-align:left;" %>
-              <textarea style="<%= styles %>" id="TRANSLATION_PREVIEW" readonly dir="rtl"></textarea>
+              <div style="<%= styles %>" id="TRANS_PREVIEW" dir="rtl"></div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -58,6 +90,14 @@
 <%# Need to integrate tribute.js and load translations from server %>
 <%= content_for :javascript_footer do %>
   
+  if(typeof(String.prototype.trim) === "undefined")
+  {
+    String.prototype.trim = function() 
+    {
+      return String(this).replace(/^\s+|\s+$/g, '');
+    };
+  }
+
   function ITSTranslate() {
     let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
     let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
@@ -70,12 +110,22 @@
     });
   }
 
-  $("#TRANS_PLAYGROUND").on('change', function(){
+  $(document).off('change', "#TRANS_PLAYGROUND");
+  $(document).on('change', '#TRANS_PLAYGROUND', function (e) {
     ITSTranslate()
   });
-  
+
+  $(document).off('input', "#TRANS_PLAYGROUND");
+  $(document).on('input', '#TRANS_PLAYGROUND', function (e) {
+    let inputText = $("#TRANS_PLAYGROUND").val();
+    
+    if(/(\s+|\d+|\.|,|;|\(|\)|\[|\]|:|\t+|\n+|\r+)$/.test(inputText)) {
+      ITSTranslate();
+    }
+  });
+
   $("#INPUT_LANGUAGE").on('change', function(){
-    ITSTranslate()
+    ITSTranslate();
   });
   
   $("#OUTPUT_LANGUAGE").on('change', function(){
@@ -85,11 +135,90 @@
 <% end %>
 
 <style type="text/css">
-  #TRANS_PLAYGROUND, #TRANSLATION_PREVIEW {
+  #TRANS_PLAYGROUND {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    font-size: 20px;
+    padding: 20px;
+    border: 0;
+    outline: none;
+    resize: none;
+  }
+
+  #TRANS_PREVIEW {
     width: 100%;
     height: 300px;
     font-size: 20px;
-    padding: 20px;
+    padding: 40px;
     border: 1px solid #c1c1c1;
+    background-color: #fff;
+    color: #4b4b4b;
+    outline: none;
+    resize: none;
   }
+
+  #WORD_SUGGESTIONS {
+    display: none;
+  }
+
+  .playground-wrapper {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #c1c1c1;
+    padding: 20px;
+    font-size: 20px;
+    background-color: #fff;
+    color: #4b4b4b;
+  }
+
+  .playground-wrapper > .contenteditable {
+    border: none;
+    outline: none;
+  }
+
+  .sg-container {
+    list-style-type: none;
+    margin-top:20px;
+    padding-top: 20px;
+  }
+  .sg-holder {
+    background: #F5F5F5;
+    border-radius: 14px;
+    box-sizing: border-box;
+    color: #6B6B6B;
+    cursor: pointer;
+    display: inline-block;
+    direction: inherit;
+    font-family: 'Roboto',sans-serif;
+    font-size: 13px;
+    height: 28px;
+    line-height: 28px;
+    margin-right: 4px;
+    padding: 0 10px;
+    position: relative;
+    margin-bottom: 4px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  .sg-item {
+    color: rgba(0,0,0,.87);
+    display: inline-block;
+    font-size: 12px;
+    position: relative;
+  }
+  .dir-rtl {
+    direction: rtl;
+  }
+  .dir-ltr {
+    direction: ltr;
+  }
+  .not-found {
+    color: red;
+    text-decoration: underline;
+  }
+
 </style>

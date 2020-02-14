@@ -14,9 +14,18 @@ module User
 
     def try
 
-      @translated_text = Translation.translate(params[:text], 
-                            input_language: @input_language, 
-                            output_language: @output_language)
+      @input_text = params[:text].strip
+      @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
+      @display_text = @input_text
+      # binding.pry
+      @translated_hash.each do |key, value|
+        if value
+          @display_text.gsub!(key, value)
+        else
+          @display_text.gsub!(key, "<span class='not-found'>#{key}</span>")
+        end
+      end
+      @display_text.gsub!("\n", '<br>')
       
     end
 

@@ -19,6 +19,15 @@
     </thead>
     <tbody>
       <% @documents.each_with_index do |document, i| %>
+      <% 
+        if document.doc_type == "template_document"
+          doc_url = user_template_document_path(document)
+        elsif document.doc_type == "table_document"
+          doc_url = user_table_document_path(document) 
+        else
+          doc_url = "#"
+        end
+      %>
       <tr id='TRANSLATIONS_ROW_<%= document.id %>'>
         <td>
           <span><%= serial_number(i) %></span>
@@ -29,12 +38,15 @@
             <!-- <div class="avtar-pic w35 bg-indigo mr-2"> -->
               <span><i class="<%= icon %> mr-2"></i></span>
             <!-- </div> -->
-            <%= link_to document.title, user_template_document_path(document), title: document.title %>
+            <%= link_to document.title, doc_url, title: document.title %>
           </div>
         </td>
         <td class="its-tag" style="text-align: center;">
-          <span><%= document.display_input_language %></span> <span style="border: 0;font-size:16px;vertical-align: middle;text-align: center;"> > </span>
-          <span><%= document.display_output_language %></span>
+          <span><%= document.display_input_language %></span> 
+          <span style="border: 0;font-size:16px;vertical-align: middle;text-align: center;"> > </span>
+          <% document.display_output_languages.select{|x| !x.to_s.strip.blank?}.each do |lang| %>
+            <span><%= lang %></span>
+          <% end %>
         </td>
 
         <td style="text-align: center;"> <%= document.created_at.strftime("%d %b %Y - %I:%M %p") %> </td>
@@ -45,7 +57,7 @@
         
         <% if display_actions %>
         <td style="text-align: center;">
-          <%= link_to user_template_document_path(document), class: "btn btn-sm btn-default mr-4" do %>
+          <%= link_to doc_url, class: "btn btn-sm btn-default mr-4" do %>
             <i class="fa fa-edit"></i>
           <% end %>
           
@@ -53,7 +65,7 @@
             <i class="fa fa-check" style="color: #6c757d !important;" ></i>
           <% end if document.can_active? %>
           
-          <%= link_to user_template_document_path(document), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
+          <%= link_to doc_url, class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
             <i class="fa fa-trash-o text-danger"></i>
           <% end if document.can_remove? %> 
 

@@ -13,9 +13,9 @@ module User
     private
 
     def get_collection
-      @relation = TemplateDocument.where("")
+      @relation = DocumentView.where("")
 
-      apply_filters
+      # apply_filters
 
       @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
