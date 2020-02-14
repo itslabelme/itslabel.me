@@ -9,13 +9,13 @@ $(document).ready(function() {
     {
       "item_id": "<%= key -%>",
       "document_id": "<%= item.table_document_id -%>",
-      "input_phrase": "<%= item.input_phrase -%>",
+      "input_phrase": "<%= raw(item.input_phrase) -%>",
       
-      "output_1_phrase": "<%= item.output_1_phrase -%>",
-      "output_2_phrase": "<%= item.output_2_phrase -%>",
-      "output_3_phrase": "<%= item.output_3_phrase -%>",
-      "output_4_phrase": "<%= item.output_4_phrase -%>",
-      "output_5_phrase": "<%= item.output_5_phrase -%>",
+      "output_1_phrase": "<%= raw(item.output_1_phrase) -%>",
+      "output_2_phrase": "<%= raw(item.output_2_phrase) -%>",
+      "output_3_phrase": "<%= raw(item.output_3_phrase) -%>",
+      "output_4_phrase": "<%= raw(item.output_4_phrase) -%>",
+      "output_5_phrase": "<%= raw(item.output_5_phrase) -%>",
 
       "input_language": "<%= item.input_language -%>",
 
