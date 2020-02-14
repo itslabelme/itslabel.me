@@ -6,11 +6,13 @@ class DeviseCreateClientUsers < ActiveRecord::Migration[5.2]
 
       t.string :first_name, limit: 256, null: false
       t.string :last_name, limit: 256
-
+      t.string :position, limit: 256
       t.string :mobile_number, null: false, limit: 24
       t.string :organisation, limit: 256
       t.string :country, limit: 256
-
+      t.string :country_code, limit: 256
+      
+      t.string :time_zone, limit: 256
       ## Database authenticatable
       t.string :email, limit: 256, null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

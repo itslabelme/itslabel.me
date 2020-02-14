@@ -57,19 +57,15 @@
                                             </div>
                                             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email Address"  %>
                                         </div> <!-- form-group// -->
-                                    </div>    
-                                       
-                                    <!-- Phone number -->
+                                    </div> 
                                     <div class="col-md-6">
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                                             </div>
-                                            <%= f.telephone_field :mobile_number, autofocus: true, class: "form-control", placeholder: "Mobile Number"  %>
+                                            <%= f.text_field :position, autofocus: true, autocomplete: "position", class: "form-control", placeholder: "Position"  %>
                                         </div> <!-- form-group// -->
-                                    </div>     
-                                     
-                                    <!-- Email Address -->
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
@@ -77,6 +73,36 @@
                                             </div>
                                              <%= f.country_select :country, [ "US", "GB", "FR", "DE", "AE", "SA", "CN", "IN", "RU" ], {}, {class: "form-control", :id => "country_id"} %>
             <%#= f.country_select :country, ([ "GB", "FR", "DE" ]), iso_codes: true, id: :element_id, class: "form-control", autofocus: true %>
+                                        </div> <!-- form-group// -->
+                                    </div>
+                                    <!-- Phone number -->
+                                    <div class="col-md-6">
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                            </div>
+                                            <%= f.select :country_code,[ "+971", "+972", "+198", "+701"],{},{class: "form-control", :id => "country_code_id"} %>
+                                           
+                                        </div> <!-- form-group// -->
+                                    </div>
+                                    <!-- Phone number -->
+                                    <div class="col-md-6">
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                            </div>
+                                            <%= f.telephone_field :mobile_number, autofocus: true, class: "form-control", placeholder: "Phone Number"  %>
+                                        </div> <!-- form-group// -->
+                                    </div>     
+                                     
+                                    <!-- Email Address -->
+                                     <!-- Phone number -->
+                                    <div class="col-md-6">
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                            </div>
+                                            <%= f.time_zone_select :time_zone,  ActiveSupport::TimeZone.all,{},{ class: "form-control",:id=>"time_zone"} %>
                                         </div> <!-- form-group// -->
                                     </div>                                       
 
@@ -123,3 +149,6 @@
         </div>
     </div>
 </div>
+ <%= content_for :javascript_footer do %>
+  <%#= render :partial=>"devise/registrations/registration.js.erb" %>
+<% end %>

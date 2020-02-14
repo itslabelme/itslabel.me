@@ -7,7 +7,7 @@ class ClientUser < ApplicationRecord
   # max_paginates_per 2
 
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
-  validates :last_name, length: {maximum: 256}, allow_blank: true
+  validates :last_name, length: {maximum: 256}, allow_blank: false
   validates :mobile_number, length: {maximum: 24}, allow_blank: true
   validates :organisation, presence: true
   validates :country, presence: true
