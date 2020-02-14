@@ -1,7 +1,16 @@
 require 'colorize'
 
 puts "Adding Admin Users".green
-AdminUser.create([
+if Rails.env.production?
+  AdminUser.create([
+                  { first_name: 'Ben',  last_name: "Castree", mobile_number: "12345678", email: "Ben.castree@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
+                  { first_name: 'Abdul Karim',  last_name: "Samaan", mobile_number: "12345678", email: "akarim.samaan@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
+                  { first_name: 'Hari',  last_name: "Kuppuswamy", mobile_number: "12345678", email: "harishsmc@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
+                  { first_name: 'Krishna Prasad',  last_name: "Varma", mobile_number: "12345678", email: "krishna@rightsolutions.ae", password: "Password@1", password_confirmation: "Password@1"}
+                ])
+
+else
+  AdminUser.create([
                   { first_name: 'Ben',  last_name: "Castree", mobile_number: "12345678", email: "Ben.castree@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
                   { first_name: 'Abdul Karim',  last_name: "Samaan", mobile_number: "12345678", email: "akarim.samaan@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
                   { first_name: 'Hari',  last_name: "Kuppuswamy", mobile_number: "12345678", email: "harishsmc@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
@@ -9,13 +18,14 @@ AdminUser.create([
                   { first_name: 'Sanoop',  last_name: "Nair", mobile_number: "12345678", email: "sanoop@rightsolutions.ae", password: "Password@1", password_confirmation: "Password@1"}, 
                   { first_name: 'Vedaditya',  last_name: "Nirankar", mobile_number: "12345678", email: "nirankar@rightsolutions.ae", password: "Password@1", password_confirmation: "Password@1"}, 
                 ])
+end
 
+if Rails.env.production?
 puts "Adding Client Users".green
 ClientUser.create([
-                  { first_name: 'Sherlock',  last_name: "Holmes", country: "United Kingdom", mobile_number: "12345678", organisation: "Conon Doyle", email: "holmes@yopmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
-                  { first_name: 'Huckleburry',  last_name: "Finn", country: "United States", mobile_number: "12345678", organisation: "DM Studios", email: "finn@yopmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
-                  { first_name: 'Joan',  last_name: "Arc", country: "France", mobile_number: "12345678", organisation: "French Ltd", email: "joan@yopmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
+                  { first_name: 'KP Varma',  last_name: "", country: "United Arab Emirates", mobile_number: "+971501370320", organisation: "Right Solutions", email: "krshnaprsad@gmail.com", password: "Password@1", password_confirmation: "Password@1"}, 
                 ])
+end
 
 admin_user = AdminUser.first
 client_user = ClientUser.first
