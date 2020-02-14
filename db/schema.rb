@@ -52,9 +52,12 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
   create_table "client_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", limit: 256, null: false
     t.string "last_name", limit: 256
+    t.string "position", limit: 256
     t.string "mobile_number", limit: 24, null: false
     t.string "organisation", limit: 256
     t.string "country", limit: 256
+    t.string "country_code", limit: 256
+    t.string "time_zone", limit: 256
     t.string "email", limit: 256, default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

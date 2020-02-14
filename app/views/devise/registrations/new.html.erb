@@ -76,7 +76,7 @@
                                         </div> <!-- form-group// -->
                                     </div>
                                     <!-- Phone number -->
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
@@ -93,18 +93,18 @@
                                             </div>
                                             <%= f.telephone_field :mobile_number, autofocus: true, class: "form-control", placeholder: "Phone Number"  %>
                                         </div> <!-- form-group// -->
-                                    </div>     
+                                    </div> 
+                                    <div class="col-md-3">
+                                    </div>
                                      
-                                    <!-- Email Address -->
-                                     <!-- Phone number -->
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                                             </div>
-                                            <%= f.time_zone_select :time_zone,  ActiveSupport::TimeZone.all,{},{ class: "form-control",:id=>"time_zone"} %>
-                                        </div> <!-- form-group// -->
-                                    </div>                                       
+                                            <%#= f.time_zone_select :time_zone,  ActiveSupport::TimeZone.all,{},{ class: "form-control",:id=>"time_zone"} %>
+                                        </div>
+                                    </div>  -->                                      
 
                                     <!-- Password -->
                                     <div class="col-md-6">
@@ -112,7 +112,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                             </div>
-                                            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Create Password" %>
+                                            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password" %>
                                         </div> <!-- form-group// -->
                                     </div> 
                                     
@@ -137,11 +137,11 @@
             
                             <p class="text-center">Have an account? <%= link_to "Log In", new_client_user_session_path %> </p> 
                              <% end %>
-                            <div class="separator-linethrough"><span>OR SIGN IN USING</span></div>
+                            <!-- <div class="separator-linethrough"><span>OR SIGN IN USING</span></div>
                             <ul class="its-login-social">
                                 <li><button class="btn btn-signin-social"><a href="/user/auth/facebook"><i class="fa fa-facebook-official facebook-color"></i> Facebook</a></button></li>
                                 <li><button class="btn btn-signin-social"><a href="/user/auth/google"><i class="fa fa-google google-color"></i> Google</a></button></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </div>

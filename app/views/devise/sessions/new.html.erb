@@ -35,12 +35,12 @@
           </div>
           
           <!-- Remember Me -->
-          <div class="form-group clearfix">
+          <!-- <div class="form-group clearfix">
             <label class="fancy-checkbox element-left its-login-me">
               <input type="checkbox">
               <span>Remember me</span>
             </label>
-          </div>
+          </div> -->
           <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
           
           <!-- Links -->
@@ -66,7 +66,7 @@
           </div>
 
           <!-- Display Social Icons only for client user -->
-          <% if resource_name == :client_user %>
+          <% false && if resource_name == :client_user %>
           <div class="separator-linethrough"><span>OR</span></div>
 
           <ul class="its-login-social">
