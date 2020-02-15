@@ -19,7 +19,7 @@ $(document).ready(function() {
 });
  
   
-  /*$(document).on("change", "#country_id", function(){
+  $(document).on("change", "#country_id", function(){
   var country = $(this).val();
 
   $.ajax({
@@ -32,13 +32,13 @@ $(document).ready(function() {
     },
     success: function (response) {
       console.log(response);
-      var time_zones = response["time_zones"];
+      var time_zones = response
       $("#time_zone").empty();
 
-      $("#time_zone").append('<option>Select city</option>');
+     
       for(var i=0; i< time_zones.length; i++){
-        $("#time_zone").append('<option value="' + time_zones[i]["id"] + '">' + time_zones[i]["name"] + '</option>');
+        $("#time_zone").append('<option value="' + time_zones[i]["tzinfo"]['info'].identifier + '">' + time_zones[i]["name"] + '</option>');
       }
     }
   });
-});*/
+});
