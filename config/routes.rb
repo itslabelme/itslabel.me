@@ -41,6 +41,9 @@ Rails.application.routes.draw do
         # Print the Document in the PDF format
         get 'print', to: 'template_documents#print', as: 'print'
 
+        #update status
+        put 'update_status', to: 'template_documents#update_status', as: 'update_status'
+
       end
 
       collection do
@@ -60,6 +63,9 @@ Rails.application.routes.draw do
       member do
         # Export to Excel
         get 'export_to_excel', to: 'table_documents#export_to_excel', as: 'export_to_excel'
+
+        #update status
+        put 'update_status', to: 'table_documents#update_status', as: 'update_status'
       end
     end
     
