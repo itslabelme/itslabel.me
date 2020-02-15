@@ -10,14 +10,49 @@ module User
       get_collection
     end
 
+    def update_status
+      if @document
+        @document.update_status(params[:status].upcase)
+      end
+    end
+
+    def destroy
+      get_document
+
+      if @document
+        if @document.can_be_deleted?
+          @document.destroy
+          
+          set_notification(false, I18n.t('status.success', item: "Document"), I18n.t('success.deleted', item: "Document"))
+          set_flash_message(I18n.t('success.deleted', item: "Document"), :success, false)
+          @destroyed = true
+        else
+          message = I18n.t('errors.cannot_be_deleted', item: "Document", reason: @document.errors.full_messages.join("<br>"))
+          set_flash_message(message, :failure)
+          set_notification(false, I18n.t('status.error'), message)
+          @destroyed = false
+        end
+      end
+    end
+
     private
 
     def get_collection
       @relation = DocumentView.where("")
 
       # apply_filters
+      if params[:status].to_s.strip.blank? && @status.to_s.downcase != "all"
+        @relation = @relation.all_statuses_expect(["ARCHIVED", "REMOVED"])
+      else
+        @relation = @relation.status(params[:status].to_s.strip.upcase) unless params[:status].to_s.strip.blank?
+      end
 
       @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
+    end
+
+    def get_document
+      @document = Document::Base.find_by_id(params[:id])
+      @document_class = @document.type.constantize
     end
 
     def apply_filters

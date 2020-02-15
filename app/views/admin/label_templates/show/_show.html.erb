@@ -42,16 +42,21 @@
               <div class="col-sm-7"><b><%= raw @label_template.style%></b></div>
             </div>
           </li>
+          
           <li class="list-group-item">
             <div class="row">
               <div class="col-sm-5"> LTR HTML  :</div>
-              <div class="col-sm-7"><b><%= raw @label_template.ltr_html_source%></b></div>
+              <div class="col-sm-7">
+                <%= render(partial: 'admin/label_templates/show/iframe', locals: {source_html: @label_template.ltr_html_source}) %>
+              </div>
             </div>
           </li>
           <li class="list-group-item">
             <div class="row">
               <div class="col-sm-5"> RTL HTML  :</div>
-              <div class="col-sm-7"><b><%= raw @label_template.rtl_html_source%></b></div>
+              <div class="col-sm-7">
+                <%= render(partial: 'admin/label_templates/show/iframe', locals: {source_html: @label_template.rtl_html_source}) %>
+              </div>
             </div>
           </li>
            

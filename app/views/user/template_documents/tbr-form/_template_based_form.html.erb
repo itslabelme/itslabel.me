@@ -70,6 +70,13 @@
 
   <div class="row mt-4">
     <div class="col-md-6">
+
+      <% 
+        source_html = @document.try(:input_html_source).to_s
+        formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("defaults/distributor-logo.jpg")) 
+        @document.input_html_source = raw(formatted_source_html)
+      %>
+      
       <%= f.text_area :input_html_source, id: "input_tinymce", class: "tinymce-editor" %>
     </div>
     <div class="col-md-6"  >
