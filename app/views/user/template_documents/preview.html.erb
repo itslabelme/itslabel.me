@@ -1,1 +1,5 @@
-<%= raw @document.try(:output_html_source) %>
+<% 
+  source_html = @document.try(:output_html_source)
+  formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("defaults/distributor-logo.jpg"))  if source_html
+%>
+<%= raw(formatted_source_html) %>

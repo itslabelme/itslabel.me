@@ -22,10 +22,16 @@
       <% 
         if document.doc_type == "template_document"
           doc_url = user_template_document_path(document)
+          doc_status_removed_url = update_status_user_template_document_path(document, status: 'removed') 
+          doc_status_archive_url = update_status_user_template_document_path(document, status: 'archived')
         elsif document.doc_type == "table_document"
           doc_url = user_table_document_path(document) 
+          doc_status_removed_url = update_status_user_table_document_path(document, status: 'removed')
+          doc_status_archive_url = update_status_user_table_document_path(document, status: 'archived')
         else
           doc_url = "#"
+          doc_status_removed_url = "#"
+          doc_status_archive_url = "#"
         end
       %>
       <tr id='TRANSLATIONS_ROW_<%= document.id %>'>
@@ -65,11 +71,11 @@
             <i class="fa fa-check" style="color: #6c757d !important;" ></i>
           <% end if document.can_active? %>
           
-          <%= link_to doc_url, class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
+          <%= link_to doc_status_removed_url, class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
             <i class="fa fa-trash-o text-danger"></i>
           <% end if document.can_remove? %> 
 
-          <%= link_to update_status_user_document_path(document, status: 'archived', dt: params[:dt]), class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
+          <%= link_to doc_status_archive_url, class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
             <i class="fa fa-archive"></i>
           <% end if document.can_archive? %>
         </td>
