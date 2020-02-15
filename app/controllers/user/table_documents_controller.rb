@@ -188,25 +188,6 @@ module User
       end
     end
 
-    def destroy
-      get_document
-
-      if @document
-        if @document.can_be_deleted?
-          @document.destroy
-          
-          set_notification(false, I18n.t('status.success', item: "Document"), I18n.t('success.deleted', item: "Document"))
-          set_flash_message(I18n.t('success.deleted', item: "Document"), :success, false)
-          @destroyed = true
-        else
-          message = I18n.t('errors.cannot_be_deleted', item: "Document", reason: @document.errors.full_messages.join("<br>"))
-          set_flash_message(message, :failure)
-          set_notification(false, I18n.t('status.error'), message)
-          @destroyed = false
-        end
-      end
-    end
-
     def export_to_excel
       get_document
 

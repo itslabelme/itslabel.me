@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     root to: 'home#index'
     
     # Listing All Kinds of Documents
-    resources :documents, only: :index do
+    resources :documents, only: [:index, :destroy] do
       # Update the status of the document
       member do
         put :update_status
