@@ -58,8 +58,14 @@
 
           <div class="row pb-4">
             <div class="col-md-6">
+
+              <% 
+                source_html = @document.try(:input_html_source).to_s
+                formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("defaults/distributor-logo.jpg")) 
+              %>
+              
               <textarea class="tinymce-editor" id="input_tinymce" name='document[input_html_source]'>
-                <%= raw @document.input_html_source %>
+                <%= raw(formatted_source_html) %>
               </textarea>
             </div>
             <div class="col-md-6">
