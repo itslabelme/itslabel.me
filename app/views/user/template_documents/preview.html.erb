@@ -1,6 +1,5 @@
 <% 
   source_html = @document.try(:output_html_source).to_s
-  formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("defaults/distributor-logo.jpg")) 
+  formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("defaults/distributor-logo.jpg"))
 %>
-<%#= raw(formatted_source_html) %>
 <%= raw(@document.try(:output_html_source).to_s) %>

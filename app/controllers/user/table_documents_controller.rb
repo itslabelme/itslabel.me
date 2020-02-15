@@ -198,6 +198,13 @@ module User
       end
     end
 
+    def update_status
+      get_document
+      if @document
+        @document.update_status(params[:status].upcase)
+      end
+    end
+    
     private
 
     def get_collection

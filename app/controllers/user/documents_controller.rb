@@ -41,8 +41,18 @@ module User
       @relation = DocumentView.where("")
 
       # apply_filters
+      if params[:status].to_s.strip.blank? && @status.to_s.downcase != "all"
+        @relation = @relation.all_statuses_expect(["ARCHIVED", "REMOVED"])
+      else
+        @relation = @relation.status(params[:status].to_s.strip.upcase) unless params[:status].to_s.strip.blank?
+      end
 
       @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
+    end
+
+    def get_document
+      @document = Document::Base.find_by_id(params[:id])
+      @document_class = @document.type.constantize
     end
 
     def apply_filters

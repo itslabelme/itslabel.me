@@ -182,6 +182,26 @@ $(document).ready(function() {
 
     });
 
+    // Export Attendance Template
+    var exportTemplateButton = document.getElementById('DownloadTablebasedDocument');
+    const exportTemplatePlugin = translationHOT.table.getPlugin('exportFile');
+    
+    exportTemplateButton.addEventListener('click', function() {
+      exportTemplatePlugin.downloadFile('csv', {
+        bom: false,
+        columnDelimiter: ',',
+        columnHeaders: true,
+        exportHiddenColumns: true,
+        exportHiddenRows: false,
+        fileExtension: 'csv',
+        filename: 'Table Based Document - [DD]-[MM]-[YYYY]',
+        mimeType: 'text/csv',
+        rowDelimiter: '\r\n',
+        // rowDelimiter: '\r\,',
+        rowHeaders: false,
+      });
+    });
+
     translationHOT.table.updateSettings({
       height:  $('.ht_master .wtHider').height() + 40,
       cells: function (row, col, prop) {
