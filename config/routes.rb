@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     root to: 'home#index'
     
     # Listing All Kinds of Documents
-    resources :documents, only: :index do
+    resources :documents, only: [:index, :destroy] do
       # Update the status of the document
       member do
         put :update_status
@@ -40,6 +40,9 @@ Rails.application.routes.draw do
 
         # Print the Document in the PDF format
         get 'print', to: 'template_documents#print', as: 'print'
+
+        #update status
+        put 'update_status', to: 'template_documents#update_status', as: 'update_status'
 
       end
 
@@ -60,6 +63,9 @@ Rails.application.routes.draw do
       member do
         # Export to Excel
         get 'export_to_excel', to: 'table_documents#export_to_excel', as: 'export_to_excel'
+
+        #update status
+        put 'update_status', to: 'table_documents#update_status', as: 'update_status'
       end
     end
     
