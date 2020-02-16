@@ -17,7 +17,6 @@ module User
       @input_text = params[:text].strip
       @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
       @display_text = @input_text
-      # binding.pry
       @translated_hash.each do |key, value|
         if value
           @display_text.gsub!(key, value)

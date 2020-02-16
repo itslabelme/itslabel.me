@@ -36,7 +36,7 @@ module Itslabel::Scopes::TemplateDocumentScopes
     scope :not_favorites, lambda { where(:favorite, false) }
 
     scope :recent, lambda { where(created_at: 1.month.ago..Time.now).or(TemplateDocument.where(updated_at: 1.month.ago..Time.now)) }
-
+    
   end
   
 end
