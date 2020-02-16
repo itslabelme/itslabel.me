@@ -1,0 +1,39 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Transaltions") do |sheet|
+  
+  # Create the header row
+  
+  inp_lang = @document.input_language
+  out_langs = []
+  
+  out_langs << @document.output_1_language if !@document.output_1_language.to_s.strip.blank? && @document.input_language != @document.output_1_language
+  
+  out_langs << @document.output_2_language if !@document.output_2_language.to_s.strip.blank? && @document.input_language != @document.output_2_language
+  
+  out_langs << @document.output_3_language if !@document.output_3_language.to_s.strip.blank? && @document.input_language != @document.output_3_language
+  
+  out_langs << @document.output_4_language if !@document.output_4_language.to_s.strip.blank? && @document.input_language != @document.output_4_language
+  
+  out_langs << @document.output_5_language if !@document.output_5_language.to_s.strip.blank? && @document.input_language != @document.output_5_language
+
+  sheet.add_row ([inp_lang] + out_langs)
+  
+  # Create entries for each item
+  @document_items.each do |item|
+
+    out_phrases = []
+    
+    out_phrases << item.output_1_phrase if !@document.output_1_language.to_s.strip.blank? && @document.input_language != @document.output_1_language
+    
+    out_phrases << item.output_2_phrase if !@document.output_2_language.to_s.strip.blank? && @document.input_language != @document.output_2_language
+    
+    out_phrases << item.output_3_phrase if !@document.output_3_language.to_s.strip.blank? && @document.input_language != @document.output_3_language
+    
+    out_phrases << item.output_4_phrase if !@document.output_4_language.to_s.strip.blank? && @document.input_language != @document.output_4_language
+    
+    out_phrases << item.output_5_phrase if !@document.output_5_language.to_s.strip.blank? && @document.input_language != @document.output_5_language
+
+    sheet.add_row [raw(item.input_phrase)] + out_phrases
+  end
+end

@@ -190,11 +190,12 @@ module User
 
     def export_to_excel
       get_document
+      @document_items = @document.items
 
       respond_to do |format|
-        format.html do
-          render layout: nil
-        end
+        format.xlsx {
+          response.headers['Content-Disposition'] = "attachment; filename=its-#{@document.to_param}.xlsx"
+        }
       end
     end
 
@@ -238,6 +239,11 @@ module User
 
     def new_document
       @document = TableDocument.new()
+
+      @document.input_language = params[:input_language]
+      @document.output_1_language = params[:output_1_language]
+      @document.output_2_language = params[:output_2_language]
+      @document.output_3_language = params[:output_3_language]
       
       # Set Default Title
       @document.title = "New Table Document - #{Time.now.to_i}" unless @document.title
