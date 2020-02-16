@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="<%= asset_url('iframe.css') %>">
   </head>
   <body>
-    <%= yield %>
+    <% dir_attr = @document.try(:output_language).to_s.strip.upcase == 'ARABIC'? "dir='rtl'" : "" %>
+    <div <%= dir_attr %>>
+      <%= yield %>
+    </div>
   </body>
 </html>

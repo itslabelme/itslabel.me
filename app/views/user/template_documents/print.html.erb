@@ -1,1 +1,27 @@
-<%= raw(@document.output_html_source) %>
+<% 
+  source_html = @document.try(:output_html_source).to_s
+  formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("defaults/distributor-logo.jpg"))
+%>
+<%= raw(@document.try(:output_html_source).to_s) %>
+
+<div class="" style="text-align:center;margin-top:20px;">
+  <a class="" onclick="window.print();" style="
+    padding: 10px 4px;
+    border: 1px solid #c1c1c1;
+    color: #fff;
+    background-color: #898989;
+    cursor: pointer; 
+    text-decoration: none;">
+    Download as PDF
+  </a>
+</div>
+
+<style type="text/css">
+  @media print
+{
+    @page
+    {
+         size: 8.5in 11in; 
+    }
+}
+</style>
