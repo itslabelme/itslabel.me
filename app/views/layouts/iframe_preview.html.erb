@@ -1,17 +1,21 @@
 <% 
   case @document.try(:output_language).to_s.strip.upcase
   when "ARABIC"
-    html_attr = "dir='rtl' lang='ar'"
+    lang_attr = "ar"
+    dir_attr = "rtl"
   when "FRENCH"
-    html_attr = "lang='fr'"
+    lang_attr = "fr"
+    dir_attr = "ltl"
   when "ENGLISH"
-    html_attr = "lang='en'"
+    lang_attr = "en"
+    dir_attr = "ltl"
   else
-    html_attr = "lang='en'"
+    lang_attr = "en"
+    dir_attr = "ltl"
   end
 %>
 
-<html lang="en" <%= html_attr %>>
+<html lang="<%= lang_attr %>" dir="<%= dir_attr %>">
   <head>
     <title>Preview</title>
     
