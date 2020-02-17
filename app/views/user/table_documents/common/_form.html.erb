@@ -15,7 +15,7 @@
                 <button class="btn btn-primary btn-lg mt-1 mb-1" onclick="saveEverything();"><i class='fa fa-save mr-2'></i>SAVE</button>
                 <%= link_to export_to_excel_user_table_document_path(@document, format: :xlsx), class: "btn btn-secondary btn-lg mt-1 mb-1" do %>
                   <i class='fa fa-print mr-2'></i>EXPORT
-                <% end %>
+                <% end if @document.persisted? %>
               </div>
             </div>
 
