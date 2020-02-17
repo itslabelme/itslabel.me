@@ -16,8 +16,8 @@
             New Document
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Table Based", new_user_document_path(dt: 'table'), class: "dropdown-item" %>
-            <%= link_to "Template Based", new_user_document_path(dt: 'template'), class: "dropdown-item" %>
+            <%= link_to "Select from Template", select_template_user_template_documents_path, class: "dropdown-item" %>
+            <%= link_to "Table Mode", new_user_table_document_path, class: "dropdown-item" %>
           </div>
         </div>
     </div>
