@@ -6,11 +6,22 @@
             <div class="box">
                 <ul class="pricing body">
                     <li class="plan-img">
-                      <% if template.picture.attached? %>
-                        <img src="<%= image_path(main_app.url_for(template.picture)) %>" class="img-fluid">
-                      <%else%>
-                        <%= image_tag("defaults/label-template.jpg", class: "img-fluid", alt: template.display_name) %>
-                      <%end%>
+
+                      <%
+                        begin 
+                          template_img_url = "label_templates/#{template.style.downcase.gsub(' ', '_').strip}.jpg"
+                        rescue SystemCallError => e
+                          template_img_url = "label_templates/default_template_ar.jpg"
+                        end
+                      %>
+                      <%= image_tag asset_path(template_img_url), class: "img-fluid", alt: template.display_name %>
+
+                      <%# if template.picture.attached? %>
+                        <!-- <img src="<%#= image_path(main_app.url_for(template.picture)) %>" class="img-fluid"> -->
+                      <%# else%>
+                        <%#= image_tag("defaults/label-template.jpg", class: "img-fluid", alt: template.display_name) %>
+                      <%# end%>
+                      
                     </li>
                     <li><%= template.name %></li>
                     <% unless template.to_s.strip.blank? %>

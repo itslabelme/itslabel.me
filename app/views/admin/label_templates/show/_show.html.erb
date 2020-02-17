@@ -31,7 +31,7 @@
                     template_img_url = "label_templates/default_template_ar.jpg"
                   end
                 %>
-                <%= image_tag template_img_url, size: "250x250" if @label_template.picture.attached? %>
+                <%= image_tag asset_path(template_img_url) %>
               </b></div>
             </div>
           </li>
