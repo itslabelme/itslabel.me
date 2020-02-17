@@ -19,13 +19,13 @@
             <div class="col-md-12">
               <div class="mb-4 text-center">
                 <h3>Translate with Template</h3>
-                <p>Edit the text in the template and Cick on <span class='badge badge-info'>Save</span> button below to Translate and Save. </p>
+                <p>Edit the text in the template and Cick on <span class='badge badge-info'>Translate & Save</span> button below to Translate and Save. </p>
               </div>
               <div class="form-group" style="text-align:center;">
-                <button class="btn btn-primary btn-lg mt-1 mb-1" type="submit"><i class='fa fa-save mr-2'></i>SAVE</button>
-                <%= link_to '#', class: "btn btn-secondary btn-lg mt-1 mb-1", target: "_blank", onclick: 'print()' do %>
-                  <i class='fa fa-print mr-2'></i>PRINT
-                <% end %>
+                <button class="btn btn-primary btn-lg mt-1 mb-1" type="submit"><i class='fa fa-save mr-2'></i>TRANSLATE & SAVE</button>
+                <%#= link_to '#', class: "btn btn-secondary btn-lg mt-1 mb-1", target: "_blank", onclick: 'print()' do %>
+                  <!-- <i class='fa fa-print mr-2'></i>PRINT -->
+                <%# end %>
               </div>
             </div>
 
@@ -45,7 +45,7 @@
             <div class="col-md-6">
               <div class="row">
                 <div class="col-md-6">
-                  <select class="form-control form-control-xs selectpicker1" name="document[output_1_language]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
+                  <select class="form-control form-control-xs selectpicker1" name="document[output_language]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
                     <option value="ENGLISH" <%= @output_language == "ENGLISH" ? "selected" : "" %> >English</option>
                     <option value="ARABIC" <%= @output_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
                     <option value="FRENCH" <%= @output_language == "FRENCH" ? "selected" : "" %> >French</option>
@@ -65,15 +65,60 @@
               %>
               
               <textarea class="tinymce-editor" id="input_tinymce" name='document[input_html_source]'>
+
+
                 <%= raw(formatted_source_html) %>
               </textarea>
             </div>
             <div class="col-md-6">
-              <div class="holder" style="height:500px;">
-                <div class="body" style="border:10px solid #e5f3e5;border-top:80px solid #e5f3e5; height:100%;">
-                  <iframe id="DOC_PREVIEW" frameborder="0" scrolling="yes" src="<%= preview_user_template_document_path(@document) %>">
-                  </iframe>
+              <div class="holder" style="height:500px;background-color:#fff;">
+                
+                <% id = @document.try(:id) || -1 %>
+
+                <div class="body" style="padding: 0px;border-radius: 0px;">
+                  <div class="table-responsive its-preview-table">
+                    <div class="its-preview-header">
+                      <div class="its-preview-header-top">
+                        <ul>
+                          <li>
+                            <%= link_to "#", onclick: "print()" do %>
+                              <%= image_tag("icons/preview.svg") %>
+                              <span>Preview</span>
+                            <% end %>
+                          </li>
+
+                          <li>
+                            <%= link_to "#", onclick: "directPrint()" do %>
+                              <%= image_tag("icons/download.svg") %>
+                              <span>Download</span>
+                            <% end %>
+                          </li>
+                          
+                          <li>
+                            <%= link_to "#", onclick: "directPrint()" do %>
+                              <%= image_tag("icons/print.svg") %>
+                              <span>Print</span>
+                            <% end %>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div style="background:#f6f6f6;;padding: 0px 0px 0px 0px;">
+                      <iframe id="DOC_PREVIEW" name='preview_frame' frameborder="0" scrolling="yes" src="<%= preview_user_template_document_path(id: id, template_id: @template.try(:id)) %>">
+                      </iframe>
+                    </div>
+                  </div>
                 </div>
+
+                <!-- <div style="background-color:#fff;border:10px solid #e5f3e5;border-top:80px solid #e5f3e5; height:100%;">
+                  
+                  <iframe id="DOC_PREVIEW" frameborder="0" scrolling="yes" src="<%= preview_user_template_document_path(id: id, template_id: @template.try(:id)) %>">
+                  </iframe>
+                </div> -->
+
+
+
               </div>
             </div>
           </div>
@@ -98,6 +143,19 @@
 
 <script type="text/javascript">
   function print() {
-    window.open('<%= print_user_template_document_path(@document) %>','print-document-<%= @document.id %>','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=350');
+    window.open('<%= print_user_template_document_path(@document) %>','print-document-<%= @document.id %>','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=600,height=350');
+  }
+  function directPrint() {
+    window.frames["preview_frame"].focus();
+    window.frames["preview_frame"].print();
   }
 </script>
+
+<style type="text/css">
+  #DOC_PREVIEW {
+    width: 100%;
+    border: none;
+    text-align: center;
+    height: 400px;
+  }
+</style>

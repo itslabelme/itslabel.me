@@ -22,6 +22,8 @@ module User
     end
 
     def preview
+      get_template
+      new_document unless @document
       render layout: 'iframe_preview'
     end
 
@@ -72,13 +74,9 @@ module User
     end
 
     def print
-      get_document
-
-      respond_to do |format|
-        format.html do
-          render layout: nil
-        end
-      end
+      get_template
+      new_document unless @document
+      render layout: 'iframe_preview'
     end
 
     def update_status
@@ -116,6 +114,7 @@ module User
 
     def get_document
       @document = TemplateDocument.find_by_id(params[:id])
+      @template ||= @document.template
       set_languages
     end
 
@@ -125,11 +124,21 @@ module User
       # Set Default Title
       @document.title = "New Template Document - #{Time.now.to_i}" unless @document.title
 
+      @document.template = @template
+
       # Set Template
       if @template
+        logo_url = ActionController::Base.helpers.asset_path("defaults/distributor-logo.jpg")
         @document.template = @template
-        @document.input_html_source = @template.ltr_html_source
+        if @document.try(:input_language).to_s.upcase == "ARABIC" 
+          formatted_source_html = @template.rtl_html_source.gsub("{LOGO_URL}", logo_url)
+        else
+          formatted_source_html = @template.ltr_html_source.gsub("{LOGO_URL}", logo_url)
+        end
       end
+      @document.input_html_source = formatted_source_html
+
+      @document.translate
 
       # Set Defaut Languages
       set_languages

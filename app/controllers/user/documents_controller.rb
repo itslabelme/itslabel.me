@@ -40,7 +40,7 @@ module User
     def get_collection
       @relation = DocumentView.where("")
 
-      # apply_filters
+      apply_filters
       if params[:status].to_s.strip.blank? && @status.to_s.downcase != "all"
         @relation = @relation.all_statuses_expect(["ARCHIVED", "REMOVED"])
       else

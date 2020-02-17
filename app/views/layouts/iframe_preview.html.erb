@@ -1,4 +1,17 @@
-<html lang="en">
+<% 
+  case @document.try(:output_language).to_s.strip.upcase
+  when "ARABIC"
+    html_attr = "dir='rtl' lang='ar'"
+  when "FRENCH"
+    html_attr = "lang='fr'"
+  when "ENGLISH"
+    html_attr = "lang='en'"
+  else
+    html_attr = "lang='en'"
+  end
+%>
+
+<html lang="en" <%= html_attr %>>
   <head>
     <title>Preview</title>
     
@@ -11,5 +24,11 @@
   </head>
   <body>
     <%= yield %>
+
+    <style type="text/css">
+      body {
+        background-color: #fff;
+      }
+    </style>
   </body>
 </html>
