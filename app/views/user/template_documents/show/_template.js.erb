@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
   // TinyMCE OnChange Method
-  function onChangeInputTinyMCE() {
-    console.log("The HTML is now:" + $('#input_tinymce').innerHTML);
-  }
+  // function onChangeInputTinyMCE() {
+  //   console.log("The HTML is now:" + $('#input_tinymce').innerHTML);
+  // }
 
   // Remove TinyMCE First 
   tinymce.remove('.tinymce-editor');
@@ -70,14 +70,14 @@ $(document).ready(function() {
       input.click();
     },
 
-    setup: function(editor) {
-      editor.on('Paste Change input Undo Redo', function () {
-        onChangeInputTinyMCE();
-        // if (editorChangeHandler) {clearTimeout(editorChangeHandler);}
-        // editorChangeHandler = setTimeout(function() {
-        // }, 100);
-      });
-    }
+    // setup: function(editor) {
+    //   editor.on('Paste Change input Undo Redo', function () {
+    //     onChangeInputTinyMCE();
+    //     // if (editorChangeHandler) {clearTimeout(editorChangeHandler);}
+    //     // editorChangeHandler = setTimeout(function() {
+    //     // }, 100);
+    //   });
+    // }
   });
 
   // tinymce.init({

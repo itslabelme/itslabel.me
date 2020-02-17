@@ -1,17 +1,5 @@
-<div class="container-fluid">
-
-  <!-- Display Header -->
-  <%= render partial: 'user/template_documents/common/header' %>
-
-  <div class="row clearfix">
-    <div class="col-lg-12 col-md-12">
-    
-      <!-- Display Tempalte Form -->
-      <%= render partial: 'user/template_documents/show/details' %>
-
-    </div>
-  </div>
-  
+<div class="container-fluid" id="TEMPLATE_DOCUMENT_SHOW">
+  <%= render :partial=>"user/template_documents/show/show.html.erb" %>
 </div>
 
 <style type="text/css">
