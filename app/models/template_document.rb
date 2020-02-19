@@ -24,7 +24,7 @@ class TemplateDocument < ApplicationRecord
 
   # Associations
   belongs_to :user, class_name: "ClientUser"
-  belongs_to :template, class_name: "LabelTemplate"
+  belongs_to :template, class_name: "LabelTemplate", optional: true
   
   # Callbacks
   before_save :translate, unless: :skip_callback

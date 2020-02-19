@@ -155,7 +155,7 @@ module User
 
     def get_template
       if params[:template_id]
-        @template = LabelTemplate.find(params[:template_id]) 
+        @template = LabelTemplate.find_by_id(params[:template_id]) 
       elsif @document
         @template = @document.template
       end
