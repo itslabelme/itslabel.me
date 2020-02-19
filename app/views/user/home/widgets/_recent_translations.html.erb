@@ -1,5 +1,5 @@
 <%
-  @documents = DocumentView.preload(:template).activated.limit(5).order("created_at DESC").all
+  @documents = @current_client_user.documents.activated.limit(5).order("created_at DESC").all
 %>
 
 <div class="col-lg-12 col-md-12">
