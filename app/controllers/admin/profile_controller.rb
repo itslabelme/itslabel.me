@@ -1,65 +1,47 @@
 module Admin
   class ProfileController < Admin::BaseController
-    before_action :set_profile, only: [:index,:edit, :update,:update_password]
+    
     before_action :authenticate_admin_user!
+    before_action :get_admin_user
     
     def edit
       @page_title = "My Profile | Admin"
       @nav = 'admin/profile'
-      set_profile
     end
     
     def update
-     # set_admin_user
-      #raise params.inspect
-     @admin_user.assign_attributes(admin_user_params)
+      @admin_user.assign_attributes(permitted_params)
       
       if @admin_user.valid?
         @admin_user.save
-       set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "AdminUser"))
-       set_flash_message(I18n.translate("success.updated", item: "AdminUser"), :success)
+        set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Admin User"))
       else
-        message = I18n.t('errors.failed_to_update', item: "AdminUser")
+        message = I18n.t('errors.failed_to_update', item: "Admin User")
         @admin_user.errors.add :base, message
         set_notification(false, I18n.t('status.error'), message)
-        set_flash_message('The form has some errors. Please correct them and submit again', :error)
       end
     end
     
     def update_password
-          @user=current_admin_user
+      @user = current_admin_user
       if @user.valid? 
-      @user.update_with_password(admin_user_params)
-      set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "AdminUser"))
-       set_flash_message(I18n.translate("success.updated", item: "AdminUser"), :success)
+        @user.update_with_password(permitted_params)
+        set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Admin User"))
       else
-        message = I18n.t('errors.failed_to_update', item: "AdminUser")
+        message = I18n.t('errors.failed_to_update', item: "Admin User")
         @user.errors.add :base, message
         set_notification(false, I18n.t('status.error'), message)
-        set_flash_message('The form has some errors. Please correct them and submit again', :error)
       end
     end
     
     
-    def destroy
-    end
-    
     private
-    def configure_permitted_parameters
-     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:password, :password_confirmation, :current_password)}
+
+    def get_admin_user
+      @admin_user = current_admin_user
     end
-     def set_profile
-      @admin_user = AdminUser.find_by_id(current_admin_user)
-    end
-   def user_params
-    # NOTE: Using `strong_parameters` gem
-    params.require(:user).permit(
-        :id,
-        :password,
-        :current_password,
-        :password_confirmation)
-   end
-   def admin_user_params
+
+    def permitted_params
       params.require(:admin_user).permit(
         :id,
         :first_name,
