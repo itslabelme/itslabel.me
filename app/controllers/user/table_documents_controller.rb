@@ -239,6 +239,8 @@ module User
 
     def new_document
       @document = TableDocument.new()
+      @document.assign_attributes(permitted_params) if params[:document]
+
 
       @document.input_language = params[:input_language]
       @document.output_1_language = params[:output_1_language]
@@ -246,7 +248,7 @@ module User
       @document.output_3_language = params[:output_3_language]
       
       # Set Default Title
-      @document.title = "New Table Document - #{Time.now.to_i}" unless @document.title
+      @document.title ||= "New Table Document - #{Time.now.to_i}" unless @document.title
 
       # Set Defaut Languages
       set_languages

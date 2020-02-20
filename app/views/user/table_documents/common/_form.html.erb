@@ -19,18 +19,21 @@
               </div>
             </div>
 
-            <% unless @document.persisted? %>
             <div class="col-md-6">
               <div class="row">
                 <div class="col-md-4">
                   <h4 class="pt-2">Input Language: </h4>
                 </div>
                 <div class="col-md-4">
+                  <% if @document.persisted? %>
+                  <label class='pt-2'><%= @document.input_language %></label>
+                  <% else %>
                   <select class="form-control form-control-xs selectpicker1" name="document[input_language]" data-size="7" data-live-search="true" data-title="Location" id="INPUT_LANGUAGE" data-width="100%">
                     <option value="ENGLISH" <%= @input_language == "ENGLISH" ? "selected" : "" %> >English</option>
                     <option value="ARABIC" <%= @input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
                     <option value="FRENCH" <%= @input_language == "FRENCH" ? "selected" : "" %> >French</option>
                   </select>
+                  <% end %>
                 </div>
                 <div class="col-md-4">
                 </div>
@@ -44,7 +47,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                   <%= text_field_tag @document, @document.title, class: "form-control", name: 'document[title]', style: "background-color:#fff;" %>
+                   <%= text_field_tag @document, @document.title, class: "form-control", name: 'document[title]', style: "background-color:#fff;", id: "INPUT_TITLE" %>
                   </div>
                 </div>
               </div>
@@ -96,7 +99,6 @@
               </div>
               <% end %>
             </div>
-            <% end %>
             
           </div>
 

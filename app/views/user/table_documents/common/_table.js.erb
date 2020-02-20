@@ -292,7 +292,6 @@ $(document).off('change', "#INPUT_LANGUAGE");
 $(document).on('change', '#INPUT_LANGUAGE', function (e) {
   
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").val();
-  console.log(inputLanguage);
 
   if(inputLanguage == "ARABIC") {
     newURL = "<%= new_user_table_document_path(input_language: 'ARABIC') %>";
@@ -338,12 +337,13 @@ $(document).on('change', '#OUTPUT_5_LANGUAGE', function (e) {
 });
 
 function saveEverything() {
+  let documentTitle = $("#INPUT_TITLE").val();
   ajaxData = {
     items: translationHOT.data,
     id: "<%= @document.id %>",
     document: {
       id: "<%= @document.id %>",
-      title: "<%= @document.title %>",
+      title: documentTitle,
       input_language: "<%= @document.input_language %>",
       output_1_language: "<%= @document.output_1_language %>",
       output_2_language: "<%= @document.output_2_language %>",
