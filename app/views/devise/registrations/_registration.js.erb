@@ -1,10 +1,28 @@
  $(document).ready(function(){
-  $('#country_id').change(function(){
-    $.ajax({
-      url:"/ajax/#{$('#country_id').val()}/getTimeZone",
-      type: "GET",
-       success: function(data){
-          $("#country_code_id").html(data);
-      }
-    });
+
+  let countries = {};
+  <% ISO3166::Country.all.each do |country| %>
+    <%# name = country.translations[I18n.locale.to_s] %>
+    countries['<%= country.alpha2 %>'] = '<%= country.country_code %>';
+  <% end %>
+
+  $('#INP_COUNTRY').change(function(){
+
+    let selectedCountry = $("#INP_COUNTRY").val();
+    console.log(selectedCountry);
+
+    let countryCode = countries[selectedCountry];
+    console.log(countryCode);
+
+    $("#INP_COUNTRY_CODE").val(countryCode);
+
+    // $.ajax({
+    //   url:"/ajax/#{$('#country_id').val()}/getTimeZone",
+    //   type: "GET",
+    //    success: function(data){
+    //       $("#country_code_id").html(data);
+    //   }
+    // });
   });
+
+});
