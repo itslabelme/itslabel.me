@@ -14,13 +14,13 @@
   
 </div>
 
-<!-- Initialise Handsontable -->
-<%= content_for :javascript_footer do %>
-  <%= render :partial=>"user/table_documents/common/table.js.erb" %>
-<% end %>
-
 <script type="text/javascript">
   function print() {
     window.open('<%= export_to_excel_user_table_document_path(@document) %>','print-document-<%= @document.id %>','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=350');
   }
 </script>
+
+<!-- Initialise Handsontable -->
+<%= content_for :javascript_footer do %>
+  <%= render :partial=>"user/table_documents/common/table.js.erb" %>
+<% end %>
