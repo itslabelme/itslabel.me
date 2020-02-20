@@ -8,7 +8,25 @@
       <div class="card">
        
         <div class="tab-content mt-0">
-          <%= render partial: 'admin/profile/form/form' %>
+
+          <div class="card">
+            <div class="body">
+              
+              <div class="row">
+
+                <!-- Update Profile -->
+                <div class="col-md-6 col-sm-12" id="PROFILE_UPDATE_FORM">
+                  <%= render partial: 'admin/profile/form/update_profile' %>
+                </div>
+
+                <!-- Update Password -->
+                <div class="col-md-6 col-sm-12" id="CHANGE_PASSWORD_FORM">
+                  <%= render partial: 'admin/profile/form/change_password' %>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
           
         </div>

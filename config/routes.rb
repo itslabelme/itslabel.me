@@ -83,7 +83,7 @@ Rails.application.routes.draw do
 
     # Admin Home
     get '/home', to: 'home#index', as: 'home'
-    
+
     # FIXME - not sure why we need this
     root to: 'home#index'
 
@@ -103,8 +103,9 @@ Rails.application.routes.draw do
     # resources :nutrition_fact_templates
     
     # Update Admin Profile
-    resources :profile
-    patch 'update_password', to: 'profile#update_password'
+    get 'edit_profile', to: 'profile#edit'
+    put 'update_profile', to: 'profile#update'
+    put 'update_password', to: 'profile#update_password'
   end
   
 end
