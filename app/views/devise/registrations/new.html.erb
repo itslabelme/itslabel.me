@@ -14,10 +14,12 @@
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               
                 <!-- Display Errors if Any -->
-                <!-- <div id="USER_REGI_ERRORS">
-                  <%#= notify_form_errors(resource) if resource.errors.any? %>
-                </div> -->
-
+                <% if resource.errors.any? %>
+                <div class='alert alert-danger'>
+                  Please fix the following errors
+                </div>
+                <% end %>
+                
                 <div class="mb-3">
                   <p class="lead">Create an account</p>
                 </div>
