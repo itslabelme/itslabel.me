@@ -68,13 +68,12 @@ Rails.application.routes.draw do
         put 'update_status', to: 'table_documents#update_status', as: 'update_status'
       end
     end
-    
-    resources :client_profile, only: [:edit, :update] do
-      collection do
-        patch :update_client_password # /transactions/sum or the sum of all transactions.
-     end
-    end
-     get 'get_time_zone', to: 'ajax_call#get_time_zone' 
+   
+    # Update  Profile
+    get 'edit_client_profile', to: 'client_profile#edit'
+    put 'update_client_profile', to: 'client_profile#update'
+    put 'update_client_password', to: 'client_profile#update_password'
+     
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
