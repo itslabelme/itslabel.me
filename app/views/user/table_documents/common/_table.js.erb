@@ -301,7 +301,7 @@ $(document).on('change', '#INPUT_LANGUAGE', function (e) {
     newURL = "<%= new_user_table_document_path(input_language: 'ENGLISH') %>";
   }
 
-  var confirmLanguageChange = confirm("Changing Language will remove all ")
+  var confirmLanguageChange = confirm("Warning! Changing input language will clear all translations.")
   if (confirmLanguageChange){
     window.location.href = newURL;
   }
