@@ -47,4 +47,5 @@ spec/dummy/storage
 /nbproject/private/
 /node_modules/
 /nbproject
+/nbproject/project.xml
 storage
