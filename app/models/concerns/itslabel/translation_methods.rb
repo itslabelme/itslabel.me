@@ -2,7 +2,17 @@ module Itslabel::TranslationMethods
   
   extend ActiveSupport::Concern
 
-  DELIMITERS = ['.', ',', /(\t\r\n|\t|\r|\n|\d+(mg|gm))/, ';', '(', ')', '[', ']', ':', '|', '!', ' and ', ' or ']
+  DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', 
+                ' and ', ' or ', /(\t\r\n|\t|\r|\n)/,
+                /\d+gms?/, /\d+mgs?/, /\d+%/
+                ]
+  
+  DELIMITERS_TRANSLATIONS = {
+    ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
+    ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
+    "mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
+    "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"}
+  }
 
   class_methods do
 
@@ -44,6 +54,7 @@ module Itslabel::TranslationMethods
 
       words = input.split(Regexp.union(Translation::DELIMITERS))
       words.delete_if{|x| x.to_s.strip.blank? ||  DELIMITERS.include?(x)}
+
       hash = translate_words(words, options)
       if options[:return_in_hash]
         return hash
@@ -52,6 +63,11 @@ module Itslabel::TranslationMethods
         hash.each do |key, value|
           next unless value
           output.gsub!(key, value)
+        end
+
+        DELIMITERS_TRANSLATIONS.each do |dlmtr, dlmtr_transations|
+          translated_dlmtr = dlmtr_transations.try(:[], dlmtr).try(:[], options[:output_language])
+          output.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
         end
         return output
       end
