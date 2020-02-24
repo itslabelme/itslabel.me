@@ -20,11 +20,11 @@ module Itslabel::Scopes::DocumentScopes
     ")}
 
     scope :search_only_output_language, lambda {|lang| lang.to_s.strip.blank? ? where("") : where("
-      LOWER(documents_view.output_1_language) LIKE LOWER('%#{query}%') OR\
-      LOWER(documents_view.output_2_language) LIKE LOWER('%#{query}%') OR\
-      LOWER(documents_view.output_3_language) LIKE LOWER('%#{query}%') OR\
-      LOWER(documents_view.output_4_language) LIKE LOWER('%#{query}%') OR\
-      LOWER(documents_view.output_5_language) LIKE LOWER('%#{query}%')
+      LOWER(documents_view.output_1_language) LIKE LOWER('%#{lang}%') OR\
+      LOWER(documents_view.output_2_language) LIKE LOWER('%#{lang}%') OR\
+      LOWER(documents_view.output_3_language) LIKE LOWER('%#{lang}%') OR\
+      LOWER(documents_view.output_4_language) LIKE LOWER('%#{lang}%') OR\
+      LOWER(documents_view.output_5_language) LIKE LOWER('%#{lang}%')
     ")}
 
      scope :search_only_status, lambda {|status| status.to_s.blank? ? where("") : where("

@@ -40,10 +40,7 @@
         </td>
         <td>
           <div class="d-flex align-items-center">
-            <% icon = document.class.name == "TableDocument" ? "icon-grid" : "icon-folder" %>
-            <!-- <div class="avtar-pic w35 bg-indigo mr-2"> -->
-              <span><i class="<%= icon %> mr-2"></i></span>
-            <!-- </div> -->
+            <span><i class="<%= document.display_icon %> mr-2"></i></span>
             <%= link_to document.title, doc_url, title: document.title %>
           </div>
         </td>

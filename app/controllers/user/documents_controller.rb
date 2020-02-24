@@ -38,7 +38,7 @@ module User
     private
 
     def get_collection
-      @relation = DocumentView.where("")
+      @relation = DocumentView.where(user_id: @current_client_user.id)
 
       apply_filters
       if params[:status].to_s.strip.blank? && @status.to_s.downcase != "all"
