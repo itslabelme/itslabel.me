@@ -24,6 +24,12 @@ module User
           @display_text.gsub!(key, "<span class='not-found'>#{key}</span>")
         end
       end
+
+      Translation::DELIMITERS_TRANSLATIONS.each do |dlmtr, dlmtr_transations|
+        translated_dlmtr = dlmtr_transations.try(:[], @output_language.upcase.to_sym)
+        @display_text.gsub!(dlmtr.to_s, translated_dlmtr) if translated_dlmtr
+      end
+
       @display_text.gsub!("\n", '<br>')
       
     end
