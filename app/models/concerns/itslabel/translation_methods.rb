@@ -11,7 +11,9 @@ module Itslabel::TranslationMethods
     ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
     "mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
-    "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"}
+    "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"},
+    "and": {ENGLISH: "and", FRENCH: "et", ARABIC: "و"},
+    "or": {ENGLISH: "or", FRENCH: "ou", ARABIC: "أو"},
   }
 
   class_methods do

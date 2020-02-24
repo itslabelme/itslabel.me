@@ -21,19 +21,7 @@ class DocumentView < ApplicationRecord
   belongs_to :user, class_name: "User"
   
   
-  
 
-
-  # Scopes
-  scope :optionals, lambda { where(optional: true) }
-  scope :standards, lambda { where(optional: false) }
-  scope :filter_by_project, lambda { |project_id| where(project_id: project_id) }
-  scope :filter_by_costing_version, lambda { |costing_version_id| where(costing_version_id: costing_version_id) }
-  
-
-
-
-  
 
   # Generic Methods
   # ---------------
@@ -47,6 +35,21 @@ class DocumentView < ApplicationRecord
 
   def display_type
     "Table Mode"
+  end
+
+  def display_icon
+    case self.doc_type
+    when "table_document"
+      "icon-grid"
+    when "template_document"
+      "icon-folder"
+    when "nutrition_fact_document"
+      "icon-square"
+    when "freestyle_document"
+      "icon-file"
+    else
+      "icon-file"
+    end
   end
 
   def display_input_language
