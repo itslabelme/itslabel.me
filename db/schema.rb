@@ -110,7 +110,9 @@ ActiveRecord::Schema.define(version: 2020_02_26_092909) do
   end
 
   create_table "subscription_modules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "feature", limit: 256, null: false
+    t.string "title", limit: 256, null: false
+    t.string "controller", limit: 256, null: false
+    t.string "action", limit: 256, null: false
     t.bigint "subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -119,7 +121,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_092909) do
 
   create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 256, null: false
-    t.integer "price", default: 0, null: false
+    t.float "price", default: 0.0, null: false
     t.string "status", limit: 16, default: "ACTIVE", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
