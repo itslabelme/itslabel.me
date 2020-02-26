@@ -163,7 +163,14 @@ LabelTemplate.create([
   },
   
 ])
+puts "Adding Subscriptions".green
 
+  Subscription.create([
+                  { title: 'Free',  price: "0", status: "Active"}, 
+                  { title: 'Biz Lite',  price: "39.99", status: "Active"}, 
+                  { title: 'Biz Pro',  price: "49.99", status: "Active"}, 
+                  { title: 'Enterprise',  price: "99.99", status: "Active"}, 
+                ])
 #template = LabelTemplate.first
 
 # puts "Adding Documents".green
