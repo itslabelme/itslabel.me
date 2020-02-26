@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_065109) do
+ActiveRecord::Schema.define(version: 2020_02_26_092909) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -109,6 +109,22 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
+  create_table "subscription_modules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "feature", limit: 256, null: false
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_subscription_modules_on_subscription_id"
+  end
+
+  create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.integer "price", default: 0, null: false
+    t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "table_document_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "table_document_id"
     t.string "input_phrase", limit: 256, null: false
@@ -184,9 +200,21 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.index ["admin_user_id"], name: "index_translations_on_admin_user_id"
   end
 
+  create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_user_subscriptions_on_subscription_id"
+    t.index ["user_id"], name: "index_user_subscriptions_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "client_users"
   add_foreign_key "label_templates", "admin_users"
+  add_foreign_key "subscription_modules", "subscriptions", on_delete: :cascade
   add_foreign_key "table_documents", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "template_documents", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "user_subscriptions", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "user_subscriptions", "subscriptions", on_delete: :cascade
 end
