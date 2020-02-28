@@ -2,11 +2,14 @@ module Itslabel::TranslationMethods
   
   extend ActiveSupport::Concern
 
-  DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', 
+  DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', '-', 
                 ' and ', ' or ', /(\t\r\n|\t|\r|\n)/,
-                /\d+gms?/, /\d+mgs?/, /\d+%/
-                ]
-  
+                # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams
+                /\d*\.?\d*gms?/, /\d*\.?\d*mgs?/, /\d*\.?\d*grams?/,
+                # Percentages 10%, 10.50%
+                /\d*\.?\d*%/
+              ]
+
   DELIMITERS_TRANSLATIONS = {
     ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
