@@ -1,0 +1,192 @@
+if(typeof(String.prototype.trim) === "undefined")
+{
+  String.prototype.trim = function() 
+  {
+    return String(this).replace(/^\s+|\s+$/g, '');
+  };
+}
+
+let cachedInput = '';
+
+<%# https://stackoverflow.com/questions/12027137/javascript-trick-for-paste-as-plain-text-in-execcommand %>
+function _insertText(text) { 
+  // use insertText command if supported
+  if (document.queryCommandSupported('insertText')) {
+      document.execCommand('insertText', false, text);
+  }
+  // or insert the text content at the caret's current position
+  // replacing eventually selected content
+  else {
+      var range = document.getSelection().getRangeAt(0);
+      range.deleteContents();
+      var textNode = document.createTextNode(text);
+      range.insertNode(textNode);
+      range.selectNodeContents(textNode);
+      range.collapse(false);
+
+      var selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+  }
+};
+
+jQuery.fn.selectText = function(){
+   var doc = document;
+   var element = this[0];
+   // console.log(this, element);
+   if (doc.body.createTextRange) {
+     var range = document.body.createTextRange();
+     range.moveToElementText(element);
+     range.select();
+   } else if (window.getSelection) {
+     var selection = window.getSelection();        
+     var range = document.createRange();
+     range.selectNodeContents(element);
+     selection.removeAllRanges();
+     selection.addRange(range);
+   }
+};
+
+function parseTextFromContentEditable(rawHtmlText) {
+  const parsedText = rawHtmlText.replace(/<div>/g,"\n").replace(/<\/div>/g,"").replace(/<br>/g,"\n");
+  return parsedText;
+}
+
+function ITSTranslate() {
+  let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
+  let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
+  // let inputText = $("#INPUT_AREA").html().replace(/\u00a0/g, " ").replace(/\xA0/g,' ');
+  // let inputText = $("#INPUT_AREA").html().replace(/&nbsp;/g, '\n');
+  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+  if(cachedInput != inputText){
+    let ajaxData = {text: inputText, input_language: inputLanguage, output_language: outputLanguage };
+    $.ajax({
+      url: '/user/translate.js',
+      type: 'POST',
+      data: ajaxData
+    });
+    cachedInput = inputText;
+  }
+}
+
+function requestForTranslation(phrase) {
+  let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
+  let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
+  let ajaxData = {phrase: phrase, input_language: inputLanguage, output_language: outputLanguage };
+  $.ajax({
+    url: '/user/translation_request.js',
+    type: 'GET',
+    data: ajaxData
+  });
+}
+
+$(document).off('blur', "#INPUT_AREA");
+$(document).on('keydown', '#INPUT_AREA', function (e) {
+
+  <%# 
+    Tab => 9
+    Enter => 13
+    Pause / Break => 19
+    (Space) => 32
+    Numbers => 97 to 105
+    
+    []{} => 219 to 222
+    ( => 48 
+    ) => 57
+    Forward Slash \ => 191
+    
+    ; => 56 (firefox) 186 (other browsers)
+    - => 173 (firefox) 189 (other browsers)
+    Period => 190
+    , => 188
+
+    Checkout this link for keycodes
+    https://css-tricks.com/snippets/javascript/javascript-keycodes/ 
+
+  %>
+  
+  // console.log(e.key + " - " + e.which);
+  if (
+    [9, 13, 19, 32, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which) ||
+    (e.which >= 97 && e.which <= 105) ||
+    (e.which >= 219 && e.which <= 222)
+    ) {
+    // console.log('Changed ( ' + e.key + " - " + e.which + " )");
+    ITSTranslate();
+  }
+});
+
+$(document).off('focusout', "#INPUT_AREA");
+$(document).on('focusout', '#INPUT_AREA', function (e) {
+  ITSTranslate();
+});
+
+$(document).off('paste', "#INPUT_AREA");
+$(document).on('paste', '#INPUT_AREA', function (e) {
+  e.preventDefault();
+  var text = e.originalEvent.clipboardData ? e.originalEvent.clipboardData.getData('text/plain') : window.clipboardData.getData('Text');
+  _insertText(text);
+})
+
+// Widget Controls
+// ---------------
+
+$("#INPUT_LANGUAGE").on('change', function(){
+  ITSTranslate();
+});
+
+$("#OUTPUT_LANGUAGE").on('change', function(){
+  ITSTranslate();
+});
+
+$(document).off('click', "#INPUT_CUT_ACTION");
+$(document).on('click', '#INPUT_CUT_ACTION', function (e) {
+  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+  $("#INPUT_AREA").selectText();
+  document.execCommand('copy');
+  $("#INPUT_AREA").html("");
+  $("#OUTPUT_AREA").html("");
+  // navigator.clipboard.write([inputText]).then(function() {
+  //   console.log("Copied to clipboard and cleared the input successfully!");
+  //   $("#INPUT_AREA").html("");
+  //   $("#OUTPUT_AREA").html("");
+  // }, function() {
+  //   console.error("Unable to write to clipboard.");
+  // });
+});
+
+$(document).off('click', ".its-tran-not-found");
+$(document).on('click', '.its-tran-not-found', function (e) {
+  let clickedPhrase = $(this).text();
+  // console.log("clickedPhrase: ", clickedPhrase);
+  requestForTranslation(clickedPhrase);
+});
+
+$(document).off('click', "#INPUT_COPY_ACTION");
+$(document).on('click', '#INPUT_COPY_ACTION', function (e) {
+  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+  $("#INPUT_AREA").selectText();
+  document.execCommand('copy');
+});
+
+$(document).off('click', "#INPUT_PASTE_ACTION");
+$(document).on('click', '#INPUT_PASTE_ACTION', function (e) {
+  navigator.clipboard.readText().then(function(data) {
+    console.log("Pasted from clipboard:", data);
+    $("#INPUT_AREA").html(data);
+    ITSTranslate();
+  });
+});
+
+$(document).off('click', "#INPUT_CLEAR_ACTION");
+$(document).on('click', '#INPUT_CLEAR_ACTION', function (e) {
+  $("#INPUT_AREA").html("");
+  $("#OUTPUT_AREA").html("");
+});
+
+$(document).off('click', "#OUTPUT_COPY_ACTION");
+$(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
+  let outputText = parseTextFromContentEditable($("#OUTPUT_AREA").html());
+  $("#OUTPUT_AREA").selectText();
+  document.execCommand('copy');
+});

@@ -48,3 +48,4 @@ spec/dummy/storage
 /node_modules/
 /nbproject
 storage
+.byebug_history

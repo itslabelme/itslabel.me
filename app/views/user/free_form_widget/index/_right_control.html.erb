@@ -1,0 +1,24 @@
+<div class="its-template-list" style="float:left">
+  <div class="row">
+    <div class="col-md-6 mb-3 its-free-language">
+      <div class="input-group">
+        <select id="OUTPUT_LANGUAGE" class="form-control form-control-xs selectpicker1" name="" data-size="7" data-live-search="true" data-title="Location" data-width="100%">
+          <option value="ENGLISH" <%= @output_language == "ENGLISH" ? "selected" : "" %> >English</option>
+          <option value="ARABIC" <%= @output_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+          <option value="FRENCH" <%= @output_language == "FRENCH" ? "selected" : "" %> >French</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3 its-free-action">
+      <ul>
+        <li>
+          <a id="OUTPUT_COPY_ACTION" href="#" title="Copy">
+            <svg width="24" height="24">
+            <path d="M16 3H6a2 2 0 0 0-2 2v11h2V5h10V3zm1 4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9c0-1.2.9-2 2-2h7zm0 12V9h-7v10h7z" fill-rule="nonzero"></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

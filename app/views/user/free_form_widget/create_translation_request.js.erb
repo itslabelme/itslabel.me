@@ -1,0 +1,7 @@
+var heading = "Request for Translation"
+<% if @success %>
+  var bodyContent = "<%= escape_javascript(render(partial: "user/free_form_widget/translation_request/success.html.erb")) %>";
+<% else %>
+  var bodyContent = "<%= escape_javascript(render(partial: "user/free_form_widget/translation_request/form.html.erb")) %>";
+<% end %>
+showSmallModal(heading, bodyContent, true);

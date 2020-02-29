@@ -4,6 +4,17 @@ Rails.application.configure do
   # This line is added as mentioned in Devise
   # https://github.com/plataformatec/devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :ses
+
+  config.action_mailer.smtp_settings = {
+    :address => "email-smtp.eu-west-1.amazonaws.com",
+    :port => 587,
+    :user_name => Rails.application.credentials.aws[:smtp_username], #Your SMTP user
+    :password => Rails.application.credentials.aws[:smtp_password], #Your SMTP password
+    :authentication => :login,
+    :enable_starttls_auto => true
+  }
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

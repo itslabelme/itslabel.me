@@ -72,7 +72,7 @@ module User
 
       set_languages
 
-      if params[:item_id].starts_with?("tkey")
+      if params[:item_id].to_s.strip.empty? || params[:item_id].starts_with?("tkey")
         @item = @document.items.build(
           temporary_key: params[:item_id],
           input_language: @document.input_language,
