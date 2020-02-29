@@ -52,13 +52,22 @@ function parseTextFromContentEditable(rawHtmlText) {
   return parsedText;
 }
 
-function ITSTranslate() {
+function ITSTranslate(forceTranslate=false) {
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
   let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
+  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+  
   // let inputText = $("#INPUT_AREA").html().replace(/\u00a0/g, " ").replace(/\xA0/g,' ');
   // let inputText = $("#INPUT_AREA").html().replace(/&nbsp;/g, '\n');
-  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  if(cachedInput != inputText){
+  
+  let sendAjaxRequest = forceTranslate || (cachedInput != inputText)
+  
+  // console.log("forceTranslate: ", forceTranslate);
+  // console.log("cachedInput: ", cachedInput);
+  // console.log("inputText: ", inputText);
+  // console.log("sendAjaxRequest: ", sendAjaxRequest);
+
+  if(sendAjaxRequest){
     let ajaxData = {text: inputText, input_language: inputLanguage, output_language: outputLanguage };
     $.ajax({
       url: '/user/translate.js',
@@ -126,17 +135,18 @@ $(document).on('paste', '#INPUT_AREA', function (e) {
   e.preventDefault();
   var text = e.originalEvent.clipboardData ? e.originalEvent.clipboardData.getData('text/plain') : window.clipboardData.getData('Text');
   _insertText(text);
-})
+  ITSTranslate(true);
+});
 
 // Widget Controls
 // ---------------
 
 $("#INPUT_LANGUAGE").on('change', function(){
-  ITSTranslate();
+  ITSTranslate(true);
 });
 
 $("#OUTPUT_LANGUAGE").on('change', function(){
-  ITSTranslate();
+  ITSTranslate(true);
 });
 
 $(document).off('click', "#INPUT_CUT_ACTION");
