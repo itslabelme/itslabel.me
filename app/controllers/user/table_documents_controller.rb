@@ -188,6 +188,10 @@ module User
       end
     end
 
+    def csv_upload
+      new_document unless @document
+    end
+
     def export_to_excel
       get_document
       @document_items = @document.items

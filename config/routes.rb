@@ -64,6 +64,9 @@ Rails.application.routes.draw do
         # Export to Excel
         get 'export_to_excel', to: 'table_documents#export_to_excel', as: 'export_to_excel'
 
+        # Upload ingredient through CSV file (CSV file Upload and parsing)
+        post 'csv_upload', to: 'table_documents#csv_upload', as: 'csv_upload'
+
         #update status
         put 'update_status', to: 'table_documents#update_status', as: 'update_status'
       end
