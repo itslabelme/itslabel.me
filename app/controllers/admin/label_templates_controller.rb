@@ -33,7 +33,11 @@ module Admin
     def create
       new_label_template
       @label_template.assign_attributes(permitted_params)
-       @label_template.admin_user = @current_admin_user
+      @label_template.admin_user = @current_admin_user
+
+      @label_template.latest = false
+      @label_template.latest = true if permitted_params[:latest] == "on"
+
       if @label_template.valid?
        
         @label_template.save
@@ -51,6 +55,9 @@ module Admin
       get_label_template
       @label_template.assign_attributes(permitted_params)
       
+      @label_template.latest = false
+      @label_template.latest = true if permitted_params[:latest] == "on"
+
       if @label_template.valid?
         @label_template.save
         set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Label Template"))
@@ -107,6 +114,7 @@ module Admin
        :ltr_html_source,
        :rtl_html_source,
        :picture,
+       :latest,
        :admin_user)
     end
 
