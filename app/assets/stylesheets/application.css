@@ -3,12 +3,12 @@
  *= require vendor/bootstrap-tagsinput.css
  *= require tribute
 
- *= require site.min
- *= require color
- *= require its-nf
- *= require itslabel
- *= require its-arabic
- *= require ad-search
+ *= require site.css
+ *= require color.css
+ *= require its-nf.css
+ *= require itslabel.css
+ *= require its-arabic.css
+ *= require ad-search.css
  *= require freestyle-widget.css
  *= require its-registration-form.css
  
