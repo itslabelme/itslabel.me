@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       member do
         # Export to Excel
         get 'export_to_excel', to: 'table_documents#export_to_excel', as: 'export_to_excel'
+        get 'clear', to: 'table_documents#clear', as: 'clear'
 
         #update status
         put 'update_status', to: 'table_documents#update_status', as: 'update_status'
