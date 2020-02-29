@@ -68,5 +68,10 @@ class ClientUser < ApplicationRecord
       end
     end
   end
-  
+  def country_name
+    
+    country1 = ISO3166::Country[country]
+    country1.translations[I18n.locale.to_s] || country1.name
+    
+  end
 end

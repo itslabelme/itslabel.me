@@ -39,8 +39,24 @@
         <li class="">
           <a href="#" class="has-arrow" aria-expanded="false"><i class="icon-plus"></i><span>New Translation</span></a>
           <ul aria-expanded="false" class="collapse" style="height: 0px;">
-            <li><%= link_to "Template Based", select_template_user_template_documents_path() %></li>
-            <li><%= link_to "Table Based", new_user_table_document_path() %></li>
+            <li>
+              <%= link_to user_free_form_path do %>
+                <%= image_tag "icons/template.svg", style: "width: 22px;height: 22px;" %>
+                Free Form
+              <% end %>
+            </li>
+            <li>
+              <%= link_to select_template_user_template_documents_path do %>
+                <%= image_tag "icons/template.svg", style: "width: 22px;height: 22px;" %>
+                Template Based
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_table_document_path do %>
+                <%= image_tag "icons/excel.svg", style: "width: 22px;height: 22px;" %>
+                Table Based
+              <% end %>
+            </li>
           </ul>
         </li>
 

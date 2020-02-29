@@ -24,5 +24,6 @@
 
 //= require utilities.js
 //= require custom.js
+//= require popup.js
 
 // require_tree .

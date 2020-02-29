@@ -47,4 +47,7 @@ spec/dummy/storage
 /nbproject/private/
 /node_modules/
 /nbproject
+/nbproject/project.xml
 storage
+.byebug_history
+config/master.key

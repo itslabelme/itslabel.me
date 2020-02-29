@@ -1,0 +1,17 @@
+.col-md-4{
+    float: left;
+}
+
+.its-upload-container .d-flex {
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.its-upload-container .d-flex .icon-in-bg{
+    float: left;
+}
+
+.its-upload-container .d-flex .ml-4{
+    float: left;
+}
