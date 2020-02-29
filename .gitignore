@@ -49,3 +49,9 @@ spec/dummy/storage
 /nbproject
 /nbproject/project.xml
 storage
+.byebug_history
+config/master.key
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+config/master.key.bck

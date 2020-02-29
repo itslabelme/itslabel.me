@@ -12,28 +12,6 @@ module User
       
     end
 
-    def try
-
-      @input_text = params[:text].strip
-      @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
-      @display_text = @input_text
-      @translated_hash.each do |key, value|
-        if value
-          @display_text.gsub!(key, value)
-        else
-          @display_text.gsub!(key, "<span class='not-found'>#{key}</span>")
-        end
-      end
-
-      Translation::DELIMITERS_TRANSLATIONS.each do |dlmtr, dlmtr_transations|
-        translated_dlmtr = dlmtr_transations.try(:[], @output_language.upcase.to_sym)
-        @display_text.gsub!(dlmtr.to_s, translated_dlmtr) if translated_dlmtr
-      end
-
-      @display_text.gsub!("\n", '<br>')
-      
-    end
-
     private
 
     def get_languages

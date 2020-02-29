@@ -57,9 +57,12 @@ gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 # gem 'axlsx_rails'
 gem 'caxlsx_rails'
 
+gem 'aws-ses', '~> 0.4.4', require: 'aws/ses'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry', '~> 0.12.2'
+  gem 'byebug'
 end
 
 group :development do

@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   namespace :user, module: :user do
 
     get '/home', to: 'home#index', as: 'home'
-    post '/try', to: 'home#try', as: 'try'
+
+    get '/free_form', to: 'free_form_widget#free_form', as: 'free_form'
+    post '/translate', to: 'free_form_widget#translate', as: 'translate'
+    get '/translation_request', to: 'free_form_widget#new_translation_request', as: 'new_translation_request'
+    post '/translation_request', to: 'free_form_widget#create_translation_request', as: 'create_translation_request'
 
     root to: 'home#index'
     
