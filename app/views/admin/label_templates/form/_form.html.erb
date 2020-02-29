@@ -86,6 +86,13 @@
           <%= display_parsley_error(@label_template, :rtl_html_source) %>
         </div>
       </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="customSwitches" name="label_template[latest]" <%= 'checked' if @label_template.latest %>>
+          <label class="custom-control-label" for="customSwitches">Show 'NEW' Ribbon?</label>
+        </div>
+      </div>
       
     </div>
 

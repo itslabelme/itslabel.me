@@ -6,8 +6,11 @@
     <div class="d-flex align-items-center">
       <div>
         <%= link_to  admin_label_template_path(label_template), remote: true do %>
-        <%= label_template.name %>
+          <%= label_template.name %>
         <% end  %>
+        <% if label_template.latest? %>
+          <span class="badge badge-success">NEW</span>
+        <% end %>
       </div>
     </div>
   </td>
