@@ -73,10 +73,19 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "itslabel_me_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    :address => "email-smtp.eu-west-1.amazonaws.com",
+    :port => 587,
+    :user_name => Rails.application.credentials.staging[:aws][:smtp_username], #Your SMTP user
+    :password => Rails.application.credentials.staging[:aws][:smtp_password], #Your SMTP password
+    :authentication => :login,
+    :enable_starttls_auto => true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

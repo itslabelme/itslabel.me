@@ -1,12 +1,19 @@
 <div class="block-header">
   <div class="row clearfix">
     <div class="col-md-6 col-sm-12">
-      <h2>Documents</h2>
+      <%
+        if params[:status]
+          title = "#{params[:status].titleize} Documents"
+        else
+          title = "Documents"
+        end
+      %>
+      <h2><%= title %></h2>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
         <!-- <li class="breadcrumb-item"><a href="#">Documents Database</a></li> -->
-        <li class="breadcrumb-item active" aria-current="page">Documents</li>
+        <li class="breadcrumb-item active" aria-current="page"><%= title %></li>
         </ol>
       </nav>
     </div>            

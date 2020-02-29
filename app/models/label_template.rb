@@ -31,6 +31,15 @@ class LabelTemplate < ApplicationRecord
   def display_name
     "#{self.name} - #{self.style}"
   end
+
+  def get_display_fallback_image_url
+    begin 
+      template_img_url = "label_templates/#{self.style.downcase.gsub(' ', '_').strip}.jpg"
+    rescue SystemCallError => e
+      template_img_url = "label_templates/default_template_ar.jpg"
+    end
+    return template_img_url
+  end
   
   
 end

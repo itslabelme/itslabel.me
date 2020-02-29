@@ -17,7 +17,17 @@ Rails.application.routes.draw do
   namespace :user, module: :user do
 
     get '/home', to: 'home#index', as: 'home'
-    post '/try', to: 'home#try', as: 'try'
+
+    get '/free_form', to: 'free_form_widget#free_form', as: 'free_form'
+    post '/translate', to: 'free_form_widget#translate', as: 'translate'
+    get '/translation_request', to: 'free_form_widget#new_translation_request', as: 'new_translation_request'
+    post '/translation_request', to: 'free_form_widget#create_translation_request', as: 'create_translation_request'
+
+      # Upload ingredient through CSV file (CSV file Upload and parsing)
+    get '/csv_upload', to: 'table_documents#csv_upload', as: 'csv_upload'
+
+      # Parse CSV data
+    post 'csv_parse', to: 'table_documents#csv_parse', as: 'csv_parse'
 
     root to: 'home#index'
     
@@ -53,7 +63,7 @@ Rails.application.routes.draw do
 
     # CRUD Table Documents
     resources :table_documents do
-      
+
       collection do
         # Save Methods
         put 'save_everything', to: 'table_documents#save_everything', as: 'save_everything'
@@ -63,18 +73,18 @@ Rails.application.routes.draw do
       member do
         # Export to Excel
         get 'export_to_excel', to: 'table_documents#export_to_excel', as: 'export_to_excel'
+        get 'clear', to: 'table_documents#clear', as: 'clear'
 
         #update status
         put 'update_status', to: 'table_documents#update_status', as: 'update_status'
       end
     end
-    
-    resources :client_profile, only: [:edit, :update] do
-      collection do
-        patch :update_client_password # /transactions/sum or the sum of all transactions.
-     end
-    end
-     get 'get_time_zone', to: 'ajax_call#get_time_zone' 
+   
+    # Update  Profile
+    get 'edit_client_profile', to: 'client_profile#edit'
+    put 'update_client_profile', to: 'client_profile#update'
+    put 'update_client_password', to: 'client_profile#update_password'
+     
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
@@ -83,7 +93,7 @@ Rails.application.routes.draw do
 
     # Admin Home
     get '/home', to: 'home#index', as: 'home'
-    
+
     # FIXME - not sure why we need this
     root to: 'home#index'
 
@@ -103,8 +113,9 @@ Rails.application.routes.draw do
     # resources :nutrition_fact_templates
     
     # Update Admin Profile
-    resources :profile
-    patch 'update_password', to: 'profile#update_password'
+    get 'edit_profile', to: 'profile#edit'
+    put 'update_profile', to: 'profile#update'
+    put 'update_password', to: 'profile#update_password'
   end
   
 end

@@ -9,6 +9,13 @@ module Admin
       @nav = "admin/home"
       
     end
+
+    def free_form
+
+      @page_title = "Free Form | Admin"
+      @nav = "admin/free_form"
+      
+    end
     
     private
 

@@ -11,6 +11,9 @@ class ClientUser < ApplicationRecord
   validates :mobile_number, length: {maximum: 24}, allow_blank: true
   validates :organisation, presence: true
   validates :country, presence: true
+
+  # Associations
+  has_many :documents, class_name: "DocumentView", foreign_key: :user_id
       
   def display_name
     [first_name, last_name].compact.join(" ")
@@ -65,5 +68,10 @@ class ClientUser < ApplicationRecord
       end
     end
   end
-  
+  def country_name
+    
+    country1 = ISO3166::Country[country]
+    country1.translations[I18n.locale.to_s] || country1.name
+    
+  end
 end

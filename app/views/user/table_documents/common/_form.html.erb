@@ -1,7 +1,7 @@
 <div class="row clearfix its-upload-container">
   <div class="col-lg-12 col-md-12">
-    <div class="card">
-      <div class="body" style="background: #f9fdf9;border: 1px solid gainsboro;">
+    <div class="card1">
+      <div class="body1">
         <div class="mt-2">
 
           <div class="row its-language-switcer mb-2">
@@ -16,81 +16,54 @@
                 <%= link_to export_to_excel_user_table_document_path(@document, format: :xlsx), class: "btn btn-secondary btn-lg mt-1 mb-1" do %>
                   <i class='fa fa-print mr-2'></i>EXPORT
                 <% end if @document.persisted? %>
+                <%= link_to clear_user_table_document_path(
+                      id: (@document.id || -1),
+                      input_language: @document.input_language,
+                      title: @document.title,
+                    ), 
+                    class: "btn btn-secondary btn-lg mt-1 mb-1", data: {confirm: "Are you sure? This action will remove all contents from the table"} do %>
+                  <i class='fa fa-eraser mr-2'></i>CLEAR
+                <% end %>
               </div>
             </div>
 
-            <% unless @document.persisted? %>
             <div class="col-md-12">
-              <div class="pull-left">
-                <div class="pull-left mr-4">
-                  <h4>Input Language: </h4>
+              <fieldset style="background-color: #fff;">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label>Input Language</label>
+                    <div class="input-group mb-3">
+                      <% if @document.persisted? %>
+                        <label class='pt-2'><%= @document.input_language %></label>
+                      <% else %>
+                        <select class="form-control form-control-xs selectpicker1" name="document[input_language]" data-size="7" data-live-search="true" data-title="Location" id="INPUT_LANGUAGE" data-width="100%">
+                          <option value="ENGLISH" <%= @input_language == "ENGLISH" ? "selected" : "" %> >English</option>
+                          <option value="ARABIC" <%= @input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+                          <option value="FRENCH" <%= @input_language == "FRENCH" ? "selected" : "" %> >French</option>
+                        </select>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Document Title</label>
+                    <div class="form-group">
+                     <%= text_field_tag @document, @document.title, class: "form-control", name: 'document[title]', style: "background-color:#fff;", id: "INPUT_TITLE" %>
+                    </div>
+                  </div>
                 </div>
-                <div class="pull-right">
-                  <h4>
-                    <select class="form-control form-control-xs selectpicker1" name="document[input_language]" data-size="7" data-live-search="true" data-title="Location" id="INPUT_LANGUAGE" data-width="100%">
-                      <option value="ENGLISH" <%= @input_language == "ENGLISH" ? "selected" : "" %> >English</option>
-                      <option value="ARABIC" <%= @input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
-                      <option value="FRENCH" <%= @input_language == "FRENCH" ? "selected" : "" %> >French</option>
-                    </select>
-                  </h4>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-
-              <div class="pull-right" style="display: none;">
-                <div class="pull-left mr-4">
-                  <h4>Output Languages: </h4>
-                </div>
-                <div class="pull-right">
-                  <% if @input_language != @output_1_language && !@output_1_language.blank? %>
-                  <label class="fancy-checkbox">
-                    <input type="checkbox" id="OUTPUT_1_LANGUAGE" value="<%= @output_1_language %>" <%= @output_1_language.blank? ? "": "checked" %> name="output_1_language" data-parsley-errors-container="#error-checkbox" data-parsley-multiple="checkbox">
-                    <span><%= @output_1_language %></span>
-                  </label>
-                  <% end %>
-                  
-                  <% if @input_language != @output_2_language && !@output_2_language.blank? %>
-                  <label class="fancy-checkbox">
-                    <input type="checkbox" id="OUTPUT_2_LANGUAGE" value="<%= @output_2_language %>" <%= @output_2_language.blank? ? "": "checked" %> name="output_2_language" data-parsley-multiple="checkbox">
-                    <span><%= @output_2_language %></span>
-                  </label>
-                  <% end %>
-
-                  <% if @input_language != @output_3_language && !@output_3_language.blank? %>
-                  <label class="fancy-checkbox">
-                    <input type="checkbox" id="OUTPUT_3_LANGUAGE" value="<%= @output_3_language %>" <%= @output_3_language.blank? ? "": "checked" %> name="output_3_language" data-parsley-multiple="checkbox">
-                    <span><%= @output_3_language %></span>
-                  </label>
-                  <% end %>
-
-                  <% if @input_language != @output_4_language && !@output_4_language.blank? %>
-                  <label class="fancy-checkbox">
-                    <input type="checkbox" value="<%= @output_4_language %>" <%= @output_4_language.blank? ? "": "checked" %> name="output_4_language" data-parsley-multiple="checkbox">
-                    <span><%= @output_4_language %></span>
-                  </label>
-                  <% end %>
-                  
-                  <% if @input_language != @output_5_language && !@output_5_language.blank? %>
-                  <label class="fancy-checkbox">
-                    <input type="checkbox" value="<%= @output_5_language %>" <%= @output_5_language.blank? ? "": "checked" %> name="output_5_language" data-parsley-multiple="checkbox">
-                    <span><%= @output_5_language %></span>
-                  </label>
-                  <% end %>
-
-                  <p id="error-checkbox"></p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
+              </fieldset>
             </div>
-            <% end %>
             
           </div>
 
-          <div class="row pb-4 pt-4">
-            <div class="table-responsive">
-              <div id="TRANSLATION_HOT" style="width: 100%"></div>
-              <div class="alert alert-medium-color no-data-table text-center" role="alert" style="display: none;">
-                <i class="fa fa-warning"></i> No data available
+          <div class="row pb-4 pt-1">
+
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <div id="TRANSLATION_HOT" style="width: 100%"></div>
+                <div class="alert alert-medium-color no-data-table text-center" role="alert" style="display: none;">
+                  <i class="fa fa-warning"></i> No data available
+                </div>
               </div>
             </div>
 
@@ -111,6 +84,53 @@
     </div>
   </div>
 </div>
+
+<% if false %>
+  <div class="pull-right" style="display: none;">
+    <div class="pull-left mr-4">
+      <h4>Output Languages: </h4>
+    </div>
+    <div class="pull-right">
+      <% if @input_language != @output_1_language && !@output_1_language.blank? %>
+      <label class="fancy-checkbox">
+        <input type="checkbox" id="OUTPUT_1_LANGUAGE" value="<%= @output_1_language %>" <%= @output_1_language.blank? ? "": "checked" %> name="output_1_language" data-parsley-errors-container="#error-checkbox" data-parsley-multiple="checkbox">
+        <span><%= @output_1_language %></span>
+      </label>
+      <% end %>
+      
+      <% if @input_language != @output_2_language && !@output_2_language.blank? %>
+      <label class="fancy-checkbox">
+        <input type="checkbox" id="OUTPUT_2_LANGUAGE" value="<%= @output_2_language %>" <%= @output_2_language.blank? ? "": "checked" %> name="output_2_language" data-parsley-multiple="checkbox">
+        <span><%= @output_2_language %></span>
+      </label>
+      <% end %>
+
+      <% if @input_language != @output_3_language && !@output_3_language.blank? %>
+      <label class="fancy-checkbox">
+        <input type="checkbox" id="OUTPUT_3_LANGUAGE" value="<%= @output_3_language %>" <%= @output_3_language.blank? ? "": "checked" %> name="output_3_language" data-parsley-multiple="checkbox">
+        <span><%= @output_3_language %></span>
+      </label>
+      <% end %>
+
+      <% if @input_language != @output_4_language && !@output_4_language.blank? %>
+      <label class="fancy-checkbox">
+        <input type="checkbox" value="<%= @output_4_language %>" <%= @output_4_language.blank? ? "": "checked" %> name="output_4_language" data-parsley-multiple="checkbox">
+        <span><%= @output_4_language %></span>
+      </label>
+      <% end %>
+      
+      <% if @input_language != @output_5_language && !@output_5_language.blank? %>
+      <label class="fancy-checkbox">
+        <input type="checkbox" value="<%= @output_5_language %>" <%= @output_5_language.blank? ? "": "checked" %> name="output_5_language" data-parsley-multiple="checkbox">
+        <span><%= @output_5_language %></span>
+      </label>
+      <% end %>
+
+      <p id="error-checkbox"></p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <% end %>
 
 <style type="text/css">
   .dirRtl {

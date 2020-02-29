@@ -56,6 +56,8 @@ module User
       @document.assign_attributes(permitted_params)
       @document.user = @current_client_user
 
+      set_languages
+
       if @document.valid?
         @document.save
 
@@ -155,7 +157,7 @@ module User
 
     def get_template
       if params[:template_id]
-        @template = LabelTemplate.find(params[:template_id]) 
+        @template = LabelTemplate.find_by_id(params[:template_id]) 
       elsif @document
         @template = @document.template
       end

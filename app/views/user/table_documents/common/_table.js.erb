@@ -39,7 +39,7 @@ $(document).ready(function() {
   if(translationHOT.data.length == 0 ){
     $("#TRANSLATION_HOT").hide();
     $(".no-data-table").show();
-  }else{
+  } else {
 
     // Initializing the HandsonTable
     translationHOT.domTable = document.getElementById("TRANSLATION_HOT");
@@ -286,64 +286,64 @@ $(document).ready(function() {
   }
   
 
-  $(document).off('change', "#INPUT_LANGUAGE");
-  $(document).on('change', '#INPUT_LANGUAGE', function (e) {
-    
-    let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").val();
-    if(inputLanguage == "ARABIC") {
-      newURL = "<%= new_user_table_document_path(input_language: 'ARABIC') %>";
-    } else if(inputLanguage == "FRENCH") {
-      newURL = "<%= new_user_table_document_path(input_language: 'FRENCH') %>";
-    } else if(inputLanguage == "ENGLISH") {
-      newURL = "<%= new_user_table_document_path(input_language: 'ENGLISH') %>";
-    }
-
-    var confirmLanguageChange = confirm("Changing Language will remove all ")
-    if (confirmLanguageChange){
-      window.location.href = newURL;
-    }
-    else{
-      // e.preventDefault();
-      // return false
-    }
-  });
-
-  $(document).off('change', "#OUTPUT_1_LANGUAGE");
-  $(document).on('change', '#OUTPUT_1_LANGUAGE', function (e) {
-    saveEverything();
-  });
-
-  $(document).off('change', "#OUTPUT_2_LANGUAGE");
-  $(document).on('change', '#OUTPUT_2_LANGUAGE', function (e) {
-    saveEverything();
-  });
-
-  $(document).off('change', "#OUTPUT_3_LANGUAGE");
-  $(document).on('change', '#OUTPUT_3_LANGUAGE', function (e) {
-    saveEverything();
-  });
-
-  $(document).off('change', "#OUTPUT_4_LANGUAGE");
-  $(document).on('change', '#OUTPUT_4_LANGUAGE', function (e) {
-    saveEverything();
-  });
-
-  $(document).off('change', "#OUTPUT_5_LANGUAGE");
-  $(document).on('change', '#OUTPUT_5_LANGUAGE', function (e) {
-    saveEverything();
-  });
 
 });
+$(document).off('change', "#INPUT_LANGUAGE");
+$(document).on('change', '#INPUT_LANGUAGE', function (e) {
+  
+  let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").val();
 
+  if(inputLanguage == "ARABIC") {
+    newURL = "<%= new_user_table_document_path(input_language: 'ARABIC') %>";
+  } else if(inputLanguage == "FRENCH") {
+    newURL = "<%= new_user_table_document_path(input_language: 'FRENCH') %>";
+  } else if(inputLanguage == "ENGLISH") {
+    newURL = "<%= new_user_table_document_path(input_language: 'ENGLISH') %>";
+  }
 
+  var confirmLanguageChange = confirm("Warning! Changing input language will clear all translations.")
+  if (confirmLanguageChange){
+    window.location.href = newURL;
+  }
+  else{
+    // e.preventDefault();
+    // return false
+  }
+});
+
+$(document).off('change', "#OUTPUT_1_LANGUAGE");
+$(document).on('change', '#OUTPUT_1_LANGUAGE', function (e) {
+  saveEverything();
+});
+
+$(document).off('change', "#OUTPUT_2_LANGUAGE");
+$(document).on('change', '#OUTPUT_2_LANGUAGE', function (e) {
+  saveEverything();
+});
+
+$(document).off('change', "#OUTPUT_3_LANGUAGE");
+$(document).on('change', '#OUTPUT_3_LANGUAGE', function (e) {
+  saveEverything();
+});
+
+$(document).off('change', "#OUTPUT_4_LANGUAGE");
+$(document).on('change', '#OUTPUT_4_LANGUAGE', function (e) {
+  saveEverything();
+});
+
+$(document).off('change', "#OUTPUT_5_LANGUAGE");
+$(document).on('change', '#OUTPUT_5_LANGUAGE', function (e) {
+  saveEverything();
+});
 
 function saveEverything() {
+  let documentTitle = $("#INPUT_TITLE").val();
   ajaxData = {
     items: translationHOT.data,
     id: "<%= @document.id %>",
     document: {
       id: "<%= @document.id %>",
-      title: "<%= @document.title %>",
+      title: documentTitle,
       input_language: "<%= @document.input_language %>",
       output_1_language: "<%= @document.output_1_language %>",
       output_2_language: "<%= @document.output_2_language %>",
