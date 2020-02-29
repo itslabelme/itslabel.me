@@ -49,3 +49,4 @@ spec/dummy/storage
 /nbproject
 storage
 .byebug_history
+config/master.key
