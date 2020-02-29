@@ -1,6 +1,8 @@
 module User
   class TableDocumentsController < User::BaseController
 
+    require 'csv'
+
     before_action :authenticate_client_user!
     before_action :get_document, except: [:new, :create, :index, :select_template]
     skip_before_action :verify_authenticity_token, :only => [:translate_input_phrase, :save_everything]
@@ -72,7 +74,7 @@ module User
 
       set_languages
 
-      if params[:item_id].to_s.strip.empty? || params[:item_id].starts_with?("tkey")
+      if params[:item_id].starts_with?("tkey")
         @item = @document.items.build(
           temporary_key: params[:item_id],
           input_language: @document.input_language,
@@ -186,6 +188,75 @@ module User
         set_notification(false, I18n.t('status.error'), message)
         set_flash_message('The form has some errors. Please correct them and submit again', :error)
       end
+    end
+
+    def csv_upload
+
+      new_document
+      set_languages
+
+    end
+
+    def csv_parse
+      csv_file = params[:file]
+      @errors = nil
+      @csv_content = nil
+      if csv_file
+        begin
+          @csv_content = CSV.read(csv_file.path)
+        rescue
+          @errors = "Unable to read the contents of the uploaded file"
+        end
+      else
+        @errors = "CSV file not uploaded"
+      end
+
+      # Parse the CSV and create new table mode document
+      if @errors.blank? && @csv_content
+
+        new_document
+        set_languages
+
+        @document.user = @current_client_user
+
+        # filename = csv_file.original_filename.gsub(".csv", "").titleize
+        # @document.title = "#{filename} - #{Time.now.to_i}"
+        @document.title = csv_file.original_filename
+        @document.input_language = params[:input_language]
+        
+        # Adding Items
+        @csv_content.each do |row|
+          val = row.first.to_s.strip
+          next if row.empty?
+          next if val.blank?
+
+          item = @document.items.build(
+            table_document: @document,
+            input_phrase: val,
+            input_language: @document.input_language,
+            output_1_language: @document.output_1_language,
+            output_2_language: @document.output_2_language,
+            output_3_language: @document.output_3_language,
+            output_4_language: @document.output_4_language,
+            output_5_language: @document.output_5_language,
+            translated: false
+          )
+        end
+
+        if @document.valid?
+
+          @document.save
+
+          set_notification(true, I18n.t('status.success'), I18n.t('success.saved', item: "Document"))
+          set_flash_message(I18n.translate("success.saved", item: "Document"), :success)
+        else
+          message = I18n.t('errors.failed_to_save', item: "Document")
+          @document.errors.add :base, message
+          set_notification(false, I18n.t('status.error'), message)
+          set_flash_message('The form has some errors. Please correct them and submit again', :error)
+        end
+      end
+      
     end
 
     def export_to_excel

@@ -23,6 +23,12 @@ Rails.application.routes.draw do
     get '/translation_request', to: 'free_form_widget#new_translation_request', as: 'new_translation_request'
     post '/translation_request', to: 'free_form_widget#create_translation_request', as: 'create_translation_request'
 
+      # Upload ingredient through CSV file (CSV file Upload and parsing)
+    get '/csv_upload', to: 'table_documents#csv_upload', as: 'csv_upload'
+
+      # Parse CSV data
+    post 'csv_parse', to: 'table_documents#csv_parse', as: 'csv_parse'
+
     root to: 'home#index'
     
     # Listing All Kinds of Documents
@@ -57,7 +63,7 @@ Rails.application.routes.draw do
 
     # CRUD Table Documents
     resources :table_documents do
-      
+
       collection do
         # Save Methods
         put 'save_everything', to: 'table_documents#save_everything', as: 'save_everything'
