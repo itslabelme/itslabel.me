@@ -56,6 +56,8 @@ module User
       @document.assign_attributes(permitted_params)
       @document.user = @current_client_user
 
+      set_languages
+
       if @document.valid?
         @document.save
 

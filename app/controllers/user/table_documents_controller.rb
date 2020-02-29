@@ -270,6 +270,17 @@ module User
       end
     end
 
+    def clear
+      get_document
+      new_document unless @document
+      if @document.persisted?
+        @document.items.destroy_all 
+        redirect_to user_table_document_path(@document)
+      else
+        redirect_to new_user_table_document_path(input_language: params[:input_language], title: params[:title])
+      end
+    end
+
     def update_status
       get_document
       if @document
@@ -319,7 +330,8 @@ module User
       @document.output_3_language = params[:output_3_language]
       
       # Set Default Title
-      @document.title ||= "New Table Document - #{Time.now.to_i}" unless @document.title
+      @document.title ||= params[:title] if params[:title]
+      @document.title ||= "New Table Document - #{Time.now.to_i}"
 
       # Set Defaut Languages
       set_languages
