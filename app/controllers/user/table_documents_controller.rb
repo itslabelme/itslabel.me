@@ -74,7 +74,10 @@ module User
 
       set_languages
 
-      if params[:item_id].starts_with?("tkey")
+      @item = nil
+      @item = TableDocumentItem.where(id: params[:item_id]).first unless params[:item_id].starts_with?("tkey")
+
+      if @item.blank?
         @item = @document.items.build(
           temporary_key: params[:item_id],
           input_language: @document.input_language,
@@ -85,8 +88,6 @@ module User
           output_4_language: @document.output_4_language,
           output_5_language: @document.output_5_language,
         )
-      else
-        @item = TableDocumentItem.where(id: params[:item_id]).first
       end
 
       word_not_found = {
