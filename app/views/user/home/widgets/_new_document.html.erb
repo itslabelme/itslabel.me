@@ -57,7 +57,11 @@
             <p>Use this option to upload ingredient files for translation and exporting to one of many available formats like Microsoft Excel and Adobe PDF.  </p>
           </div>
           <button class="btn btn-primary btn-block" type="button">
-            <a href="#" data-toggle="modal" data-target="#yetToImplement" style="color: #fff;display: block;">Upload</a>
+            <!-- <a href="#" data-toggle="modal" data-target="#yetToImplement" style="color: #fff;display: block;">Upload</a> -->
+            <%= link_to "Upload", user_csv_upload_url, style: "color: #fff;display: block;", remote: true %>
+
+            
+
           </button>
         </div>
       </div>

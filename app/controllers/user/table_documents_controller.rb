@@ -1,6 +1,8 @@
 module User
   class TableDocumentsController < User::BaseController
 
+    require 'csv'
+
     before_action :authenticate_client_user!
     before_action :get_document, except: [:new, :create, :index, :select_template]
     skip_before_action :verify_authenticity_token, :only => [:translate_input_phrase, :save_everything]
@@ -72,7 +74,7 @@ module User
 
       set_languages
 
-      if params[:item_id].to_s.strip.empty? || params[:item_id].starts_with?("tkey")
+      if params[:item_id].starts_with?("tkey")
         @item = @document.items.build(
           temporary_key: params[:item_id],
           input_language: @document.input_language,
@@ -189,7 +191,12 @@ module User
     end
 
     def csv_upload
-      new_document unless @document
+    end
+
+    def csv_parse
+      csv_file = params[:file]
+      @csv_content = CSV.read(csv_file.path)
+      # binding.pry
     end
 
     def export_to_excel
