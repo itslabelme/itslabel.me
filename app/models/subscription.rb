@@ -10,10 +10,7 @@ class Subscription < ApplicationRecord
 
   
   # Generic Methods
-  # ---------------
-  def display_name
-    "#{input_phrase} - #{output_phrase}"
-  end
+ 
   
   
 end
