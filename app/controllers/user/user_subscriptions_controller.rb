@@ -40,8 +40,8 @@ module User
      
       if @user_subscription.valid?
         @user_subscription.save
-        set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Subscription"))
-        set_flash_message(I18n.translate("success.created", item: "Subscription"), :success)
+        set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
+        set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
       else
         @per_page=params[:page]
         message = I18n.t('errors.failed_to_create', item: "subscription")
