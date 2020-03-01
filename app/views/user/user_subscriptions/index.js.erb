@@ -1,0 +1,16 @@
+<% if @user_subscriptions.errors.blank? %>
+  
+  // Showing Growl Like Message
+  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  
+  
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+  
+
+<% end %>
+

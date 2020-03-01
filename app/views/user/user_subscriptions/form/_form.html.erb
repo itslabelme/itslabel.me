@@ -1,24 +1,29 @@
 <%
-  if @user_subscriptions.new_record?
+  if @user_subscription.new_record?
     form_method = :post
     form_url = {action: :create}
   else
     form_method = :put
-    id=@user_subscriptions.id
-    form_url = "/user/user_subscriptions/#{@user_subscriptions.id}"
+    id=@user_subscription.id
+    form_url = {action: :update}
   end
 %>
 
 
 
-<%= form_for @user_subscriptions, :as => :user_subscriptions,:method=>form_method ,:url => form_url do |f| %>
+<%= form_with(url: form_url,  
+      class: "form-floating", 
+      model: @user_subscription,
+      method: form_method, 
+      html: { autocomplete: "off" }) do |f| %>
+
   <%= hidden_field_tag "called_from", params[:called_from] %>
 
   <div class="body mt-2">
 
     <div class="row clearfix">
       <div class="header p-3 mb-4">
-        <h2><%= @user_subscriptions.new_record? ? 'Add SUbscription' : 'Edit Subscription' %></h2>
+        <h2><%#= @user_subscriptions.new_record? ? 'Add SUbscription' : 'Edit Subscription' %></h2>
       </div>
     </div>
 
@@ -42,11 +47,11 @@
       <% @subscriptions.each_with_index do |subscription, i| %>
       <div class="col-lg-6 col-md-6 col-sm-12">
           <div class="form-group">
-               <% error_class = @user_subscriptions.errors[:subscription_id].any? ? 'parsley-error' : '' %>
+             
               <%= subscription.title %>
               <%#=  puts @user_subscription.inspect %>
-              <%= f.radio_button :subscription_id,subscription.id,:checked =>(@user_subscriptions.subscription_id == subscription.id) %>
-              <%= display_parsley_error(@user_subscriptions, :subscription_id) %>
+              <%= f.radio_button :subscription_id,subscription.id,:checked =>(@user_subscription.subscription_id == subscription.id) %>
+             
             </div>
         </div>
                      
