@@ -1,55 +1,52 @@
 <% @templates = LabelTemplate.all %>
 <div class="row clearfix">
   <% @templates.each do |template| %>
-    <div class="col-lg-4 cool-md-3 col-sm-12">
-        <div class="card">
-            <div class="box">
-                <ul class="pricing body">
-                    <li class="plan-img">
-
-                      <%
-                        begin 
-                          template_img_url = "label_templates/#{template.style.downcase.gsub(' ', '_').strip}.jpg"
-                        rescue SystemCallError => e
-                          template_img_url = "label_templates/default_template_ar.jpg"
-                        end
-                      %>
-                      <%= image_tag asset_path(template_img_url), class: "img-fluid", alt: template.display_name %>
-
-                      <%# if template.picture.attached? %>
-                        <!-- <img src="<%#= image_path(main_app.url_for(template.picture)) %>" class="img-fluid"> -->
-                      <%# else%>
-                        <%#= image_tag("defaults/label-template.jpg", class: "img-fluid", alt: template.display_name) %>
-                      <%# end%>
-                      
-                    </li>
-                    <li><%= template.name %></li>
-                    <% unless template.to_s.strip.blank? %>
-                    <li><span class="template-style"><%= template.style %></span></li>
-                    <% end %>
-                    <!-- <li><%#= template.description %></li> -->
-                    <li class="plan-btn">
-                      <%= link_to content_tag(:span, "Select"), new_user_template_document_path(dt: 'template', template_id: template.id), class: "btn-primary" %></li>
-                    </li>
-                </ul>
-                  <!-- Latest template has ribbon with text 'new' -->
-                <% if template.latest %> 
-                  <div class="ribbon"><span>New</span></div>
-                <% end %>
-              </div>
-        </div>
+  <div class="col-lg-4 cool-md-3 col-sm-12">
+    <div class="card">
+      <div class="box">
+        <ul class="pricing body">
+          <li class="plan-img">
+            <%#
+            begin
+              template_img_url = "label_templates/#{template.style.downcase.gsub(' ', '_').strip}.jpg"
+            rescue SystemCallError => e
+              template_img_url = "label_templates/default_template_ar.jpg"
+            end
+            %>
+            <% begin %>
+              <% if template.picture.attached? %>
+                <img src="<%= image_path(main_app.url_for(template.picture)) %>" class="img-fluid">
+              <% else %>
+                <%= image_tag("defaults/label-template.jpg", class: "img-fluid", alt: template.display_name) %>
+              <% end %>
+            <% rescue %>
+              <% template_img_url = template.get_display_fallback_image_url %>
+              <%= image_tag asset_path(template_img_url), class: "img-fluid", alt: template.display_name %>
+            <% end %>
+            
+          </li>
+          <li><%= template.name %></li>
+          <% unless template.to_s.strip.blank? %>
+          <li><span class="template-style"><%= template.style %></span></li>
+          <% end %>
+          <!-- <li><%#= template.description %></li> -->
+          <li class="plan-btn">
+          <%= link_to content_tag(:span, "Select"), new_user_template_document_path(dt: 'template', template_id: template.id), class: "btn-primary" %></li>
+        </li>
+      </ul>
+      <!-- Latest template has ribbon with text 'new' -->
+      <% if template.latest %>
+      <div class="ribbon"><span>New</span></div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
-
+<% end %>
+</div>
 <style type="text/css">
-  .template-style {
-    border: 1px solid #c1c1c1;
-    background-color: aliceblue;
-    padding: 5px;
-  }
+.template-style {
+border: 1px solid #c1c1c1;
+background-color: aliceblue;
+padding: 5px;
+}
 </style>
-
-
-
-

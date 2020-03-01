@@ -21,10 +21,12 @@
       <% @documents.each_with_index do |document, i| %>
       <% 
         if document.doc_type == "template_document"
+          icon_path = "icons/template.svg"
           doc_url = user_template_document_path(document)
           doc_status_removed_url = update_status_user_template_document_path(document, status: 'removed') 
           doc_status_archive_url = update_status_user_template_document_path(document, status: 'archived')
         elsif document.doc_type == "table_document"
+          icon_path = "icons/excel.svg"
           doc_url = user_table_document_path(document) 
           doc_status_removed_url = update_status_user_table_document_path(document, status: 'removed')
           doc_status_archive_url = update_status_user_table_document_path(document, status: 'archived')
@@ -40,7 +42,8 @@
         </td>
         <td>
           <div class="d-flex align-items-center">
-            <span><i class="<%= document.display_icon %> mr-2"></i></span>
+            <%= image_tag icon_path, style: "width: 22px;height: 22px;margin-right:4px;" %>
+            <!-- <span><i class="<%= document.display_icon %> mr-2"></i></span> -->
             <%= link_to document.title, doc_url, title: document.title %>
           </div>
         </td>

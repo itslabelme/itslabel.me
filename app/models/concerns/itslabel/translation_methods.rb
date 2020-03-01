@@ -2,18 +2,23 @@ module Itslabel::TranslationMethods
   
   extend ActiveSupport::Concern
 
-  DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', 
-                ' and ', ' or ', /(\t\r\n|\t|\r|\n)/,
-                /\d+gms?/, /\d+mgs?/, /\d+%/
-                ]
-  
+  # DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', '-'] 
+  # /(\t\r\n|\t|\r|\n)/,
+
+  DELIMITERS = [/\.|,|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n/, 
+                # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams
+                /\d*\.?\d*gms?/, /\d*\.?\d*mgs?/, /\d*\.?\d*grams?/,
+                # Percentages 10%, 10.50%
+                /\d*\.?\d*%/
+              ]
+
   DELIMITERS_TRANSLATIONS = {
     ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
     "mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
     "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"},
-    "and": {ENGLISH: "and", FRENCH: "et", ARABIC: "و"},
-    "or": {ENGLISH: "or", FRENCH: "ou", ARABIC: "أو"},
+    " and ": {ENGLISH: " and ", FRENCH: " et ", ARABIC: " و "},
+    " or ": {ENGLISH: " or ", FRENCH: " ou ", ARABIC: " أو "},
   }
 
   class_methods do
@@ -55,6 +60,7 @@ module Itslabel::TranslationMethods
       options.symbolize_keys!
 
       words = input.split(Regexp.union(Translation::DELIMITERS))
+      delimitters = input.scan(Regexp.union(Translation::DELIMITERS))
       words.delete_if{|x| x.to_s.strip.blank? ||  DELIMITERS.include?(x)}
 
       hash = translate_words(words, options)
@@ -67,8 +73,9 @@ module Itslabel::TranslationMethods
           output.gsub!(key, value)
         end
 
-        DELIMITERS_TRANSLATIONS.each do |dlmtr, dlmtr_transations|
-          translated_dlmtr = dlmtr_transations.try(:[], dlmtr).try(:[], options[:output_language])
+        delimitters.each do |dlmtr|
+          dlmtr_translations = DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
+          translated_dlmtr = dlmtr_translations.try(:[], options[:output_language])
           output.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
         end
         return output

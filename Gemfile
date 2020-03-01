@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.4'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -57,9 +57,12 @@ gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 # gem 'axlsx_rails'
 gem 'caxlsx_rails'
 
+gem 'aws-ses', '~> 0.4.4', require: 'aws/ses'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry', '~> 0.12.2'
+  gem 'byebug'
 end
 
 group :development do

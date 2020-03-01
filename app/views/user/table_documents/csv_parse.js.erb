@@ -1,0 +1,9 @@
+<% if @errors %>
+  var heading = "Upload CSV for Table Document"
+  var bodyContent = "<%= escape_javascript(render(partial: "user/table_documents/csv_upload/form.html.erb")) %>";
+  showSmallModal(heading, bodyContent, true);
+<% else %>
+  window.location.href = "<%= user_table_document_path(@document) %>";
+<% end %>
+
+// $("#TRANSLATIONS_ROW_<%#= @document.id %>").remove();

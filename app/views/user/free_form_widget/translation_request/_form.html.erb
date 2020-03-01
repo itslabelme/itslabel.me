@@ -1,0 +1,101 @@
+<%
+  form_url = user_create_translation_request_path
+  form_method = :post
+%>
+
+<div class="modal-header" style="padding: 0px;position: absolute;right: 0px;border: none;top: -24px;right: -20px;color: #fff">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1">
+  <span aria-hidden="true"><i class="icon-close" style="color: #fff"></i></span>
+  </button>
+</div>
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalCenterTitle">Request for Translation</h5>
+</div>
+
+<div id="TRANSLATION_REQUEST_FORM" style="padding:20px">
+
+  <%= form_with(url: form_url,  class: "form-floating",  method: form_method) do |f| %>
+
+    <%= hidden_field_tag :input_language, params[:input_language] %>
+    <%= hidden_field_tag :output_language, params[:output_language] %>
+    <%= hidden_field_tag :phrase, params[:phrase] %>
+    
+    <div class="modal-body">
+
+      <div id="TRANSLATION_REQUEST_FORM_ERRORS">
+        <!-- Display Errors if Any -->
+        <%#= felix_compact_form_errors(@city) if @city.errors.any? %>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3">
+        </div>
+
+        <!-- Phrase -->
+        <div class="col-md-6 pb-4 pt-3 text-center">
+          <div class="form-group row " style="">
+            <label class="col-sm-12">Phrase to Translate
+              <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+            </label>
+            <div class="col-md-12">
+              <!-- <input type="text" name="phrase" value="<%= params[:phrase] %>" class="form-control"> -->
+              <div class="badge badge-info">
+                <strong><%= params[:phrase] %></strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Input Language -->
+        <div class="col-md-6">
+          <div class="form-group row " style="">
+            <label class="col-sm-12">Input Language
+              <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+            </label>
+            <div class="col-md-12">
+              <strong><%= params[:input_language].upcase %></strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Language -->
+        <div class="col-md-6">
+          <div class="form-group row " style="">
+            <label class="col-sm-12">Output Language
+              <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+            </label>
+            <div class="col-md-12">
+              <strong><%= params[:output_language].upcase %></strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Requested By -->
+        <div class="col-md-6">
+          <div class="form-group row " style="">
+            <label class="col-sm-12">Requested By
+              <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+            </label>
+            <div class="col-md-12">
+              <strong><%= @current_client_user.display_name %></strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span> Submit </button>
+    </div>
+
+  <% end %>
+
+</div>
