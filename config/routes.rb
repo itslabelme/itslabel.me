@@ -85,6 +85,11 @@ Rails.application.routes.draw do
     put 'update_client_profile', to: 'client_profile#update'
     put 'update_client_password', to: 'client_profile#update_password'
     resources :user_subscriptions
+    resources :user_subscriptions, only: [:create, :index, :update] do
+     collection do
+      put :update
+      end
+    end
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
