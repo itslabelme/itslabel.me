@@ -2,7 +2,7 @@ module User
   class UserSubscriptionsController < User::BaseController
     before_action :authenticate_client_user!
     before_action :get_user_subscription
-    
+     before_action :access_denied
     def index
       @subscriptions=Subscription.all
       if !@user_subscription.blank?

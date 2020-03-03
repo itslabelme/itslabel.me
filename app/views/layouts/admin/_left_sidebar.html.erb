@@ -39,6 +39,7 @@
         
         <li class="header">My Account</li>
         <li class="<%= nav_active?('admin/profile') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile",  admin_edit_profile_url %></li>
+        <li class="<%= nav_active?('admin/subscription_modules') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "Module Subscription",  admin_subscription_modules_url %></li>
         <!-- <li class="<%= nav_active?('admin/my_profile') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li> -->
         <li class="<%= nav_active?('admin/settings') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
       </ul>

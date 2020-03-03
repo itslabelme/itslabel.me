@@ -171,6 +171,43 @@ puts "Adding Subscriptions".green
                   { title: 'Biz Pro',  price: "49.99", status: "Active"}, 
                   { title: 'Enterprise',  price: "99.99", status: "Active"}, 
                 ])
+              
+puts "Adding Modules".green
+
+  UserModule.create([
+                  { title: 'Dashboard',  controller: "Home", action: "index",route:'user/home#index'}, 
+                  { title: 'List Documents',  controller: "Documents", action: "index",route:'user/documents#index'}, 
+                  { title: 'Document Update Status',  controller: "Documents", action: "update_status",route:'user/documents#update_status'}, 
+                  { title: 'Destroy Document',  controller: "Documents", action: "destroy",route:'user/documents#destroy'},
+                  
+                  { title: 'Save And Translate',  controller: "TemplateDocuments", action: "save_and_translate",route:'user/template_documents#save_and_translate'}, 
+                  { title: 'Preview Template Document',  controller: "TemplateDocuments", action: "preview",route:'user/template_documents#preview'}, 
+                  { title: 'Print Template',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#print'}, 
+                  { title: 'Update Template Status',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#update_status'}, 
+                  { title: 'Destroy Documnet',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#select_template'}, 
+                  { title: 'Select Template',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#index'}, 
+                  { title: 'Save New Template',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#create'}, 
+                  { title: 'Create New Template',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#new'}, 
+                  { title: 'Show Template Document',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#show'}, 
+                  { title: 'Update Template Document',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#update'}, 
+                  { title: 'Destroy Template Document',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#destroy'}, 
+                  { title: 'List Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#index'}, 
+                  { title: 'Save New Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#create'}, 
+                  { title: 'New Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#new'}, 
+                  { title: 'Show Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#show'}, 
+                  { title: 'Edit Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#edit'}, 
+                  { title: 'Update Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#update'}, 
+                  
+                  { title: 'Client Profile',  controller: "ClientProfile", action: "update",route:'user/client_profile#edit'}, 
+                  { title: 'Update Profile ',  controller: "ClientProfile", action: "update",route:'user/client_profile#update'}, 
+                  { title: 'Update Client Profile Password',  controller: "ClientProfile", action: "update",route:'user/client_profile#update_password'}, 
+                  
+                  { title: 'User Subscription',  controller: "UserSubscription", action: "index",route:'user/user_subscriptions#index'}, 
+                  { title: 'Save Subscription',  controller: "UserSubscription", action: "update",route:'user/user_subscriptions#create'}, 
+                  { title: 'Add Subscription',  controller: "UserSubscription", action: "update",route:'user/user_subscriptions#new'}, 
+                  { title: 'Edit Subscription',  controller: "UserSubscription", action: "update",route:'user/user_subscriptions#edit'}, 
+                  { title: 'Update Subscription',  controller: "UserSubscription", action: "update",route:'user/user_subscriptions#update'}, 
+                ])
 #template = LabelTemplate.first
 
 # puts "Adding Documents".green
