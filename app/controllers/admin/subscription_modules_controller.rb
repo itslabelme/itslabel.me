@@ -9,42 +9,42 @@ module Admin
       @page_title = "User Module | Admin"
       @nav = 'admin/subscription_modules'
       
-     # get_collection
+      # get_collection
       #new_subscription_module
-     @subscriptions=Subscription.all
+      @subscriptions=Subscription.all
     end
     
     def new   
-      @subscriptions=Subscription.all
+      get_subscription
       @modules=UserModule.all
       new_subscription_module  
     end   
     def create_pemission   
+      new_subscription_module 
+      get_subscription
       @subscriptions=Subscription.find_by_id(params[:id])
-      @modules=UserModule.all
+      @modules=UserModule.all.to_a
       get_collection
-      #sraise get_collection.inspect
-      new_subscription_module  
     end 
     # POST method for processing form data   
     def create   
-      
-     # raise params['subscription_module'].inspect 
-     # $modules=params[:module_ids]
-     @title=params['subscription_module'][:title]
-     @subscription_id=params['subscription_module'][:subscription_id]
+      @modules=UserModule.all.to_a
+      @subscription_modules = SubscriptionModule.connection.select_all("select * from subscription_modules where subscription_id=#{params['subscription_module'][:subscription_id]}").to_a
+      @subscription=Subscription.find_by_id(params['subscription_module'][:subscription_id])
+      SubscriptionModule.where('subscription_id',params['subscription_module'][:subscription_id]).destroy_all
+      @title=params['subscription_module'][:title]
+      @subscription_id=params['subscription_module'][:subscription_id]
       params[:module_id].each do |mode|
         @subscription_module=SubscriptionModule.new
-     # subscription_module_params[:module_id]=mode
-     # raise subscription_module_params.inspect
-     @subscription_module.title=@title
-     @subscription_module.subscription_id=@subscription_id
-     @subscription_module.modules_id=mode
-    # raise @subscription_module.inspect
-      @subscription_module.save
-        set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Module Permissions"))
-        set_flash_message(I18n.translate("success.created", item: "Module Permissions"), :success)
-     
+    
+        @subscription_module.title=@title
+        @subscription_module.subscription_id=@subscription_id
+        @subscription_module.modules_id=mode
+        # raise @subscription_module.inspect
+        if  @subscription_module.save
+         set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "SubscriptionModule"))
+
+       end
       end
     end  
      
@@ -55,36 +55,12 @@ module Admin
 
     # PATCH/PUT /subscription_module/1
     def update
-      @subscription_module.assign_attributes(subscription_module_params)
-      
-      if @subscription_module.valid?
-        @subscription_module.save
-       set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "AdminUser"))
-       set_flash_message(I18n.translate("success.updated", item: "AdminUser"), :success)
-      else
-        message = I18n.t('errors.failed_to_update', item: "AdminUser")
-        @subscription_module.errors.add :base, message
-        set_notification(false, I18n.t('status.error'), message)
-        set_flash_message('The form has some errors. Please correct them and submit again', :error)
-      end
+     s
     end
     
     # DELETE method for deleting a user from database based on id   
     def destroy   
-      if @subscription_module
-        if @subscription_module.can_be_deleted?
-          @subscription_module.destroy
-          
-          set_notification(false, I18n.t('status.success', item: "AdminUser"), I18n.t('success.deleted', item: "AdminUser"))
-          set_flash_message(I18n.t('success.deleted', item: "AdminUser"), :success, false)
-          @destroyed = true
-        else
-          message = I18n.t('errors.cannot_be_deleted', item: "AdminUser", reason: @admin_suser.errors.full_messages.join("<br>"))
-          set_flash_message(message, :failure)
-          set_notification(false, I18n.t('status.error'), message)
-          @destroyed = false
-        end
-      end  
+     
     end
     
     private
@@ -92,12 +68,11 @@ module Admin
     def new_subscription_module
       @subscription_module = SubscriptionModule.new
     end
-
+    def get_subscription
+      @subscription=Subscription.find_by_id(params[:id])
+    end
     def get_collection
-     
-      
       @subscription_modules = SubscriptionModule.connection.select_all("select * from subscription_modules where subscription_id=#{params[:id]}").to_a
-      
     end
 
     

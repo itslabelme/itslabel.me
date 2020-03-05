@@ -20,7 +20,7 @@
 
     <div class="row clearfix">
       <div class="header p-3 mb-4">
-        <h2><%= @subscription_module.new_record? ? 'Add a New Admin User' : 'Edit Translation' %></h2>
+        <h2>Plan Permissions</h2>
       </div>
     </div>
 
@@ -41,27 +41,36 @@
 
      <div class="row clearfix">
          
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="form-group">
              
-              <h5> <%= @subscriptions.title %></h5>
-              <%= f.hidden_field :title,:value => @subscriptions.title %>
-             <%= f.hidden_field :subscription_id,:value => @subscriptions.id %>
+              <h5> <%= @subscription.title %></h5>
+              <%= f.hidden_field :title,:value => @subscription.title %>
+             <%= f.hidden_field :subscription_id,:value => @subscription.id %>
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                  <%  moduleArray = Array.new
+                      @subscription_modules.each do |mode|
+                      moduleArray.push mode['modules_id']
+                      end 
+                  %>
               <% @modules.each_with_index do |umodule, j| %>
-              <% @check=false %>
-              <div class="col-lg-3 col-md-3 col-sm-12">
-                  <% if @subscription_modules[j].present? %>
-                  <% if @subscription_modules[j]['id']==umodule.id %>
+              
+              <div class="col-lg-6 col-md-3 col-sm-12">
+                  <% if moduleArray.present? %>
+                  
+                  <% if moduleArray.include?(umodule.id) %>
                   <% @check=true %>
                   <% else %>
                   <% @check=false %>
                   <% end %>
                   <%  end %>
+                  
                   <%=umodule.title%>
                   <%= check_box_tag( 'module_id[]', umodule.id,@check) %>
               
               </div>
               <% end %>
+              </div>
             </div>
         </div>
                      

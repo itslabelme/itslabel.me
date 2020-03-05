@@ -2,23 +2,17 @@
   
   // Showing Growl Like Message
   notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
-  
-  // Add the Row to the table and highlight it
-  $("#USERS_TABLE > table:first-child tr:first").after("<%= escape_javascript(render(:partial=>'admin/subscription_modules/index/row.html.erb', locals: { subscription_module: @subscription_module })) %>");
-  
-  // Highlight the background color of the newly added data to the datatable
-  $("#USER_ROW_<%= @subscription_module.id %> td").css( "animation", "highlightAfterAdd 10000ms ease-out" );
-  
+   
   // Hide the form
-  showTab('USER_LIST');
-  $('#LI_USER_NEW_FORM').hide();
+  showTab('SUBSCRIPTION_FORM');
+ 
 
   // Reload the form to show errors
-  <% @subscription_module = AdminUser.new %>
-  $("#USER_NEW_FORM").html("<%= escape_javascript(render(:partial=>'admin/subscription_modules/form/form')) %>");
+  <% @subscription_module = SubscriptionModule.new %>
+  $("#SUBSCRIPTION_FORM").html("<%= escape_javascript(render(:partial=>'admin/subscription_modules/form/form')) %>");
 
   // Set Focus on the First Input after loading the form
-  setFocusOnFirstInput("USER_NEW_FORM");
+  setFocusOnFirstInput("SUBSCRIPTION_FORM");
 
 <% else %>
 
@@ -26,10 +20,15 @@
   notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
 
   // Reload the form to show errors
-  $("#USER_NEW_FORM").html("<%= escape_javascript(render(:partial=>'admin/subscription_modules/form/form')) %>");
+  $("#SUBSCRIPTION_FORM").html("<%= escape_javascript(render(:partial=>'admin/subscription_modules/form/form')) %>");
 
   // Set Focus on the First Input after loading the form
-  setFocusOnFirstInput("USER_NEW_FORM");
+  setFocusOnFirstInput("SUBSCRIPTION_FORM");
 
 <% end %>
 
+
+$(document).on("click",".cancel",function(){
+
+    window.history.back();
+});
