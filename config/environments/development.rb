@@ -7,12 +7,12 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   
   config.action_mailer.smtp_settings = {
-    :address => "email-smtp.eu-west-1.amazonaws.com",
-    :port => 587,
-    :user_name => Rails.application.credentials.development[:aws][:smtp_username], #Your SMTP user
-    :password => Rails.application.credentials.development[:aws][:smtp_password], #Your SMTP password
-    :authentication => :login,
-    :enable_starttls_auto => true
+   # :address => "email-smtp.eu-west-1.amazonaws.com",
+  #  :port => 587,
+   # :user_name => Rails.application.credentials.development[:aws][:smtp_username], #Your SMTP user
+  #  :password => Rails.application.credentials.development[:aws][:smtp_password], #Your SMTP password
+  #  :authentication => :login,
+  #  :enable_starttls_auto => true
   }
 
   # In the development environment your application's code is reloaded on

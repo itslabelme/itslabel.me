@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_065109) do
+ActiveRecord::Schema.define(version: 2020_03_16_091245) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -87,6 +87,13 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.index ["unlock_token"], name: "index_client_users_on_unlock_token", unique: true
   end
 
+  create_table "folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.bigint "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "client_user_id"
     t.string "provider"
@@ -129,6 +136,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.string "output_5_language", limit: 16
     t.bigint "output_5_translation_id"
     t.boolean "translated", default: false
+    t.string "folder", limit: 16
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["output_1_translation_id"], name: "index_table_document_items_on_output_1_translation_id"
@@ -160,6 +168,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.string "input_language", limit: 16, null: false
     t.string "output_language", limit: 16, null: false
     t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.string "folder", limit: 16
     t.text "input_html_source"
     t.text "output_html_source"
     t.boolean "favorite", default: false
