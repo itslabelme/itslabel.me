@@ -45,7 +45,7 @@ class CreateTableDocuments < ActiveRecord::Migration[5.2]
       t.belongs_to :output_5_translation
 
       t.boolean :translated, default: false
-      t.string :folder, limit: 16, null: true
+      t.references :folder, index: true,null:true, foreign_key: {to_table: :folders, on_delete: :nullify}
       t.timestamps null: false
     end
 

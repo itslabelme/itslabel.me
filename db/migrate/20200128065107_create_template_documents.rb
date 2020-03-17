@@ -7,7 +7,7 @@ class CreateTemplateDocuments < ActiveRecord::Migration[5.2]
       t.string :output_language, limit: 16, null: false
 
       t.string :status, default: "ACTIVE", limit: 16, null: false
-      t.string :folder, limit: 16, null: true
+      t.references :folder, index: true,null:true, foreign_key: {to_table: :folders, on_delete: :nullify}
       t.text :input_html_source
       t.text :output_html_source
 
