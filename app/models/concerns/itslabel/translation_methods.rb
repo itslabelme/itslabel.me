@@ -5,7 +5,7 @@ module Itslabel::TranslationMethods
   # DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', '-'] 
   # /(\t\r\n|\t|\r|\n)/,
 
-  DELIMITERS = [/\.|,|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n/, 
+  DELIMITERS = [/\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n/, 
                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams
                 /\d*\.?\d*gms?/, /\d*\.?\d*mgs?/, /\d*\.?\d*grams?/,
                 # Percentages 10%, 10.50%
@@ -13,10 +13,14 @@ module Itslabel::TranslationMethods
               ]
 
   DELIMITERS_TRANSLATIONS = {
+    ".": {ENGLISH: ".", FRENCH: ".", ARABIC: ""},
+    "،": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
     "mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
     "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"},
+    "grams": {ENGLISH: "grams", FRENCH: "grams", ARABIC: "جم"},
+    "gram": {ENGLISH: "gram", FRENCH: "gram", ARABIC: "جم"},
     " and ": {ENGLISH: " and ", FRENCH: " et ", ARABIC: " و "},
     " or ": {ENGLISH: " or ", FRENCH: " ou ", ARABIC: " أو "},
   }

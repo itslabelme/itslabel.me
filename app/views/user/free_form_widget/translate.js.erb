@@ -5,3 +5,9 @@ $("#OUTPUT_AREA").html("<%= escape_javascript(raw(@display_text)) %>");
 <% else %>
   $("#OUTPUT_AREA").css("text-align", "left");
 <% end %>
+
+<% if @input_language.upcase == "ARABIC" %>
+  $("#INPUT_AREA").css("text-align", "right");
+<% else %>
+  $("#INPUT_AREA").css("text-align", "left");
+<% end %>

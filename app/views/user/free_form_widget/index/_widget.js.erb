@@ -152,7 +152,7 @@ $("#OUTPUT_LANGUAGE").on('change', function(){
 $(document).off('click', "#INPUT_CUT_ACTION");
 $(document).on('click', '#INPUT_CUT_ACTION', function (e) {
   let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  $("#INPUT_AREA").selectText();
+  // $("#INPUT_AREA").selectText();
   document.execCommand('copy');
   $("#INPUT_AREA").html("");
   $("#OUTPUT_AREA").html("");
@@ -175,7 +175,7 @@ $(document).on('click', '.its-tran-not-found', function (e) {
 $(document).off('click', "#INPUT_COPY_ACTION");
 $(document).on('click', '#INPUT_COPY_ACTION', function (e) {
   let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  $("#INPUT_AREA").selectText();
+  // $("#INPUT_AREA").selectText();
   document.execCommand('copy');
 });
 
@@ -183,7 +183,8 @@ $(document).off('click', "#INPUT_PASTE_ACTION");
 $(document).on('click', '#INPUT_PASTE_ACTION', function (e) {
   navigator.clipboard.readText().then(function(data) {
     console.log("Pasted from clipboard:", data);
-    $("#INPUT_AREA").html(data);
+    // $("#INPUT_AREA").html(data);
+    document.execCommand('copy');
     ITSTranslate();
   });
 });
