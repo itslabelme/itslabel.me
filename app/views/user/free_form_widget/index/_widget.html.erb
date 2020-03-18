@@ -1,15 +1,30 @@
 <% 
   case @input_language
   when "FRENCH"
-    enter_text = "Entrer"
+    input_enter_text = "Entrer"
     input_sg_dir = "dir-ltr"
   when "ARABIC"
-    enter_text = "أدخل"
+    #input_enter_text = "أدخل"
+    input_enter_text = ""
     input_sg_dir = "dir-rtl"
   when "ENGLISH"
-    enter_text = "Enter"
+    input_enter_text = "Enter"
     input_sg_dir = "dir-ltr"
   end
+
+  case @output_language
+  when "FRENCH"
+    output_enter_text = "Entrer"
+    output_sg_dir = "dir-ltr"
+  when "ARABIC"
+    output_enter_text = "أدخل"
+    output_sg_dir = "dir-rtl"
+  when "ENGLISH"
+    output_enter_text = "Enter"
+    output_sg_dir = "dir-ltr"
+  end
+
+  input_widget_align_style = @input_language.upcase == "ARABIC" ? "text-align:right;" : "text-align:left;"
   output_widget_align_style = @output_language.upcase == "ARABIC" ? "text-align:right;" : "text-align:left;"
 %>
 
@@ -34,7 +49,7 @@
 
                 <!-- Input Area -->
                 <div class="its-template-translate">
-                  <div id="INPUT_AREA" class="column1 column3 column4" contenteditable="true" <%= input_sg_dir %> placeholder="<%= enter_text %>"></div>
+                  <div id="INPUT_AREA" class="column1 column3 column4" contenteditable="true" <%= input_sg_dir %> style="<%= input_widget_align_style %>" placeholder="<%= input_enter_text %>"></div>
                 </div>
 
               </div>
@@ -46,7 +61,7 @@
 
                 <!-- Output Area -->
                 <div class="its-template-preview">
-                  <div id="OUTPUT_AREA" class="column2 column3" contenteditable="false"  style="<%= output_widget_align_style %>">
+                  <div id="OUTPUT_AREA" class="column2 column3" contenteditable="false" <%= output_sg_dir %> style="<%= output_widget_align_style %> placeholder="<%= output_enter_text %>"">
                     
                   </div>
                 </div>
