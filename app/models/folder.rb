@@ -1,6 +1,6 @@
 class Folder < ApplicationRecord
 
-  
+   validates :title, length: {maximum: 256}, allow_blank: false
   def getChild(id)
     @folder = Folder.where(parent_id:id)
   end

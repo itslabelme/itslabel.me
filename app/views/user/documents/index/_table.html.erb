@@ -57,7 +57,7 @@
                                                        
                                                        
                                                         <div role="separator" class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#">Create New</a>
+                                                        <a class="dropdown-item" href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal">Create New</a>
                                                         <a class="dropdown-item" href="#">Archive</a>
                                                         <a class="dropdown-item" href="#">Delete</a>
                                                       </div>                                              
@@ -167,28 +167,34 @@
                 
         </ul>
     </div>
-<script>
-function move_folder(id){
+<div class="modal fade foldermmodal" tabindex="-1" role="dialog" aria-labelledby="foldermmodal" aria-hidden="true" id="foldermmodal">
+  <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b style="color:#fb3600; font-weight:700;">X</b></button><!--&times;-->
+                            <h4 class="modal-title text-center" id="addContact">Add Folder</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <form id="requestacallform"  method="POST" name="requestacallform">
+                                    
+                                <div class="form-group">
+                                  <div class="input-group">                               
+                                    
+                                    <input id="title" type="text" class="form-control" placeholder="Folder Name" name="title"/>
+                                    <input id="user_id" type="hidden" class="form-control"  name="user_id" value="<%=@client_user.id%>"/>
+                                  </div>
+                                </div>
+                                
+                                
 
-var doc = $('input[name="doc_name[]"]:checked').map(function(){
-        return this.value;
-    }).get();
-   
-    data_send = { folder_id:id}
-    $('input[name="doc_name[]"]:checked').each(function() {
-   
-   $.ajax({
-   method: 'put',
-   url: this.value,
-    data: data_send,
-    headers:   {
-    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-  },
-     success: function(data) {
-       location.reload();
-     
-    }
- });
-    });
- }
-</script>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-info" data-dismiss="modal">Close</a>
+                            <button type="button" id="folder-form" class="btn btn-blue">Submit</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+</div>

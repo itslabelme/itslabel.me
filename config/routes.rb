@@ -88,7 +88,11 @@ Rails.application.routes.draw do
     get 'edit_client_profile', to: 'client_profile#edit'
     put 'update_client_profile', to: 'client_profile#update'
     put 'update_client_password', to: 'client_profile#update_password'
-     
+    
+    #Create Folder
+    
+      resources :folder
+      
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }

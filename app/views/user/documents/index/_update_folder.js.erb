@@ -1,0 +1,45 @@
+function move_folder(id){
+
+var doc = $('input[name="doc_name[]"]:checked').map(function(){
+        return this.value;
+    }).get();
+   
+    data_send = { folder_id:id}
+    $('input[name="doc_name[]"]:checked').each(function() {
+   
+   $.ajax({
+   method: 'put',
+   url: this.value,
+    data: data_send,
+    headers:   {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  },
+     success: function(data) {
+       location.reload();
+     
+    }
+ });
+    });
+ }
+
+  $(function(){
+       $('#folder-form').click(function(e) {
+            e.preventDefault();
+           if ($('#title').val() == ''){
+           alert('Folder Title is required');
+           return false;
+           }
+            $.ajax({
+                url: "/user/folder/",
+                type: "POST",
+                data: $("#requestacallform").serialize(),
+                headers:   {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(data){
+                    $('#foldermmodal').modal('show');
+                    window.location.reload();
+                }
+            });
+       }); 
+    });

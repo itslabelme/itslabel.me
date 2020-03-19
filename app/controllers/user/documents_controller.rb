@@ -8,6 +8,7 @@ module User
       @nav = 'user/documents'
       get_user_folder
       get_collection
+      get_client_user
     end
 
     def update_status
@@ -92,5 +93,9 @@ module User
     def get_user_folder
       @folders = Folder.where(user_id: @current_client_user.id)
     end
-  end
+  
+   def get_client_user
+      @client_user = current_client_user
+    end
+end
 end

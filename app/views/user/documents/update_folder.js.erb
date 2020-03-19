@@ -10,3 +10,28 @@
 <% end %>
 
 
+<script>
+function move_folder(id){
+
+var doc = $('input[name="doc_name[]"]:checked').map(function(){
+        return this.value;
+    }).get();
+   
+    data_send = { folder_id:id}
+    $('input[name="doc_name[]"]:checked').each(function() {
+   
+   $.ajax({
+   method: 'put',
+   url: this.value,
+    data: data_send,
+    headers:   {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  },
+     success: function(data) {
+       location.reload();
+     
+    }
+ });
+    });
+ }
+</script>
