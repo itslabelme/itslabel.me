@@ -36,16 +36,18 @@ Rails.application.routes.draw do
       # Update the status of the document
       member do
         put :update_status
+        
       end
     end
-
+      
     # CRUD Template Documents
     resources :template_documents do
       member do
 
         # Create or Update the Document and Translate
         put 'save_and_translate', to: 'template_documents#save_and_translate', as: 'save_and_translate'
-
+        
+        put 'update_template_folder', to: 'template_documents#update_folder'   
         get 'preview', to: 'template_documents#preview', as: 'preview'
 
         # Print the Document in the PDF format
@@ -77,6 +79,8 @@ Rails.application.routes.draw do
 
         #update status
         put 'update_status', to: 'table_documents#update_status', as: 'update_status'
+        #update folder
+        put 'update_table_folder', to: 'table_documents#update_folder' 
       end
     end
    

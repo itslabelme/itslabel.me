@@ -27,7 +27,7 @@ class TableDocument < ApplicationRecord
   # Associations
   belongs_to :user, class_name: "ClientUser"
   has_many :items, class_name: "TableDocumentItem"
-  
+  belongs_to :folders, class_name: "Folder"
   # General Methods
   # ---------------
 

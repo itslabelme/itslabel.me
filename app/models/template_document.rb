@@ -25,7 +25,7 @@ class TemplateDocument < ApplicationRecord
   # Associations
   belongs_to :user, class_name: "ClientUser"
   belongs_to :template, class_name: "LabelTemplate", optional: true
-  
+  belongs_to :folders, class_name: "Folder"
   # Callbacks
   before_save :translate, unless: :skip_callback
 
@@ -55,5 +55,5 @@ class TemplateDocument < ApplicationRecord
   def display_output_language
     LANGUAGE_CODES[self.output_language] if self.output_language
   end
-
+  
 end

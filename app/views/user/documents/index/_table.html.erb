@@ -16,100 +16,11 @@
                                 <div class="body mail-left">
                                     <div class="mail-side">
                                         <ul id="tree2">
-                                            <li><a href="#">Folder 01</a>                            
-                                                <ul>
-                                                    <li>Folder 01.01</li>
-                                                    <li>Folder 01.02
-                                                        <ul>
-                                                            <li>Template 01
-                                                                <ul>
-                                                                    <li>Report1</li>
-                                                                    <li>Report2</li>
-                                                                    <li>Report3</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>Template 02</li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>Folder 01.03</li>
-                                                </ul>
+                                            <% @folders.each_with_index do |folder, i| %>
+                                            <li><a href="#"><%= folder.title %></a>                            
+                                               
                                             </li>
-                                            <li><a href="#">Folder 02</a>                            
-                                                <ul>
-                                                    <li>Folder 01.01</li>
-                                                    <li>Folder 01.02
-                                                        <ul>
-                                                            <li>Template 01
-                                                                <ul>
-                                                                    <li>Report1</li>
-                                                                    <li>Report2</li>
-                                                                    <li>Report3</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>Template 02</li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>Folder 01.03</li>
-                                                </ul>
-                                            </li>
-
-                                            <li><a href="#">Folder 03</a>                            
-                                                <ul>
-                                                    <li>Folder 01.01</li>
-                                                    <li>Folder 01.02
-                                                        <ul>
-                                                            <li>Template 01
-                                                                <ul>
-                                                                    <li>Report1</li>
-                                                                    <li>Report2</li>
-                                                                    <li>Report3</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>Template 02</li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>Folder 01.03</li>
-                                                </ul>
-                                            </li>
-
-                                            <li><a href="#">Folder 04</a>                            
-                                                <ul>
-                                                    <li>Folder 01.01</li>
-                                                    <li>Folder 01.02
-                                                        <ul>
-                                                            <li>Template 01
-                                                                <ul>
-                                                                    <li>Report1</li>
-                                                                    <li>Report2</li>
-                                                                    <li>Report3</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>Template 02</li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>Folder 01.03</li>
-                                                </ul>
-                                            </li>
-
-                                            <li><a href="#">Folder 05</a>                            
-                                                <ul>
-                                                    <li>Folder 01.01</li>
-                                                    <li>Folder 01.02
-                                                        <ul>
-                                                            <li>Template 01
-                                                                <ul>
-                                                                    <li>Report1</li>
-                                                                    <li>Report2</li>
-                                                                    <li>Report3</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>Template 02</li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>Folder 01.03</li>
-                                                </ul>
-                                            </li>
-
+                                            <% end %>
 
                                         </ul>
                                     </div>
@@ -138,9 +49,13 @@
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-share fa-fw"></i></button>
                                                 
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">Folder 01</a>
-                                                        <a class="dropdown-item" href="#">Folder 02</a>
-                                                        <a class="dropdown-item" href="#">Folder 03</a>
+                                                        
+                                                        <% @folders.each_with_index do |folder, i| %>
+                                                          
+                                                          <a class="dropdown-item" data-id="<%= folder.id %>" onClick="move_folder(<%= folder.id %>)" href="#" data-remote="true"><%= folder.title %></a>
+                                                      <% end %>
+                                                       
+                                                       
                                                         <div role="separator" class="dropdown-divider"></div>
                                                         <a class="dropdown-item" href="#">Create New</a>
                                                         <a class="dropdown-item" href="#">Archive</a>
@@ -184,12 +99,14 @@
                                                     doc_status_removed_url = update_status_user_template_document_path(document, status: 'removed') 
                                                     doc_status_archive_url = update_status_user_template_document_path(document, status: 'archived')
                                                     doc_type="Template Based"
+                                                    doc_folder=update_template_folder_user_template_document_path(document)
                                                   elsif document.doc_type == "table_document"
                                                     icon_path = "icons/excel.svg"
                                                     doc_url = user_table_document_path(document) 
                                                     doc_status_removed_url = update_status_user_table_document_path(document, status: 'removed')
                                                     doc_status_archive_url = update_status_user_table_document_path(document, status: 'archived')
                                                     doc_type="Table Based"
+                                                    doc_folder=update_table_folder_user_table_document_path(document)
                                                   else
                                                     doc_url = "#"
                                                     doc_status_removed_url = "#"
@@ -202,7 +119,7 @@
                                                     <td class="w20">
                                                         <div class="md-left">
                                                             <label class="fancy-checkbox">
-                                                                <input type="checkbox" name="checkbox" class="checkbox-tick">
+                                                                <input type="checkbox" name="doc_name[]" value="<%=doc_folder%>" class="checkbox-tick">
                                                                 <span></span>
                                                             </label>
                                                         </div>
@@ -217,7 +134,7 @@
                                                     </td>
                                                     <td><%= document.created_at.strftime("%d %b %Y - %I:%M %p") %></td>
                                                     <td><%= document.updated_at.strftime("%d %b %Y - %I:%M %p") %></td>
-                                                    <td><strong>Folder 01</strong></td>
+                                                    <td><strong><%=document.folder.title%></strong></td>
                                                 </tr>
                                                 
                                                 <% end %>
@@ -250,3 +167,28 @@
                 
         </ul>
     </div>
+<script>
+function move_folder(id){
+
+var doc = $('input[name="doc_name[]"]:checked').map(function(){
+        return this.value;
+    }).get();
+   
+    data_send = { folder_id:id}
+    $('input[name="doc_name[]"]:checked').each(function() {
+   
+   $.ajax({
+   method: 'put',
+   url: this.value,
+    data: data_send,
+    headers:   {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  },
+     success: function(data) {
+       location.reload();
+     
+    }
+ });
+    });
+ }
+</script>

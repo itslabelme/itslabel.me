@@ -12,7 +12,7 @@ class CreateTableDocuments < ActiveRecord::Migration[5.2]
 
       t.string :status, default: "ACTIVE", limit: 16, null: false
       t.boolean :favorite, default: false
-
+      t.references :folder, index: true,null:true, foreign_key: {to_table: :folders, on_delete: :nullify}
       t.references :user, index: true, foreign_key: {to_table: :client_users, on_delete: :cascade}
       t.timestamps null: false
     end
@@ -45,7 +45,7 @@ class CreateTableDocuments < ActiveRecord::Migration[5.2]
       t.belongs_to :output_5_translation
 
       t.boolean :translated, default: false
-      t.references :folder, index: true,null:true, foreign_key: {to_table: :folders, on_delete: :nullify}
+      
       t.timestamps null: false
     end
 
