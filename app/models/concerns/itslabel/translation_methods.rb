@@ -13,7 +13,7 @@ module Itslabel::TranslationMethods
               ]
 
   DELIMITERS_TRANSLATIONS = {
-    ".": {ENGLISH: ".", FRENCH: ".", ARABIC: ""},
+    ".": {ENGLISH: ".", FRENCH: ".", ARABIC: "."},
     "،": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
