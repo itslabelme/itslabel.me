@@ -69,6 +69,7 @@ function ITSTranslate(forceTranslate=false) {
 
   if(sendAjaxRequest){
     let ajaxData = {text: inputText, input_language: inputLanguage, output_language: outputLanguage };
+    //alert(ajaxData);
     $.ajax({
       url: '/user/translate.js',
       type: 'POST',
@@ -201,3 +202,21 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
   $("#OUTPUT_AREA").selectText();
   document.execCommand('copy');
 });
+$(".swap").click(function(){
+  divswap();
+});
+
+function divswap(){
+
+  let inputLanguageOp = $("#INPUT_LANGUAGE").children("option:selected").val();
+  let outputLanguageOp = $("#OUTPUT_LANGUAGE").children("option:selected").val();
+ 
+  let inputText_b = $("#INPUT_AREA").text();
+  let outText_b = $("#OUTPUT_AREA").text();
+  let inputText=$("#INPUT_AREA").text(outText_b);
+  let outText =$("#OUTPUT_AREA").text(inputText_b);
+ 
+  $("#INPUT_LANGUAGE").val(outputLanguageOp).change();
+  $("#OUTPUT_LANGUAGE").val(inputLanguageOp).change();
+  ITSTranslate(true);
+}

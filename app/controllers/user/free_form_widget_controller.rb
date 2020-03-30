@@ -20,21 +20,43 @@ module User
         if value
           @display_text.gsub!(key, value)
         else
-          @display_text.gsub!(key, "<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>#{key}</span>")
+         # @display_text.gsub!(key,key)
+         if @output_language.eql?('Arabic')
+           
+         @display_text.gsub!(key,key)
+         #@display_text.gsub!(key,"_starttag#{key}endtag")
+          else
+            if /^[0-9]+(\.[0-9]*)?$/.match(key)
+            @display_text.gsub!(key,key)
+            else
+              @display_text.gsub!(key, "<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>#{key}</span>")
+            end
+           
+         end
+          
+          #
         end
       end
 
-      delimitters = @input_text.scan(Regexp.union(Translation::DELIMITERS))
+      #delimitters = @input_text.scan(Regexp.union(Translation::DELIMITERS))
 
-      delimitters.each do |dlmtr|
-        dlmtr_translations = Translation::DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
-        translated_dlmtr = dlmtr_translations.try(:[], @output_language.upcase.to_sym)
-        @display_text.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
+     # delimitters.each do |dlmtr|
+     #   dlmtr_translations = Translation::DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
+     #   translated_dlmtr = dlmtr_translations.try(:[], @output_language.upcase.to_sym)
+     #   @display_text.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
+      #end
+      if @output_language.eql?('Arabic')
+        @display_text.gsub!("\n", '<br>')
+        @display_text.reverse
+       # @display_text['_starttag']="<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>"
+       #  @display_text['endtag']="</span>"
+        #raise @display_text.reverse.inspect
+      else
+      @display_text.gsub!("\n", '<br>') 
+      
       end
-
-      @display_text.gsub!("\n", '<br>')
     end
-
+    
     def new_translation_request
     end
 
