@@ -202,17 +202,20 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
   document.execCommand('copy');
 });
 $(".swap").click(function(){
-alert("swap");
- let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
-  let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
+  divswap();
+});
+
+function divswap(){
+
   let inputLanguageOp = $("#INPUT_LANGUAGE").children("option:selected").val();
   let outputLanguageOp = $("#OUTPUT_LANGUAGE").children("option:selected").val();
-  alert(outputLanguage);
+ 
   let inputText_b = $("#INPUT_AREA").text();
   let outText_b = $("#OUTPUT_AREA").text();
   let inputText=$("#INPUT_AREA").text(outText_b);
   let outText =$("#OUTPUT_AREA").text(inputText_b);
+ 
   $("#INPUT_LANGUAGE").val(outputLanguageOp).change();
   $("#OUTPUT_LANGUAGE").val(inputLanguageOp).change();
   ITSTranslate(true);
-});
+}
