@@ -69,6 +69,7 @@ function ITSTranslate(forceTranslate=false) {
 
   if(sendAjaxRequest){
     let ajaxData = {text: inputText, input_language: inputLanguage, output_language: outputLanguage };
+    //alert(ajaxData);
     $.ajax({
       url: '/user/translate.js',
       type: 'POST',

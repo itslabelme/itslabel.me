@@ -17,7 +17,7 @@ module Itslabel::TranslationMethods
     "،": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
-    "mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
+    #"mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
     "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"},
     "grams": {ENGLISH: "grams", FRENCH: "grams", ARABIC: "جم"},
     "gram": {ENGLISH: "gram", FRENCH: "gram", ARABIC: "جم"},
@@ -63,18 +63,25 @@ module Itslabel::TranslationMethods
       })
       options.symbolize_keys!
 
-      words = input.split(Regexp.union(Translation::DELIMITERS))
+      #words = input.split(Regexp.union(Translation::DELIMITERS))
+      words = input.split(" ")
       delimitters = input.scan(Regexp.union(Translation::DELIMITERS))
-      words.delete_if{|x| x.to_s.strip.blank? ||  DELIMITERS.include?(x)}
-
+     # words.delete_if{|x| x.to_s.strip.blank? ||  DELIMITERS.include?(x)}
+     #raise words.inspect
       hash = translate_words(words, options)
+     
+     # reversed_hash = Hash[hash.to_a.reverse]
+
+     # raise reversed_hash.inspect
       if options[:return_in_hash]
+        
         return hash
       else
         output = input.clone
         hash.each do |key, value|
           next unless value
           output.gsub!(key, value)
+          
         end
 
         delimitters.each do |dlmtr|
