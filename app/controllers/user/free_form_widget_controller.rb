@@ -38,13 +38,13 @@ module User
         end
       end
 
-      delimitters = @input_text.scan(Regexp.union(Translation::DELIMITERS))
+      #delimitters = @input_text.scan(Regexp.union(Translation::DELIMITERS))
 
-      delimitters.each do |dlmtr|
-        dlmtr_translations = Translation::DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
-        translated_dlmtr = dlmtr_translations.try(:[], @output_language.upcase.to_sym)
-        @display_text.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
-      end
+     # delimitters.each do |dlmtr|
+     #   dlmtr_translations = Translation::DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
+     #   translated_dlmtr = dlmtr_translations.try(:[], @output_language.upcase.to_sym)
+     #   @display_text.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
+      #end
       if @output_language.eql?('Arabic')
         @display_text.gsub!("\n", '<br>')
         @display_text.reverse
