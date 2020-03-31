@@ -3,9 +3,14 @@ require 'rails_helper'
 RSpec.describe Translation, type: :model do
 
   before :each do
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Apple", output_phrase: "تفاحة")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Mango", output_phrase: "مانجو")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Grapes", output_phrase: "عنب")
+
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Milk", output_phrase: "حليب")
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Butter", output_phrase: "زبدة")
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Ghee", output_phrase: "السمن")
+
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: "حليب", output_phrase: "Milk")
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: "زبدة", output_phrase: "Butter")
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: "السمن", output_phrase: "Ghee")
 
     FactoryBot.create(:english_to_french_translation, input_phrase: "Apple", output_phrase: "Pomme")
     FactoryBot.create(:english_to_french_translation, input_phrase: "Mango", output_phrase: "Mangue")
@@ -176,6 +181,20 @@ RSpec.describe Translation, type: :model do
       expect(translated_html).to include('Poudre de fromage')
       expect(translated_html).to include('Lait')
       expect(translated_html).to include('(Poivre blanc)')
+    end
+
+  end
+
+  context "Advanced Translations" do
+
+    it "should translate anything" do
+      
+      binding.pry
+
+      # English to Arabic
+      expect(Translation.translate('Milk, Butter and Milk.')).to eq('.حليب, زبدة و حليب')
+
+
     end
 
   end

@@ -17,7 +17,7 @@ module User
       @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
       @display_text = @input_text
       if @output_language.eql?('Arabic')
-      convert_arabic(@translated_hash)
+        convert_arabic(@translated_hash)
       else
        convert(@translated_hash) 
       end
