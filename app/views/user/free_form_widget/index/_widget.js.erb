@@ -141,8 +141,26 @@ $(document).on('paste', '#INPUT_AREA', function (e) {
 
 // Widget Controls
 // ---------------
-
+$( document ).ready(function() {
+if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
+ 
+  $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
+  
+  }
+  if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
+ 
+  $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: start;');
+  
+  }
+});
 $("#INPUT_LANGUAGE").on('change', function(){
+if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
+ 
+  $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
+  
+  }else{
+  $('#INPUT_AREA').attr('style','direction: ltr;text-align: start;');
+  }
   ITSTranslate(true);
 });
 
