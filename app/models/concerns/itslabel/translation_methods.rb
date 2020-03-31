@@ -5,7 +5,7 @@ module Itslabel::TranslationMethods
   # DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', '-'] 
   # /(\t\r\n|\t|\r|\n)/,
 
-  DELIMITERS = [/\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n|\s/, 
+  DELIMITERS = [/\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n/, 
                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams
                 /\d*\.?\d*gms?/, /\d*\.?\d*mgs?/, /\d*\.?\d*grams?/,
                 # Percentages 10%, 10.50%
@@ -63,7 +63,9 @@ module Itslabel::TranslationMethods
       })
       options.symbolize_keys!
 
-      words = input.split(Regexp.union(Translation::DELIMITERS))
+     # words = input.split(Regexp.union(Translation::DELIMITERS))
+     words = input.split(/(\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n)/)
+    # raise words.inspect
       #words = input.split(" ")
       delimitters = input.scan(Regexp.union(Translation::DELIMITERS))
       words.delete_if{|x| x.to_s.strip.blank? ||  DELIMITERS.include?(x)}
