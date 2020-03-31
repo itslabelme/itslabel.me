@@ -64,7 +64,7 @@ module Itslabel::TranslationMethods
       options.symbolize_keys!
 
      # words = input.split(Regexp.union(Translation::DELIMITERS))
-     words = input.split(/(\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n|\و|\،|\et|\ou|\أو|\d+|\d*\.?\d*gms?|\d*\.?\d*mgs?|\d*\.?\d*grams?|\d*\.?\d*%)/)
+     words = input.split(/(\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\(|\)|\ and\ |\ or\ |\t|\r|\n|\و|\،|\et|\ou|\أو|\d+|\d*\.?\d*gms?|\d*\.?\d*mgs?|\d*\.?\d*grams?|\d*\.?\d*%)/)
      #raise words.inspect
       #words = input.split(" ")
       delimitters = input.scan(Regexp.union(Translation::DELIMITERS))
