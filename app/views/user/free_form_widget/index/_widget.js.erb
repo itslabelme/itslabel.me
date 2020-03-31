@@ -223,7 +223,12 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
 $(".swap").click(function(){
   divswap();
 });
-
+$("#INPUT_AREA").on('keydown', function(event) {
+    const key = event.key; // const {key} = event; ES6+
+    if (key === "Backspace" || key === "Delete") {
+        ITSTranslate(true);
+    }
+});
 function divswap(){
 
   let inputLanguageOp = $("#INPUT_LANGUAGE").children("option:selected").val();
