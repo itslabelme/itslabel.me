@@ -184,7 +184,7 @@ $(document).on('click', '#INPUT_CUT_ACTION', function (e) {
   // });
 });
 
-$(document).off('click', ".its-tran-not-found");
+$(document).off('click', ".its-tran-not-found");translate
 $(document).on('click', '.its-tran-not-found', function (e) {
   let clickedPhrase = $(this).text();
   // console.log("clickedPhrase: ", clickedPhrase);
@@ -243,3 +243,6 @@ function divswap(){
   $("#OUTPUT_LANGUAGE").val(inputLanguageOp).change();
   ITSTranslate(true);
 }
+$("#translate").click(function(){
+  ITSTranslate(true);
+});
