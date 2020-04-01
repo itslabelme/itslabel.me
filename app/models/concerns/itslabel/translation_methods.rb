@@ -5,11 +5,22 @@ module Itslabel::TranslationMethods
   # DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', '-'] 
   # /(\t\r\n|\t|\r|\n)/,
 
-  DELIMITERS = [/\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n/, 
-                # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams
-                /\d*\.?\d*gms?/, /\d*\.?\d*mgs?/, /\d*\.?\d*grams?/,
+  # DELIMITERS = [/\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n/, 
+  #               # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams
+  #               /(\d*\.?\d*gms?)/, /(\d*\.?\d*mgs?)/, /(\d*\.?\d*grams?)/,
+  #               # Percentages 10%, 10.50%
+  #               /(\d*\.?\d*%)/
+  #             ]
+
+  DELIMITERS = [/((?<![\d])\.)/,
+                # Matching 'and' and 'or' and their arabic and french literals
+                /(\ ?et\ ?|\ ou\ ?|\ ?أو\ ?|\ ?و\ ?|\ and\ ?|\ or\ ?)/,
+                # Commas and other characters
+                /(،|,|;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n)/, 
+                # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
+                /([0-9]+(\.[0-9]*)?(\ )?gr?a?m?ms?)/,
                 # Percentages 10%, 10.50%
-                /\d*\.?\d*%/
+                /(\d*\.?\d*%)/
               ]
 
   DELIMITERS_TRANSLATIONS = {
@@ -64,23 +75,18 @@ module Itslabel::TranslationMethods
       options.symbolize_keys!
 
       words = input.split(Regexp.union(Translation::DELIMITERS))
-      delimitters = input.scan(Regexp.union(Translation::DELIMITERS))
-      words.delete_if{|x| x.to_s.strip.blank? ||  DELIMITERS.include?(x)}
-
       hash = translate_words(words, options)
+      hash.delete_if{|x, y| x.to_s.strip.blank?}
+      hash["_tokens"] = words
+      
       if options[:return_in_hash]
         return hash
       else
         output = input.clone
         hash.each do |key, value|
           next unless value
+          next if key == "_tokens"
           output.gsub!(key, value)
-        end
-
-        delimitters.each do |dlmtr|
-          dlmtr_translations = DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
-          translated_dlmtr = dlmtr_translations.try(:[], options[:output_language])
-          output.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
         end
         return output
       end
@@ -120,6 +126,7 @@ module Itslabel::TranslationMethods
       output = input.clone
       hash.each do |key, value|
         next unless value
+        next if key == "_tokens"
         output.gsub!(key, value)
       end
       return output

@@ -4,6 +4,71 @@ RSpec.describe Translation, type: :model do
 
   before :each do
 
+    # Commas, dots and other literals
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: ".", output_phrase: ".")
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: ",", output_phrase: "،")
+
+    FactoryBot.create(:english_to_french_translation, input_phrase: ".", output_phrase: ".")
+    FactoryBot.create(:english_to_french_translation, input_phrase: ",", output_phrase: ",")
+
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: ".", output_phrase: ".")
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: "،", output_phrase: ",")
+
+    FactoryBot.create(:arabic_to_french_translation, input_phrase: ".", output_phrase: ".")
+    FactoryBot.create(:arabic_to_french_translation, input_phrase: "،", output_phrase: ",")
+
+    FactoryBot.create(:french_to_english_translation, input_phrase: ".", output_phrase: ".")
+    FactoryBot.create(:french_to_english_translation, input_phrase: ",", output_phrase: ",")
+
+    FactoryBot.create(:french_to_arabic_translation, input_phrase: ".", output_phrase: ".")
+    FactoryBot.create(:french_to_arabic_translation, input_phrase: ",", output_phrase: "،")
+
+    # & and or
+    FactoryBot.create(:english_to_french_translation, input_phrase: "and", output_phrase: "et")
+    FactoryBot.create(:english_to_french_translation, input_phrase: "or", output_phrase: "ou")
+
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: "and", output_phrase: "و")
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: "or", output_phrase: "أو")
+
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: "و", output_phrase: "and")
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: "أو", output_phrase: "or")
+
+    FactoryBot.create(:arabic_to_french_translation, input_phrase: "و", output_phrase: "et")
+    FactoryBot.create(:arabic_to_french_translation, input_phrase: "أو", output_phrase: "ou")
+
+    FactoryBot.create(:french_to_english_translation, input_phrase: "et", output_phrase: "and")
+    FactoryBot.create(:french_to_english_translation, input_phrase: "ou", output_phrase: "or")
+
+    FactoryBot.create(:french_to_arabic_translation, input_phrase: "et", output_phrase: "و")
+    FactoryBot.create(:french_to_arabic_translation, input_phrase: "ou", output_phrase: "أو")
+
+    # Apple, Mango and Grapes
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Apple", output_phrase: "تفاحة")
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Mango", output_phrase: "مانجو")
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Grapes", output_phrase: "العنب")
+
+    FactoryBot.create(:english_to_french_translation, input_phrase: "Apple", output_phrase: "Pomme")
+    FactoryBot.create(:english_to_french_translation, input_phrase: "Mango", output_phrase: "Mangue")
+    FactoryBot.create(:english_to_french_translation, input_phrase: "Grapes", output_phrase: "Les Raisins")
+
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: "تفاحة", output_phrase: "Apple")
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: "مانجو", output_phrase: "Mango")
+    FactoryBot.create(:arabic_to_english_translation, input_phrase: "العنب", output_phrase: "Grapes")
+
+    FactoryBot.create(:arabic_to_french_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
+    FactoryBot.create(:arabic_to_french_translation, input_phrase: "مانجو", output_phrase: "Mangue")
+    FactoryBot.create(:arabic_to_french_translation, input_phrase: "العنب", output_phrase: "Les Raisins")
+
+    FactoryBot.create(:french_to_english_translation, input_phrase: "Pomme", output_phrase: "Apple")
+    FactoryBot.create(:french_to_english_translation, input_phrase: "Mangue", output_phrase: "Mango")
+    FactoryBot.create(:french_to_english_translation, input_phrase: "Les Raisins", output_phrase: "Grapes")
+
+    FactoryBot.create(:french_to_arabic_translation, input_phrase: "Pomme", output_phrase: "تفاحة")
+    FactoryBot.create(:french_to_arabic_translation, input_phrase: "Mangue", output_phrase: "مانجو")
+    FactoryBot.create(:french_to_arabic_translation, input_phrase: "Les Raisins", output_phrase: "العنب")
+
+
+    # Mik, Butter and Ghee
     FactoryBot.create(:english_to_arabic_translation, input_phrase: "Milk", output_phrase: "حليب")
     FactoryBot.create(:english_to_arabic_translation, input_phrase: "Butter", output_phrase: "زبدة")
     FactoryBot.create(:english_to_arabic_translation, input_phrase: "Ghee", output_phrase: "السمن")
@@ -12,10 +77,8 @@ RSpec.describe Translation, type: :model do
     FactoryBot.create(:arabic_to_english_translation, input_phrase: "زبدة", output_phrase: "Butter")
     FactoryBot.create(:arabic_to_english_translation, input_phrase: "السمن", output_phrase: "Ghee")
 
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Apple", output_phrase: "Pomme")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Mango", output_phrase: "Mangue")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Grapes", output_phrase: "Les Raisins")
 
+    # Generic Data to test a generic label
     FactoryBot.create(:english_to_french_translation, input_phrase: "Corn", output_phrase: "blé")
     FactoryBot.create(:english_to_french_translation, input_phrase: "Vegetable Oils", output_phrase: "Les Huiles végétales")
     FactoryBot.create(:english_to_french_translation, input_phrase: "Cheese Powder", output_phrase: "Poudre de fromage")
@@ -43,24 +106,56 @@ RSpec.describe Translation, type: :model do
 
   end
 
-  context "Basic Translations" do
-    
-    it "should translate a single word (single word or seperated with spaces) " do
+  context "Single Word Translations" do
+    it "should translate a single word from english to arabic " do
       expect(Translation.translate_word('Apple')).to eq('تفاحة')
       expect(Translation.translate_word('Mango')).to eq('مانجو')
-      expect(Translation.translate_word('Grapes')).to eq('عنب')
+      expect(Translation.translate_word('Grapes')).to eq('العنب')
       expect(Translation.translate_word('No Word')).to eq(nil)
 
       expect(Translation.translate_word('Apple', input_language: "ENGLISH", output_language: "ARABIC")).to eq('تفاحة')
       expect(Translation.translate_word('Mango', input_language: "ENGLISH", output_language: "ARABIC")).to eq('مانجو')
-      expect(Translation.translate_word('Grapes', input_language: "ENGLISH", output_language: "ARABIC")).to eq('عنب')
+      expect(Translation.translate_word('Grapes', input_language: "ENGLISH", output_language: "ARABIC")).to eq('العنب')
       expect(Translation.translate_word('No Word', input_language: "ENGLISH", output_language: "ARABIC")).to eq(nil)
-
-      expect(Translation.translate_word('Apple', output_language: "FRENCH")).to eq('Pomme')
-      expect(Translation.translate_word('Mango', output_language: "FRENCH")).to eq('Mangue')
-      expect(Translation.translate_word('Grapes', output_language: "FRENCH")).to eq('Les Raisins')
-      expect(Translation.translate_word('No Word', output_language: "FRENCH")).to eq(nil)
     end
+
+    it "should translate a single word from english to french " do
+      expect(Translation.translate_word('Apple', input_language: "ENGLISH", output_language: "FRENCH")).to eq('Pomme')
+      expect(Translation.translate_word('Mango', input_language: "ENGLISH", output_language: "FRENCH")).to eq('Mangue')
+      expect(Translation.translate_word('Grapes', input_language: "ENGLISH", output_language: "FRENCH")).to eq('Les Raisins')
+      expect(Translation.translate_word('No Word', input_language: "ENGLISH", output_language: "FRENCH")).to eq(nil)
+    end
+    
+    it "should translate a single word from arabic to english" do
+      expect(Translation.translate_word('تفاحة', input_language: "ARABIC", output_language: "ENGLISH")).to eq('Apple')
+      expect(Translation.translate_word('مانجو', input_language: "ARABIC", output_language: "ENGLISH")).to eq('Mango')
+      expect(Translation.translate_word('العنب', input_language: "ARABIC", output_language: "ENGLISH")).to eq('Grapes')
+      expect(Translation.translate_word('No Word', input_language: "ARABIC", output_language: "ENGLISH")).to eq(nil)
+    end
+
+    it "should translate a single word from arabic to french" do
+      expect(Translation.translate_word('تفاحة', input_language: "ARABIC", output_language: "FRENCH")).to eq('Pomme')
+      expect(Translation.translate_word('مانجو', input_language: "ARABIC", output_language: "FRENCH")).to eq('Mangue')
+      expect(Translation.translate_word('العنب', input_language: "ARABIC", output_language: "FRENCH")).to eq('Les Raisins')
+      expect(Translation.translate_word('بببب', input_language: "ARABIC", output_language: "FRENCH")).to eq(nil)
+    end
+
+    it "should translate a single word from french to english " do
+      expect(Translation.translate_word('Pomme', input_language: "FRENCH", output_language: "ENGLISH")).to eq('Apple')
+      expect(Translation.translate_word('Mangue', input_language: "FRENCH", output_language: "ENGLISH")).to eq('Mango')
+      expect(Translation.translate_word('Les Raisins', input_language: "FRENCH", output_language: "ENGLISH")).to eq('Grapes')
+      expect(Translation.translate_word('No Word', input_language: "FRENCH", output_language: "ENGLISH")).to eq(nil)
+    end
+
+    it "should translate a single word from french to arabic " do
+      expect(Translation.translate_word('Pomme', input_language: "FRENCH", output_language: "ARABIC")).to eq('تفاحة')
+      expect(Translation.translate_word('Mangue', input_language: "FRENCH", output_language: "ARABIC")).to eq('مانجو')
+      expect(Translation.translate_word('Les Raisins', input_language: "FRENCH", output_language: "ARABIC")).to eq('العنب')
+      expect(Translation.translate_word('No Word', input_language: "FRENCH", output_language: "ARABIC")).to eq(nil)
+    end
+  end
+
+  context "Basic Translations" do
 
     it "should translate an array of words" do
       # Arabic
@@ -69,11 +164,11 @@ RSpec.describe Translation, type: :model do
         "Mango" => 'مانجو',
       )
       expect(Translation.translate_words(['Grapes', 'Mango'])).to include(
-        "Grapes" => 'عنب',
+        "Grapes" => 'العنب',
         "Mango" => 'مانجو',
       )
       expect(Translation.translate_words(['Grapes', 'No Word'])).to include(
-        "Grapes" => 'عنب',
+        "Grapes" => 'العنب',
         "No Word" => nil,
       )
 
@@ -130,7 +225,7 @@ RSpec.describe Translation, type: :model do
 
       expect(Translation.translate('Apple')).to eq('تفاحة')
       expect(Translation.translate('Mango')).to eq('مانجو')
-      expect(Translation.translate('Grapes')).to eq('عنب')
+      expect(Translation.translate('Grapes')).to eq('العنب')
       expect(Translation.translate('No Word')).to eq("No Word")
 
       expect(Translation.translate(['Apple', 'Mango'])).to include(
@@ -138,11 +233,11 @@ RSpec.describe Translation, type: :model do
         "Mango" => 'مانجو',
       )
       expect(Translation.translate(['Grapes', 'Mango'])).to include(
-        "Grapes" => 'عنب',
+        "Grapes" => 'العنب',
         "Mango" => 'مانجو',
       )
       expect(Translation.translate(['Grapes', 'No Word'])).to include(
-        "Grapes" => 'عنب',
+        "Grapes" => 'العنب',
         "No Word" => nil,
       )
 
@@ -188,13 +283,67 @@ RSpec.describe Translation, type: :model do
   context "Advanced Translations" do
 
     it "should translate anything" do
-      
-      # English to Arabic
-      expect(Translation.translate('Milk, Butter and Milk.')).to eq('.حليب, زبدة و حليب')
 
+      # English to Arabic
+      expect(Translation.translate('Apple, Mango and Grapes.', return_in_hash: true)).to include(
+        "Apple" => 'تفاحة',
+        "," => '،',
+        "Mango" => 'مانجو',
+        "and" => 'و',
+        "Grapes" => 'العنب',
+        "." => '.',
+      )
+
+      # English to French
+      expect(Translation.translate('Apple, Mango and Grapes.', input_language: "ENGLISH", output_language: "FRENCH", return_in_hash: true)).to include(
+        "Apple" => 'Pomme',
+        "," => ',',
+        "Mango" => 'Mangue',
+        "and" => 'et',
+        "Grapes" => 'Les Raisins',
+        "." => '.',
+      )
+
+      FactoryBot.create(:arabic_to_english_translation, input_phrase: "تفاحة", output_phrase: "Apple")
+      FactoryBot.create(:arabic_to_english_translation, input_phrase: "مانج", output_phrase: "Mango")
+      FactoryBot.create(:arabic_to_english_translation, input_phrase: "عنب", output_phrase: "Grapes")
+
+      # Arabic to English
+      expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "ENGLISH", return_in_hash: true)).to include(
+        "تفاحة" => 'Apple',
+        "،" => ',',
+        "مانج" => 'Mango',
+        "و" => 'and',
+        "عنب" => 'Grapes',
+        "." => '.',
+      )
+
+      # # Arabic to French
+      # expect(Translation.translate('التفاح والمانجو والعنب.', input_language: "ARABIC", output_language: "FRENCH", return_in_hash: true)).to include(
+      #   "تفاحة" => 'Pomme',
+      #   "،" => ',',
+      #   "مانجو" => 'Mangue',
+      #   "و" => 'et',
+      #   "العنب" => 'Les Raisins',
+      #   "." => '.',
+      # )
 
     end
 
   end
 
 end
+
+# Input text for reference
+# التفاح والمانجو والعنب.
+# Apple. Mango. 
+# .Apple
+# Apple 12.500 grams, 100 gms Grapes and Apple.
+
+# 12.500 grams Apple, 
+# 12.5 gms Apple
+# 1 gm Apple
+
+# 12.500grams Apple, 
+# 12.5gms Apple
+# 1gm Apple
