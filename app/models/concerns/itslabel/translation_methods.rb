@@ -65,7 +65,7 @@ module Itslabel::TranslationMethods
 
      # words = input.split(Regexp.union(Translation::DELIMITERS))
      #|\ and\|\ or\|\t|\r|\n|\و|\،|\et|\ou|\أو|\d*\.?\d*gms?|\d*\.?\d*mgs?|\d*\.?\d*grams?|\d*\.?\d*%
-     words = input.split(/(\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\(|\)|\ and\b|\ or\b|\t|\r|\n|\d*\.?\d*gms?|\d*\.?\d*mgs?|\d*\.?\d*grams?|\d*\.?\d*%)/)
+     words = input.split(/(\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\(|\)|\ and\b|\ or\b|\t|\r|\n|\و\b|\،|\et\b|\ou\b|\أو\b|\d*\.?\d*gms?|\d*\.?\d*mgs?|\d*\.?\d*grams?|\d*\.?\d*%)/)
      #raise words.inspect
       #words = input.split(" ")
       #sdelimitters = input.scan(Regexp.union(Translation::DELIMITERS))
