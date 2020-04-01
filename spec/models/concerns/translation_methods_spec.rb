@@ -189,8 +189,6 @@ RSpec.describe Translation, type: :model do
 
     it "should translate anything" do
       
-      binding.pry
-
       # English to Arabic
       expect(Translation.translate('Milk, Butter and Milk.')).to eq('.حليب, زبدة و حليب')
 

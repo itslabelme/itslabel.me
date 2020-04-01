@@ -55,7 +55,7 @@ module Itslabel::TranslationMethods
       translation_hash
     end
 
-    def translate_paragraph(input, **options)
+    def translate_paragraph_old(input, **options)
       options.reverse_merge!({
         input_language: "ENGLISH",
         output_language: "ARABIC",
@@ -87,10 +87,45 @@ module Itslabel::TranslationMethods
           
         end
 
-        delimitters.each do |dlmtr|
-          dlmtr_translations = DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
-          translated_dlmtr = dlmtr_translations.try(:[], options[:output_language])
-          output.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
+        # delimitters.each do |dlmtr|
+        #   dlmtr_translations = DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
+        #   translated_dlmtr = dlmtr_translations.try(:[], options[:output_language])
+        #   output.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
+        # end
+        return output
+      end
+    end
+
+    def translate_paragraph(input, **options)
+      options.reverse_merge!({
+        input_language: "ENGLISH",
+        output_language: "ARABIC",
+        return_in_hash: false
+      })
+      options.symbolize_keys!
+
+      # words = input.split(Regexp.union(Translation::DELIMITERS))
+      #|\ and\|\ or\|\t|\r|\n|\و|\،|\et|\ou|\أو|\d*\.?\d*gms?|\d*\.?\d*mgs?|\d*\.?\d*grams?|\d*\.?\d*%
+
+      words = input.split(/(\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\(|\)|\ and\b|\ or\b|\t|\r|\n|\و\b|\،|\et\b|\ou\b|\أو\b|\d*\.?\d*gms?|\d*\.?\d*mgs?|\d*\.?\d*grams?|\d*\.?\d*%)/)
+      hash = translate_words(words, options)
+
+      #raise words.inspect
+      #words = input.split(" ")
+      #delimitters = input.scan(Regexp.union(Translation::DELIMITERS))
+      #words.delete_if{|x| x.to_s.strip.blank? ||  DELIMITERS.include?(x)}
+      #raise words.inspect
+
+      #reversed_hash = Hash[hash.to_a.reverse]
+      #raise reversed_hash.inspect
+
+      if options[:return_in_hash]
+        return hash
+      else
+        output = input.clone
+        hash.each do |key, value|
+          next unless value
+          output.gsub!(key, value)
         end
         return output
       end
