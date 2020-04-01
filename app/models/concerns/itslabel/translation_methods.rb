@@ -77,7 +77,12 @@ module Itslabel::TranslationMethods
       words = input.split(Regexp.union(Translation::DELIMITERS))
       hash = translate_words(words, options)
       hash.delete_if{|x, y| x.to_s.strip.blank?}
-      hash["_tokens"] = words
+
+      # if output_language == "ARABIC"
+      #   hash["_tokens"] = words.reverse
+      # else
+      #   hash["_tokens"] = words
+      # end
       
       if options[:return_in_hash]
         return hash
