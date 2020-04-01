@@ -70,20 +70,25 @@ module User
         if value
           @display_text.gsub!(key, value)
         else
-         # @display_text.gsub!(key,key)
-         @display_text.gsub!(key, "<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>#{key}</span>")
-         #@display_text.gsub!(key,"_starttag#{key}endtag")
+         #if (/^[0-9]+(\.[0-9]*)?$/.match(key) || /^\d+(\.\d+)?%$/.match(key))
+         if /^[0-9]+(\.[0-9]*)?$/.match(key)
+            @display_text.gsub!(key,key)
+           
+            else
+              @display_text.gsub!(key, "<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>#{key}</span>")
+            end
+         
         end
       end
-     # @display_text.gsub!("\n", '')
-      @display_text.reverse
+      @display_text.gsub!("\n", '<br>')
+      #@display_text.reverse
    end
    def convert(translated_hash)
      translated_hash.each do |key, value|
         if value
           @display_text.gsub!(key, value)
         else
-                    if /^[0-9]+(\.[0-9]*)?$/.match(key)
+            if /^[0-9]+(\.[0-9]*)?$/.match(key)
             @display_text.gsub!(key,key)
             else
               @display_text.gsub!(key, "<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>#{key}</span>")
