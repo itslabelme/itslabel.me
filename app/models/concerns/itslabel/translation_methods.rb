@@ -2,23 +2,14 @@ module Itslabel::TranslationMethods
   
   extend ActiveSupport::Concern
 
-  # DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', '-'] 
-  # /(\t\r\n|\t|\r|\n)/,
-
-  # DELIMITERS = [/\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n/, 
-  #               # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams
-  #               /(\d*\.?\d*gms?)/, /(\d*\.?\d*mgs?)/, /(\d*\.?\d*grams?)/,
-  #               # Percentages 10%, 10.50%
-  #               /(\d*\.?\d*%)/
-  #             ]
-
   DELIMITERS = [/((?<![\d])\.)/,
                 # Matching 'and' and 'or' and their arabic and french literals
                 /(\ ?et\ ?|\ ou\ ?|\ ?أو\ ?|\ ?و\ ?|\ and\ ?|\ or\ ?)/,
                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
-                /(\ ?\(?([0-9]+(\.[0-9]*)?(\ )?gr?a?m?s?)\)?\ ?)/,
+                # /(\(?\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m?s?\ ?\)?)/,
+                /(\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m?s?\ ?)/,
                 # 10mg, 10 mg
-                /\ ?\(?([0-9]+(\.[0-9]*)?(\ )?mg)\)?\ ?/,
+                /(\ ?\(?([0-9]+(\.[0-9]*)?(\ )?mg)\)?\ ?)/,
                 # Percentages 10%, 10.50%
                 /(\d*\.?\d*%)/,
                 # Commas and other characters
@@ -66,9 +57,12 @@ module Itslabel::TranslationMethods
         translated_word = translate_word(word.strip, options)
         if translated_word
           translation_hash[word.strip] = translated_word
+        elsif word.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
+          # Translating the simple Delimitters 
+          translation_hash[word] = word
         else
-          # Translating the Delimitters
-          translation_hash[word] = translate_delimiter(word, options)
+          # Translating the complex Delimitters 
+          translation_hash[word.strip] = translate_delimiter(word, options)
         end
       end
       translation_hash
@@ -86,7 +80,7 @@ module Itslabel::TranslationMethods
 
       words = input.split(Regexp.union(Translation::DELIMITERS))
       hash = translate_words(words, options)
-      
+
       if rtl
         hash["_tokens"] = words.reverse
       else
@@ -174,7 +168,7 @@ module Itslabel::TranslationMethods
         weight = delim.scan(/mg/).try(:first) || delim.scan(/gr?a?m?s?/).try(:first)
         if num && weight
           translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language]) || translated_weight
-          return rtl ? "(#{translated_weight} #{num})" : "(#{num} #{translated_weight})" 
+          return rtl ? "#{translated_weight} #{num}" : "#{num} #{translated_weight}" 
         elsif delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?/)
          # Match if the string is an integer or decimal
          return delim
