@@ -15,22 +15,34 @@ module User
 
       @input_text = params[:text].strip
       @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
-      @display_text = @input_text
-      @translated_hash.each do |key, value|
-        if value
-          @display_text.gsub!(key, value)
+
+      @display_text = ""
+      tokens = @translated_hash["_tokens"]
+
+      tokens.each do |tk|
+        if @translated_hash[tk.strip]
+          @display_text += @translated_hash[tk.strip] + " "
         else
-          @display_text.gsub!(key, "<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>#{key}</span>")
+          dir_attr = @output_language == "ARABIC" ? 'rtl' : ''
+          @display_text += "<span class='its-tran-not-found' dir='#{dir_attr}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
         end
       end
 
-      delimitters = @input_text.scan(Regexp.union(Translation::DELIMITERS))
+      # @translated_hash.each do |key, value|
+      #   if value
+      #     @display_text.gsub!(key, value)
+      #   else
+      #     @display_text.gsub!(key, "<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>#{key}</span>")
+      #   end
+      # end
 
-      delimitters.each do |dlmtr|
-        dlmtr_translations = Translation::DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
-        translated_dlmtr = dlmtr_translations.try(:[], @output_language.upcase.to_sym)
-        @display_text.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
-      end
+      # delimitters = @input_text.scan(Regexp.union(Translation::DELIMITERS))
+
+      # delimitters.each do |dlmtr|
+      #   dlmtr_translations = Translation::DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
+      #   translated_dlmtr = dlmtr_translations.try(:[], @output_language.upcase.to_sym)
+      #   @display_text.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
+      # end
 
       @display_text.gsub!("\n", '<br>')
     end
