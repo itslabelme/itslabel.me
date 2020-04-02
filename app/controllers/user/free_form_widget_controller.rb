@@ -20,6 +20,7 @@ module User
       tokens = @translated_hash["_tokens"]
 
       tokens.each do |tk|
+
         # tk.strip gives "" if tk == "\n" or those characters
         # hence handling them separately
         if tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
@@ -31,6 +32,7 @@ module User
             translated_text = @translated_hash[tk.strip]
           end
         end
+        
         if translated_text
           @display_text += translated_text + " "
         else
