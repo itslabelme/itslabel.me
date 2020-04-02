@@ -76,6 +76,8 @@ module Itslabel::TranslationMethods
       })
       options.symbolize_keys!
 
+      input.gsub!("&nbsp;", " ")
+
       rtl = options[:output_language] == "ARABIC"
 
       words = input.split(Regexp.union(Translation::DELIMITERS))
