@@ -55,7 +55,7 @@ function parseTextFromContentEditable(rawHtmlText) {
 function ITSTranslate(forceTranslate=false) {
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
   let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
-  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+  let inputText = parseTextFromContentEditable($("#INPUT_AREA").text());
   
   // let inputText = $("#INPUT_AREA").html().replace(/\u00a0/g, " ").replace(/\xA0/g,' ');
   // let inputText = $("#INPUT_AREA").html().replace(/&nbsp;/g, '\n');

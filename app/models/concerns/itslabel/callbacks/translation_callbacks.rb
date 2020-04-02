@@ -3,8 +3,9 @@ module Itslabel::Callbacks::TranslationCallbacks
   extend ActiveSupport::Concern
   
   def sanitize_phrases
-    self.input_phrase.strip!
-    self.output_phrase.strip!
+    self.english_phrase.strip!
+    self.arabic_phrase.strip!
+    self.french_phrase.strip!
   end
   
 end

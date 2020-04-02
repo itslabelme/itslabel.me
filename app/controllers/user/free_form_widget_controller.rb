@@ -20,8 +20,8 @@ module User
       tokens = @translated_hash["_tokens"]
 
       tokens.each do |tk|
-        if @translated_hash[tk.strip]
-          @display_text += @translated_hash[tk.strip] + " "
+        if @translated_hash[tk]
+          @display_text += @translated_hash[tk] + " "
         else
           dir_attr = @output_language == "ARABIC" ? 'rtl' : ''
           @display_text += "<span class='its-tran-not-found' dir='#{dir_attr}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"

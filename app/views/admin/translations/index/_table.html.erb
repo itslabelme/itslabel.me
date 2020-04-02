@@ -3,10 +3,10 @@
     <thead>
       <tr>
         <th style="width: 10%;">#</th>
-        <th style="width: 25%;">Input Phrase</th>
-        <th style="width: 15%;">Input Language</th>
-        <th style="width: 25%;">Output Phrase</th>
-        <th style="width: 15%;">Output Language</th>
+        <th style="width: 25%;">English Phrase</th>
+        <th style="width: 15%;">Arabic Phrase</th>
+        <th style="width: 25%;">French Phrase</th>
+        
         <th style="width: 10%;">Action</th>
       </tr>
     </thead>
@@ -21,15 +21,15 @@
             <div class="d-flex align-items-center">
               <div>
                 <%= link_to  admin_translation_path(translation) ,remote: true do%> 
-                  <%=translation.input_phrase%>
+                  <%=translation.english_phrase%>
                   <% end  %>
               </div>
             </div>
           </td>
-          <td class="its-tag"><%=  translation.input_language %></td>
+          <td class="its-tag"><%=  translation.arabic_phrase %></td>
 
-          <td><%=  translation.output_phrase %></td>
-          <td><%=  translation.output_language %></td>
+          <td><%=  translation.french_phrase %></td>
+          
           <td>
             <%= link_to edit_admin_translation_path(translation), class: "btn btn-sm btn-default", remote: true do %>
               <i class="icon-pencil"></i>

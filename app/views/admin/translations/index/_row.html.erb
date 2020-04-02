@@ -5,14 +5,13 @@
   <td>
     <div class="d-flex align-items-center">
       <div>
-        <%= link_to translation.input_phrase, "#" %> 
+        <%= link_to translation.english_phrase, "#" %> 
       </div>
     </div>
   </td>
-  <td class="its-tag"><%=  translation.input_language %></td>
+  <td class="its-tag"><%=  translation.arabic_pharse %></td>
 
-  <td><%=  translation.output_phrase %></td>
-  <td><%=  translation.output_language %></td>
+  <td><%=  translation.french_phrase %></td>
   <td>
     <%= link_to edit_admin_translation_path(translation), class: "btn btn-sm btn-default", remote: true do %>
       <i class="icon-pencil"></i>

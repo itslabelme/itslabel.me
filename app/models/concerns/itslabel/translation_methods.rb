@@ -16,7 +16,7 @@ module Itslabel::TranslationMethods
                 # Matching 'and' and 'or' and their arabic and french literals
                 /(\ ?et\ ?|\ ou\ ?|\ ?أو\ ?|\ ?و\ ?|\ and\ ?|\ or\ ?)/,
                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
-                /\ ?\(?([0-9]+(\.[0-9]*)?(\ )?gr?a?m?s?)\)?\ ?/,
+                /(\ ?\(?([0-9]+(\.[0-9]*)?(\ )?gr?a?m?s?)\)?\ ?)/,
                 # 10mg, 10 mg
                 /\ ?\(?([0-9]+(\.[0-9]*)?(\ )?mg)\)?\ ?/,
                 # Percentages 10%, 10.50%
@@ -46,16 +46,17 @@ module Itslabel::TranslationMethods
         output_language: "ARABIC"
       })
       options.symbolize_keys!
-
-      where(input_language: options[:input_language], 
-            output_language: options[:output_language]).
-      where("LOWER(input_phrase) = LOWER(?)", word.strip).
-      select(:output_phrase).
-      first.try(:output_phrase)
+      
+        if (options[:input_language].eql?('English') && options[:output_language].eql?('Arabic'))
+           # raise options[:input_language]
+          where("LOWER(english_phrase) = LOWER(?)", word.strip).
+          select(:arabic_phrase).
+          first.try(:arabic_phrase)
+        end
     end
 
     def translate_words(words, **options)
-      options.reverse_merge!({
+        options.reverse_merge!({
         input_language: "ENGLISH",
         output_language: "ARABIC"
       })
@@ -63,7 +64,13 @@ module Itslabel::TranslationMethods
 
       translation_hash = {}
       words.each do |word|
-        translation_hash[word.strip] = translate_word(word, options)
+        translated_word = translate_word(word.strip, options)
+        if translated_word
+          translation_hash[word.strip] = translated_word
+        else
+          # Translating the Delimitters
+          translation_hash[word] = translate_delimiter(word, options)
+        end
       end
       translation_hash
     end
@@ -87,6 +94,8 @@ module Itslabel::TranslationMethods
       # Translating the Delimitters
       hash.each {|x, y| hash[x] = translate_delimiter(x, options) if y.nil? }
       
+       #raise hash.inspect
+
       if rtl
         hash["_tokens"] = words.reverse
       else

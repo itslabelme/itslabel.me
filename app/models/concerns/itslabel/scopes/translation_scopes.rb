@@ -6,25 +6,23 @@ module Itslabel::Scopes::TranslationScopes
 
     # Scopes
     scope :search, lambda {|query| where("
-      LOWER(translations.input_phrase) LIKE LOWER(?) OR\
+      LOWER(translations.arabic_phrase) LIKE LOWER(?) OR\
     
-      LOWER(translations.input_language) LIKE LOWER(?) OR\
+      LOWER(translations.english_phrase) LIKE LOWER(?) OR\
 
-      LOWER(translations.output_phrase) LIKE LOWER(?) OR\
-      LOWER(translations.output_language) LIKE LOWER(?) 
-    ", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")}
+      LOWER(translations.french_phrase) LIKE LOWER(?)  
+
+    ", "%#{query}%", "%#{query}%", "%#{query}%")}
  
-    scope :search_only_input_phrase, lambda {|input_phrase| input_phrase.to_s.blank? ? where("") : where("
-      LOWER(translations.input_phrase) LIKE LOWER(?)", "%#{input_phrase}%")}
+    scope :search_only_english_phrase, lambda {|english_phrase| english_phrase.to_s.blank? ? where("") : where("
+      LOWER(translations.english_phrase) LIKE LOWER(?)", "%#{english_phrase}%")}
 
-    scope :search_only_output_phrase, lambda {|output_phrase| output_phrase.to_s.blank? ? where("") : where("
-      LOWER(translations.output_phrase) LIKE LOWER(?)", output_phrase)}
+    scope :search_only_arabic_phrase, lambda {|arabic_phrase| arabic_phrase.to_s.blank? ? where("") : where("
+      LOWER(translations.arabic_phrase) LIKE LOWER(?)", arabic_phrase)}
 
-    scope :search_only_input_language, lambda {|input_language| input_language.to_s.blank? ? where("") : where("
-      LOWER(translations.input_language) = LOWER(?)", input_language)}
-
-    scope :search_only_output_language, lambda {|output_language| output_language.to_s.blank? ? where("") : where("
-      LOWER(translations.output_language) = LOWER(?)", output_language)}
+    scope :search_only_french_phrase, lambda {|french_phrase| french_phrase.to_s.blank? ? where("") : where("
+      LOWER(translations.french_phrase) LIKE LOWER(?)", french_phrase)}
+    
 
     scope :search_only_status, lambda {|status| status.to_s.blank? ? where("") : where("
       LOWER(translations.status) = LOWER(?)", status)}
