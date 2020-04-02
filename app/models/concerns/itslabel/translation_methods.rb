@@ -16,7 +16,7 @@ module Itslabel::TranslationMethods
                 # Matching 'and' and 'or' and their arabic and french literals
                 /(\ ?et\ ?|\ ou\ ?|\ ?أو\ ?|\ ?و\ ?|\ and\ ?|\ or\ ?)/,
                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
-                /\ ?\(?([0-9]+(\.[0-9]*)?(\ )?gr?a?m?s?)\)?\ ?/,
+                /(\ ?\(?([0-9]+(\.[0-9]*)?(\ )?gr?a?m?s?)\)?\ ?)/,
                 # 10mg, 10 mg
                 /\ ?\(?([0-9]+(\.[0-9]*)?(\ )?mg)\)?\ ?/,
                 # Percentages 10%, 10.50%
@@ -63,7 +63,13 @@ module Itslabel::TranslationMethods
 
       translation_hash = {}
       words.each do |word|
-        translation_hash[word.strip] = translate_word(word, options)
+        translated_word = translate_word(word.strip, options)
+        if translated_word
+          translation_hash[word.strip] = translated_word
+        else
+          # Translating the Delimitters
+          translation_hash[word] = translate_delimiter(word, options)
+        end
       end
       translation_hash
     end
@@ -79,13 +85,7 @@ module Itslabel::TranslationMethods
       rtl = options[:output_language] == "ARABIC"
 
       words = input.split(Regexp.union(Translation::DELIMITERS))
-      words.delete_if{|x| x.to_s.strip.blank?}
-      
       hash = translate_words(words, options)
-      # Removing Elements which are empty
-      hash.delete_if{|x, y| x.to_s.strip.blank?}
-      # Translating the Delimitters
-      hash.each {|x, y| hash[x] = translate_delimiter(x, options) if y.nil? }
       
       if rtl
         hash["_tokens"] = words.reverse
@@ -155,10 +155,19 @@ module Itslabel::TranslationMethods
       options.symbolize_keys!
 
       rtl = options[:output_language] == "ARABIC"
-      
-      if delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?%/)
+
+      if delim.match(/،|,/)
+        # Match , and arabic comma
+        return rtl ? " ،" : ", "
+      elsif delim.match(/(?<![\d])\./)
+        # Match .
+        return "."
+      elsif delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?%/)
         # Match if the string is an integer or decimal but with a %
         return rtl ? "%#{delim.gsub('%','')}".strip : delim
+      elsif delim.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
+        # Match other special delimiter characers
+        return delim
       else
         # Match if the string is of this format : 100.00grams, 10.0 gms, 1gm
         num = delim.scan(/-?\d*\.?\d+/).try(:first)
@@ -167,10 +176,11 @@ module Itslabel::TranslationMethods
           translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language]) || translated_weight
           return rtl ? "(#{translated_weight} #{num})" : "(#{num} #{translated_weight})" 
         elsif delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?/)
-          # Match if the string is an integer or decimal
-          return delim
+         # Match if the string is an integer or decimal
+         return delim
+        else
+          return nil
         end
-        return nil
       end
     end
 

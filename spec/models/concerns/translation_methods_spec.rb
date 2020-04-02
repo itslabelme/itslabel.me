@@ -425,7 +425,8 @@ RSpec.describe Translation, type: :model do
     end
   end
 
-  context "Delimiter Translation"
+  context "Delimiter Translation" do
+
     it "should translate numeric delimitter combinations" do
       expect(Translation.translate_delimiter('12.500')).to eq("12.500")
       expect(Translation.translate_delimiter('12.50')).to eq("12.50")
@@ -568,6 +569,24 @@ RSpec.describe Translation, type: :model do
       expect(Translation.translate_delimiter('12.50g', options)).to eq("(غ 12.50)")
       expect(Translation.translate_delimiter('12.5g', options)).to eq("(غ 12.5)")
       expect(Translation.translate_delimiter('12g', options)).to eq("(غ 12)")
+    end
+
+    it "should translate other characters such as newlines" do
+      expect(Translation.translate_delimiter(",")).to eq(", ")
+      expect(Translation.translate_delimiter(".")).to eq(".")
+      expect(Translation.translate_delimiter("\n")).to eq("\n")
+      expect(Translation.translate_delimiter("\t")).to eq("\t")
+      expect(Translation.translate_delimiter(" ")).to eq(nil)
+      expect(Translation.translate_delimiter("Invalid Delimiter")).to eq(nil)
+
+      options = {input_language: "ENGLISH", output_language: "ARABIC"}
+      expect(Translation.translate_delimiter(",", options)).to eq(" ،")
+      expect(Translation.translate_delimiter(".", options)).to eq(".")
+      expect(Translation.translate_delimiter("\n", options)).to eq("\n")
+      expect(Translation.translate_delimiter("\t", options)).to eq("\t")
+      expect(Translation.translate_delimiter(" ", options)).to eq(nil)
+      expect(Translation.translate_delimiter("Invalid Delimiter", options)).to eq(nil)
+    end
   end
 
 end
