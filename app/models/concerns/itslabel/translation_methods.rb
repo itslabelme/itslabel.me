@@ -5,24 +5,37 @@ module Itslabel::TranslationMethods
   # DELIMITERS = ['.', ',', ';', '(', ')', '[', ']', ':', '|', '!', '-'] 
   # /(\t\r\n|\t|\r|\n)/,
 
-  DELIMITERS = [/\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n/, 
-                # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams
-                /\d*\.?\d*gms?/, /\d*\.?\d*mgs?/, /\d*\.?\d*grams?/,
+  # DELIMITERS = [/\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\ and\ |\ or\ |\t|\r|\n/, 
+  #               # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams
+  #               /(\d*\.?\d*gms?)/, /(\d*\.?\d*mgs?)/, /(\d*\.?\d*grams?)/,
+  #               # Percentages 10%, 10.50%
+  #               /(\d*\.?\d*%)/
+  #             ]
+
+  DELIMITERS = [/((?<![\d])\.)/,
+                # Matching 'and' and 'or' and their arabic and french literals
+                /(\ ?et\ ?|\ ou\ ?|\ ?أو\ ?|\ ?و\ ?|\ and\ ?|\ or\ ?)/,
+                # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
+                /\ ?\(?([0-9]+(\.[0-9]*)?(\ )?gr?a?m?s?)\)?\ ?/,
+                # 10mg, 10 mg
+                /\ ?\(?([0-9]+(\.[0-9]*)?(\ )?mg)\)?\ ?/,
                 # Percentages 10%, 10.50%
-                /\d*\.?\d*%/
+                /(\d*\.?\d*%)/,
+                # Commas and other characters
+                /(،|,|;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n)/
               ]
 
   DELIMITERS_TRANSLATIONS = {
-    ".": {ENGLISH: ".", FRENCH: ".", ARABIC: "."},
+    ".": {ENGLISH: ".", FRENCH: ".", ARABIC: ""},
     "،": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
     ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
-    #"mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
-   # "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"},
-   # "grams": {ENGLISH: "grams", FRENCH: "grams", ARABIC: "جم"},
-   # "gram": {ENGLISH: "gram", FRENCH: "gram", ARABIC: "جم"},
-   # " and ": {ENGLISH: " and ", FRENCH: " et ", ARABIC: " و "},
-   # " or ": {ENGLISH: " or ", FRENCH: " ou ", ARABIC: " أو "},
+    "mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
+    "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"},
+    "grams": {ENGLISH: "grams", FRENCH: "grams", ARABIC: "جم"},
+    "gram": {ENGLISH: "gram", FRENCH: "gram", ARABIC: "جم"},
+    " and ": {ENGLISH: " and ", FRENCH: " et ", ARABIC: " و "},
+    " or ": {ENGLISH: " or ", FRENCH: " ou ", ARABIC: " أو "},
   }
 
   class_methods do
@@ -63,34 +76,31 @@ module Itslabel::TranslationMethods
       })
       options.symbolize_keys!
 
-     # words = input.split(Regexp.union(Translation::DELIMITERS))
-     #|\ and\|\ or\|\t|\r|\n|\و|\،|\et|\ou|\أو|\d*\.?\d*gms?|\d*\.?\d*mgs?|\d*\.?\d*grams?|\d*\.?\d*%
-     words = input.split(/(\.|,|،|;|\(|\)|\[|\]|:|\||!|\-|\(|\)|\ and\b|\ or\b|\t|\r|\n|\و\b|\،|\et\b|\ou\b|\أو\b|\d*\.?\d*gms?|\d*\.?\d*mgs?|\d*\.?\d*grams?|\d*\.?\d*%)/)
-     #raise words.inspect
-      #words = input.split(" ")
-      #sdelimitters = input.scan(Regexp.union(Translation::DELIMITERS))
-     # words.delete_if{|x| x.to_s.strip.blank? ||  DELIMITERS.include?(x)}
-     #raise words.inspect
-      hash = translate_words(words, options)
-     
-     # reversed_hash = Hash[hash.to_a.reverse]
+      rtl = options[:output_language] == "ARABIC"
 
-     # raise reversed_hash.inspect
+      words = input.split(Regexp.union(Translation::DELIMITERS))
+      words.delete_if{|x| x.to_s.strip.blank?}
+      
+      hash = translate_words(words, options)
+      # Removing Elements which are empty
+      hash.delete_if{|x, y| x.to_s.strip.blank?}
+      # Translating the Delimitters
+      hash.each {|x, y| hash[x] = translate_delimiter(x, options) if y.nil? }
+      
+      if rtl
+        hash["_tokens"] = words.reverse
+      else
+        hash["_tokens"] = words
+      end
+
       if options[:return_in_hash]
-        
         return hash
       else
         output = input.clone
         hash.each do |key, value|
           next unless value
+          next if key == "_tokens"
           output.gsub!(key, value)
-          
-        end
-
-        delimitters.each do |dlmtr|
-          dlmtr_translations = DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
-          translated_dlmtr = dlmtr_translations.try(:[], options[:output_language])
-          output.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
         end
         return output
       end
@@ -130,9 +140,38 @@ module Itslabel::TranslationMethods
       output = input.clone
       hash.each do |key, value|
         next unless value
+        next if key == "_tokens"
         output.gsub!(key, value)
       end
       return output
+    end
+
+    def translate_delimiter(delim, **options)
+      options.reverse_merge!({
+        input_language: "ENGLISH",
+        output_language: "FRENCH",
+        return_in_hash: false
+      })
+      options.symbolize_keys!
+
+      rtl = options[:output_language] == "ARABIC"
+      
+      if delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?%/)
+        # Match if the string is an integer or decimal but with a %
+        return rtl ? "%#{delim.gsub('%','')}".strip : delim
+      else
+        # Match if the string is of this format : 100.00grams, 10.0 gms, 1gm
+        num = delim.scan(/-?\d*\.?\d+/).try(:first)
+        weight = delim.scan(/mg/).try(:first) || delim.scan(/gr?a?m?s?/).try(:first)
+        if num && weight
+          translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language]) || translated_weight
+          return rtl ? "(#{translated_weight} #{num})" : "(#{num} #{translated_weight})" 
+        elsif delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?/)
+          # Match if the string is an integer or decimal
+          return delim
+        end
+        return nil
+      end
     end
 
   end
