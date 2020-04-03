@@ -56,7 +56,13 @@ function ITSTranslate(forceTranslate=false) {
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
   let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
   let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  
+  let htm = $("#INPUT_AREA").html().split("<br>");
+  var el = document.createElement('html');
+  el.innerHTML=inputText
+  str = $(el).text().replace("<span class=\"its-tran-not-found\" dir=\"\"><i class=\"icon-question mr-2\"></i>", "");
+  str = str.replace("</span>", "");
+  //alert(inputText);
+  // console.log(str);
   // let inputText = $("#INPUT_AREA").html().replace(/\u00a0/g, " ").replace(/\xA0/g,' ');
   // let inputText = $("#INPUT_AREA").html().replace(/&nbsp;/g, '\n');
   
@@ -68,7 +74,7 @@ function ITSTranslate(forceTranslate=false) {
   // console.log("sendAjaxRequest: ", sendAjaxRequest);
 
   if(sendAjaxRequest){
-    let ajaxData = {text: inputText, input_language: inputLanguage, output_language: outputLanguage };
+    let ajaxData = {text: str, input_language: inputLanguage, output_language: outputLanguage };
     //alert(ajaxData);
     $.ajax({
       url: '/user/translate.js',
@@ -252,12 +258,23 @@ function divswap(){
 
   let inputLanguageOp = $("#INPUT_LANGUAGE").children("option:selected").val();
   let outputLanguageOp = $("#OUTPUT_LANGUAGE").children("option:selected").val();
- 
+  let inputTextHtml = parseTextFromContentEditable($("#OUTPUT_AREA").html());
   let inputText_b = $("#INPUT_AREA").text();
   let outText_b = $("#OUTPUT_AREA").html();
-  let inputText=$("#INPUT_AREA").html(outText_b);
+  //outText_b.replace("<span class=\"its-tran-not-found\" dir=\"\"><i class=\"icon-question mr-2\"></i>", "");
+    // outText_b.replace("</span>", "");
+     //outText_b.split('</br>');
+     outText_b = outText_b.replace(/<\/?span[^>]*>/g,"");
+     outText_b = outText_b.replace(/<\/?i[^>]*>/g,"");
+ // console.log(outText_b);
+  outText_b.split('<br>');
+  //console.log(outText_b);
+  // var el = document.createElement('html');
+  // el.innerHTML=inputTextHtml
+  // str = $(el).text().replace("<span class=\"its-tran-not-found\" dir=\"\"><i class=\"icon-question mr-2\"></i>", "");
+  // str = str.replace("</span>", "");
   //let outText =$("#OUTPUT_AREA").text(inputText_b);
- 
+  let inputText=$("#INPUT_AREA").html(outText_b);
   $("#INPUT_LANGUAGE").val(outputLanguageOp).change();
   $("#OUTPUT_LANGUAGE").val(inputLanguageOp).change();
   ITSTranslate(true);
