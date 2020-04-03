@@ -5,144 +5,142 @@ RSpec.describe Translation, type: :model do
   before :each do
 
     # Commas, dots and other literals
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: ".", output_phrase: ".")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: ",", output_phrase: "،")
+    FactoryBot.create(:english_arabic_french_translation, english_phrase: ".", arabic_phrase: ".", french_phrase: ".")
+    FactoryBot.create(:english_arabic_french_translation, english_phrase: ",", arabic_phrase: "،", french_phrase: ",")
 
-    FactoryBot.create(:english_to_french_translation, input_phrase: ".", output_phrase: ".")
-    FactoryBot.create(:english_to_french_translation, input_phrase: ",", output_phrase: ",")
+    
 
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: ".", output_phrase: ".")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "،", output_phrase: ",")
+    
 
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: ".", output_phrase: ".")
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "،", output_phrase: ",")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: ".", output_phrase: ".")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "،", output_phrase: ",")
 
-    FactoryBot.create(:french_to_english_translation, input_phrase: ".", output_phrase: ".")
-    FactoryBot.create(:french_to_english_translation, input_phrase: ",", output_phrase: ",")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: ".", output_phrase: ".")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: ",", output_phrase: ",")
 
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: ".", output_phrase: ".")
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: ",", output_phrase: "،")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: ".", output_phrase: ".")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: ",", output_phrase: "،")
 
     # & and or
-    FactoryBot.create(:english_to_french_translation, input_phrase: "and", output_phrase: "et")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "or", output_phrase: "ou")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "and", french_phrase: "et", arabic_phrase: "و")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "or", french_phrase: "ou", arabic_phrase: "أو")
 
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "and", output_phrase: "و")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "or", output_phrase: "أو")
+    # FactoryBot.create(:english_arabic_french_translation, input_phrase: "and", output_phrase: "و")
+    # FactoryBot.create(:english_arabic_french_translation, input_phrase: "or", output_phrase: "أو")
 
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "و", output_phrase: "and")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "أو", output_phrase: "or")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "و", output_phrase: "and")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "أو", output_phrase: "or")
 
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "و", output_phrase: "et")
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "أو", output_phrase: "ou")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "و", output_phrase: "et")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "أو", output_phrase: "ou")
 
-    FactoryBot.create(:french_to_english_translation, input_phrase: "et", output_phrase: "and")
-    FactoryBot.create(:french_to_english_translation, input_phrase: "ou", output_phrase: "or")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "et", output_phrase: "and")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "ou", output_phrase: "or")
 
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "et", output_phrase: "و")
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "ou", output_phrase: "أو")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "et", output_phrase: "و")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "ou", output_phrase: "أو")
 
-    # Delimiter Translations
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "grams", output_phrase: "جرامات")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "gram", output_phrase: "غرام")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "gm", output_phrase: "جم")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "gms", output_phrase: "جم")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "g", output_phrase: "غ")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "mg", output_phrase: "ملغ")
+    # # Delimiter Translations
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "grams", arabic_phrase: "جرامات", french_phrase: "grammes")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "gram", arabic_phrase: "غرام", french_phrase: "grammes")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "gm", arabic_phrase: "جم", french_phrase: "gm")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "gms", arabic_phrase: "جم", french_phrase: "gms")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "g", arabic_phrase: "غ", french_phrase: "g")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "mg", arabic_phrase: "ملغ", french_phrase: "mg")
 
-    FactoryBot.create(:english_to_french_translation, input_phrase: "grams", output_phrase: "grammes")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "gram", output_phrase: "grammes")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "gm", output_phrase: "gm")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "gms", output_phrase: "gms")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "g", output_phrase: "g")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "mg", output_phrase: "mg")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "grams", output_phrase: "grammes")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "gram", output_phrase: "grammes")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "gm", output_phrase: "gm")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "gms", output_phrase: "gms")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "g", output_phrase: "g")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "mg", output_phrase: "mg")
 
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "جرامات", output_phrase: "grams")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "غرام", output_phrase: "gram")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "جم", output_phrase: "gm")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "غ", output_phrase: "g")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "ملغ", output_phrase: "mg")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "جرامات", output_phrase: "grams")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "غرام", output_phrase: "gram")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "جم", output_phrase: "gm")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "غ", output_phrase: "g")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "ملغ", output_phrase: "mg")
 
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "جرامات", output_phrase: "grammes")
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "غرام", output_phrase: "grammes")
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "جم", output_phrase: "gm")
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "غ", output_phrase: "g")
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "ملغ", output_phrase: "mg")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "جرامات", output_phrase: "grammes")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "غرام", output_phrase: "grammes")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "جم", output_phrase: "gm")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "غ", output_phrase: "g")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "ملغ", output_phrase: "mg")
 
-    FactoryBot.create(:french_to_english_translation, input_phrase: "grammes", output_phrase: "grams")
-    FactoryBot.create(:french_to_english_translation, input_phrase: "gm", output_phrase: "gm")
-    FactoryBot.create(:french_to_english_translation, input_phrase: "gms", output_phrase: "gms")
-    FactoryBot.create(:french_to_english_translation, input_phrase: "g", output_phrase: "g")
-    FactoryBot.create(:french_to_english_translation, input_phrase: "mg", output_phrase: "mg")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "grammes", output_phrase: "grams")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "gm", output_phrase: "gm")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "gms", output_phrase: "gms")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "g", output_phrase: "g")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "mg", output_phrase: "mg")
 
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "grammes", output_phrase: "جرامات")
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "gm", output_phrase: "جم")
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "gms", output_phrase: "جم")
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "g", output_phrase: "غ")
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "mg", output_phrase: "ملغ")
-
-
-    # Apple, Mango and Grapes
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Apple", output_phrase: "تفاحة")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Mango", output_phrase: "مانجو")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Grapes", output_phrase: "العنب")
-
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Apple", output_phrase: "Pomme")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Mango", output_phrase: "Mangue")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Grapes", output_phrase: "Les Raisins")
-
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "تفاحة", output_phrase: "Apple")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "مانجو", output_phrase: "Mango")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "العنب", output_phrase: "Grapes")
-
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "مانجو", output_phrase: "Mangue")
-    FactoryBot.create(:arabic_to_french_translation, input_phrase: "العنب", output_phrase: "Les Raisins")
-
-    FactoryBot.create(:french_to_english_translation, input_phrase: "Pomme", output_phrase: "Apple")
-    FactoryBot.create(:french_to_english_translation, input_phrase: "Mangue", output_phrase: "Mango")
-    FactoryBot.create(:french_to_english_translation, input_phrase: "Les Raisins", output_phrase: "Grapes")
-
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "Pomme", output_phrase: "تفاحة")
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "Mangue", output_phrase: "مانجو")
-    FactoryBot.create(:french_to_arabic_translation, input_phrase: "Les Raisins", output_phrase: "العنب")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "grammes", output_phrase: "جرامات")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "gm", output_phrase: "جم")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "gms", output_phrase: "جم")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "g", output_phrase: "غ")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "mg", output_phrase: "ملغ")
 
 
-    # Mik, Butter and Ghee
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Milk", output_phrase: "حليب")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Butter", output_phrase: "زبدة")
-    FactoryBot.create(:english_to_arabic_translation, input_phrase: "Ghee", output_phrase: "السمن")
+    # # Apple, Mango and Grapes
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "Apple", arabic_phrase: "تفاحة", french_phrase: "Pomme")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "Mango", arabic_phrase: "مانجو", french_phrase: "Mangue")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "Grapes", arabic_phrase: "العنب", french_phrase: "Les Raisins")
 
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "حليب", output_phrase: "Milk")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "زبدة", output_phrase: "Butter")
-    FactoryBot.create(:arabic_to_english_translation, input_phrase: "السمن", output_phrase: "Ghee")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Apple", output_phrase: "Pomme")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Mango", output_phrase: "Mangue")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Grapes", output_phrase: "Les Raisins")
+
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "تفاحة", output_phrase: "Apple")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "مانجو", output_phrase: "Mango")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "العنب", output_phrase: "Grapes")
+
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "مانجو", output_phrase: "Mangue")
+    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "العنب", output_phrase: "Les Raisins")
+
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "Pomme", output_phrase: "Apple")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "Mangue", output_phrase: "Mango")
+    # FactoryBot.create(:french_to_english_translation, input_phrase: "Les Raisins", output_phrase: "Grapes")
+
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "Pomme", output_phrase: "تفاحة")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "Mangue", output_phrase: "مانجو")
+    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "Les Raisins", output_phrase: "العنب")
 
 
-    # Generic Data to test a generic label
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Corn", output_phrase: "blé")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Vegetable Oils", output_phrase: "Les Huiles végétales")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Cheese Powder", output_phrase: "Poudre de fromage")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Milk", output_phrase: "Lait")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Salt", output_phrase: "Sel")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Buttermilk Powder", output_phrase: "Poudre de papillon")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Wheat Flour", output_phrase: "Farine de blé")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Whey Protein", output_phrase: "Protéine de whey")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Concentrate", output_phrase: "Concentrer")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Tomato Powder", output_phrase: "Poudre de tomate")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Flavour Enhancers", output_phrase: "Exhausteurs de goût")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Onion Powder", output_phrase: "Poudre d'oignon")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Whey Powder", output_phrase: "La poudre de lactosérum")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Garlic Powder", output_phrase: "Poudre d'ail")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Dextrose", output_phrase: "Dextrose")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Sugar", output_phrase: "Sucre")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Natural Flavour", output_phrase: "Saveur naturelle")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Minieral", output_phrase: "Minéral")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Food Acids", output_phrase: "Acides alimentaires")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Lactic Acid", output_phrase: "Acide lactique")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Citric Acid", output_phrase: "Acide citrique")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Spice", output_phrase: "Pimenter")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Whitepepper", output_phrase: "Poivre blanc")
-    FactoryBot.create(:english_to_french_translation, input_phrase: "Colours", output_phrase: "Couleurs")
+    # # Mik, Butter and Ghee
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "Milk", arabic_phrase: "حليب",french_phrase:"Lait")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "Butter", arabic_phrase: "زبدة",french_phrase:"Beurre")
+     FactoryBot.create(:english_arabic_french_translation, english_phrase: "Ghee", arabic_phrase: "السمن",french_phrase:"Ghee")
+
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "حليب", output_phrase: "Milk")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "زبدة", output_phrase: "Butter")
+    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "السمن", output_phrase: "Ghee")
+
+
+    # # Generic Data to test a generic label
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Corn", output_phrase: "blé")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Vegetable Oils", output_phrase: "Les Huiles végétales")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Cheese Powder", output_phrase: "Poudre de fromage")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Milk", output_phrase: "Lait")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Salt", output_phrase: "Sel")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Buttermilk Powder", output_phrase: "Poudre de papillon")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Wheat Flour", output_phrase: "Farine de blé")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Whey Protein", output_phrase: "Protéine de whey")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Concentrate", output_phrase: "Concentrer")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Tomato Powder", output_phrase: "Poudre de tomate")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Flavour Enhancers", output_phrase: "Exhausteurs de goût")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Onion Powder", output_phrase: "Poudre d'oignon")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Whey Powder", output_phrase: "La poudre de lactosérum")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Garlic Powder", output_phrase: "Poudre d'ail")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Dextrose", output_phrase: "Dextrose")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Sugar", output_phrase: "Sucre")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Natural Flavour", output_phrase: "Saveur naturelle")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Minieral", output_phrase: "Minéral")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Food Acids", output_phrase: "Acides alimentaires")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Lactic Acid", output_phrase: "Acide lactique")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Citric Acid", output_phrase: "Acide citrique")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Spice", output_phrase: "Pimenter")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Whitepepper", output_phrase: "Poivre blanc")
+    # FactoryBot.create(:english_to_french_translation, input_phrase: "Colours", output_phrase: "Couleurs")
   end
 
   context "Single Word Translations" do
@@ -340,9 +338,9 @@ RSpec.describe Translation, type: :model do
         "." => '.',
       )
 
-      FactoryBot.create(:arabic_to_english_translation, input_phrase: "تفاحة", output_phrase: "Apple")
-      FactoryBot.create(:arabic_to_english_translation, input_phrase: "مانج", output_phrase: "Mango")
-      FactoryBot.create(:arabic_to_english_translation, input_phrase: "عنب", output_phrase: "Grapes")
+      FactoryBot.create(:arabic_to_english_translation, arabic_phrase: "تفاحة", english_phrase: "Apple", french_phrase: "Pomme")
+      FactoryBot.create(:arabic_to_english_translation, arabic_phrase: "مانج", english_phrase: "Mango",french_phrase: "Mangue")
+     FactoryBot.create(:arabic_to_english_translation, arabic_phrase: "عنب", english_phrase: "Grapes", french_phrase: "Les Raisins")
 
       # Arabic to English
       expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "ENGLISH", return_in_hash: true)).to include(
@@ -354,9 +352,9 @@ RSpec.describe Translation, type: :model do
         "." => '.',
       )
 
-      FactoryBot.create(:arabic_to_french_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
-      FactoryBot.create(:arabic_to_french_translation, input_phrase: "مانج", output_phrase: "Mangue")
-      FactoryBot.create(:arabic_to_french_translation, input_phrase: "عنب", output_phrase: "Les Raisins")
+      # FactoryBot.create(:arabic_to_french_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
+      # FactoryBot.create(:arabic_to_french_translation, input_phrase: "مانج", output_phrase: "Mangue")
+      # FactoryBot.create(:arabic_to_french_translation, input_phrase: "عنب", output_phrase: "Les Raisins")
 
       # # Arabic to French
       expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "FRENCH", return_in_hash: true)).to include(
