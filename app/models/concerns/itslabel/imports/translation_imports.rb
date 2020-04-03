@@ -14,14 +14,25 @@ module Itslabel::Imports::TranslationImports
       # puts "Admin User: #{hsh[:admin_user_email]} - not found".red unless admin_user
       # return error_object unless admin_user
 
-      input_phrase = hsh[:input_phrase].to_s.strip
-      input_language = hsh[:input_language].to_s.strip
+      english_phrase = hsh[:english_phrase].to_s.strip
+      arabic_phrase = hsh[:arabic_phrase].to_s.strip
+      french_phrase = hsh[:french_phrase].to_s.strip
+      #input_language = hsh[:input_language].to_s.strip
 
-      output_phrase = hsh[:output_phrase].to_s.strip
-      output_language = hsh[:output_language].to_s.strip
+      #output_phrase = hsh[:output_phrase].to_s.strip
+      #output_language = hsh[:output_language].to_s.strip
       category = hsh[:category].to_s.strip
       
-      translation = Translation.where(input_phrase: input_phrase, output_phrase: output_phrase, input_language: input_language, output_language: output_language).first
+      #translation = Translation.where(input_phrase: input_phrase, output_phrase: output_phrase, input_language: input_language, output_language: output_language).first
+      if input_language.eql('English')
+        translation = Translation.where(english_phrase: english_phrase).first
+      elsif input_language.eql('Arabic')
+        translation = Translation.where(arabic_phrase: arabic_phrase).first
+      elsif input_language.eql('French')
+        translation = Translation.where(french_phrase: french_phrase).first
+      end
+        
+        
       if translation
         # puts "#{input_phrase} (#{input_language}) => #{output_phrase} (#{output_language})".yellow
       else
@@ -29,11 +40,13 @@ module Itslabel::Imports::TranslationImports
       end
           
       translation.admin_user_id = admin_user.id if admin_user
-      translation.input_phrase = input_phrase
-      translation.input_language = input_language
+      translation.english_phrase = english_phrase
+      translation.arabic_phrase = arabic_phrase
+      translation.french_phrase = french_phrase
+      #translation.input_language = input_language
 
-      translation.output_phrase = output_phrase
-      translation.output_language = output_language
+      #translation.output_phrase = output_phrase
+      #translation.output_language = output_language
       translation.category = category if category
 
 
@@ -46,7 +59,7 @@ module Itslabel::Imports::TranslationImports
 	        error_object.errors << { summary: summary, details: details }        
 	      end
 	    else
-	      summary = "Error while saving yojana_translations: #{translation.input_phrase} - #{translation.input_language} "
+	      summary = "Error while saving yojana_translations: #{translation.english_phrase} "
 	      details = "Error! #{translation.errors.full_messages.to_sentence}"
 	      error_object.errors << { summary: summary, details: details }
 	    end
