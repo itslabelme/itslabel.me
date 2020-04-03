@@ -141,30 +141,46 @@ $(document).on('paste', '#INPUT_AREA', function (e) {
 
 // Widget Controls
 // ---------------
+// On load of page set the oriantation of text according to language selected.
 $( document ).ready(function() {
 if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
  
   $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
-  
-  }
-  if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
- 
-  $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: start;');
-  
-  }
-});
-$("#INPUT_LANGUAGE").on('change', function(){
-if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
- 
-  $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
+  $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: left;');
   
   }else{
-  $('#INPUT_AREA').attr('style','direction: ltr;text-align: start;');
+    
+
+    if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
+ 
+    $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: right;');
+    $('#INPUT_AREA').attr('style','direction: ltr;text-align: left;cursor: text;');
+  
+  }else{
+    $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: right;');
+    $('#INPUT_AREA').attr('style','direction: ltr;text-align: left;cursor: text;');
   }
+}
+});
+/// On input put language change change oriantation of text
+$("#INPUT_LANGUAGE").on('change', function(){
+    if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
+    $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
+    }else{
+    $('#INPUT_AREA').attr('style','direction: ltr;text-align: right;cursor: text;');
+    }
+
   ITSTranslate(true);
 });
-
+/// On out put language change change oriantation of text
 $("#OUTPUT_LANGUAGE").on('change', function(){
+  if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
+
+  $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: right;');
+  }else
+  {
+  $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: left;');
+  }
   ITSTranslate(true);
 });
 
@@ -235,9 +251,9 @@ function divswap(){
   let outputLanguageOp = $("#OUTPUT_LANGUAGE").children("option:selected").val();
  
   let inputText_b = $("#INPUT_AREA").text();
-  let outText_b = $("#OUTPUT_AREA").text();
-  let inputText=$("#INPUT_AREA").text(outText_b);
-  let outText =$("#OUTPUT_AREA").text(inputText_b);
+  let outText_b = $("#OUTPUT_AREA").html();
+  let inputText=$("#INPUT_AREA").html(outText_b);
+  //let outText =$("#OUTPUT_AREA").text(inputText_b);
  
   $("#INPUT_LANGUAGE").val(outputLanguageOp).change();
   $("#OUTPUT_LANGUAGE").val(inputLanguageOp).change();
