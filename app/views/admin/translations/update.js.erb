@@ -11,7 +11,7 @@
 
   // Reload the form to show errors
   <% @translation = Translation.new %>
-  $("#TRANSLATIONS_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
+  $("#TRANSLATIONS_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/translations/form/form.html.erb')) %>");
 
   // Hide the form
   showTab('TRANSLATIONS_LIST');
@@ -26,7 +26,7 @@
   notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
 
   // Reload the form to show errors
-  $("#TRANSLATIONS_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/translations/form/form')) %>");
+  $("#TRANSLATIONS_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/translations/form/form.html.erb')) %>");
 
   // Set Focus on the First Input after loading the form
   setFocusOnFirstInput("TRANSLATIONS_EDIT_FORM");

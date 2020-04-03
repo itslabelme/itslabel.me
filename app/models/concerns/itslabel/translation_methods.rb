@@ -38,11 +38,25 @@ module Itslabel::TranslationMethods
       })
       options.symbolize_keys!
 
-      where(input_language: options[:input_language], 
-            output_language: options[:output_language]).
-      where("LOWER(input_phrase) = LOWER(?)", word.strip).
-      select(:output_phrase).
-      first.try(:output_phrase)
+       if (options[:input_language].eql?('English') && options[:output_language].eql?('Arabic') )
+        where("LOWER(english_phrase) = LOWER(?)", word.strip).
+        select(:arabic_phrase).
+        first.try(:arabic_phrase)
+      elsif (options[:input_language].eql?('Arabic') && options[:output_language].eql?('English') )
+        
+        where("LOWER(arabic_phrase) = LOWER(?)", word.strip).
+        select(:english_phrase).
+        first.try(:english_phrase)
+      elsif (options[:input_language].eql?('English') && options[:output_language].eql?('French') )
+        where("LOWER(english_phrase) = LOWER(?)", word.strip).
+        select(:french_phrase).
+        first.try(:french_phrase)
+      elsif (options[:input_language].eql?('French') && options[:output_language].eql?('English') )
+        where("LOWER(french_phrase) = LOWER(?)", word.strip).
+        select(:english_phrase).
+        first.try(:english_phrase)
+      end
+
     end
 
     def translate_words(words, **options)
