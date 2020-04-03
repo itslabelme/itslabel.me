@@ -105,7 +105,7 @@ module Itslabel::TranslationMethods
 
       words = input.split(Regexp.union(Translation::DELIMITERS))
       hash = translate_words(words, options)
-
+      #raise hash.inspect
       if rtl
         hash["_tokens"] = words.reverse
       else
