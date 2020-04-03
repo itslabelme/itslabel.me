@@ -12,14 +12,14 @@ RSpec.describe Translation, type: :model do
 
     
 
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: ".", output_phrase: ".")
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "،", output_phrase: ",")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: ".", output_phrase: ".")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "،", output_phrase: ",")
 
-    # FactoryBot.create(:french_to_english_translation, input_phrase: ".", output_phrase: ".")
-    # FactoryBot.create(:french_to_english_translation, input_phrase: ",", output_phrase: ",")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: ".", output_phrase: ".")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: ",", output_phrase: ",")
 
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: ".", output_phrase: ".")
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: ",", output_phrase: "،")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: ".", output_phrase: ".")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: ",", output_phrase: "،")
 
     # & and or
      FactoryBot.create(:english_arabic_french_translation, english_phrase: "and", french_phrase: "et", arabic_phrase: "و")
@@ -28,17 +28,17 @@ RSpec.describe Translation, type: :model do
     # FactoryBot.create(:english_arabic_french_translation, input_phrase: "and", output_phrase: "و")
     # FactoryBot.create(:english_arabic_french_translation, input_phrase: "or", output_phrase: "أو")
 
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "و", output_phrase: "and")
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "أو", output_phrase: "or")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "و", output_phrase: "and")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "أو", output_phrase: "or")
 
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "و", output_phrase: "et")
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "أو", output_phrase: "ou")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "و", output_phrase: "et")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "أو", output_phrase: "ou")
 
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "et", output_phrase: "and")
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "ou", output_phrase: "or")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "et", output_phrase: "and")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "ou", output_phrase: "or")
 
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "et", output_phrase: "و")
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "ou", output_phrase: "أو")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "et", output_phrase: "و")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "ou", output_phrase: "أو")
 
     # # Delimiter Translations
      FactoryBot.create(:english_arabic_french_translation, english_phrase: "grams", arabic_phrase: "جرامات", french_phrase: "grammes")
@@ -48,36 +48,36 @@ RSpec.describe Translation, type: :model do
      FactoryBot.create(:english_arabic_french_translation, english_phrase: "g", arabic_phrase: "غ", french_phrase: "g")
      FactoryBot.create(:english_arabic_french_translation, english_phrase: "mg", arabic_phrase: "ملغ", french_phrase: "mg")
 
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "grams", output_phrase: "grammes")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "gram", output_phrase: "grammes")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "gm", output_phrase: "gm")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "gms", output_phrase: "gms")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "g", output_phrase: "g")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "mg", output_phrase: "mg")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "grams", output_phrase: "grammes")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "gram", output_phrase: "grammes")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "gm", output_phrase: "gm")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "gms", output_phrase: "gms")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "g", output_phrase: "g")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "mg", output_phrase: "mg")
 
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "جرامات", output_phrase: "grams")
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "غرام", output_phrase: "gram")
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "جم", output_phrase: "gm")
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "غ", output_phrase: "g")
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "ملغ", output_phrase: "mg")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "جرامات", output_phrase: "grams")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "غرام", output_phrase: "gram")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "جم", output_phrase: "gm")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "غ", output_phrase: "g")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "ملغ", output_phrase: "mg")
 
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "جرامات", output_phrase: "grammes")
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "غرام", output_phrase: "grammes")
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "جم", output_phrase: "gm")
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "غ", output_phrase: "g")
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "ملغ", output_phrase: "mg")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "جرامات", output_phrase: "grammes")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "غرام", output_phrase: "grammes")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "جم", output_phrase: "gm")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "غ", output_phrase: "g")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "ملغ", output_phrase: "mg")
 
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "grammes", output_phrase: "grams")
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "gm", output_phrase: "gm")
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "gms", output_phrase: "gms")
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "g", output_phrase: "g")
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "mg", output_phrase: "mg")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "grammes", output_phrase: "grams")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "gm", output_phrase: "gm")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "gms", output_phrase: "gms")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "g", output_phrase: "g")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "mg", output_phrase: "mg")
 
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "grammes", output_phrase: "جرامات")
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "gm", output_phrase: "جم")
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "gms", output_phrase: "جم")
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "g", output_phrase: "غ")
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "mg", output_phrase: "ملغ")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "grammes", output_phrase: "جرامات")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "gm", output_phrase: "جم")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "gms", output_phrase: "جم")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "g", output_phrase: "غ")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "mg", output_phrase: "ملغ")
 
 
     # # Apple, Mango and Grapes
@@ -85,25 +85,25 @@ RSpec.describe Translation, type: :model do
      FactoryBot.create(:english_arabic_french_translation, english_phrase: "Mango", arabic_phrase: "مانجو", french_phrase: "Mangue")
      FactoryBot.create(:english_arabic_french_translation, english_phrase: "Grapes", arabic_phrase: "العنب", french_phrase: "Les Raisins")
 
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Apple", output_phrase: "Pomme")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Mango", output_phrase: "Mangue")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Grapes", output_phrase: "Les Raisins")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Apple", output_phrase: "Pomme")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Mango", output_phrase: "Mangue")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Grapes", output_phrase: "Les Raisins")
 
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "تفاحة", output_phrase: "Apple")
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "مانجو", output_phrase: "Mango")
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "العنب", output_phrase: "Grapes")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "تفاحة", output_phrase: "Apple")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "مانجو", output_phrase: "Mango")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "العنب", output_phrase: "Grapes")
 
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "مانجو", output_phrase: "Mangue")
-    # FactoryBot.create(:arabic_to_french_translation, input_phrase: "العنب", output_phrase: "Les Raisins")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "مانجو", output_phrase: "Mangue")
+    # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "العنب", output_phrase: "Les Raisins")
 
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "Pomme", output_phrase: "Apple")
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "Mangue", output_phrase: "Mango")
-    # FactoryBot.create(:french_to_english_translation, input_phrase: "Les Raisins", output_phrase: "Grapes")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "Pomme", output_phrase: "Apple")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "Mangue", output_phrase: "Mango")
+    # FactoryBot.create(:French_to_English_translation, input_phrase: "Les Raisins", output_phrase: "Grapes")
 
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "Pomme", output_phrase: "تفاحة")
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "Mangue", output_phrase: "مانجو")
-    # FactoryBot.create(:french_to_arabic_translation, input_phrase: "Les Raisins", output_phrase: "العنب")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "Pomme", output_phrase: "تفاحة")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "Mangue", output_phrase: "مانجو")
+    # FactoryBot.create(:French_to_Arabic_translation, input_phrase: "Les Raisins", output_phrase: "العنب")
 
 
     # # Mik, Butter and Ghee
@@ -111,84 +111,84 @@ RSpec.describe Translation, type: :model do
      FactoryBot.create(:english_arabic_french_translation, english_phrase: "Butter", arabic_phrase: "زبدة",french_phrase:"Beurre")
      FactoryBot.create(:english_arabic_french_translation, english_phrase: "Ghee", arabic_phrase: "السمن",french_phrase:"Ghee")
 
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "حليب", output_phrase: "Milk")
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "زبدة", output_phrase: "Butter")
-    # FactoryBot.create(:arabic_to_english_translation, input_phrase: "السمن", output_phrase: "Ghee")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "حليب", output_phrase: "Milk")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "زبدة", output_phrase: "Butter")
+    # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "السمن", output_phrase: "Ghee")
 
 
     # # Generic Data to test a generic label
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Corn", output_phrase: "blé")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Vegetable Oils", output_phrase: "Les Huiles végétales")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Cheese Powder", output_phrase: "Poudre de fromage")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Milk", output_phrase: "Lait")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Salt", output_phrase: "Sel")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Buttermilk Powder", output_phrase: "Poudre de papillon")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Wheat Flour", output_phrase: "Farine de blé")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Whey Protein", output_phrase: "Protéine de whey")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Concentrate", output_phrase: "Concentrer")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Tomato Powder", output_phrase: "Poudre de tomate")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Flavour Enhancers", output_phrase: "Exhausteurs de goût")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Onion Powder", output_phrase: "Poudre d'oignon")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Whey Powder", output_phrase: "La poudre de lactosérum")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Garlic Powder", output_phrase: "Poudre d'ail")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Dextrose", output_phrase: "Dextrose")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Sugar", output_phrase: "Sucre")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Natural Flavour", output_phrase: "Saveur naturelle")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Minieral", output_phrase: "Minéral")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Food Acids", output_phrase: "Acides alimentaires")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Lactic Acid", output_phrase: "Acide lactique")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Citric Acid", output_phrase: "Acide citrique")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Spice", output_phrase: "Pimenter")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Whitepepper", output_phrase: "Poivre blanc")
-    # FactoryBot.create(:english_to_french_translation, input_phrase: "Colours", output_phrase: "Couleurs")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Corn", output_phrase: "blé")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Vegetable Oils", output_phrase: "Les Huiles végétales")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Cheese Powder", output_phrase: "Poudre de fromage")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Milk", output_phrase: "Lait")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Salt", output_phrase: "Sel")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Buttermilk Powder", output_phrase: "Poudre de papillon")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Wheat Flour", output_phrase: "Farine de blé")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Whey Protein", output_phrase: "Protéine de whey")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Concentrate", output_phrase: "Concentrer")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Tomato Powder", output_phrase: "Poudre de tomate")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Flavour Enhancers", output_phrase: "Exhausteurs de goût")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Onion Powder", output_phrase: "Poudre d'oignon")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Whey Powder", output_phrase: "La poudre de lactosérum")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Garlic Powder", output_phrase: "Poudre d'ail")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Dextrose", output_phrase: "Dextrose")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Sugar", output_phrase: "Sucre")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Natural Flavour", output_phrase: "Saveur naturelle")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Minieral", output_phrase: "Minéral")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Food Acids", output_phrase: "Acides alimentaires")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Lactic Acid", output_phrase: "Acide lactique")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Citric Acid", output_phrase: "Acide citrique")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Spice", output_phrase: "Pimenter")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Whitepepper", output_phrase: "Poivre blanc")
+    # FactoryBot.create(:English_to_French_translation, input_phrase: "Colours", output_phrase: "Couleurs")
   end
 
   context "Single Word Translations" do
-    it "should translate a single word from english to arabic " do
+    it "should translate a single word from English to Arabic " do
       expect(Translation.translate_word('Apple')).to eq('تفاحة')
       expect(Translation.translate_word('Mango')).to eq('مانجو')
       expect(Translation.translate_word('Grapes')).to eq('العنب')
       expect(Translation.translate_word('No Word')).to eq(nil)
 
-      expect(Translation.translate_word('Apple', input_language: "ENGLISH", output_language: "ARABIC")).to eq('تفاحة')
-      expect(Translation.translate_word('Mango', input_language: "ENGLISH", output_language: "ARABIC")).to eq('مانجو')
-      expect(Translation.translate_word('Grapes', input_language: "ENGLISH", output_language: "ARABIC")).to eq('العنب')
-      expect(Translation.translate_word('No Word', input_language: "ENGLISH", output_language: "ARABIC")).to eq(nil)
+      expect(Translation.translate_word('Apple', input_language: "English", output_language: "Arabic")).to eq('تفاحة')
+      expect(Translation.translate_word('Mango', input_language: "English", output_language: "Arabic")).to eq('مانجو')
+      expect(Translation.translate_word('Grapes', input_language: "English", output_language: "Arabic")).to eq('العنب')
+      expect(Translation.translate_word('No Word', input_language: "English", output_language: "Arabic")).to eq(nil)
     end
 
-    it "should translate a single word from english to french " do
-      expect(Translation.translate_word('Apple', input_language: "ENGLISH", output_language: "FRENCH")).to eq('Pomme')
-      expect(Translation.translate_word('Mango', input_language: "ENGLISH", output_language: "FRENCH")).to eq('Mangue')
-      expect(Translation.translate_word('Grapes', input_language: "ENGLISH", output_language: "FRENCH")).to eq('Les Raisins')
-      expect(Translation.translate_word('No Word', input_language: "ENGLISH", output_language: "FRENCH")).to eq(nil)
+    it "should translate a single word from English to French " do
+      expect(Translation.translate_word('Apple', input_language: "English", output_language: "French")).to eq('Pomme')
+      expect(Translation.translate_word('Mango', input_language: "English", output_language: "French")).to eq('Mangue')
+      expect(Translation.translate_word('Grapes', input_language: "English", output_language: "French")).to eq('Les Raisins')
+      expect(Translation.translate_word('No Word', input_language: "English", output_language: "French")).to eq(nil)
     end
     
-    it "should translate a single word from arabic to english" do
-      expect(Translation.translate_word('تفاحة', input_language: "ARABIC", output_language: "ENGLISH")).to eq('Apple')
-      expect(Translation.translate_word('مانجو', input_language: "ARABIC", output_language: "ENGLISH")).to eq('Mango')
-      expect(Translation.translate_word('العنب', input_language: "ARABIC", output_language: "ENGLISH")).to eq('Grapes')
-      expect(Translation.translate_word('No Word', input_language: "ARABIC", output_language: "ENGLISH")).to eq(nil)
+    it "should translate a single word from Arabic to English" do
+      expect(Translation.translate_word('تفاحة', input_language: "Arabic", output_language: "English")).to eq('Apple')
+      expect(Translation.translate_word('مانجو', input_language: "Arabic", output_language: "English")).to eq('Mango')
+      expect(Translation.translate_word('العنب', input_language: "Arabic", output_language: "English")).to eq('Grapes')
+      expect(Translation.translate_word('No Word', input_language: "Arabic", output_language: "English")).to eq(nil)
     end
 
-    it "should translate a single word from arabic to french" do
-      expect(Translation.translate_word('تفاحة', input_language: "ARABIC", output_language: "FRENCH")).to eq('Pomme')
-      expect(Translation.translate_word('مانجو', input_language: "ARABIC", output_language: "FRENCH")).to eq('Mangue')
-      expect(Translation.translate_word('العنب', input_language: "ARABIC", output_language: "FRENCH")).to eq('Les Raisins')
-      expect(Translation.translate_word('بببب', input_language: "ARABIC", output_language: "FRENCH")).to eq(nil)
+    it "should translate a single word from Arabic to French" do
+      expect(Translation.translate_word('تفاحة', input_language: "Arabic", output_language: "French")).to eq('Pomme')
+      expect(Translation.translate_word('مانجو', input_language: "Arabic", output_language: "French")).to eq('Mangue')
+      expect(Translation.translate_word('العنب', input_language: "Arabic", output_language: "French")).to eq('Les Raisins')
+      expect(Translation.translate_word('بببب', input_language: "Arabic", output_language: "French")).to eq(nil)
     end
 
-    it "should translate a single word from french to english " do
-      expect(Translation.translate_word('Pomme', input_language: "FRENCH", output_language: "ENGLISH")).to eq('Apple')
-      expect(Translation.translate_word('Mangue', input_language: "FRENCH", output_language: "ENGLISH")).to eq('Mango')
-      expect(Translation.translate_word('Les Raisins', input_language: "FRENCH", output_language: "ENGLISH")).to eq('Grapes')
-      expect(Translation.translate_word('No Word', input_language: "FRENCH", output_language: "ENGLISH")).to eq(nil)
+    it "should translate a single word from French to English " do
+      expect(Translation.translate_word('Pomme', input_language: "French", output_language: "English")).to eq('Apple')
+      expect(Translation.translate_word('Mangue', input_language: "French", output_language: "English")).to eq('Mango')
+      expect(Translation.translate_word('Les Raisins', input_language: "French", output_language: "English")).to eq('Grapes')
+      expect(Translation.translate_word('No Word', input_language: "French", output_language: "English")).to eq(nil)
     end
 
-    it "should translate a single word from french to arabic " do
-      expect(Translation.translate_word('Pomme', input_language: "FRENCH", output_language: "ARABIC")).to eq('تفاحة')
-      expect(Translation.translate_word('Mangue', input_language: "FRENCH", output_language: "ARABIC")).to eq('مانجو')
-      expect(Translation.translate_word('Les Raisins', input_language: "FRENCH", output_language: "ARABIC")).to eq('العنب')
-      expect(Translation.translate_word('No Word', input_language: "FRENCH", output_language: "ARABIC")).to eq(nil)
+    it "should translate a single word from French to Arabic " do
+      expect(Translation.translate_word('Pomme', input_language: "French", output_language: "Arabic")).to eq('تفاحة')
+      expect(Translation.translate_word('Mangue', input_language: "French", output_language: "Arabic")).to eq('مانجو')
+      expect(Translation.translate_word('Les Raisins', input_language: "French", output_language: "Arabic")).to eq('العنب')
+      expect(Translation.translate_word('No Word', input_language: "French", output_language: "Arabic")).to eq(nil)
     end
   end
 
@@ -210,15 +210,15 @@ RSpec.describe Translation, type: :model do
       )
 
       # French
-      expect(Translation.translate_words(['Apple', 'Mango'], output_language: "FRENCH")).to include(
+      expect(Translation.translate_words(['Apple', 'Mango'], output_language: "French")).to include(
         "Apple" => 'Pomme',
         "Mango" => 'Mangue',
       )
-      expect(Translation.translate_words(['Grapes', 'Mango'], output_language: "FRENCH")).to include(
+      expect(Translation.translate_words(['Grapes', 'Mango'], output_language: "French")).to include(
         "Grapes" => 'Les Raisins',
         "Mango" => 'Mangue',
       )
-      expect(Translation.translate_words(['Grapes', 'No Word'], output_language: "FRENCH")).to include(
+      expect(Translation.translate_words(['Grapes', 'No Word'], output_language: "French")).to include(
         "Grapes" => 'Les Raisins',
         "No Word" => nil,
       )
@@ -237,7 +237,7 @@ RSpec.describe Translation, type: :model do
       # }
 
       input_paragraph = "CORN, VEGETABLE OILS, CHEESE POWDER (MILK), SALT, BUTTERMILK POWDER (MILK), WHEAT FLOUR, WHEY PROTEIN, CONCENTRATE (MILK), TOMATO POWDER, FLAVOUR ENHANCERS, (621,631,627),ONION POWDER, WHEY POWDER (MILK), GARLIC POWDER, DEXTROSE, SUGAR, NATURAL FLAVOUR, MINIERAL, SALT (339), FOOD ACIDS (LACTIC ACID, CITRIC ACID), SPICE (WHITEPEPPER), COLOURS (110, 150D)."
-      expect(Translation.translate_paragraph(input_paragraph, return_in_hash: true, output_language: "FRENCH")).to include(
+      expect(Translation.translate_paragraph(input_paragraph, return_in_hash: true, output_language: "French")).to include(
         "CORN" => 'blé',
         "COLOURS" => 'Couleurs',
       )
@@ -252,7 +252,7 @@ RSpec.describe Translation, type: :model do
       # }
 
       output_paragraph = "blé, Les Huiles végétales, Poudre de fromage (Lait), Sel, BUTTERLait POWDER (Lait), Farine de blé, Protéine de whey, Concentrer (Lait), Poudre de tomate, Exhausteurs de goût, (621,631,627),Poudre d'oignon, La poudre de lactosérum (Lait), Poudre d'ail, Dextrose, Sucre, Saveur naturelle, Minéral, Sel (339), Acides alimentaires (Acide lactique, Acide citrique), Pimenter (Poivre blanc), Couleurs (110,  150D)."
-      expect(Translation.translate_paragraph(input_paragraph, output_language: "FRENCH")).to eq(output_paragraph)
+      expect(Translation.translate_paragraph(input_paragraph, output_language: "French")).to eq(output_paragraph)
     end
 
     it "should translate anything" do
@@ -279,20 +279,20 @@ RSpec.describe Translation, type: :model do
 
       # French
 
-      expect(Translation.translate('Apple', output_language: "FRENCH")).to eq('Pomme')
-      expect(Translation.translate('Mango', output_language: "FRENCH")).to eq('Mangue')
-      expect(Translation.translate('Grapes', output_language: "FRENCH")).to eq('Les Raisins')
-      expect(Translation.translate('No Word', output_language: "FRENCH")).to eq("No Word")
+      expect(Translation.translate('Apple', output_language: "French")).to eq('Pomme')
+      expect(Translation.translate('Mango', output_language: "French")).to eq('Mangue')
+      expect(Translation.translate('Grapes', output_language: "French")).to eq('Les Raisins')
+      expect(Translation.translate('No Word', output_language: "French")).to eq("No Word")
 
-      expect(Translation.translate(['Apple', 'Mango'], output_language: "FRENCH")).to include(
+      expect(Translation.translate(['Apple', 'Mango'], output_language: "French")).to include(
         "Apple" => 'Pomme',
         "Mango" => 'Mangue',
       )
-      expect(Translation.translate(['Grapes', 'Mango'], output_language: "FRENCH")).to include(
+      expect(Translation.translate(['Grapes', 'Mango'], output_language: "French")).to include(
         "Grapes" => 'Les Raisins',
         "Mango" => 'Mangue',
       )
-      expect(Translation.translate(['Grapes', 'No Word'], output_language: "FRENCH")).to include(
+      expect(Translation.translate(['Grapes', 'No Word'], output_language: "French")).to include(
         "Grapes" => 'Les Raisins',
         "No Word" => nil,
       )
@@ -304,7 +304,7 @@ RSpec.describe Translation, type: :model do
     it "should translate html input" do
       input_html =  %{ <html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">CORN, VEGETABLE OILS, CHEESE POWDER (MILK), SALT,BUTTERMILK POWDER (MILK), WHEAT FLOUR, WHEY PROTEIN, CONCENTRATE (MILK), TOMATO POWDER, FLAVOUR ENHANCERS, (621,631,627),ONION POWDER, WHEY POWDER (MILK), GARLIC POWDER, DEXTROSE, SUGAR, NATURAL FLAVOUR, MINIERAL, SALT (339), FOOD ACIDS (LACTIC ACID, CITRIC ACID), SPICE (WHITEPEPPER), COLOURS (110, 150D).</td></tr></tbody></table></body></html>}
       output_html = %{ <html dir="ltr" lang="en"><head><title data-cke-title="Rich Text Editor, ckeditor">Rich Text Editor, ckeditor</title></head><body contenteditable="true" class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" spellcheck="false"><table class=" cke_show_border"><thead><tr><th>INGREDIENTS</th></tr></thead><tbody><tr><td style="text-align:center">blé, Les Huiles végétales, Poudre de fromage (Lait), Sel,BUTTERLait POWDER (Lait), Farine de blé, Protéine de whey, Concentrer (Lait), Poudre de tomate, Exhausteurs de goût, (621,631,627),Poudre d'oignon, La poudre de lactosérum (Lait), Poudre d'ail, Dextrose, Sucre, Saveur naturelle, Minéral, Sel (339), Acides alimentaires (Acide lactique, Acide citrique), Pimenter (Poivre blanc), Couleurs (110, 150D).</td></tr></tbody></table></body></html>}
-      translated_html = Translation.translate_html(input_html, output_language: "FRENCH")
+      translated_html = Translation.translate_html(input_html, output_language: "French")
       expect(translated_html).not_to be_empty
       expect(translated_html).to include('blé')
       expect(translated_html).to include('Couleurs')
@@ -329,7 +329,7 @@ RSpec.describe Translation, type: :model do
       )
 
       # English to French
-      expect(Translation.translate('Apple, Mango and Grapes.', input_language: "ENGLISH", output_language: "FRENCH", return_in_hash: true)).to include(
+      expect(Translation.translate('Apple, Mango and Grapes.', input_language: "English", output_language: "French", return_in_hash: true)).to include(
         "Apple" => 'Pomme',
         "," => ',',
         "Mango" => 'Mangue',
@@ -338,12 +338,12 @@ RSpec.describe Translation, type: :model do
         "." => '.',
       )
 
-      FactoryBot.create(:arabic_to_english_translation, arabic_phrase: "تفاحة", english_phrase: "Apple", french_phrase: "Pomme")
-      FactoryBot.create(:arabic_to_english_translation, arabic_phrase: "مانج", english_phrase: "Mango",french_phrase: "Mangue")
-     FactoryBot.create(:arabic_to_english_translation, arabic_phrase: "عنب", english_phrase: "Grapes", french_phrase: "Les Raisins")
+      FactoryBot.create(:english_arabic_french_translation, arabic_phrase: "تفاحة", english_phrase: "Apple", french_phrase: "Pomme")
+      FactoryBot.create(:english_arabic_french_translation, arabic_phrase: "مانج", english_phrase: "Mango",french_phrase: "Mangue")
+     FactoryBot.create(:english_arabic_french_translation, arabic_phrase: "عنب", english_phrase: "Grapes", french_phrase: "Les Raisins")
 
       # Arabic to English
-      expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "ENGLISH", return_in_hash: true)).to include(
+      expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "Arabic", output_language: "English", return_in_hash: true)).to include(
         "تفاحة" => 'Apple',
         "،" => ',',
         "مانج" => 'Mango',
@@ -352,12 +352,12 @@ RSpec.describe Translation, type: :model do
         "." => '.',
       )
 
-      # FactoryBot.create(:arabic_to_french_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
-      # FactoryBot.create(:arabic_to_french_translation, input_phrase: "مانج", output_phrase: "Mangue")
-      # FactoryBot.create(:arabic_to_french_translation, input_phrase: "عنب", output_phrase: "Les Raisins")
+      # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
+      # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "مانج", output_phrase: "Mangue")
+      # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "عنب", output_phrase: "Les Raisins")
 
       # # Arabic to French
-      expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "FRENCH", return_in_hash: true)).to include(
+      expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "Arabic", output_language: "French", return_in_hash: true)).to include(
         "تفاحة" => 'Pomme',
         "،" => ',',
         "مانج" => 'Mangue',
@@ -381,9 +381,9 @@ RSpec.describe Translation, type: :model do
         "Grapes" => 'العنب',
         "." => '.',
       )
-
+      binding.pry
       # # English to French
-      # expect(Translation.translate('Apple, Mango and Grapes.', input_language: "ENGLISH", output_language: "FRENCH", return_in_hash: true)).to include(
+      # expect(Translation.translate('Apple, Mango and Grapes.', input_language: "English", output_language: "French", return_in_hash: true)).to include(
       #   "Apple" => 'Pomme',
       #   "," => ',',
       #   "Mango" => 'Mangue',
@@ -392,12 +392,12 @@ RSpec.describe Translation, type: :model do
       #   "." => '.',
       # )
 
-      # FactoryBot.create(:arabic_to_english_translation, input_phrase: "تفاحة", output_phrase: "Apple")
-      # FactoryBot.create(:arabic_to_english_translation, input_phrase: "مانج", output_phrase: "Mango")
-      # FactoryBot.create(:arabic_to_english_translation, input_phrase: "عنب", output_phrase: "Grapes")
+      # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "تفاحة", output_phrase: "Apple")
+      # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "مانج", output_phrase: "Mango")
+      # FactoryBot.create(:Arabic_to_English_translation, input_phrase: "عنب", output_phrase: "Grapes")
 
       # # Arabic to English
-      # expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "ENGLISH", return_in_hash: true)).to include(
+      # expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "Arabic", output_language: "English", return_in_hash: true)).to include(
       #   "تفاحة" => 'Apple',
       #   "،" => ',',
       #   "مانج" => 'Mango',
@@ -406,12 +406,12 @@ RSpec.describe Translation, type: :model do
       #   "." => '.',
       # )
 
-      # FactoryBot.create(:arabic_to_french_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
-      # FactoryBot.create(:arabic_to_french_translation, input_phrase: "مانج", output_phrase: "Mangue")
-      # FactoryBot.create(:arabic_to_french_translation, input_phrase: "عنب", output_phrase: "Les Raisins")
+      # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "تفاحة", output_phrase: "Pomme")
+      # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "مانج", output_phrase: "Mangue")
+      # FactoryBot.create(:Arabic_to_French_translation, input_phrase: "عنب", output_phrase: "Les Raisins")
 
       # # # Arabic to French
-      # expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "FRENCH", return_in_hash: true)).to include(
+      # expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "Arabic", output_language: "French", return_in_hash: true)).to include(
       #   "تفاحة" => 'Pomme',
       #   "،" => ',',
       #   "مانج" => 'Mangue',
@@ -430,7 +430,7 @@ RSpec.describe Translation, type: :model do
       expect(Translation.translate_delimiter('12.5')).to eq("12.5")
       expect(Translation.translate_delimiter('12')).to eq("12")
       
-      options = {input_language: "ENGLISH", output_language: "ARABIC"}
+      options = {input_language: "English", output_language: "Arabic"}
       expect(Translation.translate_delimiter('12.500', options)).to eq("12.500")
       expect(Translation.translate_delimiter('12.50', options)).to eq("12.50")
       expect(Translation.translate_delimiter('12.5', options)).to eq("12.5")
@@ -448,7 +448,7 @@ RSpec.describe Translation, type: :model do
       expect(Translation.translate_delimiter('12.5 %')).to eq("12.5 %")
       expect(Translation.translate_delimiter('12 %')).to eq("12 %")
       
-      options = {input_language: "ENGLISH", output_language: "ARABIC"}
+      options = {input_language: "English", output_language: "Arabic"}
       expect(Translation.translate_delimiter('12.500%', options)).to eq("%12.500")
       expect(Translation.translate_delimiter('12.50%', options)).to eq("%12.50")
       expect(Translation.translate_delimiter('12.5%', options)).to eq("%12.5")
@@ -462,7 +462,7 @@ RSpec.describe Translation, type: :model do
 
     it "should translate all possible delimitter combinations" do
 
-      options = {input_language: "ENGLISH", output_language: "FRENCH"}
+      options = {input_language: "English", output_language: "French"}
 
       expect(Translation.translate_delimiter('12.500 grams', options)).to eq("12.500 grammes")
       expect(Translation.translate_delimiter('12.50 grams', options)).to eq("12.50 grammes")
@@ -496,7 +496,7 @@ RSpec.describe Translation, type: :model do
 
       
 
-      options = {input_language: "ENGLISH", output_language: "FRENCH"}
+      options = {input_language: "English", output_language: "French"}
 
       expect(Translation.translate_delimiter('12.500grams', options)).to eq("12.500 grammes")
       expect(Translation.translate_delimiter('12.50grams', options)).to eq("12.50 grammes")
@@ -529,7 +529,7 @@ RSpec.describe Translation, type: :model do
       expect(Translation.translate_delimiter('12g', options)).to eq("12 g")
 
 
-      options = {input_language: "ENGLISH", output_language: "ARABIC"}
+      options = {input_language: "English", output_language: "Arabic"}
 
       expect(Translation.translate_delimiter('12.500grams', options)).to eq("جرامات 12.500")
       expect(Translation.translate_delimiter('12.50grams', options)).to eq("جرامات 12.50")
@@ -570,7 +570,7 @@ RSpec.describe Translation, type: :model do
       expect(Translation.translate_delimiter(" ")).to eq(nil)
       expect(Translation.translate_delimiter("Invalid Delimiter")).to eq(nil)
 
-      options = {input_language: "ENGLISH", output_language: "ARABIC"}
+      options = {input_language: "English", output_language: "Arabic"}
       expect(Translation.translate_delimiter(",", options)).to eq(" ،")
       expect(Translation.translate_delimiter(".", options)).to eq(".")
       expect(Translation.translate_delimiter("\n", options)).to eq("\n")

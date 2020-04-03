@@ -37,7 +37,7 @@ module Itslabel::TranslationMethods
         output_language: "ARABIC"
       })
       options.symbolize_keys!
-
+      #raise options[:input_language].inspect 
        if (options[:input_language].eql?('English') && options[:output_language].eql?('Arabic') )
         where("LOWER(english_phrase) = LOWER(?)", word.strip).
         select(:arabic_phrase).
@@ -55,8 +55,16 @@ module Itslabel::TranslationMethods
         where("LOWER(french_phrase) = LOWER(?)", word.strip).
         select(:english_phrase).
         first.try(:english_phrase)
+       elsif (options[:input_language].eql?('French') && options[:output_language].eql?('Arabic') )
+        where("LOWER(french_phrase) = LOWER(?)", word.strip).
+        select(:arabic_phrase).
+        first.try(:arabic_phrase)
+       elsif (options[:input_language].eql?('Arabic') && options[:output_language].eql?('French') )
+        where("LOWER(arabic_phrase) = LOWER(?)", word.strip).
+        select(:french_phrase).
+        first.try(:frnch_phrase)
       end
-
+      #binding.pry
     end
 
     def translate_words(words, **options)
@@ -80,6 +88,7 @@ module Itslabel::TranslationMethods
         end
       end
       translation_hash
+      
     end
 
     def translate_paragraph(input, **options)
