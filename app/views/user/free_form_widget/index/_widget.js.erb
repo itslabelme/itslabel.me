@@ -239,9 +239,12 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
 $(".swap").click(function(){
   divswap();
 });
+
 $("#INPUT_AREA").on('keydown', function(event) {
+ // alert(event.keyCode);
     const key = event.key; // const {key} = event; ES6+
-    if (key === "Backspace" || key === "Delete") {
+    if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
+     
         ITSTranslate(true);
     }
 });
