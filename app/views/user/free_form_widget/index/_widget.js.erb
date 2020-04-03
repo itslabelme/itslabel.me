@@ -55,7 +55,7 @@ function parseTextFromContentEditable(rawHtmlText) {
 function ITSTranslate(forceTranslate=false) {
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
   let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
-  let inputText = parseTextFromContentEditable($("#INPUT_AREA").text());
+  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
   
   // let inputText = $("#INPUT_AREA").html().replace(/\u00a0/g, " ").replace(/\xA0/g,' ');
   // let inputText = $("#INPUT_AREA").html().replace(/&nbsp;/g, '\n');
@@ -69,7 +69,6 @@ function ITSTranslate(forceTranslate=false) {
 
   if(sendAjaxRequest){
     let ajaxData = {text: inputText, input_language: inputLanguage, output_language: outputLanguage };
-    //alert(ajaxData);
     $.ajax({
       url: '/user/translate.js',
       type: 'POST',
@@ -141,44 +140,12 @@ $(document).on('paste', '#INPUT_AREA', function (e) {
 
 // Widget Controls
 // ---------------
-$( document ).ready(function() {
-if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
- 
-  $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
-  $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: left;');
-  
-  }else{
-    
 
-    if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
- 
-    $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: right;');
-    $('#INPUT_AREA').attr('style','direction: ltr;text-align: left;cursor: text;');
-  
-  }else{
-    $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: right;');
-    $('#INPUT_AREA').attr('style','direction: ltr;text-align: left;cursor: text;');
-  }
-}
-});
 $("#INPUT_LANGUAGE").on('change', function(){
-    if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
-    $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
-    }else{
-    $('#INPUT_AREA').attr('style','direction: ltr;text-align: right;cursor: text;');
-    }
-
   ITSTranslate(true);
 });
 
 $("#OUTPUT_LANGUAGE").on('change', function(){
-  if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
-
-  $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: right;');
-  }else
-  {
-  $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: left;');
-  }
   ITSTranslate(true);
 });
 
@@ -198,7 +165,7 @@ $(document).on('click', '#INPUT_CUT_ACTION', function (e) {
   // });
 });
 
-$(document).off('click', ".its-tran-not-found");translate
+$(document).off('click', ".its-tran-not-found");
 $(document).on('click', '.its-tran-not-found', function (e) {
   let clickedPhrase = $(this).text();
   // console.log("clickedPhrase: ", clickedPhrase);
@@ -233,30 +200,4 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
   let outputText = parseTextFromContentEditable($("#OUTPUT_AREA").html());
   $("#OUTPUT_AREA").selectText();
   document.execCommand('copy');
-});
-$(".swap").click(function(){
-  divswap();
-});
-$("#INPUT_AREA").on('keydown', function(event) {
-    const key = event.key; // const {key} = event; ES6+
-    if (key === "Backspace" || key === "Delete") {
-        ITSTranslate(true);
-    }
-});
-function divswap(){
-
-  let inputLanguageOp = $("#INPUT_LANGUAGE").children("option:selected").val();
-  let outputLanguageOp = $("#OUTPUT_LANGUAGE").children("option:selected").val();
- 
-  let inputText_b = $("#INPUT_AREA").text();
-  let outText_b = $("#OUTPUT_AREA").text();
-  let inputText=$("#INPUT_AREA").text(outText_b);
-  let outText =$("#OUTPUT_AREA").text(inputText_b);
- 
-  $("#INPUT_LANGUAGE").val(outputLanguageOp).change();
-  $("#OUTPUT_LANGUAGE").val(inputLanguageOp).change();
-  ITSTranslate(true);
-}
-$("#translate").click(function(){
-  ITSTranslate(true);
 });
