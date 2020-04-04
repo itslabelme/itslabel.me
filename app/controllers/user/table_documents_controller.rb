@@ -126,8 +126,12 @@ module User
           if @item.valid?
             @item.save
           else
-            set_notification(false, I18n.t('status.error'), @item.errors.full_messages.join("<br>"))
+            error_message = @item.errors.full_messages.first
+            set_notification(false, I18n.t('status.error'), error_message)
           end
+        else
+          error_message = @item.errors.full_messages.first
+          set_notification(false, I18n.t('status.error'), error_message)
         end
       end
     end
