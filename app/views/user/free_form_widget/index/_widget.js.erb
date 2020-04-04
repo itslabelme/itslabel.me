@@ -89,7 +89,9 @@ function ITSTranslate(forceTranslate=false) {
       data: ajaxData
     });
     cachedInput = inputText;
+
   }
+  
 }
 
 function requestForTranslation(phrase) {
@@ -125,6 +127,15 @@ function swapLanguages(){
   ITSTranslate(true);
 }
 
+function countErrorText(){
+  let outText = $("#OUTPUT_AREA").html();
+  outText = outText.match(/<span[^>]*>/g);
+  if( outText!==null && outText.length >=4){
+    notifyError("Input Text", "There are too many errors. Please check input value.");
+  }
+  //alert(outText.length);
+}
+
 $(document).off('blur', "#INPUT_AREA");
 $(document).on('keydown', '#INPUT_AREA', function (e) {
 
@@ -134,7 +145,7 @@ $(document).on('keydown', '#INPUT_AREA', function (e) {
     Pause / Break => 19
     (Space) => 32
     Numbers => 97 to 105
-    
+    Delete => 46
     []{} => 219 to 222
     ( => 48 
     ) => 57
@@ -149,16 +160,18 @@ $(document).on('keydown', '#INPUT_AREA', function (e) {
     https://css-tricks.com/snippets/javascript/javascript-keycodes/ 
 
   %>
-  
+ // alert(e.key);
   // console.log(e.key + " - " + e.which);
   if (
-    [9, 13, 19, 32, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which) ||
+    [9, 13, 19, 32,46, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which) ||
     (e.which >= 97 && e.which <= 105) ||
     (e.which >= 219 && e.which <= 222)
     ) {
     // console.log('Changed ( ' + e.key + " - " + e.which + " )");
+
   pauseTranslation = false;
     ITSTranslate();
+    countErrorText();
   }
 });
 
@@ -201,9 +214,22 @@ $("#OUTPUT_LANGUAGE").on('change', function(){
 
 // On input language change of text
 $("#INPUT_AREA").on('keydown', function(event) {
-  // alert(event.keyCode);
-  const key = event.key; // const {key} = event; ES6+
+   
+  let key = event.key; // const {key} = event; ES6+
   if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
+     if(key === "Delete"|| event.keyCode==46){
+     var selection = window.getSelection(); 
+     range = selection.getRangeAt(0);
+     start = range.startOffset;
+     end =  range.endOffset;
+     let outText = $("#INPUT_AREA").html();
+     
+    var finalStr= outText.replace(selection,"");
+    $("#INPUT_AREA").html($.parseHTML(finalStr));
+ // restoring the caret
+    range.setStart(this.childNodes[0], start);
+    range.setEnd(this.childNodes[0], end);
+   }
     pauseTranslation = false;
     ITSTranslate(true);
   }
