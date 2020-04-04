@@ -4,7 +4,7 @@ module Itslabel::TranslationMethods
 
   DELIMITERS = [/((?<![\d])\.)/,
                 # Matching 'and' and 'or' and their arabic and french literals
-                /(\ ?et\ ?|\ ou\ ?|\ ?أو\ ?|\ ?و\ ?|\ and\ ?|\ or\ ?)/,
+                /(\ et\ ?|\ ou\ ?|\ ?أو\ |\ ?و\ |\ and\ ?|\ or\ ?)/,
                 # English and French version of units
                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
                 /(\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m{2}?e?s?\ ?)/,
