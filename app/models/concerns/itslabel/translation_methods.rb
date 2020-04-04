@@ -54,7 +54,8 @@ module Itslabel::TranslationMethods
 
       translation_hash = {}
       words.each do |word|
-        translated_word = translate_word(word.strip, options)
+        cleaned_word = word.strip.gsub("\u00A0", "")
+        translated_word = translate_word(cleaned_word, options)
         if translated_word
           translation_hash[word.strip] = translated_word
         elsif word.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
