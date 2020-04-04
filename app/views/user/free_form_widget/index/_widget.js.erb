@@ -56,7 +56,7 @@ function parseTextFromContentEditable(rawHtmlText) {
 function ITSTranslate(forceTranslate=false) {
 
   if(pauseTranslation) {
-    return false 
+    return false;
   }
 
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
@@ -157,12 +157,14 @@ $(document).on('keydown', '#INPUT_AREA', function (e) {
     (e.which >= 219 && e.which <= 222)
     ) {
     // console.log('Changed ( ' + e.key + " - " + e.which + " )");
+  pauseTranslation = false;
     ITSTranslate();
   }
 });
 
 $(document).off('focusout', "#INPUT_AREA");
 $(document).on('focusout', '#INPUT_AREA', function (e) {
+  pauseTranslation = false;
   ITSTranslate();
 });
 
@@ -202,6 +204,7 @@ $("#INPUT_AREA").on('keydown', function(event) {
   // alert(event.keyCode);
   const key = event.key; // const {key} = event; ES6+
   if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
+    pauseTranslation = false;
     ITSTranslate(true);
   }
 });
@@ -216,11 +219,13 @@ $(document).on('click', '.its-tran-not-found', function (e) {
 
 // OnClick Event for swap button
 $(".swap").click(function(){
+
   swapLanguages();
 });
 
 // OnClick Event for the translate button
 $("#translate").click(function(){
+  pauseTranslation = false;
   ITSTranslate(true);
 });
 
