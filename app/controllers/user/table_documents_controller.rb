@@ -100,11 +100,11 @@ module User
         @item.input_phrase = params[:new_value].to_s.strip
         
         unless @item.input_phrase.blank?
-          @item.output_1_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_1_language) if @output_1_language
-          @item.output_2_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_2_language) if @output_2_language
-          @item.output_3_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_3_language) if @output_3_language
-          @item.output_4_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_4_language) if @output_4_language
-          @item.output_5_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_5_language) if @output_5_language
+          @item.output_1_phrase = Translation.translate_paragraph(@item.input_phrase, input_language: @input_language, output_language: @output_1_language) if @output_1_language
+          @item.output_2_phrase = Translation.translate_paragraph(@item.input_phrase, input_language: @input_language, output_language: @output_2_language) if @output_2_language
+          @item.output_3_phrase = Translation.translate_paragraph(@item.input_phrase, input_language: @input_language, output_language: @output_3_language) if @output_3_language
+          @item.output_4_phrase = Translation.translate_paragraph(@item.input_phrase, input_language: @input_language, output_language: @output_4_language) if @output_4_language
+          @item.output_5_phrase = Translation.translate_paragraph(@item.input_phrase, input_language: @input_language, output_language: @output_5_language) if @output_5_language
 
           @item.output_1_phrase ||= word_not_found[@item.output_1_language] 
           @item.output_2_phrase ||= word_not_found[@item.output_2_language] 
