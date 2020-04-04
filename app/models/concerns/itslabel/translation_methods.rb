@@ -5,9 +5,12 @@ module Itslabel::TranslationMethods
   DELIMITERS = [/((?<![\d])\.)/,
                 # Matching 'and' and 'or' and their arabic and french literals
                 /(\ ?et\ ?|\ ou\ ?|\ ?أو\ ?|\ ?و\ ?|\ and\ ?|\ or\ ?)/,
+                # English and French version of units
                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
-                # /(\(?\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m?s?\ ?\)?)/,
-                /(\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m?s?\ ?)/,
+                /(\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m{2}?e?s?\ ?)/,
+                # Arabic version of grams and other units
+                /(\ غ?\ ?[0-9]+\.?[0-9]*?\ ?)/,
+                # /(\ غرام|جرامات|غ\ ?[0-9]+\.?[0-9]*?\ ?)/,
                 # 10mg, 10 mg
                 /(\ ?\(?([0-9]+(\.[0-9]*)?(\ )?mg)\)?\ ?)/,
                 # Percentages 10%, 10.50%
@@ -16,18 +19,18 @@ module Itslabel::TranslationMethods
                 /(،|,|;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n)/
               ]
 
-  DELIMITERS_TRANSLATIONS = {
-    ".": {ENGLISH: ".", FRENCH: ".", ARABIC: ""},
-    "،": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
-    ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
-    ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
-    "mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
-    "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"},
-    "grams": {ENGLISH: "grams", FRENCH: "grams", ARABIC: "جم"},
-    "gram": {ENGLISH: "gram", FRENCH: "gram", ARABIC: "جم"},
-    " and ": {ENGLISH: " and ", FRENCH: " et ", ARABIC: " و "},
-    " or ": {ENGLISH: " or ", FRENCH: " ou ", ARABIC: " أو "},
-  }
+  # DELIMITERS_TRANSLATIONS = {
+  #   ".": {ENGLISH: ".", FRENCH: ".", ARABIC: ""},
+  #   "،": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
+  #   ",": {ENGLISH: ",", FRENCH: ",", ARABIC: "،"},
+  #   ";": {ENGLISH: ";", FRENCH: ";", ARABIC: "."},
+  #   "mg": {ENGLISH: "mg", FRENCH: "mg", ARABIC: "ملغ"},
+  #   "gm": {ENGLISH: "gm", FRENCH: "gm", ARABIC: "جم"},
+  #   "grams": {ENGLISH: "grams", FRENCH: "grams", ARABIC: "جم"},
+  #   "gram": {ENGLISH: "gram", FRENCH: "gram", ARABIC: "جم"},
+  #   " and ": {ENGLISH: " and ", FRENCH: " et ", ARABIC: " و "},
+  #   " or ": {ENGLISH: " or ", FRENCH: " ou ", ARABIC: " أو "},
+  # }
 
   class_methods do
 
