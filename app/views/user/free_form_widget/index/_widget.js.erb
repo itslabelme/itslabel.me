@@ -216,11 +216,13 @@ $(document).on('click', '.its-tran-not-found', function (e) {
 
 // OnClick Event for swap button
 $(".swap").click(function(){
+
   swapLanguages();
 });
 
 // OnClick Event for the translate button
 $("#translate").click(function(){
+  pauseTranslation = true;
   ITSTranslate(true);
 });
 

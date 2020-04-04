@@ -50,10 +50,11 @@
 .its-template-list ul{
   padding: 0px;
   padding-left: 20px;
-  float: right;
+  float: left;
   margin-bottom: 0px;
   position: relative;
   top: 4px;
+  padding: 0px;
 }
 
 .its-template-list li{
@@ -62,6 +63,47 @@
   font-size: 20px;
   margin-left: 15px;
 
+}
+
+.its-free-action-trans-btn{
+  margin-bottom: 0px !important;
+}
+
+.its-free-action-trans-btn ul{
+  text-align: center;
+  width: 100%;
+  margin-top: 7px;
+}
+
+.its-free-action-trans-btn li{
+  float: none;
+  display: inline-block;
+  margin: 0px;
+}
+
+.its-free-action-trans-btn li a{
+  background: #006747;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 10px 15px;
+}
+
+.its-free-action-trans-btn li:hover a{
+  background: #1dc166;
+}
+
+.its-template-list .its-free-action-trans-btn li a svg{
+  fill: #ffffff;
+  opacity: 1;
+}
+
+.its-template-list .its-free-action-trans-btn li a:hover svg{
+ opacity: 1; 
+}
+
+.its-template-list li:first-child{
+  margin-left: 0px;
 }
 
 .its-template-list li a svg{
@@ -86,6 +128,7 @@
   border-bottom: 2px dashed red;
 }
 
+
 .its-tran-not-found i{
   font-size: 15px;
   position: relative;
@@ -100,6 +143,47 @@
   background-color: transparent;
 }
 
+
+
+.its-template-secondary{
+  float:left;
+  border-bottom: none;
+  margin: 0px;
+  height: 100%;
+  padding: 5px 20px 5px 20px;
+}
+
+.its-template-secondary div{
+  height: 100%;
+}
+
+.its-free-action-trans-btn{
+  height: 100%;
+}
+
+
+
+.free-style-wrapper01{
+  margin-top: 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom: none;
+}
+
+
+.its-free-action-trans-btn li.its-swap-btn a{
+  background: #a3a3a3;
+  color: #fff;
+  border-color: #a3a3a3;
+}
+
+.its-free-action-trans-btn li.its-swap-btn:hover a{
+  background: #1dc166;
+  color: #fff;
+  border-color: #1dc166;
+}
 
 @media (min-width: 990px) and (max-width: 1036px) {
   .its-home-min-height {
@@ -181,6 +265,51 @@
   font-size: 20px;
 }
 
+
+.free-style-wrapper01 .its-freestyle-container,
+.free-style-wrapper01 .its-freestyle-container2{
+  width: 33%;
+}
+
+.its-template-secondary div{
+  width: 100%;
+  margin: 0px;
+}
+
+.its-free-action-trans-btn ul{
+  margin: 0px;
+  top: 0px;
+}
+
+.its-free-action-trans-btn{
+  padding: 0px;
+}
+
+.its-free-action-trans-btn ul li{
+  margin: 0px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.its-free-action-trans-btn ul li:last-child{
+  margin-bottom: 0px;
+}
+
+.its-free-action-trans-btn ul li a{
+  display: block;
+}
+
+.its-free-language{
+  width: 70%;
+  padding: 0px;
+  padding-left: 20px;
+}
+
+.its-free-action{
+  width: 25%;
+  padding:0px;
+  padding-left: 10px;
+}
 
 }
 

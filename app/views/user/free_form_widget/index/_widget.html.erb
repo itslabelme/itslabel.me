@@ -1,87 +1,72 @@
 <% 
-  case @input_language
+case @input_language
   when "FRENCH"
-    input_enter_text = "Entrer"
-    input_sg_dir = "dir-ltr"
+  input_enter_text = "Entrer"
+  input_sg_dir = "dir-ltr"
   when "ARABIC"
-    #input_enter_text = "أدخل"
-    input_enter_text = ""
-    input_sg_dir = "dir-rtl"
+  #input_enter_text = "أدخل"
+  input_enter_text = ""
+  input_sg_dir = "dir-rtl"
   when "ENGLISH"
-    input_enter_text = "Enter"
-    input_sg_dir = "dir-ltr"
+  input_enter_text = "Enter"
+  input_sg_dir = "dir-ltr"
   end
 
-  case @output_language
+case @output_language
   when "FRENCH"
-    output_enter_text = "Entrer"
-    output_sg_dir = "dir-ltr"
+  output_enter_text = "Entrer"
+  output_sg_dir = "dir-ltr"
   when "ARABIC"
-    output_enter_text = "أدخل"
-    output_sg_dir = "dir-rtl"
+  output_enter_text = "أدخل"
+  output_sg_dir = "dir-rtl"
   when "ENGLISH"
-    output_enter_text = "Enter"
-    output_sg_dir = "dir-ltr"
+  output_enter_text = "Enter"
+  output_sg_dir = "dir-ltr"
   end
 
-  input_widget_align_style = @input_language.upcase == "ARABIC" ? "text-align:right;" : "text-align:left;"
-  output_widget_align_style = @output_language.upcase == "ARABIC" ? "text-align:right;" : "text-align:left;"
+input_widget_align_style = @input_language.upcase == "ARABIC" ? "text-align:right;" : "text-align:left;"
+output_widget_align_style = @output_language.upcase == "ARABIC" ? "text-align:right;" : "text-align:left;"
 %>
 
 <div class="row clearfix its-upload-container">
-  <div class="col-lg-12 col-md-12">
-    
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="body" style="background: #ffffff;border: 1px solid #e1e8ed;">
+                <div class="mt-2">
 
-    <div class="card">
-      <div class="body" style="background: #ffffff;border: 1px solid #e1e8ed;">
-        <div class="mt-2">
+                    <!-- Widget - Left Control Elements  -->
+                    <%= render partial: "user/free_form_widget/index/header" %>
+                    <%= render partial: "user/free_form_widget/index/nav_control" %>
+                    <div class="free-style-wrapper" style="margin-top: 0px;border: 1px solid #e5e5e5;border-radius: 10px;border-top-left-radius: 0px;border-top-right-radius: 0px;">
+                        <div class="row" style="margin: 0px;">
+                            <div class="col-md-6 its-freestyle-container">
+                                <div class="its-template-translate">
+                                    <div id="INPUT_AREA" class="column1 column3 column4" contenteditable="true" style="<%= input_widget_align_style %> " placeholder="<%= input_enter_text %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 its-freestyle-container2" style="padding:0px">
+                                <div class="its-template-preview">
+                                    <div id="OUTPUT_AREA" class="column2 column3" contenteditable="false"  style="<%= output_widget_align_style %> placeholder="<%= output_enter_text %>"">
 
-          <!-- Widget - Left Control Elements  -->
-                <%= render partial: "user/free_form_widget/index/header" %>
-          
-          <!-- FREE STYLE WIDGET -->
-          <div class="free-style-wrapper" style="margin-top: 20px;border: 1px solid #e5e5e5;border-radius: 10px;">
-            <div class="row" style="margin: 0px;">
-              <div class="col-md-6 its-freestyle-container">
-
-                <!-- Widget - Left Control Elements  -->
-                <%= render partial: "user/free_form_widget/index/left_control" %>
-
-                <!-- Input Area -->
-                <div class="its-template-translate">
-                  <div id="INPUT_AREA" class="column1 column3 column4" contenteditable="true" style="<%= input_widget_align_style %> " placeholder="<%= input_enter_text %>"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END FREE STYLE WIDGET -->
                 </div>
-
-              </div>
-
-              <div class="col-md-6 its-freestyle-container2" style="padding:0px">
-
-                <!-- Widget - Right Control Elements  -->
-                <%= render partial: "user/free_form_widget/index//right_control" %>
-
-                <!-- Output Area -->
-                <div class="its-template-preview">
-                  <div id="OUTPUT_AREA" class="column2 column3" contenteditable="false"  style="<%= output_widget_align_style %> placeholder="<%= output_enter_text %>"">
-                    
-                  </div>
-                </div>
-
-              </div>
             </div>
-          </div>
-          <!-- END FREE STYLE WIDGET -->
-
         </div>
-      </div>
     </div>
 
 
-  </div>
 </div>
+
 
 <%# Need to integrate tribute.js and load translations from server %>
 <%= content_for :javascript_footer do %>
-  
+
   <%= render partial: "user/free_form_widget/index/widget.js.erb" %>
 
 <% end %>
