@@ -7,6 +7,7 @@ if(typeof(String.prototype.trim) === "undefined")
 }
 
 let cachedInput = '';
+let pauseTranslation = false;
 
 <%# https://stackoverflow.com/questions/12027137/javascript-trick-for-paste-as-plain-text-in-execcommand %>
 function _insertText(text) { 
@@ -53,9 +54,15 @@ function parseTextFromContentEditable(rawHtmlText) {
 }
 
 function ITSTranslate(forceTranslate=false) {
+
+  if(pauseTranslation) {
+    return false 
+  }
+
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
   let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
   let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+  // let inputText = $("#INPUT_AREA").html();
   let htm = $("#INPUT_AREA").html().split("<br>");
   var el = document.createElement('html');
   el.innerHTML=inputText
@@ -94,6 +101,28 @@ function requestForTranslation(phrase) {
     type: 'GET',
     data: ajaxData
   });
+}
+
+function swapLanguages(){
+
+  // Get Input and Output Language from the dropdown
+  let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").val();
+  let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").val();
+  
+  // Get Output Text (right side)
+  let outText = $("#OUTPUT_AREA").html();
+  outText = outText.replace(/<\/?span[^>]*>/g,"");
+  outText = outText.replace(/<\/?i[^>]*>/g,"");
+  
+  // Swapping Input to Output
+  $("#INPUT_AREA").html(outText);
+  $("#OUTPUT_AREA").html("");
+
+  pauseTranslation = true;
+  $("#INPUT_LANGUAGE").val(outputLanguage).change();
+  $("#OUTPUT_LANGUAGE").val(inputLanguage).change();
+  pauseTranslation = false;
+  ITSTranslate(true);
 }
 
 $(document).off('blur', "#INPUT_AREA");
@@ -148,7 +177,7 @@ $(document).on('paste', '#INPUT_AREA', function (e) {
 // Widget Controls
 // ---------------
 
-/// On input put language change change oriantation of text
+/// On input language dropdown change
 $("#INPUT_LANGUAGE").on('change', function(){
   if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
     $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
@@ -158,7 +187,7 @@ $("#INPUT_LANGUAGE").on('change', function(){
   ITSTranslate(true);
 });
 
-/// On out put language change change oriantation of text
+/// On output language dropdown change
 $("#OUTPUT_LANGUAGE").on('change', function(){
   if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
     $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: right;');
@@ -168,22 +197,16 @@ $("#OUTPUT_LANGUAGE").on('change', function(){
   ITSTranslate(true);
 });
 
-$(document).off('click', "#INPUT_CUT_ACTION");
-$(document).on('click', '#INPUT_CUT_ACTION', function (e) {
-  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  // $("#INPUT_AREA").selectText();
-  document.execCommand('copy');
-  $("#INPUT_AREA").html("");
-  $("#OUTPUT_AREA").html("");
-  // navigator.clipboard.write([inputText]).then(function() {
-  //   console.log("Copied to clipboard and cleared the input successfully!");
-  //   $("#INPUT_AREA").html("");
-  //   $("#OUTPUT_AREA").html("");
-  // }, function() {
-  //   console.error("Unable to write to clipboard.");
-  // });
+// On input language change of text
+$("#INPUT_AREA").on('keydown', function(event) {
+  // alert(event.keyCode);
+  const key = event.key; // const {key} = event; ES6+
+  if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
+    ITSTranslate(true);
+  }
 });
 
+// OnClick for trans-not-found span elements coming inside output translation contenteditable div
 $(document).off('click', ".its-tran-not-found");translate
 $(document).on('click', '.its-tran-not-found', function (e) {
   let clickedPhrase = $(this).text();
@@ -191,6 +214,17 @@ $(document).on('click', '.its-tran-not-found', function (e) {
   requestForTranslation(clickedPhrase);
 });
 
+// OnClick Event for swap button
+$(".swap").click(function(){
+  swapLanguages();
+});
+
+// OnClick Event for the translate button
+$("#translate").click(function(){
+  ITSTranslate(true);
+});
+
+// OnCick Event for Input Paste Button 
 $(document).off('click', "#INPUT_COPY_ACTION");
 $(document).on('click', '#INPUT_COPY_ACTION', function (e) {
   let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
@@ -198,65 +232,45 @@ $(document).on('click', '#INPUT_COPY_ACTION', function (e) {
   document.execCommand('copy');
 });
 
-$(document).off('click', "#INPUT_PASTE_ACTION");
-$(document).on('click', '#INPUT_PASTE_ACTION', function (e) {
-  navigator.clipboard.readText().then(function(data) {
-    console.log("Pasted from clipboard:", data);
-    // $("#INPUT_AREA").html(data);
-    document.execCommand('copy');
-    ITSTranslate();
-  });
-});
-
-$(document).off('click', "#INPUT_CLEAR_ACTION");
-$(document).on('click', '#INPUT_CLEAR_ACTION', function (e) {
-  $("#INPUT_AREA").html("");
-  $("#OUTPUT_AREA").html("");
-});
-
+// OnCick Event for Output Paste Button 
 $(document).off('click', "#OUTPUT_COPY_ACTION");
 $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
   let outputText = parseTextFromContentEditable($("#OUTPUT_AREA").html());
   $("#OUTPUT_AREA").selectText();
   document.execCommand('copy');
 });
-$(".swap").click(function(){
-  divswap();
-});
 
-$("#INPUT_AREA").on('keydown', function(event) {
- // alert(event.keyCode);
-    const key = event.key; // const {key} = event; ES6+
-    if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
-     
-        ITSTranslate(true);
-    }
-});
-function divswap(){
+// Old Methods
 
-  let inputLanguageOp = $("#INPUT_LANGUAGE").children("option:selected").val();
-  let outputLanguageOp = $("#OUTPUT_LANGUAGE").children("option:selected").val();
-  let inputTextHtml = parseTextFromContentEditable($("#OUTPUT_AREA").html());
-  let inputText_b = $("#INPUT_AREA").text();
-  let outText_b = $("#OUTPUT_AREA").html();
-  //outText_b.replace("<span class=\"its-tran-not-found\" dir=\"\"><i class=\"icon-question mr-2\"></i>", "");
-    // outText_b.replace("</span>", "");
-     //outText_b.split('</br>');
-     outText_b = outText_b.replace(/<\/?span[^>]*>/g,"");
-     outText_b = outText_b.replace(/<\/?i[^>]*>/g,"");
- // console.log(outText_b);
-  outText_b.split('<br>');
-  //console.log(outText_b);
-  // var el = document.createElement('html');
-  // el.innerHTML=inputTextHtml
-  // str = $(el).text().replace("<span class=\"its-tran-not-found\" dir=\"\"><i class=\"icon-question mr-2\"></i>", "");
-  // str = str.replace("</span>", "");
-  //let outText =$("#OUTPUT_AREA").text(inputText_b);
-  let inputText=$("#INPUT_AREA").html(outText_b);
-  $("#INPUT_LANGUAGE").val(outputLanguageOp).change();
-  $("#OUTPUT_LANGUAGE").val(inputLanguageOp).change();
-  ITSTranslate(true);
-}
-$("#translate").click(function(){
-  ITSTranslate(true);
-});
+// $(document).off('click', "#INPUT_CUT_ACTION");
+// $(document).on('click', '#INPUT_CUT_ACTION', function (e) {
+//   let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+//   // $("#INPUT_AREA").selectText();
+//   document.execCommand('copy');
+//   $("#INPUT_AREA").html("");
+//   $("#OUTPUT_AREA").html("");
+//   // navigator.clipboard.write([inputText]).then(function() {
+//   //   console.log("Copied to clipboard and cleared the input successfully!");
+//   //   $("#INPUT_AREA").html("");
+//   //   $("#OUTPUT_AREA").html("");
+//   // }, function() {
+//   //   console.error("Unable to write to clipboard.");
+//   // });
+// });
+//
+// $(document).off('click', "#INPUT_PASTE_ACTION");
+// $(document).on('click', '#INPUT_PASTE_ACTION', function (e) {
+//   navigator.clipboard.readText().then(function(data) {
+//     console.log("Pasted from clipboard:", data);
+//     // $("#INPUT_AREA").html(data);
+//     document.execCommand('copy');
+//     ITSTranslate();
+//   });
+// });
+//
+// $(document).off('click', "#INPUT_CLEAR_ACTION");
+// $(document).on('click', '#INPUT_CLEAR_ACTION', function (e) {
+//   $("#INPUT_AREA").html("");
+//   $("#OUTPUT_AREA").html("");
+// });
+
