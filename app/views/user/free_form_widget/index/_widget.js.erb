@@ -89,7 +89,9 @@ function ITSTranslate(forceTranslate=false) {
       data: ajaxData
     });
     cachedInput = inputText;
+
   }
+  
 }
 
 function requestForTranslation(phrase) {
@@ -123,6 +125,15 @@ function swapLanguages(){
   $("#OUTPUT_LANGUAGE").val(inputLanguage).change();
   pauseTranslation = false;
   ITSTranslate(true);
+}
+
+function countErrorText(){
+  let outText = $("#OUTPUT_AREA").html();
+  outText = outText.match(/<span[^>]*>/g);
+  if(outText.length >=4){
+    notifyError("Input Text", "There are too many errors. Please check input value.");
+  }
+  //alert(outText.length);
 }
 
 $(document).off('blur', "#INPUT_AREA");
@@ -159,6 +170,7 @@ $(document).on('keydown', '#INPUT_AREA', function (e) {
     // console.log('Changed ( ' + e.key + " - " + e.which + " )");
   pauseTranslation = false;
     ITSTranslate();
+    countErrorText();
   }
 });
 
