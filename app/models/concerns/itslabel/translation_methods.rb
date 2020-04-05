@@ -4,7 +4,8 @@ module Itslabel::TranslationMethods
 
   DELIMITERS = [/((?<![\d])\.)/,
                 # Matching 'and' and 'or' and their arabic and french literals
-                /(\ et\ ?|\ ou\ ?|\ ?أو\ |\ ?و\ |\ and\ ?|\ or\ ?)/,
+                # /(\ et\ ?|\ ou\ ?|\ ?أو\ |\ ?و\ |\ and\ ?|\ or\ ?)/,
+                /(\band\b|\bet\b|\bor\b|\bou\b|\bأو\b|\bو\b)/,
                 # English and French version of units
                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
                 /(\ ?[0-9]+\.?[0-9]*?\ ?grammes\ ?)/,
@@ -107,21 +108,6 @@ module Itslabel::TranslationMethods
       end
     end
 
-    def translate(input, **options)
-      options.reverse_merge!({
-        input_language: "ENGLISH",
-        output_language: "ARABIC"
-      })
-      options.symbolize_keys!
-
-      case input
-      when String
-        translate_paragraph(input, options)
-      when Array
-        translate_words(input, options)
-      end
-    end
-
     def translate_html(input, **options)
       options.reverse_merge!({
         input_language: "ENGLISH",
@@ -145,6 +131,21 @@ module Itslabel::TranslationMethods
         output.gsub!(key, value)
       end
       return output
+    end
+
+    def translate(input, **options)
+      options.reverse_merge!({
+        input_language: "ENGLISH",
+        output_language: "ARABIC"
+      })
+      options.symbolize_keys!
+
+      case input
+      when String
+        translate_paragraph(input, options)
+      when Array
+        translate_words(input, options)
+      end
     end
 
     def translate_delimiter(delim, **options)

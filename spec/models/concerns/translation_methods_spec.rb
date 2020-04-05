@@ -345,7 +345,7 @@ RSpec.describe Translation, type: :model do
       FactoryBot.create(:arabic_to_english_translation, input_phrase: "عنب", output_phrase: "Grapes")
 
       # Arabic to English
-      expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "ENGLISH", return_in_hash: true)).to include(
+      expect(Translation.translate('تفاحة ، مانج و عنب.', input_language: "ARABIC", output_language: "ENGLISH", return_in_hash: true)).to include(
         "تفاحة" => 'Apple',
         "،" => ',',
         "مانج" => 'Mango',
@@ -359,7 +359,7 @@ RSpec.describe Translation, type: :model do
       FactoryBot.create(:arabic_to_french_translation, input_phrase: "عنب", output_phrase: "Les Raisins")
 
       # # Arabic to French
-      expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "FRENCH", return_in_hash: true)).to include(
+      expect(Translation.translate('تفاحة ، مانج و عنب.', input_language: "ARABIC", output_language: "FRENCH", return_in_hash: true)).to include(
         "تفاحة" => 'Pomme',
         "،" => ',',
         "مانج" => 'Mangue',
@@ -399,7 +399,7 @@ RSpec.describe Translation, type: :model do
       # FactoryBot.create(:arabic_to_english_translation, input_phrase: "عنب", output_phrase: "Grapes")
 
       # # Arabic to English
-      # expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "ENGLISH", return_in_hash: true)).to include(
+      # expect(Translation.translate('تفاحة ، مانج و عنب.', input_language: "ARABIC", output_language: "ENGLISH", return_in_hash: true)).to include(
       #   "تفاحة" => 'Apple',
       #   "،" => ',',
       #   "مانج" => 'Mango',
@@ -413,7 +413,7 @@ RSpec.describe Translation, type: :model do
       # FactoryBot.create(:arabic_to_french_translation, input_phrase: "عنب", output_phrase: "Les Raisins")
 
       # # # Arabic to French
-      # expect(Translation.translate('تفاحة ، مانجو وعنب.', input_language: "ARABIC", output_language: "FRENCH", return_in_hash: true)).to include(
+      # expect(Translation.translate('تفاحة ، مانج و عنب.', input_language: "ARABIC", output_language: "FRENCH", return_in_hash: true)).to include(
       #   "تفاحة" => 'Pomme',
       #   "،" => ',',
       #   "مانج" => 'Mangue',
