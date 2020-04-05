@@ -14,8 +14,8 @@ module Itslabel::TranslationMethods
                 /(\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m?s?\ ?)/,
                 /(\ ?[0-9]+\.?[0-9]*?\ ?mg\ ?)/,
                 # Arabic version of grams and other units
-                /(\ غ\ ?[0-9]+\.?[0-9]*?\ ?)/,
-                # /(\ غرام|جرامات|غ\ ?[0-9]+\.?[0-9]*?\ ?)/,
+                /(\ ?[0-9]+\.?[0-9]*?\ ?غ\ ?)/,
+                /(\ ?[0-9]+\.?[0-9]*?\ ?جم\ ?)/,
                 # Percentages 10%, 10.50%
                 /(\ ?[0-9]+\.?[0-9]*?\ ?%\ ?)/,
                 #/(\ ?%\ ?[0-9]*\.?[0-9]+?)/,
@@ -137,6 +137,31 @@ module Itslabel::TranslationMethods
       return output
     end
 
+    def translate_html_old(input, **options)
+      options.reverse_merge!({
+        input_language: "ENGLISH",
+        output_language: "ARABIC"
+      })
+      options.symbolize_keys!
+
+      # Extract the texts
+      doc = Nokogiri::HTML(input)
+      extracted_texts = doc.search('//text()').map(&:text).join(",")
+
+      # Translate them and return as hash
+      options[:return_in_hash] = true
+      hash = translate_paragraph(extracted_texts, options)
+
+      # Replace the translations in html
+      output = input.clone
+      hash.each do |key, value|
+        next unless value
+        next if key == "_tokens"
+        output.gsub!(key, value)
+      end
+      return output
+    end
+
     def translate(input, **options)
       options.reverse_merge!({
         input_language: "ENGLISH",
@@ -178,7 +203,11 @@ module Itslabel::TranslationMethods
         # Match if the string is of this format : 100.00grams, 10.0 gms, 1gm
         num = delim.scan(/-?\d*\.?\d+/).try(:first)
         # below, first scan grammes and then grams 
-        weight = delim.scan(/mg/).try(:first) || delim.scan(/grammes?/).try(:first) || delim.scan(/gr?a?m?s?/).try(:first)
+        weight = delim.scan(/mg/).try(:first) || 
+                 delim.scan(/غ/).try(:first) ||
+                 delim.scan(/جم/).try(:first) ||
+                 delim.scan(/grammes?/).try(:first) || 
+                 delim.scan(/gr?a?m?s?/).try(:first)
         if num && weight
           translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language]) || translated_weight
           return rtl ? "#{translated_weight} #{num}" : "#{num} #{translated_weight}" 
