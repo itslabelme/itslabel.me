@@ -2,21 +2,23 @@ module Itslabel::TranslationMethods
   
   extend ActiveSupport::Concern
 
-  DELIMITERS = [/((?<![\d])\.)/,
+  DELIMITERS = [
+                # All . (dots) not preceeded by a numeral
+                /((?<![\d])\.)/,
                 # Matching 'and' and 'or' and their arabic and french literals
-                # /(\ et\ ?|\ ou\ ?|\ ?أو\ |\ ?و\ |\ and\ ?|\ or\ ?)/,
                 /(\band\b|\bet\b|\bor\b|\bou\b|\bأو\b|\bو\b)/,
                 # English and French version of units
                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
+                # 10mg, 10 mg
                 /(\ ?[0-9]+\.?[0-9]*?\ ?grammes\ ?)/,
                 /(\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m?s?\ ?)/,
+                /(\ ?[0-9]+\.?[0-9]*?\ ?mg\ ?)/,
                 # Arabic version of grams and other units
-                /(\ غ?\ ?[0-9]+\.?[0-9]*?\ ?)/,
+                /(\ غ\ ?[0-9]+\.?[0-9]*?\ ?)/,
                 # /(\ غرام|جرامات|غ\ ?[0-9]+\.?[0-9]*?\ ?)/,
-                # 10mg, 10 mg
-                /(\ ?\(?([0-9]+(\.[0-9]*)?(\ )?mg)\)?\ ?)/,
                 # Percentages 10%, 10.50%
-                /(\d*\.?\d*%)/,
+                /(\ ?[0-9]+\.?[0-9]*?\ ?%\ ?)/,
+                #/(\ ?%\ ?[0-9]*\.?[0-9]+?)/,
                 # Commas and other characters
                 /(،|,|;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n)/
               ]
@@ -88,6 +90,8 @@ module Itslabel::TranslationMethods
 
       words = input.split(Regexp.union(Translation::DELIMITERS))
       hash = translate_words(words, options)
+
+      # binding.pry
 
       if rtl
         hash["_tokens"] = words.reverse
