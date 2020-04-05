@@ -162,6 +162,44 @@ module Itslabel::TranslationMethods
       return output
     end
 
+    def format_output(hash, **options)
+      options.reverse_merge!({
+        input_language: "ENGLISH",
+        output_language: "ARABIC"
+      })
+      options.symbolize_keys!
+
+      display_text = ""
+      tokens = hash["_tokens"]
+
+      tokens.each do |tk|
+
+        # tk.strip gives "" if tk == "\n" or those characters
+        # hence handling them separately
+        if tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
+          translated_text = hash[tk]
+        else
+          if tk.strip.blank?
+            translated_text = tk
+          else
+            translated_text = hash[tk.strip]
+          end
+        end
+        
+        display_text += translated_text.to_s + " "
+
+        # if translated_text
+        #   display_text += translated_text + " "
+        # else
+        #   dir_attr = options[:output_language] == "ARABIC" ? 'rtl' : ''
+        #   display_text += "<span class='its-tran-not-found' dir='#{dir_attr}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
+        # end
+      end
+
+      display_text.gsub!(/\n+/, '<br>')
+      return display_text
+    end
+
     def translate(input, **options)
       options.reverse_merge!({
         input_language: "ENGLISH",
@@ -208,8 +246,9 @@ module Itslabel::TranslationMethods
                  delim.scan(/جم/).try(:first) ||
                  delim.scan(/grammes?/).try(:first) || 
                  delim.scan(/gr?a?m?s?/).try(:first)
+        
         if num && weight
-          translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language]) || translated_weight
+          translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language]) || weight
           return rtl ? "#{translated_weight} #{num}" : "#{num} #{translated_weight}" 
         elsif delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?/)
          # Match if the string is an integer or decimal
