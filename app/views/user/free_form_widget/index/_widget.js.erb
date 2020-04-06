@@ -218,13 +218,17 @@ $("#INPUT_AREA").on('keydown', function(event) {
   let key = event.key; // const {key} = event; ES6+
   if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
      if(key === "Delete"|| event.keyCode==46){
-     var selection = window.getSelection(); 
+     // alert(getSelectionHtml());
+     //let selection = window.getSelection(); 
+     //alert(selection);
      range = selection.getRangeAt(0);
      start = range.startOffset;
      end =  range.endOffset;
      let outText = $("#INPUT_AREA").html();
      
-    var finalStr= outText.replace(selection,"");
+    let finalStr= outText.replace(getSelectionHtml(),"");
+   // alert(" Final String"+finalStr.trim());
+
     $("#INPUT_AREA").html($.parseHTML(finalStr));
  // restoring the caret
     range.setStart(this.childNodes[0], start);
@@ -234,7 +238,24 @@ $("#INPUT_AREA").on('keydown', function(event) {
     ITSTranslate(true);
   }
 });
-
+function getSelectionHtml() {
+    var html = "";
+    if (typeof window.getSelection != "undefined") {
+        var sel = window.getSelection();
+        if (sel.rangeCount) {
+            var container = document.createElement("div");
+            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+                container.appendChild(sel.getRangeAt(i).cloneContents());
+            }
+            html = container.innerHTML;
+        }
+    } else if (typeof document.selection != "undefined") {
+        if (document.selection.type == "Text") {
+            html = document.selection.createRange().htmlText;
+        }
+    }
+    return html;
+}
 // OnClick for trans-not-found span elements coming inside output translation contenteditable div
 $(document).off('click', ".its-tran-not-found");translate
 $(document).on('click', '.its-tran-not-found', function (e) {
