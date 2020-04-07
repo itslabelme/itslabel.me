@@ -174,12 +174,27 @@ $(document).on('keydown', '#INPUT_AREA', function (e) {
     countErrorText();
   }
 });
+var timeout = null;
 
+/// If user stops typing up to 2 sec fire event to translation.
+$('#INPUT_AREA').keyup(function(e) {
+    clearTimeout(timeout);
+    let key=e.which;
+    timeout = setTimeout(function() {
+        if (![9, 13, 19, 32, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which)) 
+        {
+          
+           pauseTranslation = false;
+           ITSTranslate();
+        }
+       
+    },2000);
+});
 $(document).off('focusout', "#INPUT_AREA");
 $(document).on('focusout', '#INPUT_AREA', function (e) {
-  pauseTranslation = false;
-  ITSTranslate();
-});
+ pauseTranslation = false;
+ ITSTranslate();
+ });
 
 $(document).off('paste', "#INPUT_AREA");
 $(document).on('paste', '#INPUT_AREA', function (e) {
@@ -218,24 +233,15 @@ $("#INPUT_AREA").on('keydown', function(event) {
   let key = event.key; // const {key} = event; ES6+
   if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
      if(key === "Delete"|| event.keyCode==46){
-     // alert(getSelectionHtml());
-     //let selection = window.getSelection(); 
-     //alert(selection);
-     range = selection.getRangeAt(0);
-     start = range.startOffset;
-     end =  range.endOffset;
      let outText = $("#INPUT_AREA").html();
      
     let finalStr= outText.replace(getSelectionHtml(),"");
-   // alert(" Final String"+finalStr.trim());
-
-    $("#INPUT_AREA").html($.parseHTML(finalStr));
- // restoring the caret
-    range.setStart(this.childNodes[0], start);
-    range.setEnd(this.childNodes[0], end);
-   }
+    
+    $("#INPUT_AREA").html($.parseHTML(finalStr.trim()));
     pauseTranslation = false;
-    ITSTranslate(true);
+    ITSTranslate( true);
+   }
+    
   }
 });
 function getSelectionHtml() {
