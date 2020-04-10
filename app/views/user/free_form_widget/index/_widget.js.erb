@@ -135,7 +135,7 @@ function countErrorText(){
   let outText = $("#OUTPUT_AREA").html();
   outText = outText.match(/<span[^>]*>/g);
   if( outText!==null && outText.length >=4){
-    notifyError("Input Text", "There are too many errors. Please check input value.");
+    notifyError("Warning", "Please check the spelling of the ingredients or separate them using , or ; or new lines for accurate results.");
   }
   //alert(outText.length);
 }

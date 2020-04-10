@@ -45,6 +45,8 @@ module Itslabel::TranslationMethods
       })
       options.symbolize_keys!
 
+      return "" if word == ""
+
       where(input_language: options[:input_language], 
             output_language: options[:output_language]).
       where("LOWER(input_phrase) = LOWER(?)", word.strip).
@@ -86,18 +88,11 @@ module Itslabel::TranslationMethods
 
       input.gsub!("&nbsp;", " ")
 
-      rtl = options[:output_language] == "ARABIC"
-
       words = input.split(Regexp.union(Translation::DELIMITERS))
+      words.delete_if {|w| w == ""}
       hash = translate_words(words, options)
 
-      # binding.pry
-
-      if rtl
-        hash["_tokens"] = words.reverse
-      else
-        hash["_tokens"] = words
-      end
+      hash["_tokens"] = words
 
       if options[:return_in_hash]
         return hash
@@ -123,8 +118,9 @@ module Itslabel::TranslationMethods
       html = Nokogiri::HTML.fragment(input)
       html.children.each do |node|
         if node.children.any?
-          translate_children(node, options)
-          node.children.reverse if options[:output_language] == "ARABIC"
+          unless (node.attributes.any? && node.attributes["class"] && node.attributes["class"].value.include?("do-not-translate"))
+            translate_children(node, options)
+          end
         else
           options[:return_in_hash] = true
           hash = translate_paragraph(node.text, options)
@@ -132,21 +128,30 @@ module Itslabel::TranslationMethods
         end
       end
 
+      html.children.reverse if options[:output_language].downcase == "arabic"
       return html
       
     end
 
     def translate_children(node, **options)
+      # Iterating the node and translating
       node.children.each do |child|
         if child.children.any?
-          translate_children(child, options)
-          node.children.reverse if options[:output_language] == "ARABIC"
+          unless (child.attributes.any? && child.attributes["class"] && child.attributes["class"].value.include?("do-not-translate"))
+            translate_children(child, options)
+          end
         else
           options[:return_in_hash] = true
           hash = translate_paragraph(child.text, options)
           child.replace(format_translation(hash, options))
         end
       end
+
+      # set direction
+      node['dir'] = options[:output_language].downcase == "arabic" ? 'rtl' : 'ltr'
+
+      # Reverse children
+      node.children.reverse if options[:output_language].downcase == "arabic"
     end
 
     def format_translation(hash, **options)
@@ -170,72 +175,20 @@ module Itslabel::TranslationMethods
           end
         end
 
+        # display_text.gsub!(/\n+/, '<br>')
+
         if translated_text
           display_text += translated_text + " "
         else
-          dir_attr = options[:output_language] == "ARABIC" ? 'rtl' : ''
+          dir_attr = options[:output_language].downcase == "arabic" ? 'rtl' : 'ltr'
           display_text += "<span class='its-tran-not-found' dir='#{dir_attr}' data-output-language='#{options[:output_language]}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
         end
       end
 
-      display_text.gsub!(/\n+/, '<br>')
       if options[:return_string]
         return display_text
       else
         return Nokogiri::HTML::DocumentFragment.parse(display_text)
-      end
-    end
-
-    def format_output(hash, **options)
-      options.reverse_merge!({
-        input_language: "ENGLISH",
-        output_language: "ARABIC"
-      })
-      options.symbolize_keys!
-
-      display_text = ""
-      tokens = hash["_tokens"]
-
-      tokens.each do |tk|
-
-        # tk.strip gives "" if tk == "\n" or those characters
-        # hence handling them separately
-        if tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
-          translated_text = hash[tk]
-        else
-          if tk.strip.blank?
-            translated_text = tk
-          else
-            translated_text = hash[tk.strip]
-          end
-        end
-        
-        display_text += translated_text.to_s + " "
-
-        # if translated_text
-        #   display_text += translated_text + " "
-        # else
-        #   dir_attr = options[:output_language] == "ARABIC" ? 'rtl' : ''
-        #   display_text += "<span class='its-tran-not-found' dir='#{dir_attr}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
-        # end
-      end
-
-      display_text.gsub!(/\n+/, '<br>')
-      return display_text
-    end
-
-    def translate(input, **options)
-      options.reverse_merge!({
-        input_language: "ENGLISH",
-        output_language: "ARABIC"
-      })
-      options.symbolize_keys!
-
-      case input
-      when String
-        translate_paragraph(input, options)
-      when Array
-        translate_words(input, options)
       end
     end
 
@@ -247,7 +200,7 @@ module Itslabel::TranslationMethods
       })
       options.symbolize_keys!
 
-      rtl = options[:output_language] == "ARABIC"
+      rtl = options[:output_language].downcase == "arabic"
 
       if delim.match(/،|,/)
         # Match , and arabic comma
@@ -280,6 +233,21 @@ module Itslabel::TranslationMethods
         else
           return nil
         end
+      end
+    end
+
+    def translate(input, **options)
+      options.reverse_merge!({
+        input_language: "ENGLISH",
+        output_language: "ARABIC"
+      })
+      options.symbolize_keys!
+
+      case input
+      when String
+        translate_paragraph(input, options)
+      when Array
+        translate_words(input, options)
       end
     end
 
