@@ -100,33 +100,31 @@ module User
         @item.input_phrase = params[:new_value].to_s.strip
         
         unless @item.input_phrase.blank?
+
           if @output_1_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_1_language)
-            @item.output_1_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_1_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_1_language, return_string: true) 
           end
 
           if @output_2_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_2_language)
-            @item.output_2_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_2_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_2_language, return_string: true) 
           end
-
 
           if @output_3_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_3_language) 
-            @item.output_3_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_3_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_3_language, return_string: true) 
           end
 
           if @output_4_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_4_language)
-            @item.output_4_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_4_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_4_language, return_string: true) 
           end
 
           if @output_5_language          
             hsh = Translation.translate(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_5_language) 
-            @item.output_5_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_5_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_5_language, return_string: true) 
           end
-
-          # binding.pry
 
           @item.output_1_phrase ||= word_not_found[@item.output_1_language] 
           @item.output_2_phrase ||= word_not_found[@item.output_2_language] 

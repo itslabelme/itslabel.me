@@ -61,17 +61,21 @@ function ITSTranslate(forceTranslate=false) {
 
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
   let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
-  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  // let inputText = $("#INPUT_AREA").html();
-  let htm = $("#INPUT_AREA").html().split("<br>");
-  var el = document.createElement('html');
-  el.innerHTML=inputText
-  str = $(el).text().replace("<span class=\"its-tran-not-found\" dir=\"\"><i class=\"icon-question mr-2\"></i>", "");
-  str = str.replace("</span>", "");
-  //alert(inputText);
+  
+  // Old Way
+  // let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+  // let htm = $("#INPUT_AREA").html().split("<br>");
+  // var el = document.createElement('html');
+  // el.innerHTML=inputText
+  // str = $(el).text().replace("<span class=\"its-tran-not-found\" dir=\"\"><i class=\"icon-question mr-2\"></i>", "");
+  // str = str.replace("</span>", "");
   // console.log(str);
   // let inputText = $("#INPUT_AREA").html().replace(/\u00a0/g, " ").replace(/\xA0/g,' ');
   // let inputText = $("#INPUT_AREA").html().replace(/&nbsp;/g, '\n');
+
+  // New Way
+  let inputText = $("#INPUT_AREA").html();
+  let str = inputText;
   
   let sendAjaxRequest = forceTranslate || (cachedInput != inputText)
   
@@ -178,23 +182,23 @@ var timeout = null;
 
 /// If user stops typing up to 2 sec fire event to translation.
 $('#INPUT_AREA').keyup(function(e) {
-    clearTimeout(timeout);
-    let key=e.which;
-    timeout = setTimeout(function() {
-        if (![9, 13, 19, 32, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which)) 
-        {
-          
-           pauseTranslation = false;
-           ITSTranslate();
-        }
-       
-    },1000);
+  clearTimeout(timeout);
+  let key=e.which;
+  timeout = setTimeout(function() {
+    if (![9, 13, 19, 32, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which)) 
+    {
+      pauseTranslation = false;
+      ITSTranslate();
+    }
+     
+  },1000);
 });
+
 $(document).off('focusout', "#INPUT_AREA");
 $(document).on('focusout', '#INPUT_AREA', function (e) {
- pauseTranslation = false;
- ITSTranslate();
- });
+  pauseTranslation = false;
+  ITSTranslate();
+});
 
 $(document).off('paste', "#INPUT_AREA");
 $(document).on('paste', '#INPUT_AREA', function (e) {
@@ -244,6 +248,7 @@ $("#INPUT_AREA").on('keydown', function(event) {
     
   }
 });
+
 function getSelectionHtml() {
     var html = "";
     if (typeof window.getSelection != "undefined") {
@@ -262,8 +267,9 @@ function getSelectionHtml() {
     }
     return html;
 }
+
 // OnClick for trans-not-found span elements coming inside output translation contenteditable div
-$(document).off('click', ".its-tran-not-found");translate
+$(document).off('click', ".its-tran-not-found");
 $(document).on('click', '.its-tran-not-found', function (e) {
   let clickedPhrase = $(this).text();
   // console.log("clickedPhrase: ", clickedPhrase);
@@ -272,7 +278,6 @@ $(document).on('click', '.its-tran-not-found', function (e) {
 
 // OnClick Event for swap button
 $(".swap").click(function(){
-
   swapLanguages();
 });
 
@@ -282,11 +287,18 @@ $("#translate").click(function(){
   ITSTranslate(true);
 });
 
+// OnCick Event for Input Clear Button 
+$(document).off('click', "#INPUT_CLEAR_ACTION");
+$(document).on('click', '#INPUT_CLEAR_ACTION', function (e) {
+  $("#INPUT_AREA").html("");
+  $("#OUTPUT_AREA").html("");
+});
+
 // OnCick Event for Input Paste Button 
 $(document).off('click', "#INPUT_COPY_ACTION");
 $(document).on('click', '#INPUT_COPY_ACTION', function (e) {
   let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  // $("#INPUT_AREA").selectText();
+  $("#INPUT_AREA").selectText();
   document.execCommand('copy');
 });
 
@@ -326,9 +338,5 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
 //   });
 // });
 //
-// $(document).off('click', "#INPUT_CLEAR_ACTION");
-// $(document).on('click', '#INPUT_CLEAR_ACTION', function (e) {
-//   $("#INPUT_AREA").html("");
-//   $("#OUTPUT_AREA").html("");
-// });
+
 

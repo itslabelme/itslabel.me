@@ -13,9 +13,23 @@ module User
 
     def translate
 
-      @input_text = params[:text].strip
-      @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
+      @input_text = params[:text]
+        
+      if @input_language == @output_language
+        @display_text = @input_text
+      else
+        @translated_html = Translation.translate_html(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
+        @display_text = @translated_html.to_html
+      end
       
+    end
+
+    def translate_old
+
+      @input_text = params[:text].strip
+        
+      @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
+
       @display_text = ""
       tokens = @translated_hash["_tokens"]
 

@@ -119,47 +119,71 @@ module Itslabel::TranslationMethods
       })
       options.symbolize_keys!
 
-      # Extract the texts
-      doc = Nokogiri::HTML(input)
-      extracted_texts = doc.search('//text()').map(&:text).join(",")
-
-      # Translate them and return as hash
-      options[:return_in_hash] = true
-      hash = translate_paragraph(extracted_texts, options)
-
-      # Replace the translations in html
-      output = input.clone
-      hash.each do |key, value|
-        next unless value
-        next if key == "_tokens"
-        output.gsub!(key, value)
+      # Create nokogiri object
+      html = Nokogiri::HTML.fragment(input)
+      html.children.each do |node|
+        if node.children.any?
+          translate_children(node, options)
+          node.children.reverse if options[:output_language] == "ARABIC"
+        else
+          options[:return_in_hash] = true
+          hash = translate_paragraph(node.text, options)
+          node.replace(format_translation(hash, options))
+        end
       end
-      return output
+
+      return html
+      
     end
 
-    def translate_html_old(input, **options)
-      options.reverse_merge!({
-        input_language: "ENGLISH",
-        output_language: "ARABIC"
-      })
-      options.symbolize_keys!
-
-      # Extract the texts
-      doc = Nokogiri::HTML(input)
-      extracted_texts = doc.search('//text()').map(&:text).join(",")
-
-      # Translate them and return as hash
-      options[:return_in_hash] = true
-      hash = translate_paragraph(extracted_texts, options)
-
-      # Replace the translations in html
-      output = input.clone
-      hash.each do |key, value|
-        next unless value
-        next if key == "_tokens"
-        output.gsub!(key, value)
+    def translate_children(node, **options)
+      node.children.each do |child|
+        if child.children.any?
+          translate_children(child, options)
+          node.children.reverse if options[:output_language] == "ARABIC"
+        else
+          options[:return_in_hash] = true
+          hash = translate_paragraph(child.text, options)
+          child.replace(format_translation(hash, options))
+        end
       end
-      return output
+    end
+
+    def format_translation(hash, **options)
+      options.reverse_merge!({
+        return_string: false,
+      })
+      display_text = ""
+      tokens = hash["_tokens"]
+
+      tokens.each do |tk|
+
+        # tk.strip gives "" if tk == "\n" or those characters
+        # hence handling them separately
+        if tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
+          translated_text = hash[tk]
+        else
+          if tk.strip.blank?
+            translated_text = tk
+          else
+            translated_text = hash[tk.strip]
+          end
+        end
+
+        if translated_text
+          display_text += translated_text + " "
+        else
+          dir_attr = options[:output_language] == "ARABIC" ? 'rtl' : ''
+          display_text += "<span class='its-tran-not-found' dir='#{dir_attr}' data-output-language='#{options[:output_language]}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
+        end
+      end
+
+      display_text.gsub!(/\n+/, '<br>')
+      if options[:return_string]
+        return display_text
+      else
+        return Nokogiri::HTML::DocumentFragment.parse(display_text)
+      end
     end
 
     def format_output(hash, **options)
