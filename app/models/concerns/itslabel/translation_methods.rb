@@ -94,7 +94,8 @@ module Itslabel::TranslationMethods
       # binding.pry
 
       if rtl
-        hash["_tokens"] = words.reverse
+        #hash["_tokens"] = words.reverse
+        hash["_tokens"] = words
       else
         hash["_tokens"] = words
       end

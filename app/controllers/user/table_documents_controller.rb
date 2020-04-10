@@ -102,38 +102,46 @@ module User
         unless @item.input_phrase.blank?
           if @output_1_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_1_language)
-            @item.output_1_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_1_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language).strip 
           end
 
           if @output_2_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_2_language)
-            @item.output_2_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_2_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language).strip 
           end
 
 
           if @output_3_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_3_language) 
-            @item.output_3_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_3_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language).strip
+            #raise @item.output_3_phrase.inspect
           end
 
           if @output_4_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_4_language)
-            @item.output_4_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_4_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language).strip 
           end
 
           if @output_5_language          
             hsh = Translation.translate(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_5_language) 
-            @item.output_5_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language) 
+            @item.output_5_phrase = Translation.format_output(hsh, input_language: @input_language, output_language: @output_1_language).strip 
           end
 
           # binding.pry
-
-          @item.output_1_phrase ||= word_not_found[@item.output_1_language] 
-          @item.output_2_phrase ||= word_not_found[@item.output_2_language] 
-          @item.output_3_phrase ||= word_not_found[@item.output_3_language] 
+          if @item.output_1_phrase.to_s.empty?
+          @item.output_1_phrase = word_not_found[@item.output_1_language] 
+          end
+          if @item.output_2_phrase.to_s.empty?
+          @item.output_2_phrase = word_not_found[@item.output_2_language] 
+          end
+         # raise @item.output_3_phrase.inspect
+          if @item.output_3_phrase.to_s.empty?
+            @item.output_3_phrase = word_not_found[@item.output_3_language] 
+           end
           @item.output_4_phrase ||= word_not_found[@item.output_4_language] 
           @item.output_5_phrase ||= word_not_found[@item.output_5_language] 
           @item.translated = true
+          #raise @item.inspect
         else
           @item.input_phrase = params[:new_value]
           

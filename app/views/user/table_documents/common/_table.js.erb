@@ -64,7 +64,7 @@ $(document).ready(function() {
         <% end %>
 
         <% if @document.input_language != @document.output_3_language && !@document.output_3_language.blank? %>
-        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'output_3_phrase', className: "<%= @document.output_3_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'output_3_phrase', className: "<%= @document.output_3_language == 'ARABIC' ? 'f dirRtl' : 'htLeft' %> htMiddle"},
         <% end %>
 
         <% if @document.input_language != @document.output_4_language && !@document.output_4_language.blank? %>
@@ -242,7 +242,7 @@ $(document).ready(function() {
 
         if (col == translationHOT.table.propToCol("output_3_phrase")) {
           var o3p = translationHOT.data[row]["output_3_phrase"];
-          if ((o3p == "Word not found") || (o3p == "Mot introuvable") || (o3p == "كلمة غير موجودة")) {
+         if ((o3p == "Word not found") || (o3p == "Mot introuvable") || (o3p == "كلمة غير موجودة")) {
             // cell.style.backgroundColor = "#fdebed";
             // cell.style.color = '#FF7F00';
             cell.style.color = 'red';
