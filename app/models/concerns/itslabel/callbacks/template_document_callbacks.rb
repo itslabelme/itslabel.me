@@ -4,8 +4,8 @@ module Itslabel::Callbacks::TemplateDocumentCallbacks
 
   def translate
     self.skip_callback = true
-    translated_html = Translation.translate_html(self.input_html_source, input_language: self.input_language, output_language: self.output_language)
-    self.update_attribute(:output_html_source, translated_html)
+    html_doc = Translation.translate_html(self.input_html_source, input_language: self.input_language, output_language: self.output_language)
+    self.update_attribute(:output_html_source, html_doc.to_html)
     # if self.new_record?
     #   self.output_html_source = Translation.translate_html(self.input_html_source, input_language: self.input_language, output_language: self.output_language)
     #   self.update_attribute(:output_html_source, translated_html)
