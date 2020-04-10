@@ -7,11 +7,11 @@
 
   translationHOT.data[<%= params[:hot_row] %>]["input_phrase"] = "<%= @item.input_phrase %>";
 
-  translationHOT.data[<%= params[:hot_row] %>]["output_1_phrase"] = "<%= @item.output_1_phrase %>";
-  translationHOT.data[<%= params[:hot_row] %>]["output_2_phrase"] = "<%= @item.output_2_phrase %>";
-  translationHOT.data[<%= params[:hot_row] %>]["output_3_phrase"] = "<%= @item.output_3_phrase %>";
-  translationHOT.data[<%= params[:hot_row] %>]["output_4_phrase"] = "<%= @item.output_4_phrase %>";
-  translationHOT.data[<%= params[:hot_row] %>]["output_5_phrase"] = "<%= @item.output_5_phrase %>";
+  translationHOT.data[<%= params[:hot_row] %>]["output_1_phrase"] = "<%= escape_javascript(raw(@item.output_1_phrase)) %>";
+  translationHOT.data[<%= params[:hot_row] %>]["output_2_phrase"] = "<%= escape_javascript(raw(@item.output_2_phrase)) %>";
+  translationHOT.data[<%= params[:hot_row] %>]["output_3_phrase"] = "<%= escape_javascript(raw(@item.output_3_phrase)) %>";
+  translationHOT.data[<%= params[:hot_row] %>]["output_4_phrase"] = "<%= escape_javascript(raw(@item.output_4_phrase)) %>";
+  translationHOT.data[<%= params[:hot_row] %>]["output_5_phrase"] = "<%= escape_javascript(raw(@item.output_5_phrase)) %>";
 
   translationHOT.data[<%= params[:hot_row] %>]["input_language"] = "<%= @item.input_language %>";
 

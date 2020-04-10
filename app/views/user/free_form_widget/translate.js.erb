@@ -1,13 +1,13 @@
 $("#OUTPUT_AREA").html("<%= escape_javascript(raw(@display_text)) %>");
 
 <% if @output_language.upcase == "ARABIC" %>
-  $("#OUTPUT_AREA").css("text-align", "right");
+  $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: right;');
 <% else %>
-  $("#OUTPUT_AREA").css("text-align", "left");
+  $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: left;');
 <% end %>
 
 <% if @input_language.upcase == "ARABIC" %>
-  $("#INPUT_AREA").css("text-align", "right");
+  $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;');
 <% else %>
-  $("#INPUT_AREA").css("text-align", "left");
+  $('#INPUT_AREA').attr('style','direction: ltr;text-align: left;');
 <% end %>
