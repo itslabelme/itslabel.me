@@ -163,10 +163,10 @@ module Itslabel::TranslationMethods
 
       tokens.each do |tk|
 
-        # tk.strip gives "" if tk == "\n" or those characters
-        # hence handling them separately
+        # tk.strip gives "" if tk == "\n" or those characters, hence handling them separately
+        # tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
         if tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
-          translated_text = hash[tk]
+          translated_text = tk
         else
           if tk.strip.blank?
             translated_text = tk
@@ -174,8 +174,6 @@ module Itslabel::TranslationMethods
             translated_text = hash[tk.strip]
           end
         end
-
-        # display_text.gsub!(/\n+/, '<br>')
 
         if translated_text
           display_text += translated_text + " "
