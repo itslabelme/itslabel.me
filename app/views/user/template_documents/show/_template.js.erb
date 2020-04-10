@@ -18,6 +18,9 @@ $(document).ready(function() {
     toolbar: 'undo redo | link image | Paste Change input',
     content_css: '<%= asset_url('iframe.css') %>',
 
+    // only paste as text and not html
+    paste_as_text: true,
+
     /* enable title field in the Image dialog*/
     image_title: true,
 
