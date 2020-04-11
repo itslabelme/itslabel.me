@@ -13,26 +13,50 @@ module User
 
     def translate
 
+      @input_text = params[:text]
+        
+      if @input_language == @output_language
+        @display_text = @input_text
+      else
+        @translated_html = Translation.translate_html(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
+        @display_text = @translated_html.to_html
+      end
+      
+    end
+
+    def translate_old
+
       @input_text = params[:text].strip
+        
       @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
-      @display_text = @input_text
-      @translated_hash.each do |key, value|
-        if value
-          @display_text.gsub!(key, value)
+
+      @display_text = ""
+      tokens = @translated_hash["_tokens"]
+
+      tokens.each do |tk|
+
+        # tk.strip gives "" if tk == "\n" or those characters
+        # hence handling them separately
+        if tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
+          translated_text = @translated_hash[tk]
         else
-          @display_text.gsub!(key, "<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>#{key}</span>")
+          if tk.strip.blank?
+            translated_text = tk
+          else
+            translated_text = @translated_hash[tk.strip]
+          end
+        end
+        
+        if translated_text
+          @display_text += translated_text + " "
+        else
+          dir_attr = @output_language == "ARABIC" ? 'rtl' : ''
+          @display_text += "<span class='its-tran-not-found' dir='#{dir_attr}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
         end
       end
 
-      delimitters = @input_text.scan(Regexp.union(Translation::DELIMITERS))
-
-      delimitters.each do |dlmtr|
-        dlmtr_translations = Translation::DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
-        translated_dlmtr = dlmtr_translations.try(:[], @output_language.upcase.to_sym)
-        @display_text.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
-      end
-
-      @display_text.gsub!("\n", '<br>')
+      @display_text.gsub!(/\n+/, '<br>')
+      
     end
 
     def new_translation_request
