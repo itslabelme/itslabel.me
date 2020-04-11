@@ -4,6 +4,7 @@ module User
     before_action :get_user_subscription
      before_action :access_denied
     def index
+      get_modules
       @subscriptions=Subscription.all
       if !@user_subscription.blank?
       get_user_subscription
@@ -69,5 +70,10 @@ module User
         :subscription_id
         )
     end
+    
+    def get_modules
+      @modules=UserModule.all
+    end
+
   end
 end

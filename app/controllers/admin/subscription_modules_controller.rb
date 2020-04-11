@@ -31,9 +31,11 @@ module Admin
       @modules=UserModule.all.to_a
       @subscription_modules = SubscriptionModule.connection.select_all("select * from subscription_modules where subscription_id=#{params['subscription_module'][:subscription_id]}").to_a
       @subscription=Subscription.find_by_id(params['subscription_module'][:subscription_id])
-      SubscriptionModule.where('subscription_id',params['subscription_module'][:subscription_id]).destroy_all
+      SubscriptionModule.where(:subscription_id=> params['subscription_module'][:subscription_id]).delete_all
+      #raise params['subscription_module'][:subscription_id]
       @title=params['subscription_module'][:title]
       @subscription_id=params['subscription_module'][:subscription_id]
+      #raise params[:module_id].inspect
       params[:module_id].each do |mode|
         @subscription_module=SubscriptionModule.new
     

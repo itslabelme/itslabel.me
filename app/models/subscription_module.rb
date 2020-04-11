@@ -7,12 +7,13 @@ class SubscriptionModule < ApplicationRecord
   self.table_name = "subscription_modules"
 
  
-
-  
+#Association
+  #belongs_to :modules
   # Generic Methods
  
   def access
     UserModule.where('id=?',modules_id)
   end
   
+
 end

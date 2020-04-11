@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2020_04_02_123853) do
-
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -111,13 +109,22 @@ ActiveRecord::Schema.define(version: 2020_04_02_123853) do
     t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
-  create_table "subscription_modules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "modules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 256, null: false
     t.string "controller", limit: 256, null: false
     t.string "action", limit: 256, null: false
+    t.string "route", limit: 256, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscription_modules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.bigint "modules_id"
     t.bigint "subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["modules_id"], name: "index_subscription_modules_on_modules_id"
     t.index ["subscription_id"], name: "index_subscription_modules_on_subscription_id"
   end
 
@@ -216,6 +223,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_123853) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "client_users"
   add_foreign_key "label_templates", "admin_users"
+  add_foreign_key "subscription_modules", "modules", column: "modules_id", on_delete: :cascade
   add_foreign_key "subscription_modules", "subscriptions", on_delete: :cascade
   add_foreign_key "table_documents", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "template_documents", "client_users", column: "user_id", on_delete: :cascade
