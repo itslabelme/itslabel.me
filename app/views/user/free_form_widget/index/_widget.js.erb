@@ -281,24 +281,7 @@ function formatSelection(str, text, replacementText) {
     range.text = replacementText;
   }
 }
-function getSelectionHtml() {
-    var html = "";
-    if (typeof window.getSelection != "undefined") {
-        var sel = window.getSelection();
-        if (sel.rangeCount) {
-            var container = document.createElement("div");
-            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
-                container.appendChild(sel.getRangeAt(i).cloneContents());
-            }
-            html = container.innerHTML;
-        }
-    } else if (typeof document.selection != "undefined") {
-        if (document.selection.type == "Text") {
-            html = document.selection.createRange().htmlText;
-        }
-    }
-    return html;
-}
+
 
 // OnClick for trans-not-found span elements coming inside output translation contenteditable div
 $(document).off('click', ".its-tran-not-found");
@@ -371,4 +354,21 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
 // });
 //
 
-
+/* function getSelectionHtml() {
+    var html = "";
+    if (typeof window.getSelection != "undefined") {
+        var sel = window.getSelection();
+        if (sel.rangeCount) {
+            var container = document.createElement("div");
+            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+                container.appendChild(sel.getRangeAt(i).cloneContents());
+            }
+            html = container.innerHTML;
+        }
+    } else if (typeof document.selection != "undefined") {
+        if (document.selection.type == "Text") {
+            html = document.selection.createRange().htmlText;
+        }
+    }
+    return html;
+}*/
