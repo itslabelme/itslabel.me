@@ -7,43 +7,44 @@ if(typeof(String.prototype.trim) === "undefined")
 }
 
 let cachedInput = '';
+let pauseTranslation = false;
 
 <%# https://stackoverflow.com/questions/12027137/javascript-trick-for-paste-as-plain-text-in-execcommand %>
 function _insertText(text) { 
   // use insertText command if supported
   if (document.queryCommandSupported('insertText')) {
-      document.execCommand('insertText', false, text);
+    document.execCommand('insertText', false, text);
   }
   // or insert the text content at the caret's current position
   // replacing eventually selected content
   else {
-      var range = document.getSelection().getRangeAt(0);
-      range.deleteContents();
-      var textNode = document.createTextNode(text);
-      range.insertNode(textNode);
-      range.selectNodeContents(textNode);
-      range.collapse(false);
+    var range = document.getSelection().getRangeAt(0);
+    range.deleteContents();
+    var textNode = document.createTextNode(text);
+    range.insertNode(textNode);
+    range.selectNodeContents(textNode);
+    range.collapse(false);
 
-      var selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
   }
 };
 
 jQuery.fn.selectText = function(){
-   var doc = document;
-   var element = this[0];
-   // console.log(this, element);
-   if (doc.body.createTextRange) {
-     var range = document.body.createTextRange();
-     range.moveToElementText(element);
-     range.select();
-   } else if (window.getSelection) {
-     var selection = window.getSelection();        
-     var range = document.createRange();
-     range.selectNodeContents(element);
-     selection.removeAllRanges();
-     selection.addRange(range);
+  var doc = document;
+  var element = this[0];
+  // console.log(this, element);
+  if (doc.body.createTextRange) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(element);
+    range.select();
+  } else if (window.getSelection) {
+    var selection = window.getSelection();        
+    var range = document.createRange();
+    range.selectNodeContents(element);
+    selection.removeAllRanges();
+    selection.addRange(range);
    }
 };
 
@@ -53,12 +54,28 @@ function parseTextFromContentEditable(rawHtmlText) {
 }
 
 function ITSTranslate(forceTranslate=false) {
+
+  if(pauseTranslation) {
+    return false;
+  }
+
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
   let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
-  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
   
+  // Old Way
+  // let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+  // let htm = $("#INPUT_AREA").html().split("<br>");
+  // var el = document.createElement('html');
+  // el.innerHTML=inputText
+  // str = $(el).text().replace("<span class=\"its-tran-not-found\" dir=\"\"><i class=\"icon-question mr-2\"></i>", "");
+  // str = str.replace("</span>", "");
+  // console.log(str);
   // let inputText = $("#INPUT_AREA").html().replace(/\u00a0/g, " ").replace(/\xA0/g,' ');
   // let inputText = $("#INPUT_AREA").html().replace(/&nbsp;/g, '\n');
+
+  // New Way
+  let inputText = $("#INPUT_AREA").html();
+  let str = inputText;
   
   let sendAjaxRequest = forceTranslate || (cachedInput != inputText)
   
@@ -68,7 +85,7 @@ function ITSTranslate(forceTranslate=false) {
   // console.log("sendAjaxRequest: ", sendAjaxRequest);
 
   if(sendAjaxRequest){
-    let ajaxData = {text: inputText, input_language: inputLanguage, output_language: outputLanguage };
+    let ajaxData = {text: str, input_language: inputLanguage, output_language: outputLanguage };
     //alert(ajaxData);
     $.ajax({
       url: '/user/translate.js',
@@ -76,7 +93,9 @@ function ITSTranslate(forceTranslate=false) {
       data: ajaxData
     });
     cachedInput = inputText;
+
   }
+  
 }
 
 function requestForTranslation(phrase) {
@@ -90,6 +109,37 @@ function requestForTranslation(phrase) {
   });
 }
 
+function swapLanguages(){
+
+  // Get Input and Output Language from the dropdown
+  let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").val();
+  let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").val();
+  
+  // Get Output Text (right side)
+  let outText = $("#OUTPUT_AREA").html();
+  outText = outText.replace(/<\/?span[^>]*>/g,"");
+  outText = outText.replace(/<\/?i[^>]*>/g,"");
+  
+  // Swapping Input to Output
+  $("#INPUT_AREA").html(outText);
+  $("#OUTPUT_AREA").html("");
+
+  pauseTranslation = true;
+  $("#INPUT_LANGUAGE").val(outputLanguage).change();
+  $("#OUTPUT_LANGUAGE").val(inputLanguage).change();
+  pauseTranslation = false;
+  ITSTranslate(true);
+}
+
+function countErrorText(){
+  let outText = $("#OUTPUT_AREA").html();
+  outText = outText.match(/<span[^>]*>/g);
+  if( outText!==null && outText.length >=4){
+    notifyError("Warning", "Please check the spelling of the ingredients or separate them using , or ; or new lines for accurate results.");
+  }
+  //alert(outText.length);
+}
+
 $(document).off('blur', "#INPUT_AREA");
 $(document).on('keydown', '#INPUT_AREA', function (e) {
 
@@ -99,7 +149,7 @@ $(document).on('keydown', '#INPUT_AREA', function (e) {
     Pause / Break => 19
     (Space) => 32
     Numbers => 97 to 105
-    
+    Delete => 46
     []{} => 219 to 222
     ( => 48 
     ) => 57
@@ -114,20 +164,39 @@ $(document).on('keydown', '#INPUT_AREA', function (e) {
     https://css-tricks.com/snippets/javascript/javascript-keycodes/ 
 
   %>
-  
+ // alert(e.key);
   // console.log(e.key + " - " + e.which);
   if (
-    [9, 13, 19, 32, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which) ||
+    [9, 13, 19, 32,46, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which) ||
     (e.which >= 97 && e.which <= 105) ||
     (e.which >= 219 && e.which <= 222)
     ) {
     // console.log('Changed ( ' + e.key + " - " + e.which + " )");
+
+  pauseTranslation = false;
     ITSTranslate();
+    countErrorText();
   }
+});
+var timeout = null;
+
+/// If user stops typing up to 2 sec fire event to translation.
+$('#INPUT_AREA').keyup(function(e) {
+  clearTimeout(timeout);
+  let key=e.which;
+  timeout = setTimeout(function() {
+    if (![9, 13, 19, 32, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which)) 
+    {
+      pauseTranslation = false;
+      ITSTranslate();
+    }
+     
+  },1000);
 });
 
 $(document).off('focusout', "#INPUT_AREA");
 $(document).on('focusout', '#INPUT_AREA', function (e) {
+  pauseTranslation = false;
   ITSTranslate();
 });
 
@@ -141,124 +210,165 @@ $(document).on('paste', '#INPUT_AREA', function (e) {
 
 // Widget Controls
 // ---------------
-// On load of page set the oriantation of text according to language selected.
-$( document ).ready(function() {
-if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
- 
-  $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
-  $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: left;');
-  
-  }else{
-    
 
-    if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
- 
-    $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: right;');
-    $('#INPUT_AREA').attr('style','direction: ltr;text-align: left;cursor: text;');
-  
+/// On input language dropdown change
+$("#INPUT_LANGUAGE").on('change', function(){
+  if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
+    $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
   }else{
-    $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: right;');
     $('#INPUT_AREA').attr('style','direction: ltr;text-align: left;cursor: text;');
   }
-}
-});
-/// On input put language change change oriantation of text
-$("#INPUT_LANGUAGE").on('change', function(){
-    if($("#INPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
-    $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
-    }else{
-    $('#INPUT_AREA').attr('style','direction: ltr;text-align: right;cursor: text;');
-    }
-
   ITSTranslate(true);
 });
-/// On out put language change change oriantation of text
+
+/// On output language dropdown change
 $("#OUTPUT_LANGUAGE").on('change', function(){
   if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
-
-  $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: right;');
-  }else
-  {
-  $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: left;');
+    $('#OUTPUT_AREA').attr('style','direction: rtl;text-align: right;');
+  } else {
+    $('#OUTPUT_AREA').attr('style','direction: ltr;text-align: left;');
   }
   ITSTranslate(true);
 });
 
-$(document).off('click', "#INPUT_CUT_ACTION");
-$(document).on('click', '#INPUT_CUT_ACTION', function (e) {
-  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  // $("#INPUT_AREA").selectText();
-  document.execCommand('copy');
-  $("#INPUT_AREA").html("");
-  $("#OUTPUT_AREA").html("");
-  // navigator.clipboard.write([inputText]).then(function() {
-  //   console.log("Copied to clipboard and cleared the input successfully!");
-  //   $("#INPUT_AREA").html("");
-  //   $("#OUTPUT_AREA").html("");
-  // }, function() {
-  //   console.error("Unable to write to clipboard.");
-  // });
-});
+// On input language change of text
+$("#INPUT_AREA").on('keydown', function(event) {
+   
+  let key = event.key; // const {key} = event; ES6+
+  if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
+     if(key === "Delete"|| event.keyCode==46){
+    // let outText = $("#INPUT_AREA").html();
+    // alert(getSelectionHtml());
+    //let finalStr= outText.replace(getSelectionHtml(),"");
+    
+    //$("#INPUT_AREA").html($.parseHTML(finalStr.trim()));
+      var target = $("#INPUT_AREA");
+  var str = window.getSelection();
+  var text = str.toString().trim();
+  var l = text.length;
 
-$(document).off('click', ".its-tran-not-found");translate
+  if ($(str.baseNode).closest('.input').length > 0) {
+    switch (target) {
+      case 'test':
+        if ((text.charAt(0) != "`" && text.charAt(l - 1))) {
+          var replacementText = "`" + text + "` ";
+        } else {
+          var rid = text.replace(/`/g, '');
+          var replacementText = rid + ' ';
+        }
+        break;
+    }
+    formatSelection(str, text, replacementText);
+  }
+    pauseTranslation = false;
+    ITSTranslate( true);
+   }
+    
+  }
+});
+function formatSelection(str, text, replacementText) {
+  var sel, range;
+  if (window.getSelection) {
+    sel = window.getSelection();
+    if (sel.rangeCount) {
+      range = sel.getRangeAt(0);
+      range.deleteContents();
+      range.insertNode(document.createTextNode(replacementText));
+    }
+  } else if (document.selection && document.selection.createRange) {
+    range = document.selection.createRange();
+
+    range.text = replacementText;
+  }
+}
+
+
+// OnClick for trans-not-found span elements coming inside output translation contenteditable div
+$(document).off('click', ".its-tran-not-found");
 $(document).on('click', '.its-tran-not-found', function (e) {
   let clickedPhrase = $(this).text();
   // console.log("clickedPhrase: ", clickedPhrase);
   requestForTranslation(clickedPhrase);
 });
 
-$(document).off('click', "#INPUT_COPY_ACTION");
-$(document).on('click', '#INPUT_COPY_ACTION', function (e) {
-  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  // $("#INPUT_AREA").selectText();
-  document.execCommand('copy');
+// OnClick Event for swap button
+$(".swap").click(function(){
+  swapLanguages();
 });
 
-$(document).off('click', "#INPUT_PASTE_ACTION");
-$(document).on('click', '#INPUT_PASTE_ACTION', function (e) {
-  navigator.clipboard.readText().then(function(data) {
-    console.log("Pasted from clipboard:", data);
-    // $("#INPUT_AREA").html(data);
-    document.execCommand('copy');
-    ITSTranslate();
-  });
+// OnClick Event for the translate button
+$("#translate").click(function(){
+  pauseTranslation = false;
+  ITSTranslate(true);
 });
 
+// OnCick Event for Input Clear Button 
 $(document).off('click', "#INPUT_CLEAR_ACTION");
 $(document).on('click', '#INPUT_CLEAR_ACTION', function (e) {
   $("#INPUT_AREA").html("");
   $("#OUTPUT_AREA").html("");
 });
 
+// OnCick Event for Input Paste Button 
+$(document).off('click', "#INPUT_COPY_ACTION");
+$(document).on('click', '#INPUT_COPY_ACTION', function (e) {
+  let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+  $("#INPUT_AREA").selectText();
+  document.execCommand('copy');
+});
+
+// OnCick Event for Output Paste Button 
 $(document).off('click', "#OUTPUT_COPY_ACTION");
 $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
   let outputText = parseTextFromContentEditable($("#OUTPUT_AREA").html());
   $("#OUTPUT_AREA").selectText();
   document.execCommand('copy');
 });
-$(".swap").click(function(){
-  divswap();
-});
-$("#INPUT_AREA").on('keydown', function(event) {
-    const key = event.key; // const {key} = event; ES6+
-    if (key === "Backspace" || key === "Delete") {
-        ITSTranslate(true);
-    }
-});
-function divswap(){
 
-  let inputLanguageOp = $("#INPUT_LANGUAGE").children("option:selected").val();
-  let outputLanguageOp = $("#OUTPUT_LANGUAGE").children("option:selected").val();
- 
-  let inputText_b = $("#INPUT_AREA").text();
-  let outText_b = $("#OUTPUT_AREA").html();
-  let inputText=$("#INPUT_AREA").html(outText_b);
-  //let outText =$("#OUTPUT_AREA").text(inputText_b);
- 
-  $("#INPUT_LANGUAGE").val(outputLanguageOp).change();
-  $("#OUTPUT_LANGUAGE").val(inputLanguageOp).change();
-  ITSTranslate(true);
-}
-$("#translate").click(function(){
-  ITSTranslate(true);
-});
+// Old Methods
+
+// $(document).off('click', "#INPUT_CUT_ACTION");
+// $(document).on('click', '#INPUT_CUT_ACTION', function (e) {
+//   let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
+//   // $("#INPUT_AREA").selectText();
+//   document.execCommand('copy');
+//   $("#INPUT_AREA").html("");
+//   $("#OUTPUT_AREA").html("");
+//   // navigator.clipboard.write([inputText]).then(function() {
+//   //   console.log("Copied to clipboard and cleared the input successfully!");
+//   //   $("#INPUT_AREA").html("");
+//   //   $("#OUTPUT_AREA").html("");
+//   // }, function() {
+//   //   console.error("Unable to write to clipboard.");
+//   // });
+// });
+//
+// $(document).off('click', "#INPUT_PASTE_ACTION");
+// $(document).on('click', '#INPUT_PASTE_ACTION', function (e) {
+//   navigator.clipboard.readText().then(function(data) {
+//     console.log("Pasted from clipboard:", data);
+//     // $("#INPUT_AREA").html(data);
+//     document.execCommand('copy');
+//     ITSTranslate();
+//   });
+// });
+//
+
+/* function getSelectionHtml() {
+    var html = "";
+    if (typeof window.getSelection != "undefined") {
+        var sel = window.getSelection();
+        if (sel.rangeCount) {
+            var container = document.createElement("div");
+            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+                container.appendChild(sel.getRangeAt(i).cloneContents());
+            }
+            html = container.innerHTML;
+        }
+    } else if (typeof document.selection != "undefined") {
+        if (document.selection.type == "Text") {
+            html = document.selection.createRange().htmlText;
+        }
+    }
+    return html;
+}*/

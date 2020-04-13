@@ -1,7 +1,0 @@
-$("#TRANS_PREVIEW").html("<%= escape_javascript(raw(@display_text)) %>");
-
-<% if @output_language.upcase == "ARABIC" %>
-  $("#TRANS_PREVIEW").css("text-align", "right");
-<% else %>
-  $("#TRANS_PREVIEW").css("text-align", "left");
-<% end %>

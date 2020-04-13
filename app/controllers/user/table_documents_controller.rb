@@ -100,11 +100,31 @@ module User
         @item.input_phrase = params[:new_value].to_s.strip
         
         unless @item.input_phrase.blank?
-          @item.output_1_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_1_language) if @output_1_language
-          @item.output_2_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_2_language) if @output_2_language
-          @item.output_3_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_3_language) if @output_3_language
-          @item.output_4_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_4_language) if @output_4_language
-          @item.output_5_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_5_language) if @output_5_language
+
+          if @output_1_language
+            hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_1_language)
+            @item.output_1_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_1_language, return_string: true) 
+          end
+
+          if @output_2_language
+            hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_2_language)
+            @item.output_2_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_2_language, return_string: true) 
+          end
+
+          if @output_3_language
+            hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_3_language) 
+            @item.output_3_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_3_language, return_string: true) 
+          end
+
+          if @output_4_language
+            hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_4_language)
+            @item.output_4_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_4_language, return_string: true) 
+          end
+
+          if @output_5_language          
+            hsh = Translation.translate(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_5_language) 
+            @item.output_5_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_5_language, return_string: true) 
+          end
 
           @item.output_1_phrase ||= word_not_found[@item.output_1_language] 
           @item.output_2_phrase ||= word_not_found[@item.output_2_language] 
@@ -126,8 +146,12 @@ module User
           if @item.valid?
             @item.save
           else
-            set_notification(false, I18n.t('status.error'), @item.errors.full_messages.join("<br>"))
+            error_message = @item.errors.full_messages.first
+            set_notification(false, I18n.t('status.error'), error_message)
           end
+        else
+          error_message = @item.errors.full_messages.first
+          set_notification(false, I18n.t('status.error'), error_message)
         end
       end
     end
