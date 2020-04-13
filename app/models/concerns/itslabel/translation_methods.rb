@@ -46,12 +46,9 @@ module Itslabel::TranslationMethods
       options.symbolize_keys!
 
       return "" if word == ""
-
-      where(input_language: options[:input_language], 
-            output_language: options[:output_language]).
-      where("LOWER(input_phrase) = LOWER(?)", word.strip).
-      select(:output_phrase).
-      first.try(:output_phrase)
+   
+      change_according_to_input_out_language(options[:input_language],options[:output_language],word)
+      
     end
 
     def translate_words(words, **options)
@@ -77,6 +74,35 @@ module Itslabel::TranslationMethods
       end
       translation_hash
     end
+      
+      def change_according_to_input_out_language(input_language,output_language,word)
+
+           if ((input_language.eql?('English') || input_language.eql?('ENGLISH')) && (output_language.eql?('Arabic')|| output_language.eql?('ARABIC')))
+              @input_phrase='english_phrase'
+              @output_phrase='arabic_phrase'
+           elsif ((input_language.eql?('Arabic') || input_language.eql?('ARABIC')) && (output_language.eql?('English') ||output_language.eql?('ENGLISH') ) )
+              @input_phrase='arabic_phrase'
+              @output_phrase='english_phrase'
+           elsif ((input_language.eql?('English') || input_language.eql?('ENGLISH')) && (output_language.eql?('French') || output_language.eql?('FRENCH')))
+              @input_phrase='english_phrase'
+              @output_phrase='french_phrase'
+           elsif ((input_language.eql?('French') ||input_language.eql?('FRENCH')) && (output_language.eql?('English') ||output_language.eql?('ENGLISH')) )
+              @input_phrase='french_phrase'
+              @output_phrase='english_phrase'
+           elsif ((input_language.eql?('French') || input_language.eql?('FRENCH')) && (output_language.eql?('Arabic') ||output_language.eql?('ARABIC')))
+              @input_phrase='french_phrase'
+              @output_phrase='arabic_phrase'
+           elsif ((input_language.eql?('Arabic') || input_language.eql?('ARABIC')) && (output_language.eql?('French')|| output_language.eql?('FRENCH')) )
+              @input_phrase='arabic_phrase'
+              @output_phrase='french_phrase'
+           end
+
+           
+            where("LOWER(#{@input_phrase}) = LOWER(?)", word.strip).
+            select(@output_phrase).
+            first.try(@output_phrase)
+
+      end
 
     def translate_paragraph(input, **options)
       options.reverse_merge!({
