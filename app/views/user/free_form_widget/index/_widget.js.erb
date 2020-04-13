@@ -237,18 +237,50 @@ $("#INPUT_AREA").on('keydown', function(event) {
   let key = event.key; // const {key} = event; ES6+
   if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
      if(key === "Delete"|| event.keyCode==46){
-     let outText = $("#INPUT_AREA").html();
-     
-    let finalStr= outText.replace(getSelectionHtml(),"");
+    // let outText = $("#INPUT_AREA").html();
+    // alert(getSelectionHtml());
+    //let finalStr= outText.replace(getSelectionHtml(),"");
     
-    $("#INPUT_AREA").html($.parseHTML(finalStr.trim()));
+    //$("#INPUT_AREA").html($.parseHTML(finalStr.trim()));
+      var target = $("#INPUT_AREA");
+  var str = window.getSelection();
+  var text = str.toString().trim();
+  var l = text.length;
+
+  if ($(str.baseNode).closest('.input').length > 0) {
+    switch (target) {
+      case 'test':
+        if ((text.charAt(0) != "`" && text.charAt(l - 1))) {
+          var replacementText = "`" + text + "` ";
+        } else {
+          var rid = text.replace(/`/g, '');
+          var replacementText = rid + ' ';
+        }
+        break;
+    }
+    formatSelection(str, text, replacementText);
+  }
     pauseTranslation = false;
     ITSTranslate( true);
    }
     
   }
 });
+function formatSelection(str, text, replacementText) {
+  var sel, range;
+  if (window.getSelection) {
+    sel = window.getSelection();
+    if (sel.rangeCount) {
+      range = sel.getRangeAt(0);
+      range.deleteContents();
+      range.insertNode(document.createTextNode(replacementText));
+    }
+  } else if (document.selection && document.selection.createRange) {
+    range = document.selection.createRange();
 
+    range.text = replacementText;
+  }
+}
 function getSelectionHtml() {
     var html = "";
     if (typeof window.getSelection != "undefined") {
