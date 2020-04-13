@@ -126,9 +126,9 @@ Rails.application.routes.draw do
     put 'update_password', to: 'profile#update_password'
     
     #User Module Subscription
-    resources :subscription_modules , only: [:create, :index, :update] do
+    resources :subscription_permissions , only: [:create, :index, :update] do
       collection do
-        get '/add_edit_modules/:id', to: 'subscription_modules#create_pemission'
+        get '/add_edit_permissions/:id', to: 'subscription_permissions#create_pemission'
       end
     end
     

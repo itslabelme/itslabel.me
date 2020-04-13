@@ -1,10 +1,10 @@
-class SubscriptionModule < ApplicationRecord
+class SubscriptionPermission < ApplicationRecord
 
   # Constants
   #LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH"].freeze
 
   # Set Table Name
-  self.table_name = "subscription_modules"
+  self.table_name = "subscription_permissions"
 
  
 #Association
@@ -12,7 +12,7 @@ class SubscriptionModule < ApplicationRecord
   # Generic Methods
  
   def access
-    UserModule.where('id=?',modules_id)
+    Permission.where('id=?',modules_id)
   end
   
 

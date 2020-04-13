@@ -1,16 +1,14 @@
 <%
-  if @subscription_module.new_record?
+  if @subscription_permission.new_record?
     form_method = :post
     form_url = {action: :create}
-  else
-    form_method = :put
-    form_url = {action: :update}
+
   end
 %>
 
 <%= form_with(url: form_url,  
       class: "form-floating", 
-      model: @subscription_module,
+      model: @subscription_permission,
       method: form_method, 
       html: { autocomplete: "off" }) do |f| %>
 
@@ -29,13 +27,6 @@
         <!-- Show Success / Error / Info Messages If any set by the controller action -->
         <%= flash_message(false) if defined?(flash) -%>
 
-        <!-- Display Errors if Any
-        <%# if @subscription_module.errors.any? %>
-        <div id="TRANSLATIONS_NEW_FORM_ERRORS">
-          <%#= notify_form_errors(@subscription_module) %>
-        </div>
-        <%# end %>
-         -->
       </div>
     </div>
 
@@ -49,13 +40,15 @@
              <%= f.hidden_field :subscription_id,:value => @subscription.id %>
               
                   <%  moduleArray = Array.new
-                      @subscription_modules.each_with_index do |mode, i|
+                      if !@subscription_permissions.blank?
+                      @subscription_permissions.each_with_index do |mode, i|
                       #@subscription_modules.each do |mode i|
-                      moduleArray.push mode['modules_id']
-                      end 
+                      moduleArray.push mode['permission_id']
+                      end
+                      end
                   %>
                    <% rows = 0 %>
-              <% @modules.each_with_index do |umodule, j|  %>
+              <% @permissions.each_with_index do |umodule, j|  %>
               <% if rows % 4==0 %>
                <div class="row ">
                 <% end %>
@@ -70,7 +63,7 @@
                   <%  end %>
                   
                   <b><%=umodule.title%></b>
-                  <%= check_box_tag( 'module_id[]', umodule.id,@check) %>
+                  <%= check_box_tag( 'permission_id[]', umodule.id,@check) %>
               
               </div>
                

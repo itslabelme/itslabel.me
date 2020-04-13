@@ -172,41 +172,52 @@ puts "Adding Subscriptions".green
                   { title: 'Enterprise',  price: "99.99", status: "Active"}, 
                 ])
               
-puts "Adding Modules".green
+puts "Adding Permissions".green
 
-  UserModule.create([
-                  { title: 'Dashboard',  controller: "Home", action: "index",route:'user/home#index'}, 
-                  { title: 'List Documents',  controller: "Documents", action: "index",route:'user/documents#index'}, 
-                  { title: 'Document Update Status',  controller: "Documents", action: "update_status",route:'user/documents#update_status'}, 
-                  { title: 'Destroy Document',  controller: "Documents", action: "destroy",route:'user/documents#destroy'},
+  Permission.create([
+                  { title: 'Dashboard',  description: "Home", permission_group: "Dashboard",route:'home#index'}, 
+
+                  { title: 'Free From Widget',  description: "free_form_widget", permission_group: "Free Form",route:'free_form_widget#index'}, 
+                  { title: 'Free From Widget Translate',  description: "free_form_widget", permission_group: "Free Form",route:'free_form_widget#translate'},
+                  { title: 'Free From Add Translate',  description: "free_form_widget", permission_group: "Free Form",route:'free_form_widget#new_translation_request'},
+                  { title: 'Free From Save Translate',  description: "free_form_widget", permission_group: "Free Form",route:'free_form_widget#create_translation_request'},
+
+                  { title: 'Table Docoment CSV Upload',  description: "free_form_widget", permission_group: "Table Import",route:'table_documents#csv_upload'},
+                  { title: 'Table Docoment CSV Parse',  description: "free_form_widget", permission_group: "Table Import",route:'table_documents#csv_parse'},
+
                   
-                  { title: 'Save And Translate',  controller: "TemplateDocuments", action: "save_and_translate",route:'user/template_documents#save_and_translate'}, 
-                  { title: 'Preview Template Document',  controller: "TemplateDocuments", action: "preview",route:'user/template_documents#preview'}, 
-                  { title: 'Print Template',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#print'}, 
-                  { title: 'Update Template Status',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#update_status'}, 
-                  { title: 'Destroy Documnet',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#select_template'}, 
-                  { title: 'Select Template',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#index'}, 
-                  { title: 'Save New Template',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#create'}, 
-                  { title: 'Create New Template',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#new'}, 
-                  { title: 'Show Template Document',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#show'}, 
-                  { title: 'Update Template Document',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#update'}, 
-                  { title: 'Destroy Template Document',  controller: "TemplateDocuments", action: "update",route:'user/template_documents#destroy'}, 
-                  { title: 'List Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#index'}, 
-                  { title: 'Save New Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#create'}, 
-                  { title: 'New Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#new'}, 
-                  { title: 'Show Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#show'}, 
-                  { title: 'Edit Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#edit'}, 
-                  { title: 'Update Table Document',  controller: "TableDocuments", action: "update",route:'user/table_documents#update'}, 
+                  { title: 'List Documents',  description: "Documents", permission_group: "Documents",route:'documents#index'}, 
+                  { title: 'Document Update Status',  description: "Documents", permission_group: "Documents",route:'documents#update_status'}, 
+                  { title: 'Destroy Document',  description: "Documents", permission_group: "Documents",route:'documents#destroy'},
                   
-                  { title: 'Client Profile',  controller: "ClientProfile", action: "update",route:'user/client_profile#edit'}, 
-                  { title: 'Update Profile ',  controller: "ClientProfile", action: "update",route:'user/client_profile#update'}, 
-                  { title: 'Update Client Profile Password',  controller: "ClientProfile", action: "update",route:'user/client_profile#update_password'}, 
+                  { title: 'Save And Translate',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#save_and_translate'}, 
+                  { title: 'Preview Template Document',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#preview'}, 
+                  { title: 'Print Template',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#print'}, 
+                  { title: 'Update Template Status',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#update_status'}, 
+                  { title: 'Destroy Documnet',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#select_template'}, 
+                  { title: 'Select Template',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#index'}, 
+                  { title: 'Save New Template',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#create'}, 
+                  { title: 'Create New Template',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#new'}, 
+                  { title: 'Show Template Document',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#show'}, 
+                  { title: 'Update Template Document',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#update'}, 
+                  { title: 'Destroy Template Document',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#destroy'}, 
                   
-                  { title: 'User Subscription',  controller: "UserSubscription", action: "index",route:'user/user_subscriptions#index'}, 
-                  { title: 'Save Subscription',  controller: "UserSubscription", action: "update",route:'user/user_subscriptions#create'}, 
-                  { title: 'Add Subscription',  controller: "UserSubscription", action: "update",route:'user/user_subscriptions#new'}, 
-                  { title: 'Edit Subscription',  controller: "UserSubscription", action: "update",route:'user/user_subscriptions#edit'}, 
-                  { title: 'Update Subscription',  controller: "UserSubscription", action: "update",route:'user/user_subscriptions#update'}, 
+                  { title: 'List Table Document',  description: "TableDocuments", permission_group: "TableDocuments",route:'table_documents#index'}, 
+                  { title: 'Save New Table Document',  description: "TableDocuments", permission_group: "TableDocuments",route:'table_documents#create'}, 
+                  { title: 'New Table Document',  description: "TableDocuments", permission_group: "TableDocuments",route:'table_documents#new'}, 
+                  { title: 'Show Table Document',  description: "TableDocuments", permission_group: "TableDocuments",route:'table_documents#show'}, 
+                  { title: 'Edit Table Document',  description: "TableDocuments", permission_group: "TableDocuments",route:'table_documents#edit'}, 
+                  { title: 'Update Table Document',  description: "TableDocuments", permission_group: "TableDocuments",route:'table_documents#update'}, 
+                  
+                  { title: 'Client Profile',  description: "ClientProfile", permission_group: "Profile",route:'client_profile#edit'}, 
+                  { title: 'Update Profile ',  description: "ClientProfile", permission_group: "Profile",route:'client_profile#update'}, 
+                  { title: 'Update Client Profile Password',  description: "ClientProfile", permission_group: "Profile",route:'client_profile#update_password'}, 
+                  
+                  { title: 'User Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#index'}, 
+                  { title: 'Save Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#create'}, 
+                  { title: 'Add Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#new'}, 
+                  { title: 'Edit Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#edit'}, 
+                  { title: 'Update Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#update'}, 
                 ])
 #template = LabelTemplate.first
 

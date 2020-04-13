@@ -109,29 +109,30 @@ ActiveRecord::Schema.define(version: 2020_04_02_123853) do
     t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
-  create_table "modules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 256, null: false
-    t.string "controller", limit: 256, null: false
-    t.string "action", limit: 256, null: false
     t.string "route", limit: 256, null: false
+    t.string "description", limit: 256, null: false
+    t.string "permission_group", limit: 64
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "subscription_modules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "subscription_permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 256, null: false
-    t.bigint "modules_id"
+    t.bigint "permission_id"
     t.bigint "subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["modules_id"], name: "index_subscription_modules_on_modules_id"
-    t.index ["subscription_id"], name: "index_subscription_modules_on_subscription_id"
+    t.index ["permission_id"], name: "index_subscription_permissions_on_permission_id"
+    t.index ["subscription_id"], name: "index_subscription_permissions_on_subscription_id"
   end
 
   create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 256, null: false
-    t.float "price", default: 0.0, null: false
+    t.float "price", default: 0.0
     t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.string "description", limit: 256
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -223,8 +224,8 @@ ActiveRecord::Schema.define(version: 2020_04_02_123853) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "client_users"
   add_foreign_key "label_templates", "admin_users"
-  add_foreign_key "subscription_modules", "modules", column: "modules_id", on_delete: :cascade
-  add_foreign_key "subscription_modules", "subscriptions", on_delete: :cascade
+  add_foreign_key "subscription_permissions", "permissions", on_delete: :cascade
+  add_foreign_key "subscription_permissions", "subscriptions", on_delete: :cascade
   add_foreign_key "table_documents", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "template_documents", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "user_subscriptions", "client_users", column: "user_id", on_delete: :cascade
