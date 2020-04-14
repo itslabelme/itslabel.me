@@ -24,13 +24,14 @@ module Itslabel::Imports::TranslationImports
       category = hsh[:category].to_s.strip
       
       #translation = Translation.where(input_phrase: input_phrase, output_phrase: output_phrase, input_language: input_language, output_language: output_language).first
-      if input_language.eql('English')
-        translation = Translation.where(english_phrase: english_phrase).first
-      elsif input_language.eql('Arabic')
-        translation = Translation.where(arabic_phrase: arabic_phrase).first
-      elsif input_language.eql('French')
-        translation = Translation.where(french_phrase: french_phrase).first
-      end
+      translation = Translation.where(english_phrase: english_phrase, arabic_phrase: arabic_phrase, french_phrase: french_phrase).first
+      # if input_language.eql('English')
+      #   translation = Translation.where(english_phrase: english_phrase).first
+      # elsif input_language.eql('Arabic')
+      #   translation = Translation.where(arabic_phrase: arabic_phrase).first
+      # elsif input_language.eql('French')
+      #   translation = Translation.where(french_phrase: french_phrase).first
+      # end
         
         
       if translation
