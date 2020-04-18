@@ -100,7 +100,6 @@ module User
         @item.input_phrase = params[:new_value].to_s.strip
         
         unless @item.input_phrase.blank?
-           # raise @output_1_language.inspect
           if (@output_1_language && (@output_1_language != @input_language))
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_1_language)
             @item.output_1_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_1_language, return_string: true) 
