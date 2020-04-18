@@ -1,0 +1,25 @@
+<div class="container-fluid">
+
+  <!-- Header -->
+  <div class="block-header">
+    <div class="row clearfix">
+      <div class="col-md-6 col-sm-12">
+        <h1>Home</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Welcome to ITSLabel.me</a></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show Success / Error / Info Messages If any set by the controller action -->
+  <%= flash_message(false) if defined?(flash) -%>
+
+  
+
+  
+  <%#= render partial: 'user/home/widgets/select_documnet_type' %>
+  <%#= render partial: 'user/home/widgets/user_profile' %>
+</div>
