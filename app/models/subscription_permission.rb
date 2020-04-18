@@ -8,11 +8,11 @@ class SubscriptionPermission < ApplicationRecord
 
  
 #Association
-  #belongs_to :modules
+  belongs_to :permissions
   # Generic Methods
  
   def access
-    Permission.where('id=?',modules_id)
+    Permission.where('id=?',permission_id)
   end
   
 

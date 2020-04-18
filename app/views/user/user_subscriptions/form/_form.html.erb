@@ -46,53 +46,42 @@
                               <th class="price-info <%= (@user_subscription.subscription_id == subscription.id)? 'sub-current-plan' : '' %>">
                                 
                   
-                              <%#= f.radio_button :subscription_id,subscription.id,:checked =>(@user_subscription.subscription_id == subscription.id) %>
+                                
                                 <div class="price-now"><span>$<%=(subscription.price == 0)? 'Free' : subscription.price %></span></div>
                                 <div>
                                    <%= f.radio_button :subscription_id,subscription.id,:checked =>(@user_subscription.subscription_id == subscription.id) %>
                                   <a href="#" class="price-buy"><%=(@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Upgrade' %></a></div>
                               </th>
-                              <!-- <th class="price-info">
-                                <div class="price-now"><span>$39.99</span></div>
-                                <div><a href="#" class="price-buy">Upgrade</a></div>
-                              </th>
-                              <th class="price-info">
-                                <div class="price-now"><span>$49.99</span></div>
-                                <div><a href="#" class="price-buy">Upgrade</a></div>
-                              </th>
-                              <th class="price-info">
-                                <div class="price-now"><span>TBC*</span></div>
-                                <div><a href="#" class="price-buy">Upgrade</a></div>
-                              </th> -->
+                              
                               <% end %>
                               <% end %>
                             </tr>
                           </thead>
                           <tbody>
                             
-                            <% if @modules.present? %>
-                              <% @modules.each_with_index do |modu, i|
+                            <% if @permissions.present? %>
+                              <% @permissions.each_with_index do |permission, i|
                                 @tickblue=false
                                %>
-                              <% @sub=modu.subscription_module.find_by(subscription_id:1)
+                              <% @sub=permission.subscription_permission.find_by(subscription_id:1)
                                   if !@sub.blank?
                                     @tickblue=true
                                    else
                                     @tickblue=false
                                   end
-                                  @sub1=modu.subscription_module.find_by(subscription_id:2)
+                                  @sub1=permission.subscription_permission.find_by(subscription_id:2)
                                   if !@sub1.blank?
                                     @tickblue1=true
                                    else
                                     @tickblue1=false
                                   end
-                                  @sub2=modu.subscription_module.find_by(subscription_id:3)
+                                  @sub2=permission.subscription_permission.find_by(subscription_id:3)
                                   if !@sub2.blank?
                                     @tickblue2=true
                                    else
                                     @tickblue2=false
                                   end
-                                  @sub2=modu.subscription_module.find_by(subscription_id:4)
+                                  @sub2=permission.subscription_permission.find_by(subscription_id:4)
                                   if !@sub3.blank?
                                     @tickblue3=true
                                    else
@@ -100,7 +89,7 @@
                                   end
                               %>
                             <tr class="compare-row">
-                              <td><%=modu.title%></td>
+                              <td><%=permission.title%></td>
                               <td><span class="<%=@tickblue ? "tickblue": ""%>"><%=@tickblue ? raw("<i class=\"fa fa-check\"></i>") :"-" %></span></td>
                               <td><span class="<%=@tickblue1 ? "tickblue": ""%>"><%=@tickblue1 ? raw("<i class=\"fa fa-check\"></i>") :"-" %></span></td>
                               <td><span class="<%=@tickblue2 ? "tickblue": ""%>"><%=@tickblue2 ? raw("<i class=\"fa fa-check\"></i>") :"-" %></span></td> 
