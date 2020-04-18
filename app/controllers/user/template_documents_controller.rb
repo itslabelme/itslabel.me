@@ -3,7 +3,7 @@ module User
 
     before_action :authenticate_client_user!
     before_action :get_document, except: [:new, :create, :index, :select_template]
-
+    before_action :access_denied
     def index
       @page_title = "Documents (Template Mode)"
       @nav = 'user/template_documents'

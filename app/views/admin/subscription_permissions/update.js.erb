@@ -1,0 +1,35 @@
+<% if @subscription_permission.errors.blank? %>
+  
+  // Showing Growl Like Message
+   notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  
+  // Add the Row to the table and highlight it
+  //$("#USER_ROW_<%= @subscription_permission.id %>").replaceWith("<%#s= escape_javascript(render(:partial=>'admin/subscription_permissions/index/row.html.erb', locals: { subscription_permission: @subscription_module })) %>");
+  
+  // Highlight the background color of the newly added data to the datatable
+  $("#USER_ROW_<%= @subscription_permission.id %> td").css( "animation", "highlightAfterUpdate 10000ms ease-out" );
+
+  // Reload the form to show errors
+  <% @subscription_permission = SubscriptionPermission.new %>
+  $("#USER_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/subscription_permissions/form/form')) %>");
+
+  // Hide the form
+  showTab('USER_LIST');
+  $('#LI_USER_EDIT_FORM').hide();
+
+  // Set Focus on the First Input after loading the form
+  setFocusOnFirstInput("USER_EDIT_FORM");
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+  // Reload the form to show errors
+  $("#USER_EDIT_FORM").html("<%= escape_javascript(render(:partial=>'admin/subscription_permissions/form/form')) %>");
+
+  // Set Focus on the First Input after loading the form
+  setFocusOnFirstInput("USER_EDIT_FORM");
+
+<% end %>
+

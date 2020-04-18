@@ -4,7 +4,7 @@ module User
     before_action :authenticate_client_user!
     skip_before_action :verify_authenticity_token
     before_action :get_languages
-
+    before_action :access_denied
     def index
 
       @page_title = "Free Form Translation"

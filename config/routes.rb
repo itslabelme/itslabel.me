@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   end
 
   namespace :user, module: :user do
-
+      
+    get '/403', to: 'errors#unauthorized', as: 'unauthorized'
+    get '/404', to: 'errors#notfound', as: 'notfound'
+    
     get '/home', to: 'home#index', as: 'home'
 
     get '/free_form', to: 'free_form_widget#index', as: 'free_form'
@@ -84,7 +87,12 @@ Rails.application.routes.draw do
     get 'edit_client_profile', to: 'client_profile#edit'
     put 'update_client_profile', to: 'client_profile#update'
     put 'update_client_password', to: 'client_profile#update_password'
-     
+    resources :user_subscriptions
+    resources :user_subscriptions, only: [:create, :index, :update] do
+     collection do
+      put :update
+      end
+    end
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
@@ -102,7 +110,7 @@ Rails.application.routes.draw do
 
     # CRUD Admin Users
     resources :admin_users    
-
+    
     # CRUD Translations
     resources :translations
 
@@ -116,6 +124,16 @@ Rails.application.routes.draw do
     get 'edit_profile', to: 'profile#edit'
     put 'update_profile', to: 'profile#update'
     put 'update_password', to: 'profile#update_password'
+    
+    #User Module Subscription
+    resources :subscription_permissions , only: [:create, :index, :update] do
+      collection do
+        get '/add_edit_permissions/:id', to: 'subscription_permissions#create_pemission'
+      end
+    end
+    
+    
+  
   end
   
 end
