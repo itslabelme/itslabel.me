@@ -44,14 +44,14 @@ report.html
 spec/dummy/storage
 
 *.keep
-/nbproject
+/nbproject/
 /node_modules/
 /nbproject
 /nbproject/project.xml
 storage
 .byebug_history
 config/master.key
-/.idea
+/.idea/
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 config/master.key.bck
