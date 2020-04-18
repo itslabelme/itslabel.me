@@ -8,7 +8,7 @@ class SubscriptionPermission < ApplicationRecord
 
  
 #Association
-  belongs_to :permissions
+ # belongs_to :permissions
   # Generic Methods
  
   def access
