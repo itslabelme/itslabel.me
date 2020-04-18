@@ -28,7 +28,7 @@ namespace 'itslabel' do
 	    {
         translations: {
           class_name: "Translation",
-          folder_name: "translations"
+          folder_name: "stranslation"
         }        
 		  }.each do |key, values|
 		  	cls_name = values[:class_name]

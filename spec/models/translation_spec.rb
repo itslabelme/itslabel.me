@@ -20,17 +20,20 @@ RSpec.describe Translation, type: :model do
     end
 
     context "Validations" do
-      it { should validate_presence_of :input_phrase }
-      it { should_not allow_value("x"*257).for(:input_phrase )}
+      it { should validate_presence_of :english_phrase }
+      it { should_not allow_value("x"*257).for(:english_phrase )}
 
-      it { should validate_presence_of :output_phrase }
-      it { should_not allow_value("x"*257).for(:output_phrase )}
+      it { should validate_presence_of :arabic_phrase }
+      it { should_not allow_value("x"*257).for(:arabic_phrase )}
 
-      it { should validate_presence_of :input_language }
-      it { should_not allow_value("x"*257).for(:input_language )}
+      it { should validate_presence_of :french_phrase }
+      it { should_not allow_value("x"*257).for(:french_phrase )}
 
-      it { should validate_presence_of :output_language }
-      it { should_not allow_value("x"*257).for(:output_language )}
+      # it { should validate_presence_of :input_language }
+      # it { should_not allow_value("x"*257).for(:input_language )}
+
+      # it { should validate_presence_of :output_language }
+      # it { should_not allow_value("x"*257).for(:output_language )}
 
       it { should validate_presence_of :status }
       it { should validate_inclusion_of(:status).in_array(Translation::STATUS_LIST.keys).with_message(/is not a valid status/) }
@@ -41,7 +44,7 @@ RSpec.describe Translation, type: :model do
 
   context "Instance Methods" do
     it "should respond to generic methods" do
-      translation = FactoryBot.build(:english_to_arabic_translation, input_phrase: "Apple", output_phrase: "Mango")
+      translation = FactoryBot.build(:english_to_arabic_translation, english_phrase: "Apple", arabic_phrase: "Mango")
       expect(translation.display_name).to eq("Apple - Mango")
     end
   end

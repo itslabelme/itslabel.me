@@ -87,10 +87,9 @@ module Admin
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
       
-      @relation = @relation.search_only_input_phrase(params[:filters].try(:[], :input_phrase))
-      @relation = @relation.search_only_output_phrase(params[:filters].try(:[], :output_phrase))
-      @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
-      @relation = @relation.search_only_output_language(params[:filters].try(:[], :output_language))
+      @relation = @relation.search_only_english_phrase(params[:filters].try(:[], :english_phrase))
+      @relation = @relation.search_only_arabic_phrase(params[:filters].try(:[], :arabic_phrase))
+      @relation = @relation.search_only_french_phrase(params[:filters].try(:[], :french_phrase))
       @relation = @relation.search_only_status(params[:filters].try(:[], :status))
       
     end
@@ -120,10 +119,9 @@ module Admin
 
     def permitted_params
       params.require("translation").permit(
-         :input_phrase,
-         :input_language,
-         :output_phrase,
-         :output_language,
+         :english_phrase,
+         :arabic_phrase,
+         :french_phrase,
       )
     end
 

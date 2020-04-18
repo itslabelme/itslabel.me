@@ -40,59 +40,50 @@
     </div>
 
     <div class="row clearfix">
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="row col-lg-12">
+      <div class="col-lg-9 col-md-9 col-sm-12">
         
         <div class="row">
           <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="form-group">
-              <% error_class = @translation.errors[:input_phrase].any? ? 'parsley-error' : '' %>
-              <%= f.text_field :input_phrase, class: "form-control #{error_class}", placeholder: 'Input Phrase' %>
-              <%= display_parsley_error(@translation, :input_phrase) %>
+              <% error_class = @translation.errors[:english_phrase].any? ? 'parsley-error' : '' %>
+              <%= f.text_field :english_phrase, class: "form-control #{error_class}", placeholder: 'English Phrase' %>
+              <%= display_parsley_error(@translation, :english_phrase) %>
             </div>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-12">
-            <div class="form-group">
-              <% error_class = @translation.errors[:input_language].any? ? 'parsley-error' : '' %>
-              <select class="form-control <%= error_class %> show-tick" name='translation[input_language]'>
-                <option>--- Select ---</option>
-                <option value='ENGLISH' <%= @translation.input_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
-                <option value='ARABIC' <%= @translation.input_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
-                <option value='FRENCH' <%= @translation.input_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
-              </select>
-              <%= display_parsley_error(@translation, :input_language) %>
-            </div>
-          </div>
+          
           
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-9 col-md-9 col-sm-12">
 
         <div class="row">
           <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="form-group">
-              <% error_class = @translation.errors[:output_phrase].any? ? 'parsley-error' : '' %>
-              <%= f.text_field :output_phrase, class: "form-control #{error_class}", placeholder: 'Output Phrase' %>
-              <%= display_parsley_error(@translation, :output_phrase) %>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12">
-            <div class="form-group">
-              <% error_class = @translation.errors[:output_language].any? ? 'parsley-error' : '' %>
-              <select class="form-control <%= error_class %> show-tick" name='translation[output_language]'>
-                <option>--- Select ---</option>
-                <option value='ENGLISH' <%= @translation.output_language == 'ENGLISH' ? "selected='selected'" : '' %>>English</option>
-                <option value='ARABIC' <%= @translation.output_language == 'ARABIC' ? "selected='selected'" : '' %>>Arabic</option>
-                <option value='FRENCH' <%= @translation.output_language == 'FRENCH' ? "selected='selected'" : '' %>>French</option>
-              </select>
-              <%= display_parsley_error(@translation, :output_language) %>
+              <% error_class = @translation.errors[:arabic_phrase].any? ? 'parsley-error' : '' %>
+              <%= f.text_field :arabic_phrase, class: "form-control #{error_class}", placeholder: 'Arabic Phrase' %>
+              <%= display_parsley_error(@translation, :arabic_phrase) %>
             </div>
           </div>
           
-        </div>
       </div>
     </div>
 
+       <div class="col-lg-9 col-md-9 col-sm-12">
+
+        <div class="row">
+          <div class="col-lg-9 col-md-9 col-sm-12">
+            <div class="form-group">
+              <% error_class = @translation.errors[:french_phrase].any? ? 'parsley-error' : '' %>
+              <%= f.text_field :french_phrase, class: "form-control #{error_class}", placeholder: 'French Phrase' %>
+              <%= display_parsley_error(@translation, :french_phrase) %>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+  </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <button type="submit" class="btn btn-primary pull-right ml-2">Save</button>
