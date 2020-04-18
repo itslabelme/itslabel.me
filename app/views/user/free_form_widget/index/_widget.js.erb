@@ -237,15 +237,11 @@ $("#INPUT_AREA").on('keydown', function(event) {
   let key = event.key; // const {key} = event; ES6+
   if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
      if(key === "Delete"|| event.keyCode==46){
-    // let outText = $("#INPUT_AREA").html();
-    // alert(getSelectionHtml());
-    //let finalStr= outText.replace(getSelectionHtml(),"");
-    
-    //$("#INPUT_AREA").html($.parseHTML(finalStr.trim()));
+  
       var target = $("#INPUT_AREA");
-  var str = window.getSelection();
-  var text = str.toString().trim();
-  var l = text.length;
+      var str = window.getSelection();
+      var text = str.toString().trim();
+      var l = text.length;
 
   if ($(str.baseNode).closest('.input').length > 0) {
     switch (target) {

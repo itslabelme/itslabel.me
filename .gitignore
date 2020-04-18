@@ -17,6 +17,7 @@ spec/dummy/public/assets/*.*
 # Ignore bundler config
 /.bundle
 /vendor/bundle
+/nbproject
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
