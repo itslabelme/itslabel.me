@@ -34,7 +34,7 @@ function _insertText(text) {
 jQuery.fn.selectText = function(){
   var doc = document;
   var element = this[0];
-  // console.log(this, element);
+
   if (doc.body.createTextRange) {
     var range = document.body.createTextRange();
     range.moveToElementText(element);
@@ -62,27 +62,11 @@ function ITSTranslate(forceTranslate=false) {
   let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
   let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
   
-  // Old Way
-  // let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-  // let htm = $("#INPUT_AREA").html().split("<br>");
-  // var el = document.createElement('html');
-  // el.innerHTML=inputText
-  // str = $(el).text().replace("<span class=\"its-tran-not-found\" dir=\"\"><i class=\"icon-question mr-2\"></i>", "");
-  // str = str.replace("</span>", "");
-  // console.log(str);
-  // let inputText = $("#INPUT_AREA").html().replace(/\u00a0/g, " ").replace(/\xA0/g,' ');
-  // let inputText = $("#INPUT_AREA").html().replace(/&nbsp;/g, '\n');
-
   // New Way
   let inputText = $("#INPUT_AREA").html();
   let str = inputText;
   
   let sendAjaxRequest = forceTranslate || (cachedInput != inputText)
-  
-  // console.log("forceTranslate: ", forceTranslate);
-  // console.log("cachedInput: ", cachedInput);
-  // console.log("inputText: ", inputText);
-  // console.log("sendAjaxRequest: ", sendAjaxRequest);
 
   if(sendAjaxRequest){
     let ajaxData = {text: str, input_language: inputLanguage, output_language: outputLanguage };
@@ -137,7 +121,7 @@ function countErrorText(){
   if( outText!==null && outText.length >=4){
     notifyError("Warning", "Please check the spelling of the ingredients or separate them using , or ; or new lines for accurate results.");
   }
-  //alert(outText.length);
+  
 }
 
 $(document).off('blur', "#INPUT_AREA");
@@ -164,8 +148,7 @@ $(document).on('keydown', '#INPUT_AREA', function (e) {
     https://css-tricks.com/snippets/javascript/javascript-keycodes/ 
 
   %>
- // alert(e.key);
-  // console.log(e.key + " - " + e.which);
+
   if (
     [9, 13, 19, 32,46, 48, 56, 57, 186, 173, 188, 189, 190, 191, 192].includes(e.which) ||
     (e.which >= 97 && e.which <= 105) ||
@@ -283,7 +266,6 @@ function formatSelection(str, text, replacementText) {
 $(document).off('click', ".its-tran-not-found");
 $(document).on('click', '.its-tran-not-found', function (e) {
   let clickedPhrase = $(this).text();
-  // console.log("clickedPhrase: ", clickedPhrase);
   requestForTranslation(clickedPhrase);
 });
 
@@ -323,48 +305,4 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
 
 // Old Methods
 
-// $(document).off('click', "#INPUT_CUT_ACTION");
-// $(document).on('click', '#INPUT_CUT_ACTION', function (e) {
-//   let inputText = parseTextFromContentEditable($("#INPUT_AREA").html());
-//   // $("#INPUT_AREA").selectText();
-//   document.execCommand('copy');
-//   $("#INPUT_AREA").html("");
-//   $("#OUTPUT_AREA").html("");
-//   // navigator.clipboard.write([inputText]).then(function() {
-//   //   console.log("Copied to clipboard and cleared the input successfully!");
-//   //   $("#INPUT_AREA").html("");
-//   //   $("#OUTPUT_AREA").html("");
-//   // }, function() {
-//   //   console.error("Unable to write to clipboard.");
-//   // });
-// });
-//
-// $(document).off('click', "#INPUT_PASTE_ACTION");
-// $(document).on('click', '#INPUT_PASTE_ACTION', function (e) {
-//   navigator.clipboard.readText().then(function(data) {
-//     console.log("Pasted from clipboard:", data);
-//     // $("#INPUT_AREA").html(data);
-//     document.execCommand('copy');
-//     ITSTranslate();
-//   });
-// });
-//
 
-/* function getSelectionHtml() {
-    var html = "";
-    if (typeof window.getSelection != "undefined") {
-        var sel = window.getSelection();
-        if (sel.rangeCount) {
-            var container = document.createElement("div");
-            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
-                container.appendChild(sel.getRangeAt(i).cloneContents());
-            }
-            html = container.innerHTML;
-        }
-    } else if (typeof document.selection != "undefined") {
-        if (document.selection.type == "Text") {
-            html = document.selection.createRange().htmlText;
-        }
-    }
-    return html;
-}*/
