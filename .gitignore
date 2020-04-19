@@ -17,7 +17,8 @@ spec/dummy/public/assets/*.*
 # Ignore bundler config
 /.bundle
 /vendor/bundle
-
+/.idea/
+/nbproject/private/
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
@@ -44,7 +45,7 @@ report.html
 spec/dummy/storage
 
 *.keep
-/nbproject/private/
+
 /node_modules/
 /nbproject
 /nbproject/project.xml

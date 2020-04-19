@@ -1,0 +1,18 @@
+<% if @destroyed %>
+  
+  // Showing Growl Like Message
+  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  
+  // Remove the Row
+  $("#USER_ROW_<%= @admin_user.id %>").remove();
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+  // Highlight the background color of the newly added data to the datatable
+  $("#USER_ROW_<%= @admin_user.id %> td").css( "animation", "highlightFailedDestroy 10000ms ease-out" );
+
+<% end %>
+

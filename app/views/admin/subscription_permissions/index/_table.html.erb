@@ -1,0 +1,49 @@
+<div id="USERS_TABLE" class="table-responsive">
+  <table class="table table-hover table-custom spacing8" id="user_listing_table">
+    <thead>
+      <tr>
+        <th style="width: 10%;">#</th>
+        <th style="width: 25%;">Name</th>
+        <th style="width: 15%;">Mobile No.</th>
+        <th style="width: 25%;">Created Date</th>
+        <th style="width: 10%;">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <% if @admin_users.present? %>
+      <% @admin_users.each_with_index do |admin_user, i| %>
+      <tr id='USER_ROW_<%= admin_user.id %>'>
+          <td>
+            <span><%= serial_number(i) %></span>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div>
+                <h6 class="mb-0"><%= admin_user.display_name %></h6>
+                                              <span><%= admin_user.email %></span>
+              </div>
+            </div>
+          </td>
+          <td class="its-tag"><%=  admin_user.mobile_number %></td>
+
+          <td><%=  admin_user.created_at.strftime("%d %b,%Y") %></td>
+          <td>
+            <%= link_to edit_admin_admin_user_path(admin_user), class: "btn btn-sm btn-default", remote: true do %>
+              <i class="icon-pencil"></i>
+            <% end %>
+
+            <%= link_to admin_admin_user_path(admin_user), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this user?"} do %>
+              <i class="icon-trash"></i>
+            <% end %>
+          </td>
+      </tr>
+      <% end %>
+       <% else %>
+      <tr><td> No result found</tr>
+       <% end %>
+    </tbody>
+  </table>                
+</div>
+
+

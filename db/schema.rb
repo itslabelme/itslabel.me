@@ -109,6 +109,34 @@ ActiveRecord::Schema.define(version: 2020_04_02_123853) do
     t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
+  create_table "permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.string "route", limit: 256, null: false
+    t.string "description", limit: 256, null: false
+    t.string "permission_group", limit: 64
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscription_permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.bigint "permission_id"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["permission_id"], name: "index_subscription_permissions_on_permission_id"
+    t.index ["subscription_id"], name: "index_subscription_permissions_on_subscription_id"
+  end
+
+  create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.float "price", default: 0.0
+    t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.string "description", limit: 256
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "table_document_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "table_document_id"
     t.string "input_phrase", limit: 256, null: false
@@ -184,9 +212,22 @@ ActiveRecord::Schema.define(version: 2020_04_02_123853) do
     t.index ["admin_user_id"], name: "index_translations_on_admin_user_id"
   end
 
+  create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_user_subscriptions_on_subscription_id"
+    t.index ["user_id"], name: "index_user_subscriptions_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "client_users"
   add_foreign_key "label_templates", "admin_users"
+  add_foreign_key "subscription_permissions", "permissions", on_delete: :cascade
+  add_foreign_key "subscription_permissions", "subscriptions", on_delete: :cascade
   add_foreign_key "table_documents", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "template_documents", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "user_subscriptions", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "user_subscriptions", "subscriptions", on_delete: :cascade
 end

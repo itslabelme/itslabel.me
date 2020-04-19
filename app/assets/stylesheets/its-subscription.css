@@ -1,0 +1,437 @@
+.comparison {
+    margin:0 auto;
+    text-align:center;
+    padding:10px;
+  }
+  
+  .comparison table {
+    width:100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    border:1px solid #CCC;
+  }
+  
+  .comparison td, .comparison th {
+    border-right:1px solid #CCC;
+    empty-cells: show;
+    padding:10px;
+  }
+  
+  .compare-heading {
+    font-size:18px;
+    font-weight:bold !important;
+    border-bottom:0 !important;
+    padding-top:10px !important;
+  }
+  
+  .comparison tbody tr:nth-child(odd) {
+    display:none;
+  }
+  
+  .comparison .compare-row {
+    background:#F5F5F5;
+  }
+  
+  .comparison .tickblue {
+    color:#006747;
+  }
+  
+  .comparison .tickgreen {
+    color:#009E2C;
+  }
+  
+  .comparison th {
+    font-weight:normal;
+    padding:0;
+    border-bottom:1px solid #CCC;
+  }
+  
+  .comparison tr td:first-child {
+    text-align:left;
+  }
+    
+  .comparison .qbse, .comparison .qbo, .comparison .tl {
+    color:#FFF;
+    padding:10px;
+    font-size:13px;
+    border-right:1px solid #CCC;
+    border-bottom:0;
+  }
+  
+  .comparison .tl2 {
+    border-right:0;
+  }
+  
+  .comparison .qbse {
+    background:#0078C1;
+    border-top-left-radius: 3px;
+    border-left:0px;
+  }
+  
+  .comparison .qbo {
+    background:#009E2C;
+    border-top-right-radius: 3px;
+    border-right:0px;
+  }
+  
+  .comparison .price-info {
+    padding:5px 15px 15px 15px;
+  }
+  
+  .comparison .price-was {
+    color:#999;
+    text-decoration: line-through;
+  }
+  
+  .comparison .price-now, .comparison .price-now span {
+    color:#006747;
+  }
+  
+  .comparison .price-now span {
+    font-size:32px;
+  }
+  
+  .comparison .price-small {
+      font-size: 18px !important;
+      position: relative;
+      top: -11px;
+      left: 2px;
+  }
+  
+  .comparison .price-buy {
+    background:#006747;
+    padding:10px 20px;
+    font-size:12px;
+    display:inline-block;
+    color:#FFF;
+    text-decoration:none;
+    border-radius:3px;
+    text-transform:uppercase;
+    margin:5px 0 10px 0;
+  }
+  
+  .comparison .price-try {
+    font-size:12px;
+  }
+  
+  .comparison .price-try a {
+    color:#202020;
+  }
+
+  .sub-current-plan{
+      background:#006747;
+      color: #FFF;
+  }
+
+  .price-buy{
+      border:1px solid  #006747;
+  }
+
+  .price-buy:hover{
+    background: #FFF;
+    color: #006747;
+  }
+
+  .sub-current-plan .price-buy{ 
+    background: #FFF;
+    color: #006747;
+  }
+
+  .sub-current-plan .price-now span{
+      color: #FFF;
+  }
+  
+  @media (max-width: 767px) {
+    .comparison td:first-child, .comparison th:first-child {
+      display: none;
+    }
+    .comparison tbody tr:nth-child(odd) {
+      display:table-row;
+      background:#F7F7F7;
+    }
+    .comparison .row {
+      background:#FFF;
+    }
+    .comparison td, .comparison th {
+      border:1px solid #CCC;
+    }
+    .price-info {
+    border-top:0 !important;
+    
+  }
+    
+  }
+  
+  @media (max-width: 639px) {
+    .comparison .price-buy {
+      padding:5px 10px;
+      padding: 0px 5px;
+    }
+    .comparison td, .comparison th {
+      padding:10px 5px;
+    }
+    .comparison .hide-mobile {
+      display:none;
+    }
+    .comparison .price-now span {
+    font-size:16px;
+  }
+  
+  .comparison .price-small {
+      font-size: 16px !important;
+      top: 0;
+      left: 0;
+  }
+    .comparison .qbse, .comparison .qbo {
+      font-size:12px;
+      padding:10px 5px;
+    }
+    .comparison .price-buy {
+      margin-top:10px;
+    }
+    .compare-heading {
+    font-size:13px;
+  }
+  }
+
+
+
+  /** Billing **/
+
+  #grad1 {
+    background-color: : #9C27B0;
+    background-image: linear-gradient(120deg, #FF4081, #81D4FA)
+}
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+#msform fieldset .form-card {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    border: 1px solid #e1e8ed;
+    padding: 20px 40px 30px 40px;
+    padding: 25px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 0px 20px 0px;
+    position: relative
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0px;
+    padding-bottom: 20px;
+    position: relative
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+#msform fieldset .form-card {
+    text-align: left;
+   /* color: #9E9E9E*/
+}
+
+/* #msform input,
+#msform textarea {
+    padding: 0px 8px 4px 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 16px;
+    letter-spacing: 1px
+}
+
+#msform input:focus,
+#msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid #006747 ;
+    outline-width: 0
+}
+*/
+#msform .action-button {
+    /* width: 100px; */
+    background: #006747 ;
+    
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 10px;
+    margin: 10px 5px;
+    border:1px solid #006747;
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    background: #ffffff;
+    color: #006747;
+    /* box-shadow: 0 0 0 2px white, 0 0 0 3px #006747  */
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+    border:1px solid #616161;
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+   /* box-shadow: 0 0 0 2px white, 0 0 0 3px #616161 */
+}
+
+select.list-dt {
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 5px 3px 5px;
+    margin: 2px
+}
+
+select.list-dt:focus {
+    border-bottom: 2px solid #006747 
+}
+
+.card.ms-card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative
+}
+
+#msform .fs-title {
+    font-size: 20px;
+    color: #2C3E50;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: left
+}
+
+#msform #progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+#msform #progressbar .active {
+    color: #000000
+}
+
+#msform #progressbar li {
+    list-style-type: none;
+    font-size: 12px;
+    width: 33.3333%;
+    float: left;
+    position: relative
+}
+
+#msform #progressbar #account:before {
+    content: "1"
+}
+
+#msform #progressbar #personal:before {
+    content: "2"
+}
+
+#msform #progressbar #payment:before {
+    content: "3"
+}
+
+#msform #progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+}
+
+#msform #progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#msform #progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#msform #progressbar li.active:before,
+#msform #progressbar li.active:after {
+    background: #006747 
+}
+
+#msform .radio-group {
+    position: relative;
+    margin-bottom: 25px
+}
+
+#msform .radio {
+    display: inline-block;
+    width: 204;
+    height: 104;
+    border-radius: 0;
+    background: lightblue;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 8px 2px
+}
+
+#msform .radio:hover {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
+}
+
+#msform .radio.selected {
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1)
+}
+
+#msform .fit-image {
+    width: 100%;
+    object-fit: cover
+}
+
+#msform .sub-succesfull{
+    font-size: 150px;
+    color: #006747;
+}
