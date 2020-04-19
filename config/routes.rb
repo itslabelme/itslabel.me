@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
     get '/free_form', to: 'free_form_widget#index', as: 'free_form'
     post '/translate', to: 'free_form_widget#translate', as: 'translate'
+    post '/export_free_translation', to: 'free_form_widget#export_free_translation', as: 'export_free_translation'
+    
     get '/translation_request', to: 'free_form_widget#new_translation_request', as: 'new_translation_request'
     post '/translation_request', to: 'free_form_widget#create_translation_request', as: 'create_translation_request'
 
@@ -93,12 +95,6 @@ Rails.application.routes.draw do
       put :update
       end
     end
-    
-     # CRUD Table Documents
-    
-        get 'export_pdf', to: 'export_freetranslations#export_pdf', as: 'export_pdf'
-        post 'get_post_data', to: 'export_freetranslations#get_post_data', as: 'get_post_data'
-      
     
   end
   

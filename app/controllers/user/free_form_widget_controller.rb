@@ -4,7 +4,10 @@ module User
     before_action :authenticate_client_user!
     skip_before_action :verify_authenticity_token
     before_action :get_languages
-    before_action :access_denied
+
+    # FIXME
+    # before_action :access_denied
+
     def index
 
       @page_title = "Free Form Translation"
@@ -24,38 +27,26 @@ module User
       
     end
 
-    def translate_old
+    def export_free_translation
 
-      @input_text = params[:text].strip
+      @input_text = params[:text]
         
-      @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
-
-      @display_text = ""
-      tokens = @translated_hash["_tokens"]
-
-      tokens.each do |tk|
-
-        # tk.strip gives "" if tk == "\n" or those characters
-        # hence handling them separately
-        if tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
-          translated_text = @translated_hash[tk]
-        else
-          if tk.strip.blank?
-            translated_text = tk
-          else
-            translated_text = @translated_hash[tk.strip]
-          end
-        end
-        
-        if translated_text
-          @display_text += translated_text + " "
-        else
-          dir_attr = @output_language == "ARABIC" ? 'rtl' : ''
-          @display_text += "<span class='its-tran-not-found' dir='#{dir_attr}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
-        end
+      if @input_language == @output_language
+        @display_text = @input_text
+      else
+        @translated_html = Translation.translate_html(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
+        @display_text = @translated_html.to_html
       end
 
-      @display_text.gsub!(/\n+/, '<br>')
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render  :pdf => 'file_name',
+                  :template => '/user/free_form_widget/export_free_translation.pdf.erb',
+                  :layout => 'pdf.html.erb'
+                  #:show_as_html => params[:debug].present?
+        end
+      end
       
     end
 

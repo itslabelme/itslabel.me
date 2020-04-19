@@ -95,7 +95,30 @@ function ITSTranslate(forceTranslate=false) {
     cachedInput = inputText;
 
   }
+}
+
+function exportFreeTranslation(forceTranslate=false) {
+
+  let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
+  let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
+  let inputText = $("#INPUT_AREA").html();
   
+  // console.log("inputLanguage: ", inputLanguage);
+  // console.log("outputLanguage: ", outputLanguage);
+  // console.log("inputText: ", inputText);
+  
+  // let exportData = {text: inputText, 
+  //                   input_language: inputLanguage, 
+  //                   output_language: outputLanguage };
+
+  let frm = $('<form action="export_free_translation.pdf" method="POST" target="_blank">' + 
+    '<input type="hidden" name="input_language" value="' + inputLanguage + '">' +
+    '<input type="hidden" name="output_language" value="' + outputLanguage + '">' +
+    '<input type="hidden" name="text" value="' + inputText + '">' +
+    '</form>');
+  $(document.body).append(frm);
+  frm.submit();
+
 }
 
 function requestForTranslation(phrase) {
@@ -277,22 +300,7 @@ $(document).on('click', '.its-tran-not-found', function (e) {
 });
 // OnClick Event for the export button
 $("#export").click(function(){
-  // New Way
-  let inputText = $("#OUTPUT_AREA").html();
-  let str = inputText;
-    let ajaxData = {translation_outputs: str};
-    alert(ajaxData);
-     $.ajax({
-    url: '/user/get_post_data',
-    type: 'POST',
-    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-    success: function(response){
-      if(response){
-          window.open('/user/export_pdf.pdf/', '_blank');
-      }      
-    }
-  }) 
-   
+  exportFreeTranslation(true);
 });
 // OnClick Event for swap button
 $(".swap").click(function(){
