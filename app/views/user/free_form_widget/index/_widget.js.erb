@@ -275,7 +275,25 @@ $(document).on('click', '.its-tran-not-found', function (e) {
   // console.log("clickedPhrase: ", clickedPhrase);
   requestForTranslation(clickedPhrase);
 });
-
+// OnClick Event for the export button
+$("#export").click(function(){
+  // New Way
+  let inputText = $("#OUTPUT_AREA").html();
+  let str = inputText;
+    let ajaxData = {translation_outputs: str};
+    alert(ajaxData);
+     $.ajax({
+    url: '/user/get_post_data',
+    type: 'POST',
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    success: function(response){
+      if(response){
+          window.open('/user/export_pdf.pdf/', '_blank');
+      }      
+    }
+  }) 
+   
+});
 // OnClick Event for swap button
 $(".swap").click(function(){
   swapLanguages();

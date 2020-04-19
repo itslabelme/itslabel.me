@@ -93,6 +93,13 @@ Rails.application.routes.draw do
       put :update
       end
     end
+    
+     # CRUD Table Documents
+    
+        get 'export_pdf', to: 'export_freetranslations#export_pdf', as: 'export_pdf'
+        post 'get_post_data', to: 'export_freetranslations#get_post_data', as: 'get_post_data'
+      
+    
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
