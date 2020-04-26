@@ -78,6 +78,25 @@ module Itslabel::TranslationMethods
       translation_hash
     end
 
+    def get_words(input)
+      unprocessed_words = input.split(Regexp.union(Translation::DELIMITERS))
+      final_words = []
+      unprocessed_words.each do |w|
+        if w.starts_with?(' ')
+          final_words << " "
+        end
+
+        final_words << w.strip
+
+        if w.end_with?(' ')
+          final_words << " "
+        end
+      end
+
+      final_words.delete_if {|w| w == ""}
+      return final_words
+    end
+
     def translate_paragraph(input, **options)
       options.reverse_merge!({
         input_language: "ENGLISH",
@@ -88,8 +107,7 @@ module Itslabel::TranslationMethods
 
       input.gsub!("&nbsp;", " ")
 
-      words = input.split(Regexp.union(Translation::DELIMITERS))
-      words.delete_if {|w| w == ""}
+      words = get_words(input)
       hash = translate_words(words, options)
 
       hash["_tokens"] = words
@@ -130,7 +148,6 @@ module Itslabel::TranslationMethods
 
       html.children.reverse if options[:output_language].downcase == "arabic"
       return html
-      
     end
 
     def translate_children(node, **options)
@@ -173,10 +190,12 @@ module Itslabel::TranslationMethods
           else
             translated_text = hash[tk.strip]
           end
+          # translated_text += " "
         end
 
         if translated_text
-          display_text += translated_text + " "
+          display_text += translated_text
+          # display_text += translated_text + " "
         else
           dir_attr = options[:output_language].downcase == "arabic" ? 'rtl' : 'ltr'
           display_text += "<span class='its-tran-not-found' dir='#{dir_attr}' data-output-language='#{options[:output_language]}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
@@ -199,6 +218,8 @@ module Itslabel::TranslationMethods
       options.symbolize_keys!
 
       rtl = options[:output_language].downcase == "arabic"
+
+      # binding.pry
 
       if delim.match(/،|,/)
         # Match , and arabic comma
