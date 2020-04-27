@@ -244,8 +244,17 @@ $("#INPUT_LANGUAGE").on('change', function(){
   ITSTranslate(true);
 });
 
+$("#OUTPUT_LANGUAGE").on('change', function(){
+  if($("#OUTPUT_LANGUAGE").children("option:selected").val()=='ARABIC'){
+    $('#INPUT_AREA').attr('style','direction: rtl;text-align: right;cursor: text;');
+  }else{
+    $('#INPUT_AREA').attr('style','direction: ltr;text-align: left;cursor: text;');
+  }
+  ITSTranslate(true);
+});
+
 /// On output language dropdown change
-$("#INPUT_AREA").on('keydown', function(event) {
+$("#INPUT_LANGUAGE").on('keydown', function(event) {
    
   let key = event.key; // const {key} = event; ES6+
   if (key === "Backspace" || key === "Delete"|| event.keyCode==46) {
