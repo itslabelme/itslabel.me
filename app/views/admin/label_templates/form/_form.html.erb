@@ -96,7 +96,7 @@
       <div class="col-md-6 mb-2">
         <div class="form-group">
           <label class="form-group">Status</label>
-          <%=f.select :status, options_for_select(["ACTIVE", "INACTIVE", "REMOVED"])%>
+          <%=f.select :status, options_for_select(["ACTIVE", "INACTIVE", "REMOVED"], selected: @label_template.status)%>
         </div>
       </div>
     </div>
