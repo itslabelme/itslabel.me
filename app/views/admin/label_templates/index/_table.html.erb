@@ -6,6 +6,7 @@
         <th style="width: 25%;">Name</th>
         <th style="width: 30%;">Description</th>
         <th style="width: 15%;">Style</th>
+        <th style="width: 15%;">Status</th>
         <th style="width: 15%;">Created By</th>
         <th style="width: 10%;">Action</th>
       </tr>
@@ -32,6 +33,7 @@
           <td class="its-tag"><%=  label_template.description[0..40] %></td>
 
           <td><%=  label_template.style %></td>
+          <td><%=  label_template.status %></td>
           <td><%=  label_template.admin_user.try(:display_name) %></td>
           <td>
             <%= link_to edit_admin_label_template_path(label_template), class: "btn btn-sm btn-default", remote: true do %>
