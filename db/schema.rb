@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_123853) do
+ActiveRecord::Schema.define(version: 2020_04_26_050036) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_123853) do
     t.bigint "admin_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", limit: 16, default: "ACTIVE", null: false
     t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
