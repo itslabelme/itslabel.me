@@ -1,26 +1,26 @@
+<% if @input_language.upcase == "ARABIC" %>
+  <% input_style = "direction: rtl;text-align: right;" %>
+<% else %>
+  <% input_style = "direction: ltr;text-align: left;" %>
+<% end %>
+
+<% if @output_language.upcase == "ARABIC" %>
+  <% output_style = "direction: rtl;text-align: right;" %>
+<% else %>
+  <% output_style = "direction: ltr;text-align: left;" %>
+<% end %>
+
 <div style='margin:10px;padding:20px;background-color: #fff; color: #4b4b4b; font-size:18px;'>
     
-    <% if @input_language.upcase == "ARABIC" %>
-      <% input_style = "direction: rtl;text-align: right;" %>
-    <% else %>
-      <% input_style = "direction: ltr;text-align: left;" %>
-    <% end %>
-
-    <% if @output_language.upcase == "ARABIC" %>
-      <% output_style = "direction: rtl;text-align: right;" %>
-    <% else %>
-      <% output_style = "direction: ltr;text-align: left;" %>
-    <% end %>
-
     <hr>
     
-    <div style="float:left; width:45%;<% input_style %>">
+    <div style="float:left; width:45%;<%= input_style %>">
       <h2>Input</h2>
       <p><%= raw @input_text %></p>
     </div>
 
 
-    <div style="float:right; width:45%;<% output_style %>">
+    <div style="float:right; width:45%;<%= output_style %>">
       <h2>Output</h2>
       <p><%= raw @translated_html %></p>
     </div>
