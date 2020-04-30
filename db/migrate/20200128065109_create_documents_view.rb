@@ -20,6 +20,7 @@ class CreateDocumentsView < ActiveRecord::Migration[5.2]
           tabl.favorite as favorite,
 
           tabl.user_id as user_id,
+          tabl.folder_id as folder_id,
           tabl.created_at as created_at,
           tabl.updated_at as updated_at,
 
@@ -47,6 +48,7 @@ class CreateDocumentsView < ActiveRecord::Migration[5.2]
           templ.favorite as favorite,
 
           templ.user_id as user_id,
+          templ.folder_id as folder_id,
           templ.created_at as created_at,
           templ.updated_at as updated_at,
 

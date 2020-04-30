@@ -87,6 +87,15 @@ ActiveRecord::Schema.define(version: 2020_04_26_050036) do
     t.index ["unlock_token"], name: "index_client_users_on_unlock_token", unique: true
   end
 
+  create_table "folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.bigint "parent_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_folders_on_user_id"
+  end
+
   create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "client_user_id"
     t.string "provider"
@@ -178,9 +187,11 @@ ActiveRecord::Schema.define(version: 2020_04_26_050036) do
     t.string "output_5_language", limit: 16
     t.string "status", limit: 16, default: "ACTIVE", null: false
     t.boolean "favorite", default: false
+    t.bigint "folder_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["folder_id"], name: "index_table_documents_on_folder_id"
     t.index ["user_id"], name: "index_table_documents_on_user_id"
   end
 
@@ -189,6 +200,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_050036) do
     t.string "input_language", limit: 16, null: false
     t.string "output_language", limit: 16, null: false
     t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.bigint "folder_id"
     t.text "input_html_source"
     t.text "output_html_source"
     t.boolean "favorite", default: false
@@ -196,6 +208,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_050036) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["folder_id"], name: "index_template_documents_on_folder_id"
     t.index ["template_id"], name: "index_template_documents_on_template_id"
     t.index ["user_id"], name: "index_template_documents_on_user_id"
   end
@@ -228,7 +241,9 @@ ActiveRecord::Schema.define(version: 2020_04_26_050036) do
   add_foreign_key "subscription_permissions", "permissions", on_delete: :cascade
   add_foreign_key "subscription_permissions", "subscriptions", on_delete: :cascade
   add_foreign_key "table_documents", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "table_documents", "folders", on_delete: :nullify
   add_foreign_key "template_documents", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "template_documents", "folders", on_delete: :nullify
   add_foreign_key "user_subscriptions", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "user_subscriptions", "subscriptions", on_delete: :cascade
 end

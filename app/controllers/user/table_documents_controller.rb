@@ -312,6 +312,16 @@ module User
         @document.update_status(params[:status].upcase)
       end
     end
+   
+     def update_folder
+      get_document
+       if@document
+        @document.update_column(:folder_id,params[:folder_id])
+        set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Folder"))
+        set_flash_message(I18n.translate("success.saved", item: "Folder"), :success)
+      end
+    
+    end
     
     private
 

@@ -48,7 +48,9 @@ Rails.application.routes.draw do
     resources :template_documents do
       member do
 
+         put 'update_template_folder', to: 'template_documents#update_folder' 
         # Create or Update the Document and Translate
+        
         put 'save_and_translate', to: 'template_documents#save_and_translate', as: 'save_and_translate'
 
         get 'preview', to: 'template_documents#preview', as: 'preview'
@@ -73,6 +75,7 @@ Rails.application.routes.draw do
         # Save Methods
         put 'save_everything', to: 'table_documents#save_everything', as: 'save_everything'
         put 'translate_input_phrase', to: 'table_documents#translate_input_phrase', as: 'translate_input_phrase'
+        
       end
 
       member do
@@ -82,6 +85,8 @@ Rails.application.routes.draw do
 
         #update status
         put 'update_status', to: 'table_documents#update_status', as: 'update_status'
+        #update folder
+        put 'update_table_folder', to: 'table_documents#update_folder' 
       end
     end
    
@@ -96,6 +101,8 @@ Rails.application.routes.draw do
       end
     end
     
+    #Create Folder
+      resources :folder
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }

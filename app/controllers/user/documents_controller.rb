@@ -6,7 +6,7 @@ module User
     def index
       @page_title = "Your Documents"
       @nav = 'user/documents'
-
+      get_user_folder
       get_collection
     end
 
@@ -87,6 +87,10 @@ module User
       
 
     end
-
+    
+    def get_user_folder
+      @folders = Folder.where(user_id: @current_client_user.id)
+    end
   end
+  
 end
