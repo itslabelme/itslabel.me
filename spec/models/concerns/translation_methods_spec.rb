@@ -370,7 +370,7 @@ RSpec.describe Translation, type: :model do
       )
     end
 
-    it "should translate ingredient weights in multiple formats" do
+    it "should translate ingredient weights in multiple formats - Part 2" do
 
       # English to Arabic
       expect(Translation.translate('12.500gm Apple, 12.5gm Mango and 1gm Grapes.', return_in_hash: true)).to include(
@@ -580,6 +580,41 @@ RSpec.describe Translation, type: :model do
       expect(Translation.translate_delimiter("\t", options)).to eq("\t")
       expect(Translation.translate_delimiter(" ", options)).to eq(nil)
       expect(Translation.translate_delimiter("Invalid Delimiter", options)).to eq(nil)
+    end
+
+    it "should translate weights in multiple formats" do
+
+      # English to Arabic
+      options = {input_language: "ENGLISH", output_language: "ARABIC"}
+      expect(Translation.translate_delimiter("10g", options)).to eq("غ10")
+      expect(Translation.translate_delimiter("10gm", options)).to eq("جم10")
+      expect(Translation.translate_delimiter("10grams", options)).to eq("جرامات10")
+      expect(Translation.translate_delimiter("1gram", options)).to eq("غرام1")
+
+      expect(Translation.translate_delimiter("10 g", options)).to eq("غ 10")
+      expect(Translation.translate_delimiter("10 gm", options)).to eq("جم 10")
+      expect(Translation.translate_delimiter("10 grams", options)).to eq("جرامات 10")
+      expect(Translation.translate_delimiter("1 gram", options)).to eq("غرام 1")
+
+      # English to French
+      options = {input_language: "ENGLISH", output_language: "FRENCH"}
+
+      # Arabic to English
+      options = {input_language: "ARABIC", output_language: "ENGLISH"}
+      expect(Translation.translate_delimiter("غ10", options)).to eq("10g")
+      expect(Translation.translate_delimiter("جم10", options)).to eq("10gm")
+      expect(Translation.translate_delimiter("جرامات10", options)).to eq("10grams")
+      expect(Translation.translate_delimiter("غرام1", options)).to eq("1gram")
+
+      expect(Translation.translate_delimiter("غ 10", options)).to eq("10 g")
+      expect(Translation.translate_delimiter("جم 10", options)).to eq("10 gm")
+      expect(Translation.translate_delimiter("جرامات 10", options)).to eq("10 grams")
+      expect(Translation.translate_delimiter("غرام 1", options)).to eq("1 gram")
+
+      # Arabic to English
+      options = {input_language: "ARABIC", output_language: "FRENCH"}
+
+      
     end
   end
 

@@ -219,8 +219,6 @@ module Itslabel::TranslationMethods
 
       rtl = options[:output_language].downcase == "arabic"
 
-      # binding.pry
-
       if delim.match(/،|,/)
         # Match , and arabic comma
         return rtl ? " ،" : ", "
@@ -238,14 +236,23 @@ module Itslabel::TranslationMethods
         num = delim.scan(/-?\d*\.?\d+/).try(:first)
         # below, first scan grammes and then grams 
         weight = delim.scan(/mg/).try(:first) || 
-                 delim.scan(/غ/).try(:first) ||
-                 delim.scan(/جم/).try(:first) ||
                  delim.scan(/grammes?/).try(:first) || 
+                 delim.scan(/جرامات/).try(:first) ||
+                 delim.scan(/جم/).try(:first) ||
+                 delim.scan(/غرام/).try(:first) ||
+                 delim.scan(/غ/).try(:first) ||
                  delim.scan(/gr?a?m?s?/).try(:first)
-        
+        # binding.pry
         if num && weight
           translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language]) || weight
-          return rtl ? "#{translated_weight} #{num}" : "#{num} #{translated_weight}" 
+          # FIXME - hack - this is now checking if delim has space and accordingly translating it by splitting
+          if delim.scan(" ").empty?
+            return rtl ? "#{translated_weight}#{num}" : "#{num}#{translated_weight}" 
+          else
+            return rtl ? "#{translated_weight} #{num}" : "#{num} #{translated_weight}" 
+          end
+          # delim_trans = delim.dup
+          # return delim.gsub(weight, translated_weight)
         elsif delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?/)
          # Match if the string is an integer or decimal
          return delim
