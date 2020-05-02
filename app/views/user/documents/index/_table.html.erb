@@ -18,9 +18,7 @@ display_actions = true if display_actions.nil?
                         <ul id="tree2">
                             <% if @folders.present? %>
                               <% @folders.each_with_index do |folder, i| %>
-                                <li><a href="#"><%= folder.title %></a>                            
-
-                                </li>
+                            <li id="<%=folder.id%>" ondrop="drop(event,'<%=folder.id%>')" ondragover="allowDrop(event)"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a></li>
                               <% end %>
                             <% end %>
                         </ul>
@@ -37,13 +35,15 @@ display_actions = true if display_actions.nil?
                                     <span></span>
                                 </label>
                             </div>
+                            <a href="<%= user_documents_path %>" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Refresh"><i class="icon-refresh"></i></a> 
+                            <!--
                             <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="icon-trash"></i></a>
                             <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Archive"><i class="fa fa-archive"></i></a>
-                            <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Refresh"><i class="icon-refresh"></i></a> 
+                            <a href="<%= user_documents_path %>" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Refresh"><i class="icon-refresh"></i></a> 
                             <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Cut"><i class="fa fa-cut"></i> </a>   
                             <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Copy"><i class="icon-docs"></i> </a>   
                             <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Paste"><i class="fa fa-paste"></i></a>                                    
-
+                              -->
 
                             <div class="btn-group">
                                 <span id="popoverWrapper" data-toggle="tooltip" data-placement="top" data-original-title="Move To">
@@ -119,7 +119,7 @@ display_actions = true if display_actions.nil?
                                     end
                                 %>
 
-                                  <tr>
+                                <tr id="<%=doc_folder%>" draggable="true" ondragstart="drag(event,'<%=doc_folder%>')">
                                       <td class="w20">
                                           <div class="md-left">
                                               <label class="fancy-checkbox">

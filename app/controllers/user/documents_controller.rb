@@ -64,6 +64,9 @@ module User
 
       # Filter by Favorite
       @relation = @relation.only_favorites if params[:favorite]
+      
+      # Filter by Folder
+      @relation = @relation.search_only_folder(params[:folder_id]) if params[:folder_id]
 
       @relation = @relation.search_only_title(params[:filters].try(:[], :title))
       @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))

@@ -16,7 +16,7 @@ module User
 
     def show
       get_document
-      
+      get_all_document_folder
       @nav = 'user/table_documents'
       @page_title = @document.title
 
@@ -43,7 +43,7 @@ module User
     def new
       @page_title = "New Document (Table Mode)"
       @nav = 'user/table_documents'
-
+      get_all_document_folder
       new_document
 
       @document_items = []
@@ -199,7 +199,10 @@ module User
           item.output_5_translation_id = value[:output_5_translation_id]
         end
       end
-
+         if params[:folder_id].nil?
+          check_default_document_folder
+          @document.folder_id =@document_folder.id
+        end
       if @document.valid?
         @document.save
 
@@ -324,7 +327,20 @@ module User
     end
     
     private
-
+    
+     
+     def check_default_document_folder
+         @document_folder=DocumentFolder.where(user_id: @current_client_user.id,title:'Default').first
+         #raise @document_folder.inspect
+         if @document_folder.blank?
+          @document_folder=DocumentFolder.new
+          @document_folder.title='Default'
+          @document_folder.user_id=@current_client_user.id
+          @document_folder.save
+           
+         end
+    end
+    
     def get_collection
       @order_by = "created_at DESC" unless @order_by
       @relation = TableDocument.where("")
@@ -334,7 +350,10 @@ module User
       @documents = @relation.order(@order_by).
                       page(@current_page).per(@per_page)
     end
-
+      #get all document folder
+    def get_all_document_folder
+     @document_folders=DocumentFolder.where(user_id: @current_client_user.id)
+    end
     def apply_filters
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
@@ -399,7 +418,8 @@ module User
         :output_2_language,
         :output_3_language,
         :output_4_language,
-        :output_5_language
+        :output_5_language,
+        :folder_id
       )
     end
 

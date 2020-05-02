@@ -21,7 +21,33 @@ var doc = $('input[name="doc_name[]"]:checked').map(function(){
  });
     });
  }
+function drag(ev,ur){
 
+  ev.dataTransfer.setData("folder", ur);
+}
+function drop(ev,fold){
+
+ ev.preventDefault();
+  var data = ev.dataTransfer.getData("folder");
+    data_send = { folder_id:fold}
+   $.ajax({
+   method: 'put',
+   url: data,
+    data: data_send,
+    headers:   {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  },
+     success: function(data) {
+       location.reload();
+     
+    }
+ });
+ 
+  
+}
+function allowDrop(ev) {
+  ev.preventDefault();
+}
   $(function(){
        $('#folder-form').click(function(e) {
             e.preventDefault();

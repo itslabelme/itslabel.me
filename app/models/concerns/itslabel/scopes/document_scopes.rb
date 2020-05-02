@@ -14,6 +14,10 @@ module Itslabel::Scopes::DocumentScopes
     scope :search_only_title, lambda {|title| title.to_s.strip.blank? ? where("") : where("
       LOWER(documents_view.title) LIKE LOWER('%#{title}%')
     ")}
+  
+   scope :search_only_folder, lambda {|folder_id| folder_id.blank? ? where("") : where("
+      documents_view.folder_id LIKE '#{folder_id}'
+    ")}
 
     scope :search_only_input_language, lambda {|lang| lang.to_s.strip.blank? ? where("") : where("
       LOWER(documents_view.input_language) LIKE LOWER('%#{lang}%')
