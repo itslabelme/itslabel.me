@@ -227,7 +227,8 @@ module Itslabel::TranslationMethods
         return "."
       elsif delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?%/)
         # Match if the string is an integer or decimal but with a %
-        return rtl ? "%#{delim.gsub('%','')}".strip : delim
+        # return rtl ? "%#{delim.gsub('%','')}".strip : delim
+        return delim
       elsif delim.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
         # Match other special delimiter characers
         return delim
@@ -242,17 +243,11 @@ module Itslabel::TranslationMethods
                  delim.scan(/غرام/).try(:first) ||
                  delim.scan(/غ/).try(:first) ||
                  delim.scan(/gr?a?m?s?/).try(:first)
-        # binding.pry
         if num && weight
           translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language]) || weight
-          # FIXME - hack - this is now checking if delim has space and accordingly translating it by splitting
-          if delim.scan(" ").empty?
-            return rtl ? "#{translated_weight}#{num}" : "#{num}#{translated_weight}" 
-          else
-            return rtl ? "#{translated_weight} #{num}" : "#{num} #{translated_weight}" 
-          end
-          # delim_trans = delim.dup
-          # return delim.gsub(weight, translated_weight)
+          # Get num and weign seperately and replace the weight with translated weight
+          delim_trans = delim.dup
+          return delim.gsub(weight, translated_weight)
         elsif delim.match(/\ ?\(?([0-9]+(\.[0-9]*)?(\ )?)\)?\ ?/)
          # Match if the string is an integer or decimal
          return delim

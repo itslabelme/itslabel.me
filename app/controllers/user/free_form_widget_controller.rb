@@ -21,7 +21,7 @@ module User
       if @input_language == @output_language
         @display_text = @input_text
       else
-        @translated_html = Translation.translate_html(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
+        @translated_html = Translation.translate_html(@input_text, input_language: @input_language, output_language: @output_language)
         @display_text = @translated_html.to_html
       end
       
