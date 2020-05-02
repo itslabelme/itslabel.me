@@ -8,7 +8,7 @@ class CreateDocumentsView < ActiveRecord::Migration[5.2]
           tabl.id as id,
           'table_document' as doc_type,
           tabl.title as title,
-      
+          
           tabl.input_language as input_language,
           tabl.output_1_language as output_1_language,
           tabl.output_2_language as output_2_language,
@@ -36,7 +36,7 @@ class CreateDocumentsView < ActiveRecord::Migration[5.2]
           templ.id as id,
           'template_document' as doc_type,
           templ.title as title,
-      
+
           templ.input_language as input_language,
           templ.output_language as output_1_language,
           "" as output_2_language,
