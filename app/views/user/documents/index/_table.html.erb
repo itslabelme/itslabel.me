@@ -15,6 +15,7 @@ display_actions = true if display_actions.nil?
 
                 <div class="body mail-left">
                     <div class="mail-side">
+                        <div><a  href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal">Add New Folder</a></div>
                         <ul id="tree2">
                             <% if @folders.present? %>
                               <% @folders.each_with_index do |folder, i| %>
