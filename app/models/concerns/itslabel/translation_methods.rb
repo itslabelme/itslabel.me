@@ -16,8 +16,8 @@ module Itslabel::TranslationMethods
                 # Arabic version of grams and other units
                 /(\ ?[0-9]+\.?[0-9]*?\ ?جرامات\ ?)/,
                 /(\ ?[0-9]+\.?[0-9]*?\ ?غرام\ ?)/,
-                /(\ ?[0-9]+\.?[0-9]*?\ ?جم\ ?)/,
                 /(\ ?[0-9]+\.?[0-9]*?\ ?ملغ\ ?)/,
+                /(\ ?[0-9]+\.?[0-9]*?\ ?جم\ ?)/,
                 /(\ ?[0-9]+\.?[0-9]*?\ ?غ\ ?)/,
                 # Percentages 10%, 10.50%
                 /(\ ?[0-9]+\.?[0-9]*?\ ?%\ ?)/,
@@ -243,6 +243,7 @@ module Itslabel::TranslationMethods
                  delim.scan(/grammes?/).try(:first) || 
                  delim.scan(/جرامات/).try(:first) ||
                  delim.scan(/جم/).try(:first) ||
+                 delim.scan(/ملغ/).try(:first) ||
                  delim.scan(/غرام/).try(:first) ||
                  delim.scan(/غ/).try(:first) ||
                  delim.scan(/gr?a?m?s?/).try(:first)
