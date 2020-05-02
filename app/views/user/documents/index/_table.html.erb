@@ -138,7 +138,7 @@ display_actions = true if display_actions.nil?
                                       </td>
                                       <td><%= document.created_at.strftime("%d %b %Y - %I:%M %p") %></td>
                                       <td><%= document.status %></td>
-                                      <td><strong><%  if   document.folder_id !="" then @folder = Folder.find_by_id(document.folder_id) %><%=@folder.try(:title) %><%end%></strong></td>
+                                      <td><strong><%  if   document.folder_id !="" then @folder = DocumentFolder.find_by_id(document.folder_id) %><%=@folder.try(:title) %><%end%></strong></td>
                                       <% if display_actions %>
                                         <td style="text-align: center;">
                                             <%= link_to doc_url, class: "btn btn-sm btn-default mr-4" do %>
@@ -194,14 +194,15 @@ display_actions = true if display_actions.nil?
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title text-center left" id="addContact">Add Folder</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b style="color:#fb3600; font-weight:700;">X</b></button><!--&times;-->
-                        <h4 class="modal-title text-center" id="addContact">Add Folder</h4>
+                        
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <form id="requestacallform"  method="POST" name="requestacallform">
 
-                                <div class="form-group">
+                                <div class="col-md-12">
                                     <div class="input-group">                               
 
                                         <input id="title" type="text" class="form-control" placeholder="Folder Name" name="title"/>

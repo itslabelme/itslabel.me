@@ -30,7 +30,7 @@ var doc = $('input[name="doc_name[]"]:checked').map(function(){
            return false;
            }
             $.ajax({
-                url: "/user/folder/",
+                url: "/user/document_folder/",
                 type: "POST",
                 data: $("#requestacallform").serialize(),
                 headers:   {

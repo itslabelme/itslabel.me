@@ -89,7 +89,7 @@ module User
     end
     
     def get_user_folder
-      @folders = Folder.where(user_id: @current_client_user.id)
+      @folders = DocumentFolder.where(user_id: @current_client_user.id)
     end
   end
   

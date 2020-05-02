@@ -102,7 +102,7 @@ Rails.application.routes.draw do
     end
     
     #Create Folder
-      resources :folder
+      resources :document_folder
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }

@@ -1,8 +1,8 @@
-class Folder < ApplicationRecord
+class DocumentFolder < ApplicationRecord
 
    validates :title, length: {maximum: 256}, allow_blank: false
   def getChild(id)
-    @folder = Folder.where(parent_id:id)
+    @folder = DocumentFolder.where(parent_id:id)
   end
   # Associations
   #has_many :template_documents, class_name: "TemplateDocument", foreign_key: :folder_id

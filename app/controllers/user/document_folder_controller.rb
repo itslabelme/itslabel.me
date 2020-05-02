@@ -1,5 +1,5 @@
 module User
-  class FolderController < User::BaseController
+  class DocumentFolderController < User::BaseController
 
     before_action :authenticate_client_user!
     # before_action :get_document, except: [:new, :create, :index, :select_template]
@@ -34,7 +34,7 @@ module User
     private
 
     def new_folder
-      @folder = Folder.new
+      @folder = DocumentFolder.new
     end
 
     def permitted_params
