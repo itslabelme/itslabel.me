@@ -50,7 +50,7 @@ display_actions = true if display_actions.nil?
                                 <span id="popoverWrapper" data-toggle="tooltip" data-placement="top" data-original-title="Move To">
                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-share fa-fw"></i></button>
 
-                                    <div class="dropdown-menu">
+                                    <div class="dropdown-menu" id="folder_drop">
                                         <% if @folders.present? %>
                                           <% @folders.each_with_index do |folder, i| %>
 
