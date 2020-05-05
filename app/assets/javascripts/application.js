@@ -26,4 +26,5 @@
 //= require custom.js
 //= require popup.js
 //= require its-tree.js
+//= require freestyle-widget.js
 // require_tree .

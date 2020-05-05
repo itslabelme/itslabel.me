@@ -55,16 +55,21 @@ function allowDrop(ev) {
            alert('Folder Title is required');
            return false;
            }
+           var user_id=$('#user_id').val();
+           var title=$('#title').val();
+           data_send = { user_id:user_id,title:title}
             $.ajax({
                 url: "/user/document_folder/",
                 type: "POST",
-                data: $("#requestacallform").serialize(),
+                data: data_send,
+                dataType: "json",
                 headers:   {
                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(data){
-                    $('#foldermmodal').modal('show');
-                    window.location.reload();
+                    $('#foldermmodal').modal('hide');
+                    parent.$('#tree2').append('<li id="'+data.id+'"  ondrop=\"drop(event,\''+data.id+'\')\" ondragover=\"allowDrop(event)\"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id='+data.id+'">'+data.title+'</a></li>');
+                
                 }
             });
        }); 

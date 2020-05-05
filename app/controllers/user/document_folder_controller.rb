@@ -23,6 +23,9 @@ module User
       if @folder.valid?
       
         @folder.save
+        respond_to do |format|
+          format.json { render json: @folder.to_json }
+        end
       else
         @folder.errors
       end
