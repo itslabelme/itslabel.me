@@ -30,7 +30,7 @@
             <div class="col-md-12">
               <fieldset style="background-color: #fff;">
                 <div class="row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <label>Input Language</label>
                     <div class="input-group mb-3">
                       <% if @document.persisted? %>
@@ -44,16 +44,13 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <label>Document Title</label>
                     <div class="form-group">
                      <%= text_field_tag @document, @document.title, class: "form-control", name: 'document[title]', style: "background-color:#fff;", id: "INPUT_TITLE" %>
                     </div>
                   </div>
-                </div>
-                  
-                   <div class="row">
-                     <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <label>Document Folder</label>
                     <div class="input-group mb-3">
                       <select class="form-control form-control-xs selectpicker1" name="document[folder_id]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
@@ -67,6 +64,10 @@
                       </select>
                     </div>
                   </div>
+                </div>
+                  
+                   <div class="row">
+                   
                       
                   </div>
               </fieldset>
