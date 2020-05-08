@@ -101,8 +101,9 @@ Rails.application.routes.draw do
       end
     end
     
-    #Create Folder
+    #Crud Folder
       resources :document_folder
+      put 'update_document', to: 'document_folder#update_document'
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
