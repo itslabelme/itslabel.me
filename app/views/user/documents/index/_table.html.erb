@@ -19,7 +19,11 @@ display_actions = true if display_actions.nil?
                         <ul id="tree2">
                             <% if @folders.present? %>
                               <% @folders.each_with_index do |folder, i| %>
-                            <li id="<%=folder.id%>" ondrop="drop(event,'<%=folder.id%>')" ondragover="allowDrop(event)"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a></li>
+                            <li id="<%=folder.id%>" ondrop="drop(event,'<%=folder.id%>')" ondragover="allowDrop(event)"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a>
+                               <% if (folder.title!='Default') %>
+                                <input type="checkbox" id="folder_<%=folder.id%>" name="folder[]" value="<%=folder.id%>">
+                               <%  end %>
+                                  </li>
                               <% end %>
                             <% end %>
                         </ul>
@@ -60,9 +64,8 @@ display_actions = true if display_actions.nil?
                                         <%end%>
                                         </div>
                                         <div role="separator" class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal">Create New</a>
-                                        <a class="dropdown-item" href="#">Archive</a>
-                                        <a class="dropdown-item" href="#">Delete</a>
+                                        
+                                        <a class="dropdown-item" href="#" onClick="delete_folder()">Delete Folder</a>
                                     </div>                                              
 
                                 </span>

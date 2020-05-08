@@ -1,6 +1,7 @@
 class DocumentFolder < ApplicationRecord
 
    validates :title, length: {maximum: 256}, allow_blank: false
+   validates :title, uniqueness: { scope: :user_id }
   def getChild(id)
     @folder = DocumentFolder.where(parent_id:id)
   end
