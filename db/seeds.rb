@@ -219,6 +219,23 @@ puts "Adding Permissions".green
                   { title: 'Edit Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#edit'}, 
                   { title: 'Update Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#update'}, 
                 ])
+              
+puts "Adding Subscription Permissions".green
+
+  SubscriptionPermission.create([
+         { title: 'Free',  permission_id: "1", subscription_id: "1"}, 
+          { title: 'Free',  permission_id: "28", subscription_id: "1"}, 
+          { title: 'Free',  permission_id: "29", subscription_id: "1"}, 
+           { title: 'Free',  permission_id: "30", subscription_id: "1"}, 
+        { title: 'Free',  permission_id: "30", subscription_id: "1"},
+        { title: 'Free',  permission_id: "31", subscription_id: "1"},
+        { title: 'Free',  permission_id: "32", subscription_id: "1"},
+        { title: 'Free',  permission_id: "33", subscription_id: "1"},
+        { title: 'Free',  permission_id: "34", subscription_id: "1"},
+        { title: 'Free',  permission_id: "35", subscription_id: "1"},
+     
+     ])
+
 #template = LabelTemplate.first
 
 # puts "Adding Documents".green
