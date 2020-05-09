@@ -223,10 +223,10 @@ puts "Adding Permissions".green
 puts "Adding Subscription Permissions".green
 
   SubscriptionPermission.create([
-         { title: 'Free',  permission_id: "1", subscription_id: "1"}, 
-          { title: 'Free',  permission_id: "28", subscription_id: "1"}, 
-          { title: 'Free',  permission_id: "29", subscription_id: "1"}, 
-           { title: 'Free',  permission_id: "30", subscription_id: "1"}, 
+        { title: 'Free',  permission_id: "1", subscription_id: "1"}, 
+        { title: 'Free',  permission_id: "28", subscription_id: "1"}, 
+        { title: 'Free',  permission_id: "29", subscription_id: "1"}, 
+        { title: 'Free',  permission_id: "30", subscription_id: "1"}, 
         { title: 'Free',  permission_id: "30", subscription_id: "1"},
         { title: 'Free',  permission_id: "31", subscription_id: "1"},
         { title: 'Free',  permission_id: "32", subscription_id: "1"},
