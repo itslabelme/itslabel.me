@@ -21,7 +21,8 @@ display_actions = true if display_actions.nil?
                               <% @folders.each_with_index do |folder, i| %>
                             <li id="<%=folder.id%>" ondrop="drop(event,'<%=folder.id%>')" ondragover="allowDrop(event)"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a>
                                <% if (folder.title!='Default') %>
-                                <input type="checkbox" id="folder_<%=folder.id%>" name="folder[]" value="<%=folder.id%>">
+                                
+                                <button class="close" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")'><span>X</span></button>
                                <%  end %>
                                   </li>
                               <% end %>
@@ -51,7 +52,7 @@ display_actions = true if display_actions.nil?
                               -->
 
                             <div class="btn-group">
-                                <span id="popoverWrapper" data-toggle="tooltip" data-placement="top" data-original-title="Move To">
+                                <span>Move To
                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-share fa-fw"></i></button>
 
                                     <div class="dropdown-menu">
@@ -63,9 +64,9 @@ display_actions = true if display_actions.nil?
                                           <% end %>
                                         <%end%>
                                         </div>
-                                        <div role="separator" class="dropdown-divider"></div>
+                                       
                                         
-                                        <a class="dropdown-item" href="#" onClick="delete_folder()">Delete Folder</a>
+                                       
                                     </div>                                              
 
                                 </span>

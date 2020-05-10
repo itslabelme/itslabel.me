@@ -36,19 +36,19 @@ module User
     end
 
     def update_document
-      @folder_ids= params[:folder_id]
+      @folder_id= params[:folder_id]
       
       #raise @folder_ids.inspect
         
-        @folder_ids.each do|fold|
-          @folder=DocumentFolder.find(fold)
-          puts fold
+      
+          @folder=DocumentFolder.find(@folder_id)
+          
           if @folder
           change_default_folder_template(@folder.id)
           change_default_folder_table(@folder.id)
           @folder.destroy
           @destroyed = true
-      end
+    
       end
         #raise @templates.inspect
       

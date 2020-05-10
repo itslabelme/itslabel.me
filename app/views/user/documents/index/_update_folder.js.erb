@@ -76,13 +76,14 @@ $(function () {
 });
 
 
-function delete_folder() {
-    var doc = $('input[name="folder[]"]:checked').map(function () {
-        return this.value;
-    }).get();
+function delete_folder(title,id) {
+
+  var r = confirm("Do you want to remove "+ title +" folder."); 
+  if (r == true) {
+  
     //$('input[name="folder[]"]:checked').each(function () {
         //alert(this.value);
-        data_send = {folder_id: doc}
+        data_send = {folder_id: id}
         $.ajax({
             method: 'PUT',
             url: "/user/update_document/" ,
@@ -96,6 +97,7 @@ function delete_folder() {
             }
 
         });
+        }
    // });
     //location.reload();
 }
