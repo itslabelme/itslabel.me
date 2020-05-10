@@ -213,9 +213,9 @@ puts "Adding Permissions".green
                 #  { title: 'Update Profile ',  description: "ClientProfile", permission_group: "Profile",route:'client_profile#update'}, 
                 #  { title: 'Update Client Profile Password',  description: "ClientProfile", permission_group: "Profile",route:'client_profile#update_password'}, 
                   
-                  { title: 'User Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#index'}, 
+               #   { title: 'User Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#index'}, 
                  # { title: 'Save Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#create'}, 
-                  { title: 'Add Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#new'}, 
+               #   { title: 'Add Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#new'}, 
                 #  { title: 'Edit Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#edit'}, 
                 #  { title: 'Update Subscription',  description: "UserSubscription", permission_group: "Subscription",route:'user_subscriptions#update'}, 
                 ])
@@ -224,8 +224,8 @@ puts "Adding Subscription Permissions".green
 
   SubscriptionPermission.create([
         { title: 'Free',  permission_id: "1", subscription_id: "1"}, 
-       { title: 'Free',  permission_id: "16", subscription_id: "1"}, 
-        { title: 'Free',  permission_id: "17", subscription_id: "1"}, 
+   #    { title: 'Free',  permission_id: "16", subscription_id: "1"}, 
+ #       { title: 'Free',  permission_id: "17", subscription_id: "1"}, 
 #        { title: 'Free',  permission_id: "30", subscription_id: "1"}, 
 #        { title: 'Free',  permission_id: "30", subscription_id: "1"},
 #        { title: 'Free',  permission_id: "31", subscription_id: "1"},
