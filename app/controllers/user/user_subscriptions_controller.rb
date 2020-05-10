@@ -2,7 +2,7 @@ module User
  class UserSubscriptionsController < User::BaseController
   before_action :authenticate_client_user!
   before_action :get_user_subscription
-  before_action :access_denied
+  before_action :access_denied, only: [:index, :new]
   def index
    get_permissions
    @subscriptions=Subscription.all
