@@ -3,7 +3,7 @@ module User
   
     before_action :authenticate_client_user!
     before_action :get_client_user
-    before_action :access_denied, only: [:index, :new]
+    #before_action :access_denied, only: [:index, :new]
     
     def edit
       @page_title = "Edit Translation"
