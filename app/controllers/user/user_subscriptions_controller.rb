@@ -2,14 +2,17 @@ module User
  class UserSubscriptionsController < User::BaseController
   before_action :authenticate_client_user!
   before_action :get_user_subscription
-  before_action :access_denied, only: [:index, :new]
+  #before_action :access_denied, only: [:index, :new]
   def index
    get_permissions
    @subscriptions=Subscription.all
    if !@user_subscription.blank?
+     
     get_user_subscription
+   # raise @user_subscription.subscription_id.inspect
    else
     new_user_subscription
+    @user_subscription.subscription_id=1
    end
   end
     
@@ -42,6 +45,9 @@ module User
     @user_subscription.save
     set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
     set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
+      respond_to do |format|
+        format.js { render inline: "location.reload();" }
+      end
    else
     @per_page=params[:page]
     message = I18n.t('errors.failed_to_create', item: "subscription")
