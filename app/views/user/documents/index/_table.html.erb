@@ -15,7 +15,7 @@ display_actions = true if display_actions.nil?
 
                 <div class="body mail-left">
                     <div class="mail-side">
-                        <div><a  href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal">Add New Folder</a></div>
+                        <div class="mb-3 ml-3"><a class="btn btn-primary"  href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal"><i class="fa fa-plus mr-1"></i>  Add New Folder</a></div>
                         <ul id="tree2">
                             <% if @folders.present? %>
                               <% @folders.each_with_index do |folder, i| %>
@@ -200,8 +200,8 @@ display_actions = true if display_actions.nil?
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title text-center left" id="addContact">Add Folder</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b style="color:#fb3600; font-weight:700;">X</b></button><!--&times;-->
-                        
+                         <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b style="color:#fb3600; font-weight:700;">X</b></button> -->
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>×</span></button>
                     </div>
                     
                     <div class="modal-body">
@@ -221,8 +221,8 @@ display_actions = true if display_actions.nil?
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-info" data-dismiss="modal">Close</a>
-                        <button type="button" id="folder-form" class="btn btn-blue">Submit</button>
+                        <a class="btn btn-secondary cancel" data-dismiss="modal" style="color: #fff; ">Cancel</a>
+                        <button type="button" id="folder-form" class="btn btn-primary">Submit</button>
                     </div>
                    
                 </div>

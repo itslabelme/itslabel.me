@@ -33,8 +33,9 @@
          
       <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="form-group">
-             
-              <h5> <%= @subscription.title %></h5>
+             <div class="profile-header d-flex justify-content-between justify-content-center">
+              <h3 class="mb-3" style="color: #006747"> <%= @subscription.title %> Plan</h3>
+            </div>
               <%= f.hidden_field :title,:value => @subscription.title %>
              <%= f.hidden_field :subscription_id,:value => @subscription.id %>
               
@@ -47,30 +48,38 @@
                       end
                   %>
                    <% rows = 0 %>
-              <% @permissions.each_with_index do |permission, j|  %>
-              <% if rows % 4==0 %>
-               <div class="row ">
-                <% end %>
-              <div class="col-sm-3">
-                  <% if permissionArray.present? %>
-                  
-                  <% if permissionArray.include?(permission.id) %>
-                  <% @check=true %>
-                  <% else %>
-                  <% @check=false %>
+              <table class="">
+                <% @permissions.each_with_index do |permission, j|  %>
+                  <% if rows % 4==0 %>
+                   <!-- <div class="row "> -->
+                    <tr class="mb-4">
                   <% end %>
-                  <%  end %>
+                  <!-- <div class="col-sm-3"> -->
                   
-                  <b><%=permission.title%></b>
-                  <%= check_box_tag( 'permission_id[]', permission.id,@check) %>
+                      <% if permissionArray.present? %>
+                      
+                      <% if permissionArray.include?(permission.id) %>
+                      <% @check=true %>
+                      <% else %>
+                      <% @check=false %>
+                      <% end %>
+                      <%  end %>
+                      <td>
+                        <label><%= check_box_tag( 'permission_id[]', permission.id,@check) %> </label>
+                        <b class="ml-2"><%=permission.title%></b>
+                      </td>
+                      <!-- <td>
+                      </td> -->
+                  
+                  <!-- </div> -->
+                   
+                  <% rows += 1 %>
+                  <%#= raw("</div>") if (rows % 4==0) %>
+                  <%= raw("</tr>") if (rows % 4==0) %>
+                <% end %>
               
-              </div>
-               
-              <% rows += 1 %>
-              <%= raw("</div>") if (rows % 4==0) %>
-              <% end %>
-              
-            </div>
+              </table>
+          </div>
         </div>
     </div>
     <div class="row">

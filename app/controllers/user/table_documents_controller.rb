@@ -7,6 +7,8 @@ module User
     before_action :get_document, except: [:new, :create, :index, :select_template]
     skip_before_action :verify_authenticity_token, :only => [:translate_input_phrase, :save_everything]
     #before_action :access_denied
+    #before_action :access_denied, only: [:index, :new]
+    
     def index
       @page_title = "Documents (Table Mode)"
       @nav = 'user/table_documents'
