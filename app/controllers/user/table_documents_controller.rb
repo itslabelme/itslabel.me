@@ -201,11 +201,12 @@ module User
           item.output_5_translation_id = value[:output_5_translation_id]
         end
       end
-         if params['document'][:folder_id].nil?
+       if params['document'][:folder_id].blank?
           check_default_document_folder
           @document.folder_id =@document_folder.id
+         
         end
-        
+       
       if @document.valid?
         @document.save
 
@@ -333,8 +334,8 @@ module User
     
      
      def check_default_document_folder
-         @document_folder=DocumentFolder.where(user_id: @current_client_user.id,title:'Default').first
-         #raise @document_folder.inspect
+         @document_folder=DocumentFolder.where(user_id: current_client_user.id,title:'Default').first
+         
          if @document_folder.blank?
           @document_folder=DocumentFolder.new
           @document_folder.title='Default'
