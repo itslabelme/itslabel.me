@@ -53,7 +53,8 @@
                   <div class="form-group col-md-4">
                     <label>Document Folder</label>
                     <div class="input-group mb-3">
-                      <select class="form-control form-control-xs selectpicker1" name="document[folder_id]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
+                        
+                      <select class="form-control form-control-xs selectpicker1" name=document[folder_id]" data-size="7" id='FOLDER_ID'  data-width="100%">
                           <option value="">--Please Select Document Folder</option>
                           <% if @document_folders.present? %>
                           <% @document_folders.each_with_index do |folder, i| %>

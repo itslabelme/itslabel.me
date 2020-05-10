@@ -338,12 +338,14 @@ $(document).on('change', '#OUTPUT_5_LANGUAGE', function (e) {
 
 function saveEverything() {
   let documentTitle = $("#INPUT_TITLE").val();
+  let folder_id = $("#FOLDER_ID").val();
   ajaxData = {
     items: translationHOT.data,
     id: "<%= @document.id %>",
     document: {
       id: "<%= @document.id %>",
       title: documentTitle,
+      folder_id:folder_id,
       input_language: "<%= @document.input_language %>",
       output_1_language: "<%= @document.output_1_language %>",
       output_2_language: "<%= @document.output_2_language %>",

@@ -55,7 +55,8 @@ module User
       new_document unless @document
 
       @document.assign_attributes(permitted_params)
-      if params[:folder_id].nil?
+      #
+      if params['document'][:folder_id].blank?
         check_default_document_folder
         @document.folder_id =@document_folder.id
       end

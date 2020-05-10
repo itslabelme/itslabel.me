@@ -199,10 +199,11 @@ module User
           item.output_5_translation_id = value[:output_5_translation_id]
         end
       end
-         if params[:folder_id].nil?
+         if params['document'][:folder_id].nil?
           check_default_document_folder
           @document.folder_id =@document_folder.id
         end
+        
       if @document.valid?
         @document.save
 
