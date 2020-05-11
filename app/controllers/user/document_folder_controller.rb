@@ -27,21 +27,33 @@ module User
           format.json { render json: @folder.to_json }
         end
       else
-        @folder.errors
+       render json: { error: @folder.errors.to_json }
       end
     end
 
      def destroy
  
     end
-
+   def update
+      get_folder
+     # raise params.inspect
+      @folder.title= params[:title]
+      @folder.user_id= params[:user_id]
+      if @folder.valid?
+         @folder.save
+         respond_to do |format|
+          format.json { render json: @folder.to_json }
+        end
+      else
+        
+           render json: { error: @folder.errors.to_json }
+         
+      end
+   end
+     
     def update_document
       @folder_id= params[:folder_id]
-      
-      #raise @folder_ids.inspect
-        
-      
-          @folder=DocumentFolder.find(@folder_id)
+      @folder=DocumentFolder.find(@folder_id)
           
           if @folder
           change_default_folder_template(@folder.id)
@@ -60,7 +72,7 @@ module User
         if @templates.present?
           get_default_folder
           @templates.each do |template|
-            #puts template.folder_id
+            
             template.folder_id=@default.id
             template.save
           end
@@ -71,7 +83,7 @@ module User
         if @tables.present?
           get_default_folder
           @tables.each do |template|
-            #puts template.folder_id
+          
             template.folder_id=@default.id
             template.save
           end
@@ -80,7 +92,9 @@ module User
      def get_default_folder
        @default=DocumentFolder.where(user_id:current_client_user.id,title:'Default').first
      end
-     
+     def get_folder
+       @folder=DocumentFolder.find(params[:id])
+     end
     def new_folder
       @folder = DocumentFolder.new
     end

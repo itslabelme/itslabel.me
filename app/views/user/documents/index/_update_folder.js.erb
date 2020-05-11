@@ -67,37 +67,91 @@ $(function () {
                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-                $('#foldermmodal').modal('hide');
-                parent.$('#tree2').append('<li id="' + data.id + '"  ondrop=\"drop(event,\'' + data.id + '\')\" ondragover=\"allowDrop(event)\"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=' + data.id + '">' + data.title + '</a></li>');
-                parent.$('#folder_drop').append('<a class=\"dropdown-item\" data-id="' + data.id + '" onClick=\"move_folder(' + data.id + ')" href="#" data-remote="true">' + data.title + '</a>');
+                if (data.error) {
+                    alert("Given Folder name already taken");
+                } else {
+                    $('#foldermmodal').modal('hide');
+                    parent.$('#tree2 .branch').append('<li id="' + data.id + '"  ondrop=\"drop(event,\'' + data.id + '\')\" ondragover=\"allowDrop(event)\"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=' + data.id + '">' + data.title + '</a>'
+                            + '<a class=\"edit-folder\"  href=\"#editfoldermmodal\" data-toggle=\"modal\" data-id=\"' + data.id + '\" data-title=\"' + data.title + '\" data-target=\"#editfoldermmodal\"><i class=\"fa fa-edit\"></i></a>'
+                            + '<button  onClick=\"delete_folder(' + data.title + ',' + data.id + ')"><span>X</span></button></li>');
+                }
             }
         });
     });
 });
 
 
-function delete_folder(title,id) {
+function delete_folder(title, id) {
 
-  var r = confirm("Do you want to remove "+ title +" folder."); 
-  if (r == true) {
-  
-    //$('input[name="folder[]"]:checked').each(function () {
-        //alert(this.value);
+    var r = confirm("Do you want to remove " + title + " folder.");
+    if (r == true) {
+        $("#LOADER").show();
+
         data_send = {folder_id: id}
         $.ajax({
             method: 'PUT',
-            url: "/user/update_document/" ,
+            url: "/user/update_document/",
             data: data_send,
             headers: {
                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-           location.reload();
+
+                //$("#LOADER").hide();
+                location.reload();
 
             }
 
         });
-        }
-   // });
-    //location.reload();
+    }
 }
+
+$(document).on("click", ".edit-folder", function () {
+
+    var id = $(this).data('id');
+    var title = $(this).data('title');
+    $(".edit-content #id").val(id);
+    $(".edit-content #title").val(title);
+    //$(".modal-footer #folder-form").attr( 'id','edit-folder-form' );
+
+});
+
+
+$(function () {
+    $('#edit-folder-form').click(function (e) {
+       
+        e.preventDefault();
+        if ($('.edit-content #title').val() == '') {
+            alert('Folder Title is required');
+            return false;
+        }
+        var user_id = $('.edit-content #user_id').val();
+        var title = $('.edit-content #title').val();
+     
+        var id = $('.edit-content #id').val();
+        data_send = {id: id, user_id: user_id, title: title}
+        $.ajax({
+            url: "/user/document_folder/" + id,
+            type: "PUT",
+            data: data_send,
+            dataType: "json",
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                if (data.error) {
+                    alert("Given Folder name already taken");
+                } else {
+                    $('#editfoldermmodal').modal('hide');
+                    parent.$("#" + data.id).remove();
+
+                    parent.$('#tree2 .branch').append('<li id="' + data.id + '"  ondrop=\"drop(event,\'' + data.id + '\')\" ondragover=\"allowDrop(event)\"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=' + data.id + '">' + data.title + '</a>'
+                            + '<a class=\"edit-folder\"  href=\"#editfoldermmodal\" data-toggle=\"modal\" data-id=\"' + data.id + '\" data-title=\"' + data.title + '\" data-target=\"#editfoldermmodal\"><i class=\"fa fa-edit\"></i></a>'
+                            + '<button  onClick=\"delete_folder(' + data.title + ',' + data.id + ')"><span>X</span></button></li>'
+                            );
+
+                }
+            }
+        });
+    });
+});

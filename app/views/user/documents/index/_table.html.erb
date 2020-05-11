@@ -17,16 +17,20 @@ display_actions = true if display_actions.nil?
                     <div class="mail-side">
                         <div class="mb-3 ml-3"><a class="btn btn-primary"  href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal"><i class="fa fa-plus mr-1"></i>  Add New Folder</a></div>
                         <ul id="tree2">
+                            <li class="branch"><a href="#">All</a>
+                                <ul>
                             <% if @folders.present? %>
                               <% @folders.each_with_index do |folder, i| %>
                             <li id="<%=folder.id%>" ondrop="drop(event,'<%=folder.id%>')" ondragover="allowDrop(event)"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a>
                                <% if (folder.title!='Default') %>
-                                
-                                <button class="close" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")'><span>X</span></button>
+                                <a class="edit-folder"  href="#editfoldermmodal" data-toggle="modal" data-id="<%=folder.id%>" data-title="<%=folder.title%>" data-target="#editfoldermmodal"><i class="fa fa-edit"></i></a>
+                                <button  onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")'><span>X</span></button>
                                <%  end %>
                                   </li>
                               <% end %>
                             <% end %>
+                                </ul>
+                        </li>
                         </ul>
                     </div>
                 </div>
@@ -207,23 +211,47 @@ display_actions = true if display_actions.nil?
                     
                     <div class="modal-body">
                         <div class="row">
-                            
-
                                 <div class="col-md-12">
                                     <div class="input-group">                               
-
-                                        <input id="title" type="text" class="form-control" placeholder="Folder Name" name="title"/>
+                                        <input id="id" type="hidden" class="form-control"  name="id" value=""/>
+                                        <input id="title" type="text" class="form-control" placeholder="Folder Name" name="title" id="title"/>
                                         <input id="user_id" type="hidden" class="form-control"  name="user_id" value="<%=@current_client_user.id%>"/>
                                     </div>
                                 </div>
-
-
-
                         </div>
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-secondary cancel" data-dismiss="modal" style="color: #fff; ">Cancel</a>
                         <button type="button" id="folder-form" class="btn btn-primary">Submit</button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+       <div class="modal fade foldermmodal" tabindex="-1" role="dialog" aria-labelledby="foldermmodal" aria-hidden="true" id="editfoldermmodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center left" id="addContact">Add Folder</h4>
+                         <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b style="color:#fb3600; font-weight:700;">X</b></button> -->
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>×</span></button>
+                    </div>
+                    
+                    <div class="modal-body edit-content">
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-group">                               
+                                        <input id="id" type="hidden" class="form-control"  name="id" value=""/>
+                                        <input id="title" type="text" class="form-control" placeholder="Folder Name" value="" name="title" id="title"/>
+                                        <input id="user_id" type="hidden" class="form-control"  name="user_id" value="<%=@current_client_user.id%>"/>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary cancel" data-dismiss="modal" style="color: #fff; ">Cancel</a>
+                        <button type="button" id="edit-folder-form" class="btn btn-primary">Submit</button>
                     </div>
                    
                 </div>
