@@ -44,7 +44,9 @@
 .tree li i{
     padding-right: 10px;
 }
-
+.tree li a i{
+    padding-left: 10px;
+}
 .tree li.branch{
     cursor: pointer;
 }
