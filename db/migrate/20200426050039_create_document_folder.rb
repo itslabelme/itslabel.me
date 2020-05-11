@@ -6,7 +6,7 @@ class CreateDocumentFolder < ActiveRecord::Migration[5.2]
       t.references :user
       t.timestamps null: false
     end
-    #add_column :table_documents, :folder_id, :integer
-    #add_column :template_documents, :folder_id, :integer
+    add_column :table_documents, :folder_id, :integer
+    add_column :template_documents, :folder_id, :integer
   end
 end
