@@ -1,0 +1,103 @@
+function move_folder(id) {
+
+    var doc = $('input[name="doc_name[]"]:checked').map(function () {
+        return this.value;
+    }).get();
+
+    data_send = {folder_id: id}
+    $('input[name="doc_name[]"]:checked').each(function () {
+
+        $.ajax({
+            method: 'put',
+            url: this.value,
+            data: data_send,
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                location.reload();
+
+            }
+        });
+    });
+}
+function drag(ev, ur) {
+
+    ev.dataTransfer.setData("folder", ur);
+}
+function drop(ev, fold) {
+
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("folder");
+    data_send = {folder_id: fold}
+    $.ajax({
+        method: 'put',
+        url: data,
+        data: data_send,
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            location.reload();
+
+        }
+    });
+
+
+}
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+$(function () {
+    $('#folder-form').click(function (e) {
+        e.preventDefault();
+        if ($('#title').val() == '') {
+            alert('Folder Title is required');
+            return false;
+        }
+        var user_id = $('#user_id').val();
+        var title = $('#title').val();
+        data_send = {user_id: user_id, title: title}
+        $.ajax({
+            url: "/user/document_folder/",
+            type: "POST",
+            data: data_send,
+            dataType: "json",
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                $('#foldermmodal').modal('hide');
+                parent.$('#tree2').append('<li id="' + data.id + '"  ondrop=\"drop(event,\'' + data.id + '\')\" ondragover=\"allowDrop(event)\"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=' + data.id + '">' + data.title + '</a></li>');
+                parent.$('#folder_drop').append('<a class=\"dropdown-item\" data-id="' + data.id + '" onClick=\"move_folder(' + data.id + ')" href="#" data-remote="true">' + data.title + '</a>');
+            }
+        });
+    });
+});
+
+
+function delete_folder(title,id) {
+
+  var r = confirm("Do you want to remove "+ title +" folder."); 
+  if (r == true) {
+  
+    //$('input[name="folder[]"]:checked').each(function () {
+        //alert(this.value);
+        data_send = {folder_id: id}
+        $.ajax({
+            method: 'PUT',
+            url: "/user/update_document/" ,
+            data: data_send,
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+           location.reload();
+
+            }
+
+        });
+        }
+   // });
+    //location.reload();
+}

@@ -30,7 +30,7 @@
             <div class="col-md-12">
               <fieldset style="background-color: #fff;">
                 <div class="row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <label>Input Language</label>
                     <div class="input-group mb-3">
                       <% if @document.persisted? %>
@@ -44,13 +44,33 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <label>Document Title</label>
                     <div class="form-group">
                      <%= text_field_tag @document, @document.title, class: "form-control", name: 'document[title]', style: "background-color:#fff;", id: "INPUT_TITLE" %>
                     </div>
                   </div>
+                  <div class="form-group col-md-4">
+                    <label>Document Folder</label>
+                    <div class="input-group mb-3">
+                        
+                      <select class="form-control form-control-xs selectpicker1" name=document[folder_id]" data-size="7" id='FOLDER_ID'  data-width="100%">
+                          <option value="">--Please Select Document Folder</option>
+                          <% if @document_folders.present? %>
+                          <% @document_folders.each_with_index do |folder, i| %>
+                          
+                          <option value="<%=folder.id%>" <%= @document.folder_id == folder.id ? "selected" : "" %>><%=folder.title%></option>
+                          <%  end %>
+                          <% end  %>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+                  
+                   <div class="row">
+                   
+                      
+                  </div>
               </fieldset>
             </div>
             

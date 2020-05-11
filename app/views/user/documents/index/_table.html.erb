@@ -1,87 +1,232 @@
 <%
-  # Display Actions only if required - 
-  # No need to display when called from dashboard
-  display_actions = true if display_actions.nil?
+# Display Actions only if required - 
+# No need to display when called from dashboard
+display_actions = true if display_actions.nil?
 %>
-<div id="TRANSLATIONS_TABLE" class="table-responsive">
-  <table class="table table-hover table-custom spacing8" id="document_listing_table">
-    <thead>
-      <tr>
-        <th style="width: 2%;">#</th>
-        <th style="width: 25%;text-align: left;">Title</th>
-        <th style="width: 15%;text-align: center;">Language</th>
-        <th style="width: 10%;text-align: center;">Created At</th>
-        <th style="width: 10%;text-align: center;">Status</th>
-        <% if display_actions %>
-          <th style="width: 10%;text-align: center;">Action</th>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <% @documents.each_with_index do |document, i| %>
-      <% 
-        if document.doc_type == "template_document"
-          icon_path = "icons/template.svg"
-          doc_url = user_template_document_path(document)
-          doc_status_removed_url = update_status_user_template_document_path(document, status: 'removed') 
-          doc_status_archive_url = update_status_user_template_document_path(document, status: 'archived')
-        elsif document.doc_type == "table_document"
-          icon_path = "icons/excel.svg"
-          doc_url = user_table_document_path(document) 
-          doc_status_removed_url = update_status_user_table_document_path(document, status: 'removed')
-          doc_status_archive_url = update_status_user_table_document_path(document, status: 'archived')
-        else
-          doc_url = "#"
-          doc_status_removed_url = "#"
-          doc_status_archive_url = "#"
-        end
-      %>
-      <tr id='TRANSLATIONS_ROW_<%= document.id %>'>
-        <td>
-          <span><%= serial_number(i) %></span>
-        </td>
-        <td>
-          <div class="d-flex align-items-center">
-            <%= image_tag icon_path, style: "width: 22px;height: 22px;margin-right:4px;" %>
-            <!-- <span><i class="<%= document.display_icon %> mr-2"></i></span> -->
-            <%= link_to document.title, doc_url, title: document.title %>
-          </div>
-        </td>
-        <td class="its-tag" style="text-align: center;">
-          <span><%= document.display_input_language %></span> 
-          <span style="border: 0;font-size:16px;vertical-align: middle;text-align: center;"> > </span>
-          <% document.display_output_languages.select{|x| !x.to_s.strip.blank?}.each do |lang| %>
-            <span><%= lang %></span>
-          <% end %>
-        </td>
 
-        <td style="text-align: center;"> <%= document.created_at.strftime("%d %b %Y - %I:%M %p") %> </td>
-        
-        <td style="text-align: center;">
-          <span class="badge badge-info badge-<%= document.status_ui_class %>"><%=  document.status %></span>
-        </td>
-        
-        <% if display_actions %>
-        <td style="text-align: center;">
-          <%= link_to doc_url, class: "btn btn-sm btn-default mr-4" do %>
-            <i class="fa fa-edit"></i>
-          <% end %>
-          
-          <%= link_to update_status_user_document_path(document, status: 'active', dt: params[:dt]), class: "btn btn-sm btn-default",  method: :put, remote: true do %>
-            <i class="fa fa-check" style="color: #6c757d !important;" ></i>
-          <% end if document.can_active? %>
-          
-          <%= link_to doc_status_removed_url, class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
-            <i class="fa fa-trash-o text-danger"></i>
-          <% end if document.can_remove? %> 
+<div class="row clearfix">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="mail-inbox">
 
-          <%= link_to doc_status_archive_url, class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
-            <i class="fa fa-archive"></i>
-          <% end if document.can_archive? %>
-        </td>
-        <% end %>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+                <div class="mobile-left">
+                    <a href="javascript:void(0);" class="btn btn-primary toggle-email-nav"><i class="fa fa-bars"></i></a>
+                </div>
+
+                <div class="body mail-left">
+                    <div class="mail-side">
+                        <div class="mb-3 ml-3"><a class="btn btn-primary"  href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal"><i class="fa fa-plus mr-1" data-toggle="tooltip" data-placement="top" title="Add New Folder"></i>  Add New Folder</a></div>
+                        <ul id="tree2">
+                            <% if @folders.present? %>
+                              <% @folders.each_with_index do |folder, i| %>
+                            <li id="<%=folder.id%>" ondrop="drop(event,'<%=folder.id%>')" ondragover="allowDrop(event)"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a>
+                               <% if (folder.title!='Default') %>
+                                
+                                <button class="close " onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder"><i class="fa fa-times" aria-hidden="true" style="font-size: 15px"></i></button>
+
+                               <%  end %>
+                                  </li>
+                              <% end %>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="body mail-right check-all-parent">
+
+
+                    <div class="mail-action clearfix m-l-15">
+                        <div class="pull-left">
+                            <div class="fancy-checkbox d-inline-block">
+                                <label>
+                                    <input class="check-all" type="checkbox" name="checkbox">
+                                    <span></span>
+                                </label>
+                            </div>
+                            <a href="<%= user_documents_path %>" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Refresh"><i class="icon-refresh"></i></a> 
+                            <!--
+                            <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="icon-trash"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Archive"><i class="fa fa-archive"></i></a>
+                            <a href="<%= user_documents_path %>" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Refresh"><i class="icon-refresh"></i></a> 
+                            <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Cut"><i class="fa fa-cut"></i> </a>   
+                            <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Copy"><i class="icon-docs"></i> </a>   
+                            <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Paste"><i class="fa fa-paste"></i></a>                                    
+                              -->
+
+                            <div class="btn-group">
+                                <!-- <span>Move To -->
+                                    <button class="btn btn-light btn-sm dropdown-toggle mr-2" type="button" data-toggle="dropdown" data-placement="top" aria-haspopup="true" aria-expanded="false" title="Move Selected Folder" >Move To</button>
+
+                                    <div class="dropdown-menu">
+                                        <div id="folder_drop">
+                                        <% if @folders.present? %>
+                                          <% @folders.each_with_index do |folder, i| %>
+
+                                            <a class="dropdown-item" data-id="<%= folder.id %>" onClick="move_folder(<%= folder.id %>)" href="#" data-remote="true"><%= folder.title %></a>
+                                          <% end %>
+                                        <%end%>
+                                        </div>
+                                       
+                                        
+                                       
+                                    </div>                                              
+
+                                <!-- </span> -->
+                            </div>
+                        </div>
+                        <div class="pull-right ml-auto">
+                            <div class="pagination-email d-flex">
+                                <p>1-50/295</p>
+                                <div class="btn-group m-l-20">
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i></button>
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-angle-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-custom spacing8">
+                            <thead>
+                                <tr> 
+                                    <th></th>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Language</th>
+                                    <th>Created At</th>
+                                    <th>Status</th>
+                                    <th>Folder</th>
+                                    <% if display_actions %>
+                                      <th style="width: 10%;text-align: center;">Action</th>
+                                    <% end %>
+                                </tr>
+                            </thead>
+                            <tbody  oncontextmenu ="event.preventDefault();$('#context-menu').show();$('#context-menu').offset({'top':mouseY,'left':mouseX})">
+                                <% @documents.each_with_index do |document, i| %>
+                                  <% 
+                                  if document.doc_type == "template_document"
+                                    icon_path = "icons/template.svg"
+                                    doc_url = user_template_document_path(document)
+                                    doc_status_removed_url = update_status_user_template_document_path(document, status: 'removed') 
+                                    doc_status_archive_url = update_status_user_template_document_path(document, status: 'archived')
+                                    doc_type="Template Based"
+                                    doc_folder=update_template_folder_user_template_document_path(document)
+                                    elsif document.doc_type == "table_document"
+                                    icon_path = "icons/excel.svg"
+                                    doc_url = user_table_document_path(document) 
+                                    doc_status_removed_url = update_status_user_table_document_path(document, status: 'removed')
+                                    doc_status_archive_url = update_status_user_table_document_path(document, status: 'archived')
+                                    doc_type="Table Based"
+                                    doc_folder=update_table_folder_user_table_document_path(document)
+                                    else
+                                    doc_url = "#"
+                                    doc_status_removed_url = "#"
+                                    doc_status_archive_url = "#"
+                                    doc_type=""
+                                    end
+                                %>
+
+                                <tr id="<%=doc_folder%>" draggable="true" ondragstart="drag(event,'<%=doc_folder%>')">
+                                      <td class="w20">
+                                          <div class="md-left">
+                                              <label class="fancy-checkbox">
+                                                  <input type="checkbox" name="doc_name[]" value="<%=doc_folder%>" class="checkbox-tick">
+                                                  <span></span>
+                                              </label>
+                                          </div>
+                                      </td>
+                                      <td class="w60"><%= serial_number(i) %></td>
+                                      <td>
+                                          <%= link_to document.title, doc_url, title: document.title %>
+                                          <p class="mb-0"><%=doc_type%></p>
+                                      </td>
+                                      <td>
+                                          <span></span>
+                                      </td>
+                                      <td><%= document.created_at.strftime("%d %b %Y - %I:%M %p") %></td>
+                                      <td><%= document.status %></td>
+                                      <td><strong><%  if   document.folder_id !="" then @folder = DocumentFolder.find_by_id(document.folder_id) %><%=@folder.try(:title) %><%end%></strong></td>
+                                      <% if display_actions %>
+                                        <td style="text-align: center;">
+                                            <%= link_to doc_url, class: "btn btn-sm btn-default mr-4" do %>
+                                                <i class="fa fa-edit"></i>
+                                              <% end %>
+
+                                              <%= link_to update_status_user_document_path(document, status: 'active', dt: params[:dt]), class: "btn btn-sm btn-default",  method: :put, remote: true do %>
+                                                  <i class="fa fa-check" style="color: #6c757d !important;" ></i>
+                                                <% end if document.can_active? %>
+
+                                                <%= link_to doc_status_removed_url, class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                  <% end if document.can_remove? %> 
+
+                                                  <%= link_to doc_status_archive_url, class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
+                                                      <i class="fa fa-archive"></i>
+                                                    <% end if document.can_archive? %>
+                                                </td>
+                                              <% end %>
+                                          </tr>
+
+                                        <% end %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="context-menu" id="context-menu" style="display:none;position:absolute;z-index:99">
+            <ul>
+                <li><a href="#"><i class="icon-trash"></i>  Delete</a></li>       
+                <li><a href="#"><i class="fa fa-archive"></i> Archive</a></li>       
+                <li><a href="#"><i class="fa fa-cut"></i> Cut</a></li>  
+                <li><a href="#"><i class="fa fa-files-o"></i> Copy</a></li> 
+                <li><a href="#"><i class="fa fa-paste"></i> Paste</a></li>      
+                <li><a href="#"><i class="fa fa-share fa-fw"></i> Move</a>
+                    <ul class="context-menu-dd">
+                        <li><a href="#">Folder 01</a></li>
+                        <li><a href="#">Folder 02</a></li>
+                        <li><a href="#">Folder 03</a></li>
+                    </ul>
+                </li>       
+
+            </ul>
+        </div>
+        <div class="modal fade foldermmodal" tabindex="-1" role="dialog" aria-labelledby="foldermmodal" aria-hidden="true" id="foldermmodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center left" id="addContact">Add Folder</h4>
+                         <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b style="color:#fb3600; font-weight:700;">X</b></button> -->
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ><span>×</span></button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="row">
+                            
+
+                                <div class="col-md-12">
+                                    <div class="input-group">                               
+
+                                        <input id="title" type="text" class="form-control" placeholder="Folder Name" name="title"/>
+                                        <input id="user_id" type="hidden" class="form-control"  name="user_id" value="<%=@current_client_user.id%>"/>
+                                    </div>
+                                </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary cancel" data-dismiss="modal" style="color: #fff; ">Cancel</a>
+                        <button type="button" id="folder-form" class="btn btn-primary">Submit</button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>

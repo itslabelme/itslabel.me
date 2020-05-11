@@ -19,7 +19,7 @@ class DocumentView < ApplicationRecord
   # Associations
   belongs_to :template, class_name: "LabelTemplate"
   belongs_to :user, class_name: "User"
-  
+  belongs_to :folders, class_name: "DocumentFolder"
   
 
 
