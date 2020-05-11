@@ -15,14 +15,15 @@ display_actions = true if display_actions.nil?
 
                 <div class="body mail-left">
                     <div class="mail-side">
-                        <div class="mb-3 ml-3"><a class="btn btn-primary"  href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal"><i class="fa fa-plus mr-1"></i>  Add New Folder</a></div>
+                        <div class="mb-3 ml-3"><a class="btn btn-primary"  href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal"><i class="fa fa-plus mr-1" data-toggle="tooltip" data-placement="top" title="Add New Folder"></i>  Add New Folder</a></div>
                         <ul id="tree2">
                             <% if @folders.present? %>
                               <% @folders.each_with_index do |folder, i| %>
                             <li id="<%=folder.id%>" ondrop="drop(event,'<%=folder.id%>')" ondragover="allowDrop(event)"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a>
                                <% if (folder.title!='Default') %>
                                 
-                                <button class="close" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")'><span>X</span></button>
+                                <button class="close " onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder"><i class="fa fa-times" aria-hidden="true" style="font-size: 15px"></i></button>
+
                                <%  end %>
                                   </li>
                               <% end %>
@@ -52,8 +53,8 @@ display_actions = true if display_actions.nil?
                               -->
 
                             <div class="btn-group">
-                                <span>Move To
-                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-share fa-fw"></i></button>
+                                <!-- <span>Move To -->
+                                    <button class="btn btn-light btn-sm dropdown-toggle mr-2" type="button" data-toggle="dropdown" data-placement="top" aria-haspopup="true" aria-expanded="false" title="Move Selected Folder" >Move To</button>
 
                                     <div class="dropdown-menu">
                                         <div id="folder_drop">
@@ -69,7 +70,7 @@ display_actions = true if display_actions.nil?
                                        
                                     </div>                                              
 
-                                </span>
+                                <!-- </span> -->
                             </div>
                         </div>
                         <div class="pull-right ml-auto">
@@ -202,7 +203,7 @@ display_actions = true if display_actions.nil?
                     <div class="modal-header">
                         <h4 class="modal-title text-center left" id="addContact">Add Folder</h4>
                          <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b style="color:#fb3600; font-weight:700;">X</b></button> -->
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>×</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ><span>×</span></button>
                     </div>
                     
                     <div class="modal-body">
