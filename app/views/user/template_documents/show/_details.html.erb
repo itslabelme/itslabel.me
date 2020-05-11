@@ -33,11 +33,11 @@
             <div class="col-md-12">
               <fieldset style="background-color: #fff;">
                 <div class="row">
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-3">
                     <label>Document Title</label>
                     <input type="text" class="form-control" name="document[title]" value="<%= @document.title %>" required="">
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-3">
                     <label>Input Language</label>
                     <div class="input-group mb-3">
                       <select class="form-control form-control-xs selectpicker1" name="document[input_language]" data-size="7" data-live-search="true" data-title="Location" id="INPUT_LANGUAGE" data-width="100%">
@@ -47,7 +47,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-3">
                     <label>Output Language</label>
                     <div class="input-group mb-3">
                       <select class="form-control form-control-xs selectpicker1" name="document[output_language]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
@@ -57,7 +57,22 @@
                       </select>
                     </div>
                   </div>
+                     <div class="form-group col-md-3">
+                    <label>Folder</label>
+                    <div class="input-group mb-3">
+                      <select class="form-control form-control-xs selectpicker1" name="document[folder_id]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
+                          <option value="">--Please Select Document Folder</option>
+                          <% if @document_folders.present? %>
+                          <% @document_folders.each_with_index do |folder, i| %>
+                          
+                          <option value="<%=folder.id%>" <%= @document.folder_id == folder.id ? "selected" : "" %>><%=folder.title%></option>
+                          <%  end %>
+                          <% end  %>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+                  
               </fieldset>
             </div>
 

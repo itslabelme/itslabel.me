@@ -2,11 +2,11 @@ module User
   class DocumentsController < User::BaseController
 
     before_action :authenticate_client_user!
-    before_action :access_denied
+    before_action :access_denied, only: [:index, :new]
     def index
       @page_title = "Your Documents"
       @nav = 'user/documents'
-
+      get_user_folder
       get_collection
     end
 
@@ -64,6 +64,9 @@ module User
 
       # Filter by Favorite
       @relation = @relation.only_favorites if params[:favorite]
+      
+      # Filter by Folder
+      @relation = @relation.search_only_folder(params[:folder_id]) if params[:folder_id]
 
       @relation = @relation.search_only_title(params[:filters].try(:[], :title))
       @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
@@ -87,6 +90,10 @@ module User
       
 
     end
-
+    
+    def get_user_folder
+      @folders = DocumentFolder.where(user_id: @current_client_user.id)
+    end
   end
+  
 end
