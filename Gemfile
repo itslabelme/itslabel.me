@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem "kaminari", '~> 1.0', '>= 1.0.1'
+gem "kaminari", '~> 1.2'
 gem 'bootstrap4-kaminari-views'
 gem 'country_select'
 
