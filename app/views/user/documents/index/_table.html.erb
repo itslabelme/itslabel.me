@@ -16,19 +16,24 @@ display_actions = true if display_actions.nil?
                 <div class="body mail-left">
                     <div class="mail-side">
                         <div class="mb-3 ml-3"><a class="btn btn-primary"  href="#foldermmodal" data-toggle="modal" data-target="#foldermmodal"><i class="fa fa-plus mr-1" data-toggle="tooltip" data-placement="top" title="Add New Folder"></i>  Add New Folder</a></div>
-                        <ul id="tree2">
-                            <% if @folders.present? %>
+                        <% if @folders.present? %>
+                          <ul id="tree2">
                               <% @folders.each_with_index do |folder, i| %>
-                            <li id="<%=folder.id%>" ondrop="drop(event,'<%=folder.id%>')" ondragover="allowDrop(event)"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a>
-                               <% if (folder.title!='Default') %>
-                                
-                                <button class="close " onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder"><i class="fa fa-times" aria-hidden="true" style="font-size: 15px"></i></button>
+                                <li id="<%=folder.id%>" ondrop="drop(event,'<%=folder.id%>')" ondragover="allowDrop(event)"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a>
+                                   <% if (folder.title!='Default') %>
+                                    
+                                    <button class="close " onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder"><i class="fa fa-times" aria-hidden="true" style="font-size: 15px"></i></button>
 
-                               <%  end %>
-                                  </li>
+                                   <%  end %>
+                                </li>
                               <% end %>
-                            <% end %>
-                        </ul>
+                          </ul>
+                          <hr>
+                          <div class="row ml-3">
+                            <div><%= link_to content_tag(:i, "", class: "fa fa-trash") + " Trash", user_documents_path(status: 'REMOVED') %></div>
+                            <div class="ml-4"><%= link_to content_tag(:i, "", class: "fa fa-archive") + " Archives", user_documents_path(status: 'ARCHIVED') %></div>
+                          </div>
+                        <% end %>
                     </div>
                 </div>
                 <div class="body mail-right check-all-parent">
@@ -208,18 +213,26 @@ display_actions = true if display_actions.nil?
                     
                     <div class="modal-body">
                         <div class="row">
-                            
-
-                                <div class="col-md-12">
-                                    <div class="input-group">                               
-
-                                        <input id="title" type="text" class="form-control" placeholder="Folder Name" name="title"/>
-                                        <input id="user_id" type="hidden" class="form-control"  name="user_id" value="<%=@current_client_user.id%>"/>
-                                    </div>
+                            <div class="col-md-12">
+                                <label>Folder Name</label>
+                                <div class="input-group">                               
+                                    <input id="title" type="text" class="form-control" placeholder="Folder Name" name="title"/>
+                                    <input id="user_id" type="hidden" class="form-control"  name="user_id" value="<%=@current_client_user.id%>"/>
                                 </div>
-
-
-
+                            </div>
+                            <div class="col-md-12 mt-3">
+                              <label>Parent Folder</label>
+                              <div class="input-group mb-3">
+                                <select class="form-control form-control-xs selectpicker1" name=document[folder_id]" data-size="7" id='FOLDER_ID'  data-width="100%">
+                                        <option value=""> Select Parent Folder </option>
+                                    <% if @folders.present? %>
+                                      <% @folders.each_with_index do |folder, i| %>
+                                        <option value="<%=folder.id%>"><%=folder.title%></option>
+                                      <%  end %>
+                                    <% end  %>
+                                </select>
+                              </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
