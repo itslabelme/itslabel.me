@@ -1,0 +1,58 @@
+.its-login-container{
+	width: 100%;
+	margin: 0 auto;
+}
+
+
+.its-login-container .card .body {
+-webkit-box-shadow: -4px -4px 30px -11px rgba(0,0,0,0.26);
+-moz-box-shadow: -4px -4px 30px -11px rgba(0,0,0,0.26);
+box-shadow: -4px -4px 30px -11px rgba(0,0,0,0.26);
+}
+
+
+.card .body.its-login-body{
+	padding: 0px 15px;
+}
+
+.its-login-bg{
+	background: url(../images/login-bg.jpg) no-repeat;
+	background-size: cover
+}
+
+.its-login-form{
+	padding: 30px;
+	text-align: left;
+}
+
+.auth-main2 .form-auth-small{
+	width: 100%;
+}
+
+.its-login-form .auth_brand img{
+	height: 40px;
+}
+
+.its-login-form .lead{
+	font-weight: bold;
+	margin: 20px;
+	color: #006649;
+}
+
+.its-login-header{
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+.its-login-header .col-md-8 .lead{
+	margin-left: 0px;
+	margin-top: 5px;
+}
+
+.its-login-header .col-md-4 .auth_brand{
+	text-align: right;
+}
+
+.auth-main2 .form-auth-small{
+	text-align: left;
+}

@@ -18,13 +18,17 @@
 //= require vendor/vendorscripts.bundle.js
 //= require vendor/mainscripts.bundle.js
 //= require vendor/bootstrap-tagsinput.js
-//= require tribute
+// require tribute
 // require vendor/c3.bundle.js
 // require vendor/formula.min.js
 
-//= require utilities.js
 //= require custom.js
+//= require utilities.js
 //= require popup.js
 //= require its-tree.js
+//= require its-rightclick.js
+//= require its-select.js
+//= require its-subscription.js
+//= require select.js
 //= require freestyle-widget.js
 // require_tree .

@@ -11,15 +11,14 @@
       <h2><%= title %></h2>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <!-- <li class="breadcrumb-item"><a href="#">Documents Database</a></li> -->
+        <li class="breadcrumb-item"><%= link_to "Home", user_home_path %></li>
         <li class="breadcrumb-item active" aria-current="page"><%= title %></li>
         </ol>
       </nav>
     </div>            
     <div class="col-md-6 col-sm-12 text-right hidden-xs">
         <div class="dropdown">
-          <button class="btn b btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-sm btn-primary btn-round" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-down mr-1" data-toggle="tooltip" data-placement="top" title="Add New Document"></i>
             New Document
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

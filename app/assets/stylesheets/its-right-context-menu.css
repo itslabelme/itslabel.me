@@ -1,0 +1,57 @@
+/*right click*/
+.context-menu ul{ 
+    z-index: 1000;
+    position: absolute;
+    /* overflow: hidden; */
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 0px;
+    padding: 0;
+  }
+  /* Each of the items in the list */
+  .context-menu ul li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+  }
+  .context-menu ul li:hover {
+    background-color: #006747;
+  }
+  
+  .context-menu ul li:hover > a{
+    color: #fff;
+  }
+  
+  .context-menu ul li{
+    position: relative;
+  }
+  
+  .context-menu ul li i{
+    margin-right: 10px;
+  }
+  
+  .context-menu-dd{
+    display: none;
+    left: 100px;
+    top: 0px;
+    color: #006747;
+    position: absolute;
+  }
+  
+  .context-menu ul li:hover ul{
+    display: inline;
+  }
+  
+  
+  .context-menu-dd li a{
+    color: #006747; 
+  }
+
+  /** Drag & Drop **/
+
+  .light_version .mail-inbox .table.table-custom tbody tr{
+    cursor: all-scroll;
+  }

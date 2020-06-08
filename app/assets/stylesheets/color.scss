@@ -1,48 +1,55 @@
 a{
-	color: #006747;
+	color: #006649;
 }
 
 a:hover{
-	color: #1dc166;
+	color: #006649;
 }
 
+
+.light_version{
+	background: #fff asset_path(icons/logo-icon);
+    background-position: right 30px;
+    background-repeat: no-repeat;
+    background-size: 30%;
+}
 
 .btn-primary{
 	color: #fff;
-    background-color: #006747;
-    border-color: #006747;
+    background-color: #006649;
+    border-color: #006649;
 }
 
 .btn-primary:hover{
-    background-color: #1dc166;
-    border-color: #1dc166;	
+    background-color: #006649;
+    border-color: #006649;	
 }
 
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
-	background-color: #1dc166;
-    border-color: #1dc166;	
+	background-color: #006649;
+    border-color: #006649;	
 }
 
 .sidebar-nav .metismenu>li.active>a{
-	color: #006747;
+	color: #fff;
 }
 
 .light_version .top-navbar{
-	background: #006747;
+	background: #006649;
 }
 
 .badge-success{
-	border-color: #006747;
-    color: #006747;
+	border-color: #006649;
+    color: #006649;
 }
 
 .bg-green{
-	background-color: #006747;
+	background-color: #006649;
 }
 
 
 .light_version .table tr th{
-	background-color: #006747 !important;
+	background-color: #006649 !important;
 	color: #fff;
 }
 
@@ -52,7 +59,7 @@ a:hover{
 
 .light_version .table tbody tr th{
 	background-color: #fff !important;
-	color: #006747 !important;
+	color: #006649 !important;
 }
 
 .light_version .navbar-nav .icon-menu{
@@ -61,18 +68,19 @@ a:hover{
 }
 
 .light_version #left-sidebar .navbar-brand{
-	background-color: #006747 !important;
+	background-color: #006649 !important;
 	margin: 0px;
-	padding: 12px 20px 14px;	
+	padding: 30px;	
+	border: none;
 }
 
 .custom-select:focus{
 	background: white;
-	color: #006747;
+	color: #006649;
 }
 
 .btn-success{
-	background:  #006747;
+	background:  #006649;
 }
 
 .its-export-btn{
@@ -80,12 +88,12 @@ a:hover{
 }
 
 .badge-info{
-	border-color: #006747;
-    color: #006747;
+	border-color: #006649;
+    color: #006649;
 }
 
 .social .profile-header{
-	background:  #006747;
+	background:  #006649;
 	box-shadow: none;
 }
 
@@ -103,25 +111,25 @@ a:hover{
 }
 
 .pagination>li.active a{
-	background: #006747 !important;
+	background: #006649 !important;
 }
 
 .body .bg-azura{
-	background:  #006747 !important;
+	background:  #006649 !important;
 }
 
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus{
-	background:  #006747 !important;
+	background:  #006649 !important;
 }
 
 .its-login-social li{
-	border:1px solid #006747;
-	background:  #006747;
+	border:1px solid #006649;
+	background:  #006649;
 }
 
 .its-login-social li:hover{
-	background:  #1dc166;
-	border-color: #1dc166;
+	background:  #006649;
+	border-color: #006649;
 }
 
 .its-login-social li:hover,
@@ -138,7 +146,7 @@ a:hover{
 }
 
 .badge-active{
-	background: #006747;
+	background: #006649;
 	color: #fff;
 }
 
@@ -162,8 +170,8 @@ a:hover{
 
 
 .light_version .fancy-radio input[type="radio"]+span i, .light_version .fancy-checkbox input[type="checkbox"]+span:before{
-	border-color: #006747;
-    color: #006747;
+	border-color: #006649;
+    color: #006649;
 }
 
 .btn-primary.focus, .btn-primary:focus{
@@ -172,33 +180,56 @@ a:hover{
 
 
 .page-loader-wrapper .loader .bar1 {
-	background-color: #006747;
+	background-color: #006649;
 }
 
 .page-loader-wrapper .loader .bar2 {
-	background-color: #006747;
+	background-color: #006649;
 	-webkit-animation-delay: -0.8s;
 	animation-delay: -0.8s
 }
 
 .page-loader-wrapper .loader .bar3 {
-	background-color: #006747;
+	background-color: #006649;
 	-webkit-animation-delay: -0.7s;
 	animation-delay: -0.7s
 }
 
 .page-loader-wrapper .loader .bar4 {
-	background-color: #006747;
+	background-color: #006649;
 	-webkit-animation-delay: -0.6s;
 	animation-delay: -0.6s
 }
 
 .page-loader-wrapper .loader .bar5 {
-	background-color: #006747;
+	background-color: #006649;
 	-webkit-animation-delay: -0.5s;
 	animation-delay: -0.5s
 }
 
 .light_version .metismenu a:hover{
-	color: #006747;
+	color: #006649;
+	color: #fff;
+	opacity: .9;
+}
+
+.light_version .user-account,
+.light_version .metismenu a,
+.light_version .metismenu li.header{
+	color: #fff;
+	font-weight: bold;
+}
+
+.light_version .metismenu a:hover{
+	color: #fff
+}
+
+.light_version .user-account span{
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.light_version .block-header h2, .light_version .block-header h1{
+	font-weight: bold;
+	color: #006649 !important
 }

@@ -16,7 +16,7 @@ class ClientUser < ApplicationRecord
   has_many :documents, class_name: "DocumentView", foreign_key: :user_id
       
   def display_name
-    [first_name, last_name].compact.join(" ")
+    [first_name, last_name].compact.join(" ").titleize  
   end
   
   def display_initials

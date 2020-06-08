@@ -10,90 +10,85 @@
 
   <div class="sidebar-scroll">
     <div class="user-account">
-      <div class="user_div">
-        <%= image_tag "user.png", alt: "User Profile Picture", class: "user-photo"%>
-      </div>
-      <div class="dropdown">
-        <span>Welcome,</span>
-        <!-- add dropdown-toggle class to below to make it a drop down link -->
-        <a href="javascript:void(0);" class="user-name" data-toggle="dropdown">
-          <strong><%= current_client_user.display_name %></strong>
-        </a>
-        <!-- <ul class="dropdown-menu dropdown-menu-left account vivify flipInY">
-          <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
-          <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
-          <li class="divider"></li>
-          <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_client_user_session_url, method: :delete %></li>
-        </ul> -->
-      </div>                
-    </div> 
+        <div class="dropdown">                        
+            <a href="javascript:void(0);" class="user-name"><strong><%= current_client_user.display_name   %></strong></a>
+            <span><%= current_client_user.try(:organisation).titleize if current_client_user.try(:organisation)  %></span>
+        </div>
+    </div>
 
-    <nav id="left-sidebar-nav" class="sidebar-nav">
+
+  <nav id="left-sidebar-nav" class="sidebar-nav">
       <ul id="main-menu" class="metismenu">
-
-        <!-- <li class="header">Main</li> -->
-        <li class="active-item"><%= link_to content_tag(:i, "", class: "icon-speedometer") + "Home", user_home_path %></li>
-        
-        <li class="header">Translation Documents</li>
-        
-        <li class="">
-          <a href="#" class="has-arrow" aria-expanded="false"><i class="icon-plus"></i><span>New Translation</span></a>
-          <ul aria-expanded="false" class="collapse" style="height: 0px;">
-            <li>
-              <%= link_to user_free_form_path do %>
-                <%= image_tag "icons/template.svg", style: "width: 22px;height: 22px;" %>
-                Free Form
+          <li class="active"><a href="home.html">
+              <%= link_to user_home_path do %>
+                <%= image_tag "icons/home.svg", alt: "home icon"%>
+                <span>Home</span>
               <% end %>
-            </li>
-            <li>
-              <%= link_to select_template_user_template_documents_path do %>
-                <%= image_tag "icons/template.svg", style: "width: 22px;height: 22px;" %>
-                Template Based
+          <li>
+              <a href="#" class="has-arrow">
+                  <%= image_tag "icons/language.svg", alt: "home icon"%>
+                  <span>New Translation</span></a>
+              <ul>
+                  <li>
+                    <%= link_to user_free_form_path do %>
+                      Free Form
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to select_template_user_template_documents_path do %>
+                      Template Based
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_user_table_document_path do %>
+                      Table Based
+                    <% end %>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <%= link_to user_documents_path do %>
+                  <%= image_tag "icons/all.svg", alt: "all translation icon"%>
+                  <span>Your Translations </span>
               <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_table_document_path do %>
-                <%= image_tag "icons/excel.svg", style: "width: 22px;height: 22px;" %>
-                Table Based
+          </li>
+          <li>
+              <%= link_to user_documents_path(recent: true) do %>
+                  <%= image_tag "icons/recent.svg", alt: "recent icon"%>
+                  <span>Recent</span>
               <% end %>
-            </li>
-          </ul>
-        </li>
+          </li>
 
-        <li><%= link_to content_tag(:i, "", class: "icon-folder") + "Your Translations", user_documents_path %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-clock") + "Recent Translations", user_documents_path(recent: true) %></li>
-<!--         <li><%#= link_to content_tag(:i, "", class: "icon-star") + "Favorites", user_documents_path(favorite: true) %></li> -->
-        
-        <!-- <li>
-          <a href="#Tag" aria-expanded="true" class="has-arrow"><i class="icon-tag"></i><span>Most Used Tags</span></a>
-          <ul aria-expanded="true" class="collapse in">
-            <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 1", "#" %></li>
-            <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 2", "#" %></li>
-            <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 3", "#" %></li>
-            <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 4", "#" %></li>
-          </ul>
-        </li> -->
+          <li class="header">My Account</li>
 
-        <!-- <li><%#= link_to content_tag(:i, "", class: "fa fa-trash") + "Trash", user_documents_path(status: 'REMOVED') %></li> -->
-        <!-- <li><%#= link_to content_tag(:i, "", class: "fa fa-archive") + "Archives", user_documents_path(status: 'ARCHIVED') %></li> -->
-
-        <!-- <li class="header">Tags</li>
-        <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 1", "#" %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 2", "#" %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 3", "#" %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 4", "#" %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-tag") + "Tag 5", "#" %></li> -->
-
-        <li class="header">My Account</li>
-        <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile",  user_edit_client_profile_url %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-user") + "Subscription",  user_user_subscriptions_url %></li>
-        <li><%= link_to content_tag(:i, "", class: "icon-question") + "FAQ",  "#" %></li>
-        <!-- <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li> -->
-        <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_client_user_session_url, method: :delete %></li>
-        
-
+          <li>
+              <%= link_to user_edit_client_profile_url do %>
+                  <%= image_tag "icons/user.svg", alt: "user icon"%>
+                  <span>My Profile</span>
+              <% end %>
+          </li>
+          <li>
+              <%= link_to user_user_subscriptions_url do %>
+                  <%= image_tag "icons/cart.svg", alt: "cart icon"%>
+                  <span>Subscription</span>
+              <% end %>
+          </li>
+          <li>
+              <%= link_to destroy_client_user_session_url, method: :delete do %>
+                  <%= image_tag "icons/logout.svg", alt: "logout icon"%>
+                  <span>Logout</span>
+              <% end %>
+          </li>
       </ul>
-    </nav>     
+  </nav>
+
+
+
+
+
+
+
+    
   </div>
 
 </div>

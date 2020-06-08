@@ -26,9 +26,15 @@
 
 .light_version #left-sidebar{
 	border:none;
+  background: #006649;
+  width: 250px;
 }
 
 /** Dashboard **/
+
+#main-content{
+  padding: 0px 40px;
+}
 
 .metismenu ul a:hover:before{
   width: 15px;
@@ -37,7 +43,7 @@
 .header h2 {
     font-size: 20px;
 	color: rgb(33, 40, 52);
-	color: #0d8241;
+	color: #006649;
     position: relative;
 }
 
@@ -50,7 +56,7 @@
 }
 
 #left-sidebar .navbar-brand .logo{
-	width: 80px;
+	width: 120px;
 }
 
 .its-export-btn i{
@@ -119,7 +125,7 @@
 
 
 .pricing.body .fancy-checkbox{
-	background: #0d8241;
+	background: #006649;
 	margin: 0px;
 	color: #fff;
 	padding: 5px;
@@ -142,12 +148,12 @@
 }
 
 .pattern .green {
-	background-color: #0d8241;
+	background-color: #006649;
 }
 
 .light_version .fancy-checkbox.its-login-me input[type="checkbox"]+span:before{
-	border-color: #0d8241;
-    color: #0d8241;
+	border-color: #006649;
+    color: #006649;
 }
 
 .light_version .table tr td.its-tag{
@@ -169,7 +175,7 @@
 }
 
 .light_version .table tr td button:hover{
-	background:  #0d8241;
+	background:  #006649;
 }
 
 .light_version .table tr td button:hover i{
@@ -177,7 +183,7 @@
 }
 
 .light_version .table tr td button.active{
-	background:  #0d8241;
+	background:  #006649;
 }
 
 .light_version .table tr td button.active i{
@@ -186,6 +192,7 @@
 
 .light_version .top-navbar{
 	z-index: 999;
+  width: calc(100% - 250px);
 }
 
 /** HAndontable **/
@@ -200,7 +207,7 @@
 }
 
 .handsontable thead tr th{
-	background:  #0d8241;
+	background:  #006649;
 	color: #fff;
 }
 
@@ -718,8 +725,8 @@ fieldset legend{
 /** Toggle Button **/
 
 .custom-control-input:checked~.custom-control-label::before{
-  border-color: #0d8241;
-  background-color: #0d8241;
+  border-color: #006649;
+  background-color: #006649;
 }
 
 /** Preview PAge **/
@@ -819,7 +826,7 @@ fieldset legend{
 }
 
 .pricing.body li a{
-  background: #0d8241;
+  background: #006649;
   display: block;
   color: #fff;
   padding: 10px;
@@ -907,7 +914,7 @@ fieldset legend{
   width: 100px;
   display: block;
   background: #79A70A;
-  background: linear-gradient(#0D8241 0%, #0D8241 100%);
+  background: linear-gradient(#006649 0%, #006649 100%);
   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
   position: absolute;
   top: 19px; left: -21px;
@@ -916,19 +923,19 @@ fieldset legend{
   content: "";
   position: absolute; left: 0px; top: 100%;
   z-index: -1;
-  border-left: 3px solid #0D8241;
+  border-left: 3px solid #006649;
   border-right: 3px solid transparent;
   border-bottom: 3px solid transparent;
-  border-top: 3px solid #0D8241;
+  border-top: 3px solid #006649;
 }
 .ribbon span::after {
   content: "";
   position: absolute; right: 0px; top: 100%;
   z-index: -1;
   border-left: 3px solid transparent;
-  border-right: 3px solid #0D8241;
+  border-right: 3px solid #006649;
   border-bottom: 3px solid transparent;
-  border-top: 3px solid #0D8241;
+  border-top: 3px solid #006649;
 }
 
 
@@ -938,7 +945,7 @@ fieldset legend{
 }
 
 .modal-dialog .close{
-  color: #006747;
+  color: #006649;
   outline: none;
 }
 
@@ -969,4 +976,40 @@ fieldset legend{
   flex: none;
 }
 
+.light_version .metismenu li img{
+  width: 18px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
 
+.light_version .metismenu li span{
+  position: relative;
+  top: 2px;
+}
+
+.light_version .metismenu .has-arrow:after{
+    color: #FFF;
+    content: "\f054";
+    font: 11px FontAwesome;
+    top: 13px;
+    right: 20px;
+}
+
+.metismenu .active>.has-arrow::after, .metismenu .has-arrow[aria-expanded="true"]::after{
+    content: "\f078";
+}
+
+.light_version .metismenu ul a{
+  color: #fff;
+  font-weight: 100;
+  font-size: 14px;
+  padding-left: 50px;
+}
+
+.light_version .metismenu ul a:before{
+  display: none;
+}
+
+.sidebar-scroll{
+  padding-left: 12px;
+}
