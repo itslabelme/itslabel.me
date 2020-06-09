@@ -61,13 +61,10 @@
                     <label>Folder</label>
                     <div class="input-group mb-3">
                       <select class="form-control form-control-xs selectpicker1" name="document[folder_id]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
-                          <option value="">--Please Select Document Folder</option>
-                          <% if @document_folders.present? %>
+                          <option value="">--Select a Folder</option>
                           <% @document_folders.each_with_index do |folder, i| %>
-                          
-                          <option value="<%=folder.id%>" <%= @document.folder_id == folder.id ? "selected" : "" %>><%=folder.title%></option>
-                          <%  end %>
-                          <% end  %>
+                            <option value="<%=folder.id%>" <%= @document.folder_id == folder.id ? "selected" : "" %>><%=folder.title%></option>
+                          <% end if @document_folders && @document_folders.any? %>
                       </select>
                     </div>
                   </div>
@@ -80,23 +77,18 @@
 
           <div class="row pb-4">
             <div class="col-md-6">
-
               <% 
                 source_html = @document.try(:input_html_source).to_s
-                formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("defaults/distributor-logo.jpg")) 
+                formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("distributor-logo.jpg")) 
               %>
-              
               <textarea class="tinymce-editor" id="input_tinymce" name='document[input_html_source]'>
-
-
                 <%= raw(formatted_source_html) %>
               </textarea>
             </div>
+
             <div class="col-md-6">
               <div class="holder" style="height:500px;background-color:#fff;">
-                
                 <% id = @document.try(:id) || -1 %>
-
                 <div class="body" style="padding: 0px;border-radius: 0px;">
                   <div class="table-responsive its-preview-table">
                     <div class="its-preview-header">

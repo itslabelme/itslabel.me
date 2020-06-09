@@ -1,4 +1,4 @@
-class CreateDocumentFolder < ActiveRecord::Migration[5.2]
+class CreateDocumentFolders < ActiveRecord::Migration[5.2]
   def change
     create_table :document_folders do |t|
       t.string :title, limit: 256, null: false

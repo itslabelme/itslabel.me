@@ -1,0 +1,11 @@
+<% children = parent.children %>
+<% if children.any? %>
+<ul>
+  <% children.each do |child| %>
+  <li id="<%= child.id %>" ondrop="drop(event,'<%= child.id %>')" ondragover="allowDrop(event)">
+    <!-- <i class="fa fa-folder-o"></i> -->
+    <a href="/user/documents?folder_id=<%=child.id%>"><%= child.title %></a>
+  </li>
+  <% end %>
+</ul>
+<% end %>

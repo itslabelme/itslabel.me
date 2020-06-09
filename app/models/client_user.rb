@@ -1,11 +1,13 @@
 class ClientUser < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  include Itslabel::Scopes::ClientUserScopes
+  
+  # Include default devise modules. Others available are: :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable,:omniauthable, :trackable
-  # max_paginates_per 2
 
+  # Includes
+  include Itslabel::Scopes::ClientUserScopes
+  
+  # Validations
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
   validates :last_name, length: {maximum: 256}, allow_blank: false
   validates :mobile_number, length: {maximum: 24}, allow_blank: true
@@ -14,14 +16,41 @@ class ClientUser < ApplicationRecord
 
   # Associations
   has_many :documents, class_name: "DocumentView", foreign_key: :user_id
-      
+  has_many :document_folders, class_name: "DocumentFolder", foreign_key: :user_id
+
+  # Callback
+  after_create :create_default_folder
+
+  
+  # ----------------
+  # Instance Methods
+  # ----------------
+
   def display_name
     [first_name, last_name].compact.join(" ").titleize  
   end
   
   def display_initials
-     [first_name[0], last_name[0]].compact.join("")
+    [first_name[0], last_name[0]].compact.join("")
   end
+
+  def country_name
+    country1 = ISO3166::Country[country]
+    country1.translations[I18n.locale.to_s] || country1.name
+  end
+
+  def create_default_folder
+    default_folder = default_folder || self.document_folders.create(title: "Default")
+  end
+
+  def default_folder
+    self.document_folders.where(title: "Default").first
+  end
+
+
+  # ----------------
+  # Class Methods
+  # ----------------
   
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -68,10 +97,5 @@ class ClientUser < ApplicationRecord
       end
     end
   end
-  def country_name
-    
-    country1 = ISO3166::Country[country]
-    country1.translations[I18n.locale.to_s] || country1.name
-    
-  end
+
 end

@@ -1,0 +1,29 @@
+<%
+  @document_folders = @current_client_user.document_folders.roots
+%>
+
+<div class="body mail-left">
+  <div class="mail-side">
+    <div class="mb-3 ml-3"><a class="btn btn-primary"  href="#FOLDER_MODAL" data-toggle="modal" data-target="#FOLDER_MODAL"><i class="fa fa-plus mr-1" data-toggle="tooltip" data-placement="top" title="Add New Folder"></i>  Add New Folder</a></div>
+    <% if @document_folders && @document_folders.any? %>
+    <ul id="tree2">
+      <% @document_folders.each do |folder| %>
+      <li id="<%= folder.id %>" ondrop="drop(event,'<%= folder.id %>')" ondragover="allowDrop(event)">
+        <i class="fa fa-folder-o"></i>
+        <a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a>
+        
+        <% if (folder.title!='Default') %>
+          <button class="close " onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder"><i class="fa fa-times" aria-hidden="true" style="font-size: 15px"></i></button>
+        <% end %>
+        <%= render partial: "user/documents/index/nested_folders", locals: {parent: folder} %>
+      </li>
+      <% end %>
+    </ul>
+  <hr>
+  <div class="row ml-3">
+    <div><%= link_to content_tag(:i, "", class: "fa fa-trash") + " Trash", user_documents_path(status: 'REMOVED') %></div>
+    <div class="ml-4"><%= link_to content_tag(:i, "", class: "fa fa-archive") + " Archives", user_documents_path(status: 'ARCHIVED') %></div>
+  </div>
+  <% end %>
+</div>
+</div>

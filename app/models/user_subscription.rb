@@ -6,11 +6,7 @@ class UserSubscription < ApplicationRecord
   # Set Table Name
   #self.table_name = "user_subscriptions"
 
- validates :subscription_id, presence: true,  allow_blank: false
-
-  
-  # Generic Methods
- 
-  
+  # Validations
+  validates :subscription_id, presence: true,  allow_blank: false
   
 end

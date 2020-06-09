@@ -10,11 +10,8 @@ class Permission < ApplicationRecord
   validates :route, length: {maximum: 256}, allow_blank: false, :uniqueness => true
   validates :permission_group, length: {maximum: 256}, allow_blank: false
   validates :description, length: {maximum: 24}, allow_blank: true
-#Association 
- has_many :subscription_permission, class_name: "SubscriptionPermission", foreign_key: :permission_id
   
-  # Generic Methods
- 
-  
+  # Association 
+  has_many :subscription_permission, class_name: "SubscriptionPermission", foreign_key: :permission_id
   
 end
