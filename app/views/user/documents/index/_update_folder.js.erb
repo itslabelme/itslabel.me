@@ -66,8 +66,9 @@ $(function () {
       },
       success: function (data) {
         $('#FOLDER_MODAL').modal('hide');
-        parent.$('#tree2').append('<li id="' + data.id + '"  ondrop=\"drop(event,\'' + data.id + '\')\" ondragover=\"allowDrop(event)\"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=' + data.id + '">' + data.title + '</a></li>');
-        parent.$('#folder_drop').append('<a class=\"dropdown-item\" data-id="' + data.id + '" onClick=\"move_folder(' + data.id + ')" href="#" data-remote="true">' + data.title + '</a>');
+        location.reload();
+        // parent.$('#tree2').append('<li id="' + data.id + '"  ondrop=\"drop(event,\'' + data.id + '\')\" ondragover=\"allowDrop(event)\"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=' + data.id + '">' + data.title + '</a></li>');
+        // parent.$('#folder_drop').append('<a class=\"dropdown-item\" data-id="' + data.id + '" onClick=\"move_folder(' + data.id + ')" href="#" data-remote="true">' + data.title + '</a>');
       }
     });
   });

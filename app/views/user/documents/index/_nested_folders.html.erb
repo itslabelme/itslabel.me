@@ -1,10 +1,15 @@
-<% children = parent.children %>
+<%# children = parent.children %>
 <% if children.any? %>
 <ul>
   <% children.each do |child| %>
   <li id="<%= child.id %>" ondrop="drop(event,'<%= child.id %>')" ondragover="allowDrop(event)">
     <!-- <i class="fa fa-folder-o"></i> -->
     <a href="/user/documents?folder_id=<%=child.id%>"><%= child.title %></a>
+
+      <% if (parent.title!='Default') %>
+        <button class="close ml-2" onClick='delete_folder("<%= child.title%>","<%= child.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder"><i class="fa fa-times" aria-hidden="true" style="font-size: 15px"></i></button>
+      <% end %>
+
   </li>
   <% end %>
 </ul>
