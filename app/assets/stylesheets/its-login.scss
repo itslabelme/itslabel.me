@@ -16,7 +16,7 @@ box-shadow: -4px -4px 30px -11px rgba(0,0,0,0.26);
 }
 
 .its-login-bg{
-	background: url(../images/login-bg.jpg) no-repeat;
+	background: asset-url("login-bg.jpg") no-repeat;
 	background-size: cover
 }
 

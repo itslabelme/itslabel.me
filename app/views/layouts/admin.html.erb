@@ -4,7 +4,7 @@
   <!-- Head -->
   <%= render partial: 'layouts/common/head' %>
 
-  <body class="font-montserrat light_version">
+  <body class="font-roboto light_version">
 
     <!-- Page Loader -->
     <%= render partial: 'layouts/admin/loader' %>
@@ -17,13 +17,13 @@
         <%= render partial: 'layouts/admin/navbar' %>
 
         <!-- Search Container -->
-        <%= render partial: 'layouts/admin/search' %>
+        <%#= render partial: 'layouts/admin/search' %>
 
         <!-- Left Sidebar -->
          <%= render partial: 'layouts/admin/left_sidebar' %>
 
         <!-- Main container -->
-        <div id="main-content">
+        <div id="main-content" class="mt-2">
 
           <!-- Show Success / Error / Info Messages If any set by the controller action -->
           <%#= flash_message(false) if defined?(flash) -%>

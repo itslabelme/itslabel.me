@@ -1,47 +1,84 @@
 <div id="left-sidebar" class="sidebar">
+
   <div class="navbar-brand">
     <%= link_to "#" do %>
-    <%= image_tag "itsme-logo.png", alt: "ITSLabel Logo", class: "img-fluid logo" %>
-    <button type="button" class="btn-toggle-offcanvas btn btn-sm float-right"><i class="lnr lnr-menu icon-close"></i></button>
+      <%= image_tag "itsme-logo.png", alt: "ITSLabel Logo", class: "img-fluid logo" %>
+      <button type="button" class="btn-toggle-offcanvas btn btn-sm float-right"><i class="lnr lnr-menu icon-close"></i></button>
     <% end %>
   </div>
-  <div class="sidebar-scroll">
+
+  <div class="sidebar-scroll mb-3">
     <div class="user-account">
-      <div class="user_div">
-        <%= image_tag "user.png", alt: "User Profile Picture", class: "user-photo" %>
-      </div>
-      <div class="dropdown">
-        <span>Welcome,</span>
-        <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong><%= current_admin_user.display_name %></strong></a>
-        <ul class="dropdown-menu dropdown-menu-left account vivify flipInY">
-          <li><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile", "#" %></li>
-          <li><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li>
-          <li><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
-        </ul>
-      </div>
+        <div class="dropdown">                        
+            <a href="javascript:void(0);" class="user-name"><strong><%= current_admin_user.display_name   %></strong></a>
+            <span><%= current_admin_user.try(:organisation).titleize if current_admin_user.try(:organisation)  %></span>
+        </div>
     </div>
 
-    <nav id="left-sidebar-nav" class="sidebar-nav">
-      <ul id="main-menu" class="metismenu">
-        <li class="header">Admin</li>
-        
-        <li class="<%= nav_active?('admin/home') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-speedometer") + "Home", admin_home_path %></li>
-        <li class="<%= nav_active?('admin/registrations') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-users") + "Registrations", admin_client_users_path %></li>
-        <li class="<%= nav_active?('admin/translations') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Translation Database", admin_translations_path %></li>
-        <li class="<%= nav_active?('admin/label_templates') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-settings") + "Label Templates", admin_label_templates_path %></li>
-        <li class="<%= nav_active?('admin/nutrition_fact_templates') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-settings") + "Nutrition Templates", "#" %></li>
-        
-        <li class="<%= nav_active?('admin/admin_users') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "Admin Users", admin_admin_users_path %></li>
-        
+
+    <nav id="left-sidebar-nav" class="sidebar-nav mb-4">
+      <ul id="main-menu" class="metismenu mb-4">
+        <!-- <li class="header">Admin</li> -->
+          <li class="active"><a href="home.html">
+              <%= link_to admin_home_path do %>
+                <%= image_tag "icons/home.svg", alt: "home icon"%>
+                <span>Home</span>
+              <% end %>
+          <li>
+          <li class="active"><a href="home.html">
+              <%= link_to admin_client_users_path do %>
+                <%= image_tag "icons/user.svg", alt: "User icon"%>
+                <span>Registrations</span>
+              <% end %>
+          <li>
+          <li class="active"><a href="home.html">
+              <%= link_to admin_translations_path do %>
+                <%= image_tag "icons/translate.svg", alt: "User icon"%>
+                <span>Translation Database</span>
+              <% end %>
+          <li>
+          <li class="active"><a href="home.html">
+              <%= link_to admin_label_templates_path do %>
+                <%= image_tag "icons/template.svg", alt: "User icon"%>
+                <span>Label Templates</span>
+              <% end %>
+          <li>
+          <li class="active"><a href="home.html">
+              <%= link_to "#" do %>
+                <%= image_tag "icons/template.svg", alt: "User icon"%>
+                <span>Nutrition Templates</span>
+              <% end %>
+          <li>
+          <li class="active"><a href="home.html">
+              <%= link_to admin_admin_users_path do %>
+                <%= image_tag "icons/user.svg", alt: "User icon"%>
+                <span>Admin Users</span>
+              <% end %>
+          <li>
         <!-- <li class="header">Reports</li>
         <li class="<%= nav_active?('admin/reports') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 1", admin_admin_users_path %></li>
         <li class="<%= nav_active?('admin/reports') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 2", admin_admin_users_path %></li> -->
         
-        <li class="header">My Account</li>
-        <li class="<%= nav_active?('admin/profile') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "My Profile",  admin_edit_profile_url %></li>
-        <li class="<%= nav_active?('admin/subscription_permissions') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-user") + "Subscription Permissions",  admin_subscription_permissions_url %></li>
-        <!-- <li class="<%= nav_active?('admin/my_profile') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-settings") + "Settings", "#" %></li> -->
-        <li class="<%= nav_active?('admin/settings') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-power") + "Logout", destroy_admin_user_session_url, method: :delete %></li>
+        <!-- <li class="header">My Account</li> -->
+
+          <li>
+              <%= link_to admin_edit_profile_url do %>
+                  <%= image_tag "icons/user.svg", alt: "user icon"%>
+                  <span>My Profile</span>
+              <% end %>
+          </li>
+          <li>
+              <%= link_to admin_subscription_permissions_url do %>
+                  <%= image_tag "icons/cart.svg", alt: "cart icon"%>
+                  <span>Subscription</span>
+              <% end %>
+          </li>
+          <li>
+              <%= link_to destroy_admin_user_session_url, method: :delete do %>
+                  <%= image_tag "icons/logout.svg", alt: "logout icon"%>
+                  <span>Logout</span>
+              <% end %>
+          </li>
       </ul>
     </nav>
   </div>
