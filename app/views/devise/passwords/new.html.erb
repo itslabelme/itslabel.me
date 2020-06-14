@@ -8,42 +8,89 @@
         <div class="bar5"></div>
     </div>
 </div>
-    <div class="auth-main2 its-login-container">
-  <div class="vivify">
-      <div class="auth_brand m-t-10" style="text-align: center;">
-          <a class="navbar-brand" href="javascript:void(0);">
-              <%= image_tag "itsme-logo-1.png", alt: "Login Image", class: "d-inline-block", width: "142", height: "60" %>
-             
-          </a>
-      </div>
 
-      <div class="card m-t-20">            
-          <div class="body">
-              <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form", id: "register-form" }) do |f| %> 
-                  
-                  <div class="mb-3">
-                      <p class="lead">Reset Password</p>
-                      <p>Please enter your email address to request a password reset</p>
-                  </div>
-                    <div class="mb-3">  
-                  <%= render "devise/shared/error_messages", resource: resource %>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "email", placeholder: "Email Address" %>
+
+<div class="auth-main2">
+  <div class="vivify its-login-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" style="display: none;">
+          <div class="auth_brand m-t-60" style="text-align: center;">
+            <a class="navbar-brand" href="javascript:void(0);">
+              <!-- <img src="../assets/images/itsme-logo-1.png" width="142" height="60" class="d-inline-block" alt=""> -->
+              <%= image_tag "itsme-logo-1.png", alt: "Login Image", class: "d-inline-block", width: "142", height: "60" %>
+            </a>
+          </div>
+          
+        </div>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-10" style="margin: 0 auto">
+              <div class="card m-t-20">
+                <div class="body its-login-body">
+                  <div class="row">
+                    <div class="col-md-6 its-login-bg">
+                    </div>
+                    <div class="col-md-6 its-login-form">
+                      <div class="row its-login-header">
+                        <div class="col-md-8">
+                          <div class="mb-3">
+                            <p class="lead">Reset Password</p>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="auth_brand">
+                            <a class="navbar-brand" href="javascript:void(0);">
+                              <img src="../assets/images/itsme-logo-1.png" class="d-inline-block" alt="">
+                              <%= image_tag "itsme-logo-1.png", alt: "Login Image", class: "d-inline-block" %>
+                            </a>
+                          </div>
+                          
+                        </div>
+                      </div>
+
+
+
+                      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form", id: "register-form" }) do |f| %> 
+                          
+                          <div class="mb-3">
+                              <p>Please enter your email address to request a password reset</p>
+                          </div>
+                            <div class="mb-3">  
+                          <%= render "devise/shared/error_messages", resource: resource %>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "email", placeholder: "Email Address" %>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
+                          </div>
+                      <% end %>
+
+
+
+                      <div class="bottom">
+                        <span class="helper-text">Know your password? <%= link_to "Login", new_client_user_session_path %></span>
+                      </div>
+                      
                     </div>
                   </div>
-                  <div class="form-group">
-                    <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
-                  </div>
-              <% end %>
-              <div class="bottom">
-                <span class="helper-text">Know your password?  <%= link_to "Log In", new_client_user_session_path %></span>
+                </div>
+              </div>
+              
             </div>
-
-            </div>            
+            
+          </div>
+          
+        </div>
+        
       </div>
+      
+    </div>
   </div>
 </div>
+
 

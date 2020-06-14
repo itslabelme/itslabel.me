@@ -49,8 +49,8 @@
                                 
                                 <div class="price-now"><span>$<%=(subscription.price == 0)? 'Free' : subscription.price %></span></div>
                                 <div>
-                                   <%= f.radio_button :subscription_id,subscription.id,:checked =>(@user_subscription.subscription_id == subscription.id) %>
-                                  <a href="#" class="price-buy"><%=(@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Upgrade' %></a></div>
+                                   <%= f.radio_button :subscription_id,subscription.id,:checked =>(@user_subscription.subscription_id == subscription.id), class: "mt-3" %>
+                                  <!-- <a href="#" class="price-buy"><%=(@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Upgrade' %></a></div> -->
                               </th>
                               
                               <% end %>
