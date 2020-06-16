@@ -21,7 +21,7 @@ box-shadow: -4px -4px 30px -11px rgba(0,0,0,0.26);
 }
 
 .its-login-form{
-	padding: 30px;
+	padding: 50px;
 	text-align: left;
 }
 
@@ -55,4 +55,13 @@ box-shadow: -4px -4px 30px -11px rgba(0,0,0,0.26);
 
 .auth-main2 .form-auth-small{
 	text-align: left;
+}
+
+.form-control,
+.custom-select{
+	font-size: 12px;
+}
+
+.separator-linethrough span{
+	color: #006649
 }

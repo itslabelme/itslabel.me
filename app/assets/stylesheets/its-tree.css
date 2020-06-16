@@ -16,7 +16,7 @@
     list-style:none
 }
 .tree ul {
-    margin-left:1em;
+    margin-left:2em;
     position:relative
 }
 .tree ul ul {
@@ -107,3 +107,72 @@
     margin-bottom: 0px;
 }
  
+
+.fa-plus {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+} 
+
+.fa-plus:before {
+    content: "\f067";
+}
+
+.fa-plus.fa-minus:before{
+    content: "\f068";
+}
+
+#tree2 li{
+    position: relative;
+}
+
+#tree2 li:hover .tree-plus-right,
+#tree2 li:hover .tree-close-right{
+    opacity: 1;
+}
+
+#tree2 li span.fa{
+    position: absolute;
+    left: 0px;
+    top: 8px;
+}
+
+#tree2 li i{
+    margin-left: 20px;
+}
+
+#tree2 li ul li span.fa{
+    left: 15px;
+}
+
+.tree-plus-right{
+    position: absolute;
+    right:0px;
+    top: 8px;
+    font-size: 12px;
+    opacity: 0;
+}
+
+.tree-close-right{
+    position: absolute;
+    right: 18px;
+    top: 8px;
+    font-size: 12px;
+    opacity: 0;
+}
+
+.tree-close-right{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.tree-close-right:before{
+        content: "\f00d";
+}
