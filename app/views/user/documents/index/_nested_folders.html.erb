@@ -4,14 +4,26 @@
   <% children.each do |child| %>
   <li id="<%= child.id %>" ondrop="drop(event,'<%= child.id %>')" ondragover="allowDrop(event)">
     <!-- <i class="fa fa-folder-o"></i> -->
-    <a href="/user/documents?folder_id=<%=child.id%>"><%= child.title %></a>
+    <% if child.children? %>
+      <span class="fa fa-plus"></span>
+      <a href="/user/documents?folder_id=<%=child.id%>"><%= child.title %></a>
 
       <% if (parent.title!='Default') %>
-
-
         <span class="fa-times tree-close-right" onClick='delete_folder("<%= child.title%>","<%= child.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
       <% end %>
 
+      <% if child.children? %>
+        <% new_children = child.children %>
+        <%= render partial: "user/documents/index/nested_folders", locals: {parent: child, children: new_children} %>
+      <% end %>
+    <% else %>
+
+      <a href="/user/documents?folder_id=<%=child.id%>"><%= child.title %></a>
+      <% if (parent.title!='Default') %>
+        <span class="fa-times tree-close-right " onClick='delete_folder("<%= child.title%>","<%= child.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
+      <% end %>
+
+    <% end %>
   </li>
   <% end %>
 </ul>

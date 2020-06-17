@@ -12,6 +12,7 @@
     <% if @document_folders && @document_folders.any? %>
     <ul id="tree2">
       <% @document_folders.each do |folder| %>
+
       <li id="<%= folder.id %>" ondrop="drop(event,'<%= folder.id %>')" ondragover="allowDrop(event)">
         <% children = folder.children %>
         <% if !children.any? %>

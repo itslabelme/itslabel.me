@@ -1013,3 +1013,26 @@ fieldset legend{
 .sidebar-scroll{
   padding-left: 12px;
 }
+
+
+/** Lastest Css **/
+
+.block-header h1{
+  text-transform: uppercase;
+}
+
+.header-description{
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.header-description p{
+  font-size: 13px;
+  color: #636466;
+}
+
+.its-footer-container p{
+  color: #006649;
+  text-transform: uppercase;
+  font-size: 12px;
+}
