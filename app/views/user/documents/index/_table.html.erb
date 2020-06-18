@@ -24,7 +24,7 @@ display_actions = true if display_actions.nil?
                 </label>
               </div>
               
-              <a href="<%= user_documents_path %>" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Refresh"><i class="icon-refresh"></i></a> 
+              <a href="<%= user_documents_path %>" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Refresh"><i class="fa fa-refresh"></i></a> 
               <!--
               <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="icon-trash"></i></a>
               <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Archive"><i class="fa fa-archive"></i></a>
@@ -53,10 +53,10 @@ display_actions = true if display_actions.nil?
             </div>
             <div class="pull-right ml-auto">
               <div class="pagination-email d-flex">
-                <p>1-50/295</p>
+                <p>1/100</p>
                 <div class="btn-group m-l-20">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-angle-right"></i></button>
+                  <!-- <button type="button" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i></button> -->
+                  <!-- <button type="button" class="btn btn-default btn-sm"><i class="fa fa-angle-right"></i></button> -->
                 </div>
               </div>
             </div>
@@ -67,11 +67,11 @@ display_actions = true if display_actions.nil?
               <thead>
                 <tr> 
                   <th></th>
-                  <th>#</th>
+                  <!-- <th>#</th> -->
                   <th>Title</th>
-                  <th>Language</th>
-                  <th>Created At</th>
-                  <th>Status</th>
+                  <!-- <th>Language</th> -->
+                  <!-- <th>Created At</th> -->
+                  <!-- <th>Status</th> -->
                   <th>Folder</th>
                   <% if display_actions %>
                     <th style="width: 10%;text-align: center;">Action</th>
@@ -112,16 +112,16 @@ display_actions = true if display_actions.nil?
                         </label>
                       </div>
                     </td>
-                    <td class="w60"><%= serial_number(i) %></td>
+                    <!-- <td class="w60"><%#= serial_number(i) %></td> -->
                     <td>
                         <%= link_to document.title, doc_url, title: document.title %>
                         <p class="mb-0"><%=doc_type%></p>
                     </td>
-                    <td>
+<!--                     <td>
                         <span></span>
-                    </td>
-                    <td><%= document.created_at.strftime("%d %b %Y - %I:%M %p") %></td>
-                    <td><%= document.status %></td>
+                    </td> -->
+                    <!-- <td><%#= document.created_at.strftime("%d %b %Y - %I:%M %p") %></td> -->
+                    <!-- <td><%#= document.status %></td> -->
                     <td><strong><%  if   document.folder_id !="" then @folder = DocumentFolder.find_by_id(document.folder_id) %><%=@folder.try(:title) %><%end%></strong></td>
                     <% if display_actions %>
                     <td style="text-align: center;">

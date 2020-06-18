@@ -4,50 +4,68 @@
 
 <div class="body mail-left">
   <div class="mail-side">
-    <div class="mb-3 tree-folder-icon">
-      <a href="#FOLDER_MODAL" class="btn btn-light btn-sm" data-toggle="modal" data-placement="#FOLDER_MODAL" title="Add New Folder">
-        <i class="fa fa-plus" data-toggle="tooltip" data-placement="top" title="Add New Folder"></i> 
+
+
+    <div class="mb-5" style="width: 100%">
+      <a class="btn btn-primary"  href="#FOLDER_MODAL" data-toggle="modal" data-target="#FOLDER_MODAL" style="display: block;"><i class="fa fa-plus mr-1" data-toggle="tooltip" data-placement="top" title="Add New Folder"></i>  Add New Folder
       </a>
-      <%= link_to user_documents_path(status: 'REMOVED'), {class: 'btn btn-light btn-sm','data-toggle' => "tooltip", 'data-placement' => "top", title: "Delete"}  do %>
-        <i class="fa fa-trash"></i>
-      <% end %>
-
-      <%= link_to user_documents_path(status: 'ARCHIVED'), {class: 'btn btn-light btn-sm','data-toggle' => "tooltip", 'data-placement' => "top", title: "Archive"}  do %>
-        <i class="fa fa-archive"></i>
-      <% end %>
-
-      <%= link_to user_documents_path(recent: true), {class: 'btn btn-light btn-sm','data-toggle' => "tooltip", 'data-placement' => "top", title: "Recent"}  do %>
-        <i class="fa fa-folder-o"></i>
-      <% end %>
     </div>
 
 
     <% if @document_folders && @document_folders.any? %>
-      <ul id="tree2">
+      <ul id="tree2" class="mt-4">
+
+        <li class="mb-3">
+          <%= link_to user_documents_path(recent: true)  do %>
+          <i class="fa fa-folder-o"></i>Recent
+          <% end %>
+        </li>
+
+        <%
+          defauld_id = @document_folders.where(title: "Default").first.id if !@document_folders.where(title: "Default").blank?
+        %>
+        <li id="<%= defauld_id %>" ondrop="drop(event,'<%= defauld_id %>')" ondragover="allowDrop(event)">
+            <i class="fa fa-folder-o"></i>
+          <a href="/user/documents?folder_id=<%= defauld_id %>">Default</a> 
+        </li>
+<%# binding.pry %>
         <% @document_folders.each do |folder| %>
 
-          <li id="<%= folder.id %>" ondrop="drop(event,'<%= folder.id %>')" ondragover="allowDrop(event)">
-            <% children = folder.children %>
+           <% if (folder.title!='Default') %>
+              <li id="<%= folder.id %>" ondrop="drop(event,'<%= folder.id %>')" ondragover="allowDrop(event)">
+                <% children = folder.children %>
 
-            <% if !children.any? %>
-              <i class="fa fa-folder-o"></i>
-            <% else %>
-              <span class="fa fa-plus"></span>
-            <% end %>
-            
-            <a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a> 
+                <% if !children.any? %>
+                  <i class="fa fa-folder-o"></i>
+                <% else %>
+                  <span class="fa fa-plus"></span>
+                <% end %>
 
-            <% if !children.any? %>
-              <% if (folder.title!='Default') %>
-                <!-- <button class="close " onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder"><i class="fa fa-times" aria-hidden="true" style="font-size: 15px"></i></button> -->
-                <span class="fa-times tree-close-right" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
-                <span class="fa-plus tree-plus-right" data-toggle="modal" data-target="#FOLDER_MODAL" ></span>
-              <% end %>
-            <% end %>
-            
-            <%= render partial: "user/documents/index/nested_folders", locals: {parent: folder, children: children} %>
-          </li>
+                <a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a> 
+
+                <% if !children.any? %>
+                  <span class="fa-times tree-close-right" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
+                  <!-- <span class="fa-plus tree-plus-right" data-toggle="modal" data-target="#FOLDER_MODAL" ></span> -->
+                <% end %>
+                
+                <%= render partial: "user/documents/index/nested_folders", locals: {parent: folder, children: children} %>
+              </li>
+           <% end %>
         <% end %>
+
+
+
+        <li class="mt-3">
+          <%= link_to user_documents_path(status: 'REMOVED')  do %>
+            <i class="fa fa-trash"></i> Trash
+          <% end %>
+        </li>
+        <li>
+          <%= link_to user_documents_path(status: 'ARCHIVED')  do %>
+            <i class="fa fa-archive"></i> Archive
+          <% end %>
+        </li>
+
       </ul>
     <% end %>
   </div>

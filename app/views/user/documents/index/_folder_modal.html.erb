@@ -21,7 +21,9 @@
               <select class="form-control form-control-xs selectpicker1" name="parent_id" data-size="7" id='FOLDER_PARENT_ID'  data-width="100%">
                 <option value=""> Select Parent Folder </option>
                 <% @folders.each_with_index do |folder, i| %>
-                <option value="<%= folder.id %>"><%= folder.title %></option>
+                  <% if (folder.title!='Default') %>
+                    <option value="<%= folder.id %>"><%= folder.title %></option>
+                  <% end %>
                 <%  end if @folders && @folders.any?%>
               </select>
             </div>
