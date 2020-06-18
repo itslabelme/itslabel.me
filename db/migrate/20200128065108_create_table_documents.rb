@@ -12,7 +12,7 @@ class CreateTableDocuments < ActiveRecord::Migration[5.2]
 
       t.string :status, default: "ACTIVE", limit: 16, null: false
       t.boolean :favorite, default: false
-      t.references :folder, index: true,null:true, foreign_key: {to_table: :document_folders, on_delete: :nullify}
+      # t.references :folder, index: true,null:true, foreign_key: {to_table: :document_folders, on_delete: :nullify}  # Commented by sanoop @ 7/6/2020, got error by using this foreign also this filed is not used 
 
       t.references :user, index: true, foreign_key: {to_table: :client_users, on_delete: :cascade}
       t.timestamps null: false

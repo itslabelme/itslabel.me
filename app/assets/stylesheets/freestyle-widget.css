@@ -4,15 +4,15 @@
 .column1{height:400px; overflow:auto;border-radius: 0px;width: 100%; overflow: auto;
   padding-right: 15px;}
 .column2{height:400px; overflow:auto;}
-.column3{padding: 20px;border: none;outline: none;width: 100%;resize: none;padding-left: 0px;padding-top:0px;font-size: 22px;font-weight: 400;}
-.column4{margin-left: 0px;padding: 0px;padding-right: 40px;width: 107%;resize: none;}
+.column3{padding: 20px;border: none;outline: none;width: 100%;resize: none;padding-left: 0px;padding-top:0px;font-size: 20px;font-weight: 400;}
+.column4{margin-left: 0px;padding: 0px;padding-right: 40px;width: 109%;resize: none;}
 
 .its-template-translate{
   height: 90%;
   width: 100%;
   border-right: 1px solid #e5e5e5;
   overflow: hidden;
-  padding: 20px;
+  padding: 20px 20px 20px 30px;
   border-radius: 30px 0px 0px 30px;
   padding-bottom: 25px;
   border: none;
@@ -25,6 +25,7 @@
   border-right: 1px solid #e5e5e5;
   overflow: hidden;
   padding: 20px;
+  padding: 20px 40px 20px 20px;
   padding-bottom: 25px;
   border: none;
   position: relative;
@@ -36,7 +37,7 @@
 }
 
 .its-template-list{
-  float: left;
+    float: left;
     width: 100%;
     margin-top: 10px;
     border-bottom: 1px solid #e5e5e5;
@@ -44,6 +45,7 @@
     position: relative;
     z-index: 2;
     padding: 5px 20px 0px 20px;
+    padding-right: 0px;
 }
 
 
@@ -70,9 +72,10 @@
 }
 
 .its-free-action-trans-btn ul{
-  text-align: center;
-  width: 100%;
-  margin-top: 7px;
+/*  text-align: center;
+  width: 100%;*/
+  margin-top: 7px; 
+  float: right;
 }
 
 .its-free-action-trans-btn li{
@@ -82,16 +85,27 @@
 }
 
 .its-free-action-trans-btn li a{
-  background: #006747;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 300;
+/*  background: #006747; */
+  color: #006747;
+  font-size: 13px;
+  font-weight: 500;
   padding: 10px 15px;
+  padding-left: 0px;
 }
 
-.its-free-action-trans-btn li:hover a{
-  background: #1dc166;
+.its-free-action-trans-btn li a img{
+  width: 20px;
+  margin-right: 5px;
 }
+
+.its-free-action-trans-btn li a span{
+  position: relative;
+  top: 3px;
+}
+
+/* .its-free-action-trans-btn li:hover a{
+  background: #1dc166;
+} */
 
 .its-template-list .its-free-action-trans-btn li a svg{
   fill: #ffffff;
@@ -108,17 +122,26 @@
 
 .its-template-list li a svg{
   fill: #006747;
-  opacity: .7;
+  opacity: 1;
 }
 
 .its-template-list li a:hover svg{
-  opacity: .8;
+  opacity: 1;
 }
 
 .its-freestyle-container{
   overflow:hidden;
   padding: 0px;
   border-right: 1px solid #e5e5e5;
+}
+
+.free-style-wrapper01 .its-freestyle-container{
+  border: none;
+}
+
+
+.col-md-6.its-free-language{
+  padding-right: 0px;
 }
 
 
@@ -161,15 +184,26 @@
   height: 100%;
 }
 
-
+.home-body{
+  background: #ffffff !important;
+  border:none !important;
+  padding: 0px !important;
+  -webkit-box-shadow: -2px -1px 22px -1px rgba(199,199,199,.3);
+  -moz-box-shadow: -2px -1px 22px -1px rgba(199,199,199,.3);
+  box-shadow: -2px -1px 22px -1px rgba(199,199,199,.3);
+  border-radius: 10px !important;
+}
 
 .free-style-wrapper01{
-  margin-top: 20px;
+  margin-top: 0px;
   border: 1px solid #e5e5e5;
   border-radius: 10px;
+  border-radius: 5px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   border-bottom: none;
+  padding: 5px 10px;
+  border: none;
 }
 
 
@@ -183,6 +217,25 @@
   background: #1dc166;
   color: #fff;
   border-color: #1dc166;
+}
+
+.its-template-list-left{
+  float:left;border-bottom: none;
+}
+
+.its-freestyle-container2{
+  padding: 0px;
+}
+
+.free-style-wrapper-left{
+  margin-top: 0px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
 }
 
 @media (min-width: 990px) and (max-width: 1036px) {
@@ -386,4 +439,32 @@
   }
   
 
+}
+
+
+.its-free-language select{
+  border:none;
+  text-align: left;
+  padding: 0px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.swap svg{
+  stroke: #000;
+
+}
+
+.swap svg polygon.pol01{
+  fill: #006649;
+}
+
+.swap svg polygon.pol02{
+  fill: #ffffff;
+}
+
+.its-template-list li a svg{
+  position: relative;
+  top: -2px;
+  left: -10px;
 }

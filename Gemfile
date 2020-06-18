@@ -62,6 +62,8 @@ gem 'caxlsx_rails'
 
 gem 'aws-ses', '~> 0.4.4', require: 'aws/ses'
 
+gem 'ancestry'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry', '~> 0.12.2'

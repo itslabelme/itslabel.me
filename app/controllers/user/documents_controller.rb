@@ -47,6 +47,7 @@ module User
         @relation = @relation.status(params[:status].to_s.strip.upcase) unless params[:status].to_s.strip.blank?
       end
 
+      @per_page = 40   # TODO need to fix, this is for demo purpuse 
       @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
 

@@ -1,0 +1,104 @@
+/*///////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/* RESPONSIVE CSS */
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////*/
+
+@media (min-width:1441px) {}
+
+
+/* end 1441px */
+
+@media (max-width:1700px) {}
+
+
+/* end 1199px-1350px */
+
+@media (min-width:1199px) and (max-width:1350px) {}
+
+
+/* end 1199px-1350px */
+
+@media (min-width:992px) and (max-width:1199px) {}
+
+
+/* end 992px-1199px */
+
+@media (max-width:1199px) {}
+
+
+/* end 1199px */
+
+@media (max-width:1000px) {}
+
+@media (max-width:991px) {}
+
+
+/* end 991px */
+
+@media (max-width:991px) and (min-width:768px) {}
+
+
+/* end 991px-768px */
+
+@media (max-width:767px) {
+
+
+/** Header **/
+
+.light_version .top-navbar{
+	width: 100%;
+	padding: 5px 0px;
+}
+
+.navbar-left{
+	width: 100%;
+}
+
+.top-navbar .navbar-btn{
+	width: 100%;
+	padding: 10px 0px;
+	margin: 0px;
+}
+
+.light_version .top-navbar .navbar-btn button{
+	float: right;
+	position: relative;
+	top: 5px;
+}
+
+.light_version #left-sidebar{
+	z-index: 9999;
+}
+
+.offcanvas-active #left-sidebar .btn-toggle-offcanvas{
+	color: #fff;
+    background: none;
+    position: relative;
+    float: right;
+    right: -20px;
+    font-size: 26px;
+}
+
+#main-content{
+	padding: 80px 15px;
+}
+
+}
+
+
+/* end 767px */
+
+@media (max-width:767px) and (min-width:480px) {}
+
+
+/* end 767px-480px */
+
+@media (max-width:480px) {}
+
+@media only screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) {}
+
+
+/* end 480px */

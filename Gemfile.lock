@@ -57,6 +57,8 @@ GEM
       tzinfo (~> 1.1)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
+    ancestry (3.0.7)
+      activerecord (>= 3.2.0)
     arel (9.0.0)
     aws-ses (0.4.4)
       builder
@@ -319,6 +321,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations
+  ancestry
   aws-ses (~> 0.4.4)
   axlsx!
   bootsnap (>= 1.1.0)

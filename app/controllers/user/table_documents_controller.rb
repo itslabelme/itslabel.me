@@ -18,7 +18,7 @@ module User
 
     def show
       get_document
-      get_all_document_folder
+      @document_folders = @current_client_user.document_folders
       @nav = 'user/table_documents'
       @page_title = @document.title
 
@@ -45,7 +45,9 @@ module User
     def new
       @page_title = "New Document (Table Mode)"
       @nav = 'user/table_documents'
-      get_all_document_folder
+      
+      @document_folders = @current_client_user.document_folders
+
       new_document
 
       @document_items = []
@@ -178,18 +180,21 @@ module User
         next if value[:input_phrase].to_s.strip.blank?
         item = @document.items.find_by_id(value[:item_id]) || @document.items.build()
         item.table_document = @document
+        
         item.input_phrase = value[:input_phrase]
         item.output_1_phrase = value[:output_1_phrase]
         item.output_2_phrase = value[:output_2_phrase]
         item.output_3_phrase = value[:output_3_phrase]
         item.output_4_phrase = value[:output_4_phrase]
         item.output_5_phrase = value[:output_5_phrase]
+        
         item.input_language = value[:input_language]
         item.output_1_language = value[:output_1_language]
         item.output_2_language = value[:output_2_language]
         item.output_3_language = value[:output_3_language]
         item.output_4_language = value[:output_4_language]
         item.output_5_language = value[:output_5_language]
+
         if item.input_phrase_changed?
           item.translated = false
         else
@@ -201,11 +206,8 @@ module User
           item.output_5_translation_id = value[:output_5_translation_id]
         end
       end
-       if params['document'][:folder_id].blank?
-          check_default_document_folder
-          @document.folder_id =@document_folder.id
-         
-        end
+
+      @document.folder = default_folder if params['document'][:folder_id].blank?
        
       if @document.valid?
         @document.save
@@ -322,27 +324,25 @@ module User
    
      def update_folder
       get_document
-       if@document
+      
+      if@document
         @document.update_column(:folder_id,params[:folder_id])
         set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Folder"))
         set_flash_message(I18n.translate("success.saved", item: "Folder"), :success)
       end
-    
     end
     
     private
     
-     
-     def check_default_document_folder
-         @document_folder=DocumentFolder.where(user_id: current_client_user.id,title:'Default').first
-         
-         if @document_folder.blank?
-          @document_folder=DocumentFolder.new
-          @document_folder.title='Default'
-          @document_folder.user_id=@current_client_user.id
-          @document_folder.save
-           
-         end
+    def check_default_document_folder
+      @document_folder=DocumentFolder.where(user_id: current_client_user.id,title:'Default').first
+       
+      if @document_folder.blank?
+        @document_folder=DocumentFolder.new
+        @document_folder.title='Default'
+        @document_folder.user_id=@current_client_user.id
+        @document_folder.save
+      end
     end
     
     def get_collection
@@ -351,20 +351,13 @@ module User
 
       apply_filters
 
-      @documents = @relation.order(@order_by).
-                      page(@current_page).per(@per_page)
+      @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
-      #get all document folder
-    def get_all_document_folder
-     @document_folders=DocumentFolder.where(user_id: @current_client_user.id)
-    end
+
     def apply_filters
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
-
-      if params[:status] 
-        @relation = @relation.status(params[:status].upcase)  
-      end
+      @relation = @relation.status(params[:status].upcase)   if params[:status] 
 
       @relation = @relation.search_only_title(params[:filters].try(:[], :title))
       @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
@@ -380,8 +373,6 @@ module User
     def new_document
       @document = TableDocument.new()
       @document.assign_attributes(permitted_params) if params[:document]
-
-
       @document.input_language = params[:input_language]
       @document.output_1_language = params[:output_1_language]
       @document.output_2_language = params[:output_2_language]
@@ -391,10 +382,17 @@ module User
       @document.title ||= params[:title] if params[:title]
       @document.title ||= "New Table Document - #{Time.now.to_i}"
 
+      # Set Default Folder
+      @document.folder = default_folder
+
       # Set Defaut Languages
       set_languages
 
       @document
+    end
+
+    def default_folder
+      @current_client_user.default_folder || @current_client_user.create_default_folder
     end
 
     def set_languages

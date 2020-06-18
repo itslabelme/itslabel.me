@@ -29,8 +29,9 @@ class NutritionFact < ApplicationRecord
 
   
 
-  # General Methods
-  # ---------------
+  # ----------------
+  # Instance Methods
+  # ----------------
   
   def display_name
     self.title

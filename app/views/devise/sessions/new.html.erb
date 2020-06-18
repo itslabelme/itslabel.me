@@ -1,101 +1,157 @@
 <div class="auth-main2 particles_js">
-  <div class="vivify">
-    
-    <div class="auth_brand m-t-60" style="text-align: center;">
-      <a class="navbar-brand" href="javascript:void(0);">
-        <%= image_tag("itsme-logo-1.png",'width'=>'100','class'=>'d-inline-block') %>
-      </a>
-    </div>
+  <div class="vivify its-login-container">
 
-    <div class="card m-t-20">
-      <div class="body">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-auth-small'}) do |f| %>
-        
-          <!-- Errors -->
-          <div id="USER_LOGIN_ERRORS">
-            <!-- Display Errors if Any -->
-            <%= flash_message(false) if defined?(flash) -%>
-            <%= error_message(resource) if resource.errors.any? %>
-          </div>
-          
-          <div class="mb-3">
-            <p class="lead">Login to your account</p>
-          </div>
-          
-          <!-- Email -->
-          <div class="form-group">
-            <%= f.label :emails, :class => "control-label sr-only" %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "signin-email", placeholder: "Email" %>
-          </div>
-          
-          <!-- Password -->
-          <div class="form-group">
-            <%= f.label :password, :class => "control-label sr-only" %>
-            <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "signin-password", placeholder: "Password" %>
-          </div>
-          
-          <!-- Remember Me -->
-          <!-- <div class="form-group clearfix">
-            <label class="fancy-checkbox element-left its-login-me">
-              <input type="checkbox">
-              <span>Remember me</span>
-            </label>
-          </div> -->
-          <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
-          
-          <!-- Links -->
-          <div class="mt-4">
-            <span class="helper-text m-b-10"><i class="fa fa-lock"></i>
-              <% url = resource_name == :client_user ? new_client_user_password_path : new_admin_user_password_path %>
-              <%= link_to "Forgot password?", url %>
-            </span>
 
-            <%# Display the registration links only if its client user %>
-            <% if resource_name == :client_user %>
-            <span>
-              Don't have an account?
-              <%= link_to "Register", new_client_user_registration_path %>
-            </span>
-            <% end %>
 
-            <% if resource_name == :admin_user %>
-              <p class="text-center">
-                <%= link_to "Log In as Client User?", new_client_user_session_path %>
-              </p>
-            <% end %>
-          </div>
-
-          <!-- Display Social Icons only for client user -->
-          <% false && if resource_name == :client_user %>
-          <div class="separator-linethrough"><span>OR</span></div>
-
-          <ul class="its-login-social">
-            <li>
-              <button class="btn btn-signin-social">
-                <a href="/user/auth/facebook">
-                  <i class="fa fa-facebook-official facebook-color"></i> Facebook  
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12" style="display: none;">
+              <div class="auth_brand m-t-60" style="text-align: center;">
+                <a class="navbar-brand" href="javascript:void(0);">
+                  <!-- <img src="../assets/images/itsme-logo-1.png" width="142" height="60" class="d-inline-block" alt=""> -->
+                  <%= image_tag("itsme-logo-1.png",'width'=>'142','height'=>'60','class'=>'d-inline-block') %>
                 </a>
-              </button>
-            </li>
-            <li>
-              <button class="btn btn-signin-social">
-                <a href="/user/auth/facebook">
-                  <i class="fa fa-google google-color"></i> Google
-                </a>
-              </button>
-            </li>
-          </ul>
-          <% end %>
+              </div>
+              
+            </div>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-10" style="margin: 0 auto">
+                  <div class="card m-t-20">
+                    <div class="body its-login-body">
+                      <div class="row">
+                        <div class="col-md-6 its-login-bg">
+                            <div style="width: 100%;height: 100%;display: table;">
+                                <div style="width: 100%;height: 100%;display: table-cell;vertical-align: middle;">
+                            <!-- <img src="https://itslabel.me/wp-content/uploads/2020/02/keyart-2.png" style="max-width: 80%;">   -->
+                                <%= image_tag "keyart-2.png", alt: "Login Image", style: "max-width: 80%;" %>                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 its-login-form">
+                          <div class="row its-login-header">
+                            <div class="col-md-8">
+                              <div class="mb-3">
+                                <p class="lead">Member Login</p>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="auth_brand">
+                                <a class="navbar-brand" href="javascript:void(0);">
+                                  <!-- <img src="../assets/images/itsme-logo-1.png" class="d-inline-block" alt=""> -->
+                                  <%= image_tag("itsme-logo-1.png",'class'=>'d-inline-block') %>
+                                </a>
+                              </div>
+                              
+                            </div>
+                          </div>
 
-        <% end %>
-      </div>
-    </div>
-  </div>
 
-  <div class="pattern">
-    <span class="green"></span>
+
+                          <!-- <form class="form-auth-small" action="index.html"> -->
+                          <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-auth-small'}) do |f| %>
+
+                            <!-- Errors -->
+                            <div id="USER_LOGIN_ERRORS">
+                              <!-- Display Errors if Any -->
+                              <%= flash_message(false) if defined?(flash) -%>
+                              <%= error_message(resource) if resource.errors.any? %>
+                            </div>
+                  
+                            <!-- Email -->
+                            <div class="form-group">
+                              <%= f.label :emails, :class => "control-label sr-only" %>
+                              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "signin-email", placeholder: "Email" %>
+                            </div>
+                            
+                            <!-- Password -->
+                            <div class="form-group">
+                              <%= f.label :password, :class => "control-label sr-only" %>
+                              <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "signin-password", placeholder: "Password" %>
+                            </div>
+                            
+                            <!-- Remember Me -->
+                            <!-- <div class="form-group clearfix">
+                              <label class="fancy-checkbox element-left its-login-me">
+                                <input type="checkbox">
+                                <span>Remember me</span>
+                              </label>
+                            </div> -->
+
+                            <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
+
+                            <!-- Display Social Icons only for client user -->
+                            <% false && if resource_name == :client_user %>
+                            <div class="separator-linethrough"><span>OR</span></div>
+
+                            <ul class="its-login-social">
+                              <li>
+                                <button class="btn btn-signin-social">
+                                  <a href="/user/auth/facebook">
+                                    <i class="fa fa-facebook-official facebook-color"></i> Facebook  
+                                  </a>
+                                </button>
+                              </li>
+                              <li>
+                                <button class="btn btn-signin-social">
+                                  <a href="/user/auth/facebook">
+                                    <i class="fa fa-google google-color"></i> Google
+                                  </a>
+                                </button>
+                              </li>
+                            </ul>
+                            <% end %>
+
+
+
+                            <!-- Links -->
+                            <div class="mt-4">
+                              <span class="helper-text m-b-10"><i class="fa fa-lock"></i>
+                                <% url = resource_name == :client_user ? new_client_user_password_path : new_admin_user_password_path %>
+                                <%= link_to "Forgot password?", url %>
+                              </span>
+
+                              <%# Display the registration links only if its client user %>
+                              <% if resource_name == :client_user %>
+                              <span>
+                                Don't have an account?
+                                <%= link_to "Register", new_client_user_registration_path %>
+                              </span>
+                              <% end %>
+
+                              <% if resource_name == :admin_user %>
+                                <p class="text-center">
+                                  <%= link_to "Log In as Client User?", new_client_user_session_path %>
+                                </p>
+                              <% end %>
+                            </div>
+
+                          <% end %>
+
+
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+
+
+
+
+
+
+
+
   </div>
-  
   <%# Fix Me - Do we really need Particles? %>
   <!-- <div id="particles-js"></div> -->
 </div>

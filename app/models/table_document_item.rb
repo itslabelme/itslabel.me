@@ -38,8 +38,9 @@ class TableDocumentItem < ApplicationRecord
   # Callbacks
   before_save :sanitize_phrases, :translate_phrases
 
-  # General Methods
-  # ---------------
+  # ----------------
+  # Instance Methods
+  # ----------------
 
   def sanitize_phrases
     self.input_phrase.strip! if self.input_phrase

@@ -32,11 +32,12 @@ class Translation < ApplicationRecord
 
 
   
-  # Generic Methods
-  # ---------------
+  # ----------------
+  # Instance Methods
+  # ----------------
+
   def display_name
     "#{input_phrase} - #{output_phrase}"
   end
-  
   
 end

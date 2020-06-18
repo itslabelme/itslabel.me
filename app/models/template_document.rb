@@ -25,12 +25,14 @@ class TemplateDocument < ApplicationRecord
   # Associations
   belongs_to :user, class_name: "ClientUser"
   belongs_to :template, class_name: "LabelTemplate", optional: true
+  belongs_to :folder, class_name: "DocumentFolder", optional: true, foreign_key: :folder_id
   
   # Callbacks
   before_save :translate, unless: :skip_callback
 
-  # General Methods
-  # ---------------
+  # ----------------
+  # Instance Methods
+  # ----------------
 
   def to_param
     "#{id}-#{title}".parameterize[0..32]

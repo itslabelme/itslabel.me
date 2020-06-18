@@ -1,0 +1,40 @@
+<div class="modal fade FOLDER_MODAL" tabindex="-1" role="dialog" aria-labelledby="FOLDER_MODAL" aria-hidden="true" id="FOLDER_MODAL">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center left" id="addContact">Add Folder</h4>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b style="color:#fb3600; font-weight:700;">X</b></button> -->
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ><span>×</span></button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <label>Folder Name</label>
+            <div class="input-group">
+              <input id="FOLDER_TITLE" type="text" class="form-control" placeholder="Folder Name" name="FOLDER_TITLE"/>
+            </div>
+          </div>
+          <div class="col-md-12 mt-3">
+            <label>Parent Folder</label>
+            <div class="input-group mb-3">
+              <select class="form-control form-control-xs selectpicker1" name="parent_id" data-size="7" id='FOLDER_PARENT_ID'  data-width="100%">
+                <option value=""> Select Parent Folder </option>
+                <% @folders.each_with_index do |folder, i| %>
+                  <% if (folder.title!='Default') %>
+                    <option value="<%= folder.id %>"><%= folder.title %></option>
+                  <% end %>
+                <%  end if @folders && @folders.any?%>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary cancel" data-dismiss="modal" style="color: #fff; ">Cancel</a>
+        <button type="button" id="folder-form" class="btn btn-primary">Submit</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

@@ -20,10 +20,15 @@ $.fn.extend({
             var branch = $(this); //li with children ul
             branch.prepend("<i class='fa " + closedClass + "'></i>");
             branch.addClass('branch');
+
             branch.on('click', function (e) {
                 if (this == e.target) {
+//                    $('.branch>span').toggleClass('fa-minus');
                     var icon = $(this).children('i:first');
+              //      var icon2 = $(this).attr('.span');
+                //    icon2.toggleClass('fa-minus');
                     icon.toggleClass(openedClass + " " + closedClass);
+                    //$('.span.fa.fa-plus').addClass('test');
                     $(this).children().children().toggle();
                 }
             })
@@ -36,9 +41,10 @@ $.fn.extend({
         });
       });
         //fire event to open branch if the li contains an anchor instead of text
-        tree.find('.branch>a').each(function () {
+        tree.find('.branch>span.fa').each(function () {
             $(this).on('click', function (e) {
                 $(this).closest('li').click();
+
                 e.preventDefault();
             });
         });
