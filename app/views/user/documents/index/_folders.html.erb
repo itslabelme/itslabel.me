@@ -4,44 +4,51 @@
 
 <div class="body mail-left">
   <div class="mail-side">
-    <div class="mb-3" style="width: 100%">
-      <a class="btn btn-primary"  href="#FOLDER_MODAL" data-toggle="modal" data-target="#FOLDER_MODAL" style="display: block;"><i class="fa fa-plus mr-1" data-toggle="tooltip" data-placement="top" title="Add New Folder"></i>  Add New Folder
+    <div class="mb-3 tree-folder-icon">
+      <a href="#FOLDER_MODAL" class="btn btn-light btn-sm" data-toggle="modal" data-placement="#FOLDER_MODAL" title="Add New Folder">
+        <i class="fa fa-plus" data-toggle="tooltip" data-placement="top" title="Add New Folder"></i> 
       </a>
+      <%= link_to user_documents_path(status: 'REMOVED'), {class: 'btn btn-light btn-sm','data-toggle' => "tooltip", 'data-placement' => "top", title: "Delete"}  do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+
+      <%= link_to user_documents_path(status: 'ARCHIVED'), {class: 'btn btn-light btn-sm','data-toggle' => "tooltip", 'data-placement' => "top", title: "Archive"}  do %>
+        <i class="fa fa-archive"></i>
+      <% end %>
+
+      <%= link_to user_documents_path(recent: true), {class: 'btn btn-light btn-sm','data-toggle' => "tooltip", 'data-placement' => "top", title: "Recent"}  do %>
+        <i class="fa fa-folder-o"></i>
+      <% end %>
     </div>
 
+
     <% if @document_folders && @document_folders.any? %>
-    <ul id="tree2">
-      <% @document_folders.each do |folder| %>
+      <ul id="tree2">
+        <% @document_folders.each do |folder| %>
 
-      <li id="<%= folder.id %>" ondrop="drop(event,'<%= folder.id %>')" ondragover="allowDrop(event)">
-        <% children = folder.children %>
-        <% if !children.any? %>
-          <i class="fa fa-folder-o"></i>
-        <% else %>
-          <span class="fa fa-plus"></span>
+          <li id="<%= folder.id %>" ondrop="drop(event,'<%= folder.id %>')" ondragover="allowDrop(event)">
+            <% children = folder.children %>
+
+            <% if !children.any? %>
+              <i class="fa fa-folder-o"></i>
+            <% else %>
+              <span class="fa fa-plus"></span>
+            <% end %>
+            
+            <a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a> 
+
+            <% if !children.any? %>
+              <% if (folder.title!='Default') %>
+                <!-- <button class="close " onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder"><i class="fa fa-times" aria-hidden="true" style="font-size: 15px"></i></button> -->
+                <span class="fa-times tree-close-right" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
+                <span class="fa-plus tree-plus-right" data-toggle="modal" data-target="#FOLDER_MODAL" ></span>
+              <% end %>
+            <% end %>
+            
+            <%= render partial: "user/documents/index/nested_folders", locals: {parent: folder, children: children} %>
+          </li>
         <% end %>
-        <a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a> 
-
-
-        <% if !children.any? %>
-          <% if (folder.title!='Default') %>
-            <!-- <button class="close " onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder"><i class="fa fa-times" aria-hidden="true" style="font-size: 15px"></i></button> -->
-            <span class="fa-times tree-close-right" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
-            <span class="fa-plus tree-plus-right" data-toggle="modal" data-target="#FOLDER_MODAL" ></span>
-          <% end %>
-        <% end %>
-        
-        <%= render partial: "user/documents/index/nested_folders", locals: {parent: folder, children: children} %>
-
-
-      </li>
-      <% end %>
-    </ul>
-  <hr>
-  <div class="row ml-3">
-    <div><%= link_to content_tag(:i, "", class: "fa fa-trash") + " Trash", user_documents_path(status: 'REMOVED') %></div>
-    <div class="ml-4"><%= link_to content_tag(:i, "", class: "fa fa-archive") + " Archives", user_documents_path(status: 'ARCHIVED') %></div>
+      </ul>
+    <% end %>
   </div>
-  <% end %>
-</div>
 </div>

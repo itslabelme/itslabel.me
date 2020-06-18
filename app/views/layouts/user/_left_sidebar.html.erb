@@ -24,11 +24,11 @@
                 <%= image_tag "icons/home.svg", alt: "home icon"%>
                 <span>Home</span>
               <% end %>
-          <li>
-              <a href="#" class="has-arrow">
+          <li class="active">
+              <a href="#" class="has-arrow" aria-expanded="true">
                   <%= image_tag "icons/language.svg", alt: "home icon"%>
                   <span>New Translation</span></a>
-              <ul>
+              <ul aria-expanded="true" class="collapse in" style="">
                   <li>
                     <%= link_to user_free_form_path do %>
                       Free Form
@@ -52,12 +52,12 @@
                   <span>Your Translations </span>
               <% end %>
           </li>
-          <li>
-              <%= link_to user_documents_path(recent: true) do %>
-                  <%= image_tag "icons/recent.svg", alt: "recent icon"%>
+<!--           <li>
+              <%#= link_to user_documents_path(recent: true) do %>
+                  <%#= image_tag "icons/recent.svg", alt: "recent icon"%>
                   <span>Recent</span>
-              <% end %>
-          </li>
+              <%# end %>
+          </li> -->
 
           <li class="header">My Account</li>
 

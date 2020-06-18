@@ -20,7 +20,7 @@
 
       <a href="/user/documents?folder_id=<%=child.id%>"><%= child.title %></a>
       <% if (parent.title!='Default') %>
-        <span class="fa-times tree-close-right " onClick='delete_folder("<%= child.title%>","<%= child.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
+        <span class="fa-times tree-close-right pl-3 " style="right: 0px;" onClick='delete_folder("<%= child.title%>","<%= child.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
       <% end %>
 
     <% end %>

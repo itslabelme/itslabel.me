@@ -41,6 +41,10 @@
     position:relative
 }
 
+.tree li a.active{
+    font-weight: bold;
+}
+
 .tree li i{
     padding-right: 10px;
 }
@@ -175,4 +179,35 @@
 
 .tree-close-right:before{
         content: "\f00d";
+}
+
+#tree2{
+        position: relative;
+    top: -20px;
+}
+
+.tree-folder-icon{
+     background: #f7f7f7 !important;
+     display: inline-block;
+     text-align: center;
+    width: 120%;
+    position: relative;
+    top: -21px;
+    left: -21px;
+    padding: 5px;
+    text-align: left;
+    padding-left: 12px;
+   
+}
+
+.tree-folder-icon a{
+    background: #f7f7f7 !important;
+    color: #006649;
+    border: none;
+    padding: 10px;
+    text-align: left;
+}
+
+.tree-folder-icon a:hover{
+    box-shadow: none;
 }
