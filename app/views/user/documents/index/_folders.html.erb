@@ -5,21 +5,28 @@
 <div class="body mail-left">
   <div class="mail-side">
 
+    <div class="mb-3 tree-folder-icon">
+      <a href="#FOLDER_MODAL" class="btn btn-light btn-sm" data-toggle="modal" data-target="#FOLDER_MODAL" title="Add New Folder"><i class="fa fa-plus"></i> </a>
 
-    <div class="mb-5" style="width: 100%">
-      <a class="btn btn-primary"  href="#FOLDER_MODAL" data-toggle="modal" data-target="#FOLDER_MODAL" style="display: block;"><i class="fa fa-plus mr-1" data-toggle="tooltip" data-placement="top" title="Add New Folder"></i>  Add New Folder
-      </a>
+      <%= link_to user_documents_path(status: 'REMOVED'), title: "Delete", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm"  do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+
+      <%= link_to user_documents_path(status: 'ARCHIVED'), title: "Archive", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm"  do %>
+        <i class="fa fa-archive"></i> 
+      <% end %>
+
+      <%= link_to user_documents_path(recent: true), title: "Recent", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm"  do %>
+        <i class="fa fa-folder-o"></i>
+      <% end %>
+
+      <!-- <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="icon-trash"></i></a> -->
+      <!-- <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Archive"><i class="fa fa-archive"></i></a> -->
+      <!-- <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Recent"><i class="fa fa-folder-o"></i></a>  -->
     </div>
-
 
     <% if @document_folders && @document_folders.any? %>
       <ul id="tree2" class="mt-4">
-
-        <li class="mb-3">
-          <%= link_to user_documents_path(recent: true)  do %>
-          <i class="fa fa-folder-o"></i>Recent
-          <% end %>
-        </li>
 
         <%
           defauld_id = @document_folders.where(title: "Default").first.id if !@document_folders.where(title: "Default").blank?
@@ -28,7 +35,7 @@
             <i class="fa fa-folder-o"></i>
           <a href="/user/documents?folder_id=<%= defauld_id %>">Default</a> 
         </li>
-<%# binding.pry %>
+
         <% @document_folders.each do |folder| %>
 
            <% if (folder.title!='Default') %>
@@ -52,19 +59,6 @@
               </li>
            <% end %>
         <% end %>
-
-
-
-        <li class="mt-3">
-          <%= link_to user_documents_path(status: 'REMOVED')  do %>
-            <i class="fa fa-trash"></i> Trash
-          <% end %>
-        </li>
-        <li>
-          <%= link_to user_documents_path(status: 'ARCHIVED')  do %>
-            <i class="fa fa-archive"></i> Archive
-          <% end %>
-        </li>
 
       </ul>
     <% end %>
