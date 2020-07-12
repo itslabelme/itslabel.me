@@ -1,9 +1,9 @@
 <% @templates = LabelTemplate.where(status:'ACTIVE').all %>
-<div class="row clearfix">
+<!-- <div class="row clearfix"> -->
   <% @templates.each do |template| %>
   <div class="col-lg-4 cool-md-3 col-sm-12">
     <div class="card">
-      <div class="box">
+      <div class="box its-template-container">
         <ul class="pricing body">
           <li class="plan-img">
             <%#
@@ -27,7 +27,11 @@
           </li>
           <li><%= template.name %></li>
           <% unless template.to_s.strip.blank? %>
-          <li><span class="template-style"><%= template.style %></span></li>
+          <li>
+            <!-- <span class="template-style"> -->
+              <%= template.style %>
+            <!-- </span> -->
+          </li>
           <% end %>
           <!-- <li><%#= template.description %></li> -->
           <li class="plan-btn">
@@ -42,7 +46,7 @@
   </div>
 </div>
 <% end %>
-</div>
+<!-- </div> -->
 <style type="text/css">
 .template-style {
 border: 1px solid #c1c1c1;
