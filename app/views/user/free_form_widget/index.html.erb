@@ -4,17 +4,24 @@
   <div class="block-header">
     <div class="row clearfix">
       <div class="col-md-6 col-sm-12">
-        <h1>Home</h1>
+        <h1>Free Form</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Free Form Translation</a></li>
+          <li class="breadcrumb-item"><%= link_to "Home", user_home_path %></li>
+          <li class="breadcrumb-item active" aria-current="page">Free Form</li>
           </ol>
         </nav>
       </div>
     </div>
+    <div class="row clearfix header-description">
+        <div class="col-md-7 col-sm-12">
+            <p>Please separate ingredients using <span class="badge badge-info">,</span> or <span class="badge badge-info">;</span> or new lines for accurate results.</p>
+                <p>Kindly note this is a specialist tool for translating ingredient names and will not process natural language.</p>
+        </div>
+    </div>
   </div>
 
   <!-- Widget - Try Translation -->
-  <%= render partial: 'user/free_form_widget/index/widget' %>\
+  <%= render partial: 'user/free_form_widget/index/widget' %>
   
 </div>

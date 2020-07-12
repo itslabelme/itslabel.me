@@ -7,24 +7,28 @@ class DocumentView < ApplicationRecord
   # Set Table Name
   self.table_name = "documents_view"
 
-  def readonly() true end
-  before_destroy { raise(ActiveRecord::ReadOnlyRecord) }
   
-
+  # Includes
   include Itslabel::Status::DocumentStatus
   include Itslabel::Scopes::DocumentScopes
   include Itslabel::Permissions::DocumentPermissions
 
-
+  # Callbacks
+  before_destroy { raise(ActiveRecord::ReadOnlyRecord) }
+  
   # Associations
   belongs_to :template, class_name: "LabelTemplate"
   belongs_to :user, class_name: "User"
-  
+  belongs_to :folders, class_name: "DocumentFolder"
   
 
 
-  # Generic Methods
-  # ---------------
+  # -----------------
+  # Instance Methods
+  # -----------------
+
+  def readonly() true end
+
   def to_param
     "#{id}-#{title}".parameterize[0..32]
   end

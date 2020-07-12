@@ -7,30 +7,32 @@
           <div class="row its-language-switcer mb-2">
 
             <div class="col-md-12">
-              <div class="mb-4 text-center">
-                <h3>Table Mode - Translation</h3>
-                <p>Edit the text in the template and Cick on <span class='badge badge-info'>Save</span> button below to Translate and Save. </p>
-              </div>
-              <div class="form-group" style="text-align:center;">
-                <button class="btn btn-primary btn-lg mt-1 mb-1" onclick="saveEverything();"><i class='fa fa-save mr-2'></i>SAVE</button>
-                <%= link_to export_to_excel_user_table_document_path(@document, format: :xlsx), class: "btn btn-secondary btn-lg mt-1 mb-1" do %>
-                  <i class='fa fa-print mr-2'></i>EXPORT
-                <% end if @document.persisted? %>
-                <%= link_to clear_user_table_document_path(
-                      id: (@document.id || -1),
-                      input_language: @document.input_language,
-                      title: @document.title,
-                    ), 
-                    class: "btn btn-secondary btn-lg mt-1 mb-1", data: {confirm: "Are you sure? This action will remove all contents from the table"} do %>
-                  <i class='fa fa-eraser mr-2'></i>CLEAR
-                <% end %>
+              <div class="row">
+                <div class="col-md-8 mb-4 text-left">
+                  <!-- <h3>Table Mode - Translation</h3> -->
+                  <p>Edit the text in the template and Cick on <span class='badge badge-info'>Save</span> button below to Translate and Save. </p>
+                </div>
+                <div  class="col-md-4 form-group" style="text-align:right;">
+                  <button class="btn btn-primary btn-lg mt-1 mb-1" onclick="saveEverything();"><i class='fa fa-save mr-2'></i>SAVE</button>
+                  <%= link_to export_to_excel_user_table_document_path(@document, format: :xlsx), class: "btn btn-secondary btn-lg mt-1 mb-1" do %>
+                    <i class='fa fa-print mr-2'></i>EXPORT
+                  <% end if @document.persisted? %>
+                  <%= link_to clear_user_table_document_path(
+                        id: (@document.id || -1),
+                        input_language: @document.input_language,
+                        title: @document.title,
+                      ), 
+                      class: "btn btn-secondary btn-lg mt-1 mb-1", data: {confirm: "Are you sure? This action will remove all contents from the table"} do %>
+                    <i class='fa fa-eraser mr-2'></i>CLEAR
+                  <% end %>
+                </div>
               </div>
             </div>
 
             <div class="col-md-12">
               <fieldset style="background-color: #fff;">
                 <div class="row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <label>Input Language</label>
                     <div class="input-group mb-3">
                       <% if @document.persisted? %>
@@ -44,13 +46,30 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <label>Document Title</label>
                     <div class="form-group">
                      <%= text_field_tag @document, @document.title, class: "form-control", name: 'document[title]', style: "background-color:#fff;", id: "INPUT_TITLE" %>
                     </div>
                   </div>
+                  <div class="form-group col-md-4">
+                    <label>Document Folder</label>
+                    <div class="input-group mb-3">
+                        
+                      <select class="form-control form-control-xs selectpicker1" name=document[folder_id]" data-size="7" id='FOLDER_ID'  data-width="100%">
+                          <option value="">--Select Folder</option>
+                          <% @document_folders.each_with_index do |folder, i| %>
+                            <option value="<%=folder.id%>" <%= @document.folder_id == folder.id ? "selected" : "" %>><%=folder.title%></option>
+                          <% end if @document_folders && @document_folders.any? %>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+                  
+                   <div class="row">
+                   
+                      
+                  </div>
               </fieldset>
             </div>
             

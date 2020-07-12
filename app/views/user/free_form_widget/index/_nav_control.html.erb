@@ -1,0 +1,118 @@
+  <div class="free-style-wrapper free-style-wrapper01">
+      <div class="row" style="margin: 0px;">
+          <div class="col-md-2 its-freestyle-container">
+              <div class="its-template-list its-template-list-left">
+                  <div class="row">
+                      <div class="col-md-6 mb-3 its-free-language">
+                          <div class="input-group">
+                            <select id="INPUT_LANGUAGE" class="form-control form-control-xs selectpicker1" name="" data-size="7" data-live-search="true" data-title="Location" data-width="100%">
+                                <option value="ENGLISH" <%= @input_language == "ENGLISH" ? "selected" : "" %> >English</option>
+                                <option value="ARABIC" <%= @input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+                                <option value="FRENCH" <%= @input_language == "FRENCH" ? "selected" : "" %> >French</option>
+                            </select>
+
+                          </div>
+                      </div>
+                      <div class="col-md-6 mb-3 its-free-action">
+                          <ul>
+                              <li>
+                                  <a href="#" title="Swap" class="swap">
+                                      <svg enable-background="new 0 0 384 384" version="1.1" viewBox="0 0 384 384" width="20" height="20" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><polygon points="85.12 170.67 0 256 85.12 341.33 85.12 277.33 234.67 277.33 234.67 234.67 85.12 234.67" class="pol01" style="fill:#006649;stroke:#006649;stroke-width:10"/><polygon points="384 128 298.88 42.667 298.88 106.67 149.33 106.67 149.33 149.33 298.88 149.33 298.88 213.33" class="pol02" style="fill:#ffffff;stroke:#006649;stroke-width:10"/></svg>
+                                  </a>
+                              </li>
+
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-4 its-freestyle-container">
+              <div class="its-template-list its-template-list-left">
+                  <div class="row">
+                      <div class="col-md-4 mb-3 its-free-language">
+                      </div>
+                      <div class="col-md-8 mb-3 its-free-language">
+                           <ul>
+                            <li>
+                                <a href="#COPY" title="Copy" id="INPUT_COPY_ACTION">
+                                    <svg width="24" height="24">
+                                        <path d="M16 3H6a2 2 0 0 0-2 2v11h2V5h10V3zm1 4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9c0-1.2.9-2 2-2h7zm0 12V9h-7v10h7z" fill-rule="nonzero"></path>
+                                    </svg>
+                                </a>
+                            </li>
+
+                             <li class="ml-4">
+                                 <a href="#CLEAR" title="Clear" id="INPUT_CLEAR_ACTION">
+                                     <svg width="24" height="24" viewBox="0 0 512 512">
+                                         <path d="m496.89 15.011c-20.015-20.016-52.582-20.014-72.596 0l-137.53 137.53-2.945-2.945c-25.577-25.577-66.359-28.076-94.866-5.809l-182.98 142.91c-3.447 2.692-5.574 6.734-5.841 11.1s1.35 8.637 4.443 11.73l198 198c2.872 2.872 6.76 4.473 10.795 4.473 0.31 0 0.622-0.01 0.934-0.029 4.366-0.268 8.408-2.395 11.1-5.841l142.91-182.98c22.264-28.506 19.766-69.29-5.81-94.867l-3.14-3.14 137.53-137.54c20.015-20.015 20.015-52.582 0-72.597zm-284.94 458.72-44.515-44.515 54.73-60.219c5.671-6.241 5.21-15.897-1.03-21.569-6.241-5.671-15.898-5.211-21.569 1.03l-53.749 59.14-41.317-41.317 59.14-53.749c6.24-5.672 6.701-15.329 1.03-21.569-5.673-6.239-15.327-6.702-21.569-1.03l-60.219 54.73-44.515-44.515 144.47-112.83 141.95 141.95-112.83 144.46zm132.29-169.38-0.517 0.663-136.64-136.64 0.663-0.517c16.367-12.785 39.788-11.35 54.474 3.336l78.682 78.682c14.688 14.687 16.122 38.107 3.337 54.476zm131.06-238.34-137.53 137.53-29.411-29.411 137.53-137.53c8.109-8.109 21.303-8.107 29.41 0 8.109 8.109 8.109 21.301 1e-3 29.41z" />
+                                     </svg>
+                                 </a>
+                             </li>
+                          </ul>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-2 its-freestyle-container2">
+
+              <div class="its-template-list" style="float:left;border-bottom: none;">
+                  <div class="row">
+
+                      <div class="col-md-6 mb-3 its-free-language">
+                          <div class="input-group">
+                            <select id="OUTPUT_LANGUAGE" class="form-control form-control-xs selectpicker1" name="" data-size="7" data-live-search="true" data-title="Location" data-width="100%">
+                                <option value="ENGLISH" <%= @output_language == "ENGLISH" ? "selected" : "" %> >English</option>
+                                <option value="ARABIC" <%= @output_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+                                <option value="FRENCH" <%= @output_language == "FRENCH" ? "selected" : "" %> >French</option>
+                            </select>
+
+                          </div>
+                      </div>
+
+
+                      <div class="col-md-6 mb-3 its-free-action">
+                          <ul>
+                              <li>
+                                  <a href="#" title="Copy" class="swap">
+                                      <svg enable-background="new 0 0 384 384" version="1.1" viewBox="0 0 384 384" width="20" height="20" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><polygon points="85.12 170.67 0 256 85.12 341.33 85.12 277.33 234.67 277.33 234.67 234.67 85.12 234.67" class="pol01" style="fill:#ffffff;stroke:#006649;stroke-width:10"/><polygon points="384 128 298.88 42.667 298.88 106.67 149.33 106.67 149.33 149.33 298.88 149.33 298.88 213.33" class="pol02" style="fill:#006649;stroke:#006649;stroke-width:10"/></svg>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-4 its-freestyle-container">
+              <div class="its-template-list its-template-secondary">
+                  <div class="row">
+                      <div class="col-md-12 mb-3 its-free-action its-free-action-trans-btn">
+                          <ul>
+                              <li>
+                                  <a id="translate" href="#">
+                                    <!-- <img src="../assets/images/icons/its-icon_3.svg"> -->
+                                    <%= image_tag "icons/its-icon_3.svg"%>
+                                    <span>TRANSLATE</span></a>
+                              </li>
+                              <li>
+                                  <a href="#" title="Translate" id="export">
+                                    <%= image_tag "icons/export.svg"%>
+                                      Export</span>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+      </div>
+  </div>

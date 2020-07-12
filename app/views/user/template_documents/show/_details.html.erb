@@ -18,26 +18,27 @@
           <div class="row its-language-switcer mb-2">
 
             <div class="col-md-12">
-              <div class="mb-4 text-center">
-                <h3>Translate with Template</h3>
-                <p>Edit the text in the template and Cick on <span class='badge badge-info'>Translate & Save</span> button below to Translate and Save. </p>
-              </div>
-              <div class="form-group" style="text-align:center;">
-                <button class="btn btn-primary btn-lg mt-1 mb-1" type="submit"><i class='fa fa-save mr-2'></i>TRANSLATE & SAVE</button>
-                <%#= link_to '#', class: "btn btn-secondary btn-lg mt-1 mb-1", target: "_blank", onclick: 'print()' do %>
-                  <!-- <i class='fa fa-print mr-2'></i>PRINT -->
-                <%# end %>
+              <div class="row">
+                <div class="col-md-8 mb-4 text-left">
+                  <p>Edit the text in the template and Cick on <span class='badge badge-info'>Translate & Save</span> button below to Translate and Save. </p>
+                </div>
+                <div class="col-md-4 form-group" style="text-align:right;">
+                  <button class="btn btn-primary btn-lg mt-1 mb-1" type="submit"><i class='fa fa-save mr-2'></i>TRANSLATE & SAVE</button>
+                  <%#= link_to '#', class: "btn btn-secondary btn-lg mt-1 mb-1", target: "_blank", onclick: 'print()' do %>
+                    <!-- <i class='fa fa-print mr-2'></i>PRINT -->
+                  <%# end %>
+                </div>
               </div>
             </div>
             
             <div class="col-md-12">
               <fieldset style="background-color: #fff;">
                 <div class="row">
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-3">
                     <label>Document Title</label>
                     <input type="text" class="form-control" name="document[title]" value="<%= @document.title %>" required="">
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-3">
                     <label>Input Language</label>
                     <div class="input-group mb-3">
                       <select class="form-control form-control-xs selectpicker1" name="document[input_language]" data-size="7" data-live-search="true" data-title="Location" id="INPUT_LANGUAGE" data-width="100%">
@@ -47,7 +48,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-3">
                     <label>Output Language</label>
                     <div class="input-group mb-3">
                       <select class="form-control form-control-xs selectpicker1" name="document[output_language]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
@@ -57,7 +58,19 @@
                       </select>
                     </div>
                   </div>
+                     <div class="form-group col-md-3">
+                    <label>Folder</label>
+                    <div class="input-group mb-3">
+                      <select class="form-control form-control-xs selectpicker1" name="document[folder_id]" data-size="7" data-live-search="true" data-title="Location" id="OUTPUT_LANGUAGE" data-width="100%">
+                          <option value="">--Select a Folder</option>
+                          <% @document_folders.each_with_index do |folder, i| %>
+                            <option value="<%=folder.id%>" <%= @document.folder_id == folder.id ? "selected" : "" %>><%=folder.title%></option>
+                          <% end if @document_folders && @document_folders.any? %>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+                  
               </fieldset>
             </div>
 
@@ -65,23 +78,18 @@
 
           <div class="row pb-4">
             <div class="col-md-6">
-
               <% 
                 source_html = @document.try(:input_html_source).to_s
-                formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("defaults/distributor-logo.jpg")) 
+                formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("distributor-logo.jpg")) 
               %>
-              
               <textarea class="tinymce-editor" id="input_tinymce" name='document[input_html_source]'>
-
-
                 <%= raw(formatted_source_html) %>
               </textarea>
             </div>
+
             <div class="col-md-6">
               <div class="holder" style="height:500px;background-color:#fff;">
-                
                 <% id = @document.try(:id) || -1 %>
-
                 <div class="body" style="padding: 0px;border-radius: 0px;">
                   <div class="table-responsive its-preview-table">
                     <div class="its-preview-header">

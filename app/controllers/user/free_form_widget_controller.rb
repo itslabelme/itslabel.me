@@ -5,6 +5,9 @@ module User
     skip_before_action :verify_authenticity_token
     before_action :get_languages
 
+    # FIXME
+    # before_action :access_denied
+
     def index
 
       @page_title = "Free Form Translation"
@@ -13,26 +16,38 @@ module User
 
     def translate
 
-      @input_text = params[:text].strip
-      @translated_hash = Translation.translate(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
-      @display_text = @input_text
-      @translated_hash.each do |key, value|
-        if value
-          @display_text.gsub!(key, value)
-        else
-          @display_text.gsub!(key, "<span class='its-tran-not-found'><i class=\"icon-question mr-2\"></i>#{key}</span>")
+      @input_text = params[:text]
+        
+      if @input_language == @output_language
+        @display_text = @input_text
+      else
+        @translated_html = Translation.translate_html(@input_text, input_language: @input_language, output_language: @output_language)
+        @display_text = @translated_html.to_html
+      end
+      
+    end
+
+    def export_free_translation
+
+      @input_text = params[:text]
+        
+      if @input_language == @output_language
+        @display_text = @input_text
+      else
+        @translated_html = Translation.translate_html(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
+        @display_text = @translated_html.to_html
+      end
+
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render  :pdf => 'file_name',
+                  :template => '/user/free_form_widget/export_free_translation.pdf.erb',
+                  :layout => 'pdf.html.erb'
+                  #:show_as_html => params[:debug].present?
         end
       end
-
-      delimitters = @input_text.scan(Regexp.union(Translation::DELIMITERS))
-
-      delimitters.each do |dlmtr|
-        dlmtr_translations = Translation::DELIMITERS_TRANSLATIONS[dlmtr.to_sym]
-        translated_dlmtr = dlmtr_translations.try(:[], @output_language.upcase.to_sym)
-        @display_text.gsub!(dlmtr, translated_dlmtr) if translated_dlmtr
-      end
-
-      @display_text.gsub!("\n", '<br>')
+      
     end
 
     def new_translation_request

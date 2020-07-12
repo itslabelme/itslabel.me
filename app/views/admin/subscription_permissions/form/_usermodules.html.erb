@@ -1,0 +1,34 @@
+<div class="body mt-2">
+
+    <div class="row clearfix">
+      <div class="header p-3 mb-4">
+        Add Permission To Plans
+      </div>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+       </div>
+    </div>
+
+     <div class="row clearfix">
+          <% if @subscriptions.present? %>
+          <% @subscriptions.each_with_index do |subscription, i| %>
+         <div class="col-lg-3 col-md-3 col-sm-12">
+          <div class="form-group">
+             
+             <button class="btn btn-primary btn-block" type="button">
+              <a href="/admin/subscription_permissions/add_edit_permissions/<%= subscription.id %>" style="color: #fff;display: block;"><%= subscription.title %> Plan</a>
+             </button>
+              <!-- <h5> <a href="/admin/subscription_permissions/add_edit_permissions/<%#= subscription.id %>"><%#= subscription.title %></a></h5> -->
+             
+            
+            </div>
+        </div>
+                     
+              <%  end %>
+         <% end %>
+        
+    </div>
+   
+  </div>

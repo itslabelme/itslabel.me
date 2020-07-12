@@ -15,11 +15,16 @@ Rails.application.routes.draw do
   end
 
   namespace :user, module: :user do
-
+      
+    get '/403', to: 'errors#unauthorized', as: 'unauthorized'
+    get '/404', to: 'errors#notfound', as: 'notfound'
+    
     get '/home', to: 'home#index', as: 'home'
 
-    get '/free_form', to: 'free_form_widget#free_form', as: 'free_form'
+    get '/free_form', to: 'free_form_widget#index', as: 'free_form'
     post '/translate', to: 'free_form_widget#translate', as: 'translate'
+    post '/export_free_translation', to: 'free_form_widget#export_free_translation', as: 'export_free_translation'
+    
     get '/translation_request', to: 'free_form_widget#new_translation_request', as: 'new_translation_request'
     post '/translation_request', to: 'free_form_widget#create_translation_request', as: 'create_translation_request'
 
@@ -43,7 +48,9 @@ Rails.application.routes.draw do
     resources :template_documents do
       member do
 
+         put 'update_template_folder', to: 'template_documents#update_folder' 
         # Create or Update the Document and Translate
+        
         put 'save_and_translate', to: 'template_documents#save_and_translate', as: 'save_and_translate'
 
         get 'preview', to: 'template_documents#preview', as: 'preview'
@@ -68,6 +75,7 @@ Rails.application.routes.draw do
         # Save Methods
         put 'save_everything', to: 'table_documents#save_everything', as: 'save_everything'
         put 'translate_input_phrase', to: 'table_documents#translate_input_phrase', as: 'translate_input_phrase'
+        
       end
 
       member do
@@ -77,6 +85,8 @@ Rails.application.routes.draw do
 
         #update status
         put 'update_status', to: 'table_documents#update_status', as: 'update_status'
+        #update folder
+        put 'update_table_folder', to: 'table_documents#update_folder' 
       end
     end
    
@@ -84,7 +94,16 @@ Rails.application.routes.draw do
     get 'edit_client_profile', to: 'client_profile#edit'
     put 'update_client_profile', to: 'client_profile#update'
     put 'update_client_password', to: 'client_profile#update_password'
-     
+    resources :user_subscriptions
+    resources :user_subscriptions, only: [:create, :index, :update] do
+     collection do
+      put :update
+      end
+    end
+    
+    #Crud Folder
+      resources :document_folder
+      put 'update_document', to: 'document_folder#update_document'
   end
   
   devise_for :admin_users, path: "admin", skip: [:registrations], path_names: { sign_in: 'login', sign_out: 'logout', edit: 'settings' }
@@ -102,7 +121,7 @@ Rails.application.routes.draw do
 
     # CRUD Admin Users
     resources :admin_users    
-
+    
     # CRUD Translations
     resources :translations
 
@@ -116,6 +135,16 @@ Rails.application.routes.draw do
     get 'edit_profile', to: 'profile#edit'
     put 'update_profile', to: 'profile#update'
     put 'update_password', to: 'profile#update_password'
+    
+    #User Module Subscription
+    resources :subscription_permissions , only: [:create, :index, :update] do
+      collection do
+        get '/add_edit_permissions/:id', to: 'subscription_permissions#create_pemission'
+      end
+    end
+    
+    
+  
   end
   
 end

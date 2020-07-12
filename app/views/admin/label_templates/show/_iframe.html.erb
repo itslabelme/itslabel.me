@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<%= asset_url('iframe.css') %>">
   </head>
   <body>
-    <% formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("defaults/distributor-logo.jpg")) %>
+    <% formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("distributor-logo.jpg")) %>
     <%= raw(formatted_source_html) %>
   </body>
 </html>

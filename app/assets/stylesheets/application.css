@@ -1,17 +1,22 @@
 /*
- *= require vendor/vivify.min.css
- *= require vendor/bootstrap-tagsinput.css
- *= require tribute
 
- *= require site.css
- *= require color.css
- *= require its-nf.css
- *= require itslabel.css
- *= require its-arabic.css
- *= require ad-search.css
+
+ *= require site.min.scss
+ *= require color.scss
+ *= require iframe
+ *= require its-nf
+ *= require itslabel
+ *= require its-arabic
+ *= require its-login
+ *= require ad-search
  *= require freestyle-widget.css
  *= require its-registration-form.css
- 
+ *= require its-subscription.css
+ *= require its-right-context-menu.css
+ *= require its-select.css
+ *= require its-tree.css
+ *= require itslabel.css
+ *= require responsive.css
  *= require_self
  */
 

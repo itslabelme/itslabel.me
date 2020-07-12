@@ -26,10 +26,12 @@ class TableDocument < ApplicationRecord
 
   # Associations
   belongs_to :user, class_name: "ClientUser"
+  belongs_to :folder, class_name: "DocumentFolder", optional: true, foreign_key: :folder_id
   has_many :items, class_name: "TableDocumentItem"
   
-  # General Methods
-  # ---------------
+  # ----------------
+  # Instance Methods
+  # ----------------
 
   def to_param
     "#{id}-#{title}".parameterize[0..32]

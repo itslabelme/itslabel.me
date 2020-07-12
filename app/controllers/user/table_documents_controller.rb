@@ -6,6 +6,8 @@ module User
     before_action :authenticate_client_user!
     before_action :get_document, except: [:new, :create, :index, :select_template]
     skip_before_action :verify_authenticity_token, :only => [:translate_input_phrase, :save_everything]
+    #before_action :access_denied
+    before_action :access_denied, only: [:index, :new]
     
     def index
       @page_title = "Documents (Table Mode)"
@@ -16,7 +18,7 @@ module User
 
     def show
       get_document
-      
+      @document_folders = @current_client_user.document_folders
       @nav = 'user/table_documents'
       @page_title = @document.title
 
@@ -43,6 +45,8 @@ module User
     def new
       @page_title = "New Document (Table Mode)"
       @nav = 'user/table_documents'
+      
+      @document_folders = @current_client_user.document_folders
 
       new_document
 
@@ -100,11 +104,31 @@ module User
         @item.input_phrase = params[:new_value].to_s.strip
         
         unless @item.input_phrase.blank?
-          @item.output_1_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_1_language) if @output_1_language
-          @item.output_2_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_2_language) if @output_2_language
-          @item.output_3_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_3_language) if @output_3_language
-          @item.output_4_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_4_language) if @output_4_language
-          @item.output_5_phrase = Translation.translate_word(@item.input_phrase, input_language: @input_language, output_language: @output_5_language) if @output_5_language
+
+          if @output_1_language
+            hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_1_language)
+            @item.output_1_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_1_language, return_string: true) 
+          end
+
+          if @output_2_language
+            hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_2_language)
+            @item.output_2_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_2_language, return_string: true) 
+          end
+
+          if @output_3_language
+            hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_3_language) 
+            @item.output_3_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_3_language, return_string: true) 
+          end
+
+          if @output_4_language
+            hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_4_language)
+            @item.output_4_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_4_language, return_string: true) 
+          end
+
+          if @output_5_language          
+            hsh = Translation.translate(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_5_language) 
+            @item.output_5_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_5_language, return_string: true) 
+          end
 
           @item.output_1_phrase ||= word_not_found[@item.output_1_language] 
           @item.output_2_phrase ||= word_not_found[@item.output_2_language] 
@@ -126,8 +150,12 @@ module User
           if @item.valid?
             @item.save
           else
-            set_notification(false, I18n.t('status.error'), @item.errors.full_messages.join("<br>"))
+            error_message = @item.errors.full_messages.first
+            set_notification(false, I18n.t('status.error'), error_message)
           end
+        else
+          error_message = @item.errors.full_messages.first
+          set_notification(false, I18n.t('status.error'), error_message)
         end
       end
     end
@@ -152,18 +180,21 @@ module User
         next if value[:input_phrase].to_s.strip.blank?
         item = @document.items.find_by_id(value[:item_id]) || @document.items.build()
         item.table_document = @document
+        
         item.input_phrase = value[:input_phrase]
         item.output_1_phrase = value[:output_1_phrase]
         item.output_2_phrase = value[:output_2_phrase]
         item.output_3_phrase = value[:output_3_phrase]
         item.output_4_phrase = value[:output_4_phrase]
         item.output_5_phrase = value[:output_5_phrase]
+        
         item.input_language = value[:input_language]
         item.output_1_language = value[:output_1_language]
         item.output_2_language = value[:output_2_language]
         item.output_3_language = value[:output_3_language]
         item.output_4_language = value[:output_4_language]
         item.output_5_language = value[:output_5_language]
+
         if item.input_phrase_changed?
           item.translated = false
         else
@@ -176,6 +207,8 @@ module User
         end
       end
 
+      @document.folder = default_folder if params['document'][:folder_id].blank?
+       
       if @document.valid?
         @document.save
 
@@ -288,26 +321,43 @@ module User
         @document.update_status(params[:status].upcase)
       end
     end
+   
+     def update_folder
+      get_document
+      
+      if@document
+        @document.update_column(:folder_id,params[:folder_id])
+        set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Folder"))
+        set_flash_message(I18n.translate("success.saved", item: "Folder"), :success)
+      end
+    end
     
     private
-
+    
+    def check_default_document_folder
+      @document_folder=DocumentFolder.where(user_id: current_client_user.id,title:'Default').first
+       
+      if @document_folder.blank?
+        @document_folder=DocumentFolder.new
+        @document_folder.title='Default'
+        @document_folder.user_id=@current_client_user.id
+        @document_folder.save
+      end
+    end
+    
     def get_collection
       @order_by = "created_at DESC" unless @order_by
       @relation = TableDocument.where("")
 
       apply_filters
 
-      @documents = @relation.order(@order_by).
-                      page(@current_page).per(@per_page)
+      @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
 
     def apply_filters
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
-
-      if params[:status] 
-        @relation = @relation.status(params[:status].upcase)  
-      end
+      @relation = @relation.status(params[:status].upcase)   if params[:status] 
 
       @relation = @relation.search_only_title(params[:filters].try(:[], :title))
       @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
@@ -323,8 +373,6 @@ module User
     def new_document
       @document = TableDocument.new()
       @document.assign_attributes(permitted_params) if params[:document]
-
-
       @document.input_language = params[:input_language]
       @document.output_1_language = params[:output_1_language]
       @document.output_2_language = params[:output_2_language]
@@ -334,10 +382,17 @@ module User
       @document.title ||= params[:title] if params[:title]
       @document.title ||= "New Table Document - #{Time.now.to_i}"
 
+      # Set Default Folder
+      @document.folder = default_folder
+
       # Set Defaut Languages
       set_languages
 
       @document
+    end
+
+    def default_folder
+      @current_client_user.default_folder || @current_client_user.create_default_folder
     end
 
     def set_languages
@@ -365,7 +420,8 @@ module User
         :output_2_language,
         :output_3_language,
         :output_4_language,
-        :output_5_language
+        :output_5_language,
+        :folder_id
       )
     end
 

@@ -10,7 +10,7 @@
         <div class="tab-pane active show" id="TRANSLATIONS_LIST">
 
           <!-- Controls -->
-          <%= render partial: 'user/documents/index/controls' %>
+          <%#= render partial: 'user/documents/index/controls' %>
           
           <!-- Table -->
           <%= render partial: 'user/documents/index/table' %>
@@ -25,6 +25,6 @@
 
 </div>
 
-<%#= content_for :javascript_footer do %>
-  <%#= render :partial=>"user/documents/index/table.js.erb"  %>
-<%# end %>
+<%= content_for :javascript_footer do %>
+  <%= render :partial=>"user/documents/index/update_folder.js.erb"  %>
+<% end %>

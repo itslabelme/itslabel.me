@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_065109) do
+ActiveRecord::Schema.define(version: 2020_06_07_175413) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -87,6 +87,17 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.index ["unlock_token"], name: "index_client_users_on_unlock_token", unique: true
   end
 
+  create_table "document_folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.bigint "parent_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_document_folders_on_ancestry"
+    t.index ["user_id"], name: "index_document_folders_on_user_id"
+  end
+
   create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "client_user_id"
     t.string "provider"
@@ -106,7 +117,36 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.bigint "admin_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", limit: 16, default: "ACTIVE", null: false
     t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
+  end
+
+  create_table "permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.string "route", limit: 256, null: false
+    t.string "description", limit: 256, null: false
+    t.string "permission_group", limit: 64
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscription_permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.bigint "permission_id"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["permission_id"], name: "index_subscription_permissions_on_permission_id"
+    t.index ["subscription_id"], name: "index_subscription_permissions_on_subscription_id"
+  end
+
+  create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.float "price", default: 0.0
+    t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.string "description", limit: 256
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "table_document_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -152,6 +192,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "folder_id"
     t.index ["user_id"], name: "index_table_documents_on_user_id"
   end
 
@@ -167,6 +208,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "folder_id"
     t.index ["template_id"], name: "index_template_documents_on_template_id"
     t.index ["user_id"], name: "index_template_documents_on_user_id"
   end
@@ -184,9 +226,22 @@ ActiveRecord::Schema.define(version: 2020_01_28_065109) do
     t.index ["admin_user_id"], name: "index_translations_on_admin_user_id"
   end
 
+  create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_user_subscriptions_on_subscription_id"
+    t.index ["user_id"], name: "index_user_subscriptions_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "client_users"
   add_foreign_key "label_templates", "admin_users"
+  add_foreign_key "subscription_permissions", "permissions", on_delete: :cascade
+  add_foreign_key "subscription_permissions", "subscriptions", on_delete: :cascade
   add_foreign_key "table_documents", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "template_documents", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "user_subscriptions", "client_users", column: "user_id", on_delete: :cascade
+  add_foreign_key "user_subscriptions", "subscriptions", on_delete: :cascade
 end

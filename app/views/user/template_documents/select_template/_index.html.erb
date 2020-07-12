@@ -1,4 +1,4 @@
-<% @templates = LabelTemplate.all %>
+<% @templates = LabelTemplate.where(status:'ACTIVE').all %>
 <div class="row clearfix">
   <% @templates.each do |template| %>
   <div class="col-lg-4 cool-md-3 col-sm-12">

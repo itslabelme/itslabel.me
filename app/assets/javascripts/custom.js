@@ -17,7 +17,9 @@ $(document).ready(function() {
         $('#mycheckboxdiv5').toggle();
     });
 });
+
  
+
   
   /*$(document).on("change", "#country_id", function(){
   var country = $(this).val();

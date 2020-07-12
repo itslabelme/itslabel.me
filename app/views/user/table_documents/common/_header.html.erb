@@ -1,15 +1,13 @@
 <div class="block-header">
   <div class="row clearfix">
-    <div class="col-md-6 col-sm-12">
-      <h1><%= @document.title %></h1>
-      <p class="pt-2">Table Mode</p>
-    </div>
-    <div class="col-md-6 col-sm-12">
-      <nav aria-label="breadcrumb" style="float:right">
+    <div class="col-md-12 col-sm-12">
+      <!-- <h1><%#= @document.title %></h1> -->
+      <h1>Table Mode - Translation</h1>
+      <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><%= link_to "Home", user_home_path %></li>
-          <li class="breadcrumb-item"><%= link_to "Translations", user_documents_path %></li>
-          <li class="breadcrumb-item active"><%= @document.title %></li>
+        <li class="breadcrumb-item"><%= link_to "Home", user_home_path %></li>
+        <li class="breadcrumb-item"><%= link_to "Table Mode - Translation", "#" %></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= @document.title %></li>
         </ol>
       </nav>
     </div>

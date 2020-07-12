@@ -115,6 +115,7 @@ module Admin
        :rtl_html_source,
        :picture,
        :latest,
+       :status,
        :admin_user)
     end
 

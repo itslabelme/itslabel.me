@@ -3,7 +3,8 @@ module User
 
     before_action :authenticate_client_user!
     before_action :get_document, except: [:new, :create, :index, :select_template]
-
+    before_action :access_denied, only: [:index, :new]
+    
     def index
       @page_title = "Documents (Template Mode)"
       @nav = 'user/template_documents'
@@ -43,7 +44,7 @@ module User
     def save_and_translate
       @page_title = "Create new Translation Document from Template"
       @nav = 'user/template_documents'
-
+      
       get_document if params[:id]
 
       # Redirect to show Page - only if you are on new page
@@ -54,6 +55,7 @@ module User
       new_document unless @document
 
       @document.assign_attributes(permitted_params)
+      @document.folder = default_folder if params['document'][:folder_id].blank?
       @document.user = @current_client_user
 
       set_languages
@@ -83,11 +85,18 @@ module User
 
     def update_status
       get_document
-      if @document
-        @document.update_status(params[:status].upcase)
+      @document.update_status(params[:status].upcase) if @document
+    end
+
+    def update_folder
+      get_document
+      if@document
+        @document.update_column(:folder_id,params[:folder_id])
+        set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Folder"))
+        set_flash_message(I18n.translate("success.saved", item: "Folder"), :success)
       end
     end
-    
+
     private
 
     def get_collection
@@ -96,10 +105,9 @@ module User
 
       apply_filters
 
-      @documents = @relation.order(@order_by).
-                      page(@current_page).per(@per_page)
+      @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
-
+    
     def apply_filters
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
@@ -119,18 +127,25 @@ module User
       @template ||= @document.template
       set_languages
     end
-
+    
     def new_document
-      @document = TemplateDocument.new(input_language: "ENGLISH", output_language: "ARABIC", output_language: "ARABIC")
+      @document = TemplateDocument.new(input_language: "ENGLISH", output_language: "ARABIC")
       
       # Set Default Title
       @document.title = "New Template Document - #{Time.now.to_i}" unless @document.title
 
+      # Set Default Folder
       @document.template = @template
+
+      # Set Default Folder
+      @document.folder = default_folder
+
+      # Get all Document Folders
+      @document_folders = @current_client_user.document_folders
 
       # Set Template
       if @template
-        logo_url = ActionController::Base.helpers.asset_path("defaults/distributor-logo.jpg")
+        logo_url = ActionController::Base.helpers.asset_path("distributor-logo.jpg")
         @document.template = @template
         if @document.try(:input_language).to_s.upcase == "ARABIC" 
           formatted_source_html = @template.rtl_html_source.gsub("{LOGO_URL}", logo_url)
@@ -146,6 +161,10 @@ module User
       set_languages
 
       @document
+    end
+
+    def default_folder
+      @current_client_user.document_folders.where(title: "Default").first || @current_client_user.create_default_folder
     end
 
     def set_languages
@@ -169,6 +188,7 @@ module User
         :input_language,
         :output_language,
         :input_html_source,
+        :folder_id
       )
     end
 

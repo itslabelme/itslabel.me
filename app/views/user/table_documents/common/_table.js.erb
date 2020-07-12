@@ -11,11 +11,11 @@ $(document).ready(function() {
       "document_id": "<%= item.table_document_id -%>",
       "input_phrase": "<%= raw(item.input_phrase) -%>",
       
-      "output_1_phrase": "<%= raw(item.output_1_phrase) -%>",
-      "output_2_phrase": "<%= raw(item.output_2_phrase) -%>",
-      "output_3_phrase": "<%= raw(item.output_3_phrase) -%>",
-      "output_4_phrase": "<%= raw(item.output_4_phrase) -%>",
-      "output_5_phrase": "<%= raw(item.output_5_phrase) -%>",
+      "output_1_phrase": "<%= escape_javascript(raw(item.output_1_phrase)) -%>",
+      "output_2_phrase": "<%= escape_javascript(raw(item.output_2_phrase)) -%>",
+      "output_3_phrase": "<%= escape_javascript(raw(item.output_3_phrase)) -%>",
+      "output_4_phrase": "<%= escape_javascript(raw(item.output_4_phrase)) -%>",
+      "output_5_phrase": "<%= escape_javascript(raw(item.output_5_phrase)) -%>",
 
       "input_language": "<%= item.input_language -%>",
 
@@ -53,26 +53,26 @@ $(document).ready(function() {
       height: 500,
       columns: [
 
-        {type: 'text', width: 150, renderer: 'html', readOnly: false, data:'input_phrase', className: "<%= @document.output_1_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        {width: 150, renderer: 'text', readOnly: false, data:'input_phrase', className: "<%= @document.output_1_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
 
         <% if @document.input_language != @document.output_1_language && !@document.output_1_language.blank? %>
-        {type: 'text', width: 150, renderer: 'html', readOnly: true, data:'output_1_phrase', className: "<%= @document.output_1_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        {width: 150, renderer: 'html', readOnly: true, data:'output_1_phrase', className: "<%= @document.output_1_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
         <% end %>
 
         <% if @document.input_language != @document.output_2_language && !@document.output_2_language.blank? %>
-        {type: 'text', width: 180, renderer: 'html', readOnly: true, data:'output_2_phrase', className: "<%= @document.output_2_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        {width: 180, renderer: 'html', readOnly: true, data:'output_2_phrase', className: "<%= @document.output_2_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
         <% end %>
 
         <% if @document.input_language != @document.output_3_language && !@document.output_3_language.blank? %>
-        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'output_3_phrase', className: "<%= @document.output_3_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        {width: 200, renderer: 'html', readOnly: true, data:'output_3_phrase', className: "<%= @document.output_3_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
         <% end %>
 
         <% if @document.input_language != @document.output_4_language && !@document.output_4_language.blank? %>
-        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'output_4_phrase', className: "<%= @document.output_4_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        {width: 200, renderer: 'html', readOnly: true, data:'output_4_phrase', className: "<%= @document.output_4_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
         <% end %>
 
         <% if @document.input_language != @document.output_5_language && !@document.output_5_language.blank? %>
-        {type: 'text', width: 200, renderer: 'html', readOnly: true, data:'output_5_phrase', className: "<%= @document.output_5_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
+        {width: 200, renderer: 'html', readOnly: true, data:'output_5_phrase', className: "<%= @document.output_5_language == 'ARABIC' ? 'htRight dirRtl' : 'htLeft' %> htMiddle"},
         <% end %>
         
       ],
@@ -338,12 +338,14 @@ $(document).on('change', '#OUTPUT_5_LANGUAGE', function (e) {
 
 function saveEverything() {
   let documentTitle = $("#INPUT_TITLE").val();
+  let folder_id = $("#FOLDER_ID").val();
   ajaxData = {
     items: translationHOT.data,
     id: "<%= @document.id %>",
     document: {
       id: "<%= @document.id %>",
       title: documentTitle,
+      folder_id:folder_id,
       input_language: "<%= @document.input_language %>",
       output_1_language: "<%= @document.output_1_language %>",
       output_2_language: "<%= @document.output_2_language %>",
@@ -358,3 +360,24 @@ function saveEverything() {
     data: ajaxData,
   });
 }
+
+
+function requestForTranslation(phrase, outputLanguage) {
+  let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
+  let ajaxData = {phrase: phrase, input_language: inputLanguage, output_language: outputLanguage };
+  $.ajax({
+    url: '/user/translation_request.js',
+    type: 'GET',
+    data: ajaxData
+  });
+}
+
+// OnClick for trans-not-found span elements coming inside output translation contenteditable div
+$(document).off('click', ".its-tran-not-found");
+$(document).on('click', '.its-tran-not-found', function (e) {
+  let clickedPhrase = $(this).text();
+  // console.log("clickedPhrase: ", clickedPhrase);
+  let outputLanguage = $(this).data('output-language')
+  // console.log("outputLanguage: ", outputLanguage);
+  requestForTranslation(clickedPhrase, outputLanguage);
+});
