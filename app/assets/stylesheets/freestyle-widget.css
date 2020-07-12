@@ -63,8 +63,7 @@
   list-style: none;
   float: left;
   font-size: 20px;
-  margin-left: 15px;
-
+  margin-left: 10px;
 }
 
 .its-free-action-trans-btn{
@@ -466,5 +465,7 @@
 .its-template-list li a svg{
   position: relative;
   top: -2px;
-  left: -10px;
+  left: 0px;
 }
+
+
