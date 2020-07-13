@@ -40,22 +40,36 @@
           <!-- Widget Control Elements -->
           <%= render partial: "user/free_form_widget/index/nav_control" %>
 
-          <div class="free-style-wrapper free-style-wrapper-left" style="margin-top: 0px;border: 1px solid #e5e5e5;border-radius: 10px;border-top-left-radius: 0px;border-top-right-radius: 0px;">
+          <div class="free-style-wrapper free-style-wrapper-left" >
             <div class="row" style="margin: 0px;">
               <div class="col-md-6 its-freestyle-container">
                 <div class="its-template-translate">
-                  <div id="INPUT_AREA" class="column1 column3 column4" contenteditable="true" style="<%= input_widget_align_style %> " placeholder="<%= input_enter_text %>">
+                  <div id="INPUT_AREA" class="column1 column3 column4" contenteditable="true"  placeholder="<%= input_enter_text %>">
                   </div>
                 </div>
               </div>
               <div class="col-md-6 its-freestyle-container2" style="padding:0px">
                 <div class="its-template-preview">
-                  <div id="OUTPUT_AREA" class="column2 column3" contenteditable="false"  style="<%= output_widget_align_style %> placeholder="<%= output_enter_text %>"">
+                  <div id="OUTPUT_AREA" class="column2 column3" contenteditable="false"  placeholder="<%= output_enter_text %>">
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="col-md-3 its-freestyle-container its-freestyle-container3 hide-desk">
+            <div class="its-template-list its-template-secondary">
+              <div class="row">
+                <div class="col-md-12 mb-3 its-free-action its-free-action-trans-btn">
+                  <ul>
+                    <li> <a title="Translate" id="translate" href="#"><%= image_tag "icons/its-icon_3.svg"%><span>TRANSLATE</span></a> </li>
+                    <li> <a title="Export" id="export" href="#" title="Translate"><%= image_tag "icons/export.svg"%><span> Export</span> </a> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- END FREE STYLE WIDGET -->
         </div>
       </div>
