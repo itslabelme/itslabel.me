@@ -2,7 +2,7 @@
 <% if children.any? %>
 <ul>
   <% children.each do |child| %>
-  <li id="<%= child.id %>" ondrop="drop(event,'<%= child.id %>')" ondragover="allowDrop(event)">
+  <li id="<%= child.id %>" ondrop="drop(event,'<%= child.id %>')" ondragover="allowDrop(event); event.preventDefault();">
     <!-- <i class="fa fa-folder-o"></i> -->
     <% if child.children? %>
       <span class="fa fa-plus"></span>
