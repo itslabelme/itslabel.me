@@ -1,28 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Install wkhtmltopdf on server
 
-* Ruby version
+wkhtmltopdf is used for generating pdfs.
+We have the export to PDF functionality on Free Text Translation Widget and Template Translation Widget.
 
-* System dependencies
+$ sudo apt install wkhtmltopdf
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-* Added by kpvarma
-
-* Added by V A Nirankar
