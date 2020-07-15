@@ -45,6 +45,11 @@
     font-weight: bold;
 }
 
+.tree li a:hover{
+     font-weight: bold;
+   
+}
+
 .tree li i{
     padding-right: 10px;
 }
@@ -210,4 +215,8 @@
 
 .tree-folder-icon a:hover{
     box-shadow: none;
+}
+
+.tree li.active{
+    font-weight: bold;
 }
