@@ -13,247 +13,257 @@
 
 <%= form_with(url: form_url,  
       class: "form-floating", 
+      id: "sub_plan_form",
       model: @user_subscription,
       method: form_method, 
       html: { autocomplete: "off" }) do |f| %>
 
-  <%= hidden_field_tag "called_from", params[:called_from] %>
+    <%= hidden_field_tag "called_from", params[:called_from] %>
     <div class="body">
-            <%= f.hidden_field :user_id, :value => @current_client_user.id %>
-                <div class="comparison">
+      <%= f.hidden_field :user_id, :value => @current_client_user.id %>
+        <div class="comparison">
+            <table>
+
+              <thead>
 
 
-
-                        <table>
-                          <thead>
-                            <tr>
-                              <th class="tl"></th>
-                              <th class="compare-heading sub-current-plan">
-                                Free Version
-                              </th>
-                              <th class="compare-heading">
-                                Biz Lite
-                              </th>
-                              <th class="compare-heading">
-                                Biz Pro
-                              </th>
-                              <th class="compare-heading">
-                                Enterprise
-                              </th>
-                            </tr>
-                            <tr>
-                              <th></th>
-                              <th class="price-info sub-current-plan">
-                                <div class="price-now"><span>Free</span></div>
-                                <div><a href="#" class="price-buy">Current Plan</a></div>
-                              </th>
-                              <th class="price-info">
-                                <div class="price-now"><span>$39.99</span></div>
-                                <div><a href="#" class="price-buy">Upgrade</a></div>
-                              </th>
-                              <th class="price-info">
-                                <div class="price-now"><span>$49.99</span></div>
-                                <div><a href="#" class="price-buy">Upgrade</a></div>
-                              </th>
-                              <th class="price-info">
-                                <div class="price-now"><span>TBC*</span></div>
-                                <div><a href="#" class="price-buy">Upgrade</a></div>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td></td>
-                              <td colspan="4">Monthly Subscription</td>
-                            </tr>
-                            <tr class="compare-row">
-                              <td>Monthly Subscription</td>
-                              <td><span class="tickblue">Free</span></td>
-                              <td><span class="tickblue">$ 39.99</span></td>
-                              <td><span class="tickblue">$ 49.99</span></td> 
-                              <td><span class="tickblue">NA</td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Customer Registration</td>
-                            </tr>
-                            <tr>
-                              <td>Customer Registration</td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Free Translation Access</td>
-                            </tr>
-                            <tr class="compare-row">
-                              <td>Free Translation Access</td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Languages</td>
-                            </tr>
-                            <tr>
-                              <td>Languages</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Output to PDF</td>
-                            </tr>
-                            <tr class="compare-row">
-                              <td>Output to PDF</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Online Archiving & Storage*</td>
-                            </tr>
-                            <tr>
-                              <td>Online Archiving & Storage*</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Label Output Sizing</td>
-                            </tr>
-                            <tr class="compare-row">
-                              <td>Label Output Sizing</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Basic Template Features</td>
-                            </tr>
-                            <tr>
-                              <td>Basic Template Features</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Advanced Template Features</td>
-                            </tr>
-                            <tr class="compare-row">
-                              <td>Advanced Template Features</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Nutrition Panel Template</td>
-                            </tr>
-                            <tr>
-                              <td>Nutrition Panel Template</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Customer Response 24hrs</td>
-                            </tr>
-                            <tr class="compare-row">
-                              <td>Customer Response 24hrs</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue">1 Language</span></td>
-                              <td><span class="tickblue"></span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Customer Response 12hrs</td>
-                            </tr>
-                            <tr>
-                              <td>Customer Response 12hrs</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue">2 Languages</span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">Option to Customise Interface</td>
-                            </tr>
-                            <tr class="compare-row">
-                              <td>Option to Customise Interface</td>
-                              <td><span class="tickblue">-</span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td>
-                              <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">24 hr Customer Support</td>
-                            </tr>
-                            <tr>
-                              <td>24 hr Customer Support</td>
-                              <td class="tickblue">-</td>
-                              <td class="tickblue">-</td>
-                              <td class="tickblue"><i class="fa fa-check"></i></td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td colspan="4">Dedicated Server</td>
-                              </tr>
-                              <tr class="compare-row">
-                                <td>Dedicated Server</td>
-                                <td class="tickblue">-</td>
-                                <td class="tickblue">-</td>
-                                <td class="tickblue">-</td>
-                                <td><span class="tickblue">-</span></td>
-                              </tr>
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td colspan="4">User Licenses Per Account (simultaneous log-ins)</td>
-                            </tr>
-                            <tr>
-                              <td>User Licenses Per Account (simultaneous log-ins)</td>
-                              <td class="tickblue">1</td>
-                              <td class="tickblue">3</td>
-                              <td class="tickblue">5</td>
-                              <td><span class="tickblue">-</span></td>
-                            </tr>
-                        </tbody>
-                        </table>
-                        <div class="row mt-4">
-                          <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: left;">
-                            <span><i class="fa fa-check"></i>* : Limited scope</span>
-                          </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12 mt-2" style="text-align: left;">
-                            <span>TBC* : Please contact us on (contact email) to find our how we can customise and integrate ITS Label into you organisation's workflow. </span>
-                          </div>
+                <tr>
+                  <th class="tl"></th>
+                  <% @subscriptions.each_with_index do |subscription, i| %>
+                    <th class="compare-heading <%= (@user_subscription.subscription_id == subscription.id )? 'sub-current-plan' : '' %> ">
+                      <%= subscription.title.titleize %>
+                    </th>
+                  <% end %>
+                </tr>
+                <tr>
+                  <th></th>
+                    <% @subscriptions.each_with_index do |subscription, i| %>
+                      <th class="price-info <%= (@user_subscription.subscription_id == subscription.id)? 'sub-current-plan' : '' %> ">
+                        <div class="price-now">
+                          <span>
+                          <%= (subscription.title.to_s == 'Free')? "Free" : "$#{subscription.price}" %>
+                            
+                          </span>
                         </div>
-
-                </div> 
+                        <div>
+                          <a href="#" onclick="updatePlan(<%= subscription.id %>)" class="price-buy">
+                            <%= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
+                          </a></div>
+                      </th>
+                    <% end %>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td colspan="4">Monthly Subscription</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Monthly Subscription</td>
+                  <td><span class="tickblue">Free</span></td>
+                  <td><span class="tickblue">$ 39.99</span></td>
+                  <td><span class="tickblue">$ 49.99</span></td> 
+                  <td><span class="tickblue">NA</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Customer Registration</td>
+                </tr>
+                <tr>
+                  <td>Customer Registration</td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Free Translation Access</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Free Translation Access</td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Languages</td>
+                </tr>
+                <tr>
+                  <td>Languages</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Output to PDF</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Output to PDF</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Online Archiving & Storage*</td>
+                </tr>
+                <tr>
+                  <td>Online Archiving & Storage*</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Label Output Sizing</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Label Output Sizing</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Basic Template Features</td>
+                </tr>
+                <tr>
+                  <td>Basic Template Features</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Advanced Template Features</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Advanced Template Features</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Nutrition Panel Template</td>
+                </tr>
+                <tr>
+                  <td>Nutrition Panel Template</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Customer Response 24hrs</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Customer Response 24hrs</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">1 Language</span></td>
+                  <td><span class="tickblue"></span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Customer Response 12hrs</td>
+                </tr>
+                <tr>
+                  <td>Customer Response 12hrs</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">2 Languages</span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">Option to Customise Interface</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Option to Customise Interface</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">24 hr Customer Support</td>
+                </tr>
+                <tr>
+                  <td>24 hr Customer Support</td>
+                  <td class="tickblue">-</td>
+                  <td class="tickblue">-</td>
+                  <td class="tickblue"><i class="fa fa-check"></i></td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="4">Dedicated Server</td>
+                  </tr>
+                  <tr class="compare-row">
+                    <td>Dedicated Server</td>
+                    <td class="tickblue">-</td>
+                    <td class="tickblue">-</td>
+                    <td class="tickblue">-</td>
+                    <td><span class="tickblue">-</span></td>
+                  </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="4">User Licenses Per Account (simultaneous log-ins)</td>
+                </tr>
+                <tr>
+                  <td>User Licenses Per Account (simultaneous log-ins)</td>
+                  <td class="tickblue">1</td>
+                  <td class="tickblue">3</td>
+                  <td class="tickblue">5</td>
+                  <td><span class="tickblue">-</span></td>
+                </tr>
+            </tbody>
+            </table>
+            <div class="row mt-4">
+              <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: left;">
+                <span><i class="fa fa-check"></i>* : Limited scope</span>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 mt-2" style="text-align: left;">
+                <span>TBC* : Please contact us on (contact email) to find our how we can customise and integrate ITS Label into you organisation's workflow. </span>
+              </div>
+            </div>
+        </div> 
     </div>
   
 
 <% end %>
 
 
+<script type="text/javascript">
+  
+    function updatePlan(sub_id) {
+      var user_id = <%= @current_client_user.id %>
 
+       $.ajax({
+       url: "/user/user_subscriptions.js",
+       type: "PUT",
+         headers: {
+          'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+        },
+       data: {"user_id" : user_id, "subscription_id": sub_id},
+       // dataType: "json",
+       success: function(data) {
+         }
+       });
+
+
+  }
+</script>

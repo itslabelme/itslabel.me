@@ -8,5 +8,8 @@ class UserSubscription < ApplicationRecord
 
   # Validations
   validates :subscription_id, presence: true,  allow_blank: false
-  
+
+  # belongs_to :client_user
+  # belongs_to :subscription
+
 end

@@ -23,7 +23,8 @@ module Itslabel::Status::DocumentStatus
     end
 
     def can_active?
-      !active?
+      # !active?
+      self.removed? || self.archived?
     end
 
     def active!
