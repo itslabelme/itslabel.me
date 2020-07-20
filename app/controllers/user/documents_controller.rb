@@ -3,6 +3,7 @@ module User
 
     before_action :authenticate_client_user!
     before_action :access_denied, only: [:index, :new]
+    
     def index
       @page_title = "Your Documents"
       @nav = 'user/documents'

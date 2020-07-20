@@ -5,11 +5,10 @@ module User
     skip_before_action :verify_authenticity_token
     before_action :get_languages
     before_action :access_denied
-    def index
 
+    def index
       @page_title = "Home | User"
       @nav = 'user/home'
-      
     end
 
     private
