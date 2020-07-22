@@ -24,6 +24,11 @@
     <% if @document_folders && @document_folders.any? %>
       <ul id="tree2" class="mt-4">
 
+        <li id="folder_all">
+          <i class="fa fa-folder-o"></i>
+          <a href="/user/documents">All</a> 
+        </li>
+
         <%
           defauld_id = @document_folders.where(title: "Default").first.id if !@document_folders.where(title: "Default").blank?
         %>
@@ -37,6 +42,7 @@
            <% if (folder.title!='Default') %>
               <li id="<%= folder.id %>" ondrop="drop(event,'<%= folder.id %>')" ondragover="allowDrop(event); event.preventDefault();">
                 <% children = folder.children %>
+                <% count = 1 || folder.documents.count %>
 
                 <% if !children.any? %>
                   <i class="fa fa-folder-o"></i>
@@ -44,7 +50,8 @@
                   <span class="fa fa-plus"></span>
                 <% end %>
 
-                <a href="/user/documents?folder_id=<%=folder.id%>"><%= folder.title %></a> 
+                <!-- <a href="/user/documents?folder_id=<%=folder.id%>" data-remote='true'><%= folder.title %><%= count > 0 ? " (#{count})" : '' %></a>  -->
+                <a href="/user/documents?folder_id=<%=folder.id%>" data-remote='true'><%= folder.title %></a> 
 
                 <% if !children.any? %>
                   <span class="fa-times tree-close-right" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
