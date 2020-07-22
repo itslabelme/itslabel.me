@@ -1,5 +1,7 @@
 function move_folder(id) {
 
+// alert("move_folder")
+
   var doc = $('input[name="doc_name[]"]:checked').map(function () {
     return this.value;
   }).get();
@@ -21,10 +23,12 @@ function move_folder(id) {
 }
 
 function drag(ev, ur) {
+  // alert("drag")
   ev.dataTransfer.setData("folder", ur);
 }
 
 function drop(ev, fold) {
+  // alert("drop")
   ev.preventDefault();
   var data = ev.dataTransfer.getData("folder");
   data_send = {folder_id: fold}
@@ -36,13 +40,13 @@ function drop(ev, fold) {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
     },
     success: function (data) {
-      location.reload();
+      // location.reload();
     }
   });
 }
 
 function allowDrop(ev) {
-  ev.preventDefault();
+  // ev.preventDefault();
 }
 
 $(function () {
@@ -60,13 +64,13 @@ $(function () {
       url: "/user/document_folder/",
       type: "POST",
       data: data,
-      dataType: "json",
+      // dataType: "json",
       headers: {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       },
       success: function (data) {
-        $('#FOLDER_MODAL').modal('hide');
-        location.reload();
+        // $('#FOLDER_MODAL').modal('hide');
+        // location.reload();
         // parent.$('#tree2').append('<li id="' + data.id + '"  ondrop=\"drop(event,\'' + data.id + '\')\" ondragover=\"allowDrop(event); event.preventDefault();\"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=' + data.id + '">' + data.title + '</a></li>');
         // parent.$('#folder_drop').append('<a class=\"dropdown-item\" data-id="' + data.id + '" onClick=\"move_folder(' + data.id + ')" href="#" data-remote="true">' + data.title + '</a>');
       }

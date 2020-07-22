@@ -12,7 +12,9 @@ display_actions = true if display_actions.nil?
             <a href="javascript:void(0);" class="btn btn-primary toggle-email-nav"><i class="fa fa-bars"></i></a>
         </div>
 
-        <%= render partial: "user/documents/index/folders" %>
+        <div id="doc_folder">
+          <%= render partial: "user/documents/index/folders" %>
+        </div>
 
         <div class="body mail-right check-all-parent">
           <div class="mail-action clearfix m-l-15">

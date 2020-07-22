@@ -327,6 +327,7 @@ module User
       
       if@document
         @document.update_column(:folder_id,params[:folder_id])
+
         set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Folder"))
         set_flash_message(I18n.translate("success.saved", item: "Folder"), :success)
       end
@@ -350,7 +351,7 @@ module User
       @relation = TableDocument.where("")
 
       apply_filters
-
+      @per_page = 100
       @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
 
