@@ -42,8 +42,10 @@ module User
     end
     
     def update
-      @user_subscription.assign_attributes(user_subscription_params)
+      # @user_subscription.assign_attributes(user_subscription_params)
+      assign_user_subscription_params
      
+      # binding.pry
       if @user_subscription.valid?
         @user_subscription.save
         set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
@@ -68,6 +70,12 @@ module User
     def get_user_subscription
       @user_subscription = UserSubscription.find_by(user_id:current_client_user)
     end
+
+    def assign_user_subscription_params
+      @user_subscription.user_id = params['user_id'].to_i
+      @user_subscription.subscription_id = params['subscription_id'].to_i
+    end
+
     def new_user_subscription
       @user_subscription = UserSubscription.new
     end

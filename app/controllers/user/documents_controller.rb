@@ -3,6 +3,7 @@ module User
 
     before_action :authenticate_client_user!
     before_action :access_denied, only: [:index, :new]
+    
     def index
       @page_title = "Your Documents"
       @nav = 'user/documents'
@@ -11,7 +12,10 @@ module User
     end
 
     def update_status
+      # binding.pry
+      get_document
       if @document
+        # FIXME: sanoop - update status of document view
         @document.update_status(params[:status].upcase)
       end
     end
@@ -52,8 +56,8 @@ module User
     end
 
     def get_document
-      @document = Document::Base.find_by_id(params[:id])
-      @document_class = @document.type.constantize
+      @document = DocumentView.where(id: params[:id], doc_type: params[:dt]).first
+      # @document_class = @document.doc_type.camelize.constantize
     end
 
     def apply_filters

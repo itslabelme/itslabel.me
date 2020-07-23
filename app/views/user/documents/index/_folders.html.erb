@@ -19,10 +19,6 @@
       <%= link_to user_documents_path(recent: true), title: "Recent", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm"  do %>
         <i class="fa fa-folder-o"></i>
       <% end %>
-
-      <!-- <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="icon-trash"></i></a> -->
-      <!-- <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Archive"><i class="fa fa-archive"></i></a> -->
-      <!-- <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Recent"><i class="fa fa-folder-o"></i></a>  -->
     </div>
 
     <% if @document_folders && @document_folders.any? %>
