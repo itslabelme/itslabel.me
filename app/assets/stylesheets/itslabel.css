@@ -935,3 +935,21 @@ fieldset{
 .its-free-action-trans-btn li a{
   text-transform: uppercase;
 }
+
+
+.its-home-secondary-box .rounded-circle{
+  background: none !important;
+  border: none !important;
+  justify-content: left !important;
+  width: 45px;
+  height: 45px;
+}
+
+.its-home-secondary-box.its-upload-container h3{
+  margin-bottom: 0px;
+}
+
+.its-home-secondary-box .rounded-circle svg{
+  width: 30px !important;
+  height: 30px !important;
+}
