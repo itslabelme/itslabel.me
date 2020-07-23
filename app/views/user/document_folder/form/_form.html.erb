@@ -17,12 +17,20 @@
 
   <%= hidden_field_tag :t, params[:t] %>
 
-  <div class="modal-header">
+<!--   <div class="modal-header">
     <h4 class="modal-title text-center left" id="addContact">Add Folder</h4>
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ><span>×</span></button>
-  </div>
+  </div> -->
 
+<div class="modal-header" style="padding: 0px;position: absolute;right: 0px;border: none;top: -24px;right: -20px;color: #fff">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1">
+  <span aria-hidden="true"><i class="icon-close" style="color: #fff"></i></span>
+  </button>
+</div>
 
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalCenterTitle">Add Folder</h5>
+</div>
 <!-- Display Errors if Any -->
 <%#= felix_compact_form_errors(@client_user) if@folder.errors.any? %>
 
