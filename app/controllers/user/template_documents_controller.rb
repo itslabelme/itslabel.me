@@ -104,7 +104,7 @@ module User
       @relation = TemplateDocument.where("")
 
       apply_filters
-
+      @per_page = 100
       @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
     

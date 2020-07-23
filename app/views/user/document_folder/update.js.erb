@@ -1,0 +1,11 @@
+
+
+$('#DIV_MODAL_SMALL').modal('hide');
+
+$("#doc_folder").html("<%= escape_javascript(render(:partial=>'user/documents/index/folders.html.erb')) %>");
+
+$('#tree2').treed({openedClass:'fa-folder-open-o', closedClass:'fa-folder-o'});
+
+// $("#2").closest('li').click();
+// ("#2, #19, #20").closest('li').click();
+

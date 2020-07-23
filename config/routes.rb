@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       # Update the status of the document
       member do
         put :update_status
+        put :drag_drop
       end
     end
 
