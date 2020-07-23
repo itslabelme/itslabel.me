@@ -7,7 +7,6 @@ module User
     def index
       @page_title = "Your Documents"
       @nav = 'user/documents'
-      # binding.pry
       get_user_folder
       get_collection
     end
@@ -56,7 +55,6 @@ module User
     end
 
     def drag_drop
-      # binding.pry
       get_document
       get_user_folder
       get_collection

@@ -23,10 +23,6 @@ display_actions = true if display_actions.nil?
   <tbody  oncontextmenu ="event.preventDefault();$('#context-menu').show();$('#context-menu').offset({'top':mouseY,'left':mouseX})">
       <% @documents.each_with_index do |document, i| %>
         <% 
-        # binding.pry
-        # raise
-
-        
 
         doc_folder = drag_drop_user_document_path(document, dt: document.doc_type)
 

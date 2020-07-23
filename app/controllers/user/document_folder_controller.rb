@@ -16,8 +16,6 @@ module User
       new_folder
       @folder.assign_attributes(permitted_params)
 
-      # binding.pry
-
       if @folder.valid?
         @folder.save
         set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Tests"))
