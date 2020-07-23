@@ -7,17 +7,25 @@ module User
     def index
       @page_title = "Your Documents"
       @nav = 'user/documents'
+      # binding.pry
       get_user_folder
       get_collection
     end
 
+    def new
+      @page_title = "New Client User | Admin"
+      @nav = "admin/client_user"
+
+      new_client_user
+    end
+
     def update_status
       get_document
+      get_user_folder
+      get_collection
+      
       if @document
         
-          # FIXME: sanoop - update status of document view
-          # @document.update_status(params[:status].upcase)
-
         if @document.doc_type == 'table_document'
           @act_doc = TableDocument.where(user_id: @current_client_user.id, id: params[:id]).first
         elsif @document.doc_type == 'template_document'
@@ -45,6 +53,20 @@ module User
           @destroyed = false
         end
       end
+    end
+
+    def drag_drop
+      # binding.pry
+      get_document
+      get_user_folder
+      get_collection
+      if @document.doc_type == 'table_document'
+        @act_doc = TableDocument.where(user_id: @current_client_user.id, id: params[:id]).first
+      elsif @document.doc_type == 'template_document'
+        @act_doc = TemplateDocument.where(user_id: @current_client_user.id, id: params[:id]).first
+      end
+        @act_doc.update_column(:folder_id,params[:folder_id])
+
     end
 
     private

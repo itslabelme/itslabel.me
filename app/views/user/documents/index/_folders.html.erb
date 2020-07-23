@@ -2,22 +2,23 @@
   @document_folders = @current_client_user.document_folders.roots
 %>
 
-<div class="body mail-left">
+
   <div class="mail-side">
 
     <div class="mb-3 tree-folder-icon">
-      <a href="#FOLDER_MODAL" class="btn btn-light btn-sm" data-toggle="modal" data-target="#FOLDER_MODAL" title="Add New Folder"><i class="fa fa-plus"></i> </a>
+      <!-- <a href="#FOLDER_MODAL" class="btn btn-light btn-sm" data-toggle="modal" data-target="#FOLDER_MODAL" title="Add New Folder"><i class="fa fa-plus"></i> </a> -->
 
-      <%= link_to user_documents_path(status: 'REMOVED'), title: "Delete", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm"  do %>
-        <i class="fa fa-trash"></i>
+      <%= link_to new_user_document_folder_path, title: "Create New Document Folder", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm", remote: true  do %>
+        <i class="fa fa-plus"></i>
+      <% end %>      
+      <%= link_to user_documents_path(recent: true), title: "View Recent Documents", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm", remote: true  do %>
+        <i class="fa fa-folder-o"></i>
       <% end %>
-
-      <%= link_to user_documents_path(status: 'ARCHIVED'), title: "Archive", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm"  do %>
+      <%= link_to user_documents_path(status: 'ARCHIVED'), title: "View Archived Documents", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm", remote: true  do %>
         <i class="fa fa-archive"></i> 
       <% end %>
-
-      <%= link_to user_documents_path(recent: true), title: "Recent", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm"  do %>
-        <i class="fa fa-folder-o"></i>
+      <%= link_to user_documents_path(status: 'REMOVED'), title: "View Trash", 'data-toggle' => 'tooltip', 'data-placement' => 'top', class: "btn btn-light btn-sm", remote: true  do %>
+        <i class="fa fa-trash"></i>
       <% end %>
     </div>
 
@@ -26,7 +27,7 @@
 
         <li id="folder_all">
           <i class="fa fa-folder-o"></i>
-          <a href="/user/documents">All</a> 
+          <a href="/user/documents" data-remote='true'>All</a> 
         </li>
 
         <%
@@ -34,7 +35,7 @@
         %>
         <li id="<%= defauld_id %>" ondrop="drop(event,'<%= defauld_id %>')" ondragover="allowDrop(event); event.preventDefault();">
             <i class="fa fa-folder-o"></i>
-          <a href="/user/documents?folder_id=<%= defauld_id %>">Default</a> 
+          <a href="/user/documents?folder_id=<%= defauld_id %>" data-remote='true'>Default</a> 
         </li>
 
         <% @document_folders.each do |folder| %>
@@ -57,6 +58,9 @@
                   <span class="fa-times tree-close-right" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
                   <!-- <span class="fa-plus tree-plus-right" data-toggle="modal" data-target="#FOLDER_MODAL" ></span> -->
                 <% end %>
+                <%#= link_to edit_user_document_folder_path(folder), class: "btn btn-light btn-sm", remote: true  do %>
+<!--                   <i class="fa fa-pencil tree-plus-right" title="Edit New Document Folder" data-toggle= 'tooltip', data-placement='top'></i> -->
+                <%# end %> 
                 
                 <%= render partial: "user/documents/index/nested_folders", locals: {parent: folder, children: children} %>
               </li>
@@ -66,4 +70,3 @@
       </ul>
     <% end %>
   </div>
-</div>

@@ -4,159 +4,122 @@
 display_actions = true if display_actions.nil?
 %>
 
-<div class="row clearfix">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="mail-inbox">
-        <div class="mobile-left">
-            <a href="javascript:void(0);" class="btn btn-primary toggle-email-nav"><i class="fa fa-bars"></i></a>
-        </div>
+    
+<table class="table table-hover table-custom spacing8">
+  <thead>
+    <tr> 
+      <th></th>
+      <!-- <th>#</th> -->
+      <th>Title</th>
+      <!-- <th>Language</th> -->
+      <!-- <th>Created At</th> -->
+      <!-- <th>Status</th> -->
+      <th>Folder</th>
+      <% if display_actions %>
+        <th style="width: 10%;text-align: center;">Action</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody  oncontextmenu ="event.preventDefault();$('#context-menu').show();$('#context-menu').offset({'top':mouseY,'left':mouseX})">
+      <% @documents.each_with_index do |document, i| %>
+        <% 
+        # binding.pry
+        # raise
 
-        <div id="doc_folder">
-          <%= render partial: "user/documents/index/folders" %>
-        </div>
+        
 
-        <div class="body mail-right check-all-parent">
-          <div class="mail-action clearfix m-l-15">
-            <div class="pull-left">
-              <div class="fancy-checkbox d-inline-block">
-                <label>
-                  <input class="check-all" type="checkbox" name="checkbox">
+        doc_folder = drag_drop_user_document_path(document, dt: document.doc_type)
+
+        if document.doc_type == "template_document"
+          icon_path = "icons/template.svg"
+          doc_url = user_template_document_path(document)
+          doc_type="Template Based"
+          # doc_folder=update_template_folder_user_template_document_path(document)
+          elsif document.doc_type == "table_document"
+          icon_path = "icons/excel.svg"
+          doc_url = user_table_document_path(document) 
+          doc_type="Table Based"
+          # doc_folder=update_table_folder_user_table_document_path(document)
+          else
+          doc_url = "#"
+          doc_status_removed_url = "#"
+          doc_status_archive_url = "#"
+          doc_type=""
+          end
+        %>
+
+        <tr id="<%=doc_folder%>" draggable="true" ondragstart="drag(event,'<%=doc_folder%>')">
+          <td class="w20">
+            <div class="md-left">
+              <label class="fancy-checkbox">
+                <input type="checkbox" name="doc_name[]" value="<%=doc_folder%>" class="checkbox-tick">
                   <span></span>
-                </label>
-              </div>
-              
-              <a href="<%= user_documents_path %>" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Refresh"><i class="fa fa-refresh"></i></a> 
-              <!--
-              <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="icon-trash"></i></a>
-              <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Archive"><i class="fa fa-archive"></i></a>
-              <a href="<%= user_documents_path %>" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Refresh"><i class="icon-refresh"></i></a> 
-              <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Cut"><i class="fa fa-cut"></i> </a>   
-              <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Copy"><i class="icon-docs"></i> </a>   
-              <a href="javascript:void(0);" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Paste"><i class="fa fa-paste"></i></a>                                    
-                -->
-
-              <div class="btn-group">
-                <!-- <span>Move To -->
-                <button class="btn btn-light btn-sm dropdown-toggle mr-2" type="button" data-toggle="dropdown" data-placement="top" aria-haspopup="true" aria-expanded="false" title="Move Selected Folder" >Move To</button>
-
-                <div class="dropdown-menu">
-                  <div id="folder_drop">
-                  <% if @folders.present? %>
-                    <% @folders.each_with_index do |folder, i| %>
-
-                      <a class="dropdown-item" data-id="<%= folder.id %>" onClick="move_folder(<%= folder.id %>)" href="#" data-remote="true"><%= folder.title %></a>
-                    <% end %>
-                  <%end%>
-                  </div>
-                </div>                                              
-                <!-- </span> -->
-              </div>
+              </label>
             </div>
-            <div class="pull-right ml-auto">
-              <div class="pagination-email d-flex">
-                <!-- <p>1/100</p> -->
-                <div class="btn-group m-l-20">
-                  <!-- <button type="button" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i></button> -->
-                  <!-- <button type="button" class="btn btn-default btn-sm"><i class="fa fa-angle-right"></i></button> -->
-                </div>
-              </div>
-            </div>
-          </div>
+          </td>
+          <td>
+              <%= link_to document.title, doc_url, title: document.title %>
+              <p class="mb-0"><%=doc_type%></p>
+          </td>
+          <td>
+            <strong>
+              <% if document.status == 'ACTIVE' %>
+                <%  if   document.folder_id !="" then @folder = DocumentFolder.find_by_id(document.folder_id) %><%=@folder.try(:title) %><%end%>
+              <% else %>
+                <%= document.status.titleize %>
+              <% end %>
+                
+            </strong>
+          </td>
+          <% if display_actions %>
+          <td style="text-align: center;">
+            <%= link_to doc_url, class: "btn btn-sm btn-default mr-4" do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
 
-          <div class="table-responsive">
-            <table class="table table-hover table-custom spacing8">
-              <thead>
-                <tr> 
-                  <th></th>
-                  <!-- <th>#</th> -->
-                  <th>Title</th>
-                  <!-- <th>Language</th> -->
-                  <!-- <th>Created At</th> -->
-                  <!-- <th>Status</th> -->
-                  <th>Folder</th>
-                  <% if display_actions %>
-                    <th style="width: 10%;text-align: center;">Action</th>
-                  <% end %>
-                </tr>
-              </thead>
-              <tbody  oncontextmenu ="event.preventDefault();$('#context-menu').show();$('#context-menu').offset({'top':mouseY,'left':mouseX})">
-                  <% @documents.each_with_index do |document, i| %>
-                  <%# binding.pry %>
-                    <% 
-                    if document.doc_type == "template_document"
-                      icon_path = "icons/template.svg"
-                      doc_url = user_template_document_path(document)
-                      doc_status_removed_url = update_status_user_template_document_path(document, status: 'removed') 
-                      doc_status_archive_url = update_status_user_template_document_path(document, status: 'archived')
-                      doc_type="Template Based"
-                      doc_folder=update_template_folder_user_template_document_path(document)
-                      elsif document.doc_type == "table_document"
-                      icon_path = "icons/excel.svg"
-                      doc_url = user_table_document_path(document) 
-                      doc_status_removed_url = update_status_user_table_document_path(document, status: 'removed')
-                      doc_status_archive_url = update_status_user_table_document_path(document, status: 'archived')
-                      doc_type="Table Based"
-                      doc_folder=update_table_folder_user_table_document_path(document)
-                      else
-                      doc_url = "#"
-                      doc_status_removed_url = "#"
-                      doc_status_archive_url = "#"
-                      doc_type=""
-                      end
-                  %>
+            <%= link_to update_status_user_document_path(document, status: 'active', dt: document.doc_type), class: "btn btn-sm btn-default",  method: :put, remote: true do %>
+                <i class="fa fa-check" style="color: #6c757d !important;" ></i>
+            <% end if document.can_active? %>
 
-                  <tr id="<%=doc_folder%>" draggable="true" ondragstart="drag(event,'<%=doc_folder%>')">
-                    <td class="w20">
-                      <div class="md-left">
-                        <label class="fancy-checkbox">
-                          <input type="checkbox" name="doc_name[]" value="<%=doc_folder%>" class="checkbox-tick">
-                            <span></span>
-                        </label>
-                      </div>
-                    </td>
-                    <!-- <td class="w60"><%#= serial_number(i) %></td> -->
-                    <td>
-                        <%= link_to document.title, doc_url, title: document.title %>
-                        <p class="mb-0"><%=doc_type%></p>
-                    </td>
-<!--                     <td>
-                        <span></span>
-                    </td> -->
-                    <!-- <td><%#= document.created_at.strftime("%d %b %Y - %I:%M %p") %></td> -->
-                    <!-- <td><%#= document.status %></td> -->
-                    <td><strong><%  if   document.folder_id !="" then @folder = DocumentFolder.find_by_id(document.folder_id) %><%=@folder.try(:title) %><%end%></strong></td>
-                    <% if display_actions %>
-                    <td style="text-align: center;">
-                      <%= link_to doc_url, class: "btn btn-sm btn-default mr-4" do %>
-                        <i class="fa fa-edit"></i>
-                      <% end %>
+            <%= link_to update_status_user_document_path(document, status: 'removed', dt: document.doc_type), class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
+                  <i class="fa fa-trash-o text-danger"></i>
+            <% end if document.can_remove? %> 
 
-                      <%= link_to update_status_user_document_path(document, status: 'active', dt: document.doc_type), class: "btn btn-sm btn-default",  method: :put, remote: true do %>
-                          <i class="fa fa-check" style="color: #6c757d !important;" ></i>
-                      <% end if document.can_active? %>
+            <%= link_to update_status_user_document_path(document, status: 'archived', dt: document.doc_type), class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
+                    <i class="fa fa-archive"></i>
+            <% end if document.can_archive? %>
+          </td>
+          <% end %>
+        </tr>
 
-                      <%= link_to doc_status_removed_url, class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
-                            <i class="fa fa-trash-o text-danger"></i>
-                      <% end if document.can_remove? %> 
-
-                      <%= link_to doc_status_archive_url, class: "btn btn-sm btn-default", method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
-                              <i class="fa fa-archive"></i>
-                      <% end if document.can_archive? %>
-                    </td>
-                    <% end %>
-                  </tr>
+          <div class="context-menu" id="context-menu" style="display:none;position:absolute;z-index:99">
+            <ul>
+              <li>
+                <!-- <a href="#"><i class="fa fa-pencil"></i>  Edit</a> -->
+                <%= link_to doc_url do %>
+                  <i class="fa fa-edit"></i>Edit
                 <% end %>
-              </tbody>
-            </table>
+              </li>
+              <li>
+                <%= link_to doc_status_removed_url, method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to remove this document?"} do %>
+                      <i class="fa fa-trash-o text-danger"></i> Delete
+                <% end if document.can_remove? %> 
+              </li>
+              <li>
+                <%= link_to doc_status_archive_url, method: :put, remote: true, data: {confirm: "Are you sure? Do you really want to archived this document?"} do %>
+                        <i class="fa fa-archive"></i> Archive
+                <% end if document.can_archive? %>
+              </li>
+            </li>
+          </ul>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<%= render partial: "user/documents/index/context_menu" %>
+    <% end %>
+  </tbody>
+</table>
 
-<%= render partial: "user/documents/index/folder_modal" %>
+
+<%#= render partial: "user/documents/index/context_menu" %>
+
+<%#= render partial: "user/documents/index/folder_modal" %>
 

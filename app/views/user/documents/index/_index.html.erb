@@ -1,0 +1,44 @@
+ <%
+# Display Actions only if required - 
+# No need to display when called from dashboard
+display_actions = true if display_actions.nil?
+%>
+
+<div class="row clearfix">
+  <div class="col-lg-12">
+    
+    <div class="card">
+      <div class="tab-pane active show" id="TRANSLATIONS_LIST">
+        <div class="row clearfix">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="mail-inbox">
+
+                <div class="mobile-left">
+                    <a href="javascript:void(0);" class="btn btn-primary toggle-email-nav"><i class="fa fa-bars"></i></a>
+                </div>
+
+                <div class="body mail-left" id="doc_folder">
+                  <%= render partial: "user/documents/index/folders" %>
+                </div>
+
+
+                <div class="body mail-right check-all-parent">
+                  <%= render partial: 'user/documents/index/controls' %>
+
+                  <div class="table-responsive" id="doc_table">
+                    <%= render partial: 'user/documents/index/table' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascript_footer do %>
+  <%= render :partial=>"user/documents/index/folders.js.erb"  %>
+<% end %>

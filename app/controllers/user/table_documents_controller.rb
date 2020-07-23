@@ -315,6 +315,8 @@ module User
       end
     end
 
+    # TODO: Need to remove this function. After detail testing remove this methord
+    # It will implemented on Document controller to update the status of document
     def update_status
       get_document
       if @document
@@ -322,6 +324,7 @@ module User
       end
     end
    
+      # Update the document while drag and drop the document to folder(change the folder id of the document)
      def update_folder
       get_document
       
