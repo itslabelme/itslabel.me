@@ -41,7 +41,7 @@
         <% @document_folders.each do |folder| %>
 
            <% if (folder.title!='Default') %>
-              <li id="<%= folder.id %>" ondrop="drop(event,'<%= folder.id %>')" ondragover="allowDrop(event); event.preventDefault();">
+              <li id="<%= folder.id %>" ondrop="drop(event,'<%= folder.id %>')"  onclick="folderClick(<%= folder.id %>)" ondragover="allowDrop(event); event.preventDefault();">
                 <% children = folder.children %>
                 <% count = 1 || folder.documents.count %>
 
