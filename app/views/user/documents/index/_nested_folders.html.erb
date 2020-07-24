@@ -6,11 +6,14 @@
     <!-- <i class="fa fa-folder-o"></i> -->
     <% if child.children? %>
       <span class="fa fa-plus"></span>
-      <a href="/user/documents?folder_id=<%=child.id%>"><%= child.title %></a>
+      <a href="/user/documents?folder_id=<%=child.id%>" data-remote='true'><%= child.title %></a>
 
       <% if !children.any? %>
         <% if (parent.title!='Default') %>
           <span class="fa-times tree-close-right" onClick='delete_folder("<%= child.title%>","<%= child.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
+          <%#= link_to edit_user_document_folder_path(child), class: "btn btn-light btn-sm", remote: true  do %>
+            <!-- <i class="fa fa-pencil tree-plus-right" title="Edit New Document Folder" data-toggle= 'tooltip', data-placement='top'></i> -->
+          <%# end %> 
         <% end %>
       <% end %>
 
@@ -18,9 +21,12 @@
       <%= render partial: "user/documents/index/nested_folders", locals: {parent: child, children: new_children} %>
     <% else %>
 
-      <a href="/user/documents?folder_id=<%=child.id%>"><%= child.title %></a>
+      <a href="/user/documents?folder_id=<%=child.id%>" data-remote='true'><%= child.title %></a>
       <% if (parent.title!='Default') %>
         <span class="fa-times tree-close-right " style="right: -15px;" onClick='delete_folder("<%= child.title%>","<%= child.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
+        <%#= link_to edit_user_document_folder_path(child), class: "btn btn-light btn-sm", remote: true  do %>
+          <!-- <i class="fa fa-pencil tree-plus-right" title="Edit New Document Folder" data-toggle= 'tooltip', data-placement='top'></i> -->
+        <%# end %> 
       <% end %>
 
     <% end %>

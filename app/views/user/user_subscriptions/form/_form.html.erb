@@ -23,10 +23,7 @@
       <%= f.hidden_field :user_id, :value => @current_client_user.id %>
         <div class="comparison">
             <table>
-
               <thead>
-
-
                 <tr>
                   <th class="tl"></th>
                   <% @subscriptions.each_with_index do |subscription, i| %>
@@ -40,13 +37,19 @@
                     <% @subscriptions.each_with_index do |subscription, i| %>
                       <th class="price-info <%= (@user_subscription.subscription_id == subscription.id)? 'sub-current-plan' : '' %> ">
                         <div class="price-now">
-                          <span>
-                          <%= (subscription.title.to_s == 'Free')? "Free" : "$#{subscription.price}" %>
-                            
-                          </span>
+                            <%
+                              if subscription.title.to_s == 'Free'
+                                price = 'Free'
+                              elsif subscription.title.to_s == 'Enterprise'
+                                price = 'TBC*'
+                              else
+                                price = "$ #{subscription.price}"
+                              end
+                            %>
+                          <span> <%= price %> </span>
                         </div>
                         <div>
-                          <a href="#" onclick="updatePlan(<%= subscription.id %>)" class="price-buy">
+                          <a href="javascript:void(0);" onclick="updatePlan(<%= subscription.id %>)" class="price-buy">
                             <%= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
                           </a></div>
                       </th>
@@ -249,9 +252,9 @@
 
 <script type="text/javascript">
   
+    // Function to update plane. The function triggered on click event
     function updatePlan(sub_id) {
       var user_id = <%= @current_client_user.id %>
-
        $.ajax({
        url: "/user/user_subscriptions.js",
        type: "PUT",
@@ -263,7 +266,5 @@
        success: function(data) {
          }
        });
-
-
   }
 </script>

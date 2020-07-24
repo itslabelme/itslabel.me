@@ -1,7 +1,9 @@
-<%# binding.pry %>
+
 <% if @document.errors.blank? %>
 
-  window.location.reload();
+  notifySuccess("<%= escape_javascript('Success!') %>", "<%= escape_javascript('Successfully Updated') %>");
+  // window.location.reload();
+  $("#doc_table").html("<%= escape_javascript(render(:partial=>'user/documents/index/table.html.erb')) %>");
 <% else %>
 
   // Showing Growl Like Message
@@ -9,5 +11,6 @@
 
 
 <% end %>
+
 
 

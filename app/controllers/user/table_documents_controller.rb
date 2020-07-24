@@ -315,6 +315,8 @@ module User
       end
     end
 
+    # TODO: Need to remove this function. After detail testing remove this methord
+    # It will implemented on Document controller to update the status of document
     def update_status
       get_document
       if @document
@@ -322,11 +324,13 @@ module User
       end
     end
    
+      # Update the document while drag and drop the document to folder(change the folder id of the document)
      def update_folder
       get_document
       
       if@document
         @document.update_column(:folder_id,params[:folder_id])
+
         set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Folder"))
         set_flash_message(I18n.translate("success.saved", item: "Folder"), :success)
       end
@@ -350,7 +354,7 @@ module User
       @relation = TableDocument.where("")
 
       apply_filters
-
+      @per_page = 100
       @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
 

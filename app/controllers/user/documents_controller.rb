@@ -11,12 +11,27 @@ module User
       get_collection
     end
 
+    def new
+      @page_title = "New Client User | Admin"
+      @nav = "admin/client_user"
+
+      new_client_user
+    end
+
     def update_status
-      # binding.pry
       get_document
+      get_user_folder
+      get_collection
+      
       if @document
-        # FIXME: sanoop - update status of document view
-        @document.update_status(params[:status].upcase)
+        
+        if @document.doc_type == 'table_document'
+          @act_doc = TableDocument.where(user_id: @current_client_user.id, id: params[:id]).first
+        elsif @document.doc_type == 'template_document'
+          @act_doc = TemplateDocument.where(user_id: @current_client_user.id, id: params[:id]).first
+        end
+
+        @act_doc.update_status(params[:status].upcase)
       end
     end
 
@@ -39,6 +54,19 @@ module User
       end
     end
 
+    def drag_drop
+      get_document
+      get_user_folder
+      get_collection
+      if @document.doc_type == 'table_document'
+        @act_doc = TableDocument.where(user_id: @current_client_user.id, id: params[:id]).first
+      elsif @document.doc_type == 'template_document'
+        @act_doc = TemplateDocument.where(user_id: @current_client_user.id, id: params[:id]).first
+      end
+        @act_doc.update_column(:folder_id,params[:folder_id])
+
+    end
+
     private
 
     def get_collection
@@ -51,7 +79,7 @@ module User
         @relation = @relation.status(params[:status].to_s.strip.upcase) unless params[:status].to_s.strip.blank?
       end
 
-      @per_page = 40   # TODO need to fix, this is for demo purpuse 
+      @per_page = 100   # TODO need to fix, this is for demo purpuse 
       @documents = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
 
