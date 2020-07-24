@@ -1,7 +1,5 @@
 function move_folder(id) {
 
-// alert("move_folder")
-
   var doc = $('input[name="doc_name[]"]:checked').map(function () {
     return this.value;
   }).get();
@@ -16,7 +14,6 @@ function move_folder(id) {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       },
       success: function (data) {
-        // location.reload();
       }
     });
   });
@@ -25,24 +22,24 @@ function move_folder(id) {
 function drag(ev, ur) {
   // alert("drag")
   ev.dataTransfer.setData("folder", ur);
-  console.log(ev)
-  console.log(ur)
+}
+
+function folderClick(folder_id) {
+  // console.log(folder_id)
+  // $("#"+folder_id).addClass("active")
+  $('ul li a').on('click', function(){
+      $(this).parent().addClass('active').siblings().removeClass('active');
+  });
 }
 
 function drop(ev, fold) {
 
-
-
-  // alert("drop")
   ev.preventDefault();
   var data = ev.dataTransfer.getData("folder");
   data_send = {folder_id: fold}
 
   $("#"+fold).addClass("active")
-  
-  // // console.log(ev)
-  // // console.log(fold)
-  // console.log(data)
+
   // $("#"+fold).closest('li').click();
   $.ajax({
     method: 'put',
@@ -52,7 +49,6 @@ function drop(ev, fold) {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
     },
     success: function (data) {
-      // location.reload();
     }
   });
 }
@@ -77,43 +73,13 @@ function delete_folder(title,id) {
                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-              // location.reload();
 
             }
 
         });
         }
    // });
-    //location.reload();
 }
 
-// $(function () {
-//   $('#folder-form').click(function (e) {
-//     e.preventDefault();
-//     if ($('#title').val() == '') {
-//       alert('Folder Title is required');
-//       return false;
-//     }
-//     var title = $('#FOLDER_MODAL #FOLDER_TITLE').val();
-//     var parent_id = $('#FOLDER_MODAL #FOLDER_PARENT_ID').val();
-//     data = {parent_id: parent_id, title: title}
-//     console.log(data)
-//     $.ajax({
-//       url: "/user/document_folder/",
-//       type: "POST",
-//       data: data,
-//       // dataType: "json",
-//       headers: {
-//         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-//       },
-//       success: function (data) {
-//         // $('#FOLDER_MODAL').modal('hide');
-//         // location.reload();
-//         // parent.$('#tree2').append('<li id="' + data.id + '"  ondrop=\"drop(event,\'' + data.id + '\')\" ondragover=\"allowDrop(event); event.preventDefault();\"><i class="fa fa-folder-o"></i><a href="/user/documents?folder_id=' + data.id + '">' + data.title + '</a></li>');
-//         // parent.$('#folder_drop').append('<a class=\"dropdown-item\" data-id="' + data.id + '" onClick=\"move_folder(' + data.id + ')" href="#" data-remote="true">' + data.title + '</a>');
-//       }
-//     });
-//   });
-// });
 
 
