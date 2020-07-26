@@ -6,12 +6,10 @@ $("#doc_folder").html("<%= escape_javascript(render(:partial=>'user/documents/in
 
 $('#tree2').treed({openedClass:'fa-folder-open-o', closedClass:'fa-folder-o'});
 
-// $("#2").closest('li').click();
-// ("#2, #19, #20").closest('li').click();
-// let ids = <%#= @folder.path_ids %>
+// Open parant folders
+<% @folder.path_ids.each_with_index do |folder_id, i| %>
 
-// ids.forEach((element) => {
-//   // console.log(element)
-//   $("#+ element +").closest('li').click();
-// })
+  $("#<%= folder_id %>").closest('li').click();
+<% end %>
+
 
