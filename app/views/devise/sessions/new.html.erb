@@ -88,7 +88,7 @@
                             <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
 
                             <!-- Display Social Icons only for client user -->
-                            <% false && if resource_name == :client_user %>
+                            <%  if resource_name == :client_user %>
                             <div class="separator-linethrough"><span>OR</span></div>
 
                             <ul class="its-login-social">
@@ -101,7 +101,7 @@
                               </li>
                               <li>
                                 <button class="btn btn-signin-social">
-                                  <a href="/user/auth/facebook">
+                                  <a href="javascript:void(0)">
                                     <i class="fa fa-google google-color"></i> Google
                                   </a>
                                 </button>
@@ -127,7 +127,7 @@
                               <% end %>
 
                               <% if resource_name == :admin_user %>
-                                <p class="text-center">
+                                <p >
                                   <%= link_to "Log In as Client User?", new_client_user_session_path %>
                                 </p>
                               <% end %>
