@@ -35,8 +35,10 @@ class ClientUser < ApplicationRecord
   end
 
   def country_name
+    binding.pry
     country1 = ISO3166::Country[country]
-    country1.translations[I18n.locale.to_s] || country1.name
+    # country1.translations[I18n.locale.to_s] || country1.name
+    country1.try(:name)
   end
 
   def create_default_folder
@@ -66,11 +68,11 @@ class ClientUser < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
       fullname = auth.info.name.split(' ')
       first_name, last_name = fullname[0], fullname[1]
-      user.first_name = first_name
-      user.last_name = last_name
-      user.mobile_number = 123455678
-      user.organisation = ""
-      user.country = ""
+      user.first_name = first_name || ''
+      user.last_name = last_name || ''
+      user.mobile_number = 1234556789
+      user.organisation = ''
+      user.country = ''
       #user.name = auth.info.name # assuming the user model has a name
       #user.image = auth.info.image # assuming the user model has an image
     end
