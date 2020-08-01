@@ -9,10 +9,10 @@ class ClientUser < ApplicationRecord
   
   # Validations
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
-  validates :last_name, length: {maximum: 256}, allow_blank: false
+  validates :last_name, length: {maximum: 256}, allow_blank: true
   validates :mobile_number, length: {maximum: 24}, allow_blank: true
-  validates :organisation, presence: true
-  validates :country, presence: true
+  validates :organisation, presence: true, allow_blank: true
+  validates :country, presence: true, allow_blank: true
 
   # Associations
   has_many :documents, class_name: "DocumentView", foreign_key: :user_id
@@ -69,6 +69,8 @@ class ClientUser < ApplicationRecord
       user.first_name = first_name
       user.last_name = last_name
       user.mobile_number = 123455678
+      user.organisation = ""
+      user.country = ""
       #user.name = auth.info.name # assuming the user model has a name
       #user.image = auth.info.image # assuming the user model has an image
     end

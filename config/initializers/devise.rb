@@ -299,6 +299,7 @@ Devise.setup do |config|
 
   # Facebook & Google Auth
   domain = Rails.env.staging? ? "http://demo.itslabel.me" : "http://localhost:3000"
+
   config.omniauth :facebook, ENV['ITS_FACEBOOK_APP_ID'], ENV['ITS_FACEBOOK_APP_SECRET'], callback_url: "#{domain}/user/auth/facebook/callback"
   config.omniauth :google_oauth2, ENV['ITS_GOOGLE_CLIENT_ID'], ENV['ITS_GOOGLE_CLIENT_SECRET'], callback_url: "#{domain}/user/auth/facebook/callback"
 
