@@ -35,7 +35,6 @@ class ClientUser < ApplicationRecord
   end
 
   def country_name
-    binding.pry
     country1 = ISO3166::Country[country]
     # country1.translations[I18n.locale.to_s] || country1.name
     country1.try(:name)
