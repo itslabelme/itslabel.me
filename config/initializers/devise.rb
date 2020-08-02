@@ -299,7 +299,7 @@ Devise.setup do |config|
 
   # Facebook & Google Auth
   case Rails.env
-  when "staging"
+  when "development"
     domain = "http://localhost:3000"
   when "staging"
     domain = "http://demo.itslabel.me"
