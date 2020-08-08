@@ -67,12 +67,12 @@
                   <span>My Profile</span>
               <% end %>
           </li>
-          <li>
-              <%= link_to user_user_subscriptions_url do %>
-                  <%= image_tag "icons/cart.svg", alt: "cart icon"%>
-                  <span>Subscription</span>
-              <% end %>
-          </li>
+          <!-- <li> -->
+              <%#= link_to user_user_subscriptions_url do %>
+                  <%#= image_tag "icons/cart.svg", alt: "cart icon"%>
+                  <!-- <span>Subscription</span> -->
+              <%# end %>
+          <!-- </li> -->
           <li>
               <%= link_to destroy_client_user_session_url, method: :delete do %>
                   <%= image_tag "icons/logout.svg", alt: "logout icon"%>
