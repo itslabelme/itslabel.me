@@ -53,6 +53,9 @@ module User
         :last_name,
         :mobile_number,
         :email,
+        :country,
+        :organisation,
+        :position,
         :password,
         :current_password,
         :password_confirmation)

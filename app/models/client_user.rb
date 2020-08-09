@@ -9,10 +9,10 @@ class ClientUser < ApplicationRecord
   
   # Validations
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
-  validates :last_name, length: {maximum: 256}, allow_blank: false
+  validates :last_name, length: {maximum: 256}, allow_blank: true
   validates :mobile_number, length: {maximum: 24}, allow_blank: true
-  validates :organisation, presence: true
-  validates :country, presence: true
+  validates :organisation, presence: true, allow_blank: true
+  validates :country, presence: true, allow_blank: true
 
   # Associations
   has_many :documents, class_name: "DocumentView", foreign_key: :user_id
@@ -36,7 +36,8 @@ class ClientUser < ApplicationRecord
 
   def country_name
     country1 = ISO3166::Country[country]
-    country1.translations[I18n.locale.to_s] || country1.name
+    # country1.translations[I18n.locale.to_s] || country1.name
+    country1.try(:name)
   end
 
   def create_default_folder
@@ -66,9 +67,11 @@ class ClientUser < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
       fullname = auth.info.name.split(' ')
       first_name, last_name = fullname[0], fullname[1]
-      user.first_name = first_name
-      user.last_name = last_name
-      user.mobile_number = 123455678
+      user.first_name = first_name || ''
+      user.last_name = last_name || ''
+      user.mobile_number = 1234556789
+      user.organisation = ''
+      user.country = ''
       #user.name = auth.info.name # assuming the user model has a name
       #user.image = auth.info.image # assuming the user model has an image
     end

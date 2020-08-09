@@ -936,20 +936,16 @@ fieldset{
   text-transform: uppercase;
 }
 
-
-.its-home-secondary-box .rounded-circle{
-  background: none !important;
-  border: none !important;
-  justify-content: left !important;
-  width: 45px;
-  height: 45px;
+.its-freestyle-container3.hide-mob{
+  position: absolute;
+  max-width: 27%;
+  right: 0px;
 }
 
-.its-home-secondary-box.its-upload-container h3{
-  margin-bottom: 0px;
+.its-free-action-left .its-free-action-inner-top{
+  max-width: 100%;
 }
 
-.its-home-secondary-box .rounded-circle svg{
-  width: 30px !important;
-  height: 30px !important;
+.its-free-action-left.its-freestyle-container{
+    overflow: inherit;
 }

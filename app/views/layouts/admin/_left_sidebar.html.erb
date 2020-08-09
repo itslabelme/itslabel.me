@@ -33,7 +33,7 @@
           <li>
           <li class="active"><a href="home.html">
               <%= link_to admin_translations_path do %>
-                <%= image_tag "icons/translate.svg", alt: "User icon"%>
+                <%= image_tag "icons/language.svg", alt: "User icon"%>
                 <span>Translation Database</span>
               <% end %>
           <li>
@@ -67,12 +67,12 @@
                   <span>My Profile</span>
               <% end %>
           </li>
-          <li>
-              <%= link_to admin_subscription_permissions_url do %>
-                  <%= image_tag "icons/cart.svg", alt: "cart icon"%>
-                  <span>Subscription</span>
-              <% end %>
-          </li>
+          <!-- <li> -->
+              <%#= link_to admin_subscription_permissions_url do %>
+                  <%#= image_tag "icons/cart.svg", alt: "cart icon"%>
+                  <!-- <span>Subscription</span> -->
+              <%# end %>
+          <!-- </li> -->
           <li>
               <%= link_to destroy_admin_user_session_url, method: :delete do %>
                   <%= image_tag "icons/logout.svg", alt: "logout icon"%>
