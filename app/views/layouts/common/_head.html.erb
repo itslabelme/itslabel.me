@@ -81,19 +81,18 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/handsontable@latest/dist/handsontable.full.min.css">
 
   <!-- Hotjar Tracking Code for https://itslabel.me/ -->
-  <script>
-      (function(h,o,t,j,a,r){
-
-        if(<%= RAILS_ENV %> == "production"){
+  <% if Rails.env == "production" %>
+    <script>
+        (function(h,o,t,j,a,r){
           h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
           h._hjSettings={hjid:1902324,hjsv:6};
           a=o.getElementsByTagName('head')[0];
           r=o.createElement('script');r.async=1;
           r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
           a.appendChild(r);
-        }
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-  </script>
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+  <% end %>
   
 </head>
 
