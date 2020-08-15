@@ -51,11 +51,12 @@ spec/dummy/storage
 /nbproject/project.xml
 storage
 .byebug_history
-config/master.key
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+config/master.key
+config/master.key
 config/master.key.bck
+
 docs
 
 # Elastic Beanstalk Files
