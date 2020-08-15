@@ -61,23 +61,78 @@ class ClientUser < ApplicationRecord
     end
   end
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      fullname = auth.info.name.split(' ')
-      first_name, last_name = fullname[0], fullname[1]
-      user.first_name = first_name || ''
-      user.last_name = last_name || ''
-      user.mobile_number = 1234556789
-      user.organisation = ''
-      user.country = ''
-      #user.name = auth.info.name # assuming the user model has a name
-      #user.image = auth.info.image # assuming the user model has an image
+  def self.create_or_fetch_fb_user(auth)
+    email = auth.info.email
+    names = auth.info.name.split(' ')
+    if names.size > 1
+      first_name = names[0..-2].join(' ')
+      last_name = names[-2]
+    else
+      first_name = auth.info.name
+      last_name = ''
     end
+
+    # Check if the user with this email id has previously registered using our registered form or with google
+    # If so, just convert the user to facebook user
+    user = ClientUser.where(email: email).first
+    if user
+      case user.provider
+      when nil
+        user.first_name = first_name
+        user.last_name = last_name
+        user.provider = auth.provider
+        user.uid = auth.uid
+      when "facebook"
+        if user.uid == auth.uid
+          user.first_name = first_name
+          user.last_name = last_name
+        else
+          # edge case, if the uid coming is different from what we have in our db,
+          # we update the latest uid
+          user.uid = auth.uid
+        end
+      when "google"
+        user.first_name = first_name
+        user.last_name = last_name
+        user.provider = auth.provider
+        user.uid = auth.uid
+      end
+    else
+      # The user doesn't exist. 
+      # So create a new user with provider = "facebook" and with fb uid
+      user = ClientUser.new
+      user.email = email
+      user.password = Devise.friendly_token[0,20]
+      user.first_name = first_name
+      user.last_name = last_name
+      user.provider = auth.provider
+      user.uid = auth.uid
+    end
+
+    # Setting Defaults
+    user.mobile_number = '' unless user.mobile_number
+    user.organisation = '' unless user.organisation
+    user.country = '' unless user.country
+
+    # Saving the User (This will update the user first name and last name in case if the user has changed it in facebook)
+    user.save
+    
+    # user = ClientUser.where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    #   user.email = email
+    #   user.password = Devise.friendly_token[0,20] unless user.password
+    #   user.first_name = first_name
+    #   user.last_name = last_name
+    #   user.mobile_number = '' unless user.mobile_number
+    #   user.organisation = ''
+    #   user.country = ''
+    #   # TODO - Copy Image to Avatar Later
+    #   #user.image = auth.info.image # assuming the user model has an image
+    # end
+    return user
+
   end
   
-  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+  def self.create_or_fetch_google_user(access_token, signed_in_resource=nil)
     data = access_token.info
     user = ClientUser.where(:provider => access_token.provider, :uid => access_token.uid ).first
     if user
