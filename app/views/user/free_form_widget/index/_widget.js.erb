@@ -345,6 +345,17 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
   document.execCommand('copy');
 });
 
+$(document).off('click', "#INPUT_PASTE_ACTION");
+$(document).on('click', '#INPUT_PASTE_ACTION', function (e) {
+  navigator.clipboard.readText().then(function(clipBoardData) {
+    // console.log("Pasted from clipboard:", clipBoardData);
+    currentText = $("#INPUT_AREA").html();
+    $("#INPUT_AREA").html(currentText + " " + clipBoardData);
+    // document.execCommand('copy');
+    ITSTranslate();
+  });
+});
+
 // Old Methods
 
 // $(document).off('click', "#INPUT_CUT_ACTION");
@@ -363,15 +374,6 @@ $(document).on('click', '#OUTPUT_COPY_ACTION', function (e) {
 //   // });
 // });
 //
-// $(document).off('click', "#INPUT_PASTE_ACTION");
-// $(document).on('click', '#INPUT_PASTE_ACTION', function (e) {
-//   navigator.clipboard.readText().then(function(data) {
-//     console.log("Pasted from clipboard:", data);
-//     // $("#INPUT_AREA").html(data);
-//     document.execCommand('copy');
-//     ITSTranslate();
-//   });
-// });
-//
+
 
 
