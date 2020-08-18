@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_082928) do
+ActiveRecord::Schema.define(version: 2020_08_18_083706) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -223,9 +223,6 @@ ActiveRecord::Schema.define(version: 2020_08_18_082928) do
     t.string "status", limit: 16, default: "PENDING", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "english_phrase", limit: 128
-    t.string "arabic_phrase", limit: 128
-    t.string "french_phrase", limit: 128
     t.index ["admin_user_id"], name: "index_translations_on_admin_user_id"
   end
 

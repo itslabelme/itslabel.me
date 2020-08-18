@@ -1,0 +1,24 @@
+<div class="container-fluid">
+
+  <!-- Header -->
+  <%= render partial: 'admin/upload_translations/index/header' %>
+
+  <!-- Controls -->
+  <%#=# render partial: 'admin/translations/index/controls' %>
+
+  <div class="row clearfix">
+    
+    <div class="col-lg-12">
+      
+      <div class="card">
+        Upload Translations
+        <%= render partial: 'admin/upload_translations/form/form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascript_footer do %>
+  <%#= render :partial=>"admin/label_templates/index/table.js.erb"  %>
+  <%#= render :partial=>"admin/upload_translations/form/form.js.erb" %>
+<% end %>

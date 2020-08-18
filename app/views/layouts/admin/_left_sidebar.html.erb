@@ -31,11 +31,23 @@
                 <span>Registrations</span>
               <% end %>
           <li>
-          <li class="active"><a href="home.html">
-              <%= link_to admin_translations_path do %>
-                <%= image_tag "icons/language.svg", alt: "User icon"%>
-                <span>Translation Database</span>
-              <% end %>
+          <li class=""><a href="home.html">
+              <a href="#" class="has-arrow" aria-expanded="false">
+                  <%= image_tag "icons/language.svg", alt: "User icon"%>
+                  <span>Translation Database</span></a>
+
+              <ul aria-expanded="true" class="collapse out" style="">
+                  <li>
+                    <%= link_to admin_upload_translations_path do %> 
+                      Upload Database
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to admin_translations_path do %>
+                      Manage Database
+                    <% end %>
+                  </li>
+              </ul>
           <li>
           <li class="active"><a href="home.html">
               <%= link_to admin_label_templates_path do %>
