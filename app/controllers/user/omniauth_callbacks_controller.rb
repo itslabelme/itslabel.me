@@ -13,7 +13,7 @@ module User
       end
     end
     
-    def google
+    def google_oauth2
      
       @user = ClientUser.find_for_google_oauth2(request.env["omniauth.auth"])
  
