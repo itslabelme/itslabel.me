@@ -37,8 +37,10 @@ module Admin
       @errors = {}
       @summary = {}
       @csv_contents = @csv_contents.drop(1)
-      @csv_contents.each do |csv_content|
+      
       # binding.pry
+
+      @csv_contents.each do |csv_content|
 
         # English to Arabic Translation
         @english_arabic_translation = Translation.where(
