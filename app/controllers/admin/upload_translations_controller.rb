@@ -35,9 +35,9 @@ module Admin
          @translation2 = Translation.new
          @translation3 = Translation.new
 
-        @translation1.admin_user = @current_client_user
-        @translation2.admin_user = @current_client_user
-        @translation3.admin_user = @current_client_user
+        @translation1.admin_user = @current_admin_user
+        @translation2.admin_user = @current_admin_user
+        @translation3.admin_user = @current_admin_user
 
         # # filename = csv_file.original_filename.gsub(".csv", "").titleize
         # # @translation1.title = "#{filename} - #{Time.now.to_i}"
