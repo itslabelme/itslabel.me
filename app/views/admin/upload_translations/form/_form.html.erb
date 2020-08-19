@@ -18,10 +18,15 @@
     </span>
       <!-- Display Errors if Any -->
       <div id="UPLOAD_CSV_FORM_ERRORS">
-        <% if @errors %>
-          <div class="alert alert-danger">
-            <%= @errors %>
-          </div>
+        <% unless @errors.empty? %>
+          <!-- <div class="alert alert-danger"> -->
+            <%#= @errors %>
+          <!-- </div> -->
+        <% end %>
+        <% unless @summary.empty? %>
+          <!-- <div class="alert alert-success"> -->
+            <%#= @summary %>
+          <!-- </div> -->
         <% end %>
       </div>
 
