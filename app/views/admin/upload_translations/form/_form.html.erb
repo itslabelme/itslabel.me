@@ -9,13 +9,13 @@
 
 
 
-<div id="UPLOAD_CSV_FORM" style="padding:20px">
-
+<div class="body">
+  
   <%= form_with(url: form_url,  class: "form-floating", multipart: true,  method: form_method) do |f| %>
 
-    
-
-
+    <span>
+      <strong style="font-size:16px;">Step 2: Upload CSV</strong>
+    </span>
       <!-- Display Errors if Any -->
       <div id="UPLOAD_CSV_FORM_ERRORS">
         <% if @errors %>
@@ -25,19 +25,20 @@
         <% end %>
       </div>
 
-      <div class="row its-language-switcer mb-2">
-        <div class="col-md-12">
-          <div class="alert alert-info">
-            <p><strong>Please Note the Following:</strong></p>
-            <p>* It shoud be a <span class='badge badge-info'>CSV</span> file (Comma Separated File).</p>
-            <p>* Only data in <span class='badge badge-info'>first column</span> will be used for translation.</p>
-          </div>
-        </div>
-      </div>
 
       <!-- File -->
       <div class="row">
-        <div class="col-md-12 pb-4 pt-3">
+        <div class="col-md-12 pt-3">
+          <div class="row its-language-switcer mb-2">
+            <div class="col-md-12">
+              <div class="alert alert-info">
+                <p><strong>Please Note the Following:</strong></p>
+                <p>* It shoud be a <span class='badge badge-info'>CSV</span> file (Comma Separated File).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 pb-3 pt-3">
           <div class="form-group row " style="">
             <label class="col-sm-12">Click below to upload from your computer
               <span class="text-color-red px-1">&nbsp;&nbsp;</span>
@@ -48,11 +49,6 @@
           </div>
         </div>
       </div>
-
-
-      <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span> Upload </button>
-
-
+      <button type="submit" class="btn btn-primary"><span class="fa fa-upload"></span> Upload </button>
   <% end %>
-
 </div>

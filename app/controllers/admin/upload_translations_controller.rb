@@ -1,6 +1,8 @@
 module Admin
   class UploadTranslationsController < Admin::BaseController
 
+    require 'csv'
+
     # before_action :authenticate_admin_user!
     # before_action :get_translation, except: [:new, :create, :index]
 
@@ -31,106 +33,18 @@ module Admin
       if file_error.blank? && @csv_contents
         import_data_from_csv
       end
+        set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Translation"))
+        set_flash_message(I18n.translate("success.created", item: "Translation"), :success)
 
 
-      # Parse the CSV and create new table mode document
-      if @errors.blank? && @csv_contents
-        # binding.pry
-
-         @translation1 = Translation.new
-         @translation2 = Translation.new
-         @translation3 = Translation.new
-
-        @translation1.admin_user = @current_admin_user
-        @translation2.admin_user = @current_admin_user
-        @translation3.admin_user = @current_admin_user
-
-        # # filename = csv_file.original_filename.gsub(".csv", "").titleize
-        # # @translation1.title = "#{filename} - #{Time.now.to_i}"
-        # @translation1.title = csv_file.original_filename
-        # @translation1.input_language = params[:input_language]
-        
-        # # Adding Items
-        @csv_contents.each do |csv_content|
-          @translation1.input_language
-          @translation1.input_phrase
-
-          @translation1.output_phrase
-          @translation1.output_language
-
-          @translation1.category
-          @translation1.status
-
-          @translation1.input_language
-          @translation1.input_phrase
-
-          @translation1.output_phrase
-          @translation1.output_language
-          
-          @translation1.category
-          @translation1.status
-
-          @translation1.input_language
-          @translation1.input_phrase
-
-          @translation1.output_phrase
-          @translation1.output_language
-          
-          @translation1.category
-          @translation1.status
-
-        #   val = row.first.to_s.strip
-        #   next if row.empty?
-        #   next if val.blank?
-
-        #   item = @translation.items.build(
-        #     table_document: @translation,
-        #     input_phrase: val,
-        #     input_language: @translation.input_language,
-        #     output_1_language: @translation.output_1_language,
-        #     output_2_language: @translation.output_2_language,
-        #     output_3_language: @translation.output_3_language,
-        #     output_4_language: @translation.output_4_language,
-        #     output_5_language: @translation.output_5_language,
-        #     translated: false
-        #   )
-        end
-
-        # if @translation.valid?
-
-        #   @translation.save
-
-        #   set_notification(true, I18n.t('status.success'), I18n.t('success.saved', item: "Document"))
-        #   set_flash_message(I18n.translate("success.saved", item: "Document"), :success)
-        # else
-        #   message = I18n.t('errors.failed_to_save', item: "Document")
-        #   @translation.errors.add :base, message
-        #   set_notification(false, I18n.t('status.error'), message)
-        #   set_flash_message('The form has some errors. Please correct them and submit again', :error)
-        # end
-      end
-
-      # # new_translation
-      # @translation.assign_attributes(permitted_params)
-      
-      # if @translation.valid?
-      #   @translation.save
-      #   set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Translation"))
-      #   set_flash_message(I18n.translate("success.created", item: "Translation"), :success)
-      # else
-      #   message = I18n.t('errors.failed_to_create', item: "Translation")
-      #   @translation.errors.add :base, message
-      #   set_notification(false, I18n.t('status.error'), message)
-      #   set_flash_message('The form has some errors. Please correct them and submit again', :error)
-      # end
     end
 
     def import_data_from_csv
 
-      # binding.pry
       @errors = {}
       @summary = {}
       @csv_contents.each do |csv_content|
+      binding.pry
 
         # English to Arabic Translation
         @english_arabic_translation = Translation.new(
