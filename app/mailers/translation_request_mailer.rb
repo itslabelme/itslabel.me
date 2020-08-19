@@ -4,8 +4,14 @@ class TranslationRequestMailer < ApplicationMailer
     @client = options[:client]
     @input_language = options[:input_language]
     @output_language = options[:output_language]
+
+    if Rails.env.production?
+      email = "info@itslabel.me"
+    else
+      email = "krishna@rightsolutions.ae"
+    end
     
-    mail(:to=>"krishna@rightsolutions.ae", 
+    mail(:to=>email, 
          :subject=>"Translation Request - #{@phrase}")
   end
 end
