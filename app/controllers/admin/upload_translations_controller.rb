@@ -57,6 +57,8 @@ module Admin
           admin_user: @current_admin_user
         )
 
+        # binding.pry
+
         # # English to French Translation
         @english_french_translation = Translation.where(
                                                         input_language: "ENGLISH", 
