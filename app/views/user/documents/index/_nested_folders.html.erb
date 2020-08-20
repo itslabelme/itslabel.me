@@ -1,10 +1,12 @@
 
+
 <% if children.any? %>
+  
 <ul>
   <% children.each do |child| %>
   <li id="<%= child.id %>" ondrop="drop(event,'<%= child.id %>')" ondragover="allowDrop(event); event.preventDefault();">
     <!-- <i class="fa fa-folder-o"></i> -->
-    <% if child.children? %>
+      <% if child.children? %>
       <span class="fa fa-plus"></span>
       <a href="/user/documents?folder_id=<%=child.id%>" data-remote='true'><%= child.title %></a>
 
