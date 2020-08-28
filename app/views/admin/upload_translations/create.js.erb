@@ -7,6 +7,10 @@
     notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
   <% end %>
   
-   // Load same index UI
-  $("#upload_translation_content").html("<%= escape_javascript(render(:partial=>'admin/upload_translations/index/index.html.erb')) %>");
+  <% if @summary.any? %>
+    $("#FIRST_BOX").html("<%= escape_javascript(render(:partial=>'admin/upload_translations/index/summary.html.erb')) %>");
+  <% end %>
+
+  // Load same index UI
+  //$("#upload_translation_content").html("<%#= escape_javascript(render(:partial=>'admin/upload_translations/index/index.html.erb')) %>");
   
