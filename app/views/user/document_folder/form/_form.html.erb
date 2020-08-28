@@ -46,14 +46,14 @@
 
         <label>Folder Name</label>
         <div class="input-group">
-          <%= f.text_field :title, class: "form-control", placeholder: 'Folder Name' %>
+          <%= f.text_field :title, class: "form-control", placeholder: 'Folder Name',required:'' %>
         </div>
 
       </div>
       <div class="col-md-12 mt-3">
         <label>Parent Folder</label>
         <div class="input-group mb-3">
-          <select class="form-control form-control-xs selectpicker1" name="document_folder[parent_id]" data-size="7" id='FOLDER_PARENT_ID'  data-width="100%">
+          <select class="form-control form-control-xs selectpicker1" name="document_folder[parent_id]" data-size="7" id='FOLDER_PARENT_ID'  data-width="100%" >
             <option value=""> Select Parent Folder </option>
             <% @folders.each_with_index do |folder, i| %>
               <% if (folder.title!='Default') %>
