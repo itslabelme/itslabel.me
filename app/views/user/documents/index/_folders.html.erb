@@ -55,7 +55,7 @@
                 <a href="/user/documents?folder_id=<%=folder.id%>" data-remote='true'><%= folder.title %></a> 
 
                 <% if !children.any? %>
-                  <span class="fa-times tree-close-right" onClick='delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>
+                  <span class="fa-times tree-close-right"  onClick= 'delete_folder("<%=folder.title%>","<%=folder.id%>")' data-toggle="tooltip" data-placement="top" title="Remove Folder">&nbsp;</span>                  
                   <!-- <span class="fa-plus tree-plus-right" data-toggle="modal" data-target="#FOLDER_MODAL" ></span> -->
                 <% end %>
                 <%= link_to edit_user_document_folder_path(folder), class: "btn btn-light btn-sm", remote: true  do %>
