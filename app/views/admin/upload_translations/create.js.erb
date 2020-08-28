@@ -1,19 +1,12 @@
-<%# if @translation.errors.blank? %>
-  
+
+
   // Showing Growl Like Message
-  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  <% if @notification[:success] %>
+    notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  <% else %>
+    notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  <% end %>
   
    // Load same index UI
   $("#upload_translation_content").html("<%= escape_javascript(render(:partial=>'admin/upload_translations/index/index.html.erb')) %>");
   
-
-<%# else %>
-
-  // Showing Growl Like Message
-  // notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
-
-  // Load same index UI
-  // $("#upload_translation_content").html("<%#= escape_javascript(render(:partial=>'admin/translations/index/index.html.erb')) %>");
-
-
-<%# end %>
