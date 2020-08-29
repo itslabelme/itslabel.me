@@ -75,7 +75,7 @@ module Admin
         output_language: "ARABIC",
         input_phrase: csv_content[0], 
         output_phrase: csv_content[1], 
-        category: csv_content[3],
+        category: csv_content[3] || "Default",
         admin_user: @current_admin_user,
         status: "ACTIVE"
       )
@@ -101,7 +101,7 @@ module Admin
         input_language: "ENGLISH", output_language: "FRENCH",
         input_phrase: csv_content[0], 
         output_phrase: csv_content[2], 
-        category: csv_content[3],
+        category: csv_content[3] || "Default",
         admin_user: @current_admin_user
       )
 
@@ -127,7 +127,7 @@ module Admin
         input_language: "ARABIC", output_language: "ENGLISH",
         input_phrase: csv_content[1], 
         output_phrase: csv_content[0], 
-        category: csv_content[3],
+        category: csv_content[3] || "Default",
         admin_user: @current_admin_user
       )
 
@@ -153,7 +153,7 @@ module Admin
         input_language: "ARABIC", output_language: "FRENCH",
         input_phrase: csv_content[1], 
         output_phrase: csv_content[2], 
-        category: csv_content[3],
+        category: csv_content[3] || "Default",
         admin_user: @current_admin_user
       )
 
@@ -179,7 +179,7 @@ module Admin
         input_language: "FRENCH", output_language: "ENGLISH",
         input_phrase: csv_content[2], 
         output_phrase: csv_content[0], 
-        category: csv_content[3],
+        category: csv_content[3] || "Default",
         admin_user: @current_admin_user
       )
 
@@ -206,7 +206,7 @@ module Admin
         output_language: "ARABIC",
         input_phrase: csv_content[2], 
         output_phrase: csv_content[1], 
-        category: csv_content[3],
+        category: csv_content[3] || "Default",
         admin_user: @current_admin_user
       )
 
