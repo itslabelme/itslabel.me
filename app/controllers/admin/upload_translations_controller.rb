@@ -1,5 +1,6 @@
 module Admin
   class UploadTranslationsController < Admin::BaseController
+    require 'date'
 
     require 'csv'
 
@@ -17,11 +18,12 @@ module Admin
       @csv_contents = nil
       @summary = {}
       @parsing_status = {total_rows: 0, num_missing_rows: 0, missed_rows: []}
-
+      
       if csv_file
         begin
+          @path=csv_file.path
           @csv_contents = CSV.read(csv_file.path)
-        rescue
+         rescue
           file_error = "Unable to read the contents of the uploaded file, Please upload valid file"
         end
       else
@@ -29,7 +31,12 @@ module Admin
       end
 
       if file_error.blank? && @csv_contents
+         CSV.open("#{Rails.root}/public/template_<%=DateTime.now.strftime "%d/%m/%Y %H:%M"%>.csv", "wb") do |csv|
+         csv << [@csv_contents]
+          end
         import_data_from_csv
+        upload_history
+        upload_summary
       end
 
       if file_error.blank?
@@ -77,7 +84,6 @@ module Admin
         output_phrase: csv_content[1], 
         category: csv_content[3],
         admin_user: @current_admin_user,
-        status: "ACTIVE"
       )
       
       if @english_arabic_translation.valid?
@@ -219,6 +225,13 @@ module Admin
         @summary[csv_content[0]]['french-arabic'] = @french_arabic_translation.errors.full_messages
       end
     end
-
+    def upload_history
+      @history=TranslationUploadsHistory.new(admin_user:current_admin_user.first_name,file_path:@path)
+      @history.save 
+    end
+    def upload_summary
+      @summ=TranslationUploadsSummary.new(translation_uploads_history_id:@history.id,summary:@summary)
+      @summ.save
+    end
   end
 end
