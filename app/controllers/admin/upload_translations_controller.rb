@@ -31,9 +31,14 @@ module Admin
       end
 
       if file_error.blank? && @csv_contents
-         CSV.open("#{Rails.root}/public/template_<%=DateTime.now.strftime "%d/%m/%Y %H:%M"%>.csv", "wb") do |csv|
-         csv << [@csv_contents]
-          end
+
+
+        # CSV.open("#{Rails.root}/public/template_<%=DateTime.now.strftime "%d/%m/%Y %H:%M"%>.csv", "wb") do |csv|
+        # CSV.open("#{Rails.root}/public/template_#{DateTime.now.strftime '%d/%m/%Y %H:%M'}.csv", "wb") do |csv|
+        CSV.open("#{Rails.root}/public/template_#{DateTime.now.strftime '%d/%m/%Y_%3N'}.csv", "wb") do |csv|
+          csv << [@csv_contents]
+        end
+
         import_data_from_csv
         upload_history
         upload_summary
