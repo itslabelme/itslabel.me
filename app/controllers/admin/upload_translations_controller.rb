@@ -1,6 +1,5 @@
 module Admin
   class UploadTranslationsController < Admin::BaseController
-    require 'date'
 
     require 'csv'
 
@@ -31,14 +30,7 @@ module Admin
       end
 
       if file_error.blank? && @csv_contents
-
-
-        # CSV.open("#{Rails.root}/public/template_<%=DateTime.now.strftime "%d/%m/%Y %H:%M"%>.csv", "wb") do |csv|
-        # CSV.open("#{Rails.root}/public/template_#{DateTime.now.strftime '%d/%m/%Y %H:%M'}.csv", "wb") do |csv|
-        CSV.open("#{Rails.root}/public/template_#{DateTime.now.strftime '%d/%m/%Y_%3N'}.csv", "wb") do |csv|
-          csv << [@csv_contents]
-        end
-
+        csv_save
         import_data_from_csv
         upload_history
         upload_summary
@@ -230,10 +222,18 @@ module Admin
         @summary[csv_content[0]]['french-arabic'] = @french_arabic_translation.errors.full_messages
       end
     end
+    def csv_save
+       @cdate=DateTime.now.strftime '%d.%m.%Y__%3N'
+       CSV.open("#{Rails.root}/public/template_#{@cdate}.csv", "wb") do |csv|
+          csv << [@csv_contents]
+       end  
+    end
+
     def upload_history
       @history=TranslationUploadsHistory.new(admin_user:current_admin_user.first_name,file_path:@path)
       @history.save 
     end
+    
     def upload_summary
       @summ=TranslationUploadsSummary.new(translation_uploads_history_id:@history.id,summary:@summary)
       @summ.save
