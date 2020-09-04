@@ -1,0 +1,34 @@
+<div id="HISTORY_TABLE" class="table-responsive">
+  <table class="table table-hover table-custom spacing8" id="HISTORY_listing_table">
+    <thead>
+      <tr>
+        <th style="width: 5%;">#</th>
+        <th style="width: 25%;">Name</th>
+        <th style="width: 30%;">File Path</th>
+        <th style="width: 15%;">Summary</th>
+        <th style="width: 15%;">File</th>
+      </tr>
+    </thead>
+
+    <tbody>
+          <% @history.each do |history| %>
+      <tr id='HISTORY_ROW_<%= history.id %>'>
+          <td>
+            <span><%= history.id %></span>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div>
+                  <%= history.admin_user %>
+               </div>
+            </div>
+          </td>
+          <td><%=  history.file_path %></td>
+          <td><%=  history.translation_uploads_summary.summary %></td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>                
+</div>
+
+

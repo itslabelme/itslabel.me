@@ -131,7 +131,8 @@ Rails.application.routes.draw do
 
     # CRUD Label Templates
     resources :label_templates
-
+    
+    resources :translation_uploads_history
     # CRUD Nutrition Fact Templates
     # resources :nutrition_fact_templates
     
