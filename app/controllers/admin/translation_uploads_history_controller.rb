@@ -13,7 +13,7 @@ module Admin
   	end
 
   	def show
-  		
+
   	end
 
   	def create

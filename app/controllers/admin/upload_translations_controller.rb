@@ -224,13 +224,13 @@ module Admin
     end
     def csv_save
        @cdate=DateTime.now.strftime '%d.%m.%Y__%3N'
-       CSV.open("#{Rails.root}/public/template_#{@cdate}.csv", "wb") do |csv|
+       CSV.open("#{Rails.root}/public/imported_files/template_#{@cdate}.csv", "wb") do |csv|
           csv << [@csv_contents]
        end  
     end
 
     def upload_history
-      @history=TranslationUploadsHistory.new(admin_user:current_admin_user.first_name,file_path:@path)
+      @history=TranslationUploadsHistory.new(admin_user:current_admin_user.first_name,file_path:"template_#{@cdate}.csv")
       @history.save 
     end
     
