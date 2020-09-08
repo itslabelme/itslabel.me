@@ -213,20 +213,6 @@ ActiveRecord::Schema.define(version: 2020_09_03_083632) do
     t.index ["user_id"], name: "index_template_documents_on_user_id"
   end
 
-  create_table "translation_uploads_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "admin_user", limit: 256, null: false
-    t.string "file_path", limit: 256, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "translation_uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "translation_uploads_history_id", null: false
-    t.string "summary", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "input_phrase", limit: 256, null: false
     t.string "input_language", limit: 16, null: false
@@ -238,6 +224,21 @@ ActiveRecord::Schema.define(version: 2020_09_03_083632) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_user_id"], name: "index_translations_on_admin_user_id"
+  end
+
+  create_table "uploads_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "admin_user", limit: 256, null: false
+    t.string "file_path", limit: 256, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "translation_uploads_history_id", null: false
+    t.string "summary", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.json "summary_new"
   end
 
   create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

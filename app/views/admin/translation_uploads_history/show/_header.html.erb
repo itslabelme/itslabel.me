@@ -1,0 +1,30 @@
+<div class="block-header">
+  <div class="row clearfix">
+    <div class="col-md-6 col-sm-12">
+      <h2>Translations Summary</h2>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <!-- <li class="breadcrumb-item"><a href="#">Translations Database</a></li> -->
+        <li class="breadcrumb-item active" aria-current="page">Translations Summary</li>
+        </ol>
+      </nav>
+    </div>    
+      <%#= link_to new_admin_translation_path, remote: true, class: "btn btn-sm btn-primary" do %>
+        <!-- <i class="fa fa-plus"></i> New Translation -->
+      <%# end %>
+    </div>
+  </div>
+</div>
+ <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-8 mb-4 text-left">
+                  <!-- <h3>Table Mode - Translation</h3> -->
+                 </div>
+                <div  class="col-md-4 form-group" style="text-align:right;">
+                  <%= link_to "/imported_files/#{@history.file_path}", class: "btn btn-primary btn-lg mt-1 mb-1" do %>
+                    <i class='fa fa-save mr-2'></i>EXPORT
+                     <% end %>
+                   </div>
+              </div>
+            </div>

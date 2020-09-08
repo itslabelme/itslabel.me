@@ -230,12 +230,12 @@ module Admin
     end
 
     def upload_history
-      @history=TranslationUploadsHistory.new(admin_user:current_admin_user.first_name,file_path:"template_#{@cdate}.csv")
+      @history=UploadsHistory.new(admin_user:current_admin_user.first_name,file_path:"template_#{@cdate}.csv")
       @history.save 
     end
     
     def upload_summary
-      @summ=TranslationUploadsSummary.new(translation_uploads_history_id:@history.id,summary:@summary)
+      @summ=UploadsSummary.new(translation_uploads_history_id:@history.id,summary_new:@summary)
       @summ.save
     end
   end

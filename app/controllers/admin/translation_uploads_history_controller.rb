@@ -13,7 +13,8 @@ module Admin
   	end
 
   	def show
-
+      @summary=UploadsSummary.find(params[:id])
+      @history=UploadsHistory.find(params[:id])
   	end
 
   	def create
@@ -31,7 +32,7 @@ module Admin
   		
   	end
   	def get_history
-      @history=TranslationUploadsHistory.all
+      @history=UploadsHistory.all
   	end
   end
 end

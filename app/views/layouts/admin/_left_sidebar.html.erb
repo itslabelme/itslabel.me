@@ -42,20 +42,17 @@
                       Upload Database
                     <% end %>
                   </li>
-                  <li aria-expanded="true" >
-                       <a href="#"aria-expanded="false">
-                    <%= link_to admin_translations_path,:class => "has-arrow" do %>
-                      Manage Database</a>
+                  <li>
+                    <%= link_to admin_translations_path do %>
+                      Manage Database
                     <% end %>
-                   <ul aria-expanded="true" class="collapse out" style="">
-                      <li>
-                    <%= link_to admin_translation_uploads_history_index_path do %>
+                  </li>
+                  <li>
+                   <%= link_to admin_translation_uploads_history_index_path do %>
                       Translations History
                     <% end %>
-                    </li>
-                   </ul>
                   </li>
-                  
+                  </li>
               </ul>
           <li>
           <li class="active"><a href="home.html">
