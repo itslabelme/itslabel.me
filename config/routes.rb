@@ -68,6 +68,7 @@ Rails.application.routes.draw do
         get 'select_template', to: 'template_documents#select_template', as: 'select_template'
       end
     end
+    resources :client_feedbacks
 
     # CRUD Table Documents
     resources :table_documents do
