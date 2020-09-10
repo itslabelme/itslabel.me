@@ -9,6 +9,7 @@
   
   <% if @summary.any? %>
     $("#FIRST_BOX").html("<%= escape_javascript(render(:partial=>'admin/upload_translations/index/summary.html.erb')) %>");
+    $("#pleaseWaitDialog").modal("hide");
   <% end %>
 
   // Load same index UI
