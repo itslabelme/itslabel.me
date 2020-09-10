@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_084301) do
+ActiveRecord::Schema.define(version: 2020_09_09_123307) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -85,6 +85,16 @@ ActiveRecord::Schema.define(version: 2020_09_09_084301) do
     t.index ["mobile_number"], name: "index_client_users_on_mobile_number"
     t.index ["reset_password_token"], name: "index_client_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_client_users_on_unlock_token", unique: true
+  end
+
+  create_table "clients_feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", limit: 256, null: false
+    t.string "type"
+    t.text "input", null: false
+    t.text "output", null: false
+    t.string "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "document_folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -239,6 +249,20 @@ ActiveRecord::Schema.define(version: 2020_09_09_084301) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_user_id"], name: "index_translations_on_admin_user_id"
+  end
+
+  create_table "uploads_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "admin_user", limit: 256, null: false
+    t.string "file_path", limit: 256, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "translation_uploads_history_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.json "summary_new"
   end
 
   create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
