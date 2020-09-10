@@ -19,5 +19,8 @@
 
   <div id="SECOND_BOX"  class="card">
     <%= render partial: 'admin/upload_translations/form/form' %>
-    <%= render partial: 'admin/upload_translations/form/script' %>
   </div>
+
+  <%= content_for :javascript_footer do %>
+     <%= render :partial=>"admin/upload_translations/form/script.js.erb"  %>
+  <% end %>
