@@ -77,7 +77,7 @@ module Admin
         output_phrase: csv_content[1], 
         category: csv_content[3],
         admin_user: @current_admin_user,
-        status: "ACTIVE"
+        status: "APPROVED"
       )
       
       if @english_arabic_translation.valid?
@@ -102,7 +102,8 @@ module Admin
         input_phrase: csv_content[0], 
         output_phrase: csv_content[2], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @english_french_translation.valid?
@@ -128,7 +129,8 @@ module Admin
         input_phrase: csv_content[1], 
         output_phrase: csv_content[0], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @arabic_english_translation.valid?
@@ -154,7 +156,8 @@ module Admin
         input_phrase: csv_content[1], 
         output_phrase: csv_content[2], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @arabic_french_translation.valid?
@@ -180,7 +183,8 @@ module Admin
         input_phrase: csv_content[2], 
         output_phrase: csv_content[0], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @french_english_translation.valid?
@@ -207,7 +211,8 @@ module Admin
         input_phrase: csv_content[2], 
         output_phrase: csv_content[1], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @french_arabic_translation.valid?
