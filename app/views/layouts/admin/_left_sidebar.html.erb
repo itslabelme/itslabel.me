@@ -31,7 +31,7 @@
                 <span>Registrations</span>
               <% end %>
           <li>
-          <li class=""><a href="home.html">
+          <li class="<%= nav_active?('admin/translations') ? 'active' : '' %>"><a href="home.html">
               <a href="#" class="has-arrow" aria-expanded="false">
                   <%= image_tag "icons/language.svg", alt: "User icon"%>
                   <span>Translation Database</span></a>
@@ -45,6 +45,19 @@
                   <li>
                     <%= link_to admin_translations_path do %>
                       Manage Database
+                    <% end %>
+                  </li>
+              </ul>
+          <li>
+          <li class="<%= nav_active?('admin/reports') ? 'active' : '' %>"><a href="home.html">
+              <a href="#" class="has-arrow" aria-expanded="false">
+                  <%= image_tag "icons/recent.svg", alt: "User icon"%>
+                  <span>Reports</span></a>
+
+              <ul aria-expanded="true" class="collapse out" style="">
+                  <li>
+                    <%= link_to admin_translation_query_histories_path do %> 
+                      Translation History
                     <% end %>
                   </li>
               </ul>
