@@ -129,6 +129,8 @@ Rails.application.routes.draw do
     # Upload Translations Database 
     resources :upload_translations, only: [:index, :create]
 
+    resources :translation_query_histories, only: [:index]
+
     # CRUD Label Templates
     resources :label_templates
 

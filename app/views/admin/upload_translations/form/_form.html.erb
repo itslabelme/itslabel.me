@@ -30,6 +30,62 @@
                   
                 </p>
 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-md-12 pt-3">
+            <% unless @summary.empty? %>
+              <div class="alert alert-success alert-dismissible fade show">
+                <table>
+                    <tr>
+                      <th style="width: 25%" scope="col">English Word</th>
+                      <th style="width: 75%" scope="col">Inserted Combination</th>
+                    </tr>
+            
+                  <% @summary.each_with_index do | (key, value), index | %>
+                    <tr>
+                      <td><%= key %></td>
+                      <td>
+                          <% value.each_with_index do | (k, v), index | %>
+                            <%= k %> 
+                            <% if value.length > index + 1 %> , <% end %>
+                          <% end %>
+                        </td>
+                    </tr>
+                  <% end %>
+
+                </table>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-md-12 pt-3">
+            <% unless @errors.empty? %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <table class="table-bordered">
+                    <tr>
+                      <th style="width: 25%" scope="col">English Word</th>
+                      <th style="width: 75%" scope="col">Inserted Combination</th>
+                    </tr>
+            
+                  <% @errors.each_with_index do | (key, value), index | %>
+                    <tr>
+                      <td><%= key %></td>
+                      <td>
+                          <% value.each_with_index do | (k, v), index | %>
+                            <%= k %> 
+                            <% if value.length > index + 1 %> <br> <% end %>
+                          <% end %>
+                        </td>
+                    </tr>
+                  <% end %>
+
                 <p>Errors : 
 
                   <% @errors.each_with_index do | error | %>
@@ -41,7 +97,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
