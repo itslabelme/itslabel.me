@@ -236,6 +236,20 @@ puts "Adding Subscription Permissions".green
      
      ])
 
+#   a = AdminUser.first
+
+#    t = TranslationQueryHistory.create(
+#   input_language: "input_language", 
+#   output_language: "output_language",
+#   input_phrase: "input_text", 
+#   output_phrase: "input_text", 
+#   error: false,
+#   error_message: "error_message",
+#   admin_user: a,
+#   doc_type: 'Free Form',
+#   status: "ACTIVE"
+# )
+
 #template = LabelTemplate.first
 
 # puts "Adding Documents".green

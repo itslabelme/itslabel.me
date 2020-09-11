@@ -1,0 +1,36 @@
+<div class="container-fluid">
+
+  <!-- Header -->
+  <%= render partial: 'admin/translation_query_histories/index/header' %>
+
+  <!-- Controls -->
+  <%#=# render partial: 'admin/translation_query_histories/index/controls' %>
+
+  <div class="row clearfix">
+    
+    <div class="col-lg-12">
+      
+      <div class="card">
+
+
+          <div class="tab-pane active show" id="TRANSLATIONS_LIST">
+
+            <!-- Controls -->
+            <%= render partial: 'admin/translation_query_histories/index/controls' %>
+            
+            <!-- Table -->
+            <%= render partial: 'admin/translation_query_histories/index/table' %>
+
+            <!-- Pagination -->
+            <%#= paginate @translations if @translations.present? %>
+          </div>
+           
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascript_footer do %>
+  <%#= render :partial=>"admin/label_templates/index/table.js.erb"  %>
+<% end %>

@@ -1,0 +1,25 @@
+<tr id='TRANSLATIONS_ROW_<%= translation.id %>'>
+  <td>
+    <span> - </span>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+      <div>
+        <%= link_to translation.input_phrase, "#" %> 
+      </div>
+    </div>
+  </td>
+  <td class="its-tag"><%=  translation.input_language %></td>
+
+  <td><%=  translation.output_phrase %></td>
+  <td><%=  translation.output_language %></td>
+  <td>
+    <%= link_to edit_admin_translation_path(translation), class: "btn btn-sm btn-default", remote: true do %>
+      <i class="icon-pencil"></i>
+    <% end %>
+
+    <%= link_to admin_translation_path(translation), class: "btn btn-sm btn-default", method: :delete, remote: true, data: {confirm: "Are you sure? Do you really want to remove this translation?"} do %>
+      <i class="icon-trash"></i>
+    <% end %>
+  </td>
+</tr>

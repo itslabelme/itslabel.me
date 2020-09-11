@@ -17,11 +17,12 @@ module Admin
       @csv_contents = nil
       @summary = {}
       @parsing_status = {total_rows: 0, num_missing_rows: 0, missed_rows: []}
-
+      
       if csv_file
         begin
+          @path=csv_file.path
           @csv_contents = CSV.read(csv_file.path)
-        rescue
+         rescue
           file_error = "Unable to read the contents of the uploaded file, Please upload valid file"
         end
       else
@@ -29,7 +30,10 @@ module Admin
       end
 
       if file_error.blank? && @csv_contents
+        csv_save
         import_data_from_csv
+        upload_history
+        upload_summary
       end
 
       if file_error.blank?
@@ -77,7 +81,8 @@ module Admin
         output_phrase: csv_content[1], 
         category: csv_content[3],
         admin_user: @current_admin_user,
-        status: "ACTIVE"
+        status: "APPROVED"
+
       )
       
       if @english_arabic_translation.valid?
@@ -102,7 +107,8 @@ module Admin
         input_phrase: csv_content[0], 
         output_phrase: csv_content[2], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @english_french_translation.valid?
@@ -128,7 +134,8 @@ module Admin
         input_phrase: csv_content[1], 
         output_phrase: csv_content[0], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @arabic_english_translation.valid?
@@ -154,7 +161,8 @@ module Admin
         input_phrase: csv_content[1], 
         output_phrase: csv_content[2], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @arabic_french_translation.valid?
@@ -180,7 +188,8 @@ module Admin
         input_phrase: csv_content[2], 
         output_phrase: csv_content[0], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @french_english_translation.valid?
@@ -207,7 +216,8 @@ module Admin
         input_phrase: csv_content[2], 
         output_phrase: csv_content[1], 
         category: csv_content[3],
-        admin_user: @current_admin_user
+        admin_user: @current_admin_user,
+        status: "APPROVED"
       )
 
       if @french_arabic_translation.valid?
@@ -219,6 +229,21 @@ module Admin
         @summary[csv_content[0]]['french-arabic'] = @french_arabic_translation.errors.full_messages
       end
     end
+    def csv_save
+       @cdate=DateTime.now.strftime '%d.%m.%Y__%3N'
+       CSV.open("#{Rails.root}/public/imported_files/template_#{@cdate}.csv", "wb") do |csv|
+          csv << [@csv_contents]
+       end  
+    end
 
+    def upload_history
+      @history=UploadsHistory.new(admin_user:current_admin_user.first_name,file_path:"template_#{@cdate}.csv")
+      @history.save 
+    end
+    
+    def upload_summary
+      @summ=UploadsSummary.new(translation_uploads_history_id:@history.id,summary_new:@summary)
+      @summ.save
+    end
   end
 end
