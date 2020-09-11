@@ -2,14 +2,21 @@
 
   // Showing Growl Like Message
   <% if @notification[:success] %>
+    $(document).ready(function() {
+    $("#btn").attr("disabled", true);  
+    });
     notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
   <% else %>
+    $("#pleaseWaitDialog").modal("hide");
     notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
   <% end %>
   
   <% if @summary.any? %>
     $("#FIRST_BOX").html("<%= escape_javascript(render(:partial=>'admin/upload_translations/index/summary.html.erb')) %>");
     $("#pleaseWaitDialog").modal("hide");
+    $(document).ready(function() {
+    $("#btn").attr("disabled", false);  
+    });
   <% end %>
 
   // Load same index UI
