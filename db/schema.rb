@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_09_09_123307) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -97,6 +98,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_123307) do
     t.datetime "updated_at", null: false
   end
 
+
   create_table "document_folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 256, null: false
     t.bigint "parent_id"
@@ -107,6 +109,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_123307) do
     t.index ["ancestry"], name: "index_document_folders_on_ancestry"
     t.index ["user_id"], name: "index_document_folders_on_user_id"
   end
+
 
   create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "client_user_id"
