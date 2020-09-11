@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-md-6 col-sm-12 text-left">
-          <%= link_to '/template.csv', target: 'blank', class: "btn btn-sm btn-primary" do %>
+          <%= link_to '/template.csv', target: 'blank',class: "btn btn-sm btn-primary" do %>
             <i class="fa fa-download"></i> Download
           <% end %>
         </div>
@@ -20,3 +20,7 @@
   <div id="SECOND_BOX"  class="card">
     <%= render partial: 'admin/upload_translations/form/form' %>
   </div>
+
+  <%= content_for :javascript_footer do %>
+     <%= render :partial=>"admin/upload_translations/form/script.js.erb"  %>
+  <% end %>
