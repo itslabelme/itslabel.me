@@ -28,7 +28,7 @@
           <td><%=  translation_query_history.error ? "True" : "False" %></td>
           <td><%=  translation_query_history.client_user.display_name if translation_query_history.client_user  %></td>
           <td><%=  translation_query_history.doc_type %></td>
-          <td><%=  translation_query_history.created_at.strftime("%d %b,%Y") %></td>
+          <td><%=  translation_query_history.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y %T') %></td>
       </tr>
       <% end %>
     </tbody>
