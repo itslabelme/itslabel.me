@@ -42,6 +42,13 @@ module User
         @display_text = @input_text
       else
         @translated_html = Translation.translate_html(@input_text, input_language: @input_language, output_language: @output_language, return_in_hash: true)
+
+        # Save the translation query for Query/Data Set enhancement
+        error_status = @translated_html.to_html.include? "its-tran-not-found"
+        doc_type = params['controller'].split('/').last || 'Default'
+        output_text = @translated_html
+        save_trans_query( @input_text, @input_language, @output_language, output_text, doc_type, error_status)
+
         @display_text = @translated_html.to_html
       end
 
@@ -66,7 +73,7 @@ module User
         output_language: output_language || 'Default',
         input_phrase: input_text || 'Default', 
         output_phrase: output_text.to_html || 'Default', 
-        error: error_status || 'Default',
+        error: error_status || false,
         error_message: output_text || 'Default',
         client_user: @current_client_user,
         doc_type: doc_type,

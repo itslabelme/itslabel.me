@@ -3,9 +3,10 @@ module Admin
   	
   	def index
       @page_title = "Translations History"
-      @nav = 'admin/translation_uploads_history'
+      @nav = 'admin/translations'
 
-      get_history
+      # get_history
+      get_collection
   	end
 
   	def create
@@ -13,7 +14,12 @@ module Admin
   	end
 
   	def show
-      @summary=UploadsSummary.find(params[:id])
+      @page_title = "Translations History Details"
+      @nav = 'admin/translations'
+      # @summary=UploadsSummary.find(params[:id])
+
+      # Edited by sanoop 
+      @summary=UploadsSummary.find_by_translation_uploads_history_id(params[:id])
       @history=UploadsHistory.find(params[:id])
   	end
 
@@ -34,5 +40,15 @@ module Admin
   	def get_history
       @history=UploadsHistory.all
   	end
+
+    private
+
+    def get_collection
+      @order_by = "created_at DESC" unless @order_by
+
+      @relation = UploadsHistory.where("")
+
+      @history = @relation.order(@order_by).page(@current_page).per(@per_page)
+    end
   end
 end
