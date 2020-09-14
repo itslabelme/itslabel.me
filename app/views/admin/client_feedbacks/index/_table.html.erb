@@ -1,0 +1,26 @@
+<div id="FEEDBACK_TABLE" class="table-responsive">
+  <table class="table table-hover table-custom spacing8" id="HISTORY_listing_table">
+    <thead>
+      <tr>
+        <th style="width: 5%;">#</th>
+        <th style="width: 25%;">Name</th>
+        <th style="width: 15%;">Input</th>
+        <th style="width: 15%;">Output</th>
+        <th style="width: 15%;">Remarks</th>
+        <th style="width: 15%;">Created Date</th>
+        <th style="width: 15%;">Type</th>
+      </tr>
+    </thead>
+
+    <tbody>
+          <% @feedback.each do |feedback| %>
+      <tr id='FEEDBACK_ROW_<%= feedback.id %>'>
+          <td>
+            <span><%#= feedback.name %></span>
+          </td>
+          
+      </tr>
+      <% end %>
+    </tbody>
+  </table>                
+</div>
