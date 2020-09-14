@@ -27,8 +27,9 @@ Rails.application.routes.draw do
     
     get '/translation_request', to: 'free_form_widget#new_translation_request', as: 'new_translation_request'
     post '/translation_request', to: 'free_form_widget#create_translation_request', as: 'create_translation_request'
-
-      # Upload ingredient through CSV file (CSV file Upload and parsing)
+   
+   
+         # Upload ingredient through CSV file (CSV file Upload and parsing)
     get '/csv_upload', to: 'table_documents#csv_upload', as: 'csv_upload'
 
       # Parse CSV data
@@ -117,6 +118,8 @@ Rails.application.routes.draw do
 
     # FIXME - not sure why we need this
     root to: 'home#index'
+
+    resources :client_feedbacks
 
     # CRUD Client Users
     resources :client_users

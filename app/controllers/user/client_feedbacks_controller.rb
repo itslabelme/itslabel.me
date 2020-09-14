@@ -5,18 +5,22 @@ module User
   
     def index
       @page_title = "Free Form Translation"
-      @nav = 'user/free_form'
+      @nav = 'user/free form'
     end
-
+    
     def new
-      @input_language = params[:input_language].to_s.strip unless params[:input_language].to_s.strip.blank?
-      @output_language = params[:output_language].to_s.strip unless params[:output_language].to_s.strip.blank?
-
-      @input_language = "ENGLISH" unless @input_language
-      @output_language = "ARABIC" unless @output_language
-      @feedback=ClientsFeedback.new(name:@current_client_user,type:"Free form",input:"hkh",output:"kjk",remarks:"ggg")
-      @feedback.save
-
+      @feedback=ClientsFeedback.new
     end
+
+    def create
+      @feedback=ClientsFeedback.new(feedback_params)
+      @feedback.save
+    end
+
+    private
+
+   def feedback_params
+        params.require(:clients_feedbacks).permit(@current_client_user, :input, :output, :remarks)
+   end
    end
 end
