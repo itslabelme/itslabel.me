@@ -230,10 +230,12 @@ module Admin
       end
     end
     def csv_save
-       @cdate=DateTime.now.strftime '%d.%m.%Y__%3N'
-       CSV.open("#{Rails.root}/public/imported_files/template_#{@cdate}.csv", "wb") do |csv|
-          csv << [@csv_contents]
-       end  
+      @cdate=DateTime.now.strftime '%d.%m.%Y__%3N'
+      CSV.open("#{Rails.root}/public/imported_files/template_#{@cdate}.csv", "wb") do |csv|  
+        @csv_contents.each do |csv_content|
+         csv << [csv_content[0],csv_content[1],csv_content[2],csv_content[3]]
+        end
+      end 
     end
 
     def upload_history
