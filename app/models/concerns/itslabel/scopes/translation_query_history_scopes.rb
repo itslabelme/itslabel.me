@@ -13,7 +13,7 @@ module Itslabel::Scopes::TranslationQueryHistoryScopes
       LOWER(translation_query_histories.output_phrase) LIKE LOWER(?) OR\
       LOWER(translation_query_histories.error) LIKE LOWER(?) OR\
       LOWER(translation_query_histories.output_language) LIKE LOWER(?) 
-    ", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")}
+    ", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")}
  
     scope :search_only_input_phrase, lambda {|input_phrase| input_phrase.to_s.blank? ? where("") : where("
       LOWER(translation_query_histories.input_phrase) LIKE LOWER(?)", "%#{input_phrase}%")}
