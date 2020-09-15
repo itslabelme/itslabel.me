@@ -1,11 +1,11 @@
 module User
-  class ClentFeedbacksController < User::BaseController
+  class ClientFeedbacksController < User::BaseController
     before_action :authenticate_client_user!
     before_action :get_user_subscription
   
     def index
-      @page_title = "Free Form Translation"
-      @nav = 'user/free form'
+      @page_title = "Client Feedback"
+      @nav = 'user/client feedbacks'
     end
     
     def new
@@ -14,13 +14,18 @@ module User
 
     def create
       @feedback=ClientsFeedback.new(feedback_params)
-      @feedback.save
+      if @feedback.save
+        redirect_to @feedback
+      else
+        render 'new'
+      end
     end
 
-    private
+   private
 
    def feedback_params
         params.require(:clients_feedbacks).permit(@current_client_user, :input, :output, :remarks)
    end
-   end
+  
+  end
 end
