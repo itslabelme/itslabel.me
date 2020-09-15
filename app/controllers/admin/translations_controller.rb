@@ -10,6 +10,14 @@ module Admin
 
       get_collection
       new_translation
+
+      @en_ar = Translation.where(input_language: "ENGLISH", output_language: "ARABIC").count
+      @en_fr = Translation.where(input_language: "ENGLISH", output_language: "FRENCH").count
+      @ar_en = Translation.where(input_language: "ARABIC", output_language: "ENGLISH").count
+      @ar_fr = Translation.where(input_language: "ARABIC", output_language: "FRENCH").count
+      @fr_en = Translation.where(input_language: "FRENCH", output_language: "ENGLISH").count
+      @fr_ar = Translation.where(input_language: "FRENCH", output_language: "ARABIC").count
+
     end
 
     def show

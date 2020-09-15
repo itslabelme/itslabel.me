@@ -1,5 +1,5 @@
 <div class="input-group" id="adv-search">
-  <input type="text" class="form-control" name="q" id="q" placeholder="Search..." />
+  <input type="text" class="form-control" value="<%= @query %>" name="q" id="q" placeholder="Search..." />
   <div class="input-group-btn">
     <div class="btn-group" role="group">
       <div class="dropdown dropdown-lg">
@@ -78,5 +78,5 @@
   </div>
 </div>
 <%= content_for :javascript_footer do %>
-<%= render :partial=>"admin/translations/index/controls.js.erb"  %>
+<%= render :partial=>"admin/translation_query_histories/index/controls.js.erb"  %>
 <% end %>

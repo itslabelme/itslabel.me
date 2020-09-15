@@ -1,11 +1,9 @@
 
-
   // Showing Growl Like Message
   <% if @notification[:success] %>
-    $(document).ready(function() {
-    $("#btn").attr("disabled", true);  
-    });
+    $("#pleaseWaitDialog").modal("hide");
     notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+    $("#btn").attr("disabled", false);  
   <% else %>
     $("#pleaseWaitDialog").modal("hide");
     notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
