@@ -62,14 +62,7 @@ module User
         params[:output_language]
       )
     end
-    def new_client_feedback
-      
-    end
-    def create_client_feedback
-    @feedback=ClientFeedback.new(params.require(:clients_feedbacks).permit(@current_client_user, :input, :output, :remarks))  
-    @feedback.save
-    end
-
+   
     private
 
     def get_languages
