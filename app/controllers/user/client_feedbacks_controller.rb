@@ -11,16 +11,16 @@ module User
     end
 
     def create
-      @feedback=ClientFeedback.new(feedback_params)
-       @feedback.save   
+      @client_feedback=ClientFeedback.new(permitted_params)
+    if @client_feedback.valid?
+      @client_feedback.save
+    else
+      render 'new'
+        
+    end   
     end
-
-   private
-
-   def feedback_params
-    @type="free_form"
-    params.require(:client_feedback).permit( @current_client_user.id, @type, :input, :output, :remarks)
+    def permitted_params
+      params.require(:client_feedback).permit(:client_user_id,:input,:output,:remarks)
    end
-  
   end
 end
