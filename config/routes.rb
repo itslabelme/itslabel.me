@@ -27,13 +27,8 @@ Rails.application.routes.draw do
     
     get '/translation_request', to: 'free_form_widget#new_translation_request', as: 'new_translation_request'
     post '/translation_request', to: 'free_form_widget#create_translation_request', as: 'create_translation_request'
-   
-     get '/client_feedbacks', to: 'free_form_widget#new_client_feedback', as: 'new_client_feedback'
-    post '/client_feedbacks', to: 'free_form_widget#create_client_feedback', as: 'create_client_feedback'
-   
-         # Upload ingredient through CSV file (CSV file Upload and parsing)
+    # Upload ingredient through CSV file (CSV file Upload and parsing)
     get '/csv_upload', to: 'table_documents#csv_upload', as: 'csv_upload'
-
       # Parse CSV data
     post 'csv_parse', to: 'table_documents#csv_parse', as: 'csv_parse'
 
