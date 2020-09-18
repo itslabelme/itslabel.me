@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(version: 2020_09_16_055053) do
   end
 
   create_table "client_feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "client_user_id", null: false
-    t.string "category", null: false
+    t.bigint "client_user_id"
     t.text "input", null: false
     t.text "output", null: false
-    t.string "remarks"
+    t.string "remarks", null: false
+    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_user_id"], name: "index_client_feedbacks_on_client_user_id"
@@ -107,6 +107,15 @@ ActiveRecord::Schema.define(version: 2020_09_16_055053) do
     t.string "ancestry"
     t.index ["ancestry"], name: "index_document_folders_on_ancestry"
     t.index ["user_id"], name: "index_document_folders_on_user_id"
+  end
+
+  create_table "folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.bigint "parent_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_folders_on_user_id"
   end
 
   create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -261,9 +270,9 @@ ActiveRecord::Schema.define(version: 2020_09_16_055053) do
 
   create_table "uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "translation_uploads_history_id", null: false
+    t.json "summary_new", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.json "summary_new"
   end
 
   create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
