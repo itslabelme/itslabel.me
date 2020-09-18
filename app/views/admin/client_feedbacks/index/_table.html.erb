@@ -13,10 +13,29 @@
     </thead>
 
     <tbody>
-          <% @feedback.each do |feedback| %>
+          <% @client_feedback.each do |feedback| %>
       <tr id='FEEDBACK_ROW_<%= feedback.id %>'>
           <td>
-            <span><%#= feedback.name %></span>
+            <span><%= feedback.id %></span>
+          </td>
+          <td>
+            <span><%= feedback.client_user_id.display %></span>
+          </td>
+          <td>
+            <span><%= feedback.input %></span>
+          </td>
+          <td>
+            <span><%= feedback.output %></span>
+          </td>
+          <td>
+            <span><%= feedback.remarks %></span>
+          </td>
+          
+          <td>
+            <span><%= feedback.created_at %></span>
+          </td>
+          <td>
+            <span><%= feedback.category %></span>
           </td>
           
       </tr>

@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_055053) do
 
   create_table "client_feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "client_user_id", null: false
-    t.string "type", null: false
+    t.string "category", null: false
     t.text "input", null: false
     t.text "output", null: false
     t.string "remarks"

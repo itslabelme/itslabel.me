@@ -9,7 +9,7 @@ module Admin
       @page_title = "Admin Users | Admin"
       @nav = 'admin/client_feedbacks'
 
-      @feedback=ClientFeedback.all
+      @client_feedback=ClientFeedback.all
 
     end
   end

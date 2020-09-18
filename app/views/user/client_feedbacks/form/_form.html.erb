@@ -1,9 +1,9 @@
 <%
-  form_url = user_client_feedbacks_path
   form_method = :post
+  form_url = user_client_feedbacks_path
 %>
-<%= form_with(url: form_url,  class: "form-floating", method: form_method, model: @client_feedback) do |f| %>
-    <%= hidden_field_tag :client_user_id, @current_client_user.id %>
+<%= form_with(url:form_url,class: "form-floating",model:@client_feedback,method:form_method) do |f| %>
+    <%= hidden_field_tag :client_user_id, params[:client_user_id] %>
 
    <div class="modal-header" >
           <h4 class="modal-title">Report An Issue</h4>
@@ -64,8 +64,8 @@
         </div>
 
       <div class="modal-footer">
+       <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span> Submit </button>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%= f.submit "save" , :class =>"btn btn-primary" %>
         </div>
-       <% end %>
+  <% end %>
      
