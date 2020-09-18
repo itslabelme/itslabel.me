@@ -1,0 +1,5 @@
+ <% if @notification[:success] %>
+    notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  <% else %>
+    notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  <% end %>
