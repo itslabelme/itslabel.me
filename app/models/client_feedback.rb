@@ -8,7 +8,7 @@ class ClientFeedback < ApplicationRecord
   validates :remarks, presence: true
 
   # Associations
-  belongs_to :client_user, class_name: "ClientUser", forengn_key_id: :client_user_id
+  belongs_to :client_user, class_name: "ClientUser", foreign_key: :client_user_id
 
   # ----------------
   # Instance Methods

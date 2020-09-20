@@ -8,6 +8,8 @@ module User
     end
     def new
       @client_feedback=ClientFeedback.new
+      @input = params[:input]
+      @output =params[:output]
     end
 
     def create
@@ -18,12 +20,14 @@ module User
       @client_feedback.save
       set_notification(true, I18n.t('status.success'), I18n.t('success.created',item: "Feedback"))
       set_flash_message(I18n.translate("success.created"), :success)
-    else
+     else
       set_notification(false, I18n.t('status.error'),"Please correct them and submit again")
       set_flash_message('The form has some errors. Please correct them and submit again', :error)
      end   
     end
+   
     private
+    
     def permitted_params
       params.require(:client_feedback).permit(:client_user_id,:input,:output,:remarks,:category)
    end

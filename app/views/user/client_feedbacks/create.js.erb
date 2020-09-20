@@ -1,5 +1,7 @@
  <% if @notification[:success] %>
     notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+    $('#client_feedbacks').modal('hide');
+
   <% else %>
     notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
   <% end %>
