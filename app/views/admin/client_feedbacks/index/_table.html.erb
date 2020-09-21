@@ -22,10 +22,10 @@
             <span><%= feedback.client_user.first_name %> <%= feedback.client_user.last_name %></span>
           </td>
           <td>
-            <span><%= feedback.input %></span>
+            <span><%= feedback.input.html_safe %></span>
           </td>
           <td>
-            <span><%= feedback.output %></span>
+            <span><%= feedback.output.html_safe %></span>
           </td>
           <td>
             <span><%= feedback.remarks %></span>
