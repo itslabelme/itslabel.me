@@ -9,7 +9,9 @@ module Admin
       @page_title = "Admin Feedbacks | Admin"
       @nav = 'admin/client_feedbacks'
 
-      @client_feedback=ClientFeedback.all
+      @feedback=ClientFeedback.all
+      @client_feedback=@feedback.page(params[:page]).per(10)
+
       
     end
   end

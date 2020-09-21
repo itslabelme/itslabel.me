@@ -15,7 +15,8 @@
     </thead>
 
     <tbody>
-          <% @client_feedback.each do |feedback| %>
+    <%= paginate @client_feedback %>
+    <% @client_feedback.each_with_index do |feedback, i| %>
       <tr id='FEEDBACK_ROW_<%= feedback.id %>'>
           <td>
             <span><%= feedback.id %></span>
@@ -45,9 +46,10 @@
           <td>
             <span><%= feedback.category %></span>
           </td>
-          
+
       </tr>
       <% end %>
+
     </tbody>
   </table>                
 </div>
