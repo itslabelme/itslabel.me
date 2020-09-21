@@ -34,10 +34,9 @@
   
   var input = $("#INPUT_AREA").html();
   var output = $("#OUTPUT_AREA").html();
-  //var inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
-  //var outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
-  var inputlanguage = "hii";
-  var outputlanguage = "hello";
+   let inputlanguage = $("#INPUT_LANGUAGE").children("option:selected").val();
+  let outputlanguage = $("#OUTPUT_LANGUAGE").children("option:selected").val();
+  
 
    $.ajax({
     url: '/user/client_feedbacks/new.js',

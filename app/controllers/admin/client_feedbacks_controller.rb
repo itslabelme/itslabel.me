@@ -6,11 +6,11 @@ module Admin
     
     def index
 
-      @page_title = "Admin Users | Admin"
+      @page_title = "Admin Feedbacks | Admin"
       @nav = 'admin/client_feedbacks'
 
       @client_feedback=ClientFeedback.all
-
+      
     end
   end
 end

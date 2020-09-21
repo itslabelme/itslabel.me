@@ -13,25 +13,27 @@
        <div class="row">
     <%= f.hidden_field :input, value: @input %>
     <%= f.hidden_field :output, value: @output %>
+    <%= f.hidden_field :input_language, value: @input_language %>
+    <%= f.hidden_field :output_language, value: @output_language %>
 
         <!-- Input -->
         <div class="col-md-6" id="input">
            <div class="form-group row " style="">
-            <label class="col-sm-6">Input [ ]</label>
+            <label class="col-sm-6">Input [ <%= @input_language %> ]</label>
  
             <div class="col-md-12">
-              <div class="square">&nbsp;<%= @input.html_safe %></div>
-                </div>
+              <div class="square"><%= @input.html_safe %></div>
+            </div>
           </div>
         </div>
 
         <!-- Output -->
         <div class="col-md-6" id="output">
           <div class="form-group row " style="">
-            <label class="col-sm-12">Output[ ] 
+            <label class="col-sm-12">Output [ <%= @output_language %> ] 
             </label>
             <div class="col-md-12">
-              <div class="square">&nbsp;<%= @output.html_safe %></div>
+              <div class="square"><%= @output.html_safe %></div>
                
             </div>
           </div>        
@@ -43,7 +45,7 @@
               <span class="text-color-red px-1">&nbsp;&nbsp;</span>
             </label>
             <div class="col-md-12">
-               <strong><%= f.text_area :remarks , :class => "form-controll" , size: "60x5" %></strong>
+               <strong ><%= f.text_area :remarks , :class => "form-controll" , size: "60x5" %></strong>
             </div>
           </div>
         </div>
@@ -72,12 +74,13 @@
         </div>
   <% end %>
      
-     <style type="text/css">
-       .square {
+<style type="text/css">
+  .square {
   width: 225px;
   height: 100px;
   border: 1px solid black;
   text-align: left ;
+  padding:10px;
 
 }
-     </style>
+</style>

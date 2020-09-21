@@ -8,10 +8,7 @@ module User
     end
     def new
       @client_feedback=ClientFeedback.new
-      @input = params[:input]
-      @output =params[:output]
-      @inputlanguage = params[:inputlanguage]    
-      @outputlanguage = params[:outputlanguage]
+      get_params
     end
 
     def create
@@ -32,6 +29,12 @@ module User
     
     def permitted_params
       params.require(:client_feedback).permit(:client_user_id,:input,:output,:remarks,:category,:input_language,:output_language)
+   end
+   def get_params
+    @input = params[:input]
+    @output =params[:output]
+    @input_language = params[:inputlanguage]
+    @output_language = params[:outputlanguage] 
    end
   end
 end
