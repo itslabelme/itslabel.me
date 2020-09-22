@@ -8,6 +8,7 @@ class ClientFeedback < ApplicationRecord
   validates :remarks, presence: true
   validates :input_language, presence: true
   validates :output_language, presence: true
+  
   # Associations
   belongs_to :client_user, class_name: "ClientUser", foreign_key: :client_user_id
 
