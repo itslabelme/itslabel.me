@@ -36,7 +36,7 @@
             errors << value['french-arabic'] if value['french-arabic'] != true
             errors << value['arabic-french'] if value['arabic-french'] != true
           %>
-          <td style="visibility: hidden;display: none;"><%=errors.join('; ') %>
+          <td style="visibility: hidden;display: none;"><%=errors.join('') %>
 
           <%if errors.empty?%>
             <td></td>
