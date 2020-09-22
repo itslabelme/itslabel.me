@@ -19,6 +19,7 @@ module Admin
       # @summary=UploadsSummary.find(params[:id])
 
       # Edited by sanoop 
+      # get_summary
       @summary=UploadsSummary.find_by_translation_uploads_history_id(params[:id])
       @history=UploadsHistory.find(params[:id])
   	end
@@ -49,6 +50,12 @@ module Admin
       @relation = UploadsHistory.where("")
 
       @history = @relation.order(@order_by).page(@current_page).per(@per_page)
+    end
+
+    def get_summary
+      @relation = UploadsSummary.where(translation_uploads_history_id: params[:id])
+
+      @summary = @relation.page(@current_page).per(100)
     end
   end
 end
