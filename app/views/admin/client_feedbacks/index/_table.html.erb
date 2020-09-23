@@ -15,7 +15,6 @@
     </thead>
 
     <tbody>
-    <%= paginate @client_feedback %>
     <% @client_feedback.each_with_index do |feedback, i| %>
       <tr id='FEEDBACK_ROW_<%= feedback.id %>'>
           <td>
