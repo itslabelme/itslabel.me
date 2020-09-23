@@ -36,14 +36,15 @@
             errors << value['french-arabic'] if value['french-arabic'] != true
             errors << value['arabic-french'] if value['arabic-french'] != true
           %>
-          <td><button type="button" class="btn" data-toggle="modal" data-target="#myModal">ERRORS</button></td>
+          <td style="visibility: hidden;display: none;"><%=errors.join('') %>
+
           <%if errors.empty?%>
-            <td style="visibility: hidden;display: none;">NO ERRORS !</td>
+            <td></td>
           <%else%>
-            <td style="visibility: hidden;display: none;"><%=errors.join('; ') %>
+            <td><button type="button" class="btn" data-toggle="modal" data-target="#myModal">ERRORS</button></td>
             </td>
-            </tr> 
-           <% end %>
+          <% end %>
+        </tr>
       <% end %>
     </table>
   <% end %>
