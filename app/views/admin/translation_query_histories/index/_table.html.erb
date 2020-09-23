@@ -1,0 +1,38 @@
+<div id="TRANSLATIONS_TABLE" class="table-responsive">
+  <table class="table table-hover table-custom spacing8" id="translation_listing_table">
+    <thead>
+      <tr>
+        <th style="width: 10%;">#</th>
+        <th style="width: 15%;">Input Language</th>
+        <th style="width: 25%;">Input Phrase</th>
+        <th style="width: 15%;">Output Language</th>
+        <th style="width: 25%;">Output Phrase</th>
+        <th style="width: 15%;">Error</th>
+        <!-- <th style="width: 15%;">Error Message</th> -->
+        <th style="width: 15%;">User</th>
+        <th style="width: 15%;">Doc Type</th>
+        <th style="width: 15%;">Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @translationQueryHistories.each_with_index do |translation_query_history, i| %>
+      <tr id='TRANSLATIONS_ROW_<%= translation_query_history.id %>'>
+          <td>
+            <span><%= serial_number(i) %></span>
+          </td>
+          <td><%=  translation_query_history.input_language %></td>
+          <td><%=translation_query_history.input_phrase.html_safe %></td>
+          <td><%=  translation_query_history.output_language %></td>
+          <td><%=  translation_query_history.output_phrase.html_safe %></td>
+          <td><%=  translation_query_history.error ? "True" : "False" %></td>
+          <td><%=  translation_query_history.client_user.display_name if translation_query_history.client_user  %></td>
+          <td><%=  translation_query_history.doc_type %></td>
+          <td><%=  translation_query_history.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y %T') %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>                
+</div>
+
+

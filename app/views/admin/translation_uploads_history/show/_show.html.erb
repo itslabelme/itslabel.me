@@ -1,0 +1,61 @@
+
+<div id="SUMMARY_TABLE" class="table-responsive">
+<% if @summary %>
+  <% if @summary.summary_new.empty? %>
+    <span class="ml-5"> No Summary was generated </span>
+  <% else %>
+    <table class="table table-hover table-custom spacing8" id="table">
+      <thead>
+        <th scope="col" class="summary-th" >#</th>
+        <th scope="col" class="summary-th" >English</th>
+        <th scope="col" class="summary-th" >EN-AR</th>
+        <th scope="col" class="summary-th" >EN-FR</th>
+        <th scope="col" class="summary-th" >AR-FR</th>
+        <th scope="col" class="summary-th" >AR-EN</th>
+        <th scope="col" class="summary-th" >FR-AR</th>
+        <th scope="col" class="summary-th" >FR-EN</th>
+        <th scope="col" class="summary-th" >Errors</th>
+      </thead>
+
+      <% @summary.summary_new.each_with_index do | (key, value), index | %>
+        <tr>
+          <td class="summary-td"><%= index + 1 %></td>
+          <td class="summary-td"><%= key %></td>
+          <td class="summary-td"><%= value['english-arabic'] == true ? "✅" : "⛔" %></td>
+          <td class="summary-td"><%= value['arabic-english'] == true ? "✅" : "⛔" %></td>
+          <td class="summary-td"><%= value['english-french'] == true ? "✅" : "⛔" %></td>
+          <td class="summary-td"><%= value['french-english'] == true ? "✅" : "⛔" %></td>
+          <td class="summary-td"><%= value['french-arabic'] == true ? "✅" : "⛔" %></td>
+          <td class="summary-td"><%= value['arabic-french'] == true ? "✅" : "⛔" %></td>
+          <% 
+            errors = [] 
+            errors << value['english-arabic'] if value['english-arabic'] != true
+            errors << value['arabic-english'] if value['arabic-english'] != true
+            errors << value['english-french'] if value['english-french'] != true
+            errors << value['french-english'] if value['french-english'] != true
+            errors << value['french-arabic'] if value['french-arabic'] != true
+            errors << value['arabic-french'] if value['arabic-french'] != true
+          %>
+          <td style="visibility: hidden;display: none;"><%=errors.join('') %>
+
+          <%if errors.empty?%>
+            <td></td>
+          <%else%>
+            <td><button type="button" class="btn" data-toggle="modal" data-target="#myModal">ERRORS</button></td>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% else %>
+  <span class="ml-5"> Summary is not found. An Error Occured while CSV Parsing. </span>
+<% end %>
+<%= render partial: 'admin/translation_uploads_history/show/errors' %>
+ 
+<style type="text/css">
+  .summary-th {  }
+  .summary-th.center { text-align: center; }
+  .summary-td {  }
+  .summary-td.center { text-align: center; }
+</style>
