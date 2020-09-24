@@ -6,6 +6,7 @@
     $("#btn").attr("disabled", false);  
   <% else %>
     $("#pleaseWaitDialog").modal("hide");
+    $("#file").val(null);
     notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
   <% end %>
   

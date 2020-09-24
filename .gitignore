@@ -65,3 +65,6 @@ docs
 !.elasticbeanstalk/*.global.yml
 
 .ebextensions/*
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
