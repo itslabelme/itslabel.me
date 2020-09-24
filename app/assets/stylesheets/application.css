@@ -18,7 +18,8 @@
  *= require its-tree.css
  *= require its-home-block.css
  *= require responsive.css
- *= require_self
+ *= require custom.css
+  *= require_self
  */
 
  @keyframes highlightAfterAdd {
