@@ -1,36 +1,43 @@
-  .tex-container {
+.tex-container {
             max-width: 820px;
             margin: 0px auto;
             margin-top: 50px;
-        }
+}
 
-        .tex-comment {
-            float: left;
-            width: 100%;
-            height: auto;
-        }
+.tex-comment {
+   float: left;
+   width: 100%;
+   height: auto;
+}
 
-        .commenter {
-            float: left;
-        }
+.commenter {
+   float: left;
+}
 
-        .commenter img {
-            width: 35px;
-            height: 35px;
-        }
+.commenter img {
+   width: 35px;
+   height: 35px;
+}
 
-        .comment-text-area {
-            float: left;
-            width: 100%;
-            height: auto;
-        }
+.comment-text-area {
+   float: left;
+   width: 100%;
+   height: auto;
+}
 
-        .tex-textinput {
-            float: left;
-            width: 100%;
-            min-height: 75px;
-            outline: none;
-            resize: none;
-            border: 1px solid grey;
-        }
-    
+.tex-textinput {
+   float: left;
+   width: 100%;
+   min-height: 75px;
+   outline: none;
+   resize: none;
+   border: 1px solid grey;
+}
+.square {
+   width: 225px;
+   height: 100px;
+   border: 1px solid black;
+   text-align: left ;
+   padding:10px;
+
+}
