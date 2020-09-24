@@ -5,24 +5,23 @@
 <%= form_with(url:form_url,class: "form-floating",model:@client_feedback,method:form_method) do |f| %>
 
 
-   <div class="modal-header" >
-          <h4 class="modal-title">Report An Issue</h4>
+    <div class="modal-header" >
+      <h4 class="modal-title">Report An Issue</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body" >
-       <div class="row">
-    <%= f.hidden_field :input, value: @input %>
-    <%= f.hidden_field :output, value: @output %>
-    <%= f.hidden_field :input_language, value: @input_language %>
-    <%= f.hidden_field :output_language, value: @output_language %>
-
+      <%= f.hidden_field :input, value: @input %>
+      <%= f.hidden_field :output, value: @output %>
+      <%= f.hidden_field :input_language, value: @input_language %>
+      <%= f.hidden_field :output_language, value: @output_language %>
+      <div class="row">
         <!-- Input -->
         <div class="col-md-6" id="input">
            <div class="form-group row " style="">
             <label class="col-sm-6">Input [ <%= @input_language %> ]</label>
  
             <div class="col-md-12">
-              <div class="square"><%= @input.html_safe %></div>
+              <div class="square" style="border-color: #8e8c8c;"><%= @input.html_safe %></div>
             </div>
           </div>
         </div>
@@ -33,45 +32,44 @@
             <label class="col-sm-12">Output [ <%= @output_language %> ] 
             </label>
             <div class="col-md-12">
-              <div class="square"><%= @output.html_safe %></div>
+              <div class="square" style="border-color: #8e8c8c;"><%= @output.html_safe %></div>
                
             </div>
           </div>        
         </div>
 
-       <div class="col-md-6">
+        <!-- Remarks -->
+        <div class="col-md-12">
           <div class="form-group row " style="">
             <label class="col-sm-12">Remarks
               <span class="text-color-red px-1">&nbsp;&nbsp;</span>
             </label>
             <div class="col-md-12">
-               <strong><%= f.text_area :remarks , :class => "form-controll" , size: "60x5" %></strong>
+               <strong><%= f.text_area :remarks , :class => "form-controll" , size: "70x5", style: "border-color: #8e8c8c;" %></strong>
             </div>
           </div>
         </div>
-        
-      
-       </div>
-        <div class="row">
-         <div class="col-md-6">
-          <div class="form-group row " style="">
-          <label>&nbsp;&nbsp;&nbsp;user :</label>
-          <strong style="align-items: center;"><%= @current_client_user.display_name %></strong>        
-          </div>
-        </div>  
-       <div class="col-md-6">
-        <div class="form-group row " style="">
-          <label>&nbsp;&nbsp;&nbsp;Date & Time :</label>
-          <strong><%= Time.now.strftime("%d/%m/%Y %H:%M %p") %></strong>         
-          </div>
-        </div>  
-       </div>
-        </div>
+      </div>
 
-      <div class="modal-footer">
-       <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span> Submit </button>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row " style="">
+            <label class="pl-3">User:</label>
+            <strong class="pl-1" style="align-items: center;"><%= @current_client_user.display_name %></strong>        
+          </div>
+        </div>  
+        <div class="col-md-6">
+          <div class="form-group row " style="">
+            <label> Date & Time: </label>
+            <strong class="pl-1"><%= Time.now.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') %></strong>         
+          </div>
+        </div>  
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span> Submit </button>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+    </div>
   <% end %>
      
 <style type="text/css">

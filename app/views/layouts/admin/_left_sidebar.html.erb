@@ -66,6 +66,11 @@
                       Translation History
                     <% end %>
                   </li>
+                  <li>
+                   <%= link_to admin_client_feedbacks_url do %>
+                     Clients Feedback
+                    <% end %> 
+                  </li>
               </ul>
           <li>
           <li class="active"><a href="home.html">
@@ -90,12 +95,6 @@
         <li class="<%= nav_active?('admin/reports') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 1", admin_admin_users_path %></li>
         <li class="<%= nav_active?('admin/reports') ? 'active' : '' %>"><%= link_to content_tag(:i, "", class: "icon-folder") + "Report 2", admin_admin_users_path %></li> -->
         
-        <!-- <li class="header">My Account</li> -->
-          <li>
-           <%= link_to admin_client_feedbacks_url do %>
-             <i class="fa fa-file"></i><span>Reports</span>
-            <% end %> 
-          </li>
           <li>
               <%= link_to admin_edit_profile_url do %>
                   <%= image_tag "icons/user.svg", alt: "user icon"%>
