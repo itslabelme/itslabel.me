@@ -27,6 +27,7 @@ capybara-*.html
 /log
 /tmp
 /public/system
+/public/imported_files
 /coverage/
 /spec/tmp
 /public/uploads/**/
