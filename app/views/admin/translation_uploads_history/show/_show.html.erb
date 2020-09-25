@@ -14,36 +14,37 @@
         <th scope="col" class="summary-th" >AR-EN</th>
         <th scope="col" class="summary-th" >FR-AR</th>
         <th scope="col" class="summary-th" >FR-EN</th>
-        <th scope="col" class="summary-th" >Errors</th>
       </thead>
 
       <% @summary.summary_new.each_with_index do | (key, value), index | %>
         <tr>
           <td class="summary-td"><%= index + 1 %></td>
           <td class="summary-td"><%= key %></td>
-          <td class="summary-td"><%= value['english-arabic'] == true ? "✅" : "⛔" %></td>
-          <td class="summary-td"><%= value['arabic-english'] == true ? "✅" : "⛔" %></td>
-          <td class="summary-td"><%= value['english-french'] == true ? "✅" : "⛔" %></td>
-          <td class="summary-td"><%= value['french-english'] == true ? "✅" : "⛔" %></td>
-          <td class="summary-td"><%= value['french-arabic'] == true ? "✅" : "⛔" %></td>
-          <td class="summary-td"><%= value['arabic-french'] == true ? "✅" : "⛔" %></td>
-          <% 
-            errors = [] 
-            errors << value['english-arabic'] if value['english-arabic'] != true
-            errors << value['arabic-english'] if value['arabic-english'] != true
-            errors << value['english-french'] if value['english-french'] != true
-            errors << value['french-english'] if value['french-english'] != true
-            errors << value['french-arabic'] if value['french-arabic'] != true
-            errors << value['arabic-french'] if value['arabic-french'] != true
-          %>
-          <td style="visibility: hidden;display: none;"><%=errors.join('') %>
 
-          <%if errors.empty?%>
-            <td></td>
-          <%else%>
-            <td><button type="button" class="btn" data-toggle="modal" data-target="#myModal">ERRORS</button></td>
-            </td>
-          <% end %>
+          <td class="summary-td">
+            <% if value['english-arabic'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['english-arabic'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                title="<%= value['english-arabic']['input_phrase'] %> - <%= value['english-arabic']['output_phrase'] %>" 
+                data-content="<%= value['english-arabic']['errors'].join(', ') %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+          
+          <td class="summary-td"><%= value['arabic-english'] == true ? "✅" : "⚠️" %></td>
+          <td class="summary-td"><%= value['english-french'] == true ? "✅" : "⚠️" %></td>
+          <td class="summary-td"><%= value['french-english'] == true ? "✅" : "⚠️" %></td>
+          <td class="summary-td"><%= value['french-arabic'] == true ? "✅" : "⚠️" %></td>
+          <td class="summary-td"><%= value['arabic-french'] == true ? "✅" : "⚠️" %></td>
+          
         </tr>
       <% end %>
     </table>

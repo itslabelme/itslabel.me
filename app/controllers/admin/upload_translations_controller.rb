@@ -69,55 +69,53 @@ module Admin
           puts "Error: #{error}"
         end
       end
-
     end
 
     def add_english_to_arabic_translation(csv_content)
       @english_arabic_translation = Translation.where(
-        input_language: "ENGLISH", 
-        output_language: "ARABIC",
-        input_phrase: csv_content[0],
-        output_phrase: csv_content[1]
+        input_language: "ENGLISH",  output_language: "ARABIC",
+        input_phrase: csv_content[0], output_phrase: csv_content[1]
         ).first
 
       if @english_arabic_translation.nil?
-
         @english_arabic_translation ||= Translation.new(
-          input_language: "ENGLISH", 
-          output_language: "ARABIC",
-          input_phrase: csv_content[0], 
-          output_phrase: csv_content[1], 
-          category: csv_content[3],
-          admin_user: @current_admin_user,
+          input_language: "ENGLISH",  output_language: "ARABIC",
+          input_phrase: csv_content[0],  output_phrase: csv_content[1], 
+          category: csv_content[3], admin_user: @current_admin_user,
           status: "APPROVED"
-
         )
-        
         if @english_arabic_translation.valid?
           if @english_arabic_translation.save
             @summary[csv_content[0]] ||= {}
             @summary[csv_content[0]]['english-arabic'] ||= true
           end
         else
-          @summary[csv_content[0]]['english-arabic'] = @english_arabic_translation.errors.full_messages
+          @summary[csv_content[0]]['english-arabic'] = {
+            input_phrase: csv_content[0], output_phrase: csv_content[1], 
+            category: csv_content[3], admin_user: @current_admin_user,
+            errors: @english_arabic_translation.errors.full_messages
+          }
         end
+      else
+        @summary[csv_content[0]] ||= {}
+        @summary[csv_content[0]]['english-arabic'] = {
+          input_phrase: csv_content[0], output_phrase: csv_content[1], 
+          category: csv_content[3], admin_user: @current_admin_user,
+          errors: ["Content is already in the database"]
+        }
       end
     end
 
     def add_english_to_french_translation(csv_content)
       @english_french_translation = Translation.where(
-          input_language: "ENGLISH", 
-          output_language: "FRENCH",
-          input_phrase: csv_content[0],
-          output_phrase: csv_content[2], 
+          input_language: "ENGLISH", output_language: "FRENCH",
+          input_phrase: csv_content[0], output_phrase: csv_content[2], 
           ).first
       if @english_french_translation.nil?
         @english_french_translation ||= Translation.new(
           input_language: "ENGLISH", output_language: "FRENCH",
-          input_phrase: csv_content[0], 
-          output_phrase: csv_content[2], 
-          category: csv_content[3],
-          admin_user: @current_admin_user,
+          input_phrase: csv_content[0], output_phrase: csv_content[2], 
+          category: csv_content[3], admin_user: @current_admin_user,
           status: "APPROVED"
         )
 
@@ -127,25 +125,32 @@ module Admin
             @summary[csv_content[0]]['english-french'] = true
           end
         else
-          @summary[csv_content[0]]['english-french'] = @english_french_translation.errors.full_messages
+          @summary[csv_content[0]]['english-french'] = {
+            input_phrase: csv_content[0], output_phrase: csv_content[1], 
+            category: csv_content[3], admin_user: @current_admin_user,
+            errors: @english_arabic_translation.errors.full_messages
+          }
         end
+      else
+        @summary[csv_content[0]] ||= {}
+        @summary[csv_content[0]]['english-french'] = {
+          input_phrase: csv_content[0], output_phrase: csv_content[1], 
+          category: csv_content[3], admin_user: @current_admin_user,
+          errors: ["Content is already in the database"]
+        }
       end
     end
 
     def add_arabic_to_english_translation(csv_content)
       @arabic_english_translation = Translation.where(
-          input_language: "ARABIC", 
-          output_language: "ENGLISH",
-          input_phrase: csv_content[1],
-          output_phrase: csv_content[0]
+          input_language: "ARABIC", output_language: "ENGLISH",
+          input_phrase: csv_content[1], output_phrase: csv_content[0]
           ).first
       if @arabic_english_translation.nil?
         @arabic_english_translation ||= Translation.new(
           input_language: "ARABIC", output_language: "ENGLISH",
-          input_phrase: csv_content[1], 
-          output_phrase: csv_content[0], 
-          category: csv_content[3],
-          admin_user: @current_admin_user,
+          input_phrase: csv_content[1], output_phrase: csv_content[0], 
+          category: csv_content[3], admin_user: @current_admin_user,
           status: "APPROVED"
         )
 
@@ -155,25 +160,32 @@ module Admin
             @summary[csv_content[0]]['arabic-english'] = true
           end
         else
-          @summary[csv_content[0]]['arabic-english'] = @arabic_english_translation.errors.full_messages
+          @summary[csv_content[0]]['arabic-english'] = {
+            input_phrase: csv_content[0], output_phrase: csv_content[1], 
+            category: csv_content[3], admin_user: @current_admin_user,
+            errors: @english_arabic_translation.errors.full_messages
+          }
         end
+      else
+        @summary[csv_content[0]] ||= {}
+        @summary[csv_content[0]]['arabic-english'] = {
+          input_phrase: csv_content[0], output_phrase: csv_content[1], 
+          category: csv_content[3], admin_user: @current_admin_user,
+          errors: ["Content is already in the database"]
+        }
       end
     end
 
     def add_arabic_to_french_translation(csv_content)
       @arabic_french_translation = Translation.where(
-          input_language: "ARABIC", 
-          output_language: "FRENCH",
-          input_phrase: csv_content[1],
-          output_phrase: csv_content[2]
+          input_language: "ARABIC", output_language: "FRENCH",
+          input_phrase: csv_content[1], output_phrase: csv_content[2]
           ).first
       if @arabic_french_translation.nil?
         @arabic_french_translation ||= Translation.new(
           input_language: "ARABIC", output_language: "FRENCH",
-          input_phrase: csv_content[1], 
-          output_phrase: csv_content[2], 
-          category: csv_content[3],
-          admin_user: @current_admin_user,
+          input_phrase: csv_content[1], output_phrase: csv_content[2], 
+          category: csv_content[3], admin_user: @current_admin_user,
           status: "APPROVED"
         )
 
@@ -183,25 +195,32 @@ module Admin
             @summary[csv_content[0]]['arabic-french'] = true
           end
         else
-          @summary[csv_content[0]]['arabic-french'] = @arabic_french_translation.errors.full_messages
+          @summary[csv_content[0]]['arabic-french'] = {
+            input_phrase: csv_content[0], output_phrase: csv_content[1], 
+            category: csv_content[3], admin_user: @current_admin_user,
+            errors: @english_arabic_translation.errors.full_messages
+          }
         end
+      else
+        @summary[csv_content[0]] ||= {}
+        @summary[csv_content[0]]['arabic-french'] = {
+          input_phrase: csv_content[0], output_phrase: csv_content[1], 
+          category: csv_content[3], admin_user: @current_admin_user,
+          errors: ["Content is already in the database"]
+        }
       end
     end
 
     def add_french_to_english_translation(csv_content)
       @french_english_translation = Translation.where(
-          input_language: "FRENCH", 
-          output_language: "ENGLISH",
-          input_phrase: csv_content[2],
-          output_phrase: csv_content[0]
+          input_language: "FRENCH", output_language: "ENGLISH",
+          input_phrase: csv_content[2], output_phrase: csv_content[0]
           ).first 
       if @french_english_translation.nil?
         @french_english_translation ||= Translation.new(
           input_language: "FRENCH", output_language: "ENGLISH",
-          input_phrase: csv_content[2], 
-          output_phrase: csv_content[0], 
-          category: csv_content[3],
-          admin_user: @current_admin_user,
+          input_phrase: csv_content[2], output_phrase: csv_content[0], 
+          category: csv_content[3], admin_user: @current_admin_user,
           status: "APPROVED"
         )
 
@@ -211,27 +230,33 @@ module Admin
             @summary[csv_content[0]]['french-english'] = true
           end
         else
-          @summary[csv_content[0]]['french-english'] = @french_english_translation.errors.full_messages
+          @summary[csv_content[0]]['french-english'] = {
+            input_phrase: csv_content[0], output_phrase: csv_content[1], 
+            category: csv_content[3], admin_user: @current_admin_user,
+            errors: @english_arabic_translation.errors.full_messages
+          }
         end
+      else
+        @summary[csv_content[0]] ||= {}
+        @summary[csv_content[0]]['french-english'] = {
+          input_phrase: csv_content[0], output_phrase: csv_content[1], 
+          category: csv_content[3], admin_user: @current_admin_user,
+          errors: ["Content is already in the database"]
+        }
       end
     end
 
     def add_french_to_arabic_translation(csv_content)
       @french_arabic_translation = Translation.where(
-          input_language: "FRENCH", 
-          output_language: "ARABIC",
-          input_phrase: csv_content[2],
-          output_phrase: csv_content[1]
+          input_language: "FRENCH",  output_language: "ARABIC",
+          input_phrase: csv_content[2], output_phrase: csv_content[1]
           ).first
 
       if @french_arabic_translation.nil?
         @french_arabic_translation ||= Translation.new(
-          input_language: "FRENCH", 
-          output_language: "ARABIC",
-          input_phrase: csv_content[2], 
-          output_phrase: csv_content[1], 
-          category: csv_content[3],
-          admin_user: @current_admin_user,
+          input_language: "FRENCH",  output_language: "ARABIC",
+          input_phrase: csv_content[2],  output_phrase: csv_content[1], 
+          category: csv_content[3], admin_user: @current_admin_user,
           status: "APPROVED"
         )
 
@@ -241,8 +266,19 @@ module Admin
             @summary[csv_content[0]]['french-arabic'] = true
           end
         else
-          @summary[csv_content[0]]['french-arabic'] = @french_arabic_translation.errors.full_messages
+          @summary[csv_content[0]]['french-arabic'] = {
+            input_phrase: csv_content[0], output_phrase: csv_content[1], 
+            category: csv_content[3], admin_user: @current_admin_user,
+            errors: @english_arabic_translation.errors.full_messages
+          }
         end
+      else
+        @summary[csv_content[0]] ||= {}
+        @summary[csv_content[0]]['french-arabic'] = {
+          input_phrase: csv_content[0], output_phrase: csv_content[1], 
+          category: csv_content[3], admin_user: @current_admin_user,
+          errors: ["Content is already in the database"]
+        }
       end
     end
 
