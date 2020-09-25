@@ -19,7 +19,7 @@
                 <p>Note: This is a specialist tool for translating food ingredients names and associated terminology and will not process natural language.</p>
         </div>
          <div class="col-md-4 form-group" style="text-align:right;">
-            <button type="submit" class="btn btn-primary" id="home_report" onClick="transfer_data()"> Report An Issue </button>
+            <button type="submit" class="btn btn-primary" id="home_report" style="display: none;" onClick="transfer_data()"> Report An Issue </button>
         </div>
     </div>
   </div>
@@ -30,6 +30,16 @@
 </div>
 
 <script type="text/javascript">
+    //var input = $("#INPUT_AREA").html();
+
+ 
+$('#INPUT_AREA').change(function(){
+$("#home_report").show();
+});
+
+
+
+
   function transfer_data(){
   
   var input = $("#INPUT_AREA").html();
