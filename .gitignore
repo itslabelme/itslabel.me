@@ -68,3 +68,4 @@ docs
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+public/imported_files/*.csv
