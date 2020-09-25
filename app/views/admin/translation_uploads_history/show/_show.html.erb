@@ -8,12 +8,13 @@
       <thead>
         <th scope="col" class="summary-th" >#</th>
         <th scope="col" class="summary-th" >English</th>
+
         <th scope="col" class="summary-th" >EN-AR</th>
         <th scope="col" class="summary-th" >EN-FR</th>
-        <th scope="col" class="summary-th" >AR-FR</th>
         <th scope="col" class="summary-th" >AR-EN</th>
-        <th scope="col" class="summary-th" >FR-AR</th>
+        <th scope="col" class="summary-th" >AR-FR</th>
         <th scope="col" class="summary-th" >FR-EN</th>
+        <th scope="col" class="summary-th" >FR-AR</th>
       </thead>
 
       <% @summary.summary_new.each_with_index do | (key, value), index | %>
@@ -26,24 +27,110 @@
               <i class="fa fa-check" aria-hidden="true"></i>
             <% elsif value['english-arabic'].blank? %>
               <button type="button" class="btn btn-danger" data-toggle="popover" 
-                title="Content Missing" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
                 data-content="Content Missing">
-                  <i class="fa fa-exclamation" aria-hidden="true"></i>
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                 </button>
             <% else %>
               <button type="button" class="btn btn-danger" data-toggle="popover" 
-                title="<%= value['english-arabic']['input_phrase'] %> - <%= value['english-arabic']['output_phrase'] %>" 
-                data-content="<%= value['english-arabic']['errors'].join(', ') %>">
+                 data-placement="bottom" data-trigger="hover" title="<%= value['english-arabic']['input_phrase'] if value['english-arabic']  %> - <%= value['english-arabic']['output_phrase'] if value['english-arabic'] %>" 
+                data-content="<%= value['english-arabic']['errors'].join(', ') if value['english-arabic'] %>">
                   <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                 </button>
             <% end %>
           </td>
-          
-          <td class="summary-td"><%= value['arabic-english'] == true ? "✅" : "⚠️" %></td>
-          <td class="summary-td"><%= value['english-french'] == true ? "✅" : "⚠️" %></td>
-          <td class="summary-td"><%= value['french-english'] == true ? "✅" : "⚠️" %></td>
-          <td class="summary-td"><%= value['french-arabic'] == true ? "✅" : "⚠️" %></td>
-          <td class="summary-td"><%= value['arabic-french'] == true ? "✅" : "⚠️" %></td>
+
+          <td class="summary-td">
+            <% if value['english-french'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['english-french'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['english-french']['input_phrase'] if value['english-french'] %> - <%= value['english-french']['output_phrase'] if value['english-french'] %>" 
+                data-content="<%= value['english-french']['errors'].join(', ') if value['english-french'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+
+          <td class="summary-td">
+              <% if value['arabic-english'] == true %>
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <% elsif value['arabic-english'].blank? %>
+                <button type="button" class="btn btn-danger" data-toggle="popover" 
+                   data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                  data-content="Content Missing">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                  </button>
+              <% else %>
+                <button type="button" class="btn btn-danger" data-toggle="popover" 
+                   data-placement="bottom" data-trigger="hover" title="<%= value['arabic-english']['input_phrase'] if value['arabic-english'] %> - <%= value['arabic-english']['output_phrase'] if value['arabic-english'] %>" 
+                  data-content="<%= value['arabic-english']['errors'].join(', ') if value['arabic-english'] %>">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                  </button>
+              <% end %>
+          </td>
+
+          <td class="summary-td">
+            <% if value['arabic-french'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['arabic-french'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['arabic-french']['input_phrase'] if value['arabic-french'] %> - <%= value['arabic-french']['output_phrase'] if value['arabic-french'] %>" 
+                data-content="<%= value['arabic-french']['errors'].join(', ') if value['arabic-french'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+
+          <td class="summary-td">
+            <% if value['french-english'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['french-english'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['french-english']['input_phrase'] if value['french-english'] %> - <%= value['french-english']['output_phrase'] if value['french-english'] %>" 
+                data-content="<%= value['french-english']['errors'].join(', ') if value['french-english'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+
+          <td class="summary-td">
+            <% if value['french-arabic'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['french-arabic'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['french-arabic']['input_phrase'] if value['french-arabic'] %> - <%= value['french-arabic']['output_phrase'] if value['french-arabic'] %>" 
+                data-content="<%= value['french-arabic']['errors'].join(', ') if value['french-arabic'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+
+
           
         </tr>
       <% end %>

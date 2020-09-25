@@ -1,0 +1,54 @@
+  <div class="row clearfix">
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="body">
+          <div class="d-flex align-items-center">
+            <!-- <div class="icon-in-bg bg-azura text-white rounded-circle"><i class="icon-folder"></i></div> -->
+            <div >
+              <span style="text-align: center;" >Total Data</span>
+              <h4 class="mb-0 pl-3 pt-2 font-weight-medium" style="text-align: center;"> <%= @summary.total_inserted_data + @summary.total_existing_data + @summary.total_error_data %> </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="body">
+          <div class="d-flex align-items-center">
+            <!-- <div class="icon-in-bg bg-orange text-white rounded-circle"><i class="icon-docs"></i></div> -->
+            <div >
+              <span style="text-align: center;" >Total Inserted Data</span>
+              <h4 class="mb-0 pl-3 pt-2 font-weight-medium" style="text-align: center;">  <%= @summary.total_inserted_data %>  </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="body">
+          <div class="d-flex align-items-center">
+            <!-- <div class="icon-in-bg bg-pink text-white rounded-circle"><i class="icon-tag"></i></div> -->
+            <div >
+              <span style="text-align: center;" >Total Existing Data</span>
+              <h4 class="mb-0 pl-3 pt-2 font-weight-medium" style="text-align: center;">  <%= @summary.total_existing_data %>  </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="body">
+          <div class="d-flex align-items-center">
+            <!-- <div class="icon-in-bg bg-indigo text-white rounded-circle"><i class="icon-users"></i></div> -->
+            <div >
+              <span style="text-align: center;" >Total Error Data</span>
+              <h4 class="mb-0 pl-3 pt-2 font-weight-medium" style="text-align: center;">  <%= @summary.total_error_data %>  </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
