@@ -1,3 +1,5 @@
+require 'csv'
+
 class Translation < ApplicationRecord
 
   # Constants
@@ -6,8 +8,14 @@ class Translation < ApplicationRecord
   # Set Table Name
   self.table_name = "translations"
 
+
+  class << self
+    attr_accessor :csv_upload_summary
+  end
+
   # Imports
   extend Importer
+  extend Itslabel::Uploads::TranslationUploads
 
   # Includes
   include Itslabel::Status::TranslationStatus
@@ -16,8 +24,8 @@ class Translation < ApplicationRecord
   include Itslabel::Validations::TranslationValidations
   include Itslabel::Callbacks::TranslationCallbacks
   include Itslabel::Imports::TranslationImports
-  include Itslabel::Uploads::TranslationUploads
   include Itslabel::TranslationMethods
+
 
   # Validations
   validates :input_phrase, presence: true, length: {maximum: 256}, allow_blank: false

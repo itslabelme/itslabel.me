@@ -44,15 +44,19 @@ module Admin
         save_upload_history
         
         ParseUploadedDatabaseJob.perform_later(
-          csv_file.path,
+          @upload_history.file_path,
           current_admin_user,
           @upload_history.id
         )
 
-        if @summary
-          set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Translation"))
-          set_flash_message(I18n.translate("success.created", item: "Translation"), :success)
-        end
+        # Translation.import_data_from_csv(
+        #   @upload_history.file_path,
+        #   current_admin_user,
+        #   @upload_history.id
+        # )
+      
+        set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Translation"))
+        set_flash_message(I18n.translate("success.created", item: "Translation"), :success)
       else
         set_notification(false, I18n.t('status.error'), error)
         set_flash_message(error, :error)
