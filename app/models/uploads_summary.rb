@@ -1,4 +1,7 @@
 class UploadsSummary < ApplicationRecord
-  validates :translation_uploads_history_id, presence: true
-  # validates :summary_new, presence: true
+  
+  # Validations
+  
+  # Associations
+  # belongs_to :upload_history, class_name: "UploadHistory", foreign_key: :upload_history_id
  end
