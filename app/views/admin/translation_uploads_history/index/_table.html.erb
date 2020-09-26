@@ -2,7 +2,6 @@
   <table class="table table-hover table-custom spacing8" id="HISTORY_listing_table">
     <thead>
       <tr>
-        <th style="width: 5%;">#</th>
         <th style="width: 25%;">CSV File Name</th>
         <th style="width: 25%;">Uploaded By (Admin)</th>
         <th style="width: 25%;">Uploaded At</th>
@@ -11,30 +10,13 @@
     </thead>
 
    <tbody>
-    <% @history.each do |history| %>
+    <% @upload_histories.each do |history| %>
       <tr id='HISTORY_ROW_<%= history.id %>'>
        <td>
-          <span><%= history.id %></span>
+         <%= link_to history.file_path.split("/").last, admin_translation_uploads_history_path(history)%>
        </td>
-       <td>
-         <%= link_to history.file_path, admin_translation_uploads_history_path(history)%>
-       </td>
-       <td>
-         <%= history.admin_user %>
-       </td>
-       <td>
-        <%=history.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') %>
-       </td>
-
-    <!-- commented by Sanoop -->
-   <!--<td> 
-           <%#= link_to admin_translation_uploads_history_path(history), class: "btn btn-sm btn-default" do %>
-            <i class="fa fa-eye" title="View Summary" data-toggle= 'tooltip', data-placement='top'></i>
-          <%# end %>
-          <%#= link_to "/imported_files/#{history.file_path}", class: "btn btn-sm btn-default" do %>
-            <i class="fa fa-download" title="Download File" data-toggle= 'tooltip', data-placement='top'></i>
-          <%# end %>
-       </td>-->
+       <td> <%= history.admin_user %> </td>
+       <td> <%=history.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') %> </td>
       </tr>
     <% end %>
    </tbody>

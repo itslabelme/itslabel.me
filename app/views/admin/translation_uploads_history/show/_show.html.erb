@@ -1,7 +1,7 @@
 
 <div id="SUMMARY_TABLE" class="table-responsive">
-<% if @summary %>
-  <% if @summary.summary_new.empty? %>
+  <% if @upload_summary %>
+  <% if @upload_summary.summary_new.empty? %>
     <span class="ml-5"> No Summary was generated </span>
   <% else %>
     <table class="table table-hover table-custom spacing8" id="table">
@@ -17,7 +17,7 @@
         <th scope="col" class="summary-th" >FR-AR</th>
       </thead>
 
-      <% @summary.summary_new.each_with_index do | (key, value), index | %>
+      <% @upload_summary.summary_new.each_with_index do | (key, value), index | %>
         <tr>
           <td class="summary-td"><%= index + 1 %></td>
           <td class="summary-td"><%= key %></td>

@@ -11,7 +11,7 @@
   <% end %>
   
   <% if @summary.any? %>
-   window.location.href = "<%= admin_translation_uploads_history_path(@history.id) %>"
+   window.location.href = "<%= admin_translation_uploads_history_path(@upload_history.id) %>"
 
   //  $("#FIRST_BOX").html("<%= escape_javascript(render(:partial=>'admin/upload_translations/index/summary.html.erb')) %>");
     $("#pleaseWaitDialog").modal("hide");
