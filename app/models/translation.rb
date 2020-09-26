@@ -16,8 +16,9 @@ class Translation < ApplicationRecord
   include Itslabel::Validations::TranslationValidations
   include Itslabel::Callbacks::TranslationCallbacks
   include Itslabel::Imports::TranslationImports
+  include Itslabel::Uploads::TranslationUploads
   include Itslabel::TranslationMethods
-  
+
   # Validations
   validates :input_phrase, presence: true, length: {maximum: 256}, allow_blank: false
   validates :input_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
