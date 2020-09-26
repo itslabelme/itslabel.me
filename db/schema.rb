@@ -55,8 +55,6 @@ ActiveRecord::Schema.define(version: 2020_09_25_191010) do
     t.text "output", null: false
     t.string "remarks", null: false
     t.string "category"
-    t.string "input_language", null: false
-    t.string "output_language", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_user_id"], name: "index_client_feedbacks_on_client_user_id"
@@ -109,6 +107,15 @@ ActiveRecord::Schema.define(version: 2020_09_25_191010) do
     t.string "ancestry"
     t.index ["ancestry"], name: "index_document_folders_on_ancestry"
     t.index ["user_id"], name: "index_document_folders_on_user_id"
+  end
+
+  create_table "folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.bigint "parent_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_folders_on_user_id"
   end
 
   create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

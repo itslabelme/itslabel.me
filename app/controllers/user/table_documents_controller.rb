@@ -51,7 +51,8 @@ module User
       new_document
 
       @document_items = []
-      16.times.each do |i|
+      no_of_rows = 100
+      no_of_rows.times.each do |i|
         @document_items << @document.items.build(
           temporary_key: "tkey-#{i}",
           input_language: @document.input_language,
