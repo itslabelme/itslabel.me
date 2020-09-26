@@ -2,7 +2,7 @@ module Admin
   class TranslationUploadsHistoryController < Admin::BaseController
   	
   	def index
-      @page_title = "Translations History"
+      @page_title = "Database Upload History"
       @nav = 'admin/translations'
 
       # get_history
@@ -14,7 +14,7 @@ module Admin
   	end
 
   	def show
-      @page_title = "Translations History Details"
+      @page_title = "Database Upload History"
       @nav = 'admin/translations'
       # @summary=UploadsSummary.find(params[:id])
 

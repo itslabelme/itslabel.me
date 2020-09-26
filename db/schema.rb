@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_055053) do
+ActiveRecord::Schema.define(version: 2020_09_25_191010) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -266,6 +266,9 @@ ActiveRecord::Schema.define(version: 2020_09_16_055053) do
     t.json "summary_new", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "total_inserted_data"
+    t.integer "total_existing_data"
+    t.integer "total_error_data"
   end
 
   create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
