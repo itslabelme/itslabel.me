@@ -23,7 +23,7 @@
         </div>
           <% if @upload_summary %>
              <div  class="col-md-4 form-group" style="text-align:right;">
-              <%= link_to "/imported_files/#{@upload_history.file_path}", class: "btn btn-primary btn-lg mt-1 mb-1" do %>
+              <%= link_to "/imported_files/#{@upload_history.file_path.split("/").last}", class: "btn btn-primary btn-lg mt-1 mb-1" do %>
               <i class='fa fa-save mr-2'></i>EXPORT
                <% end %>
              </div>
