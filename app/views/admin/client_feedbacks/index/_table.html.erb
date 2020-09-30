@@ -1,5 +1,5 @@
 <div id="FEEDBACK_TABLE" class="table-responsive">
-  <table class="table table-hover table-custom spacing8" id="FEEDBACK_listing_table">
+  <table class="table table-hover table-custom spacing8" id="feedback_listing_table">
     <thead>
       <tr>
         <th style="width: 5%;">#</th>
@@ -18,7 +18,7 @@
     <% @client_feedback.each_with_index do |feedback, i| %>
       <tr id='FEEDBACK_ROW_<%= feedback.id %>'>
           <td>
-            <span><%= feedback.id %></span>
+            <span><%= serial_number(i) %></span>
           </td>
           <td>
             <span><%= feedback.client_user.first_name %> <%= feedback.client_user.last_name %></span>
