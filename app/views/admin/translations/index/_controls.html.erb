@@ -32,10 +32,11 @@
                 <div class="form-group">
                   <label for="filter">Input Language</label>
                   <select name="filters[input_language]" class="form-control">
-                    <option value="" selected>All Language</option>
-                    <option <%= @input_language = 'English'? 'selected' : '' %> value="English">English</option>
-                    <option <%= @input_language = 'Arabic'? 'selected' : '' %> value="Arabic">Arabic</option>
-                    <option <%= @input_language = 'French'? 'selected' : '' %> value="French">French</option>
+                    <option <%= @input_language ? 'selected' : ''%> value="English"><%= @input_language%></option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="French">French</option>
+                    <option value="">All Language</option>
+                   
                   </select>
                 </div>
               </div>
@@ -43,10 +44,10 @@
                 <div class="form-group">
                   <label for="filter">Output Language</label>
                   <select name="filters[output_language]" class="form-control">
-                    <option value="" selected>All Language</option>
+                   <option <%= @output_language ? 'selected' : ''%> value="Arabic"><%= @output_language%></option>
                     <option value="English">English</option>
-                    <option value="Arabic">Arabic</option>
                     <option value="French">French</option>
+                    <option value="">All Language</option>
                   </select>
                 </div>
               </div>
@@ -62,15 +63,15 @@
                   </select>
                 </div>
               </div>
-              <div class="col-md-3">
+            <!--  <div class="col-md-3">
                 <div class="form-group">
                   <label for="filter">Sort</label>
                   <select name="filters[status]" class="form-control">
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
+                    <option value="active">Input phrase ASC</option>
+                    <option value="inactive">Created at ASC</option>
                   </select>
                 </div>
-              </div>
+              </div>-->
             </div>
             <div class="its-mright">
               <button type="submit" class="btn btn-primary">Reset</button>
