@@ -93,6 +93,11 @@ module Admin
 
     def apply_filters
       @query = params[:q]
+      @input_language = params[:input_language]
+      @input_phrase = params[:input_phrase]
+      @output_language = params[:output_language]
+      @output_phrase = params[:output_phrase]
+
       @relation = @relation.search(@query) if @query && !@query.blank?
       
       @relation = @relation.search_only_input_phrase(params[:filters].try(:[], :input_phrase))
