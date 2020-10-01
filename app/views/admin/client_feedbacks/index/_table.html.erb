@@ -2,53 +2,48 @@
   <table class="table table-hover table-custom spacing8" id="feedback_listing_table">
     <thead>
       <tr>
-        <th style="width: 5%;">#</th>
-        <th style="width: 25%;">Name</th>
-        <th style="width: 15%;">Input Language</th>
-        <th style="width: 15%;">Input</th>
-        <th style="width: 15%;">Output Language</th>            
-        <th style="width: 15%;">Output</th>
-        <th style="width: 15%;">Remarks</th>
-        <th style="width: 15%;">Created Date</th>
-        <th style="width: 15%;">Type</th>
+        <% @table_settings.each do |code, col_data| %>
+          <% if code.to_s == "check_box" %>
+            <th width="20"><input type="checkbox" class="relative select_all_checkbox"></th>
+          <% else %>
+            <% th_attributes = col_data[:options].try(:[], :th_attributes) || {} %>
+            <%= content_tag(:th, col_data[:name], th_attributes ) %>
+          <% end %>
+        <% end %>
       </tr>
     </thead>
-
     <tbody>
-    <% @client_feedback.each_with_index do |feedback, i| %>
-      <tr id='FEEDBACK_ROW_<%= feedback.id %>'>
+      <% @client_feedback.each_with_index do |feedback, i| %>
+        <tr id='FEEDBACK_ROW_<%= feedback.id %>'>
           <td>
             <span><%= serial_number(i) %></span>
           </td>
           <td>
-            <span><%= feedback.client_user.first_name %> <%= feedback.client_user.last_name %></span>
+            <span><%= feedback.display_name %></span>
           </td>
           <td>
-            <span><%= feedback.input.html_safe %></span>
+            <span><%= feedback.try(:input_language) %></span>
           </td>
           <td>
-            <span><%= feedback.input_language %></span>
+            <span><%= feedback.input.html_safe if feedback.input %></span>
           </td>
           <td>
-            <span><%= feedback.output.html_safe %></span>
+            <span><%= feedback.try(:output_language) %></span>
           </td>
           <td>
-            <span><%= feedback.output_language %></span>
+            <span><%= feedback.output.html_safe if feedback.output %></span>
           </td>
           <td>
-            <span><%= feedback.remarks %></span>
-          </td>
-          
-          <td>
-            <span><%= feedback.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') %></span>
+            <span><%= feedback.try(:remarks) %></span>
           </td>
           <td>
-            <span><%= feedback.category %></span>
+            <span><%= feedback.try(:category) %></span>
           </td>
-
-      </tr>
+          <td>
+            <span><%= feedback.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') if feedback.created_at %></span>
+          </td>
+        </tr>
       <% end %>
-
     </tbody>
   </table>                
 </div>

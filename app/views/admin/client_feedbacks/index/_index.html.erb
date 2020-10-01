@@ -10,3 +10,7 @@
       </div>
     </div>
   </div>
+
+<%= content_for :javascript_footer do %>
+  <%= render :partial=>"admin/client_feedbacks/index/table.js.erb"  %>
+<% end %>
