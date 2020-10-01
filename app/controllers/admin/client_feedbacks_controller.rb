@@ -13,18 +13,6 @@ module Admin
       get_collection
     end
    
-    def export_client_feedbacks
-      @feedback = ClientFeedback.all
-      respond_to do |format|
-        format.html
-        format.pdf do
-          render  :pdf => 'file_name',
-                  :template => '/admin/client_feedbacks/export_client_feedbacks.pdf.erb',
-                  :layout => 'pdf.html.erb'
-        end         
-      end
-    end
-
     private  
       def get_collection
         @order_by = "created_at DESC" unless @order_by
