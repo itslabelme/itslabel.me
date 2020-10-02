@@ -8,20 +8,20 @@ module Admin
 
     def index
       @page_title = "Translations Requests"
-      @nav = 'admin/translations'
+      @nav = 'admin/reports'
 
       get_collection
     end
 
     def show
       @page_title = "Translations Requests"
-      @nav = 'admin/translations'
+      @nav = 'admin/reports'
       get_translation_requests
     end
     
     def new
       @page_title = "Add a Translation Requests"
-      @nav = 'admin/translations'
+      @nav = 'admin/reports'
       new_translation_requests
     end
 

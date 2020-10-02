@@ -86,6 +86,19 @@ module User
     end
 
     def create_translation_request
+
+      #  binding
+        # check params
+        # ensure required params are present
+        # doct type "free_form"
+      # call translation requests create 
+      # TranslationRequest.new(
+
+      #   )
+      # 1. insert translation request from any UI
+      # 2. Display show_as_html
+      # 3. Make dynamic the doc type
+
       @success = true
       TranslationRequestMailerJob.perform_later(
         params[:phrase], 

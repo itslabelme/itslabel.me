@@ -64,14 +64,6 @@ module TableSettings
           col_orderable: true, 
           col_searchable: true
         ),
-        status: ActiveSupport::HashWithIndifferentAccess.new( 
-          code: :status, 
-          name: "Status", 
-          col_visible: true, 
-          col_hideable: true, 
-          col_orderable: true, 
-          col_searchable: true
-        ),
         created_at: ActiveSupport::HashWithIndifferentAccess.new( 
           code: :created_at, 
           name: "Created Date", 

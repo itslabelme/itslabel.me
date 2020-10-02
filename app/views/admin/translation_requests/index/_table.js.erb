@@ -8,7 +8,7 @@ function initialize_leave_requests_table(){
         extend: 'excel',
         title: "Translation Request - As on <%= Date.today.strftime("%b %d %Y") %>",
         exportOptions: {
-          columns: [ 1, 2, 3, 4, 5, 6, 7, 8,],
+          columns: [ 1, 2, 3, 4, 5, 6, 7],
         }
       }
 
@@ -22,14 +22,17 @@ function initialize_leave_requests_table(){
 
     // These columns are set by the function configure_data_tables in the table_settings controller
     "columnDefs": [
-       { className: "text-center", "targets": [ 1, 8 ] },
+       { className: "text-center", "targets": [ 1, 7] },
     ],
+    "language": {
+      "emptyTable": "...... No Data found "
+    },
     scrollY: "400px",
     scrollX: true,
     scrollCollapse: true,
     fixedHeader: true,
     fixedColumns: {
-      leftColumns: 1,
+      leftColumns: 2,
       rightColumns: 1
     }
   });

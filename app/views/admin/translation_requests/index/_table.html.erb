@@ -19,7 +19,7 @@
             <span><%= serial_number(i) %></span>
           </td>
           <td>
-            <span><%= requests.display_name %></span>
+            <span><%= requests.display_requested_user_name %></span>
           </td>
           <td>
             <span><%= requests.try(:input_language) %></span>
@@ -35,9 +35,6 @@
           </td>
           <td>
             <span><%= requests.try(:doc_type) %></span>
-          </td>
-          <td>
-            <span><%= requests.try(:status) %></span>
           </td>
           <td>
             <span><%= requests.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') if requests.created_at %></span>
