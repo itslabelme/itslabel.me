@@ -20,7 +20,7 @@ module Admin
     end
     
     def new
-      @page_title = "Add a Translation"
+      @page_title = "Add a Translation Requests"
       @nav = 'admin/translations'
       new_translation_requests
     end
