@@ -16,7 +16,7 @@ module TableSettings
           col_orderable: true, 
           col_searchable: true
         ),
-        name: ActiveSupport::HashWithIndifferentAccess.new( 
+        requested_by: ActiveSupport::HashWithIndifferentAccess.new( 
           code: :requested_by, 
           name: "Requested By", 
           col_visible: true, 
@@ -56,7 +56,7 @@ module TableSettings
           col_orderable: true, 
           col_searchable: true
         ), 
-        remarks: ActiveSupport::HashWithIndifferentAccess.new( 
+        doc_type: ActiveSupport::HashWithIndifferentAccess.new( 
           code: :doc_type, 
           name: "Doc Type", 
           col_visible: true, 
@@ -64,7 +64,7 @@ module TableSettings
           col_orderable: true, 
           col_searchable: true
         ),
-        type: ActiveSupport::HashWithIndifferentAccess.new( 
+        status: ActiveSupport::HashWithIndifferentAccess.new( 
           code: :status, 
           name: "Status", 
           col_visible: true, 

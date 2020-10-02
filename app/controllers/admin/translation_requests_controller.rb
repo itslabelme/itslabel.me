@@ -18,7 +18,28 @@ module Admin
       @nav = 'admin/translations'
       get_translation_requests
     end
+    
+    def new
+      @page_title = "Add a Translation"
+      @nav = 'admin/translations'
+      new_translation_requests
+    end
 
+    def create
+      new_translation_requests
+      @translation_requests.assign_attributes(permitted_params)
+      
+      if @translation_requests.valid?
+        @translation_requests.save
+        set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Translation"))
+        set_flash_message(I18n.translate("success.created", item: "Translation"), :success)
+      else
+        message = I18n.t('errors.failed_to_create', item: "Translation")
+        @translation_requests.errors.add :base, message
+        set_notification(false, I18n.t('status.error'), message)
+        set_flash_message('The form has some errors. Please correct them and submit again', :error)
+      end
+    end
 
    private
 
@@ -57,7 +78,18 @@ module Admin
     def new_translation_requests
       @translation_requests = TranslationRequest.new
     end
-
+    
+    def permitted_params
+      params.require("translation_requests").permit(
+         :requested_by,
+         :input_phrase,
+         :input_language,
+         :output_phrase,
+         :output_language,
+         :doc_type,
+         :status
+      )
+    end
     
   end
 end
