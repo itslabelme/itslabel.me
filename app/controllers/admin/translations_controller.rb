@@ -94,51 +94,54 @@ module Admin
     def apply_filters
 
       @query = params[:q]
-      @input_language = "English"
-      @output_language = "Arabic"  
+      @input_phrase = params[:filters].try(:[], :input_phrase)
+      @output_phrase = params[:filters].try(:[], :output_phrase)
+      @order_by = params[:filters].try(:[], :ob)
+      # @status = params[:filters].try(:[], :status)
 
-      get_languages
-
-      @input_phrase = params[:input_phrase]
-      @output_phrase = params[:output_phrase]
       @relation = @relation.search(@query) if @query && !@query.blank?
-     
-      @relation = @relation.search_only_input_phrase(params[:filters].try(:[], :input_phrase))
-      @relation = @relation.search_only_output_phrase(params[:filters].try(:[], :output_phrase))
-      @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
-      @relation = @relation.search_only_output_language(params[:filters].try(:[], :output_language))
-      @relation = @relation.search_only_status(params[:filters].try(:[], :status))
-    end
 
-    def get_languages
-      @input_language = params[:input_language]
-      @output_language = params[:output_language]
-        
-      @input_language = "English" unless @input_language
-      @output_language = "Arabic" unless @output_language
-    end    
+
+      if params[:filters].nil?
+        @input_language = "English"
+        @output_language = "Arabic"  
+        @relation = @relation.search_only_input_language(@input_language)
+        @relation = @relation.search_only_output_language(@output_language)
+      else  
+        @input_language = params[:filters].try(:[], :input_language)
+        @output_language = params[:filters].try(:[], :output_language)    
+        @relation = @relation.search_only_input_phrase(params[:filters].try(:[], :input_phrase))
+        @relation = @relation.search_only_output_phrase(params[:filters].try(:[], :output_phrase))
+        @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
+        @relation = @relation.search_only_output_language(params[:filters].try(:[], :output_language))
+      end
+
+      # @relation = @relation.search_only_status(params[:filters].try(:[], :status))
+      @relation = @relation.order_by(params[:filters].try(:[], :ob))
+    end
 
     def get_collection
-       
-      @order_by = "created_at DESC" unless @order_by
+
+      # @order_by = "created_at DESC" unless @order_by
       @relation = Translation.where("")
 
       apply_filters
       
       @translations = @relation.
-                        order(@order_by).
+                        # order(@order_by).
                         page(@current_page).per(@per_page)
     end
+
     
     def get_sorting
-       
-      @order_by = "input_phrase ASC" unless @order_by
+
+      @order_by = "input_phrase_asc" unless @order_by
       @relation = Translation.where("")
 
       apply_filters
       
       @translations = @relation.
-                        order(@order_by).
+                        # order(@order_by).
                         page(@current_page).per(@per_page)
     end
 
