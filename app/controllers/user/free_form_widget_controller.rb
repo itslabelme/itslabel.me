@@ -79,26 +79,24 @@ module User
         doc_type: doc_type,
         status: "ACTIVE"
       )
-
       if translation.valid?
         translation.save
       end
     end
 
     def create_translation_request
-
-      #  binding
-        # check params
-        # ensure required params are present
-        # doct type "free_form"
-      # call translation requests create 
-      # TranslationRequest.new(
-
-      #   )
-      # 1. insert translation request from any UI
-      # 2. Display show_as_html
-      # 3. Make dynamic the doc type
-
+        translation_requests = TranslationRequest.new(
+        requested_by:@current_client_user, 
+        input_language: params[:input_language], 
+        output_language: params[:output_language],
+        input_phrase: params[:phrase], 
+        doc_type: "Free Form",
+        status: "ACTIVE"
+      )
+      if translation_requests.valid?
+      translation_requests.save
+      end
+  
       @success = true
       TranslationRequestMailerJob.perform_later(
         params[:phrase], 
