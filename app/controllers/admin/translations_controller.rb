@@ -94,27 +94,26 @@ module Admin
     def apply_filters
 
       @query = params[:q]
-      @input_phrase = params[:filters].try(:[], :input_phrase)
-      @output_phrase = params[:filters].try(:[], :output_phrase)
       @order_by = params[:filters].try(:[], :ob)
       # @status = params[:filters].try(:[], :status)
 
       @relation = @relation.search(@query) if @query && !@query.blank?
 
-
       if params[:filters].nil?
         @input_language = "English"
         @output_language = "Arabic"  
-        @relation = @relation.search_only_input_language(@input_language)
-        @relation = @relation.search_only_output_language(@output_language)
       else  
         @input_language = params[:filters].try(:[], :input_language)
         @output_language = params[:filters].try(:[], :output_language)    
-        @relation = @relation.search_only_input_phrase(params[:filters].try(:[], :input_phrase))
-        @relation = @relation.search_only_output_phrase(params[:filters].try(:[], :output_phrase))
-        @relation = @relation.search_only_input_language(params[:filters].try(:[], :input_language))
-        @relation = @relation.search_only_output_language(params[:filters].try(:[], :output_language))
       end
+
+      @input_phrase = params[:filters].try(:[], :input_phrase)
+      @output_phrase = params[:filters].try(:[], :output_phrase)
+
+      @relation = @relation.search_only_input_phrase(@input_phrase)
+      @relation = @relation.search_only_output_phrase(@output_phrase)
+      @relation = @relation.search_only_input_language(@input_language)
+      @relation = @relation.search_only_output_language(@output_language)
 
       # @relation = @relation.search_only_status(params[:filters].try(:[], :status))
       @relation = @relation.order_by(params[:filters].try(:[], :ob))
