@@ -50,15 +50,15 @@ ActiveRecord::Schema.define(version: 2020_10_02_053232) do
   end
 
   create_table "client_feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "client_user_id"
+    t.bigint "client_user_id", null: false
     t.text "input", null: false
     t.text "output", null: false
-    t.string "remarks", null: false
-    t.string "category"
-    t.string "input_language", null: false
-    t.string "output_language", null: false
+    t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
+    t.string "input_language", limit: 16
+    t.string "output_language", limit: 16
     t.index ["client_user_id"], name: "index_client_feedbacks_on_client_user_id"
   end
 
@@ -276,9 +276,9 @@ ActiveRecord::Schema.define(version: 2020_10_02_053232) do
 
   create_table "uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "translation_uploads_history_id", null: false
-    t.json "summary_new", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "summary_new"
     t.integer "total_inserted_data"
     t.integer "total_existing_data"
     t.integer "total_error_data"
