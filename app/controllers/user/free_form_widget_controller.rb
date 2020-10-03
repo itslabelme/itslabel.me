@@ -85,7 +85,7 @@ module User
     end
 
     def create_translation_request
-        translation_requests = TranslationRequest.new(
+        translation_request = TranslationRequest.new(
         requested_by:@current_client_user, 
         input_language: params[:input_language], 
         output_language: params[:output_language],
@@ -93,20 +93,21 @@ module User
         doc_type: "Free Form",
         status: "ACTIVE"
       )
-      if translation_requests.valid?
-        translation_requests.save
-        set_notification(true, I18n.t('status.success'), I18n.t('success.created',item: "TranslationRequest"))
+      if translation_request.valid?
+        translation_request.save
+        set_notification(true, I18n.t('status.success'), I18n.t('success.created',item: "Translation Request"))
       else
-        set_notification(true, I18n.t('status.success'), I18n.t('success.created',item: "TranslationRequest"))
+        translation_request.errors.add :base, message
+        set_notification(false, I18n.t('status.error'), "Failed to save Translation Request Feedback")
       end
   
       @success = true
-      TranslationRequestMailerJob.perform_later(
-        params[:phrase], 
-        @current_client_user, 
-        params[:input_language], 
-        params[:output_language]
-      )
+      # TranslationRequestMailerJob.perform_later(
+      #   params[:phrase], 
+      #   @current_client_user, 
+      #   params[:input_language], 
+      #   params[:output_language]
+      # )
     end
    
     private

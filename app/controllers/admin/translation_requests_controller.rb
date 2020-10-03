@@ -41,10 +41,10 @@ module Admin
       @relation = TranslationRequest.where("")
 
       apply_filters
-      
+      @per_page = 40
       @translation_requests = @relation.
                         order(@order_by).
-                        page(@current_page).per(10)
+                        page(@current_page).per(@per_page)
     end
     
   
