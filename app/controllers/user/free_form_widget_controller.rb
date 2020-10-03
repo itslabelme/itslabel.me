@@ -94,7 +94,10 @@ module User
         status: "ACTIVE"
       )
       if translation_requests.valid?
-      translation_requests.save
+        translation_requests.save
+        set_notification(true, I18n.t('status.success'), I18n.t('success.created',item: "TranslationRequest"))
+      else
+        set_notification(true, I18n.t('status.success'), I18n.t('success.created',item: "TranslationRequest"))
       end
   
       @success = true
