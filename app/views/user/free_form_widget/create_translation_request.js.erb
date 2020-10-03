@@ -1,7 +1,15 @@
-var heading = "Request for Translation"
-<% if @success %>
-  var bodyContent = "<%= escape_javascript(render(partial: "user/free_form_widget/translation_request/success.html.erb")) %>";
+// FIXME :- This is the old code, Now Sanoop change to toster message
+// var heading = "Request for Translation"
+<%# if @success %>
+  // var bodyContent = "<%#= escape_javascript(render(partial: "user/free_form_widget/translation_request/success.html.erb")) %>";
+<%# else %>
+  // var bodyContent = "<%#= escape_javascript(render(partial: "user/free_form_widget/translation_request/form.html.erb")) %>";
+<%# end %>
+// showSmallModal(heading, bodyContent, true);
+
+
+<% if @notification[:success] %>
+    notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
 <% else %>
-  var bodyContent = "<%= escape_javascript(render(partial: "user/free_form_widget/translation_request/form.html.erb")) %>";
+    notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
 <% end %>
-showSmallModal(heading, bodyContent, true);

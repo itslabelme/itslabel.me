@@ -123,8 +123,11 @@ Rails.application.routes.draw do
 
     # FIXME - not sure why we need this
     root to: 'home#index'
-
+    # Client Feedbacks
     resources :client_feedbacks, only: [:index]
+    
+    # Translation Requests
+    resources :translation_requests, only: [:index, :create, :show]
 
     # CRUD Client Users
     resources :client_users

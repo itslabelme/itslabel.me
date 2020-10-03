@@ -1,0 +1,46 @@
+<div id="TRANSLATION_REQUESTS" class="table-responsive">
+  <table class="table table-hover table-custom spacing8" id="translation_requests_listing_table">
+    <thead>
+      <tr>
+        <% @table_settings.each do |code, col_data| %>
+          <% if code.to_s == "check_box" %>
+            <th width="20"><input type="checkbox" class="relative select_all_checkbox"></th>
+          <% else %>
+            <% th_attributes = col_data[:options].try(:[], :th_attributes) || {} %>
+            <%= content_tag(:th, col_data[:name], th_attributes ) %>
+          <% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @translation_requests.each_with_index do |requests, i| %>
+        <tr id='TRANSLATION_ROW <%= requests.id %>'>
+          <td>
+            <span><%= serial_number(i) %></span>
+          </td>
+          <td>
+            <span><%= requests.display_requested_user_name %></span>
+          </td>
+          <td>
+            <span><%= requests.try(:input_language) %></span>
+          </td>
+          <td>
+            <span><%= requests.input_phrase.html_safe if requests.input_phrase %></span>
+          </td>
+          <td>
+            <span><%= requests.try(:output_language) %></span>
+          </td>
+          <td>
+            <span><%= requests.output_phrase.html_safe if requests.output_phrase %></span>
+          </td>
+          <td>
+            <span><%= requests.try(:doc_type) %></span>
+          </td>
+          <td>
+            <span><%= requests.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') if requests.created_at %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>                
+</div>
