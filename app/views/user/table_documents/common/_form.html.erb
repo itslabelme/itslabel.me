@@ -24,6 +24,9 @@
                       class: "btn btn-secondary btn-lg mt-1 mb-1", data: {confirm: "Are you sure? This action will remove all contents from the table"} do %>
                     <i class='fa fa-eraser mr-2'></i>CLEAR
                   <% end %>
+                  <%= link_to user_csv_upload_url, class: "btn btn-primary btn-lg mt-1 mb-1", remote: true do%>
+                    <i class='fa fa-upload mr-2'></i>csv IMPORT
+                  <% end %>                                    
                 </div>
               </div>
             </div>
