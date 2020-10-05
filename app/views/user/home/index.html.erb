@@ -25,9 +25,9 @@
             <p>Please separate ingredients using <span class="badge badge-info">,</span> or <span class="badge badge-info">;</span> or new lines for accurate results.</p>
                 <p>Note: This is a specialist tool for translating food ingredients names and associated terminology and will not process natural language.</p>
         </div>
-        <!-- <div class="col-md-4 main form-group" id="home_report" style="text-align:right;"> -->
-            <!-- <button type="submit" class="btn btn-primary" onClick="transfer_data()"> Report An Issue </button> -->
-        <!-- </div> -->
+        <div class="col-md-4 main form-group" id="home_report" style="text-align:right;"> 
+           <button type="submit" class="btn btn-primary" onClick="transfer_data()"> Report An Issue </button>
+        </div>
     </div>
   </div>
 
@@ -52,25 +52,26 @@
 </div>
 <script type="text/javascript">
 
-
-
   function transfer_data(){
-  
-  var input = $("#INPUT_AREA").html();
-  var output = $("#OUTPUT_AREA").html();
-   let inputlanguage = $("#INPUT_LANGUAGE").children("option:selected").val();
-  let outputlanguage = $("#OUTPUT_LANGUAGE").children("option:selected").val();
-  
+    var input = $("#INPUT_AREA").html();
+    var output = $("#OUTPUT_AREA").html();
+    let inputlanguage = $("#INPUT_LANGUAGE").children("option:selected").val();
+    let outputlanguage = $("#OUTPUT_LANGUAGE").children("option:selected").val();
 
-   $.ajax({
-    url: '/user/client_feedbacks/new.js',
-    method: "POST",
-    datatype:"json",
-    headers: {
-          'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
-        },
-    data: {"input" : input , "output" : output , "inputlanguage" : inputlanguage , "outputlanguage" : outputlanguage}
-   });
-     
+    if (input.trim() && output.trim()){
+      $.ajax({
+        url: '/user/client_feedbacks/new.js',
+        method: "POST",
+        datatype:"json",
+        headers: {
+              'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+            },
+        data: {"input" : input, "output" : output, "inputlanguage" : inputlanguage, "outputlanguage" : outputlanguage}
+      });
+
+    } 
+    else{
+      notifyError("Error! Need your attention!", "Please enter any valid input in widget.");
+    }     
   };
 </script>

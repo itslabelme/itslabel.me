@@ -15,4 +15,8 @@ class ClientFeedback < ApplicationRecord
   # ----------------
   # Instance Methods
   # ----------------
+  
+  def display_name
+    client_user.display_name
+  end
 end

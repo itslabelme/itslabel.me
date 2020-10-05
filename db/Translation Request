@@ -1,0 +1,34 @@
+Translation Request
+
+translation_request
+
+ Requested By, 
+ Input Language, 
+ Input phrase, 
+ Output language, 
+ output phrase,    allow null
+ time and date
+ doc_type
+ status
+
+
+ rails g migration create_translation_requests
+
+
+ model - Translation Request
+ cont - Translation Requests
+
+
+t.belongs_to :requested_by, class_name: "ClientUser", optional: true
+
+c = ClientUser.first
+
+t1 = TranslationRequest.new(:input_phrase => "orange", :input_language => "English", :output_phrase => "", :output_language => "Arabic", :doc_type => 'free_form', :requested_by => c )
+
+t2 = TranslationRequest.new(:input_phrase => "apple", :input_language => "English", :output_phrase => "", :output_language => "Arabic", :doc_type => 'free_form', :requested_by => c )
+
+t3 = TranslationRequest.new(:input_phrase => "mango", :input_language => "English", :output_phrase => "", :output_language => "Arabic", :doc_type => 'free_form', :requested_by => c )
+
+t1.save
+t2.save
+t3.save
