@@ -1,0 +1,274 @@
+var translationHOT = {};
+
+$(document).ready(function() {
+
+  // Initializing the Translation Data
+  translationHOT.data =[
+  <% @translations.each do |item| %>
+    <% key = item.id || item.temporary_key %>
+    {
+      "item_id": "<%= key -%>",
+      
+      "input_phrase": "<%= escape_javascript(raw(item.input_phrase)) -%>",
+      "input_language": "<%= escape_javascript(raw(item.input_language)) -%>",
+      "output_phrase": "<%= escape_javascript(raw(item.output_phrase)) -%>",
+      "output_language": "<%= escape_javascript(raw(item.output_language)) -%>",
+      
+    },
+  <% end %>
+  ];
+
+  if(translationHOT.data.length == 0 ){
+    $("#TRANSLATION_HOT").hide();
+    $(".no-data-table").show();
+  } else {
+
+    // Initializing the HandsonTable
+    translationHOT.domTable = document.getElementById("TRANSLATION_HOT");
+    translationHOT.table = new Handsontable(translationHOT.domTable,{
+      data: translationHOT.data,
+
+      search: {
+        searchResultClass: 'highlight'
+      },
+
+      height: 500,
+      columns: [
+
+        
+        
+      ],
+      colHeaders: [
+       
+          ],
+
+      // hiddenColumns: {
+      //   // columns: [5],
+      //   indicators: true
+      // },
+      
+      fixedColumnsLeft: 1,
+      // fixedColumnsRight: 4,
+      autoWrapRow: true,
+      rowHeaders: true,
+      manualRowMove: true,
+      manualColumnMove: false,
+      contextMenu: false,
+      filters: true,
+      searching: true,
+      dropdownMenu: false,
+      stretchH: 'all',
+      autoWrapRow: true,
+      rowHeights: 30,
+
+      // currentRowClassName: 'currentRow',
+      // currentColClassName: 'currentCol',
+      // fixedRowsBottom: 1,
+      // dropdownMenu: true, // header dropdown Menu
+      exportFile: true,  // Export to CSV
+      licenseKey: '46437-f3524-dcc94-04c1a-ae440', // license key
+
+      afterChange: function (changes, source) {
+
+        // Ignore the changes happening at the time of loading the table
+        if (source === 'loadData') {
+          return;
+        }
+
+        // Ignore if there are no changes
+        if (!changes) {
+          return;
+        }
+        translationHOT.instance = translationHOT.table.getInstance();
+        $.each(changes, function (index, element) {
+          var change = element;
+          var rowIndex = change[0];
+          var columnIndex = change[1];
+          var oldValue = change[2];
+          var newValue = change[3];
+
+          // Ignore if there are no changes
+          if ((newValue === oldValue) || (oldValue == undefined && newValue == '')) {
+            return true;
+          }
+
+          // Ignore if there are no changes for columns between 2 and 8 (all others are readonly)
+          if (rowIndex == (translationHOT.table.countRows())) {
+            return true;
+          }
+
+          // Ignore if there are no changes for columns between 2 and 8 (all others are readonly)
+          if (!["input_phrase"].includes(columnIndex)) {
+            return true;
+          }
+
+          ajaxData = { item_id: translationHOT.data[rowIndex]["item_id"], 
+                        new_value: newValue, 
+                        column_name: columnIndex, 
+                        hot_row: rowIndex,
+                      
+                     }
+          $.ajax({
+            url: "/user/table_documents/translate_input_phrase.js",
+            type: 'PUT',
+            data: ajaxData,
+          });
+        });
+      },
+
+    });
+
+    // Export Attendance Template
+    var exportTemplateButton = document.getElementById('DownloadTablebasedDocument');
+    const exportTemplatePlugin = translationHOT.table.getPlugin('exportFile');
+    
+    exportTemplateButton.addEventListener('click', function() {
+      exportTemplatePlugin.downloadFile('csv', {
+        bom: false,
+        columnDelimiter: ',',
+        columnHeaders: true,
+        exportHiddenColumns: true,
+        exportHiddenRows: false,
+        fileExtension: 'csv',
+        filename: 'Table Based Document - [DD]-[MM]-[YYYY]',
+        mimeType: 'text/csv',
+        rowDelimiter: '\r\n',
+        // rowDelimiter: '\r\,',
+        rowHeaders: false,
+      });
+    });
+
+    translationHOT.table.updateSettings({
+      height:  $('.ht_master .wtHider').height() + 40,
+      cells: function (row, col, prop) {
+
+        // Defining Cell Properties
+        var cellProperties = {};
+
+        // Get the cell for the row and column
+        var cell = translationHOT.table.getCell(row,col);   
+
+        if (cell == undefined) {
+          return cellProperties;
+        }
+
+        if (col == translationHOT.table.propToCol("output_1_phrase")) {
+          var o1p = translationHOT.data[row]["output_1_phrase"];
+          if ((o1p == "Word not found") || (o1p == "Mot introuvable") || (o1p == "كلمة غير موجودة")) {
+            // cell.style.backgroundColor = "#fdebed";
+            // cell.style.color = '#FF7F00';
+            cell.style.color = 'red';
+          } else {
+            // cell.style.backgroundColor = "#e6f7ff";
+            cell.style.color = '#4b4b4b';
+          }
+        }
+
+        if (col == translationHOT.table.propToCol("output_2_phrase")) {
+          var o2p = translationHOT.data[row]["output_2_phrase"];
+          if ((o2p == "Word not found") || (o2p == "Mot introuvable") || (o2p == "كلمة غير موجودة")) {
+            // cell.style.backgroundColor = "#fdebed";
+            // cell.style.color = '#FF7F00';
+            cell.style.color = 'red';
+          } else {
+            // cell.style.backgroundColor = "#e6f7ff";
+            cell.style.color = '#4b4b4b';
+          }
+        }
+
+        if (col == translationHOT.table.propToCol("output_3_phrase")) {
+          var o3p = translationHOT.data[row]["output_3_phrase"];
+          if ((o3p == "Word not found") || (o3p == "Mot introuvable") || (o3p == "كلمة غير موجودة")) {
+            // cell.style.backgroundColor = "#fdebed";
+            // cell.style.color = '#FF7F00';
+            cell.style.color = 'red';
+          } else {
+            // cell.style.backgroundColor = "#e6f7ff";
+            cell.style.color = '#4b4b4b';
+          }
+        }
+
+        if (col == translationHOT.table.propToCol("output_4_phrase")) {
+          var o4p = translationHOT.data[row]["output_4_phrase"];
+          if ((o4p == "Word not found") || (o4p == "Mot introuvable") || (o4p == "كلمة غير موجودة")) {
+            // cell.style.backgroundColor = "#fdebed";
+            // cell.style.color = '#FF7F00';
+            cell.style.color = 'red';
+          } else {
+            // cell.style.backgroundColor = "#e6f7ff";
+            cell.style.color = '#4b4b4b';
+          }
+        }
+
+        if (col == translationHOT.table.propToCol("output_5_phrase")) {
+          var o5p = translationHOT.data[row]["output_5_phrase"];
+          if ((o5p == "Word not found") || (o5p == "Mot introuvable") || (o5p == "كلمة غير موجودة")) {
+            // cell.style.backgroundColor = "#fdebed";
+            // cell.style.color = '#FF7F00';
+            cell.style.color = 'red';
+          } else {
+            // cell.style.backgroundColor = "#e6f7ff";
+            cell.style.color = '#4b4b4b';
+          }
+        }
+
+        // word wrap fix for buttons
+        // cell.style.whiteSpace = "nowrap";
+
+        return cellProperties;
+      }
+    });
+
+  }
+  
+
+
+});
+$(document).off('change', "#INPUT_LANGUAGE");
+$(document).on('change', '#INPUT_LANGUAGE', function (e) {
+  
+  let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").val();
+
+  if(inputLanguage == "ARABIC") {
+    newURL = "<%= new_user_table_document_path(input_language: 'ARABIC') %>";
+  } else if(inputLanguage == "FRENCH") {
+    newURL = "<%= new_user_table_document_path(input_language: 'FRENCH') %>";
+  } else if(inputLanguage == "ENGLISH") {
+    newURL = "<%= new_user_table_document_path(input_language: 'ENGLISH') %>";
+  }
+
+  var confirmLanguageChange = confirm("Warning! Changing input language will clear all translations.")
+  if (confirmLanguageChange){
+    window.location.href = newURL;
+  }
+  else{
+    // e.preventDefault();
+    // return false
+  }
+});
+
+$(document).off('change', "#OUTPUT_1_LANGUAGE");
+$(document).on('change', '#OUTPUT_1_LANGUAGE', function (e) {
+  saveEverything();
+});
+
+$(document).off('change', "#OUTPUT_2_LANGUAGE");
+$(document).on('change', '#OUTPUT_2_LANGUAGE', function (e) {
+  saveEverything();
+});
+
+$(document).off('change', "#OUTPUT_3_LANGUAGE");
+$(document).on('change', '#OUTPUT_3_LANGUAGE', function (e) {
+  saveEverything();
+});
+
+$(document).off('change', "#OUTPUT_4_LANGUAGE");
+$(document).on('change', '#OUTPUT_4_LANGUAGE', function (e) {
+  saveEverything();
+});
+
+$(document).off('change', "#OUTPUT_5_LANGUAGE");
+$(document).on('change', '#OUTPUT_5_LANGUAGE', function (e) {
+  saveEverything();
+});
+
