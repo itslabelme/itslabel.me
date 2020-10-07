@@ -32,6 +32,19 @@ module User
       @page_title = "Choose a Template"
       @nav = 'user/template_documents'
     end
+    def export_template_documents_translation
+
+      get_template
+      new_document unless @document
+        respond_to do |format|
+          format.html
+          format.pdf do
+            render  :pdf => 'file_name',
+                    :template => '/user/template_documents/export_template_documents_translation.pdf.erb',
+                    :layout => 'pdf.html.erb'
+          end
+        end        
+    end
 
     def new
       @page_title = "Create new Translation Document from Template"

@@ -59,6 +59,9 @@ Rails.application.routes.draw do
 
         #update status
         put 'update_status', to: 'template_documents#update_status', as: 'update_status'
+    
+        post '/export_template_documents_translation', to: 'template_documents#export_template_documents_translation', as: 'export_template_documents_translation'
+
 
       end
 

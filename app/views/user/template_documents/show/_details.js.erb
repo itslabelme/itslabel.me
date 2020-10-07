@@ -1,0 +1,23 @@
+unction exportFreeTranslation(forceTranslate=false) {
+
+  let inputLanguage = $("#INPUT_LANGUAGE").children("option:selected").text();
+  let outputLanguage = $("#OUTPUT_LANGUAGE").children("option:selected").text();
+  let inputText = $("#INPUT_AREA").html();
+  
+  // console.log("inputLanguage: ", inputLanguage);
+  // console.log("outputLanguage: ", outputLanguage);
+  // console.log("inputText: ", inputText);
+  
+  // let exportData = {text: inputText, 
+  //                   input_language: inputLanguage, 
+  //                   output_language: outputLanguage };
+
+  let frm = $('<form action="/user/template_documents/export_template_documents_translation.pdf.erb" method="POST" target="_blank">' + 
+    '<input type="hidden" name="input_language" value="' + inputLanguage + '">' +
+    '<input type="hidden" name="output_language" value="' + outputLanguage + '">' +
+    '<input type="hidden" name="text" value="' + inputText + '">' +
+    '</form>');
+  $(document.body).append(frm);
+  frm.submit();
+
+}
