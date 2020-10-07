@@ -32,18 +32,14 @@ module User
       @page_title = "Choose a Template"
       @nav = 'user/template_documents'
     end
-    def export_template_documents_translation
 
-      get_template
-      new_document unless @document
-        respond_to do |format|
-          format.html
-          format.pdf do
-            render  :pdf => 'file_name',
-                    :template => '/user/template_documents/export_template_documents_translation.pdf.erb',
-                    :layout => 'pdf.html.erb'
-          end
-        end        
+    def export_template_documents_translation
+     get_template
+     new_document unless @document
+     pdf = WickedPdf.new.pdf_from_string(
+        render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false)
+      )
+     send_data pdf, :filename => "Template_Document_#{Date.today.strftime('%d/%b/%Y')}.pdf", :type => "application/pdf", :disposition => "attachment"
     end
 
     def new
