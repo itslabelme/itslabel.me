@@ -44,10 +44,10 @@ module User
                    :layout => 'pdf.html.erb'
          )
       else
-       pdf = WickedPdf.new.pdf_from_string(
-          render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false)
-        )
-       send_data pdf, :filename => "Template_Document_#{Date.today.strftime('%d/%b/%Y')}.pdf", :type => "application/pdf", :disposition => "attachment"
+         pdf = WickedPdf.new.pdf_from_string(
+            render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false)
+          )
+         send_data pdf, :filename => "Template_Document_#{Date.today.strftime('%d/%b/%Y')}.pdf", :type => "application/pdf", :disposition => "attachment"
       end
     end
 
