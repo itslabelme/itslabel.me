@@ -36,10 +36,17 @@ module User
     def export_template_documents_translation
      get_template
      new_document unless @document
-     pdf = WickedPdf.new.pdf_from_string(
-        render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false)
-      )
-     send_data pdf, :filename => "Template_Document_#{Date.today.strftime('%d/%b/%Y')}.pdf", :type => "application/pdf", :disposition => "attachment"
+     @preview=params[:value]
+     if @preview
+       pdf = WickedPdf.new.pdf_from_string(
+          render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: true)
+        )
+      else
+       pdf = WickedPdf.new.pdf_from_string(
+          render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false)
+        )
+       send_data pdf, :filename => "Template_Document_#{Date.today.strftime('%d/%b/%Y')}.pdf", :type => "application/pdf", :disposition => "attachment"
+      end
     end
 
     def new
