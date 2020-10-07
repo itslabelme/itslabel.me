@@ -38,9 +38,11 @@ module User
      new_document unless @document
      @preview=params[:value]
      if @preview
-       pdf = WickedPdf.new.pdf_from_string(
-          render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: true)
-        )
+        pdf = WickedPdf.new.pdf_from_string(
+           render  :pdf => 'file_name',
+                   :template => '/user/template_documents/export_template_documents_translation.pdf.erb',
+                   :layout => 'pdf.html.erb'
+         )
       else
        pdf = WickedPdf.new.pdf_from_string(
           render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false)
