@@ -1,20 +1,18 @@
 
 <% output_style = "direction: rtl;" %>
-<h2>ITSLabe.me</h2>
-
+<h1 style="text-align: center;">ITSLabe.me</h1>
+<h3 align="center">Translate With Template</h3>
+<hr>
 <div style='margin:10px;padding:20px;background-color: #fff; color: #4b4b4b; font-size:18px;'>
-    <h2 align="center">Template documents</h2>
-
-    <hr>
-    
     <div style="<%= output_style %>">
-      <h2>Output</h2>
       <p><%= raw(@document.try(:output_html_source).to_s) %></p>
     </div>
-
-    <div style="clear:both;"></div>
-
-    <hr>
-  
+  <div style="clear:both;"></div>
 </div>
 
+
+<style type="text/css">
+  table {
+    border: 1px solid black;
+  }
+</style>
