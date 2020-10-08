@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     get '/free_form', to: 'free_form_widget#index', as: 'free_form'
     post '/translate', to: 'free_form_widget#translate', as: 'translate'
     post '/export_free_translation', to: 'free_form_widget#export_free_translation', as: 'export_free_translation'
-    
+
     get '/translation_request', to: 'free_form_widget#new_translation_request', as: 'new_translation_request'
     post '/translation_request', to: 'free_form_widget#create_translation_request', as: 'create_translation_request'
     # Upload ingredient through CSV file (CSV file Upload and parsing)
@@ -59,6 +59,8 @@ Rails.application.routes.draw do
 
         #update status
         put 'update_status', to: 'template_documents#update_status', as: 'update_status'
+        get '/export_template_documents_translation', to: 'template_documents#export_template_documents_translation', as: 'export_template_documents_translation'
+
 
       end
 
