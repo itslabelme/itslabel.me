@@ -15,6 +15,8 @@ module Admin
     private
 
     def apply_filters
+      @start_date=params[:filters].try(:[], :sd)
+      @end_date=params[:filters].try(:[], :ed)
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
       
@@ -25,6 +27,8 @@ module Admin
       @relation = @relation.search_only_status(params[:filters].try(:[], :status))
       @relation = @relation.search_only_error(params[:filters].try(:[], :error))
       
+      @relation = @relation.where(doc_type: params[:filters].try(:[], :ob)) if params[:filters]
+      @relation = @relation.where(created_at: @start_date..@end_date) if params[:filters]
     end
     
     def get_collection
@@ -39,8 +43,7 @@ module Admin
                         order(@order_by).
                         page(@current_page).per(100)
     end
-    
-  
+
     def get_translation
       @translationQueryHistory = TranslationQueryHistory.find_by_id(params[:id])
     end
