@@ -97,21 +97,22 @@
                       <div class="its-preview-header-top">
                         <ul>
                           <li>
-                            <%= link_to "#", onclick: "print()" do %>
+                            <%= link_to export_template_documents_translation_user_template_document_path(id, :value=>"preview"), :target => "_blank"   do %>   
                               <%= image_tag("icons/preview.svg") %>
                               <span>Preview</span>
                             <% end %>
                           </li>
 
                           <li>
-                            <%= link_to "#", onclick: "directPrint()" do %>
+                            <%= link_to export_template_documents_translation_user_template_document_path(id)  do %>
                               <%= image_tag("icons/download.svg") %>
                               <span>Download</span>
                             <% end %>
                           </li>
                           
                           <li>
-                            <%= link_to "#", onclick: "directPrint()" do %>
+                            <%#= link_to "#", onclick: "directPrint()" do %>
+                            <%= link_to export_template_documents_translation_user_template_document_path(id, :value=>"preview"), :target => "_blank"   do %>
                               <%= image_tag("icons/print.svg") %>
                               <span>Print</span>
                             <% end %>
