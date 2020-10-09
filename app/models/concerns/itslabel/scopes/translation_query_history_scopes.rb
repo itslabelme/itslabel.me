@@ -36,6 +36,8 @@ module Itslabel::Scopes::TranslationQueryHistoryScopes
     scope :upcoming, lambda { where("translation_query_histories.created_at >= ?", Time.now) }
     scope :past, lambda { where("translation_query_histories.created_at < ?", Time.now) }
     
+    #scope :where_created_at, lambda { where("translation_query_histories.created_at =sd..ed") }
+
     scope :order_by, lambda { |col| 
       case col
       when "free_form_widget"
