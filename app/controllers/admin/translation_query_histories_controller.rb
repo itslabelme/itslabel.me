@@ -16,7 +16,7 @@ module Admin
 
     def apply_filters
       @doc_type=params[:filters].try(:[], :ob)
-      start_date=params[:filters].try(:[], :sd)
+      start_date=params[:filters].try(:[], :sd) 
       end_date=params[:filters].try(:[], :ed)
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
