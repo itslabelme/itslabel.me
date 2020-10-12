@@ -67,9 +67,9 @@
                 <div class="form-group">
                   <label for="filter">Date</label>
                     <div class="input-daterange input-group" id="datepicker">
-                      <input type="text" class="input-sm form-control" name="filters[sd]" id="sd" placeholder="<%= (Date.today-1).strftime('%m/%d/%Y') %>" >
+                      <input type="text" class="input-sm form-control" name="filters[sd]" id="sd" value="<%= @sd.in_time_zone("Asia/Muscat").strftime('%m/%d/%Y') %>" >
                       <span class="input-group-addon">to</span>
-                      <input type="text" class="input-sm form-control" name="filters[ed]" id="ed" placeholder="<%= Time.now.in_time_zone("Asia/Muscat").strftime('%m/%d/%Y') %>" />
+                      <input type="text" class="input-sm form-control" name="filters[ed]" id="ed" value="<%= @ed.in_time_zone("Asia/Muscat").strftime('%m/%d/%Y') %>" />
                     </div>
                 </div>
               </div>
@@ -77,6 +77,7 @@
                 <div class="form-group">
                   <label for="filter">Document type</label>
                   <select name="filters[ob]" class="form-control">
+                    <option>All</option>
                     <option value="free_form_widget" <%= @order_by == 'free_form_widget' ? 'selected="selected"' : '' %> >Free Form</option>
                     <option value="template_documents" <%= @order_by == 'template_documents' ? 'selected="selected"' : '' %> >Template</option>
                     <option value="table_documents"  <%= @order_by == 'table_documents' ? 'selected="selected"' : '' %>>Table</option>

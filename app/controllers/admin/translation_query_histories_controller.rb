@@ -15,11 +15,9 @@ module Admin
     private
 
     def apply_filters
+      @doc_type=params[:filters].try(:[], :ob)
       start_date=params[:filters].try(:[], :sd)
       end_date=params[:filters].try(:[], :ed)
-      @sd=start_date.try(:strftime,'%Y-%m-%d %H:%M')
-      @ed=end_date.try(:strftime,'%Y-%m-%d %H:%M')
-      
       @query = params[:q]
       @relation = @relation.search(@query) if @query && !@query.blank?
       
@@ -30,13 +28,15 @@ module Admin
       @relation = @relation.search_only_status(params[:filters].try(:[], :status))
       @relation = @relation.search_only_error(params[:filters].try(:[], :error))
 
-      @relation = @relation.where(doc_type: params[:filters].try(:[], :ob)) if params[:filters].try(:[], :ob)
+      @relation = @relation.where(doc_type: @doc_type) if @doc_type
 
-      if @start_date.blank? && @end_date.blank?
-        @start_date=(Date.today-1).strftime('%Y-%m-%d %H:%M')
-        @end_date=Time.now.in_time_zone("Asia/Muscat").strftime('%Y-%m-%d %H:%M')
-        @relation = @relation.where(created_at: @start_date..@end_date) 
-      else   
+      if start_date.blank? && end_date.blank?
+        @sd=(Date.today-1).strftime('%Y-%m-%d %H:%M')
+        @ed=Time.now.in_time_zone("Asia/Muscat").strftime('%Y-%m-%d %H:%M')
+        @relation = @relation.where(created_at: @sd..@ed) 
+      else
+        @sd=start_date.in_time_zone("Asia/Muscat").strftime('%Y-%d-%m %H:%M')
+        @ed=end_date.in_time_zone("Asia/Muscat").strftime('%Y-%d-%m %H:%M')
         @relation = @relation.where(created_at: @sd..@ed)
       end  
 
