@@ -35,8 +35,8 @@ module Admin
         @ed=Time.now.in_time_zone("Asia/Muscat").strftime('%Y-%m-%d %H:%M')
         @relation = @relation.where(created_at: @sd..@ed) 
       else
-        @sd=start_date.in_time_zone("Asia/Muscat").strftime('%Y-%d-%m %H:%M')
-        @ed=end_date.in_time_zone("Asia/Muscat").strftime('%Y-%d-%m %H:%M')
+        @sd=start_date.in_time_zone("Asia/Muscat").strftime('%Y-%m-%d %H:%M')
+        @ed=end_date.in_time_zone("Asia/Muscat").strftime('%Y-%m-%d %H:%M')
         @relation = @relation.where(created_at: @sd..@ed)
       end  
 
