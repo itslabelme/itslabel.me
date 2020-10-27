@@ -76,11 +76,11 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="filter">Document type</label>
-                  <select name="filters[ob]" class="form-control">
-                    <option  value="">All</option>
-                    <option value="free_form_widget" <%= @order_by == 'free_form_widget' ? 'selected="selected"' : '' %> >Free Form</option>
-                    <option value="template_documents" <%= @order_by == 'template_documents' ? 'selected="selected"' : '' %> >Template</option>
-                    <option value="table_documents"  <%= @order_by == 'table_documents' ? 'selected="selected"' : '' %>>Table</option>
+                  <select name="filters[dt]" class="form-control">
+                    <!-- <option  value="">All</option> -->
+                    <option value="free_form_widget" <%= @doc_type == 'free_form_widget' ? 'selected="selected"' : '' %> >Free Form</option>
+                    <option value="template_documents" <%= @doc_type == 'template_documents' ? 'selected="selected"' : '' %> >Template</option>
+                    <option value="table_documents"  <%= @doc_type == 'table_documents' ? 'selected="selected"' : '' %>>Table</option>
                   </select>
                 </div>
               </div>
