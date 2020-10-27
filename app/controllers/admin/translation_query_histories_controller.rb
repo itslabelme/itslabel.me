@@ -32,13 +32,13 @@ module Admin
       if start_date.blank? && end_date.blank?
         @sd = Date.yesterday.strftime('%Y-%m-%d %H:%M')
         @ed = Date.today.strftime('%Y-%m-%d %H:%M')
-        # Add 1 to fix the end_date       
+        # Add 1 to fix that to get exact end_date      
         @temp_ed = (Date.parse(@ed) + 1).strftime('%Y-%m-%d %H:%M')       
         @relation = @relation.where(created_at: @sd..@temp_ed) 
       else
         @sd = Date.parse(start_date).strftime('%Y-%m-%d %H:%M')
         @ed = Date.parse(end_date).strftime('%Y-%m-%d %H:%M')
-        # Add 1 to fix the end_date
+        # Add 1 to fix that to get exact end_date      
         @temp_ed = (Date.parse(end_date) + 1).strftime('%Y-%m-%d %H:%M')
         @relation = @relation.where(created_at: @sd..@temp_ed)
       end  
