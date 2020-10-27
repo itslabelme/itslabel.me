@@ -308,6 +308,7 @@ Devise.setup do |config|
   end
   
   config.omniauth :facebook, ENV['ITS_FACEBOOK_APP_ID'], ENV['ITS_FACEBOOK_APP_SECRET'], callback_url: "#{domain}/user/auth/facebook/callback"
-  config.omniauth :google_oauth2,'955999585677-n2as481gf2lhfgakd0ilkugln1453uud.apps.googleusercontent.com' , 'uvafTRTMDgP56147D9GlgC-f',  callback_url: "#{domain}/user/auth/google_oauth2/callback"
+  config.omniauth :google_oauth2, ENV['ITS_GOOGLE_CLIENT_ID'], ENV['ITS_GOOGLE_CLIENT_SECRET'], callback_url: "#{domain}/user/auth/google_oauth2/callback"
+  # config.omniauth :google_oauth2,'955999585677-n2as481gf2lhfgakd0ilkugln1453uud.apps.googleusercontent.com' , 'uvafTRTMDgP56147D9GlgC-f',  callback_url: "#{domain}/user/auth/google_oauth2/callback"
 
 end
