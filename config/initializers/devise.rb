@@ -297,30 +297,31 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  # Facebook & Google Auth
+ 
+ # Facebook & Google Auth
   case Rails.env
   when "development"
     port = ENV["ITS_PORT"] || "3000"
     domain = "http://localhost:#{port}"
     fb_app_id = Rails.application.credentials.development[:facebook][:app_id]
     fb_secret_key = Rails.application.credentials.development[:facebook][:secret]
-    google_client_id = Rails.application.credentials.development[:facebook][:client_id]
-    google_secret_key = Rails.application.credentials.development[:facebook][:secret]
+    google_client_id = Rails.application.credentials.development[:google][:client_id]
+    google_secret_key = Rails.application.credentials.development[:google][:secret]
   when "staging"
     domain = "http://demo.itslabel.me"
     fb_app_id = Rails.application.credentials.staging[:facebook][:app_id]
     fb_secret_key = Rails.application.credentials.staging[:facebook][:secret]
-    google_client_id = Rails.application.credentials.staging[:facebook][:client_id]
-    google_secret_key = Rails.application.credentials.staging[:facebook][:secret]
+    google_client_id = Rails.application.credentials.staging[:google][:client_id]
+    google_secret_key = Rails.application.credentials.staging[:google][:secret]
   when "production"
     domain = "https://app.itslabel.me"
     fb_app_id = Rails.application.credentials.production[:facebook][:app_id]
     fb_secret_key = Rails.application.credentials.production[:facebook][:secret]
-    google_client_id = Rails.application.credentials.production[:facebook][:client_id]
-    google_secret_key = Rails.application.credentials.production[:facebook][:secret]
+    google_client_id = Rails.application.credentials.production[:google][:client_id]
+    google_secret_key = Rails.application.credentials.production[:google][:secret]
   end
 
   config.omniauth :facebook, fb_app_id, fb_secret_key, callback_url: "#{domain}/user/auth/facebook/callback"
-  config.omniauth :google_oauth2, google_client_id, google_secret_key, callback_url: "#{domain}/user/auth/google/callback"
+  config.omniauth :google_oauth2, google_client_id, google_secret_key, callback_url: "#{domain}/user/auth/google_oauth2/callback"
 
 end
