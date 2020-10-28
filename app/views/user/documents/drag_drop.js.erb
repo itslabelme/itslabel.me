@@ -1,7 +1,7 @@
 
 <% if @document.errors.blank? %>
 
-notifySuccess("<%= escape_javascript('Success!') %>", "<%= escape_javascript('Successfully Moved') %>");
+  notifySuccess("<%= escape_javascript('Success!') %>", "<%= escape_javascript('Successfully Moved') %>");
   // window.location.reload();
   $("#doc_table").html("<%= escape_javascript(render(:partial=>'user/documents/index/table.html.erb')) %>");
 <% else %>

@@ -2,6 +2,8 @@
 
   <!-- Header -->
   <%= render partial: 'admin/translations/index/header' %>
+  
+  <%= render partial: 'admin/translations/index/counts' %>
 
   <!-- Controls -->
   <%#=# render partial: 'admin/translations/index/controls' %>
@@ -52,6 +54,6 @@
 </div>
 
 <%= content_for :javascript_footer do %>
-  <%#= render :partial=>"admin/label_templates/index/table.js.erb"  %>
+  <%#= render :partial=>"admin/translations/index/table.js.erb"  %>
   <%= render :partial=>"admin/translations/form/form.js.erb" %>
 <% end %>

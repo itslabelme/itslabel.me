@@ -26,13 +26,11 @@ Rails.application.routes.draw do
     get '/free_form', to: 'free_form_widget#index', as: 'free_form'
     post '/translate', to: 'free_form_widget#translate', as: 'translate'
     post '/export_free_translation', to: 'free_form_widget#export_free_translation', as: 'export_free_translation'
-    
+
     get '/translation_request', to: 'free_form_widget#new_translation_request', as: 'new_translation_request'
     post '/translation_request', to: 'free_form_widget#create_translation_request', as: 'create_translation_request'
-
-      # Upload ingredient through CSV file (CSV file Upload and parsing)
+    # Upload ingredient through CSV file (CSV file Upload and parsing)
     get '/csv_upload', to: 'table_documents#csv_upload', as: 'csv_upload'
-
       # Parse CSV data
     post 'csv_parse', to: 'table_documents#csv_parse', as: 'csv_parse'
 
@@ -63,6 +61,8 @@ Rails.application.routes.draw do
 
         #update status
         put 'update_status', to: 'template_documents#update_status', as: 'update_status'
+        get '/export_template_documents_translation', to: 'template_documents#export_template_documents_translation', as: 'export_template_documents_translation'
+
 
       end
 
@@ -70,6 +70,15 @@ Rails.application.routes.draw do
         get 'select_template', to: 'template_documents#select_template', as: 'select_template'
       end
     end
+    resources :client_feedbacks do
+
+      collection do
+
+       post 'new', to: 'client_feedbacks#new', as: 'new'
+
+      end  
+    end  
+
 
     # CRUD Table Documents
     resources :table_documents do
@@ -118,6 +127,11 @@ Rails.application.routes.draw do
 
     # FIXME - not sure why we need this
     root to: 'home#index'
+    # Client Feedbacks
+    resources :client_feedbacks, only: [:index]
+    
+    # Translation Requests
+    resources :translation_requests, only: [:index, :create, :show]
 
     # CRUD Client Users
     resources :client_users
@@ -128,9 +142,15 @@ Rails.application.routes.draw do
     # CRUD Translations
     resources :translations
 
+    # Upload Translations Database 
+    resources :upload_translations, only: [:index, :create]
+
+    resources :translation_query_histories, only: [:index]
+
     # CRUD Label Templates
     resources :label_templates
-
+    
+    resources :translation_uploads_history, only: [:index, :show]
     # CRUD Nutrition Fact Templates
     # resources :nutrition_fact_templates
     

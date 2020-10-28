@@ -324,8 +324,4 @@ Devise.setup do |config|
   config.omniauth :facebook, fb_app_id, fb_secret_key, callback_url: "#{domain}/user/auth/facebook/callback"
   config.omniauth :google_oauth2, google_client_id, google_secret_key, callback_url: "#{domain}/user/auth/google_oauth2/callback"
 
-
-
-
-
 end

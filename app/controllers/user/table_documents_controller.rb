@@ -51,7 +51,8 @@ module User
       new_document
 
       @document_items = []
-      16.times.each do |i|
+      no_of_rows = 100
+      no_of_rows.times.each do |i|
         @document_items << @document.items.build(
           temporary_key: "tkey-#{i}",
           input_language: @document.input_language,
@@ -113,11 +114,15 @@ module User
           if @output_2_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_2_language)
             @item.output_2_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_2_language, return_string: true) 
+
+            save_trans_query(@item.input_phrase, @input_language, @output_2_language, @item.output_2_phrase, params['controller'], hsh)
           end
 
           if @output_3_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_3_language) 
             @item.output_3_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_3_language, return_string: true) 
+          
+            save_trans_query(@item.input_phrase, @input_language, @output_3_language, @item.output_3_phrase, params['controller'], hsh)
           end
 
           if @output_4_language
@@ -157,6 +162,29 @@ module User
           error_message = @item.errors.full_messages.first
           set_notification(false, I18n.t('status.error'), error_message)
         end
+      end
+    end
+
+
+    def save_trans_query(input_text, input_language, output_language, output_text, doc_type_param, hsh)
+
+      doc_type = doc_type_param.split('/').last || 'Default'
+      error_status = output_text.include? "its-tran-not-found" || false
+
+       translation = TranslationQueryHistory.new(
+        input_language: input_language || 'Default', 
+        output_language: output_language || 'Default',
+        input_phrase: input_text || 'Default', 
+        output_phrase: output_text || 'Default',    
+        error: error_status ,                  
+        error_message: hsh || 'Default',            
+        client_user: @current_client_user,      
+        doc_type: doc_type,                                 
+        status: "ACTIVE"
+      )
+
+      if translation.valid?
+        translation.save
       end
     end
 

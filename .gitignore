@@ -27,6 +27,7 @@ capybara-*.html
 /log
 /tmp
 /public/system
+/public/imported_files
 /coverage/
 /spec/tmp
 /public/uploads/**/
@@ -39,7 +40,7 @@ config/database.yml
 *.gem
 spec/dummy/public/uploads
 spec/dummy/uploads
-uploads
+/uploads
 spec/dummy/config/aws-secret.yml
 report.html
 spec/dummy/storage
@@ -51,11 +52,12 @@ spec/dummy/storage
 /nbproject/project.xml
 storage
 .byebug_history
-config/master.key
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+config/master.key
+config/master.key
 config/master.key.bck
+
 docs
 
 # Elastic Beanstalk Files
@@ -64,3 +66,7 @@ docs
 !.elasticbeanstalk/*.global.yml
 
 .ebextensions/*
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+public/imported_files/*.csv

@@ -1,0 +1,14 @@
+// Showing Growl Like Message
+<% if @notification[:success] %>
+  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+  $("#btn").attr("disabled", false);  
+  // Redirect to Upload History Page
+  window.location.href = "<%= admin_translation_uploads_history_path(@upload_history.id) %>"
+<% else %>
+  
+  $("#file").val(null);
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+<% end %>
+
+// Hide the loading popup
+$("#pleaseWaitDialog").modal("hide");

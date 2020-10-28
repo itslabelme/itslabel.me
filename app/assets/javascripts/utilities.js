@@ -22,6 +22,8 @@ function notifySuccess(title, message, positionClass){
     "hideMethod": "fadeOut"
   };
   
+  // Code to remove display multiple messages one by one( As per clients requirement)
+  toastr.clear();
   toastr.success(message, title, opts);
 }
 
@@ -44,7 +46,9 @@ function notifyError(title, message, positionClass){
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
   };
-  
+
+  // Code to remove display multiple messages one by one( As per clients requirement)
+  toastr.clear();
   toastr.error(message, title, opts);
 }
 
@@ -67,7 +71,9 @@ function notifyInfo(title, message, positionClass){
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
   };
-  
+
+  // Code to remove display multiple messages one by one( As per clients requirement)
+  toastr.clear();
   toastr.info(message, title, opts);
 }
 
