@@ -35,6 +35,7 @@ module Itslabel::Scopes::TranslationQueryHistoryScopes
 
     scope :upcoming, lambda { where("translation_query_histories.created_at >= ?", Time.now) }
     scope :past, lambda { where("translation_query_histories.created_at < ?", Time.now) }
+        
 
   end
   
