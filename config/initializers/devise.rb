@@ -298,17 +298,50 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   # Facebook & Google Auth
+  #case Rails.env
+  #when "development"
+   # domain = "http://localhost:3000"
+  #when "staging"
+   # domain = "http://demo.itslabel.me"
+  #when "production"
+   # domain = "https://app.itslabel.me"
+  #end
+  
+  #config.omniauth :facebook, ENV['ITS_FACEBOOK_APP_ID'], ENV['ITS_FACEBOOK_APP_SECRET'], callback_url: "#{domain}/user/auth/facebook/callback"
+  #config.omniauth :google_oauth2, ENV['client_id'], ENV['secret'], callback_url: "#{domain}/user/auth/google_oauth2/callback"
+  # config.omniauth :google_oauth2,'955999585677-n2as481gf2lhfgakd0ilkugln1453uud.apps.googleusercontent.com' , 'uvafTRTMDgP56147D9GlgC-f',  callback_url: "#{domain}/user/auth/google_oauth2/callback"
+
+
+
+
+ # Facebook & Google Auth
   case Rails.env
   when "development"
-    domain = "http://localhost:3000"
+    port = ENV["ITS_PORT"] || "3000"
+    domain = "http://localhost:#{port}"
+    fb_app_id = Rails.application.credentials.development[:facebook][:app_id]
+    fb_secret_key = Rails.application.credentials.development[:facebook][:secret]
+    google_client_id = Rails.application.credentials.development[:google][:client_id]
+    google_secret_key = Rails.application.credentials.development[:google][:secret]
   when "staging"
     domain = "http://demo.itslabel.me"
+    fb_app_id = Rails.application.credentials.staging[:facebook][:app_id]
+    fb_secret_key = Rails.application.credentials.staging[:facebook][:secret]
+    google_client_id = Rails.application.credentials.staging[:google][:client_id]
+    google_secret_key = Rails.application.credentials.staging[:google][:secret]
   when "production"
     domain = "https://app.itslabel.me"
+    fb_app_id = Rails.application.credentials.production[:facebook][:app_id]
+    fb_secret_key = Rails.application.credentials.production[:facebook][:secret]
+    google_client_id = Rails.application.credentials.production[:google][:client_id]
+    google_secret_key = Rails.application.credentials.production[:google][:secret]
   end
-  
-  config.omniauth :facebook, ENV['ITS_FACEBOOK_APP_ID'], ENV['ITS_FACEBOOK_APP_SECRET'], callback_url: "#{domain}/user/auth/facebook/callback"
-  config.omniauth :google_oauth2, ENV['ITS_GOOGLE_CLIENT_ID'], ENV['ITS_GOOGLE_CLIENT_SECRET'], callback_url: "#{domain}/user/auth/google_oauth2/callback"
-  # config.omniauth :google_oauth2,'955999585677-n2as481gf2lhfgakd0ilkugln1453uud.apps.googleusercontent.com' , 'uvafTRTMDgP56147D9GlgC-f',  callback_url: "#{domain}/user/auth/google_oauth2/callback"
+
+  config.omniauth :facebook, fb_app_id, fb_secret_key, callback_url: "#{domain}/user/auth/facebook/callback"
+  config.omniauth :google_oauth2, google_client_id, google_secret_key, callback_url: "#{domain}/user/auth/google_oauth2/callback"
+
+
+
+
 
 end
