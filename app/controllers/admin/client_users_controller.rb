@@ -20,7 +20,6 @@ module Admin
 
     def new_client_user
       @client_user = ClientUser.new
-      UserNotifierMailer.send_signup_email(@client_user).deliver
     end
 
     def get_client_user

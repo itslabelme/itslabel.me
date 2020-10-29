@@ -20,11 +20,20 @@ class ClientUser < ApplicationRecord
 
   # Callback
   after_create :create_default_folder
+  after_create :send_welcome_email
+#  after_create :send_forgot_password
 
   
   # ----------------
   # Instance Methods
   # ----------------
+  def send_welcome_email
+    UserMailerNotification.send_welcome_email(self).deliver
+  end
+
+  def send_forgot_password
+    UserMailerNotification.send_forgot_password(self).deliver
+  end
 
   def display_name
     [first_name, last_name].compact.join(" ").titleize  
