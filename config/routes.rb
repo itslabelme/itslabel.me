@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     get '/csv_upload', to: 'table_documents#csv_upload', as: 'csv_upload'
       # Parse CSV data
     post 'csv_parse', to: 'table_documents#csv_parse', as: 'csv_parse'
-
+    
     root to: 'home#index'
     
     # Listing All Kinds of Documents
@@ -156,6 +156,8 @@ Rails.application.routes.draw do
     get 'edit_profile', to: 'profile#edit'
     put 'update_profile', to: 'profile#update'
     put 'update_password', to: 'profile#update_password'
+    
+    post 'forgot_password', to:'client_users#forgot_password'
     
     #User Module Subscription
     resources :subscription_permissions , only: [:create, :index, :update] do

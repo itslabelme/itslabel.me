@@ -11,7 +11,16 @@ module Admin
       get_collection 
       new_client_user
     end
-    
+
+    def forgot_password
+      get_client_email
+      if @email.exist?
+        puts "already exist"
+      else
+        puts "doesn't exist"
+      end      
+    end
+
     def show
       get_client_user
     end
@@ -24,6 +33,11 @@ module Admin
 
     def get_client_user
       @client_user = ClientUser.find_by(id: params[:id])
+    end
+
+    def get_client_email
+      params_email = params.require(:client_user).permit(:email)
+      @email = params_email[:email]
     end
   
     def get_collection

@@ -23,7 +23,10 @@ class ClientUser < ApplicationRecord
   after_create :send_welcome_email
 #  after_create :send_forgot_password
 
-  
+  if ::ClientUser.exists?(email: email)
+    errors.add(:email,"User  exists with this email")
+  end
+
   # ----------------
   # Instance Methods
   # ----------------

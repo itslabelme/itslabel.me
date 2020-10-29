@@ -65,7 +65,7 @@
 
 
 
-                      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form", id: "register-form" }) do |f| %> 
+                      <%= form_for(resource, as: resource_name, url: admin_forgot_password_path, html: { method: :post, class: "form", id: "register-form" }) do |f| %> 
                           
                           <div class="mb-3">
                               <p>Please enter your email address to request a password reset</p>
