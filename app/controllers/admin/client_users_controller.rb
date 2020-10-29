@@ -14,10 +14,12 @@ module Admin
 
     def forgot_password
       get_client_email
-      if @email.exist?
-        puts "already exist"
+      if ClientUser.exists?(email: @email)
+        flash[:notice]="Vendor data has submitted"
+        flash[:color]="valid"  
       else
-        puts "doesn't exist"
+        flash[:alert]="Data could not submit"
+        flash[:color]="invalid"
       end      
     end
 
