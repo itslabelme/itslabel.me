@@ -15,12 +15,22 @@ module Admin
     def forgot_password
       get_client_email
       if ClientUser.exists?(email: @email)
-        flash[:notice]="Vendor data has submitted"
-        flash[:color]="valid"  
+        user = ClientUser.find_by(email: @email)
+        user.reset_password_token = SecureRandom.urlsafe_base64
+        @t=user.reset_password_token
+        user.reset_password_sent_at = Time.now.utc
+        @s=user.reset_password_sent_at 
+        user.save
+        UserMailerNotification.send_forgot_password(@email,@t,@s).deliver     
+        render 'forgot_password',:layout => false
       else
-        flash[:alert]="Data could not submit"
-        flash[:color]="invalid"
+        set_notification(false, I18n.t('status.error'),"Please correct them and submit again")
+        set_flash_message('The form has some errors. Please correct them and submit again', :error) 
       end      
+    end
+
+    def update_password
+      #render 'update_password',:layout => false
     end
 
     def show
@@ -59,6 +69,12 @@ module Admin
 
     def client_user_params
       params.require(:client_user).permit(:id, :email, :first_name, :last_name, :mobile_number)
+    end
+
+    def get_client_tokens
+      @p_token = params[:t]
+      @p_time = params[:s]
+      
     end
 
   end

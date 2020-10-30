@@ -158,6 +158,7 @@ Rails.application.routes.draw do
     put 'update_password', to: 'profile#update_password'
     
     post 'forgot_password', to:'client_users#forgot_password'
+    get '/users/password/edit', to: 'client_users#update_password'
     
     #User Module Subscription
     resources :subscription_permissions , only: [:create, :index, :update] do
