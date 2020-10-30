@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     
     # Landing Page will always be Client Login
     root to: "devise/sessions#new"
+
+    get '/reset_password', to: 'client_users#reset_password', as: 'reset_password'
+
+
     
   end
 
