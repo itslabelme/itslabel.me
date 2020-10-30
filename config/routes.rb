@@ -3,14 +3,20 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: 'settings' }
+  
   devise_for :client_users, path: "user", path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: 'settings' },:controllers => { :omniauth_callbacks => "user/omniauth_callbacks" } do
     get '/user/auth/:provider' => 'user/omniauth_callbacks#passthru'
   end
+
 
   devise_scope :client_user do
     
     # Landing Page will always be Client Login
     root to: "devise/sessions#new"
+
+    get '/reset_password', to: 'client_users#reset_password', as: 'reset_password'
+
+
     
   end
 
