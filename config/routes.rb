@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     
     # Landing Page will always be Client Login
     root to: "devise/sessions#new"
+    get 'reset_password', to: 'client_users#update_password'
+    
     
   end
 
@@ -158,7 +160,6 @@ Rails.application.routes.draw do
     put 'update_password', to: 'profile#update_password'
     
     post 'forgot_password', to:'client_users#forgot_password'
-    get '/users/password/edit', to: 'client_users#update_password'
     
     #User Module Subscription
     resources :subscription_permissions , only: [:create, :index, :update] do

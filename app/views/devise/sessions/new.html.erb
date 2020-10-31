@@ -117,6 +117,8 @@
                               <span class="helper-text m-b-10"><i class="fa fa-lock"></i>
                                 <% url = resource_name == :client_user ? new_client_user_password_path : new_admin_user_password_path %>
                                 <%= link_to "Forgot password?", url %>
+                                  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+
                               </span>
 
                               <%# Display the registration links only if its client user %>
