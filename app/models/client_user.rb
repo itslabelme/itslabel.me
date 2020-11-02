@@ -20,7 +20,8 @@ class ClientUser < ApplicationRecord
 
   # Callback
   after_create :create_default_folder
-  after_create :send_welcome_email
+  # TODO:- For Welcome mail for new user
+  #after_create :send_welcome_email
 
     # TODO:- For Mailing
 # after_create :send_forgot_password

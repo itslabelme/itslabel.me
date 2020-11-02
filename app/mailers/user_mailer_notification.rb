@@ -4,13 +4,4 @@ class UserMailerNotification < ApplicationMailer
    	mail( :to => @client_user.email,
     			:subject => 'Thanks for signing up for our amazing ITS app' )
   end
-
-  # TODO:- For Mailing
-  # def send_forgot_password(user,reset_password_token,reset_password_sent_at)
-  #   @email = user
-  #   @password_token = reset_password_token
-  #   @password_sent_at = reset_password_sent_at
-  #  	mail( :to => @email,
-  #   			:subject => 'ITS-Reset Your Password' )
-  # end
  end
