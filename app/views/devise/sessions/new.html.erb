@@ -117,10 +117,10 @@
                             <div class="mt-4">
                               <span class="helper-text m-b-10"><i class="fa fa-lock"></i>
                                 <% url = resource_name == :client_user ? new_client_user_password_path : new_admin_user_password_path %>
-                                <%= link_to "Forgot password?", url %>
+                                <%#= link_to "Forgot password?", url %>
                                <!--TODO:- For Welcome mail for new user -->
                              
-                                <%#= link_to "Forgot password?", new_password_path(resource_name) %><br />
+                                <%= link_to "Forgot password?", new_password_path(resource_name) %><br />
 
                               </span>
 
