@@ -60,8 +60,8 @@ gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 # gem 'axlsx_rails'
 gem 'caxlsx_rails'
 
-gem 'aws-ses', '~> 0.4.4', require: 'aws/ses'
-
+#gem 'aws-ses', '~> 0.4.4', require: 'aws/ses'
+gem 'sendgrid-ruby'
 gem 'ancestry'
 
 group :development, :test do

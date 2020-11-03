@@ -11,7 +11,7 @@ module Admin
       get_collection 
       new_client_user
     end
-    
+
     def show
       get_client_user
     end
@@ -25,7 +25,7 @@ module Admin
     def get_client_user
       @client_user = ClientUser.find_by(id: params[:id])
     end
-  
+
     def get_collection
       @relation = ClientUser.where("")
 
