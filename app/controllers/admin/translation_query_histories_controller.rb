@@ -1,8 +1,12 @@
 module Admin
   class TranslationQueryHistoriesController < Admin::BaseController
 
+    include TableSettings::TranslationQueryHistoriesTs
+
     before_action :authenticate_admin_user!
     before_action :get_translation, except: [:new, :create, :index]
+    before_action :configure_translation_query_histories_table_settings
+
 
     def index
       @page_title = "Translations Query History"
