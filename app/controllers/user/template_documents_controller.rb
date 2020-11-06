@@ -97,6 +97,22 @@ module User
         set_flash_message('The form has some errors. Please correct them and submit again', :error)
       end
     end
+    def save_trans_query(input_text, input_language, output_language, output_text, doc_type, error_status)
+       translation = TranslationQueryHistory.new(
+        input_language: input_language || 'Default', 
+        output_language: output_language || 'Default',
+        input_phrase: input_text || 'Default', 
+        output_phrase: output_text.to_html || 'Default', 
+        error: error_status || false,
+        error_message: output_text || 'Default',
+        client_user: @current_client_user,
+        doc_type: doc_type,
+        status: "ACTIVE"
+      )
+      if translation.valid?
+        translation.save
+      end
+    end
 
     def print
       get_template
