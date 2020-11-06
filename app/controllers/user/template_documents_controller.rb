@@ -102,7 +102,7 @@ module User
         input_language: input_language || 'Default', 
         output_language: output_language || 'Default',
         input_phrase: input_text || 'Default', 
-        output_phrase: output_text.to_html || 'Default', 
+        output_phrase: output_text || 'Default', 
         error: error_status || false,
         error_message: output_text || 'Default',
         client_user: @current_client_user,
@@ -198,6 +198,10 @@ module User
       set_languages
 
       @document
+      error_status = @document.output_html_source.include? "its-tran-not-found"
+      doc_type = params['controller'].split('/').last || 'Default'
+      save_trans_query(@document.input_html_source, @document.input_language, @document.output_language, @document.output_html_source, doc_type, error_status)
+
     end
 
     def default_folder
