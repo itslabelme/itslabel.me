@@ -19,21 +19,23 @@ function initialize_leave_requests_table(){
     responsive: true,
     searching: false,
     ordering: true,
-//    text-overflow: ellipsis,
 
-//    table-layout: fixed,
+   // text-overflow: ellipsis,
+
+   // table-layout: fixed,
 
     // These columns are set by the function configure_data_tables in the table_settings controller
     "columnDefs": [
        { className: "text-center", "targets": [ 0, 8 ] },
     ],
-    scrollY: "400px",
-    scrollX: true,
+    scrollY: "500",
+    scrollX: "90%",
     scrollCollapse: true,
+    sScrollXInner:  "100%",
     fixedHeader: true,
     fixedColumns: {
-      leftColumns: 2,
-      rightColumns: 1
+      // leftColumns: 2,
+      // rightColumns: 1
     }
   });
 }

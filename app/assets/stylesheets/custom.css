@@ -41,3 +41,14 @@
    padding:10px;
 
 }
+
+/*
+The CSS code to fix the unwanted space after Datatable Header 
+more Ref:- https://github.com/DataTables/Plugins/issues/37 
+*/
+table.dataTable {
+  clear: both;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  max-width: none !important;
+  }
