@@ -19,7 +19,7 @@
             <span><%= serial_number(i) %></span>
           </td>
           <td><%=  translation_query_history.input_language %></td>
-          <td><%=translation_query_history.input_phrase.html_safe %></td>
+          <td><%=  translation_query_history.input_phrase.html_safe %></td>
           <td><%=  translation_query_history.output_language %></td>
           <td><%=  translation_query_history.output_phrase.html_safe %></td>
           <td><%=  translation_query_history.error ? "True" : "False" %></td>
@@ -31,5 +31,4 @@
     </tbody>
   </table>                
 </div>
-
 
