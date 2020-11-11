@@ -19,7 +19,7 @@ module Admin
     private
 
     def apply_filters
-      @doc_type = params[:filters].try(:[], :dt)
+      @doc_type = params[:filters].try(:[], :dt) || "free_form_widget"
       start_date = params[:filters].try(:[], :sd) 
       end_date = params[:filters].try(:[], :ed)
       @query = params[:q]
@@ -38,7 +38,8 @@ module Admin
         @ed = Date.today.strftime('%Y-%m-%d %H:%M')
         # Add 1 to fix that to get exact end_date      
         @temp_ed = (Date.parse(@ed) + 1).strftime('%Y-%m-%d %H:%M')       
-        @relation = @relation.where(created_at: @sd..@temp_ed) 
+        @relation = @relation.where(created_at: @sd..@temp_ed)
+        @doc_type = "free_form_widget" 
       else
         @sd = Date.parse(start_date).strftime('%Y-%m-%d %H:%M')
         @ed = Date.parse(end_date).strftime('%Y-%m-%d %H:%M')

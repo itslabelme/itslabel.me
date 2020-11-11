@@ -83,6 +83,10 @@ module User
 
       if @document.valid?
         @document.save
+     
+        error_status = @document.output_html_source.include? "its-tran-not-found"
+        doc_type = params['controller'].split('/').last || 'Default'
+        save_trans_query(@document.input_html_source, @document.input_language, @document.output_language, @document.output_html_source, doc_type, error_status)
 
         params[:tags].split(',').each do |tag_name|
           @document.tags.first_or_create(name: tag_name.strip)
@@ -198,10 +202,6 @@ module User
       set_languages
 
       @document
-      error_status = @document.output_html_source.include? "its-tran-not-found"
-      doc_type = params['controller'].split('/').last || 'Default'
-      save_trans_query(@document.input_html_source, @document.input_language, @document.output_language, @document.output_html_source, doc_type, error_status)
-
     end
 
     def default_folder

@@ -21,16 +21,46 @@
             <span><%= serial_number(i) %></span>
           </td>
           <td><%=  translation_query_history.input_language %></td>
-          <td><%=  translation_query_history.input_phrase.html_safe %></td>
+          
+          <td>
+            <% if @doc_type == 'template_documents' %>
+              <%#= sanitize translation_query_history.input_phrase.html_safe , tags: %w( iframe ), attributes: %w(width: 300, height: 200), class: "DOC_PREVIEW"  %>
+              <!--<iframe id="DOC_PREVIEW" name='preview_frame' frameborder="0" scrolling="yes" src="<%#= preview_user_template_document_path(id:212 , template_id: @template.try(:id)) %>"> https://www.tutorialrepublic.com/codelab.php?topic=faq&file=bootstrap-show-popover-on-hover-->
+              <% 
+                source_html = translation_query_history.try(:input_phrase).to_s
+                formatted_source_html = source_html.gsub("{LOGO_URL}", asset_url("distributor-logo.jpg")) 
+              %>
+              <textarea class="tinymce-editor" id="input_tinymce" name='translation_query_history[input_phrase]'>
+                <%= raw(formatted_source_html) %>
+              </textarea>
+            <% else %>
+              <%=  translation_query_history.input_phrase.html_safe %>
+            <% end %>
+          </td>
           <td><%=  translation_query_history.output_language %></td>
-          <td><%=  translation_query_history.output_phrase.html_safe %></td>
+          <td>
+            <% if @doc_type == 'template_documents' %>
+              <%= content_tag(:iframe, width: 300, height: 200, 'data-data_attr' => translation_query_history.output_phrase.html_safe, class: "DOC_PREVIEW"  ) %>
+              
+            <% else %>
+              <%=  translation_query_history.output_phrase.html_safe %>
+            <% end %>
+          </td>
           <td><%=  translation_query_history.error ? "True" : "False" %></td>
           <td><%=  translation_query_history.client_user.display_name if translation_query_history.client_user  %></td>
           <td><%=  translation_query_history.doc_type %></td>
           <td><%=  translation_query_history.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') %></td>
       </tr>
       <% end %>
-    </tbody>
-  </table>                
-</div>
 
+    </tbody>
+  </table> 
+</div>
+<style type="text/css">
+  #DOC_PREVIEW {
+    width: 300px;
+    border: none;
+    text-align: center;
+    height: 200px;
+  }
+</style>
