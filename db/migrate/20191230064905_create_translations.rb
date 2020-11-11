@@ -2,6 +2,10 @@ class CreateTranslations < ActiveRecord::Migration[5.2]
   def change
     create_table :translations do |t|
 
+      # t.string :english_phrase, limit: 256, null: false
+      # t.string :arabic_phrase, limit: 256, null: false
+      # t.string :french_phrase, limit: 256, null: false
+
       t.string :input_phrase, limit: 256, null: false
       t.string :input_language, limit: 16, null: false
       

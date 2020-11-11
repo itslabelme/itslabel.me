@@ -52,6 +52,8 @@ gem 'active_storage_validations'
 gem 'iconv', "~> 1.0"
 gem 'colorize'
 
+gem 'ngram'
+
 # For text area auto completion
 gem 'tribute'
 

@@ -39,4 +39,15 @@ $ echo $ITS_PORT
 3001
 ```
 
+# Translation Changes to be done
+
+
+1) if there is an exact match from dictionary, us it else call the probability_match method 
+2) split on 10gm -> "10" => "gm"
+3) split the db into conjunction, delimitter ( add a type to current table )
+4) speed up the front end / cache the result (  )
+
+
+
+
 
