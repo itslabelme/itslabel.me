@@ -426,7 +426,6 @@ RSpec.describe Translation, type: :model do
       #actual_output_to_be = "blé, Les Huiles végétales, Poudre de fromage (Lait), Sel, Poudre de papillon (Lait), Farine de blé, Protéine de whey, Concentrer (Lait), Poudre de tomate, Exhausteurs de goût, (621,631,627), Poudre d'oignon, La poudre de lactosérum (Lait), Poudre d'ail, Dextrose, Sucre, Saveur naturelle, Minéral, Sel (339), Acides alimentaires (Acide lactique, Acide citrique), Pimenter (Poivre blanc), Couleurs (110, 150D)."
       desired_output = "blé, Les Huiles végétales, Poudre de fromage (Lait), Sel, Poudre de papillon (Lait), Farine de blé, Protéine de whey, Concentrer (Lait), Poudre de tomate, Exhausteurs de goût, (621,631,627), Poudre d'oignon, La poudre de lactosérum (Lait), Poudre d'ail, Dextrose, Sucre, Saveur naturelle, Minéral, SALT (339), Acides alimentaires (Acide lactique, Acide citrique), Pimenter (Poivre blanc), Couleurs (110, 150D)."
       real_output = Translation.translate_paragraph(input_paragraph, output_language: "FRENCH")
-      binding.pry
       expect(desired_output).to eq(real_output)
     end
 
