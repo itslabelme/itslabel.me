@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     get '/csv_upload', to: 'table_documents#csv_upload', as: 'csv_upload'
       # Parse CSV data
     post 'csv_parse', to: 'table_documents#csv_parse', as: 'csv_parse'
-
+    
     root to: 'home#index'
     
     # Listing All Kinds of Documents

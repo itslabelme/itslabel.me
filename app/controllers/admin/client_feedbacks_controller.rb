@@ -9,7 +9,7 @@ module Admin
     
     def index
       @page_title = "Admin Feedbacks | Admin"
-      @nav = 'admin/client_feedbacks'
+      @nav = 'admin/reports'
       get_collection
     end
    

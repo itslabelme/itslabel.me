@@ -65,13 +65,15 @@
 
 
 
-                      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form", id: "register-form" }) do |f| %> 
-                          
+                      <%#= form_for(resource, as: resource_name, url: admin_forgot_password_path, html: { method: :post, class: "form", id: "register-form" }) do |f| %> 
+                      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    
                           <div class="mb-3">
                               <p>Please enter your email address to request a password reset</p>
                           </div>
-                            <div class="mb-3">  
-                          <%= render "devise/shared/error_messages", resource: resource %>
+                          <div class="mb-3">  
+                              <%= flash_message(false) if defined?(flash) -%>
+                              <%= error_message(resource) if resource.errors.any? %>       
                           </div>
                           <div class="form-group">
                             <div class="input-group">
