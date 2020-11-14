@@ -25,9 +25,11 @@ RSpec.describe Translation, type: :model do
 
     # & and or
     FactoryBot.create(:english_to_french_translation, input_phrase: "and", output_phrase: "et")
+    FactoryBot.create(:english_to_french_translation, input_phrase: "&", output_phrase: "et")
     FactoryBot.create(:english_to_french_translation, input_phrase: "or", output_phrase: "ou")
 
     FactoryBot.create(:english_to_arabic_translation, input_phrase: "and", output_phrase: "و")
+    FactoryBot.create(:english_to_arabic_translation, input_phrase: "&", output_phrase: "و")
     FactoryBot.create(:english_to_arabic_translation, input_phrase: "or", output_phrase: "أو")
 
     FactoryBot.create(:arabic_to_english_translation, input_phrase: "و", output_phrase: "and")
@@ -162,7 +164,7 @@ RSpec.describe Translation, type: :model do
 
   end
 
-  context "Tokenizer" do
+  context "Unit Handler" do
     
     it "should split the input with units and calculate score" do
       unit_scores = Translation.split_units('10 grams of Sodium Chloride')
@@ -185,27 +187,9 @@ RSpec.describe Translation, type: :model do
       expect(unit_scores['g'][:score]).to eq(0)
       expect(unit_scores['g'][:translation]).to eq('غ')
     end
+  end
 
-    it "should tokenize the input with delimitters" do
-      tokens = Translation.tokenize('10 grams of Sodium Chloride; Apple, Mango and Grapes;')
-      expect(tokens[0]).to eq('10 grams')
-      expect(tokens[1]).to eq(' ')
-      expect(tokens[2]).to eq('of')
-      expect(tokens[3]).to eq(' ')
-      expect(tokens[4]).to eq('Sodium Chloride')
-      expect(tokens[5]).to eq(';')
-      expect(tokens[6]).to eq(' ')
-      expect(tokens[7]).to eq('Apple')
-      expect(tokens[8]).to eq(',')
-      expect(tokens[9]).to eq(' ')
-      expect(tokens[10]).to eq('Mango')
-      expect(tokens[11]).to eq(' ')
-      expect(tokens[12]).to eq('and')
-      expect(tokens[13]).to eq(' ')
-      expect(tokens[14]).to eq('Grapes')
-      expect(tokens[15]).to eq(';')
-    end
-
+  context "Token Translator & Stitcher" do
     it "should translate token" do
       scores_hash = Translation.translate_token('10 grams Sodium Chloride')
       
@@ -216,7 +200,6 @@ RSpec.describe Translation, type: :model do
       
       expect(scores_hash['Sodium Chloride'][:score]).to eq(0)
       expect(scores_hash['Sodium Chloride'][:translation]).to eq('كلوريد الصوديوم')
-
 
       scores_hash = Translation.translate_token('Buttermilk Powder', output_language: "FRENCH")
       expect(scores_hash['Buttermilk Powder'][:score]).to eq(0)
@@ -233,7 +216,7 @@ RSpec.describe Translation, type: :model do
     end
   end
 
-  context "Single Word Translations" do
+  context "Translate with Score" do
     it "should translate a single word from english to arabic " do
       expect(Translation.translate_word_with_score('Apple')[:translation]).to eq('تفاحة')
       expect(Translation.translate_word_with_score('Mango')[:translation]).to eq('مانجو')
@@ -282,13 +265,39 @@ RSpec.describe Translation, type: :model do
     end
   end
 
-  context "Simple Translation" do
+  context "Simple Translations" do
+
+    it "should translate units properly" do
+      expect(Translation.translate_word_from_database('grams')).to eq('جرامات')
+      expect(Translation.translate_word_with_score('grams')[:translation]).to eq('جرامات')
+
+      expect(Translation.translate('10 grams Sodium Chloride')).to eq('لوريد الصوديوم جرامات 10')
+      expect(Translation.translate('10 grams of Sodium Chloride')).to eq('كلوريد الصوديوم من جرامات 10')
+    end
+
+    it "should translate conjunctions properly" do
+      expect(Translation.translate_word_from_database('or')).to eq('أو')
+      expect(Translation.translate_word_with_score('or')[:translation]).to eq('أو')
+    end
     
     it "should translate simple words" do
-      expect(Translation.translate('10 grams Sodium Chloride')).to eq('كلوريد الصوديوم جرامات 10')
       expect(Translation.translate('Apple')).to eq('تفاحة')
       expect(Translation.translate('Mango')).to eq('مانجو')
       expect(Translation.translate('Grapes')).to eq('العنب')
+    end
+
+    it "should translate simple words with units" do
+      expect(Translation.translate('10kg Apple')).to eq('تفاحة')
+      expect(Translation.translate('Apple 10kg')).to eq('تفاحة')
+      expect(Translation.translate('10 kg Apple')).to eq('تفاحة')
+      expect(Translation.translate('Apple 10 kilogram')).to eq('تفاحة')
+      expect(Translation.translate('Apple (10kg)')).to eq('التفاح (10 كجم)')
+    end
+
+    it "should translate simple words with conjunctions" do
+      expect(Translation.translate('Apple and Mango')).to eq('مانجو و تفاحة')
+      expect(Translation.translate('Apple or Mango')).to eq('مانجو و تفاحة')
+      expect(Translation.translate('Milk with Apple')).to eq('حليب بالتفاح')
     end
 
     it "should handle words not in database " do
@@ -426,7 +435,6 @@ RSpec.describe Translation, type: :model do
       #actual_output_to_be = "blé, Les Huiles végétales, Poudre de fromage (Lait), Sel, Poudre de papillon (Lait), Farine de blé, Protéine de whey, Concentrer (Lait), Poudre de tomate, Exhausteurs de goût, (621,631,627), Poudre d'oignon, La poudre de lactosérum (Lait), Poudre d'ail, Dextrose, Sucre, Saveur naturelle, Minéral, Sel (339), Acides alimentaires (Acide lactique, Acide citrique), Pimenter (Poivre blanc), Couleurs (110, 150D)."
       desired_output = "blé, Les Huiles végétales, Poudre de fromage (Lait), Sel, Poudre de papillon (Lait), Farine de blé, Protéine de whey, Concentrer (Lait), Poudre de tomate, Exhausteurs de goût, (621,631,627), Poudre d'oignon, La poudre de lactosérum (Lait), Poudre d'ail, Dextrose, Sucre, Saveur naturelle, Minéral, SALT (339), Acides alimentaires (Acide lactique, Acide citrique), Pimenter (Poivre blanc), Couleurs (110, 150D)."
       real_output = Translation.translate_paragraph(input_paragraph, output_language: "FRENCH")
-      binding.pry
       expect(desired_output).to eq(real_output)
     end
 
