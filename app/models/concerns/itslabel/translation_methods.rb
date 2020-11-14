@@ -23,11 +23,16 @@ module Itslabel::TranslationMethods
                   # Percentages 10%, 10.50%
                   /(\ ?[0-9]+\.?[0-9]*?\ ?%\ ?)/,
                   # Commas and other characters
-                  /(،|,|;|\(|\)|\[|\]|:|\||!|\t|\r|\n)/]
-  CONJUNCTIONS_OLD = ["and", "or", "with", "without", "for", "so", "of"]
+                  /(،|,|;|:|.|\(|\)|\[|\]|:|\||!|\t|\r|\n)/]
+  CONJUNCTIONS_OLD = ["and", "or", "with", "without", "for", "so", "of", "&"]
 
-  DELIMITERS = [/(،|,|;|\(|\)|\[|\]|:|\||!|\t|\r|\n)/i]
+  DELIMITERS = [
+    /(،|,|;|\(|\)|\[|\]|\{|\}|:|\||!|\t|\r|\n)/i,
+    # All . (dots) not preceeded by a numeral
+    /((?<![\d])\.)/,
+  ]
   CONJUNCTIONS = [
+    /(&)/,
     /(\band\b|\bet\b|\bو\b)/,
     /(\bor\b|\bou\b|\bxxxxx\b)/,
     /(\bof\b|\bde\b|\bأو\b)/,
@@ -36,7 +41,7 @@ module Itslabel::TranslationMethods
     /(\bfor\b|\bpour\b)/,
     /(\bso\b|\bdonc\b)/
   ]
-  UNITS = ["%", "oz", "lb", "kg", "mg", "g", "grams", "kilo", "kilos", "ug", "milligram"]
+  UNITS = ["%", "oz", "lb", "kg", "mg", "ml", "g", "grams", "litres", "kilo", "kilos", "ug", "milligram", "ounce"]
 
 
   class_methods do
@@ -81,7 +86,7 @@ module Itslabel::TranslationMethods
         end
       end
 
-      html.children.reverse if options[:output_language].downcase == "arabic"
+      html.children.reverse if options[:output_language].upcase == "ARABIC"
       return html
     end
 
@@ -102,10 +107,10 @@ module Itslabel::TranslationMethods
       end
 
       # set direction
-      node['dir'] = options[:output_language].downcase == "arabic" ? 'rtl' : 'ltr'
+      node['dir'] = options[:output_language].upcase == "ARABIC" ? 'rtl' : 'ltr'
 
       # Reverse children
-      node.children.reverse if options[:output_language].downcase == "arabic"
+      node.children.reverse if options[:output_language].upcase == "ARABIC"
     end
 
     # translate_paragraph accept a string input and tokenize them and translate them
@@ -141,7 +146,7 @@ module Itslabel::TranslationMethods
       if options[:return_in_hash]
         return output_hash
       else
-        if options[:output_language] == "ARABIC"
+        if options[:output_language].upcase == "ARABIC"
           return translations.map{|x| x[1].nil? ? x[0] : x[1]}.reverse.join('')
         else
           return translations.map{|x| x[1].nil? ? x[0] : x[1]}.join('')
@@ -169,7 +174,7 @@ module Itslabel::TranslationMethods
 
       words.each do |word|
         cleaned_word = word.strip.gsub("\u00A0", "")
-        if cleaned_word == ""
+        if (cleaned_word == "" || cleaned_word == " ")
           t_score = {}
           t_word = word
         else
@@ -181,8 +186,8 @@ module Itslabel::TranslationMethods
             t_word = stitch_token(t_score, options)
           end
         end
-        translation = (t_score.any? && t_score.values.map{|x| x[:translation]}.compact.empty?) ? nil : t_word.to_s.strip
-        output << [word.strip, translation]
+        translation = (t_score.any? && t_score.values.map{|x| x[:translation]}.compact.empty?) ? nil : t_word.to_s
+        output << [word, translation]
       end
       output
     end
@@ -312,7 +317,7 @@ module Itslabel::TranslationMethods
       options.symbolize_keys!
 
       t_word_list = score.map{|word, val| val[:translation] ? val[:translation] : word}
-      if options[:output_language] == "ARABIC"
+      if options[:output_language].upcase == "ARABIC"
         return t_word_list.reverse.join(' ')
       else
         return t_word_list.join(' ')
@@ -373,8 +378,8 @@ module Itslabel::TranslationMethods
 
       return "" if word == ""
 
-      where(input_language: options[:input_language], 
-            output_language: options[:output_language]).
+      where(input_language: options[:input_language].upcase, 
+            output_language: options[:output_language].upcase).
       where("LOWER(input_phrase) = LOWER(?)", word.strip).
       select(:output_phrase).
       first.try(:output_phrase)
@@ -391,9 +396,10 @@ module Itslabel::TranslationMethods
       options.symbolize_keys!
 
       return "" if word == ""
+      return " " if word == " "
 
-      il = options[:input_language]
-      ol = options[:output_language]
+      il = options[:input_language].upcase
+      ol = options[:output_language].upcase
 
       cap = 2
       min_size = word.size - cap
@@ -442,26 +448,20 @@ module Itslabel::TranslationMethods
 
       tokens.each do |tk|
 
-        # tk.strip gives "" if tk == "\n" or those characters, hence handling them separately
-        # tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
-        if tk.match(/;|\(|\)|\[|\]|:|\||!|\-|\t|\r|\n/)
-          translated_text = tk
-        else
-          if tk.strip.blank?
-            translated_text = tk
-          else
-            translated_text = hash[tk.strip]
-          end
-          # translated_text += " "
-        end
-
+        translated_text = hash[tk.strip]
         if translated_text
           display_text += translated_text
-          # display_text += translated_text + " "
         else
-          dir_attr = options[:output_language].downcase == "arabic" ? 'rtl' : 'ltr'
-          display_text += "<span class='its-tran-not-found' dir='#{dir_attr}' data-output-language='#{options[:output_language]}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
+          # tk.strip gives "" if tk == "\n" or those characters, hence handling them separately
+          tk_match = tk.match(Regexp.union(Translation::DELIMITERS + Translation::CONJUNCTIONS))
+          if tk_match || tk.strip.blank?
+            display_text += tk
+          else
+            dir_attr = options[:output_language].upcase == "ARABIC" ? 'rtl' : 'ltr'
+            display_text += "<span class='its-tran-not-found' dir='#{dir_attr}' data-output-language='#{options[:output_language].upcase}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
+          end
         end
+
       end
 
       if options[:return_string]
@@ -479,7 +479,7 @@ module Itslabel::TranslationMethods
       })
       options.symbolize_keys!
 
-      rtl = options[:output_language].downcase == "arabic"
+      rtl = options[:output_language].upcase == "ARABIC"
 
       if delim.match(/،|,/)
         # Match , and arabic comma
@@ -507,7 +507,7 @@ module Itslabel::TranslationMethods
                  delim.scan(/غ/).try(:first) ||
                  delim.scan(/gr?a?m?s?/).try(:first)
         if num && weight
-          translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language]) || weight
+          translated_weight = Translation.translate_word(weight, input_language: options[:input_language], output_language: options[:output_language].upcase) || weight
           # Get num and weign seperately and replace the weight with translated weight
           delim_trans = delim.dup
           return delim.gsub(weight, translated_weight)
@@ -519,7 +519,6 @@ module Itslabel::TranslationMethods
         end
       end
     end
-    
 
   end
   
