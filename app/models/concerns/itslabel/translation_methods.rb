@@ -43,7 +43,6 @@ module Itslabel::TranslationMethods
   ]
   UNITS = ["%", "oz", "lb", "kg", "mg", "ml", "g", "grams", "litres", "kilo", "kilos", "ug", "milligram", "ounce"]
 
-
   class_methods do
 
     # translate method an input string and translate it
@@ -247,7 +246,9 @@ module Itslabel::TranslationMethods
 
       input_words = []
       input.split(" ").each_with_index do |word, idx|
-        if Translation::CONJUNCTIONS.include?(word)
+        if word.match(Regexp.union(Translation::DELIMITERS))
+          type = "delimiter"
+        elsif word.match(Regexp.union(Translation::CONJUNCTIONS))
           type = "conjunction"
         elsif Translation::UNITS.include?(word)
           type = "unit"
@@ -280,32 +281,38 @@ module Itslabel::TranslationMethods
         last_idx = idx
         last_val = val
 
-        next if idx == 0
-
-        if type == "conjunction"
-          translation = translate_word_from_database(word, options)
-          conjunction_scores = {word => {score: 0, translation: translation}}
-          scores_hash.merge!(conjunction_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
+        if idx == input_words.length - 1
+          # first or last word
+          # Calcuate score & add to scores_hash
+          #word_scores = {"#{last_word} #{word}" => Translation.translate_word_with_score(word, options)}
+          #scores_hash.merge!(word_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
         else
-          #puts "idx: #{idx}, word: #{word}, type: #{type}".green
-          #puts "LAST idx: #{last_idx}, word: #{last_word}, type: #{last_type}".yellow
-          #puts "PAID: #{last_idx}, #{idx}".red
-
-          w = last_word + word
-          unit_scores = Translation.split_units(w, options)
-          if unit_scores
-            scores_hash.merge!(unit_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
+          # everything in between
+          if type == "conjunction"
+            translation = translate_word_from_database(word, options)
+            conjunction_scores = {word => {score: 0, translation: translation}}
+            scores_hash.merge!(conjunction_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
           else
-            # Ignore if word or last word is a conjunction or unit
-            if (type != 'unit' && type != 'conjunction') && (last_type != 'unit' && last_type != 'conjunction')
-              # Calcuate score & add to scores_hash
-              word_scores = {"#{last_word} #{word}" => Translation.translate_word_with_score(w, options)}
-              scores_hash.merge!(word_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
+            #puts "idx: #{idx}, word: #{word}, type: #{type}".green
+            #puts "LAST idx: #{last_idx}, word: #{last_word}, type: #{last_type}".yellow
+            #puts "PAID: #{last_idx}, #{idx}".red
+
+            w = last_word.to_s + word.to_s
+            unit_scores = Translation.split_units(w, options)
+            if unit_scores
+              scores_hash.merge!(unit_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
+            else
+              # Ignore if word or last word is a conjunction or unit
+              if (type != 'unit' && type != 'conjunction') && (last_type != 'unit' && last_type != 'conjunction')
+                # Calcuate score & add to scores_hash
+                word_scores = {"#{last_word} #{word}" => Translation.translate_word_with_score(w, options)}
+                scores_hash.merge!(word_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
+              end
             end
           end
         end
+          
       end
-      
       return scores_hash
     end
 
@@ -402,9 +409,9 @@ module Itslabel::TranslationMethods
       ol = options[:output_language].upcase
 
       cap = 2
-      min_size = word.size - cap
-      max_size = word.size + cap
-        
+      min_size = word.strip.gsub(" ", "").size - cap
+      max_size = word.strip.gsub(" ", "").size + cap
+
       ### improve this- get all phrases where phrases have size + or - 2 chars that of input word
       dict = Rails.cache.fetch("master-#{il}-#{ol}-#{word.size}", :expires_in => 24.hours) { 
         Translation.where(input_language: il, output_language: ol).
@@ -412,9 +419,17 @@ module Itslabel::TranslationMethods
         select(:id, :input_phrase, :output_phrase).all
       }
 
+      # dict.select{|x| x.input_phrase.starts_with?("Sodium")}.pluck(:input_phrase)
+      # score_list.select{|a, b, c| b.starts_with?("Sodium")}
+
       # Getting the Probabilty Scores with their translations from MarkovChainTranslator
       # score_list = MarkovChainTranslatorAlgo1.translate_word(word, dict)
-      score_list = MarkovChainTranslatorAlgo2.translate_word(word, dict)
+      if word.size <= 2
+        translation = dict.select{|x| x.input_phrase == word}.try(:first).try(:output_phrase) || nil
+        score_list = [[0, word, translation]]
+      else
+        score_list = MarkovChainTranslatorAlgo2.translate_word(word, dict)
+      end
 
       # Sorting the Score List
       sorted_score_list = score_list.sort_by {|x| x[0]}
@@ -423,8 +438,6 @@ module Itslabel::TranslationMethods
       # sorted_score_list[0..10].each do |x|
       #   puts x
       # end
-
-      # binding.pry
 
       if sorted_score_list && sorted_score_list[0] && sorted_score_list[0][0] <= 2
         score = {

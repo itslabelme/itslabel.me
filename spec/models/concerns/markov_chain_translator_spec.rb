@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Translation, type: :model do
 
-  before :each do
+  before :all do
 
     # Commas, dots and other literals
     FactoryBot.create(:english_to_arabic_translation, input_phrase: ".", output_phrase: ".")
@@ -187,12 +187,21 @@ RSpec.describe Translation, type: :model do
       expect(unit_scores['g'][:score]).to eq(0)
       expect(unit_scores['g'][:translation]).to eq('غ')
     end
+
+    it "should handle percentages well" do
+      binding.pry
+      unit_scores = Translation.translate_token('10 % Corn')
+      unit_scores = Translation.split_units('10 % Corn')
+      unit_scores = Translation.tokenize('10 % Corn')
+      unit_scores = Translation.split_units('Corn (10%)')
+      unit_scores = Translation.tokenize('Corn (10%)')
+    end
   end
 
   context "Token Translator & Stitcher" do
     it "should translate token" do
-      scores_hash = Translation.translate_token('10 grams Sodium Chloride')
-      
+      scores_hash = Translation.translate_token('10 grams of Sodium Chloride')
+
       expect(scores_hash['10'][:score]).to eq(nil)
       
       expect(scores_hash['grams'][:score]).to eq(0)
