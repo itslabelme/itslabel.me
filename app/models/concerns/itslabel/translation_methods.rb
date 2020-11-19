@@ -2,29 +2,28 @@ module Itslabel::TranslationMethods
   
   extend ActiveSupport::Concern
 
-
-  DELIMITERS_OLD = [
-                  # All . (dots) not preceeded by a numeral
-                  /((?<![\d])\.)/,
-                  # Matching 'and' and 'or' and their arabic and french literals
-                  /(\band\b|\bet\b|\bor\b|\bou\b|\bأو\b|\bو\b)/,
-                  # English and French version of units
-                  # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
-                  # 10mg, 10 mg
-                  /(\ ?[0-9]+\.?[0-9]*?\ ?grammes\ ?)/,
-                  /(\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m?s?\ ?)/,
-                  /(\ ?[0-9]+\.?[0-9]*?\ ?mg\ ?)/,
-                  # Arabic version of grams and other units
-                  /(\ ?[0-9]+\.?[0-9]*?\ ?جرامات\ ?)/,
-                  /(\ ?[0-9]+\.?[0-9]*?\ ?غرام\ ?)/,
-                  /(\ ?[0-9]+\.?[0-9]*?\ ?ملغ\ ?)/,
-                  /(\ ?[0-9]+\.?[0-9]*?\ ?جم\ ?)/,
-                  /(\ ?[0-9]+\.?[0-9]*?\ ?غ\ ?)/,
-                  # Percentages 10%, 10.50%
-                  /(\ ?[0-9]+\.?[0-9]*?\ ?%\ ?)/,
-                  # Commas and other characters
-                  /(،|,|;|:|.|\(|\)|\[|\]|:|\||!|\t|\r|\n)/]
-  CONJUNCTIONS_OLD = ["and", "or", "with", "without", "for", "so", "of", "&"]
+  # DELIMITERS_OLD = [
+  #                 # All . (dots) not preceeded by a numeral
+  #                 /((?<![\d])\.)/,
+  #                 # Matching 'and' and 'or' and their arabic and french literals
+  #                 /(\band\b|\bet\b|\bor\b|\bou\b|\bأو\b|\bو\b)/,
+  #                 # English and French version of units
+  #                 # 10gms, 10gm, 10mgs, 10mg, 10gram, 10grams, , 10.5 gram, 10.5grams
+  #                 # 10mg, 10 mg
+  #                 /(\ ?[0-9]+\.?[0-9]*?\ ?grammes\ ?)/,
+  #                 /(\ ?[0-9]+\.?[0-9]*?\ ?gr?a?m?s?\ ?)/,
+  #                 /(\ ?[0-9]+\.?[0-9]*?\ ?mg\ ?)/,
+  #                 # Arabic version of grams and other units
+  #                 /(\ ?[0-9]+\.?[0-9]*?\ ?جرامات\ ?)/,
+  #                 /(\ ?[0-9]+\.?[0-9]*?\ ?غرام\ ?)/,
+  #                 /(\ ?[0-9]+\.?[0-9]*?\ ?ملغ\ ?)/,
+  #                 /(\ ?[0-9]+\.?[0-9]*?\ ?جم\ ?)/,
+  #                 /(\ ?[0-9]+\.?[0-9]*?\ ?غ\ ?)/,
+  #                 # Percentages 10%, 10.50%
+  #                 /(\ ?[0-9]+\.?[0-9]*?\ ?%\ ?)/,
+  #                 # Commas and other characters
+  #                 /(،|,|;|:|.|\(|\)|\[|\]|:|\||!|\t|\r|\n)/]
+  # CONJUNCTIONS_OLD = ["and", "or", "with", "without", "for", "so", "of", "&"]
 
   DELIMITERS = [
     /(،|,|;|\(|\)|\[|\]|\{|\}|:|\||!|\t|\r|\n)/i,
@@ -41,8 +40,8 @@ module Itslabel::TranslationMethods
     /(\bfor\b|\bpour\b)/,
     /(\bso\b|\bdonc\b)/
   ]
-  UNITS = ["%", "oz", "lb", "kg", "mg", "ml", "g", "grams", "litres", "kilo", "kilos", "ug", "milligram", "ounce"]
-
+  UNITS = ["%", "oz", "lb", "kg", "mg", "ml", "g", "gm", "gms", "gram", "grams", "litres", "kilo", "kilos", "ug", "milligram", "ounce"]
+  UNIT_REGEX = /\(?([0-9]+(.[0-9]+)?)\s?([a-zA-Z]+|%)?\)?/i
 
   class_methods do
 
@@ -82,11 +81,11 @@ module Itslabel::TranslationMethods
         else
           options[:return_in_hash] = true
           hash = translate_paragraph(node.text, options)
-          node.replace(format_translation(hash, options))
+          node.replace(format_translation(hash, **options))
         end
       end
-
       html.children.reverse if options[:output_language].upcase == "ARABIC"
+
       return html
     end
 
@@ -140,17 +139,26 @@ module Itslabel::TranslationMethods
         trn = item[1]
         output_hash[wd] = trn
       end
+
       output_hash["_translations"] = translations
       output_hash["_tokens"] = words
+
+      # We are not reversing as html rtl attribute will reverse while displaying
+      # --------------------------------------------------------------------------
+
+      # if options[:output_language].upcase == "ARABIC"
+      #   output = translations.map{|x| x[1].nil? ? x[0] : x[1]}.reverse.join('')
+      # else
+      #   output = translations.map{|x| x[1].nil? ? x[0] : x[1]}.join('')
+      # end
+
+      output = translations.map{|x| x[1].nil? ? x[0] : x[1]}.join('')
+      output_hash["_output"] = output
 
       if options[:return_in_hash]
         return output_hash
       else
-        if options[:output_language].upcase == "ARABIC"
-          return translations.map{|x| x[1].nil? ? x[0] : x[1]}.reverse.join('')
-        else
-          return translations.map{|x| x[1].nil? ? x[0] : x[1]}.join('')
-        end
+        return output        
       end
     end
 
@@ -175,10 +183,13 @@ module Itslabel::TranslationMethods
       words.each do |word|
         cleaned_word = word.strip.gsub("\u00A0", "")
         if (cleaned_word == "" || cleaned_word == " ")
-          t_score = {}
+          t_score = { word => {score: 0, translation: word} }
+          t_word = word
+        elsif cleaned_word.match(Regexp.union(Translation::DELIMITERS))
+          t_score = { word => {score: 0, translation: word} }
           t_word = word
         else
-          if cleaned_word.split(' ').size > 1
+          if cleaned_word.split(' ').size > 1 || (cleaned_word.match(UNIT_REGEX) || Translation::UNITS.include?(cleaned_word))
             t_score = translate_token(cleaned_word, options)
             t_word = stitch_token(t_score, options)
           else
@@ -204,7 +215,8 @@ module Itslabel::TranslationMethods
       input = sanitize(input)
 
       # Spliting the words based on delimitters and conjunctions
-      unprocessed_words = input.split(Regexp.union(Translation::DELIMITERS + Translation::CONJUNCTIONS))
+      unprocessed_words = input.split(Regexp.union(Translation::DELIMITERS))
+      # unprocessed_words = input.split(Regexp.union(Translation::DELIMITERS + Translation::CONJUNCTIONS))
 
       # Initialize final_words array which will also have the delimitters and conjunctions
       final_words = []
@@ -247,14 +259,59 @@ module Itslabel::TranslationMethods
 
       input_words = []
       input.split(" ").each_with_index do |word, idx|
-        if Translation::CONJUNCTIONS.include?(word)
+        if word.match(Regexp.union(Translation::CONJUNCTIONS))
           type = "conjunction"
-        elsif Translation::UNITS.include?(word)
+        # elsif word.match(/[0-9]+/) || Translation::UNITS.include?(word)
+        elsif word.match(UNIT_REGEX) || Translation::UNITS.include?(word)
           type = "unit"
         else
           type = "word"
         end
         input_words << {word: word, type: type }
+      end
+
+      reduced_words = []
+      current_word = ""
+      idx = 0
+
+      while idx < input_words.length
+        ip = input_words[idx]
+        word = ip[:word]
+        wtype = ip[:type]
+        if wtype == "conjunction"
+          reduced_words << {word: word, type: wtype }
+          idx += 1
+        elsif wtype == "unit"
+          # If type == unit
+          while wtype == "unit" and idx < input_words.length
+            ip = input_words[idx]
+            word = ip[:word]
+            wtype = ip[:type]
+            if wtype == "unit"
+              current_word += word
+            else
+              break
+            end
+            idx += 1
+          end
+          reduced_words << {word: current_word, type: "unit" }
+          current_word = ""
+        else
+          # If type == word
+          while wtype == "word" and idx < input_words.length
+            ip = input_words[idx]
+            word = ip[:word]
+            wtype = ip[:type]
+            if wtype == "word"
+              current_word += word
+            else
+              break
+            end
+            idx += 1
+          end
+          reduced_words << {word: current_word, type: "word" }
+          current_word = ""
+        end
       end
 
       # Create a scores list of all word combinations
@@ -264,48 +321,49 @@ module Itslabel::TranslationMethods
       #        {"of" => {score: 0}}, 
       #        {"Sodium Chloride" => {score: nil, translation: 'كلوريد الصوديوم'}}
       #      ]
-      scores_hash = {}
+      scores_hash = translate_token_words(reduced_words, options)
+      return scores_hash
+    end
+
+    # This method is only called form translate_token method
+    # If you have a string like '10 grams of sodium chloride'
+    # translate token create 2 arrays one with all conjunctions and units
+    # other with just words
+    # both arrays needs to be translated
+    # this method 
+    def translate_token_words(words, **options)
+      options.reverse_merge!({
+        input_language: "ENGLISH",
+        output_language: "ARABIC"
+      })
+      options.symbolize_keys!
 
       # Conjunctions needs to be avoided while doing ngrams of 2 to split units
-      last_idx = -1
-      last_val = {}
+      scores_hash = {}
 
-      input_words.each_with_index do |val, idx|
+      words.each do |val|
         word = val[:word]
         type = val[:type]
-
-        last_word = last_val[:word]
-        last_type = last_val[:type]
-        
-        last_idx = idx
-        last_val = val
-
-        next if idx == 0
 
         if type == "conjunction"
           translation = translate_word_from_database(word, options)
           conjunction_scores = {word => {score: 0, translation: translation}}
           scores_hash.merge!(conjunction_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
-        else
-          #puts "idx: #{idx}, word: #{word}, type: #{type}".green
-          #puts "LAST idx: #{last_idx}, word: #{last_word}, type: #{last_type}".yellow
-          #puts "PAID: #{last_idx}, #{idx}".red
-
-          w = last_word + word
-          unit_scores = Translation.split_units(w, options)
+        elsif type == "unit"
+          unit_scores = Translation.split_units(word, options)
           if unit_scores
             scores_hash.merge!(unit_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
           else
-            # Ignore if word or last word is a conjunction or unit
-            if (type != 'unit' && type != 'conjunction') && (last_type != 'unit' && last_type != 'conjunction')
-              # Calcuate score & add to scores_hash
-              word_scores = {"#{last_word} #{word}" => Translation.translate_word_with_score(w, options)}
-              scores_hash.merge!(word_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
-            end
+            # FIXME - need to handle this case
           end
+        else
+          # Handle normal words. Calcuate score & add to scores_hash
+          word_scores = {word => Translation.translate_word_with_score(word, options)}
+          translate_word_from_database(word)
+          scores_hash.merge!(word_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
         end
       end
-      
+
       return scores_hash
     end
 
@@ -317,11 +375,13 @@ module Itslabel::TranslationMethods
       options.symbolize_keys!
 
       t_word_list = score.map{|word, val| val[:translation] ? val[:translation] : word}
-      if options[:output_language].upcase == "ARABIC"
-        return t_word_list.reverse.join(' ')
-      else
-        return t_word_list.join(' ')
-      end
+
+      # if options[:output_language].upcase == "ARABIC"
+      #   return t_word_list.reverse.join(' ')
+      # else
+      #   return t_word_list.join(' ')
+      # end
+      return t_word_list.join(' ')
     end
 
     # split_units will accept an input and will extract units with amount and return its score
@@ -335,15 +395,15 @@ module Itslabel::TranslationMethods
       # input = "0.5l of Milk with 10gm Sugar"
       # input = "0.5l of Milk"
 
-      matches = input.scan(/\(?([0-9]+.?[0-9]+)\s?([a-zA-Z]+|%)?\)?/i)
+      matches = input.scan(UNIT_REGEX)
       # e.g: [["0.5", "l"]]
       return nil if matches.empty?
 
       # e.g: [["0.5", "l"]].first.first => "0.5"
-      amount = matches[0][0]
+      amount = matches[0][0] #.try(:strip)
       return nil unless amount
 
-      possible_unit = matches[0][1]
+      possible_unit = matches[0][2] #.try(:strip)
       return nil unless possible_unit
 
       # FIXME - need to populate the dict for units from database
@@ -354,9 +414,26 @@ module Itslabel::TranslationMethods
       sorted_possible_units = possible_units.sort_by {|x| x[0]}
 
       score_hash = {}
-      score_hash[amount] = {score: nil}
       translation = translate_word_from_database(possible_unit, options)
-      score_hash[possible_unit] = {score: sorted_possible_units[0].first, translation: translation}
+      unit_score = sorted_possible_units[0].first # the score of the unit word
+
+      # if options[:input_language].upcase == "ARABIC"
+      #   unit_word = [possible_unit, ' ', amount].compact.join('').strip
+      # else
+      #   unit_word = [amount, ' ', possible_unit].compact.join('').strip
+      # end
+      unit_word = [amount, ' ', possible_unit].compact.join('').strip
+
+      # if options[:output_language].upcase == "ARABIC"
+      #   unit_translation = [translation, ' ', amount].compact.join('').strip
+      # else
+      #   unit_translation = [amount, ' ', translation].compact.join('').strip
+      # end
+      unit_translation = [amount, ' ', translation].compact.join('').strip
+
+      score_hash[unit_word] = {score: unit_score, translation: unit_translation}
+
+      # e.g of score_hash = {"grams"=>{:score=>0, :translation=>"جرامات"}, "10"=>{:score=>0}, "Corn"=>{:score=>0, :translation=>"ذرة"}}
 
       return score_hash
     end
@@ -402,9 +479,9 @@ module Itslabel::TranslationMethods
       ol = options[:output_language].upcase
 
       cap = 2
-      min_size = word.size - cap
-      max_size = word.size + cap
-        
+      min_size = word.strip.gsub(" ", "").size - cap
+      max_size = word.strip.gsub(" ", "").size + cap
+
       ### improve this- get all phrases where phrases have size + or - 2 chars that of input word
       dict = Rails.cache.fetch("master-#{il}-#{ol}-#{word.size}", :expires_in => 24.hours) { 
         Translation.where(input_language: il, output_language: ol).
@@ -412,9 +489,17 @@ module Itslabel::TranslationMethods
         select(:id, :input_phrase, :output_phrase).all
       }
 
+      # dict.select{|x| x.input_phrase.starts_with?("Sodium")}.pluck(:input_phrase)
+      # score_list.select{|a, b, c| b.starts_with?("Sodium")}
+
       # Getting the Probabilty Scores with their translations from MarkovChainTranslator
       # score_list = MarkovChainTranslatorAlgo1.translate_word(word, dict)
-      score_list = MarkovChainTranslatorAlgo2.translate_word(word, dict)
+      if word.size <= 2
+        translation = dict.select{|x| x.input_phrase == word}.try(:first).try(:output_phrase) || nil
+        score_list = [[0, word, translation]]
+      else
+        score_list = MarkovChainTranslatorAlgo2.translate_word(word, dict)
+      end
 
       # Sorting the Score List
       sorted_score_list = score_list.sort_by {|x| x[0]}
@@ -423,8 +508,6 @@ module Itslabel::TranslationMethods
       # sorted_score_list[0..10].each do |x|
       #   puts x
       # end
-
-      # binding.pry
 
       if sorted_score_list && sorted_score_list[0] && sorted_score_list[0][0] <= 2
         score = {
@@ -438,8 +521,56 @@ module Itslabel::TranslationMethods
       return score
     end
 
-    # Deprecated Methods
     def format_translation(hash, **options)
+      options.reverse_merge!({
+        return_string: false,
+      })
+
+      # Hash will have vaules with nil if any of them have missing translation
+      if hash.values.select{|x| x.nil?}.empty?
+        output = hash["_output"]
+      else
+        output = ""
+        tokens = hash["_tokens"]
+        tokens.each do |tk|
+          translated_text = hash[tk.strip]
+          if translated_text
+            output += translated_text
+          else
+            # tk.strip gives "" if tk == "\n" or those characters, hence handling them separately
+            tk_match = tk.match(Regexp.union(Translation::DELIMITERS + Translation::CONJUNCTIONS))
+            if tk_match || tk.strip.blank?
+              output += tk
+            else
+              dir_attr = options[:output_language].upcase == "ARABIC" ? 'rtl' : 'ltr'
+              output += "<span class='its-tran-not-found' dir='#{dir_attr}' data-output-language='#{options[:output_language].upcase}'><i class=\"icon-question mr-2\"></i>#{tk}</span>"
+            end
+          end
+        end
+      end
+
+      # NOTE: the translate method actually reverses the words.
+      # however, to display them in html we dont need the reversal as they would reverse it while displaying.
+      # final reversal is required hence to show them properly in arabic.
+      if options[:output_language].upcase == "ARABIC"
+        final_words = []
+        output.split(' ').each do |wd|
+          final_words << wd.split(Regexp.union(Translation::DELIMITERS)).join()
+        end
+        display_text = final_words.join(' ')
+      else
+        display_text = output
+      end
+
+      if options[:return_string]
+        return display_text
+      else
+        return Nokogiri::HTML::DocumentFragment.parse(display_text)
+      end
+    end
+
+    # Depcrecated Methods
+    def old_format_translation(hash, **options)
       options.reverse_merge!({
         return_string: false,
       })

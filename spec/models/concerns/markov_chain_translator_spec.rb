@@ -168,42 +168,148 @@ RSpec.describe Translation, type: :model do
     
     it "should split the input with units and calculate score" do
       unit_scores = Translation.split_units('10 grams of Sodium Chloride')
-      expect(unit_scores['10'][:score]).to eq(nil)
+      expect(unit_scores['10'][:score]).to eq(0)
       expect(unit_scores['grams'][:score]).to eq(0)
       expect(unit_scores['grams'][:translation]).to eq('جرامات')
 
       unit_scores = Translation.split_units('10 g of Sodium Chloride')
-      expect(unit_scores['10'][:score]).to eq(nil)
+      expect(unit_scores['10'][:score]).to eq(0)
       expect(unit_scores['g'][:score]).to eq(0)
       expect(unit_scores['g'][:translation]).to eq('غ')
 
       unit_scores = Translation.split_units('10grams of Sodium Chloride')
-      expect(unit_scores['10'][:score]).to eq(nil)
+      expect(unit_scores['10'][:score]).to eq(0)
       expect(unit_scores['grams'][:score]).to eq(0)
       expect(unit_scores['grams'][:translation]).to eq('جرامات')
 
       unit_scores = Translation.split_units('10g of Sodium Chloride')
-      expect(unit_scores['10'][:score]).to eq(nil)
+      expect(unit_scores['10'][:score]).to eq(0)
       expect(unit_scores['g'][:score]).to eq(0)
       expect(unit_scores['g'][:translation]).to eq('غ')
+    end
+
+    it "should handle decimals with units" do
+      unit_scores = Translation.translate_token('1.50 grams mango')
+      expect(unit_scores['1.50'][:score]).to eq(0)
+      expect(unit_scores['grams'][:score]).to eq(0)
+      expect(unit_scores['grams'][:translation]).to eq('جرامات')
+      expect(unit_scores['mango'][:translation]).to eq('مانجو')
+
+      unit_scores = Translation.translate_token('1.50 grams of mango')
+      expect(unit_scores['1.50'][:score]).to eq(0)
+      expect(unit_scores['grams'][:score]).to eq(0)
+      expect(unit_scores['grams'][:translation]).to eq('جرامات')
+      expect(unit_scores['mango'][:translation]).to eq('مانجو')
+
+
+
+
+      unit_scores = Translation.translate_token('1.50grams mango')
+      expect(unit_scores['1.50'][:score]).to eq(0)
+      expect(unit_scores['grams'][:score]).to eq(0)
+      expect(unit_scores['grams'][:translation]).to eq('جرامات')
+      expect(unit_scores['mango'][:translation]).to eq('مانجو')
+
+      unit_scores = Translation.translate_token('1.50grams of mango')
+      expect(unit_scores['1.50'][:score]).to eq(0)
+      expect(unit_scores['grams'][:score]).to eq(0)
+      expect(unit_scores['grams'][:translation]).to eq('جرامات')
+      expect(unit_scores['mango'][:translation]).to eq('مانجو')
+
+
+
+
+      unit_scores = Translation.translate_token('mango 1.50 grams')
+      expect(unit_scores['mango'][:translation]).to eq('مانجو')
+      expect(unit_scores['1.50'][:score]).to eq(0)
+      expect(unit_scores['grams'][:score]).to eq(0)
+      expect(unit_scores['grams'][:translation]).to eq('جرامات')
+
+      unit_scores = Translation.translate_token('mango 1.50grams')
+      expect(unit_scores['mango'][:translation]).to eq('مانجو')
+      expect(unit_scores['1.50'][:score]).to eq(0)
+      expect(unit_scores['grams'][:score]).to eq(0)
+      expect(unit_scores['grams'][:translation]).to eq('جرامات')
+    end
+
+    it "should handle percentages well" do
+
+      unit_scores = Translation.translate_token('Mango 10%')
+      expect(unit_scores['10'][:score]).to eq(0)
+      expect(unit_scores['%'][:score]).to eq(0)
+      expect(unit_scores['Mango'][:translation]).to eq('مانجو')
+
+
+      unit_scores = Translation.translate_token('10% Mango')
+      expect(unit_scores['10'][:score]).to eq(0)
+      expect(unit_scores['%'][:score]).to eq(0)
+      expect(unit_scores['Mango'][:translation]).to eq('مانجو')
+
+
+
+      unit_scores = Translation.translate_token('Mango 10 %')
+      expect(unit_scores['10'][:score]).to eq(0)
+      expect(unit_scores['%'][:score]).to eq(0)
+      expect(unit_scores['Mango'][:translation]).to eq('مانجو')
+
+
+      unit_scores = Translation.translate_token('10 % Mango')
+      expect(unit_scores['10'][:score]).to eq(0)
+      expect(unit_scores['%'][:score]).to eq(0)
+      expect(unit_scores['Mango'][:translation]).to eq('مانجو')
     end
   end
 
   context "Token Translator & Stitcher" do
+    it "should translate token - simple cases" do
+      scores_hash = Translation.translate_token('Sodium Chloride')
+      expect(scores_hash['SodiumChloride'][:score]).to eq(0)
+      expect(scores_hash['SodiumChloride'][:translation]).to eq('كلوريد الصوديوم')
+
+      scores_hash = Translation.translate_token('10grams Mango')
+      expect(scores_hash['10'][:score]).to eq(nil)
+      expect(scores_hash['grams'][:score]).to eq(0)
+      expect(scores_hash['grams'][:translation]).to eq('جرامات')
+      expect(scores_hash['Mango'][:score]).to eq(0)
+      expect(scores_hash['Mango'][:translation]).to eq('مانجو')
+
+      scores_hash = Translation.translate_token('Mango 10grams')
+      expect(scores_hash['10'][:score]).to eq(nil)
+      expect(scores_hash['grams'][:score]).to eq(0)
+      expect(scores_hash['grams'][:translation]).to eq('جرامات')
+      expect(scores_hash['Mango'][:score]).to eq(0)
+      expect(scores_hash['Mango'][:translation]).to eq('مانجو')
+
+
+      scores_hash = Translation.translate_token('10 grams Mango')
+      expect(scores_hash['10'][:score]).to eq(nil)
+      expect(scores_hash['grams'][:score]).to eq(0)
+      expect(scores_hash['grams'][:translation]).to eq('جرامات')
+      expect(scores_hash['Mango'][:score]).to eq(0)
+      expect(scores_hash['Mango'][:translation]).to eq('مانجو')
+
+      scores_hash = Translation.translate_token('Mango 10 grams')
+      expect(scores_hash['10'][:score]).to eq(nil)
+      expect(scores_hash['grams'][:score]).to eq(0)
+      expect(scores_hash['grams'][:translation]).to eq('جرامات')
+      expect(scores_hash['Mango'][:score]).to eq(0)
+      expect(scores_hash['Mango'][:translation]).to eq('مانجو')
+    end
+
     it "should translate token" do
-      scores_hash = Translation.translate_token('10 grams Sodium Chloride')
-      
+      scores_hash = Translation.translate_token('10 grams of Sodium Chloride')
+
       expect(scores_hash['10'][:score]).to eq(nil)
       
       expect(scores_hash['grams'][:score]).to eq(0)
       expect(scores_hash['grams'][:translation]).to eq('جرامات')
       
-      expect(scores_hash['Sodium Chloride'][:score]).to eq(0)
-      expect(scores_hash['Sodium Chloride'][:translation]).to eq('كلوريد الصوديوم')
+      expect(scores_hash['SodiumChloride'][:score]).to eq(0)
+      expect(scores_hash['SodiumChloride'][:translation]).to eq('كلوريد الصوديوم')
 
-      scores_hash = Translation.translate_token('Buttermilk Powder', output_language: "FRENCH")
-      expect(scores_hash['Buttermilk Powder'][:score]).to eq(0)
-      expect(scores_hash['Buttermilk Powder'][:translation]).to eq("Poudre de papillon")
+      scores_hash = Translation.translate_token('ButtermilkPowder', output_language: "FRENCH")
+      expect(scores_hash['ButtermilkPowder'][:score]).to eq(0)
+      expect(scores_hash['ButtermilkPowder'][:translation]).to eq("Poudre de papillon")
     end
 
     it "should stitch scores back" do
@@ -270,8 +376,7 @@ RSpec.describe Translation, type: :model do
     it "should translate units properly" do
       expect(Translation.translate_word_from_database('grams')).to eq('جرامات')
       expect(Translation.translate_word_with_score('grams')[:translation]).to eq('جرامات')
-
-      expect(Translation.translate('10 grams Sodium Chloride')).to eq('لوريد الصوديوم جرامات 10')
+      expect(Translation.translate('10 grams Sodium Chloride')).to eq('كلوريد الصوديوم جرامات 10')
       expect(Translation.translate('10 grams of Sodium Chloride')).to eq('كلوريد الصوديوم من جرامات 10')
     end
 
@@ -287,6 +392,7 @@ RSpec.describe Translation, type: :model do
     end
 
     it "should translate simple words with units" do
+      skip
       expect(Translation.translate('10kg Apple')).to eq('تفاحة')
       expect(Translation.translate('Apple 10kg')).to eq('تفاحة')
       expect(Translation.translate('10 kg Apple')).to eq('تفاحة')
@@ -296,7 +402,7 @@ RSpec.describe Translation, type: :model do
 
     it "should translate simple words with conjunctions" do
       expect(Translation.translate('Apple and Mango')).to eq('مانجو و تفاحة')
-      expect(Translation.translate('Apple or Mango')).to eq('مانجو و تفاحة')
+      expect(Translation.translate('Apple or Mango')).to eq('مانجو أو تفاحة')
       expect(Translation.translate('Milk with Apple')).to eq('حليب بالتفاح')
     end
 
@@ -329,6 +435,12 @@ RSpec.describe Translation, type: :model do
       expect(Translation.translate('SODIUM Chlorde')).to eq('كلوريد الصوديوم')
       expect(Translation.translate('sodliam CHLORIDE')).to eq('كلوريد الصوديوم')
       expect(Translation.translate('SoDiem ChLaRiDe')).to eq('كلوريد الصوديوم')
+    end
+
+    it "should handle percentages and commas" do
+      output = Translation.translate_paragraph('Mango (10%)')
+      words = Translation.tokenize('Mango (10%)')
+      hash = Translation.translate_words(words)
     end
   end
 
@@ -527,7 +639,6 @@ RSpec.describe Translation, type: :model do
     it "should translate commas and 'and'" do
 
       # English to Arabic
-      binding.pry
       expect(Translation.translate('Apple, Mango and Grapes.', return_in_hash: true)).to include(
         "Apple" => 'تفاحة',
         "," => '،',

@@ -51,7 +51,7 @@ class Translation < ApplicationRecord
   end
 
   def populate_input_length
-    self.input_length = self.input_phrase.size
+    self.input_length = self.input_phrase.strip.gsub(" ", "").size
   end
   
 end

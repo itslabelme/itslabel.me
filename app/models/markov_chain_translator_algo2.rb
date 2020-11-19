@@ -55,14 +55,15 @@ class MarkovChainTranslatorAlgo2
   def self.tdf_matrix(word, records)
     ngrams_matrix = []
     records.each do |record|
-      if record.input_phrase.size > (word.size - 2) && record.input_phrase.size <= (word.size + 2)
-        ngrams_matrix.push([ngrams(record.input_phrase), record.input_phrase, record.output_phrase])
-      end
+      ngrams_matrix.push([ngrams(record.input_phrase), record.input_phrase, record.output_phrase])
     end
     ngrams_matrix
   end
 
   def self.translate_word(word, records)
+
+    # records.select{|x| x.input_phrase.starts_with?("Sodium Chloride")}.pluck(:input_phrase)
+
     ngram_word = ngrams(word)
     ngrams_matrix = tdf_matrix(word, records)
 
@@ -77,11 +78,12 @@ class MarkovChainTranslatorAlgo2
     # generating scores
     scores = {}
 
-    rand_idx_ng = []
+    rand_idx_ng = Set[0, word.size-1]
     query_ngrams = []
 
-    4.times do |x|
-      rand_idx_ng << rand(0..(word.size-1))
+    5.times do |x|
+      rand_idx_ng << rand(1..(word.size-2))
+      break if rand_idx_ng.length >= 4
     end
 
     rand_idx_ng.each do |x|
@@ -102,13 +104,15 @@ class MarkovChainTranslatorAlgo2
         begin
           score = m_ngms.map { |m_ngm| probability_match(qngram, m_ngm) }
         rescue
-          binding.pry
+          #binding.pry
           raise
         end
+
         qualified_scores = score.select{|x| x < 2.0}
         scores[ip] = op if qualified_scores.size > 0
       end
     end
+
 
     # puts("potential matches:", scores.size)
     # puts "scores:"
