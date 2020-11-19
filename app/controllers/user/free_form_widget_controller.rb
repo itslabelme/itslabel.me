@@ -22,7 +22,8 @@ module User
         @display_text = @input_text
       else
         @translated_html = Translation.translate_html(@input_text, input_language: @input_language, output_language: @output_language)
-        
+
+
         # Save the translation query for Query/Data Set enhancement
         error_status = @translated_html.to_html.include? "its-tran-not-found"
         doc_type = params['controller'].split('/').last || 'Default'

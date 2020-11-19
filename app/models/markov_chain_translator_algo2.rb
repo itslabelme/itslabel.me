@@ -78,11 +78,12 @@ class MarkovChainTranslatorAlgo2
     # generating scores
     scores = {}
 
-    rand_idx_ng = []
+    rand_idx_ng = Set[0, word.size-1]
     query_ngrams = []
 
-    4.times do |x|
-      rand_idx_ng << rand(0..(word.size-1))
+    5.times do |x|
+      rand_idx_ng << rand(1..(word.size-2))
+      break if rand_idx_ng.length >= 4
     end
 
     rand_idx_ng.each do |x|
