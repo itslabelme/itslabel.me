@@ -115,14 +115,14 @@ module User
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_2_language)
             @item.output_2_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_2_language, return_string: true) 
 
-            save_trans_query(@item.input_phrase, @input_language, @output_2_language, @item.output_2_phrase, params['controller'], hsh)
+            # save_trans_query(@item.input_phrase, @input_language, @output_2_language, @item.output_2_phrase, params['controller'], hsh)
           end
 
           if @output_3_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_3_language) 
             @item.output_3_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_3_language, return_string: true) 
           
-            save_trans_query(@item.input_phrase, @input_language, @output_3_language, @item.output_3_phrase, params['controller'], hsh)
+            # save_trans_query(@item.input_phrase, @input_language, @output_3_language, @item.output_3_phrase, params['controller'], hsh)
           end
 
           if @output_4_language

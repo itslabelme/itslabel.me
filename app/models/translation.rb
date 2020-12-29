@@ -38,6 +38,7 @@ class Translation < ApplicationRecord
 
   # Callbacks
   before_save :sanitize_phrases
+  before_save :populate_input_length
 
 
   
@@ -47,6 +48,10 @@ class Translation < ApplicationRecord
 
   def display_name
     "#{input_phrase} - #{output_phrase}"
+  end
+
+  def populate_input_length
+    self.input_length = self.input_phrase.strip.gsub(" ", "").size
   end
   
 end

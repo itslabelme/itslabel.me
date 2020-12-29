@@ -23,4 +23,3 @@ if Rails.env.development?
 else
   wkhtmltopdf_path = "/usr/bin/wkhtmltopdf"
 end
-

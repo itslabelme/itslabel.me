@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_053232) do
+ActiveRecord::Schema.define(version: 2020_11_14_122457) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -109,6 +109,15 @@ ActiveRecord::Schema.define(version: 2020_10_02_053232) do
     t.string "ancestry"
     t.index ["ancestry"], name: "index_document_folders_on_ancestry"
     t.index ["user_id"], name: "index_document_folders_on_user_id"
+  end
+
+  create_table "folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", limit: 256, null: false
+    t.bigint "parent_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_folders_on_user_id"
   end
 
   create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -264,7 +273,9 @@ ActiveRecord::Schema.define(version: 2020_10_02_053232) do
     t.string "status", limit: 16, default: "PENDING", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "input_length", default: 0
     t.index ["admin_user_id"], name: "index_translations_on_admin_user_id"
+    t.index ["input_length"], name: "index_translations_on_input_length"
   end
 
   create_table "uploads_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
