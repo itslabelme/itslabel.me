@@ -5,29 +5,29 @@ function initialize_leave_requests_table(){
     dom: 'Bfrtip',
 
     buttons: [
-      'colvis','pageLength',
-      {
-        extend: 'excel',
-        title: "Leave Request As on ",
-        exportOptions: {
-          columns: [0, 1, 2, 3, 4, 5, 6, 7,8 ,9]
-        }
-      }
+      // 'colvis','pageLength',
+      // {
+      //   extend: 'excel',
+      //   title: "Leave Request As on ",
+      //   exportOptions: {
+      //     columns: [0, 1, 2, 3, 4, 5, 6, 7,8 ,9]
+      //   }
+      // }
     ],
     bInfo: false,
     paging: false,
     pageLength: 100,
     responsive: true,
     searching: false,
-    ordering: true,
+    ordering: false,
     // order: [[ 11, "desc" ]],
 
     // These columns are set by the function configure_data_tables in the table_settings controller
     "columnDefs": [
-       // { className: "text-center", "targets": [ 0, 6, 8, 9 ] },
+       // { className: "text-center", "targets": [1, 2, 3, 4 ] },
     ],
     scrollY: "400px",
-    scrollX: true,
+    // scrollX: true,
     scrollCollapse: true,
     fixedHeader: true,
     fixedColumns: {
@@ -42,9 +42,9 @@ $(document).ready(function() {
   // Initialize Datatables for Leave Request
   initialize_leave_requests_table();
 
-  // Export Button Events
-  $("#LEAVE_REQUESTS_TABLE_EXPORT_TO_EXCEL").on("click", function() {
-    $leaveRequestsTable.button( '.buttons-excel' ).trigger();
-  });
+  // // Export Button Events
+  // $("#LEAVE_REQUESTS_TABLE_EXPORT_TO_EXCEL").on("click", function() {
+  //   $leaveRequestsTable.button( '.buttons-excel' ).trigger();
+  // });
 
 });

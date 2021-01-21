@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_083706) do
+ActiveRecord::Schema.define(version: 2020_11_14_122457) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +47,19 @@ ActiveRecord::Schema.define(version: 2020_08_18_083706) do
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["mobile_number"], name: "index_admin_users_on_mobile_number"
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "client_feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "client_user_id"
+    t.text "input", null: false
+    t.text "output", null: false
+    t.string "remarks", null: false
+    t.string "category"
+    t.string "input_language", null: false
+    t.string "output_language", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_user_id"], name: "index_client_feedbacks_on_client_user_id"
   end
 
   create_table "client_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -222,6 +235,34 @@ ActiveRecord::Schema.define(version: 2020_08_18_083706) do
     t.index ["user_id"], name: "index_template_documents_on_user_id"
   end
 
+  create_table "translation_query_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "input_phrase", null: false
+    t.string "input_language", limit: 16, null: false
+    t.text "output_phrase", null: false
+    t.string "output_language", limit: 16, null: false
+    t.boolean "error", default: false
+    t.json "error_message"
+    t.bigint "client_user_id"
+    t.string "doc_type", limit: 256
+    t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_user_id"], name: "index_translation_query_histories_on_client_user_id"
+  end
+
+  create_table "translation_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "requested_by_id"
+    t.text "input_phrase", null: false
+    t.string "input_language", limit: 16, null: false
+    t.text "output_phrase"
+    t.string "output_language", limit: 16, null: false
+    t.string "doc_type", limit: 256
+    t.string "status", limit: 16, default: "ACTIVE", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requested_by_id"], name: "index_translation_requests_on_requested_by_id"
+  end
+
   create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "input_phrase", limit: 256, null: false
     t.string "input_language", limit: 16, null: false
@@ -232,7 +273,26 @@ ActiveRecord::Schema.define(version: 2020_08_18_083706) do
     t.string "status", limit: 16, default: "PENDING", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "input_length", default: 0
     t.index ["admin_user_id"], name: "index_translations_on_admin_user_id"
+    t.index ["input_length"], name: "index_translations_on_input_length"
+  end
+
+  create_table "uploads_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "admin_user", limit: 256, null: false
+    t.string "file_path", limit: 256, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "translation_uploads_history_id", null: false
+    t.json "summary_new", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "total_inserted_data"
+    t.integer "total_existing_data"
+    t.integer "total_error_data"
   end
 
   create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

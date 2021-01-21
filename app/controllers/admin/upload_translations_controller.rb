@@ -8,217 +8,101 @@ module Admin
       @nav = 'admin/translations'
       @errors = {}
       @summary = {}
-      @parsing_status = {total_rows: 0, num_missing_rows: 0, missed_rows: []}
     end
 
     def create
       csv_file = params[:file]
-      file_error = nil
-      @csv_contents = nil
-      @summary = {}
-      @parsing_status = {total_rows: 0, num_missing_rows: 0, missed_rows: []}
+      error = nil
 
+      @csv_contents = nil
+      
       if csv_file
         begin
           @csv_contents = CSV.read(csv_file.path)
-        rescue
-          file_error = "Unable to read the contents of the uploaded file, Please upload valid file"
+          # @csv_headers = CSV.read(csv_file.path, headers: true).headers
+          # processed_csv = File.read(csv_file.path).gsub(/\\"/,'""')
+          # @csv_contents = CSV.parse(processed_csv, headers: true)
+          # processed_csv = File.readlines(csv_file.path).map do |row|
+          #   row.strip.gsub('""', '"')
+          # end.join("\n")
+          # @csv_contents = CSV.parse(processed_csv)
+         rescue
+          error = "Unable to read the contents of the uploaded file, Please upload valid file"
         end
-      else
-        file_error = "CSV file not uploaded"
+      else 
+        error = "CSV file not uploaded"
       end
 
-      if file_error.blank? && @csv_contents
-        import_data_from_csv
+      if is_csv_in_right_format? == false
+        error = "The format of the CSV is not correct. Please download the template, fill in the data and upload again."
+      elsif is_csv_empty?
+        error = "CSV is blank - no contents found"
       end
 
-      if file_error.blank?
+      if error.blank?
+        save_csv_file
+        save_upload_history
+        
+        ParseUploadedDatabaseJob.perform_later(
+          @upload_history.file_path,
+          current_admin_user,
+          @upload_history.id
+        )
+
+        # Translation.import_data_from_csv(
+        #   @upload_history.file_path,
+        #   current_admin_user,
+        #   @upload_history.id
+        # )
+      
         set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Translation"))
         set_flash_message(I18n.translate("success.created", item: "Translation"), :success)
       else
-        set_notification(false, I18n.t('status.error'), file_error)
-        set_flash_message('The form has some errors. Please correct them and submit again', :error)
+        set_notification(false, I18n.t('status.error'), error)
+        set_flash_message(error, :error)
       end
     end
 
-    def import_data_from_csv
+    private
 
-      @csv_contents = @csv_contents.drop(1)
-
-      @parsing_status[:total_rows] = @csv_contents.length
-      @csv_contents.each do |csv_content|
-        begin
-          add_english_to_arabic_translation(csv_content)
-          add_english_to_french_translation(csv_content)
-          add_arabic_to_english_translation(csv_content)
-          add_arabic_to_french_translation(csv_content)
-          add_french_to_english_translation(csv_content)
-          add_french_to_arabic_translation(csv_content)
-        rescue StandardError => e
-          error = "uncaught #{e} exception while handling connection: #{e.message}"
-          puts "CSV Content: #{csv_content}"
-          puts "Error: #{error}"
-        end
-      end
-
-    end
-
-    def add_english_to_arabic_translation(csv_content)
-      @english_arabic_translation = Translation.where(
-        input_language: "ENGLISH", 
-        output_language: "ARABIC",
-        input_phrase: csv_content[0],
-        output_phrase: csv_content[1]
-        ).first
-      @english_arabic_translation ||= Translation.new(
-        input_language: "ENGLISH", 
-        output_language: "ARABIC",
-        input_phrase: csv_content[0], 
-        output_phrase: csv_content[1], 
-        category: csv_content[3],
-        admin_user: @current_admin_user,
-        status: "ACTIVE"
-      )
+    def is_csv_in_right_format?
+      return false if @csv_contents.blank?
+      return false unless @csv_contents.is_a?(Array)
+      return false unless @csv_contents.try(:first).is_a?(Array)
       
-      if @english_arabic_translation.valid?
-        if @english_arabic_translation.save
-          @summary[csv_content[0]] ||= {}
-          @summary[csv_content[0]]['english-arabic'] ||= true
-        end
-      else
-        @summary[csv_content[0]]['english-arabic'] = @english_arabic_translation.errors.full_messages
-      end
+      # FIXME - this needs to be fixed properly
+      # return false unless @csv_contents[0][0].upcase == "ENGLISH"
+      # return false unless @csv_contents[0][1].upcase == "ARABIC"
+      # return false unless @csv_contents[0][2].upcase == "FRENCH"
+      # return false unless @csv_contents[0][3].upcase == "CATEGORY"
+
+      return false unless @csv_contents[0][0].upcase.include?("ENGLISH")
+      return false unless @csv_contents[0][1].upcase.include?("ARABIC")
+      return false unless @csv_contents[0][2].upcase.include?("FRENCH")
+      return false unless @csv_contents[0][3].upcase.include?("CATEGORY")
+      return true
     end
 
-    def add_english_to_french_translation(csv_content)
-      @english_french_translation = Translation.where(
-          input_language: "ENGLISH", 
-          output_language: "FRENCH",
-          input_phrase: csv_content[0],
-          output_phrase: csv_content[2], 
-          ).first
-      @english_french_translation ||= Translation.new(
-        input_language: "ENGLISH", output_language: "FRENCH",
-        input_phrase: csv_content[0], 
-        output_phrase: csv_content[2], 
-        category: csv_content[3],
-        admin_user: @current_admin_user
-      )
-
-      if @english_french_translation.valid?
-        if @english_french_translation.save
-          @summary[csv_content[0]] ||= {}
-          @summary[csv_content[0]]['english-french'] = true
-        end
-      else
-        @summary[csv_content[0]]['english-french'] = @english_french_translation.errors.full_messages
-      end
+    def is_csv_empty?
+      return true if @csv_contents[1].blank?
+      return true unless @csv_contents[1].is_a?(Array)
+      return false
     end
 
-    def add_arabic_to_english_translation(csv_content)
-      @arabic_english_translation = Translation.where(
-          input_language: "ARABIC", 
-          output_language: "ENGLISH",
-          input_phrase: csv_content[1],
-          output_phrase: csv_content[0]
-          ).first
-
-      @arabic_english_translation ||= Translation.new(
-        input_language: "ARABIC", output_language: "ENGLISH",
-        input_phrase: csv_content[1], 
-        output_phrase: csv_content[0], 
-        category: csv_content[3],
-        admin_user: @current_admin_user
-      )
-
-      if @arabic_english_translation.valid?
-        if @arabic_english_translation.save
-          @summary[csv_content[0]] ||= {}
-          @summary[csv_content[0]]['arabic-english'] = true
+    def save_csv_file
+      @csv_path = "#{Rails.root}/public/imported_files/UPLOAD_DATA_#{DateTime.now.strftime '%d.%m.%Y:%H.%M.%S'}.csv"
+      CSV.open(@csv_path, "wb") do |csv|  
+        @csv_contents.each do |csv_content|
+         csv << [csv_content[0],csv_content[1],csv_content[2],csv_content[3]]
         end
-      else
-        @summary[csv_content[0]]['arabic-english'] = @arabic_english_translation.errors.full_messages
-      end
+      end 
     end
 
-    def add_arabic_to_french_translation(csv_content)
-      @arabic_french_translation = Translation.where(
-          input_language: "ARABIC", 
-          output_language: "FRENCH",
-          input_phrase: csv_content[1],
-          output_phrase: csv_content[2]
-          ).first
-
-      @arabic_french_translation ||= Translation.new(
-        input_language: "ARABIC", output_language: "FRENCH",
-        input_phrase: csv_content[1], 
-        output_phrase: csv_content[2], 
-        category: csv_content[3],
-        admin_user: @current_admin_user
-      )
-
-      if @arabic_french_translation.valid?
-        if @arabic_french_translation.save
-          @summary[csv_content[0]] ||= {}
-          @summary[csv_content[0]]['arabic-french'] = true
-        end
-      else
-        @summary[csv_content[0]]['arabic-french'] = @arabic_french_translation.errors.full_messages
-      end
+    def save_upload_history
+      @upload_history = UploadsHistory.new(admin_user:current_admin_user.first_name, file_path: @csv_path)
+      @upload_history.save
     end
-
-    def add_french_to_english_translation(csv_content)
-      @french_english_translation = Translation.where(
-          input_language: "FRENCH", 
-          output_language: "ENGLISH",
-          input_phrase: csv_content[2],
-          output_phrase: csv_content[0]
-          ).first 
-
-      @french_english_translation ||= Translation.new(
-        input_language: "FRENCH", output_language: "ENGLISH",
-        input_phrase: csv_content[2], 
-        output_phrase: csv_content[0], 
-        category: csv_content[3],
-        admin_user: @current_admin_user
-      )
-
-      if @french_english_translation.valid?
-        if @french_english_translation.save
-          @summary[csv_content[0]] ||= {}
-          @summary[csv_content[0]]['french-english'] = true
-        end
-      else
-        @summary[csv_content[0]]['french-english'] = @french_english_translation.errors.full_messages
-      end
-    end
-
-    def add_french_to_arabic_translation(csv_content)
-      @french_arabic_translation = Translation.where(
-          input_language: "FRENCH", 
-          output_language: "ARABIC",
-          input_phrase: csv_content[2],
-          output_phrase: csv_content[1]
-          ).first
-
-      @french_arabic_translation ||= Translation.new(
-        input_language: "FRENCH", 
-        output_language: "ARABIC",
-        input_phrase: csv_content[2], 
-        output_phrase: csv_content[1], 
-        category: csv_content[3],
-        admin_user: @current_admin_user
-      )
-
-      if @french_arabic_translation.valid?
-        if @french_arabic_translation.save
-          @summary[csv_content[0]] ||= {}
-          @summary[csv_content[0]]['french-arabic'] = true
-        end
-      else
-        @summary[csv_content[0]]['french-arabic'] = @french_arabic_translation.errors.full_messages
-      end
-    end
-
+    
+    
   end
 end

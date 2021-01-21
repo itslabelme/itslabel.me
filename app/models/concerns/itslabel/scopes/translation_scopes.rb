@@ -32,6 +32,22 @@ module Itslabel::Scopes::TranslationScopes
     scope :upcoming, lambda { where("translations.created_at >= ?", Time.now) }
     scope :past, lambda { where("translations.created_at < ?", Time.now) }
 
+    scope :order_by, lambda { |col| 
+      case col
+      when "input_phrase_asc"
+        order("#{table_name}.input_phrase ASC")
+      when "input_phrase_desc"
+        order("#{table_name}.input_phrase DESC")
+      when "created_at_asc"
+        order("#{table_name}.created_at ASC")
+      when "created_at_desc"
+        order("#{table_name}.created_at DESC")
+      else
+        order("#{table_name}.created_at DESC")
+      end
+    }
+    
+
   end
   
 end

@@ -112,4 +112,6 @@ RSpec.configure do |config|
     config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   end
 
+  # config.include_context "dataset", :include_shared => true
+
 end

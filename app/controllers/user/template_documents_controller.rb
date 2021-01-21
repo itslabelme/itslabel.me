@@ -33,6 +33,27 @@ module User
       @nav = 'user/template_documents'
     end
 
+    def export_template_documents_translation
+      get_template
+      new_document unless @document
+      @preview=params[:value]
+
+      if @preview
+        # For Preview functionality
+        pdf = WickedPdf.new.pdf_from_string(
+                render  :pdf => 'file_name',
+                        :template => '/user/template_documents/export_template_documents_translation.pdf.erb',
+                        :layout => 'pdf.html.erb'
+              )
+      else
+        # For Preview functionality
+        pdf = WickedPdf.new.pdf_from_string(
+                render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false)
+              )
+        send_data pdf, :filename => "Template Document_#{Date.today.strftime('%d/%b/%Y')}.pdf", :type => "application/pdf", :disposition => "attachment"
+      end
+    end
+
     def new
       @page_title = "Create new Translation Document from Template"
       @nav = 'user/template_documents'

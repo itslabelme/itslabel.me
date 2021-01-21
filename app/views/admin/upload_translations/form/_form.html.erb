@@ -14,40 +14,7 @@
     <span>
       <strong style="font-size:16px;">Step 2: Upload CSV</strong>
     </span>
-      <!-- Display Errors if Any -->
-      <div id="UPLOAD_CSV_FORM_ERRORS">
-        <div class="row">
-          <div class="col-md-12 pt-3">
-            <% unless @parsing_status[:total_rows] == 0 %>
-              <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                <p>Total number of rows parsed : <%= @parsing_status[:total_rows] %>, Missed Rows: <%= @parsing_status[:num_missing_rows] %></p>
-                <p>Missing Rows : 
-
-                  Rows with element
-                  <% @parsing_status[:missed_rows].each_with_index do | missed_row, i | %>
-                     <%= "#{missed_row},"%><br>
-                  <% end %>
-                  
-                </p>
-
-                <p>Errors : 
-
-                  <% @errors.each_with_index do | error | %>
-                     <%= "#{error},"%><br>
-                  <% end %>
-                  
-                </p>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <% end %>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- File -->
+      <!-- Display Info -->
       <div class="row">
         <div class="col-md-12 pt-3">
           <div class="row its-language-switcer mb-2">
@@ -55,6 +22,7 @@
               <div class="alert alert-info">
                 <p><strong>Please Note the Following:</strong></p>
                 <p>* It shoud be a <span class='badge badge-info'>CSV</span> file (Comma Separated File).</p>
+                <p>* the format should be exactly the same as that of the template which can be downloaded above</p>
               </div>
             </div>
           </div>
@@ -65,11 +33,11 @@
               <span class="text-color-red px-1">&nbsp;&nbsp;</span>
             </label>
             <div class="col-md-12">
-              <%= file_field_tag :file %>
+              <%= file_field_tag :file , id:"file" %>
             </div>
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary"><span class="fa fa-upload"></span> Upload </button>
+      <button type="submit" class="btn btn-primary" onclick="showPleaseWait();" id="btn"><span class="fa fa-upload"></span> Upload </button>
   <% end %>
 </div>

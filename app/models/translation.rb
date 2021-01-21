@@ -1,3 +1,5 @@
+require 'csv'
+
 class Translation < ApplicationRecord
 
   # Constants
@@ -6,8 +8,14 @@ class Translation < ApplicationRecord
   # Set Table Name
   self.table_name = "translations"
 
+
+  class << self
+    attr_accessor :csv_upload_summary
+  end
+
   # Imports
   extend Importer
+  extend Itslabel::Uploads::TranslationUploads
 
   # Includes
   include Itslabel::Status::TranslationStatus
@@ -17,7 +25,8 @@ class Translation < ApplicationRecord
   include Itslabel::Callbacks::TranslationCallbacks
   include Itslabel::Imports::TranslationImports
   include Itslabel::TranslationMethods
-  
+
+
   # Validations
   validates :input_phrase, presence: true, length: {maximum: 256}, allow_blank: false
   validates :input_language, presence: true, :inclusion => {:in => LANGUAGES, :message => "is not a valid language" }
@@ -29,6 +38,7 @@ class Translation < ApplicationRecord
 
   # Callbacks
   before_save :sanitize_phrases
+  before_save :populate_input_length
 
 
   
@@ -38,6 +48,10 @@ class Translation < ApplicationRecord
 
   def display_name
     "#{input_phrase} - #{output_phrase}"
+  end
+
+  def populate_input_length
+    self.input_length = self.input_phrase.strip.gsub(" ", "").size
   end
   
 end

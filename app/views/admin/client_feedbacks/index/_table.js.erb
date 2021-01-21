@@ -1,0 +1,55 @@
+// Partial template to load JS code for Data table and other general functionalities
+var $clientFeedbacksTable;
+function initialize_leave_requests_table(){
+  $clientFeedbacksTable = $('#feedback_listing_table').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+      {
+        extend: 'excel',
+        title: "Client Feedbacks - As on <%= Date.today.strftime("%b %d %Y") %>",
+        exportOptions: {
+          columns: [ 1, 2, 3, 4, 5, 6, 7, 8],
+        }
+      }
+
+    ],
+    bInfo: false,
+    paging: false,
+    pageLength: 100,
+    responsive: true,
+    searching: false,
+    ordering: true,
+    thead: [
+      {
+        visibility: collapse;
+      }
+    ], 
+
+    // These columns are set by the function configure_data_tables in the table_settings controller
+    "columnDefs": [
+       { className: "text-center", "targets": [ 0, 8 ] },
+    ],
+    scrollY: "400px",
+    scrollX: true,
+    scrollCollapse: true,
+    fixedHeader: true,
+    fixedColumns: {
+      leftColumns: 2,
+      //rightColumns: 1
+    }
+  });
+}
+
+$(document).ready(function() {
+  
+  // Initialize Datatables for Leave Request
+  initialize_leave_requests_table();
+
+  // Fixme Me Later with Perfect code:- Hide defaultly displayed Export butoon
+  $(".buttons-excel").hide()
+
+  // Export Button Events
+  $("#CLIENT_FEEDBACK_EXPORT").on("click", function() {
+    $clientFeedbacksTable.button( '.buttons-excel' ).trigger();
+  });
+});

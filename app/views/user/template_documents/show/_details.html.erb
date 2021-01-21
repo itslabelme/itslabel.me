@@ -43,8 +43,9 @@
                     <div class="input-group mb-3">
                       <select class="form-control form-control-xs selectpicker1" name="document[input_language]" data-size="7" data-live-search="true" data-title="Location" id="INPUT_LANGUAGE" data-width="100%">
                         <option value="ENGLISH" <%= @input_language == "ENGLISH" ? "selected" : "" %> >English</option>
-                        <option value="ARABIC" <%= @input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
-                        <option value="FRENCH" <%= @input_language == "FRENCH" ? "selected" : "" %> >French</option>
+                        <!--To do  edited by Athira, no need to implement this functionality now-->
+                        <!--<option value="ARABIC" <%#= @input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+                        <option value="FRENCH" <%#= @input_language == "FRENCH" ? "selected" : "" %> >French</option>-->
                       </select>
                     </div>
                   </div>
@@ -95,24 +96,18 @@
                     <div class="its-preview-header">
                       <div class="its-preview-header-top">
                         <ul>
-                          <li>
-                            <%= link_to "#", onclick: "print()" do %>
-                              <%= image_tag("icons/preview.svg") %>
+                        <!-- As per the latest updates from Krishnan sir preview removed -->
+                         <!-- <li>
+                            <%#= link_to export_template_documents_translation_user_template_document_path(id, :value=>"preview"), :target => "_blank"   do %>   
+                              <%#= image_tag("icons/preview.svg") %>
                               <span>Preview</span>
-                            <% end %>
-                          </li>
+                            <%# end %>
+                          </li>-->
 
                           <li>
-                            <%= link_to "#", onclick: "directPrint()" do %>
+                            <%= link_to export_template_documents_translation_user_template_document_path(id)  do %>
                               <%= image_tag("icons/download.svg") %>
                               <span>Download</span>
-                            <% end %>
-                          </li>
-                          
-                          <li>
-                            <%= link_to "#", onclick: "directPrint()" do %>
-                              <%= image_tag("icons/print.svg") %>
-                              <span>Print</span>
                             <% end %>
                           </li>
                         </ul>

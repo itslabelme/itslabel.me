@@ -1,0 +1,89 @@
+<div class="card">
+  <div class="body">
+    <div class="input-group" id="adv-search">
+      <input type="text" class="form-control ml-3" value="<%= @query %>" name="q" id="q" placeholder="Search..." />
+      <div class="input-group-btn mr-2">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-primary" onclick="search()"><i class="icon-magnifier"></i></button>
+          <button type="button" class="btn btn-primary ml-2" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-filter"></i></button>
+        </div>
+      </div>
+
+      <div class="col-lg-12 mt-3 collapse show" id="collapseExample">
+        <div class="card card-body">
+          <form class="form-horizontal" name="adv_search" action="" method="get" role="form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="filter">Input Phrase</label>
+                  <input type="text" class="form-control" name="filters[input_phrase]" id="input_phrase">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="filter">Output Phrase</label>
+                  <input type="text" class="form-control" name="filters[output_phrase]" id="output_phrase">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="filter">Input Language</label>
+                  <select name="filters[input_language]" class="form-control">
+                    <option value="" selected>All Language</option>
+                    <option value="English">English</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="French">French</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="filter">Output Language</label>
+                  <select name="filters[output_language]" class="form-control">
+                    <option value="" selected>All Language</option>
+                    <option value="English">English</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="French">French</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="filter">Document type</label>
+                  <select name="filters[dt]" class="form-control">
+                    <!-- <option  value="">All</option> -->
+                    <option value="free_form_widget" <%= @doc_type == 'free_form_widget' ? 'selected="selected"' : '' %> >Free Form</option>
+                    <option value="template_documents" <%= @doc_type == 'template_documents' ? 'selected="selected"' : '' %> >Template</option>
+                    <option value="table_documents"  <%= @doc_type == 'table_documents' ? 'selected="selected"' : '' %>>Table</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="filter">Date</label>
+                    <div class="input-daterange input-group" id="datepicker">
+                      <input type="text" class="form-control" name="filters[sd]" id="sd" value="<%= Date.parse(@sd).strftime('%d/%m/%Y') %>" >
+                      <span class="input-group-addon" style="padding-left:15px;padding-right:15px;">to</span>
+                      <input type="text"  class="form-control" name="filters[ed]" id="ed" value="<%= Date.parse(@ed).strftime('%d/%m/%Y') %>" />
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="its-mright">
+              <button type="submit" class="btn btn-primary">Reset</button>
+              <button type="submit" class="btn btn-primary">Apply Filters</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<%= content_for :javascript_footer do %>
+<%= render :partial=>"admin/translation_query_histories/index/controls.js.erb"  %>
+<% end %>

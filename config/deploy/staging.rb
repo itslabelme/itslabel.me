@@ -37,7 +37,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 
 ## Defaults:
 # set :scm,         :git
-set :branch,        :staging
+set :branch,        "staging"
 # set :format,      :pretty
 # set :log_level,   :debug
 set :keep_releases, 5

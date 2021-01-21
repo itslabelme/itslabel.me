@@ -1,0 +1,17 @@
+function search(){
+  var field1 = $("#q").val();
+  window.location.href ="/admin/translation_query_histories/?q="+field1
+}
+
+$(document).ready(function() {
+$("#q").keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+       var field1 = $("#q").val();
+  window.location.href ="/admin/translation_query_histories/?q="+field1
+    }
+});
+$('#datepicker').datepicker({format: 'dd/mm/yyyy'});
+
+});
+
