@@ -73,6 +73,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "itslabel_me_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'https://app.itslabel.me' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
     :address => "email-smtp.eu-west-1.amazonaws.com",
