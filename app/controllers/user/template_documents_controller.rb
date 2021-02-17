@@ -36,19 +36,55 @@ module User
     def export_template_documents_translation
       get_template
       new_document unless @document
+      
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render  pdf: 'file_name',
+                  template: '/user/template_documents/export_template_documents_translation.pdf.erb',
+                  layout: 'pdf.html.erb',
+                  formats: :HTML, 
+                  encoding: 'utf8'
+                  #:show_as_html => params[:debug].present?
+        end
+      end
+
+      # if @preview
+      #   # For Preview functionality
+      #   pdf = WickedPdf.new.pdf_from_string(
+      #           render  pdf: 'file_name',
+      #                   template: '/user/template_documents/export_template_documents_translation.pdf.erb',
+      #                   layout: 'pdf.html.erb',
+      #                   formats: :HTML, 
+      #                   encoding: 'utf8'
+      #         )
+      # else
+      #   # For Preview functionality
+      #   pdf = WickedPdf.new.pdf_from_string(
+      #           render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false, formats: :HTML, encoding: 'utf8')
+      #         )
+      #   send_data pdf, :filename => "Template Document_#{Date.today.strftime('%d/%b/%Y')}.pdf", :type => "application/pdf", :disposition => "attachment"
+      # end
+    end
+
+    def export_template_documents_translation_backup
+      get_template
+      new_document unless @document
       @preview=params[:value]
 
       if @preview
         # For Preview functionality
         pdf = WickedPdf.new.pdf_from_string(
-                render  :pdf => 'file_name',
-                        :template => '/user/template_documents/export_template_documents_translation.pdf.erb',
-                        :layout => 'pdf.html.erb'
+                render  pdf: 'file_name',
+                        template: '/user/template_documents/export_template_documents_translation.pdf.erb',
+                        layout: 'pdf.html.erb',
+                        formats: :HTML, 
+                        encoding: 'utf8'
               )
       else
         # For Preview functionality
         pdf = WickedPdf.new.pdf_from_string(
-                render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false)
+                render_to_string('/user/template_documents/export_template_documents_translation.pdf.erb', layout: false, formats: :HTML, encoding: 'utf8')
               )
         send_data pdf, :filename => "Template Document_#{Date.today.strftime('%d/%b/%Y')}.pdf", :type => "application/pdf", :disposition => "attachment"
       end
