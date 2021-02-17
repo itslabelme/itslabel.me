@@ -8,7 +8,7 @@ class TranslationRequestMailer < ApplicationMailer
     if Rails.env.production?
       email = "info@itslabel.me"
     else
-      email = "krishna@rightsolutions.ae"
+      email = "athira@rightsolutions.ae"
     end
     
     mail(:to=>email, 

@@ -6,14 +6,17 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.perform_deliveries = true
   
-  #config.action_mailer.smtp_settings = {
- #   :address => "email-smtp.eu-west-1.amazonaws.com",
-  #  :port => 587,
-  #  :user_name => Rails.application.credentials.development[:aws][:smtp_username], #Your SMTP user
-  #  :password => Rails.application.credentials.development[:aws][:smtp_password], #Your SMTP password
-  #  :authentication => :login,
-   # :enable_starttls_auto => true
- # }
+  # Configuring Sendgrid
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :domain => Rails.env.development? ? 'localhost:3000' : 'demo.itslabel.me',
+    :user_name => Rails.application.credentials.development[:sendgrid][:username],
+    :password => Rails.application.credentials.development[:sendgrid][:api_key],
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -45,7 +48,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 

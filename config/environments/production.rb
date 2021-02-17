@@ -75,18 +75,20 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'https://app.itslabel.me' }
   config.action_mailer.perform_deliveries = true
+  
+  # Configuring Sendgrid
   config.action_mailer.smtp_settings = {
-    :address => "email-smtp.eu-west-1.amazonaws.com",
+    :user_name => Rails.application.credentials.production[:sendgrid][:username],
+    :password => Rails.application.credentials.production[:sendgrid][:api_key],
+    :address => 'smtp.sendgrid.net',
     :port => 587,
-    :user_name => Rails.application.credentials.production[:aws][:smtp_username], #Your SMTP user
-    :password => Rails.application.credentials.production[:aws][:smtp_password], #Your SMTP password
-    :authentication => :login,
-    :enable_starttls_auto => true
+    :authentication => :plain
+    # :enable_starttls_auto => true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

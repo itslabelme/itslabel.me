@@ -39,7 +39,8 @@ body{
 
 .iframe-table span{
 	width: 100%;
-    display: inline-block;
+  /*display: inline-block;*/
+  display: inline;
 }
 
 .iframe-vertical-table{

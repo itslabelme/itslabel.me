@@ -105,7 +105,7 @@
                           </li>-->
 
                           <li>
-                            <%= link_to export_template_documents_translation_user_template_document_path(id)  do %>
+                            <%= link_to export_template_documents_translation_user_template_document_path(id, format: :pdf), target: "_blank" do %>
                               <%= image_tag("icons/download.svg") %>
                               <span>Download</span>
                             <% end %>

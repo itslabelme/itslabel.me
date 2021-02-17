@@ -1,6 +1,6 @@
 wb = xlsx_package.workbook
 
-wb.add_worksheet(name: "Transaltions") do |sheet|
+wb.add_worksheet(name: "Translations") do |sheet|
   
   # Create the header row
   
