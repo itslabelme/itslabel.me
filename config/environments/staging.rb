@@ -75,13 +75,15 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'http://demo.itslabel.me' }
   config.action_mailer.perform_deliveries = true
+  
+  # Configuring Sendgrid
   config.action_mailer.smtp_settings = {
-    :address => "email-smtp.eu-west-1.amazonaws.com",
+    :user_name => Rails.application.credentials.staging[:sendgrid][:username],
+    :password => Rails.application.credentials.staging[:sendgrid][:api_key],
+    :address => 'smtp.sendgrid.net',
     :port => 587,
-    :user_name => Rails.application.credentials.staging[:aws][:smtp_username], #Your SMTP user
-    :password => Rails.application.credentials.staging[:aws][:smtp_password], #Your SMTP password
-    :authentication => :login,
-    :enable_starttls_auto => true
+    :authentication => :plain,
+    # :enable_starttls_auto => true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.

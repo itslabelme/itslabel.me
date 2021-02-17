@@ -25,6 +25,7 @@ class Translation < ApplicationRecord
   include Itslabel::Callbacks::TranslationCallbacks
   include Itslabel::Imports::TranslationImports
   include Itslabel::TranslationMethods
+  include Itslabel::LogMethods
 
 
   # Validations
