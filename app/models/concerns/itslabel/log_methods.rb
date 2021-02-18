@@ -4,7 +4,7 @@ module Itslabel::LogMethods
 
   class_methods do
 
-    def log_trans_query(input_text, input_language, output_text, output_language, doc_type, error_status)
+    def log_trans_query(input_text, input_language, output_text, output_language, client_user, doc_type, error_status)
       translation = TranslationQueryHistory.new(
         input_language: input_language || 'Default', 
         output_language: output_language || 'Default',
@@ -12,7 +12,7 @@ module Itslabel::LogMethods
         output_phrase: output_text || 'Default', 
         error: error_status || false,
         error_message: output_text || 'Default',
-        client_user: @current_client_user,
+        client_user: client_user,
         doc_type: doc_type,
         status: "ACTIVE"
       )
