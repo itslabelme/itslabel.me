@@ -10,6 +10,7 @@
 
 <% if @notification[:success] %>
     notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+    $('#DIV_MODAL_SMALL').modal('hide');
 <% else %>
     notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
 <% end %>
