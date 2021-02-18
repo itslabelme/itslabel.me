@@ -1,3 +1,5 @@
+// Due to the UX issue(Table UX issue), as per the comment from krishna, Sanoop comment the Datatable
+
 // Partial template to load JS code for Data table and other general functionalities
 var $clientFeedbacksTable;
 function initialize_leave_requests_table(){
@@ -26,12 +28,12 @@ function initialize_leave_requests_table(){
        { className: "text-center", "targets": [ 0, 8 ] },
     ],
     
-    scrollY: "500px",
+    // scrollY: "500px",
     scrollX: true,
     scrollCollapse: true,
     fixedHeader: true,
     fixedColumns: {
-      leftColumns: 2,
+      leftColumns: 4,
       //rightColumns: 1
     }
   });
