@@ -67,6 +67,7 @@ module User
     end
 
     def translate_input_phrase
+
       @document = TableDocument.find_by_id(params[:document_id])
       new_document unless @document
       @document.input_language ||= params[:input_language]
@@ -105,26 +106,32 @@ module User
         @item.input_phrase = params[:new_value].to_s.strip
         
         unless @item.input_phrase.blank?
-
+ 
           if @output_1_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_1_language)
             @item.output_1_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_1_language, return_string: true) 
             
-            #save_trans_query(@item.input_phrase, @input_language, @output_1_language, @item.output_1_phrase, params['controller'], hsh)
+            unless @output_1_language == @input_language
+              save_trans_query(@item.input_phrase, @input_language, @output_1_language, @item.output_1_phrase, params['controller'], hsh)
+            end
           end
 
           if @output_2_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_2_language)
             @item.output_2_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_2_language, return_string: true) 
 
-            save_trans_query(@item.input_phrase, @input_language, @output_2_language, @item.output_2_phrase, params['controller'], hsh)
+            unless @output_2_language == @input_language
+              save_trans_query(@item.input_phrase, @input_language, @output_2_language, @item.output_2_phrase, params['controller'], hsh)
+            end
           end
 
           if @output_3_language
             hsh = Translation.translate_paragraph(@item.input_phrase, return_in_hash: true, input_language: @input_language, output_language: @output_3_language) 
             @item.output_3_phrase = Translation.format_translation(hsh, input_language: @input_language, output_language: @output_3_language, return_string: true) 
           
-            save_trans_query(@item.input_phrase, @input_language, @output_3_language, @item.output_3_phrase, params['controller'], hsh)
+            unless @output_3_language == @input_language
+              save_trans_query(@item.input_phrase, @input_language, @output_3_language, @item.output_3_phrase, params['controller'], hsh)
+            end
           end
 
           if @output_4_language
