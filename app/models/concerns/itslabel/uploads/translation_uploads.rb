@@ -11,8 +11,6 @@ module Itslabel::Uploads::TranslationUploads
     existing_data = 0
     inserted_data = 0
     self.csv_upload_summary = {}
-    
-
 
     csv_contents.each do |csv_content|
 
@@ -141,7 +139,7 @@ module Itslabel::Uploads::TranslationUploads
             category: category, admin_user: current_admin_user,
             errors: ["Content Missing"]
           }
-        end 
+        end
 
         if french_phrase && spanish_phrase
           er_data,  ex_data,  in_data = add_french_to_spanish_translation(csv_content, current_admin_user)
@@ -156,7 +154,7 @@ module Itslabel::Uploads::TranslationUploads
             category: category, admin_user: current_admin_user,
             errors: ["Content Missing"]
           }
-        end 
+        end
 
         if spanish_phrase && english_phrase
           er_data,  ex_data,  in_data = add_spanish_to_english_translation(csv_content, current_admin_user)
@@ -485,10 +483,11 @@ module Itslabel::Uploads::TranslationUploads
     french_phrase = csv_content[3]
     spanish_phrase = csv_content[4]
 
-    arabic_french_translation = Translation.where(
+    arabic_spanish_translation = Translation.where(
         input_language: "ARABIC", output_language: "SPANISH",
         input_phrase: arabic_phrase.try(:strip), output_phrase: spanish_phrase.try(:strip)
         ).first
+
     if arabic_spanish_translation.nil?
       arabic_spanish_translation ||= Translation.new(
         input_language: "ARABIC", output_language: "SPANISH",
@@ -538,7 +537,8 @@ module Itslabel::Uploads::TranslationUploads
     french_english_translation = Translation.where(
         input_language: "FRENCH", output_language: "ENGLISH",
         input_phrase: french_phrase.try(:strip), output_phrase: english_phrase.try(:strip)
-        ).first 
+        ).first
+
     if french_english_translation.nil?
       french_english_translation ||= Translation.new(
         input_language: "FRENCH", output_language: "ENGLISH",
@@ -784,38 +784,38 @@ module Itslabel::Uploads::TranslationUploads
     french_phrase = csv_content[3]
     spanish_phrase = csv_content[4]
 
-    spanish_arabic_translation = Translation.where(
+    spanish_french_translation = Translation.where(
         input_language: "SPANISH",  output_language: "FRENCH",
-        input_phrase: spanish_phrase.try(:strip), output_phrase: arabic_phrase.try(:strip)
+        input_phrase: spanish_phrase.try(:strip), output_phrase: french_phrase.try(:strip)
         ).first
 
-    if spanish_arabic_translation.nil?
-      spanish_arabic_translation ||= Translation.new(
+    if spanish_french_translation.nil?
+      spanish_french_translation ||= Translation.new(
         input_language: "SPANISH",  output_language: "FRENCH",
-        input_phrase: spanish_phrase.try(:strip),  output_phrase: arabic_phrase.try(:strip), 
+        input_phrase: spanish_phrase.try(:strip),  output_phrase: french_phrase.try(:strip), 
         category: category.try(:strip), admin_user: current_admin_user,
         status: "APPROVED"
       )
 
-      if spanish_arabic_translation.valid?
-        if spanish_arabic_translation.save
+      if spanish_french_translation.valid?
+        if spanish_french_translation.save
           self.csv_upload_summary[english_phrase] ||= {}
-          self.csv_upload_summary[english_phrase]['spanish-arabic'] = true
+          self.csv_upload_summary[english_phrase]['spanish-french'] = true
          inserted_data = 1
         end
       else
         error_data = 1
-        self.csv_upload_summary[english_phrase]['spanish-arabic'] = {
-          input_phrase: spanish_phrase.try(:strip), output_phrase: arabic_phrase.try(:strip), 
+        self.csv_upload_summary[english_phrase]['spanish-french'] = {
+          input_phrase: spanish_phrase.try(:strip), output_phrase: french_phrase.try(:strip), 
           category: category.try(:strip), admin_user: current_admin_user,
-          errors: spanish_arabic_translation.errors.full_messages
+          errors: spanish_french_translation.errors.full_messages
         }
       end
     else
       existing_data = 1
       self.csv_upload_summary[english_phrase] ||= {}
-      self.csv_upload_summary[english_phrase]['spanish-arabic'] = {
-        input_phrase: spanish_phrase.try(:strip), output_phrase: arabic_phrase.try(:strip), 
+      self.csv_upload_summary[english_phrase]['spanish-french'] = {
+        input_phrase: spanish_phrase.try(:strip), output_phrase: french_phrase.try(:strip), 
         category: category.try(:strip), admin_user: current_admin_user,
         errors: ["Content is already in the database"]
       }
