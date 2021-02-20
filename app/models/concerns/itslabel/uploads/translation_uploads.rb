@@ -12,13 +12,16 @@ module Itslabel::Uploads::TranslationUploads
     inserted_data = 0
     self.csv_upload_summary = {}
     
-    category = csv_contents[0]
-    english_phrase = csv_contents[1]
-    arabic_phrase = csv_contents[2]
-    french_phrase = csv_contents[3]
-    spanish_phrase = csv_contents[4]
+
 
     csv_contents.each do |csv_content|
+
+      category = csv_content[0]
+      english_phrase = csv_content[1]
+      arabic_phrase = csv_content[2]
+      french_phrase = csv_content[3]
+      spanish_phrase = csv_content[4]
+
       begin
         if english_phrase && arabic_phrase
           er_data,  ex_data,  in_data = add_english_to_arabic_translation(csv_content, current_admin_user)
