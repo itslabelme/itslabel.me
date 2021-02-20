@@ -82,7 +82,7 @@ module Admin
       @csv_path = "#{Rails.root}/public/imported_files/UPLOAD_DATA_#{DateTime.now.strftime '%d.%m.%Y:%H.%M.%S'}.csv"
       CSV.open(@csv_path, "wb") do |csv|  
         @csv_contents.each do |csv_content|
-         csv << [csv_content[0],csv_content[1],csv_content[2],csv_content[3]]
+         csv << [csv_content[0],csv_content[1],csv_content[2],csv_content[3],csv_content[4]]
         end
       end 
     end
