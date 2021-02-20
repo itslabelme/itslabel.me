@@ -19,13 +19,6 @@ module Admin
       if csv_file
         begin
           @csv_contents = CSV.read(csv_file.path)
-          # @csv_headers = CSV.read(csv_file.path, headers: true).headers
-          # processed_csv = File.read(csv_file.path).gsub(/\\"/,'""')
-          # @csv_contents = CSV.parse(processed_csv, headers: true)
-          # processed_csv = File.readlines(csv_file.path).map do |row|
-          #   row.strip.gsub('""', '"')
-          # end.join("\n")
-          # @csv_contents = CSV.parse(processed_csv)
          rescue
           error = "Unable to read the contents of the uploaded file, Please upload valid file"
         end
@@ -71,15 +64,11 @@ module Admin
       return false unless @csv_contents.try(:first).is_a?(Array)
       
       # FIXME - this needs to be fixed properly
-      # return false unless @csv_contents[0][0].upcase == "ENGLISH"
-      # return false unless @csv_contents[0][1].upcase == "ARABIC"
-      # return false unless @csv_contents[0][2].upcase == "FRENCH"
-      # return false unless @csv_contents[0][3].upcase == "CATEGORY"
-
-      return false unless @csv_contents[0][0].upcase.include?("ENGLISH")
-      return false unless @csv_contents[0][1].upcase.include?("ARABIC")
-      return false unless @csv_contents[0][2].upcase.include?("FRENCH")
-      return false unless @csv_contents[0][3].upcase.include?("CATEGORY")
+      return false unless @csv_contents[0][0].upcase.include?("CATEGORY")
+      return false unless @csv_contents[0][1].upcase.include?("ENGLISH")
+      return false unless @csv_contents[0][2].upcase.include?("ARABIC")
+      return false unless @csv_contents[0][3].upcase.include?("FRENCH")
+      return false unless @csv_contents[0][4].upcase.include?("SPANISH")
       return true
     end
 
