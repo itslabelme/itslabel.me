@@ -88,8 +88,7 @@ module Admin
     end
 
     def save_upload_history
-      @upload_history = UploadsHistory.new(admin_user:current_admin_user.first_name, file_path: @csv_path)
-      @upload_history.save
+      @upload_history = UploadsHistory.create(admin_user:current_admin_user.first_name, file_path: @csv_path)
     end
     
     
