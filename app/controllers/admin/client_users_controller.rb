@@ -30,7 +30,7 @@ module Admin
       @relation = ClientUser.where("")
 
       apply_filters
-
+      @per_page = 40
       @client_users = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
 

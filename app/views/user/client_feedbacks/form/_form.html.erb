@@ -16,10 +16,28 @@
       <%= f.hidden_field :input_language, value: @input_language %>
       <%= f.hidden_field :output_language, value: @output_language %>
       <div class="row">
+       <!-- User Name -->
+       
+        <div class="col-md-6 ">
+          <div class="form-group row ">
+            <label class="pl-3">User: </label>
+            <span class="pl-1" style="align-items: center;"><%= @current_client_user.display_name %></span>        
+          </div>
+        </div>
+        <!-- Date -->  
+        <div class="col-md-6 ">
+          <div class="form-group row ml-1">
+            <label> Date & Time: </label>
+            <span class="pl-1"><%= Time.now.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') %></span>         
+          </div>
+        </div>  
+      
+
+
         <!-- Input -->
         <div class="col-md-6" id="input">
-           <div class="form-group row " style="">
-            <label class="col-sm-6">Input [ <%= @input_language %> ]</label>
+           <div class="form-group row ">
+            <label class="col-sm-12">Input [ <%= @input_language %> ]</label>
  
             <div class="col-md-12">
               <div class="square" style="border-color: #8e8c8c;"><%= @input.html_safe %></div>
@@ -29,43 +47,29 @@
 
         <!-- Output -->
         <div class="col-md-6" id="output">
-          <div class="form-group row " style="">
+          <div class="form-group row ">
             <label class="col-sm-12">Output [ <%= @output_language %> ] 
             </label>
             <div class="col-md-12">
               <div class="square" style="border-color: #8e8c8c;"><%= @output.html_safe %></div>
-               
             </div>
           </div>        
         </div>
 
         <!-- Remarks -->
         <div class="col-md-12">
-          <div class="form-group row tex-container" style="">
+          <div class="form-group row">
             <label class="col-sm-12">Remarks
               <span class="text-color-red px-1">&nbsp;&nbsp;</span>
             </label>
-            <div class="tex-comment">
-               <strong><%= f.text_area :remarks , :class => "form-controll tex-textinput" , style: "border-color: #8e8c8c;", required:''%></strong>
+            <div class="tex-comment ml-3 mr-5">
+               <strong><%= f.text_area :remarks , :class => "form-controll tex-textinput" , style: "border-color: #8e8c8c;"%></strong>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group row " style="">
-            <label class="pl-3">User:</label>
-            <strong class="pl-1" style="align-items: center;"><%= @current_client_user.display_name %></strong>        
-          </div>
-        </div>  
-        <div class="col-md-6">
-          <div class="form-group row " style="">
-            <label> Date & Time: </label>
-            <strong class="pl-1"><%= Time.now.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') %></strong>         
-          </div>
-        </div>  
-      </div>
+      
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span> Submit </button>

@@ -11,10 +11,16 @@
 
         <th scope="col" class="summary-th" >EN-AR</th>
         <th scope="col" class="summary-th" >EN-FR</th>
+        <th scope="col" class="summary-th" >EN-ES</th>
         <th scope="col" class="summary-th" >AR-EN</th>
         <th scope="col" class="summary-th" >AR-FR</th>
+        <th scope="col" class="summary-th" >AR-ES</th>
         <th scope="col" class="summary-th" >FR-EN</th>
         <th scope="col" class="summary-th" >FR-AR</th>
+        <th scope="col" class="summary-th" >FR-ES</th>
+        <th scope="col" class="summary-th" >ES-EN</th>
+        <th scope="col" class="summary-th" >ES-AR</th>
+        <th scope="col" class="summary-th" >ES-FR</th>
       </thead>
 
       <% @upload_summary.summary_new.each_with_index do | (key, value), index | %>
@@ -22,6 +28,7 @@
           <td class="summary-td"><%= index + 1 %></td>
           <td class="summary-td"><%= key %></td>
 
+          <!-- English - Arabic -->
           <td class="summary-td">
             <% if value['english-arabic'] == true %>
               <i class="fa fa-check" aria-hidden="true"></i>
@@ -40,6 +47,7 @@
             <% end %>
           </td>
 
+          <!-- English - French -->
           <td class="summary-td">
             <% if value['english-french'] == true %>
               <i class="fa fa-check" aria-hidden="true"></i>
@@ -58,6 +66,29 @@
             <% end %>
           </td>
 
+          <!-- English - Spanish -->
+          <td class="summary-td">
+            <% if value['english-spanish'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['english-spanish'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['english-spanish']['input_phrase'] if value['english-spanish'] %> - <%= value['english-spanish']['output_phrase'] if value['english-spanish'] %>" 
+                data-content="<%= value['english-spanish']['errors'].join(', ') if value['english-spanish'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+
+
+
+
+          <!-- Arabic - English -->
           <td class="summary-td">
               <% if value['arabic-english'] == true %>
                 <i class="fa fa-check" aria-hidden="true"></i>
@@ -76,6 +107,7 @@
               <% end %>
           </td>
 
+          <!-- Arabic - French -->
           <td class="summary-td">
             <% if value['arabic-french'] == true %>
               <i class="fa fa-check" aria-hidden="true"></i>
@@ -94,6 +126,29 @@
             <% end %>
           </td>
 
+          <!-- Arabic - Spanish -->
+          <td class="summary-td">
+            <% if value['arabic-spanish'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['arabic-spanish'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['arabic-spanish']['input_phrase'] if value['arabic-spanish'] %> - <%= value['arabic-spanish']['output_phrase'] if value['arabic-spanish'] %>" 
+                data-content="<%= value['arabic-spanish']['errors'].join(', ') if value['arabic-spanish'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+
+
+
+
+          <!-- French - English -->
           <td class="summary-td">
             <% if value['french-english'] == true %>
               <i class="fa fa-check" aria-hidden="true"></i>
@@ -112,6 +167,7 @@
             <% end %>
           </td>
 
+          <!-- French - Arabic -->
           <td class="summary-td">
             <% if value['french-arabic'] == true %>
               <i class="fa fa-check" aria-hidden="true"></i>
@@ -130,14 +186,92 @@
             <% end %>
           </td>
 
+          <!-- French - Spanish -->
+          <td class="summary-td">
+            <% if value['french-spanish'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['french-spanish'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['french-spanish']['input_phrase'] if value['french-spanish'] %> - <%= value['french-spanish']['output_phrase'] if value['french-spanish'] %>" 
+                data-content="<%= value['french-spanish']['errors'].join(', ') if value['french-spanish'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
 
+
+
+
+          <!-- Spanish - English -->
+          <td class="summary-td">
+            <% if value['spanish-english'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['spanish-english'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['spanish-english']['input_phrase'] if value['spanish-english']  %> - <%= value['spanish-english']['output_phrase'] if value['spanish-english'] %>" 
+                data-content="<%= value['spanish-english']['errors'].join(', ') if value['spanish-english'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+
+          <!-- Spanish - Arabic -->
+          <td class="summary-td">
+            <% if value['spanish-arabic'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['spanish-arabic'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['spanish-arabic']['input_phrase'] if value['spanish-arabic']  %> - <%= value['spanish-arabic']['output_phrase'] if value['spanish-arabic'] %>" 
+                data-content="<%= value['spanish-arabic']['errors'].join(', ') if value['spanish-arabic'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+
+          <!-- Spanish - French -->
+          <td class="summary-td">
+            <% if value['spanish-french'] == true %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% elsif value['spanish-french'].blank? %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="Content Missing" 
+                data-content="Content Missing">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% else %>
+              <button type="button" class="btn btn-danger" data-toggle="popover" 
+                 data-placement="bottom" data-trigger="hover" title="<%= value['spanish-french']['input_phrase'] if value['spanish-french'] %> - <%= value['spanish-french']['output_phrase'] if value['spanish-french'] %>" 
+                data-content="<%= value['spanish-french']['errors'].join(', ') if value['spanish-french'] %>">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            <% end %>
+          </td>
+          
           
         </tr>
       <% end %>
     </table>
   <% end %>
 <% else %>
-  <span class="ml-5"> Summary is not found. An Error Occured while CSV Parsing. </span>
+  <span class="ml-5"> Summary is not found. Either it is creating a summary or an Error Occured while CSV Parsing. Please refresh this page after few minutes. </span>
 <% end %>
 <%= render partial: 'admin/translation_uploads_history/show/errors' %>
  

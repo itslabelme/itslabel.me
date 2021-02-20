@@ -22,17 +22,17 @@ function initialize_leave_requests_table(){
   
     // These columns are set by the function configure_data_tables in the table_settings controller
     "columnDefs": [
-       { className: "text-center", "width": "200px", "targets": [ 0, 6] },
+       { className: "text-center", "width": "100%", "targets": [ 0, 6] },
     ],
     "language": {
       "emptyTable": "...... No Data found "
     },
-    scrollY: "400px",
+    //scrollY: "400px",
     scrollX: true,
     scrollCollapse: true,
     fixedHeader: true,
     fixedColumns: {
-      leftColumns: 1
+      leftColumns: 2
       //rightColumns: 1
     }
   });
