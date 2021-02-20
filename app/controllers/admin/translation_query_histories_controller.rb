@@ -54,7 +54,7 @@ module Admin
       
       @translationQueryHistories = @relation.
                         order(@order_by).
-                        page(@current_page).per(100)
+                        page(@current_page).per(40)
     end
 
     def get_translation

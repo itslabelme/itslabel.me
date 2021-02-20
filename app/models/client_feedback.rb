@@ -5,7 +5,7 @@ class ClientFeedback < ApplicationRecord
   validates :category, presence: true
   validates :input, presence: true
   validates :output, presence: true
-  validates :remarks, presence: true
+  validates :remarks, presence: false
   validates :input_language, presence: true
   validates :output_language, presence: true
   

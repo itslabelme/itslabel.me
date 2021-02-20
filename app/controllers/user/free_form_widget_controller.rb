@@ -34,7 +34,8 @@ module User
           @input_text, 
           @input_language, 
           output_text.to_html, 
-          @output_language, 
+          @output_language,
+          @current_client_user, 
           doc_type, 
           error_status
         )

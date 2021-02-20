@@ -17,7 +17,7 @@ module Admin
       def get_collection
         @order_by = "created_at DESC" unless @order_by
         @relation = ClientFeedback.all
-        @per_page = 10
+        @per_page = 40
         @client_feedback = @relation.order(@order_by).page(@current_page).per(@per_page)
       end
   end

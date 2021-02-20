@@ -96,7 +96,7 @@ module Admin
       @relation = AdminUser.where("")
 
       apply_filters
-
+      @per_page = 40
       @admin_users = @relation.order(@order_by).page(@current_page).per(@per_page)
     end
 
