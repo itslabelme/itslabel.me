@@ -129,7 +129,8 @@
 
 
     .its-login-social{
-    	display: none;
+    	/*display: none;*/
+      margin-top: 2px;
     }
 
     .separator-linethrough{
@@ -432,7 +433,8 @@
     }
 
     .its-login-social{
-    	display: none;
+    	/*display: none;*/
+      margin-top: 2px;
     }
 
     .separator-linethrough{
