@@ -274,6 +274,9 @@ module Itslabel::Uploads::TranslationUploads
       ]
     end
 
+    # Update the input_length of all phrases
+    Translation.update_all("input_length = CHAR_LENGTH(REPLACE(input_phrase, ' ',''))")
+
     # Update the history with self.csv_upload_summary
     upload_summary.translation_uploads_history_id = upload_history_id
     upload_summary.summary_new = self.csv_upload_summary
