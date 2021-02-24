@@ -13,10 +13,16 @@ module Admin
 
       @en_ar = Translation.where(input_language: "ENGLISH", output_language: "ARABIC").count
       @en_fr = Translation.where(input_language: "ENGLISH", output_language: "FRENCH").count
+      @en_es = Translation.where(input_language: "ENGLISH", output_language: "SPANISH").count
       @ar_en = Translation.where(input_language: "ARABIC", output_language: "ENGLISH").count
       @ar_fr = Translation.where(input_language: "ARABIC", output_language: "FRENCH").count
+      @ar_es = Translation.where(input_language: "ARABIC", output_language: "SPANISH").count
       @fr_en = Translation.where(input_language: "FRENCH", output_language: "ENGLISH").count
       @fr_ar = Translation.where(input_language: "FRENCH", output_language: "ARABIC").count
+      @fr_es = Translation.where(input_language: "FRENCH", output_language: "SPANISH").count
+      @es_en = Translation.where(input_language: "SPANISH", output_language: "ENGLISH").count
+      @es_ar = Translation.where(input_language: "SPANISH", output_language: "ARABIC").count
+      @es_fr = Translation.where(input_language: "SPANISH", output_language: "FRENCH").count
 
     end
 
