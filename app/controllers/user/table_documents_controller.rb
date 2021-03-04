@@ -99,7 +99,8 @@ module User
       word_not_found = {
         "ENGLISH" => "Word not found",
         "ARABIC" => "كلمة غير موجودة",
-        "FRENCH" => "Mot introuvable"
+        "FRENCH" => "Mot introuvable",
+        "SPANISH" => "Palabra no encontrada"
       }
 
       if @item && params[:column_name] && params[:column_name] == 'input_phrase'
@@ -457,8 +458,9 @@ module User
         @output_1_language = @document.output_1_language ||= "ENGLISH"
         @output_2_language = @document.output_2_language ||= "FRENCH"
         @output_3_language = @document.output_3_language ||= "ARABIC"
-        # @output_4_language = @document.output_4_language ||= "GERMAN"
-        # @output_5_language = @document.output_5_language ||= "CHINESE"
+        @output_4_language = @document.output_4_language ||= "SPANISH"
+        # @output_5_language = @document.output_5_language ||= "GERMAN"
+        # @output_6_language = @document.output_6_language ||= "CHINESE"
       end
     end
 
