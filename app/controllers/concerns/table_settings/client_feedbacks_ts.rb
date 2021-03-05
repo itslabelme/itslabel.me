@@ -24,6 +24,14 @@ module TableSettings
           col_orderable: false, 
           col_searchable: false
         ),
+        remarks: ActiveSupport::HashWithIndifferentAccess.new( 
+          code: :remarks, 
+          name: "Remarks", 
+          col_visible: true, 
+          col_hideable: true, 
+          col_orderable: true, 
+          col_searchable: true
+        ),
         input_language: ActiveSupport::HashWithIndifferentAccess.new( 
           code: :input_language, 
           name: "Input Language", 
@@ -34,7 +42,7 @@ module TableSettings
         ),
         input_phrase: ActiveSupport::HashWithIndifferentAccess.new( 
           code: :input_phrase, 
-          name: "Input Phrase", 
+          name: "Phrase", 
           col_visible: true, 
           col_hideable: true, 
           col_orderable: true, 
@@ -56,14 +64,7 @@ module TableSettings
           col_orderable: true, 
           col_searchable: true
         ), 
-        remarks: ActiveSupport::HashWithIndifferentAccess.new( 
-          code: :remarks, 
-          name: "Remarks", 
-          col_visible: true, 
-          col_hideable: true, 
-          col_orderable: true, 
-          col_searchable: true
-        ),
+        
         type: ActiveSupport::HashWithIndifferentAccess.new( 
           code: :type, 
           name: "Type", 
@@ -72,14 +73,14 @@ module TableSettings
           col_orderable: true, 
           col_searchable: true
         ),
-        created_date: ActiveSupport::HashWithIndifferentAccess.new( 
-          code: :created_date, 
-          name: "Created Date", 
-          col_visible: true, 
-          col_hideable: true, 
-          col_orderable: true, 
-          col_searchable: true
-        )
+        #created_date: ActiveSupport::HashWithIndifferentAccess.new( 
+          #code: :created_date, 
+          #name: "Created Date", 
+          #col_visible: true, 
+          #col_hideable: true, 
+          #col_orderable: true, 
+          #col_searchable: true
+        #)
       }
     end
 
