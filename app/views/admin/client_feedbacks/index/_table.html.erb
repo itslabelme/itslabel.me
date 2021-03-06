@@ -1,5 +1,5 @@
 <div id="FEEDBACK_TABLE" class="table-responsive">
-  <table class="table table-hover table-custom spacing8" id="feedback_listing_table">
+  <table class="table table-hover table-custom spacing8" id="feedback_listing_table" style="width: 100%">
     <thead>
       <tr>
         <% @table_settings.each do |code, col_data| %>
@@ -10,6 +10,7 @@
             <%= content_tag(:th, col_data[:name], th_attributes ) %>
           <% end %>
         <% end %>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -18,9 +19,16 @@
           <td>
             <span><%= serial_number(i) %></span>
           </td>
-          <td>
-            <span><%= feedback.display_name %></span>
+          <td data-toggle="modal" data-target="#exampleModal<%= feedback.id %>">
+            <span>
+              <b><%= feedback.display_name %></b><br>
+              <%= feedback.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') if feedback.created_at %>
+            </span>
           </td>
+          <td>
+            <span><%= feedback.try(:remarks) %></span>
+          </td>
+                  
           <td>
             <span><%= feedback.try(:input_language) %></span>
           </td>
@@ -34,15 +42,123 @@
             <span><%= feedback.output.html_safe if feedback.output %></span>
           </td>
           <td>
-            <span><%= feedback.try(:remarks) %></span>
-          </td>
-          <td>
             <span><%= feedback.try(:category) %></span>
           </td>
-          <td>
+          <!--<td>
             <span><%= feedback.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') if feedback.created_at %></span>
-          </td>
+          </td>-->
+
+           <td>
+            <span><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<%= feedback.id %>"> Details</button></span>
+          </td> 
         </tr>
+
+        <!-- Translation RequestClient Feedbacks Details -->
+        <div class="modal fade" id="exampleModal<%= feedback.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header" style="padding: 0px;position: absolute;right: 0px;border: none;top: -24px;right: -20px;color: #fff">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1">
+                <span aria-hidden="true"><i class="icon-close" style="color: #fff"></i></span>
+                </button>
+              </div>
+              <div class="modal-header" >
+                <h5 class="modal-title" id="exampleModalLabel">Client Feedbacks Details</h5>              
+              </div>
+              <div class="modal-body" style="padding:20px">
+                
+                <div class="row">
+
+                  
+                  <!--Input Phrase -->
+                  <div class="col-md-6">
+                    <div class="form-group row " style="padding:20px">
+                      <label class="col-sm-12">Input Phrase
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <div class="badge badge-info">
+                          <strong><%= feedback.input.html_safe if feedback.input %></strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Output Phrase -->
+                  <div class="col-md-6">
+                    <div class="form-group row " style="padding:20px">
+                      <label class="col-sm-12">Output Phrase
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <div class="badge badge-info">
+                          <strong><%= feedback.output.html_safe if feedback.output %></strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                 
+                </div>
+
+                <div class="row">
+
+                  <!-- Input Language -->
+                  <div class="col-md-6">
+                    <div class="form-group row " style="padding:20px">
+                      <label class="col-sm-12">Input Language
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <strong><%= feedback.try(:input_language) %></strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Output Language -->
+                  <div class="col-md-6">
+                    <div class="form-group row " style="padding:20px">
+                      <label class="col-sm-12">Output Language
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <strong><%= feedback.try(:output_language) %></strong>
+                      </div>
+                    </div>
+                  </div>                
+
+                </div>
+
+                <div class="row">
+                  <!-- Type -->
+                  <div class="col-md-6">
+                    <div class="form-group row " style="padding:20px">
+                      <label class="col-sm-12">Type
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <strong><%= feedback.try(:category) %></strong>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Created at -->
+                  <div class="col-md-6">
+                    <div class="form-group row " style="padding:20px">
+                      <label class="col-sm-12">Created At:
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <strong><%= feedback.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') if feedback.created_at %></strong>
+                      </div>
+                    </div>
+                  </div>  
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>                
+              </div>
+            </div>
+          </div>  
+        </div>
       <% end %>
     </tbody>
   </table>                

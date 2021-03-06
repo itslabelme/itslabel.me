@@ -1,7 +1,7 @@
 class TableDocumentItem < ApplicationRecord
   
   # Constants
-  LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH"].freeze
+  LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH", "SPANISH"].freeze
 
   # Set Table Name
   self.table_name = "table_document_items"

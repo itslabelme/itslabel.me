@@ -1,8 +1,8 @@
 class TemplateDocument < ApplicationRecord
    
   # Constants
-  LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH"].freeze
-  LANGUAGE_CODES = {"ENGLISH" => "EN", "ARABIC" => "AR", "FRENCH" => "FR"}.freeze
+  LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH", "SPANISH"].freeze
+  LANGUAGE_CODES = {"ENGLISH" => "EN", "ARABIC" => "AR", "FRENCH" => "FR", "SPANISH" => "ES"}.freeze
 
   # Set Table Name
   self.table_name = "template_documents"
