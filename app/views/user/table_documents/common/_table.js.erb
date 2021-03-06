@@ -299,6 +299,8 @@ $(document).on('change', '#INPUT_LANGUAGE', function (e) {
     newURL = "<%= new_user_table_document_path(input_language: 'FRENCH') %>";
   } else if(inputLanguage == "ENGLISH") {
     newURL = "<%= new_user_table_document_path(input_language: 'ENGLISH') %>";
+  } else if(inputLanguage == "SPANISH") {
+    newURL = "<%= new_user_table_document_path(input_language: 'SPANISH') %>";
   }
 
   var confirmLanguageChange = confirm("Warning! Changing input language will clear all translations.")
