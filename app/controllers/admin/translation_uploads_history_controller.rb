@@ -16,10 +16,10 @@ module Admin
       # FIX ME - this method needs to be removed. instead use associatoin. 
       # @upload_summary = @upload_history.summary
       # Select Language
-      if params[:filters].nil?
-        @input_language = "English"
+      if params[:lan].nil?
+        @input_language = "en"
       else
-        @input_language = params[:filters].try(:[], :input_language)
+        @input_language = params[:lan]
       end
       @upload_summary = UploadsSummary.find_by_translation_uploads_history_id(params[:id])
   	end

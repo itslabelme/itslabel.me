@@ -4,11 +4,11 @@
     <div class="col-md-3">
       <div class="form-group">
         <label for="filter">Language</label>
-        <select name="filters[input_language]" onchange="this.form.submit();" class="form-control" style="background-color: white;" >
-          <option <%= @input_language ==  'English'? 'selected' : ''%> value="English">English</option>
-          <option <%= @input_language == 'Arabic'? 'selected' : ''%>  value="Arabic">Arabic</option>
-          <option <%= @input_language == 'French'? 'selected' : ''%> value="French">French</option>
-          <option <%= @input_language == 'Spanish'? 'selected' : ''%> value="Spanish">Spanish</option>
+        <select name="lan" onchange="this.form.submit();" class="form-control" style="background-color: white;" >
+          <option <%= @input_language ==  'en'? 'selected' : ''%> value="en">English</option>
+          <option <%= @input_language == 'ar'? 'selected' : ''%>  value="ar">Arabic</option>
+          <option <%= @input_language == 'fr'? 'selected' : ''%> value="fr">French</option>
+          <option <%= @input_language == 'es'? 'selected' : ''%> value="es">Spanish</option>
         </select>
       </div>
     </div>
@@ -24,28 +24,28 @@
       <thead>
         <th scope="col" class="summary-th" >#</th>
         <th scope="col" class="summary-th" >English</th>
-        <% if @input_language == "English" %>
-          <th scope="col" class="summary-th" >EN-AR</th>
-          <th scope="col" class="summary-th" >EN-FR</th>
-          <th scope="col" class="summary-th" >EN-ES</th>
+        <% if @input_language == "en" %>
+          <th scope="col" class="summary-th" >English-Arabic</th>
+          <th scope="col" class="summary-th" >English-French</th>
+          <th scope="col" class="summary-th" >English-Spanish</th>
         <% end %>
 
-        <% if @input_language == "Arabic" %>
-          <th scope="col" class="summary-th" >AR-EN</th>
-          <th scope="col" class="summary-th" >AR-FR</th>
-          <th scope="col" class="summary-th" >AR-ES</th>
+        <% if @input_language == "ar" %>
+          <th scope="col" class="summary-th" >Arabic-English</th>
+          <th scope="col" class="summary-th" >Arabic-French</th>
+          <th scope="col" class="summary-th" >Arabic-Spanish</th>
          <% end %>
 
-        <% if @input_language == "French" %>
-          <th scope="col" class="summary-th" >FR-EN</th>
-          <th scope="col" class="summary-th" >FR-AR</th>
-          <th scope="col" class="summary-th" >FR-ES</th>
+        <% if @input_language == "fr" %>
+          <th scope="col" class="summary-th" >French-English</th>
+          <th scope="col" class="summary-th" >French-Arabic</th>
+          <th scope="col" class="summary-th" >French-Spanish</th>
         <% end %>
 
-        <% if @input_language == "Spanish" %>
-          <th scope="col" class="summary-th" >ES-EN</th>
-          <th scope="col" class="summary-th" >ES-AR</th>
-          <th scope="col" class="summary-th" >ES-FR</th>
+        <% if @input_language == "es" %>
+          <th scope="col" class="summary-th" >Spanish-English</th>
+          <th scope="col" class="summary-th" >Spanish-Arabic</th>
+          <th scope="col" class="summary-th" >Spanish-French</th>
         <% end %>
       </thead>
 
@@ -55,7 +55,7 @@
           <td class="summary-td"><%= key %></td>
 
         
-          <% if @input_language == "English" %>
+          <% if @input_language == "en" %>
             <!-- English - Arabic -->
             <td class="summary-td">
               <% if value['english-arabic'] == true %>
@@ -114,7 +114,7 @@
             </td>
           <% end %>
 
-          <% if @input_language == "Arabic" %>
+          <% if @input_language == "ar" %>
             <!-- Arabic - English -->
             <td class="summary-td">
                 <% if value['arabic-english'] == true %>
@@ -173,7 +173,7 @@
             </td>
           <% end %>
 
-          <% if @input_language == "French" %>
+          <% if @input_language == "fr" %>
             <!-- French - English -->
             <td class="summary-td">
               <% if value['french-english'] == true %>
@@ -233,7 +233,7 @@
 
           <% end %>
 
-          <% if @input_language == "Spanish" %>
+          <% if @input_language == "es" %>
             <!-- Spanish - English -->
             <td class="summary-td">
               <% if value['spanish-english'] == true %>
