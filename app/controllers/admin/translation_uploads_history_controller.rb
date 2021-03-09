@@ -15,6 +15,11 @@ module Admin
       @upload_history = UploadsHistory.find(params[:id])
       # FIX ME - this method needs to be removed. instead use associatoin. 
       # @upload_summary = @upload_history.summary
+      if params[:lan].nil?
+        @input_language = "en"
+      else
+        @input_language = params[:lan]
+      end
       @upload_summary = UploadsSummary.find_by_translation_uploads_history_id(params[:id])
   	end
 
