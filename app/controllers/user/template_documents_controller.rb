@@ -182,6 +182,9 @@ module User
     def get_document
       @document = TemplateDocument.find_by_id(params[:id])
       @template ||= @document.template
+      
+      # Get all Document Folders
+      @document_folders = @current_client_user.document_folders
       set_languages
     end
     

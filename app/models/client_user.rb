@@ -9,10 +9,11 @@ class ClientUser < ApplicationRecord
   
   # Validations
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
-  validates :last_name, length: {maximum: 256}, allow_blank: true
-  validates :mobile_number, length: {maximum: 24}, allow_blank: true
-  validates :organisation, presence: true, allow_blank: true
-  validates :country, presence: true, allow_blank: true
+  validates :last_name, presence: true, length: {maximum: 256}, allow_blank: false
+  validates :mobile_number, presence: true, length: {maximum: 24}, allow_blank: false
+  validates :organisation, presence: true, allow_blank: false
+  validates :country, presence: true, allow_blank: false
+  validates :position, presence: true, allow_blank: false
 
   # Associations
   has_many :documents, class_name: "DocumentView", foreign_key: :user_id
