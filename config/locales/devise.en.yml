@@ -9,10 +9,12 @@ en:
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."
-      invalid: "Invalid %{authentication_keys} or password."
+      # invalid: "Invalid %{authentication_keys} or password/Wrong Password."
+      invalid: "The password that you have entered is incorrect. Forgotten Password?"
       locked: "Your account is locked."
       last_attempt: "You have one more attempt before your account is locked."
-      not_found_in_database: "Invalid %{authentication_keys} or password."
+      # not_found_in_database: "Invalid %{authentication_keys} or password/Wrong Email."
+      not_found_in_database: "The email address that you have entered does not match any account. Sign up for an account."
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
@@ -46,7 +48,7 @@ en:
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
     sessions:
-      signed_in: "Welcome back to Ingredients Translation Services"
+      signed_in: "Welcome back to Ingredients Translation Solutions"
       signed_out: "Logged out successfully."
       already_signed_out: "Logged out successfully."
     unlocks:
