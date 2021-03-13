@@ -1,5 +1,5 @@
 <div id="TRANSLATION_REQUESTS" class="table-responsive">
-  <table class="table table-hover table-custom spacing8" id="translation_requests_listing_table">
+  <table class="table table-hover table-custom spacing8" id="translation_requests_listing_table" style="width: 100%">
     <thead>
       <tr>
         <% @table_settings.each do |code, col_data| %>
@@ -10,6 +10,7 @@
             <%= content_tag(:th, col_data[:name], th_attributes ) %>
           <% end %>
         <% end %>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -18,29 +19,133 @@
           <td>
             <span><%= serial_number(i) %></span>
           </td>
-          <td>
-            <span><%= requests.display_requested_user_name %></span>
-          </td>
-          <td>
-            <span><%= requests.try(:input_language) %></span>
+          <td data-toggle="modal" data-target="#exampleModal<%= requests.id %>">
+            <span>
+              <b><%= requests.display_requested_user_name %></b><br>
+              <%= requests.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') if requests.created_at %>
+            </span>
           </td>
           <td>
             <span><%= requests.input_phrase.html_safe if requests.input_phrase %></span>
+          </td> 
+          <td>
+            <span><%= requests.try(:doc_type) %></span>
+          </td>  
+          <td>
+            <span><%= requests.try(:input_language) %></span>
           </td>
           <td>
             <span><%= requests.try(:output_language) %></span>
           </td>
           <td>
             <span><%= requests.output_phrase.html_safe if requests.output_phrase %></span>
-          </td>
+          </td>     
+          <td>
+            <span><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<%= requests.id %>"> Details</button></span>
+          </td>        
+          
           <!--<td>
             <span><%#= requests.try(:doc_type) %></span>
           </td>-->
-          <td>
+          <!--<td>
             <span><%= requests.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') if requests.created_at %></span>
-          </td>
+          </td>-->
         </tr>
+       
+
+        <!-- Translation Request Details -->
+        <%#= render partial: 'admin/translation_requests/index/translation_request_details' %>
+        <div class="modal fade" id="exampleModal<%= requests.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header" style="padding: 0px;position: absolute;right: 0px;border: none;top: -24px;right: -20px;color: #fff">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1">
+                <span aria-hidden="true"><i class="icon-close" style="color: #fff"></i></span>
+                </button>
+              </div>
+              <div class="modal-header" >
+                <h5 class="modal-title" id="exampleModalLabel">Translation Request Details</h5>              
+              </div>
+              <div class="modal-body" style="padding:20px">
+                
+                <div class="row">
+                  
+                  <div class="col-md-3">
+                  </div>
+                  <!-- Phrase -->
+                  <div class="col-md-6 pb-4 pt-3 text-center">
+                    <div class="form-group row " style="">
+                      <label class="col-sm-12">Phrase to Translate
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <div class="badge badge-info">
+                          <strong><%= requests.input_phrase.html_safe if requests.input_phrase %></strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!-- Input Language -->
+                  <div class="col-md-6">
+                    <div class="form-group row " style="padding:20px">
+                      <label class="col-sm-12">Input Language
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <strong><%= requests.try(:input_language) %></strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Output Language -->
+                  <div class="col-md-6">
+                    <div class="form-group row " style="padding:20px">
+                      <label class="col-sm-12">Output Language
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <strong><%= requests.try(:output_language) %></strong>
+                      </div>
+                    </div>
+                  </div>                
+
+                </div>
+
+                <div class="row">
+                  <!-- Created at -->
+                  <div class="col-md-6">
+                    <div class="form-group row " style="padding:20px">
+                      <label class="col-sm-12">Created At:
+                        <span class="text-color-red px-1">&nbsp;&nbsp;</span>
+                      </label>
+                      <div class="col-md-12">
+                        <strong><%= requests.created_at.in_time_zone("Asia/Muscat").strftime('%d %B %Y, %H:%M') if requests.created_at %></strong>
+                      </div>
+                    </div>
+                  </div>  
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>              
+              </div>
+            </div>
+          </div>  
+        </div>   
+
       <% end %>
     </tbody>
   </table>                
 </div>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+
