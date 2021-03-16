@@ -59,11 +59,19 @@ class TableDocumentItem < ApplicationRecord
     self.output_4_language = self.table_document.output_4_language
     self.output_5_language = self.table_document.output_5_language
 
-    self.output_1_phrase = Translation.translate(self.input_phrase, output_language: self.output_1_language) if self.output_1_language && self.output_1_phrase.blank?
-    self.output_2_phrase = Translation.translate(self.input_phrase, output_language: self.output_2_language) if self.output_2_language && self.output_2_phrase.blank?
-    self.output_3_phrase = Translation.translate(self.input_phrase, output_language: self.output_3_language) if self.output_3_language && self.output_3_phrase.blank?
-    self.output_4_phrase = Translation.translate(self.input_phrase, output_language: self.output_4_language) if self.output_4_language && self.output_4_phrase.blank?
-    self.output_5_phrase = Translation.translate(self.input_phrase, output_language: self.output_5_language) if self.output_5_language && self.output_5_phrase.blank?
+    # binding.pry 
+
+    self.output_1_phrase = Translation.translate(self.input_phrase, input_language: self.input_language, output_language: self.output_1_language) if self.output_1_language && input_language: self.input_language && self.output_1_phrase.blank?
+    self.output_2_phrase = Translation.translate(self.input_phrase, input_language: self.input_language, output_language: self.output_2_language) if self.output_2_language && input_language: self.input_language && self.output_2_phrase.blank?
+    self.output_3_phrase = Translation.translate(self.input_phrase, input_language: self.input_language, output_language: self.output_3_language) if self.output_3_language && input_language: self.input_language && self.output_3_phrase.blank?
+    self.output_4_phrase = Translation.translate(self.input_phrase, input_language: self.input_language, output_language: self.output_4_language) if self.output_4_language && input_language: self.input_language && self.output_4_phrase.blank?
+    self.output_5_phrase = Translation.translate(self.input_phrase, input_language: self.input_language, output_language: self.output_5_language) if self.output_5_language && input_language: self.input_language && self.output_5_phrase.blank?
+
+    # self.output_1_phrase = Translation.translate(self.input_phrase, output_language: self.output_1_language) if self.output_1_language && self.output_1_phrase.blank?
+    # self.output_2_phrase = Translation.translate(self.input_phrase, output_language: self.output_2_language) if self.output_2_language && self.output_2_phrase.blank?
+    # self.output_3_phrase = Translation.translate(self.input_phrase, output_language: self.output_3_language) if self.output_3_language && self.output_3_phrase.blank?
+    # self.output_4_phrase = Translation.translate(self.input_phrase, output_language: self.output_4_language) if self.output_4_language && self.output_4_phrase.blank?
+    # self.output_5_phrase = Translation.translate(self.input_phrase, output_language: self.output_5_language) if self.output_5_language && self.output_5_phrase.blank?
   end
 
 end
