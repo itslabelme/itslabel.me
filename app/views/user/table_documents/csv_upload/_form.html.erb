@@ -58,14 +58,14 @@
       <div class="row">
         <div class="col-md-6 mb-3 its-free-language">
           <div class="form-group row " style="">
-            <label class="col-sm-12">Input Language</label>
+            <label class="col-sm-12">Input Language </label>
             <div class="col-md-12">
               <div class="input-group">
-                <select id="INPUT_LANGUAGE" class="form-control form-control-xs selectpicker1" name="input_language" data-size="7" data-live-search="true" data-title="Location" data-width="100%">
-                  <option value="ENGLISH" <%= @input_language == "ENGLISH" ? "selected" : "" %> >English</option>
-                  <option value="ARABIC" <%= @input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
-                  <option value="FRENCH" <%= @input_language == "FRENCH" ? "selected" : "" %> >French</option>
-                  <option value="SPANISH" <%= @input_language == "SPANISH" ? "selected" : "" %> >Spanish</option>
+                <select id="CSV_INPUT_LANGUAGE" class="form-control form-control-xs selectpicker1" name="input_language" data-size="7" data-live-search="true" data-title="Location" data-width="100%">
+                  <option value="ENGLISH" <%= @csv_input_language == "ENGLISH" ? "selected" : "" %> >English</option>
+                  <option value="ARABIC" <%= @csv_input_language == "ARABIC" ? "selected" : "" %> >Arabic</option>
+                  <option value="FRENCH" <%= @csv_input_language == "FRENCH" ? "selected" : "" %> >French</option>
+                  <option value="SPANISH" <%= @csv_input_language == "SPANISH" ? "selected" : "" %> >Spanish</option>
                 </select>
               </div>
             </div>
