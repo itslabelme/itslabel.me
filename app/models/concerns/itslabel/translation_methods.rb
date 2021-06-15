@@ -40,8 +40,13 @@ module Itslabel::TranslationMethods
     /(\bfor\b|\bpour\b)/,
     /(\bso\b|\bdonc\b)/
   ]
-  UNITS = ["%", "oz", "lb", "kg", "mg", "ml", "g", "gm", "gms", "gram", "grams", "litres", "kilo", "kilos", "ug", "milligram", "ounce"]
-  UNIT_REGEX = /\(?([0-9]+(.[0-9]+)?)\s?([a-zA-Z]+|%)?\)?/i
+  #UNITS_STABLE = ["%", "oz", "lb", "kg", "mg", "ml", "g", "gm", "gms", "gram", "grams", "litres", "kilo", "kilos", "ug", "milligram", "ounce"]
+  UNITS = ["%","grams","gram","gms","gm","g","litres","ltr","lr","kilograms","kilogram","kilos","kilo","kgs","kg","milligrams","milligram","mg","millilitres","millilitre","ml","micrograms","ug","ounces","ounce","ozs","oz","pounds","pound","lbs","lb"]
+  
+  # UNIT_REGEX_STABLE = /\(?([0-9]+(.[0-9]+)?)\s?([a-zA-Z]+|%)?\)?/i
+  UNIT_REGEX = /\(?([0-9]+(.[0-9]+)?)\s?(%|grams|gram|gms|gm|g|litres|ltr|lr|kilograms|kilogram|kilos|kilo|kgs|kg|milligrams|milligram|mg|millilitres|millilitre|ml|micrograms|ug|ounces|ounce|ozs|oz|pounds|pound|lbs|lb)?\)?/i
+  # UNIT_REGEX = /\(?([0-9]+(.[0-9]+)?)\s?(%|grams|gram|gms|gm|g)+\)?/i
+  # UNIT_REGEX_OLD = /\(?([0-9]+(.[0-9]+)?)\s?([a-zA-Z]+|%)?\)?/i
 
   class_methods do
 
@@ -192,7 +197,8 @@ module Itslabel::TranslationMethods
           t_score = { word => {score: 0, translation: word} }
           t_word = word
         else
-          if cleaned_word.split(' ').size > 1 || (cleaned_word.match(UNIT_REGEX) || Translation::UNITS.include?(cleaned_word))
+          # e.g: #<MatchData "100 grams" 1:"100" 2:nil 3:"grams">
+          if cleaned_word.match(UNIT_REGEX).to_a.compact.size > 2
             t_score = translate_token(cleaned_word, options)
             t_word = stitch_token(t_score, options)
           else
