@@ -313,6 +313,20 @@ $(document).on('change', '#INPUT_LANGUAGE', function (e) {
   }
 });
 
+$(document).on('change', '#CSV_INPUT_LANGUAGE', function (e) {
+  
+  let inputLanguage = $("#CSV_INPUT_LANGUAGE").children("option:selected").val();
+
+  var confirmLanguageChange = confirm("Warning! Changing input language will clear all translations.")
+  if (confirmLanguageChange){
+    window.confirm = function() { return false; };
+  }
+  else{
+    // e.preventDefault();
+    // return false
+  }
+});
+
 $(document).off('change', "#OUTPUT_1_LANGUAGE");
 $(document).on('change', '#OUTPUT_1_LANGUAGE', function (e) {
   saveEverything();

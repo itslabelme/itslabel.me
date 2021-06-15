@@ -278,7 +278,11 @@ module User
     end
 
     def csv_upload
-
+      if params[:lan].nil?
+        @csv_input_language = "ENGLISH"
+      else
+        @csv_input_language = params[:lan]
+      end
       new_document
       set_languages
 

@@ -132,6 +132,9 @@ module Itslabel::TranslationMethods
       words = tokenize(input, options)
       translations = translate_words(words, options)
 
+      # Typical Point to test missing translation 
+      # binding.pry
+
       # Preparing Output Hash and String
       output_hash = {}
       translations.each do |item|
@@ -321,7 +324,7 @@ module Itslabel::TranslationMethods
       #        {"of" => {score: 0}}, 
       #        {"Sodium Chloride" => {score: nil, translation: 'كلوريد الصوديوم'}}
       #      ]
-      scores_hash = translate_token_words(reduced_words, options)
+      scores_hash = Translation.translate_token_words(reduced_words, options)
       return scores_hash
     end
 
@@ -359,7 +362,7 @@ module Itslabel::TranslationMethods
         else
           # Handle normal words. Calcuate score & add to scores_hash
           word_scores = {word => Translation.translate_word_with_score(word, options)}
-          translate_word_from_database(word)
+          # Translation.translate_word_from_database(word)
           scores_hash.merge!(word_scores){|key, oldval, newval| newval.nil? ? oldval : newval}
         end
       end
