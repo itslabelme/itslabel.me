@@ -195,9 +195,21 @@
                                   </div> <!-- form-group// -->
                                 </div>
                               </div>
+
+                              <div class="row">  
+                                <a class="navbar-brand" style="margin-right: .3rem" href="javascript:void(0);">                              
+                                  <!-- Policies -->
+                                  <div class="col-md-12">                                  
+                                    <%= f.label :t_c_accepted, style: 'font-size: 0.95rem;color:black;' do %>
+                                      <%= f.check_box :t_c_accepted, :id => "check", :class => "input-assumpte" %>
+                                      I agree the <%= link_to 'Terms and Conditions', policies_path, target: :_blank, style: 'font-size: 0.95rem;' %>.
+                                    <% end %>
+                                  </div>
+                                </a>
+                              </div>
                                                 
                               <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                                <button type="submit" class="btn btn-primary btn-block" id="btncheck"> Create Account  </button>
                               </div> <!-- form-group// -->
 
                             <% end %>
