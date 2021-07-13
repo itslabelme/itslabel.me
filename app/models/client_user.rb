@@ -14,6 +14,7 @@ class ClientUser < ApplicationRecord
   validates :organisation, presence: true, allow_blank: false
   validates :country, presence: true, allow_blank: false
   validates :position, presence: true, allow_blank: false
+  validates_acceptance_of :t_c_accepted, :allow_nil => false, :accept => true, :on => :create
 
   # Associations
   has_many :documents, class_name: "DocumentView", foreign_key: :user_id

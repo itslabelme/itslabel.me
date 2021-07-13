@@ -7,6 +7,7 @@
         <th style="width: 15%;">Mobile No.</th>
         <th style="width: 15%;">Organisation</th>
         <th style="width: 10%;">Country</th>
+        <th style="width: 10%;">T&C Accepted</th>
         <th style="width: 10%;">Created Date</th>
         <!-- <th style="width: 20%;">Action</th> -->
       </tr>
@@ -33,6 +34,7 @@
 
           <td><%=  client_user.organisation %></td>
           <td><%=  client_user.country_name %></td>
+          <td><%=  client_user.t_c_accepted %></td>
           <td><%=  client_user.created_at.strftime("%d %b,%Y") %></td>
           
         </tr>
