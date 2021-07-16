@@ -24,5 +24,10 @@
     //   }
     // });
   });
+  //Initially disabled button when page loaded.
+  $('#btncheck').attr("disabled",true);  
+  $('#check').click(function(){
+      $('#btncheck').attr("disabled",!$(this).is(":checked"));   
+  })
 
 });
