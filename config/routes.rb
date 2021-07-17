@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   devise_scope :client_user do
     
     # Landing Page will always be Client Login
-    root to: "devise/sessions#new"
-    
+    root to: "devise/sessions#new" 
+    get 'policies', to: 'devise/registrations#policies'  
   end
 
   namespace :user, module: :user do
@@ -161,6 +161,7 @@ Rails.application.routes.draw do
     resources :subscription_permissions , only: [:create, :index, :update] do
       collection do
         get '/add_edit_permissions/:id', to: 'subscription_permissions#create_pemission'
+        
       end
     end
     
