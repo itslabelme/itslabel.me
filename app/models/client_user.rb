@@ -11,9 +11,9 @@ class ClientUser < ApplicationRecord
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
   validates :last_name, presence: true, length: {maximum: 256}, allow_blank: false
   validates :mobile_number, presence: true, length: {maximum: 24}, allow_blank: false
-  validates :organisation, presence: false, allow_blank: true
-  validates :country, presence: false, allow_blank: true
-  validates :position, presence: false, allow_blank: true
+  validates :organisation, presence: true, allow_blank: false
+  validates :country, presence: true, allow_blank: false
+  validates :position, presence: true, allow_blank: false
   validates_acceptance_of :t_c_accepted, :allow_nil => false, :accept => true, :on => :create
 
   # Associations
@@ -184,6 +184,9 @@ class ClientUser < ApplicationRecord
           uid: access_token.uid ,
           password: Devise.friendly_token[0,20],
           mobile_number: 123455678,
+          organisation: "Default Organisation",
+          country: "AE"
+          position: "Default Position",
           t_c_accepted: true,
         )
       end
@@ -210,6 +213,9 @@ class ClientUser < ApplicationRecord
           uid: access_token.uid ,
           password: Devise.friendly_token[0,20],
           mobile_number: 123455678,
+          organisation: "Default Organisation",
+          country: "AE"
+          position: "Default Position",
           t_c_accepted: true,
         )
       end
