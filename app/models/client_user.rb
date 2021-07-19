@@ -23,7 +23,7 @@ class ClientUser < ApplicationRecord
   # Callback
   after_create :create_default_folder
   # TODO:- For Welcome mail for new user
-  #after_create :send_welcome_email
+  after_create :send_welcome_email
 
    
   # ----------------

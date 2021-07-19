@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     get '/user/auth/:provider' => 'user/omniauth_callbacks#passthru'
   end
 
-  #devise_for :client_users, :controllers => {:registrations => "user/registrations"}
 
   devise_scope :client_user do
     
