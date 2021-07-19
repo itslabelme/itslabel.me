@@ -9,7 +9,7 @@ module User
         set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
       else
         session["devise.facebook_data"] = request.env["omniauth.auth"]
-        redirect_to '/user/register'
+        redirect_to new_client_user_registration_url
       end
     end
     
@@ -22,7 +22,7 @@ module User
         sign_in_and_redirect @user, :event => :authentication
       else
         session["devise.google_data"] = request.env["omniauth.auth"]
-        redirect_to new_user_registration_url
+        redirect_to new_client_user_registration_url
       end
     end
     
