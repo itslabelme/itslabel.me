@@ -27,7 +27,7 @@ if Rails.env.production?
                 ])
 else
   ClientUser.create([
-                  { first_name: 'Sherlock',  last_name: "Holmes", country: "GB", mobile_number: "12345678", organisation: "Conon Doyle", email: "holmes@yopmail.com", password: "Password@1", password_confirmation: "Password@1", position: "manager"}, 
+                  { first_name: 'Sherlock',  last_name: "Holmes", country: "GB", mobile_number: "12345678", organisation: "Conon Doyle", email: "holmes@yopmail.com", password: "Password@1", password_confirmation: "Password@1", position: "manager", t_c_accepted: true}, 
                   # { first_name: 'Huckleburry',  last_name: "Finn", country: "US", mobile_number: "12345678", organisation: "DM Studios", email: "finn@yopmail.com", password: "Password@1", password_confirmation: "Password@1", t_c_accepted: True}, 
                   # { first_name: 'Joan',  last_name: "Arc", country: "FR", mobile_number: "12345678", organisation: "French Ltd", email: "joan@yopmail.com", password: "Password@1", password_confirmation: "Password@1", t_c_accepted: True}, 
                 ])
