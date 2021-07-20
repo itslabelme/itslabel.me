@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   prepend_before_action :check_captcha, only: [:create]
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_default_page_title
-
   before_action :configure_notification
   before_action :parse_pagination_params
   # before_action :authenticate_user!, except: [:home]
@@ -29,9 +28,8 @@ class ApplicationController < ActionController::Base
   private
 
   def check_captcha
-    unless verify_recaptcha
+    if verify_recaptcha(action: 'signup')
       self.resource = resource_class.new configure_permitted_parameters
-      #flash.now[:error] = "Recaptcha cannot be blank; please try again"
       respond_with_navigational(resource) { render :new }
     end
   end
@@ -45,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-   if resource.is_a?(AdminUser)
+    if resource.is_a?(AdminUser)
         admin_root_path
     else
         user_root_path
