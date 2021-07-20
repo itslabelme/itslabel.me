@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   private
 
   def check_captcha
-    unless verify_recaptcha
+    if verify_recaptcha(action: 'signup')
       self.resource = resource_class.new configure_permitted_parameters
       #flash.now[:error] = "Recaptcha cannot be blank; please try again"
       respond_with_navigational(resource) { render :new }
