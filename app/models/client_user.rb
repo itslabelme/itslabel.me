@@ -185,7 +185,7 @@ class ClientUser < ApplicationRecord
           password: Devise.friendly_token[0,20],
           mobile_number: 123455678,
           organisation: "Default Organisation",
-          country: "AE"
+          country: "AE",
           position: "Default Position",
           t_c_accepted: true,
         )
@@ -214,7 +214,7 @@ class ClientUser < ApplicationRecord
           password: Devise.friendly_token[0,20],
           mobile_number: 123455678,
           organisation: "Default Organisation",
-          country: "AE"
+          country: "AE",
           position: "Default Position",
           t_c_accepted: true,
         )
