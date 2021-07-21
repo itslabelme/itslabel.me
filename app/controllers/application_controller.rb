@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   include Devise::Controllers::Helpers
 
   protect_from_forgery with: :exception
+  prepend_before_action :check_captcha, only: [:create]
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_default_page_title
 
@@ -26,6 +27,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def check_captcha
+    if verify_recaptcha(action: 'signup')
+      self.resource = resource_class.new configure_permitted_parameters
+      #flash.now[:error] = "Recaptcha cannot be blank; please try again"
+      respond_with_navigational(resource) { render :new }
+    end
+  end
 
   def set_default_page_title 
     @page_title = "ITS Label"

@@ -45,3 +45,10 @@
   background-color: #006649;
   color: white;
 }
+.g-recaptcha {
+  transform: scale(1.12);
+  width: 200px;
+  height: 78px;
+  bottom: 10px;
+  transform-origin: 0 0;
+}
