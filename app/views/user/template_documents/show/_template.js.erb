@@ -10,6 +10,9 @@ $(document).ready(function() {
 
   tinymce.init({
     selector: '.tinymce-editor',
+    //To fix responsive issue
+    mobile: { menubar: true },
+    
     height: 500,
     menubar: true,
     branding: false,
