@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_20_053701) do
+ActiveRecord::Schema.define(version: 2021_06_22_091408) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 2021_07_20_053701) do
     t.string "uid"
     t.text "image"
     t.boolean "t_c_accepted"
-    t.boolean "flag"
     t.index ["confirmation_token"], name: "index_client_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_client_users_on_email", unique: true
     t.index ["mobile_number"], name: "index_client_users_on_mobile_number"

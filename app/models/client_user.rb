@@ -23,7 +23,9 @@ class ClientUser < ApplicationRecord
   # Callback
   after_create :create_default_folder
   # TODO:- For Welcome mail for new user
-  after_create :send_welcome_email, unless: Proc.new { self.flag == false } 
+  after_create :send_welcome_email
+  #commented by Athira
+  #after_create :send_welcome_email, unless: Proc.new { self.flag == false } 
 
    
   # ----------------

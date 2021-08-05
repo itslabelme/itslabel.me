@@ -23,12 +23,12 @@ end
 puts "Adding Client Users".green
 if Rails.env.production?
   ClientUser.create([
-                  { first_name: 'KP Varma',  last_name: "", country: "AE", mobile_number: "+971501370320", organisation: "Right Solutions", email: "krshnaprsad@gmail.com", password: "Password@1", password_confirmation: "Password@1", t_c_accepted: true, position: "manager", flag: false}, 
+                  { first_name: 'KP Varma',  last_name: "", country: "AE", mobile_number: "+971501370320", organisation: "Right Solutions", email: "krshnaprsad@gmail.com", password: "Password@1", password_confirmation: "Password@1", t_c_accepted: true, position: "manager"}, 
                 ])
 else
   ClientUser.create([
-                  { first_name: 'Sherlock',  last_name: "Holmes", country: "GB", mobile_number: "12345678", organisation: "Conon Doyle", email: "holmes@yopmail.com", password: "Password@1", password_confirmation: "Password@1", position: "manager", t_c_accepted: true, flag: false},
-                  #{ first_name: 'Athira',  last_name: "Nair", country: "GB", mobile_number: "12345678", organisation: "Rigt Solution", email: "athira@rightsolutions.ae", password: "Password@1", password_confirmation: "Password@1", position: "developer", t_c_accepted: true, flag: false}, 
+                  { first_name: 'Sherlock',  last_name: "Holmes", country: "GB", mobile_number: "12345678", organisation: "Conon Doyle", email: "holmes@yopmail.com", password: "Password@1", password_confirmation: "Password@1", position: "manager", t_c_accepted: true},
+                  #{ first_name: 'Athira',  last_name: "Nair", country: "GB", mobile_number: "12345678", organisation: "Rigt Solution", email: "athira@rightsolutions.ae", password: "Password@1", password_confirmation: "Password@1", position: "developer", t_c_accepted: true}, 
                   # { first_name: 'Huckleburry',  last_name: "Finn", country: "US", mobile_number: "12345678", organisation: "DM Studios", email: "finn@yopmail.com", password: "Password@1", password_confirmation: "Password@1", t_c_accepted: True}, 
                   # { first_name: 'Joan',  last_name: "Arc", country: "FR", mobile_number: "12345678", organisation: "French Ltd", email: "joan@yopmail.com", password: "Password@1", password_confirmation: "Password@1", t_c_accepted: True}, 
                 ])
