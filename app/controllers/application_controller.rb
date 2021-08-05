@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
+  # commented by Athira
+  # devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :mobile_number,:position,:country_code,:time_zone, :country, :organisation, :t_c_accepted, :flag])
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :mobile_number,:position,:country_code,:time_zone, :country, :organisation, :t_c_accepted])
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :mobile_number,:position,:country_code,:time_zone, :country, :organisation])
   end
