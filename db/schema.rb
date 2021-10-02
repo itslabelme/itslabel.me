@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_06_22_091408) do
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "first_name", limit: 256, null: false
     t.string "last_name", limit: 256
     t.string "mobile_number", limit: 24, null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "client_feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "client_feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "client_user_id"
     t.text "input", null: false
     t.text "output", null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["client_user_id"], name: "index_client_feedbacks_on_client_user_id"
   end
 
-  create_table "client_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "client_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "first_name", limit: 256, null: false
     t.string "last_name", limit: 256
     t.string "position", limit: 256
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["unlock_token"], name: "index_client_users_on_unlock_token", unique: true
   end
 
-  create_table "document_folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "document_folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "title", limit: 256, null: false
     t.bigint "parent_id"
     t.bigint "user_id"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["user_id"], name: "index_document_folders_on_user_id"
   end
 
-  create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "client_user_id"
     t.string "provider"
     t.string "uid"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["client_user_id"], name: "index_identities_on_client_user_id"
   end
 
-  create_table "label_templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "label_templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", limit: 256
     t.string "description", limit: 1024
     t.string "style", limit: 64
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["admin_user_id"], name: "index_label_templates_on_admin_user_id"
   end
 
-  create_table "permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "title", limit: 256, null: false
     t.string "route", limit: 256, null: false
     t.string "description", limit: 256, null: false
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "subscription_permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "subscription_permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "title", limit: 256, null: false
     t.bigint "permission_id"
     t.bigint "subscription_id"
@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["subscription_id"], name: "index_subscription_permissions_on_subscription_id"
   end
 
-  create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "title", limit: 256, null: false
     t.float "price", default: 0.0
     t.string "status", limit: 16, default: "ACTIVE", null: false
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "table_document_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "table_document_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "table_document_id"
     t.string "input_phrase", limit: 256, null: false
     t.string "input_language", limit: 16, null: false
@@ -193,7 +193,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["table_document_id"], name: "index_table_document_items_on_table_document_id"
   end
 
-  create_table "table_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "table_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "title", limit: 256, null: false
     t.string "input_language", limit: 16, null: false
     t.string "output_1_language", limit: 16, null: false
@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["user_id"], name: "index_table_documents_on_user_id"
   end
 
-  create_table "template_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "template_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "title", limit: 256, null: false
     t.string "input_language", limit: 16, null: false
     t.string "output_language", limit: 16, null: false
@@ -227,7 +227,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["user_id"], name: "index_template_documents_on_user_id"
   end
 
-  create_table "translation_query_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "translation_query_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.text "input_phrase", null: false
     t.string "input_language", limit: 16, null: false
     t.text "output_phrase", null: false
@@ -242,7 +242,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["client_user_id"], name: "index_translation_query_histories_on_client_user_id"
   end
 
-  create_table "translation_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "translation_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "requested_by_id"
     t.text "input_phrase", null: false
     t.string "input_language", limit: 16, null: false
@@ -255,7 +255,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["requested_by_id"], name: "index_translation_requests_on_requested_by_id"
   end
 
-  create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "input_phrase", limit: 256, null: false
     t.string "input_language", limit: 16, null: false
     t.string "output_phrase", limit: 256, null: false
@@ -270,14 +270,14 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.index ["input_length"], name: "index_translations_on_input_length"
   end
 
-  create_table "uploads_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "uploads_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "admin_user", limit: 256, null: false
     t.string "file_path", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "translation_uploads_history_id", null: false
     t.json "summary_new", null: false
     t.datetime "created_at", null: false
@@ -287,7 +287,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_091408) do
     t.integer "total_error_data"
   end
 
-  create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "subscription_id"
     t.datetime "created_at", null: false

@@ -57,7 +57,8 @@
                               </div>
                               <% end %>
                               
-
+                             <!--commented by Athira -->
+                              <%#= f.hidden_field :flag, value: true %>
 
                               <div class="row">
                                 
@@ -197,15 +198,25 @@
                               </div>
 
                               <div class="row">  
-                                <a class="navbar-brand" style="margin-right: .3rem" href="javascript:void(0);">                              
+                                <a class="navbar-brand" style="margin-right: .3rem; padding-bottom:10px;" href="javascript:void(0);">                              
                                   <!-- Policies -->
                                   <div class="col-md-12">                                  
                                     <%= f.label :t_c_accepted, style: 'font-size: 0.95rem;color:black;' do %>
                                       <%= f.check_box :t_c_accepted, :id => "check", :class => "input-assumpte" %>
-                                      I agree the <%= link_to 'Terms and Conditions', policies_path, target: :_blank, style: 'font-size: 0.95rem;' %>.
+                                      I agree to the <%= link_to 'Terms and Conditions', 'https://itslabel.me/terms-and-conditions/', target: :_blank, style: 'font-size: 0.95rem;' %>.
                                     <% end %>
                                   </div>
                                 </a>
+                              </div>
+                              
+                              <% flash.each do |key, value| %>
+                                <div class="flash <%= key %>" style="color:#E15858;"><%= value %></div>
+                              <% end %><br>
+                              <!-- Captcha -->
+                              <div class="row">
+                                <div class="col-md-12">  
+                                  <%= recaptcha_tags %>
+                                </div>
                               </div>
                                                 
                               <div class="form-group">
@@ -215,7 +226,7 @@
                             <% end %>
 
                             <!-- <p class="text-left">Have an account? <%#= link_to "Log In", new_client_user_session_path %> </p> -->
-                            <p class="text-left">Have an account? <a href="/">Login</a> </p>
+                            <p class="text-left">Already have an account? <a href="/">Login</a> </p>
               
 <!--                             <div class="separator-linethrough"><span>OR SIGN IN USING</span></div>
                             <ul class="its-login-social">
