@@ -198,17 +198,17 @@ class ClientUser < ApplicationRecord
   #Edited by Athira for fix the validation bugs in Facebook signup 
   def self.create_or_fetch_fb_user(access_token, signed_in_resource=nil)
     data = access_token.info
-    user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
+    user = ClientUser.where(:provider => access_token.provider, :uid => access_token.uid ).first
     if user
       return user
     else
-      registered_user = User.where(:email => access_token.info.email).first
+      registered_user = ClientUser.where(:email => access_token.info.email).first
       if registered_user
         return registered_user
       else
         fullname = data['name'].split(' ')
         first_name, last_name = fullname[0], fullname[1]
-        user = User.create(first_name: first_name,
+        user = ClientUser.create(first_name: first_name,
           last_name: last_name,
           email: data["email"],
           provider:access_token.provider,
