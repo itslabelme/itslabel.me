@@ -307,10 +307,11 @@ $(document).on('click', '.its-tran-not-found', function (e) {
   // console.log("clickedPhrase: ", clickedPhrase);
   requestForTranslation(clickedPhrase);
 });
-// OnClick Event for the export button
-$("#export").click(function(){
-  exportFreeTranslation(true);
-});
+
+// OnClick Event for the export button .. On mobile view its not working so sanoop changed the functionality to on click
+// $("#export").click(function(){
+//   exportFreeTranslation(true);
+// });
 // OnClick Event for swap button
 $(".swap").click(function(){
   swapLanguages();
