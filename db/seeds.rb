@@ -28,6 +28,7 @@ if Rails.env.production?
 else
   ClientUser.create([
                   { first_name: 'Sherlock',  last_name: "Holmes", country: "GB", mobile_number: "12345678", organisation: "Conon Doyle", email: "holmes@yopmail.com", password: "Password@1", password_confirmation: "Password@1", position: "manager", t_c_accepted: true},
+                  { first_name: 'anoop',  last_name: "s", country: "GB", mobile_number: "12345678", organisation: "Conon Doyle", email: "anoop@yopmail.com", password: "Password@1", password_confirmation: "Password@1", position: "manager", t_c_accepted: true},
                   #{ first_name: 'Athira',  last_name: "Nair", country: "GB", mobile_number: "12345678", organisation: "Rigt Solution", email: "athira@rightsolutions.ae", password: "Password@1", password_confirmation: "Password@1", position: "developer", t_c_accepted: true}, 
                   # { first_name: 'Huckleburry',  last_name: "Finn", country: "US", mobile_number: "12345678", organisation: "DM Studios", email: "finn@yopmail.com", password: "Password@1", password_confirmation: "Password@1", t_c_accepted: True}, 
                   # { first_name: 'Joan',  last_name: "Arc", country: "FR", mobile_number: "12345678", organisation: "French Ltd", email: "joan@yopmail.com", password: "Password@1", password_confirmation: "Password@1", t_c_accepted: True}, 
@@ -164,13 +165,15 @@ LabelTemplate.create([
   },
   
 ])
-puts "Adding Subscriptions".green
 
+
+puts "Adding Subscriptions".green
   Subscription.create([
                   { title: 'Free',  price: "0", status: "Active"}, 
-                  { title: 'Biz Lite',  price: "39.99", status: "Active"}, 
-                  { title: 'Biz Pro',  price: "49.99", status: "Active"}, 
-                  { title: 'Enterprise',  price: "99.99", status: "Active"}, 
+                  { title: 'Premium',  price: "49.99", status: "Active"}, 
+                  # { title: 'Biz Lite',  price: "39.99", status: "Active"}, 
+                  # { title: 'Biz Pro',  price: "49.99", status: "Active"}, 
+                  # { title: 'Enterprise',  price: "99.99", status: "Active"}, 
                 ])
               
 puts "Adding Permissions".green

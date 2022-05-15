@@ -20,8 +20,14 @@ class ClientUser < ApplicationRecord
   has_many :documents, class_name: "DocumentView", foreign_key: :user_id
   has_many :document_folders, class_name: "DocumentFolder", foreign_key: :user_id
 
+  has_one :user_subscription, class_name: "UserSubscription", foreign_key: :user_id
+
   # Callback
   after_create :create_default_folder
+
+  #call back function to create default(free) subscription plan after registration
+  after_create :create_user_subscription
+
   # TODO:- For Welcome mail for new user
   after_create :send_welcome_email
   #commented by Athira
@@ -49,9 +55,23 @@ class ClientUser < ApplicationRecord
     country1.try(:name)
   end
 
+  def create_user_subscription
+    if self.user_subscription
+      self.user_subscription.update(subscription_id: 1)
+    else
+      user_subscription = UserSubscription.new
+      user_subscription.user_id = self.id
+      user_subscription.subscription_id = 1
+      if user_subscription.valid?
+        user_subscription.save
+      end
+    end
+  end
+  
   def create_default_folder
     default_folder = default_folder || self.document_folders.create(title: "Default")
   end
+
 
   def default_folder
     self.document_folders.where(title: "Default").first
