@@ -28,6 +28,10 @@ class ClientUser < ApplicationRecord
   #call back function to create default(free) subscription plan after registration
   after_create :create_user_subscription
 
+  # Call back function to create customer in stripe in the name of user
+  # after_create :create_customer_on_stripe
+
+
   # TODO:- For Welcome mail for new user
   after_create :send_welcome_email
   #commented by Athira
@@ -67,6 +71,13 @@ class ClientUser < ApplicationRecord
       end
     end
   end
+
+  # def create_user_subscription
+  #   # StripeChargesServices.new(self, ).create_customer
+  #   # binding.pry
+  #   # StripeChargesServices.create_customer(self)
+  # end
+
   
   def create_default_folder
     default_folder = default_folder || self.document_folders.create(title: "Default")

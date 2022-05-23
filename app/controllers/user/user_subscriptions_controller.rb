@@ -39,7 +39,6 @@ module User
     end
     
     def edit
-      
     end
     
     def update
@@ -61,12 +60,20 @@ module User
         set_flash_message('The form has some errors. Please correct them and submit again', :error)
       end
     end
+
     def destroy
-      
     end
     
+    def subscribe
+      StripeChargesServices.new(charges_params, current_client_user).susbscribe
+    end
+
     private
     
+    def charges_params
+      params.permit(:stripeEmail, :stripeToken, :order_id)
+    end
+
     def get_user_subscription
       @user_subscription = UserSubscription.find_by(user_id:current_client_user)
     end

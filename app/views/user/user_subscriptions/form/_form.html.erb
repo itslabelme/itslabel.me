@@ -11,7 +11,9 @@
 
 
 
-<%= form_with(url: form_url,  
+<%= form_with(
+      url: subscribe_user_user_subscriptions_path,  
+      # url: form_url,  
       class: "form-floating", 
       id: "sub_plan_form",
       model: @user_subscription,
@@ -50,7 +52,14 @@
                         </div>
                         <div>
                           <a href="javascript:void(0);" onclick="updatePlan(<%= subscription.id %>)" class="price-buy">
-                            <%= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
+                            <%#= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="A month's subscription"
+    data-amount="49"
+    data-locale="auto"></script>
+
                           </a></div>
                       </th>
                     <% end %>

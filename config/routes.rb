@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     root to: 'home#index'
 
     #for payment
-    resources :charges, only: [:new, :create]
+    resources :charges, only: [:index, :new, :create]
 
     
     # Listing All Kinds of Documents
@@ -113,6 +113,7 @@ Rails.application.routes.draw do
     resources :user_subscriptions, only: [:create, :index, :update] do
      collection do
       put :update
+      post :subscribe 
       end
     end
     
