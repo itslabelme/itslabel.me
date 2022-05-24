@@ -196,6 +196,9 @@ puts "Adding Permissions".green
                   
                   { title: 'New Template Translate',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#save_and_translate'}, 
                   { title: 'Preview Template Document',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#preview'}, 
+                
+
+
                 #  { title: 'Print Template',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#print'}, 
                  # { title: 'Update Template Status',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#update_status'}, 
                   { title: 'Template Document',  description: "TemplateDocuments", permission_group: "Template",route:'template_documents#select_template'}, 
@@ -228,15 +231,23 @@ puts "Adding Subscription Permissions".green
 
   SubscriptionPermission.create([
         { title: 'Free',  permission_id: "1", subscription_id: "1"}, 
-   #    { title: 'Free',  permission_id: "16", subscription_id: "1"}, 
- #       { title: 'Free',  permission_id: "17", subscription_id: "1"}, 
-#        { title: 'Free',  permission_id: "30", subscription_id: "1"}, 
-#        { title: 'Free',  permission_id: "30", subscription_id: "1"},
-#        { title: 'Free',  permission_id: "31", subscription_id: "1"},
-#        { title: 'Free',  permission_id: "32", subscription_id: "1"},
-#        { title: 'Free',  permission_id: "33", subscription_id: "1"},
-#        { title: 'Free',  permission_id: "34", subscription_id: "1"},
-#        { title: 'Free',  permission_id: "35", subscription_id: "1"},
+        { title: 'Free',  permission_id: "2", subscription_id: "1"}, 
+        { title: 'Free',  permission_id: "3", subscription_id: "1"}, 
+        { title: 'Free',  permission_id: "4", subscription_id: "1"}, 
+        { title: 'Free',  permission_id: "5", subscription_id: "1"}, 
+        { title: 'Free',  permission_id: "6", subscription_id: "1"}, 
+
+        { title: 'Premium',  permission_id: "1", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "2", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "3", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "4", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "5", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "6", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "7", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "8", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "9", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "10", subscription_id: "2"}, 
+        { title: 'Premium',  permission_id: "11", subscription_id: "2"}, 
      
      ])
 

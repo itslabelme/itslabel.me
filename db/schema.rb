@@ -162,8 +162,6 @@ ActiveRecord::Schema.define(version: 2022_05_20_246185) do
     t.string "description", limit: 256
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "stripe_prod_token"
-    t.string "stripe_price_token"
     t.string "stripe_subscr_token"
   end
 

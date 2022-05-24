@@ -3,6 +3,7 @@
     form_method = :post
     form_url = {action: :create}
   else
+    # form_method = :post
     form_method = :put
     id=@user_subscription.id
     form_url = {action: :update}
@@ -12,8 +13,8 @@
 
 
 <%= form_with(
-      url: subscribe_user_user_subscriptions_path,  
-      # url: form_url,  
+      # url: subscribe_user_user_subscriptions_path,  
+      url: form_url,  
       class: "form-floating", 
       id: "sub_plan_form",
       model: @user_subscription,
@@ -51,16 +52,30 @@
                           <span> <%= price %> </span>
                         </div>
                         <div>
-                          <a href="javascript:void(0);" onclick="updatePlan(<%= subscription.id %>)" class="price-buy">
-                            <%#= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
+                          <%# binding.pry %>
 
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="A month's subscription"
-    data-amount="49"
-    data-locale="auto"></script>
 
-                          </a></div>
+                            <% 
+                              if subscription.title.to_s != 'Free' && @user_subscription.subscription_id != 2
+                            %>
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                data-description="A month's subscription"
+                                data-amount="49.99"
+                                data-email="<%= @current_client_user.email %>"
+                                data-locale="auto"></script>
+                              <input type="hidden"  name="user_subscription[sub_id]" value="<%= subscription.id %>" />
+                              <input type="hidden"  name="user_subscription[user_id]" value="<%= @current_client_user.id %>" />
+                            <% else %> 
+                              <!-- <a href="javascript:void(0);"  class="price-buy" onclick="updatePlan(<%#= subscription.id %>)"> -->
+                                <%#= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
+                                <!-- Down Grade -->
+                              <!-- </a> -->
+                            <% end %>
+
+
+
+                        </div>
                       </th>
                     <% end %>
                 </tr>
@@ -270,7 +285,7 @@
          headers: {
           'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
         },
-       data: {"user_id" : user_id, "subscription_id": sub_id},
+       data: {"user_subscription": {"user_id" : user_id, "sub_id": sub_id}},
        // dataType: "json",
        success: function(data) {
          }

@@ -15,7 +15,28 @@
   </div>
 
   <!-- Show Success / Error / Info Messages If any set by the controller action -->
-  <%= flash_message(false) if defined?(flash) -%>
+  <%#= flash_message(false) if defined?(flash) -%>
+
+
+  <div class="row clearfix">
+    <div class="col-lg-12">
+      <div class="card">
+
+        <div class="tab-content mt-5">
+          
+        <div class="tab-pane active show" >
+            <%#= render partial: 'user/user_subscriptions/form/form' %>
+            <span style="color: #006649; font-size: 25px;"> Please upgrade your 
+               
+              <a style="color: #4c9df3" href="/user/user_subscriptions"> susbscription plan </a>
+            </span>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   
 

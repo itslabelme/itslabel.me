@@ -42,16 +42,21 @@ module User
     end
     
     def update
+      # binding.pry
       # @user_subscription.assign_attributes(user_subscription_params)
       assign_user_subscription_params
+
+      # binding.pry
+      stripe_sub = StripeChargesServices.new(charges_params, current_client_user).susbscribe
      
       if @user_subscription.valid?
         @user_subscription.save
         set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
         set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
-        respond_to do |format|
-          format.js { render inline: "location.reload();" }
-        end
+        redirect_to user_user_subscriptions_path
+        # respond_to do |format|
+        #   format.js { render inline: "location.reload();" }
+        # end
       else
         @per_page=params[:page]
         message = I18n.t('errors.failed_to_create', item: "subscription")
@@ -65,6 +70,8 @@ module User
     end
     
     def subscribe
+      # binding.pry
+
       StripeChargesServices.new(charges_params, current_client_user).susbscribe
     end
 
@@ -79,8 +86,8 @@ module User
     end
 
     def assign_user_subscription_params
-      @user_subscription.user_id = params['user_id'].to_i
-      @user_subscription.subscription_id = params['subscription_id'].to_i
+      @user_subscription.user_id = params["user_subscription"]["user_id"].to_i
+      @user_subscription.subscription_id = params["user_subscription"]["sub_id"].to_i
     end
 
     def new_user_subscription
