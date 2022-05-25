@@ -3,6 +3,7 @@
     form_method = :post
     form_url = {action: :create}
   else
+    # form_method = :post
     form_method = :put
     id=@user_subscription.id
     form_url = {action: :update}
@@ -11,7 +12,9 @@
 
 
 
-<%= form_with(url: form_url,  
+<%= form_with(
+      # url: subscribe_user_user_subscriptions_path,  
+      url: form_url,  
       class: "form-floating", 
       id: "sub_plan_form",
       model: @user_subscription,
@@ -49,9 +52,30 @@
                           <span> <%= price %> </span>
                         </div>
                         <div>
-                          <a href="javascript:void(0);" onclick="updatePlan(<%= subscription.id %>)" class="price-buy">
-                            <%= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
-                          </a></div>
+                          <%# binding.pry %>
+
+
+                            <% 
+                              if subscription.title.to_s != 'Free' && @user_subscription.subscription_id != Subscription.find_by_title("Premium").id
+                            %>
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                data-description="A month's subscription"
+                                data-amount="49.99"
+                                data-email="<%= @current_client_user.email %>"
+                                data-locale="auto"></script>
+                              <input type="hidden"  name="user_subscription[sub_id]" value="<%= subscription.id %>" />
+                              <input type="hidden"  name="user_subscription[user_id]" value="<%= @current_client_user.id %>" />
+                            <% else %> 
+                              <!-- <a href="javascript:void(0);"  class="price-buy" onclick="updatePlan(<%#= subscription.id %>)"> -->
+                                <%#= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
+                                <!-- Down Grade -->
+                              <!-- </a> -->
+                            <% end %>
+
+
+
+                        </div>
                       </th>
                     <% end %>
                 </tr>
@@ -65,8 +89,8 @@
                   <td>Monthly Subscription</td>
                   <td><span class="tickblue">Free</span></td>
                   <td><span class="tickblue">$ 39.99</span></td>
-                  <td><span class="tickblue">$ 49.99</span></td> 
-                  <td><span class="tickblue">NA</td>
+                  <!-- <td><span class="tickblue">$ 49.99</span></td>  -->
+                  <!-- <td><span class="tickblue">NA</td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -76,8 +100,8 @@
                   <td>Customer Registration</td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -87,8 +111,8 @@
                   <td>Free Translation Access</td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -98,8 +122,8 @@
                   <td>Languages</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -109,8 +133,8 @@
                   <td>Output to PDF</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -120,8 +144,8 @@
                   <td>Online Archiving & Storage*</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -131,8 +155,8 @@
                   <td>Label Output Sizing</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -142,8 +166,8 @@
                   <td>Basic Template Features</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -153,8 +177,8 @@
                   <td>Advanced Template Features</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -164,8 +188,8 @@
                   <td>Nutrition Panel Template</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickgreen"><i class="fa fa-check"></i></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -175,8 +199,8 @@
                   <td>Customer Response 24hrs</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">1 Language</span></td>
-                  <td><span class="tickblue"></span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"></span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -186,8 +210,8 @@
                   <td>Customer Response 12hrs</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue">2 Languages</span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue">2 Languages</span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -197,8 +221,8 @@
                   <td>Option to Customise Interface</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -208,8 +232,8 @@
                   <td>24 hr Customer Support</td>
                   <td class="tickblue">-</td>
                   <td class="tickblue">-</td>
-                  <td class="tickblue"><i class="fa fa-check"></i></td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td class="tickblue"><i class="fa fa-check"></i></td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -219,8 +243,8 @@
                     <td>Dedicated Server</td>
                     <td class="tickblue">-</td>
                     <td class="tickblue">-</td>
-                    <td class="tickblue">-</td>
-                    <td><span class="tickblue">-</span></td>
+                    <!-- <td class="tickblue">-</td> -->
+                    <!-- <td><span class="tickblue">-</span></td> -->
                   </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -230,8 +254,8 @@
                   <td>User Licenses Per Account (simultaneous log-ins)</td>
                   <td class="tickblue">1</td>
                   <td class="tickblue">3</td>
-                  <td class="tickblue">5</td>
-                  <td><span class="tickblue">-</span></td>
+                  <!-- <td class="tickblue">5</td> -->
+                  <!-- <td><span class="tickblue">-</span></td> -->
                 </tr>
             </tbody>
             </table>
@@ -261,7 +285,7 @@
          headers: {
           'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
         },
-       data: {"user_id" : user_id, "subscription_id": sub_id},
+       data: {"user_subscription": {"user_id" : user_id, "sub_id": sub_id}},
        // dataType: "json",
        success: function(data) {
          }

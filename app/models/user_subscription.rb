@@ -9,7 +9,8 @@ class UserSubscription < ApplicationRecord
   # Validations
   validates :subscription_id, presence: true,  allow_blank: false
 
+  belongs_to :client_user, foreign_key: :user_id
   # belongs_to :client_user
-  # belongs_to :subscription
+  belongs_to :subscription
 
 end

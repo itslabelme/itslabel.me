@@ -34,6 +34,10 @@ Rails.application.routes.draw do
     post 'csv_parse', to: 'table_documents#csv_parse', as: 'csv_parse'
     
     root to: 'home#index'
+
+    #for payment
+    resources :charges, only: [:index, :new, :create]
+
     
     # Listing All Kinds of Documents
     resources :documents, only: [:index, :destroy] do
@@ -109,6 +113,7 @@ Rails.application.routes.draw do
     resources :user_subscriptions, only: [:create, :index, :update] do
      collection do
       put :update
+      post :subscribe 
       end
     end
     
