@@ -13,7 +13,9 @@ module User
         # raise @user_subscription.subscription_id.inspect
       else
         new_user_subscription
-        @user_subscription.subscription_id=1
+        # @user_subscription.subscription_id=1   // changed by sanoop to fix susbcription time issue
+        sub_id = Subscription.find_by_title("Free")
+        @user_subscription.subscription_id= sub_id.id
       end
     end
     

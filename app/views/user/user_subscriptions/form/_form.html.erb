@@ -56,7 +56,7 @@
 
 
                             <% 
-                              if subscription.title.to_s != 'Free' && @user_subscription.subscription_id != 2
+                              if subscription.title.to_s != 'Free' && @user_subscription.subscription_id != Subscription.find_by_title("Premium").id
                             %>
                                 <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"

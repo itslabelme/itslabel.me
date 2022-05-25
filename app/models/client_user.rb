@@ -58,11 +58,12 @@ class ClientUser < ApplicationRecord
 
   def create_user_subscription
     if self.user_subscription
-      self.user_subscription.update(subscription_id: 1)
+      self.user_subscription.update(subscription_id: Subscription.find_by_title("Free").id)
     else
       user_subscription = UserSubscription.new
       user_subscription.user_id = self.id
-      user_subscription.subscription_id = 1
+      # user_subscription.subscription_id = 1
+      user_subscription.subscription_id = Subscription.find_by_title("Free").id
       if user_subscription.valid?
         user_subscription.save
       end
