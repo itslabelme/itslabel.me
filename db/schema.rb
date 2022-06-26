@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_25_148157) do
+ActiveRecord::Schema.define(version: 2022_06_21_721485) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -294,6 +294,7 @@ ActiveRecord::Schema.define(version: 2022_05_25_148157) do
     t.bigint "subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "usr_subscr_strip_token"
     t.index ["subscription_id"], name: "index_user_subscriptions_on_subscription_id"
     t.index ["user_id"], name: "index_user_subscriptions_on_user_id"
   end

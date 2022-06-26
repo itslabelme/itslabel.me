@@ -12,7 +12,7 @@
 
 
 
-<%= form_with(
+<%#= form_with(
       # url: subscribe_user_user_subscriptions_path,  
       url: form_url,  
       class: "form-floating", 
@@ -23,7 +23,7 @@
 
     <%= hidden_field_tag "called_from", params[:called_from] %>
     <div class="body">
-      <%= f.hidden_field :user_id, :value => @current_client_user.id %>
+      <%#= f.hidden_field :user_id, :value => @current_client_user.id %>
         <div class="comparison">
             <table>
               <thead>
@@ -56,16 +56,32 @@
 
 
                             <% 
-                              if subscription.title.to_s != 'Free' && @user_subscription.subscription_id != Subscription.find_by_title("Premium").id
+                              if subscription.title.to_s != 'Free' && @user_subscription.subscription_id != subscription.id
                             %>
+
+                            <%# binding.pry %>
+
+                            <%= form_with(
+                                # url: subscribe_user_user_subscriptions_path,  
+                                url: form_url,  
+                                class: "form-floating", 
+                                id: "sub_plan_form",
+                                model: @user_subscription,
+                                method: form_method, 
+                                html: { autocomplete: "off" }) do |f| %>
+
                                 <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                                 data-description="A month's subscription"
-                                data-amount="4900"
+                                data-amount="<%= subscription.price * 100 %>"
                                 data-email="<%= @current_client_user.email %>"
                                 data-locale="auto"></script>
                               <input type="hidden"  name="user_subscription[sub_id]" value="<%= subscription.id %>" />
                               <input type="hidden"  name="user_subscription[user_id]" value="<%= @current_client_user.id %>" />
+
+                            <% end %>
+
+
                             <% else %> 
                               <!-- <a href="javascript:void(0);"  class="price-buy" onclick="updatePlan(<%#= subscription.id %>)"> -->
                                 <%#= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
@@ -83,179 +99,195 @@
               <tbody>
                 <tr>
                   <td></td>
-                  <td colspan="4">Monthly Subscription</td>
+                  <td colspan="2">Monthly Subscription</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Monthly Subscription</td>
                   <td><span class="tickblue">Free</span></td>
-                  <td><span class="tickblue">$ 39.99</span></td>
-                  <!-- <td><span class="tickblue">$ 49.99</span></td>  -->
-                  <!-- <td><span class="tickblue">NA</td> -->
+                  <td><span class="tickblue">$ 49.99</span></td>
+                  <td><span class="tickblue">$ 149.99</span></td> 
+                  <td><span class="tickblue">$ 269.99</td>
+                  <td><span class="tickblue">$ 509.99</td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Customer Registration</td>
+                  <td colspan="2">Customer Registration</td>
                 </tr>
                 <tr>
                   <td>Customer Registration</td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Free Translation Access</td>
+                  <td colspan="2">Free Translation Access</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Free Translation Access</td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Languages</td>
+                  <td colspan="2">Languages</td>
                 </tr>
                 <tr>
                   <td>Languages</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Output to PDF</td>
+                  <td colspan="2">Output to PDF</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Output to PDF</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Online Archiving & Storage*</td>
+                  <td colspan="2">Online Archiving & Storage*</td>
                 </tr>
                 <tr>
                   <td>Online Archiving & Storage*</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Label Output Sizing</td>
+                  <td colspan="2">Label Output Sizing</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Label Output Sizing</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Basic Template Features</td>
+                  <td colspan="2">Basic Template Features</td>
                 </tr>
                 <tr>
                   <td>Basic Template Features</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Advanced Template Features</td>
+                  <td colspan="2">Advanced Template Features</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Advanced Template Features</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Nutrition Panel Template</td>
+                  <td colspan="2">Nutrition Panel Template</td>
                 </tr>
                 <tr>
                   <td>Nutrition Panel Template</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <!-- <td><span class="tickgreen"><i class="fa fa-check"></i></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Customer Response 24hrs</td>
+                  <td colspan="2">Customer Response 24hrs</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Customer Response 24hrs</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">1 Language</span></td>
-                  <!-- <td><span class="tickblue"></span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Customer Response 12hrs</td>
+                  <td colspan="2">Customer Response 12hrs</td>
                 </tr>
                 <tr>
                   <td>Customer Response 12hrs</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue">-</span></td>
-                  <!-- <td><span class="tickblue">2 Languages</span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">Option to Customise Interface</td>
+                  <td colspan="2">Option to Customise Interface</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Option to Customise Interface</td>
                   <td><span class="tickblue">-</span></td>
                   <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td>
-                  <!-- <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">24 hr Customer Support</td>
+                  <td colspan="2">24 hr Customer Support</td>
                 </tr>
                 <tr>
                   <td>24 hr Customer Support</td>
                   <td class="tickblue">-</td>
                   <td class="tickblue">-</td>
-                  <!-- <td class="tickblue"><i class="fa fa-check"></i></td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td colspan="4">Dedicated Server</td>
+                    <td colspan="2">Dedicated Server</td>
                   </tr>
                   <tr class="compare-row">
                     <td>Dedicated Server</td>
                     <td class="tickblue">-</td>
                     <td class="tickblue">-</td>
-                    <!-- <td class="tickblue">-</td> -->
-                    <!-- <td><span class="tickblue">-</span></td> -->
+                    <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                    <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                    <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
                   </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="4">User Licenses Per Account (simultaneous log-ins)</td>
+                  <td colspan="2">User Licenses Per Account (simultaneous log-ins)</td>
                 </tr>
                 <tr>
                   <td>User Licenses Per Account (simultaneous log-ins)</td>
                   <td class="tickblue">1</td>
                   <td class="tickblue">3</td>
-                  <!-- <td class="tickblue">5</td> -->
-                  <!-- <td><span class="tickblue">-</span></td> -->
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
                 </tr>
             </tbody>
             </table>
@@ -264,14 +296,14 @@
                 <span><i class="fa fa-check"></i>* : Limited scope</span>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 mt-2" style="text-align: left;">
-                <span>TBC* : Please contact us on (contact email) to find our how we can customise and integrate ITS Label into you organisation's workflow. </span>
+                <!-- <span>TBC* : Please contact us on (contact email) to find our how we can customise and integrate ITS Label into you organisation's workflow. </span> -->
               </div>
             </div>
         </div> 
     </div>
   
 
-<% end %>
+<%# end %>
 
 
 <script type="text/javascript">

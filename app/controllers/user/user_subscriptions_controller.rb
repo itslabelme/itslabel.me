@@ -48,8 +48,9 @@ module User
       # @user_subscription.assign_attributes(user_subscription_params)
       assign_user_subscription_params
 
+      stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
       # binding.pry
-      stripe_sub = StripeChargesServices.new(charges_params, current_client_user).susbscribe
+      @user_subscription.usr_subscr_strip_token = stripe_sub.id
      
       if @user_subscription.valid?
         @user_subscription.save
