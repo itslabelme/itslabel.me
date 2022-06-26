@@ -1,18 +1,32 @@
 class StripeChargesServices
   DEFAULT_CURRENCY = 'inr'.freeze
   
-  def initialize(params, user)
+  def initialize(params, user, subscription_id)
     @stripe_email = params[:stripeEmail]
     @stripe_token = params[:stripeToken]
-    @stripe_price_token = Rails.configuration.stripe[:stripe_price_token]
+    @subscription_id = subscription_id
+    # @stripe_price_token = Rails.configuration.stripe[:stripe_price_token]
     @user = user
   end
 
   def susbscribe
 
     #Function to create subscription using user(for strip_user_token) object and subscription(for price token) object
-    sub = Subscription.find_by_title("Premium")
-    create_subscription(sub, find_customer)
+    # sub = Subscription.find_by_title("Premium")
+    sub = Subscription.find_by_id(@subscription_id)
+
+    if sub.title == "Monthly"
+      stripe_price_token = Rails.configuration.stripe[:stripe_price_token_monthly]
+    elsif sub.title == "3 Months"
+      stripe_price_token = Rails.configuration.stripe[:stripe_price_token_3_month]
+    elsif sub.title == "6 Months"
+      stripe_price_token = Rails.configuration.stripe[:stripe_price_token_6_month]
+    elsif sub.title =="12 Months"
+      stripe_price_token = Rails.configuration.stripe[:stripe_price_token_12_month]
+    end
+
+    # binding.pry
+    return create_subscription(sub, find_customer, stripe_price_token)
   end
 
   private
@@ -50,14 +64,22 @@ class StripeChargesServices
   end
 
 
-  def create_subscription(subscription, customer)
+  def create_subscription(subscription, customer, stripe_price_token)
+    # binding.pry 
     strip_sub = Stripe::Subscription.create({
       customer: customer.id,
       items: [
-        {price: @stripe_price_token},
+        {
+          price: stripe_price_token,
+        },
       ],
+      trial_end: 1656689857
+      # trial_start: 1632138523
     })
-    subscription.update(stripe_subscr_token: strip_sub.id)
+
+    return strip_sub
+    # user_subs = UserSubscription.where(user_id: customer.id, subscription_id: subscription.id).first
+    # user_subs.update(usr_subscr_strip_token: strip_sub.id)
 
   end
 
