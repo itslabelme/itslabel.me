@@ -1,6 +1,6 @@
 module User
   class UserSubscriptionsController < User::BaseController
-    before_action :authenticate_client_user!
+    before_action :authenticate_client_user!, except: [:api_downgrade]
     before_action :get_user_subscription
     #before_action :access_denied, only: [:index, :new]
     
@@ -70,6 +70,13 @@ module User
     end
 
     def destroy
+    end
+
+    def downgrade_subscription
+      # binding.pry
+      user_id = params['subscription']['user_id']
+      GeneralServices.new(user_id, nil).downgrade_plan
+      
     end
     
     def subscribe

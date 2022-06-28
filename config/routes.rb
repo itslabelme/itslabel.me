@@ -33,7 +33,8 @@ Rails.application.routes.draw do
       # Parse CSV data
     post 'csv_parse', to: 'table_documents#csv_parse', as: 'csv_parse'
     
-    root to: 'home#index'
+    # root to: 'home#index'
+    root to: 'user_subscriptions#index'  #Redirect to susbscription page after login or registration
 
     #for payment
     resources :charges, only: [:index, :new, :create]
@@ -114,6 +115,7 @@ Rails.application.routes.draw do
      collection do
       put :update
       post :subscribe 
+      post :downgrade_subscription 
       end
     end
     
@@ -175,4 +177,8 @@ Rails.application.routes.draw do
   
   end
   
+  namespace :api, module: :api do
+        post 'api_downgrade', to: 'user_subscriptions#api_downgrade', as: 'api_downgrade'
+        post 'test_api', to: 'user_subscriptions#test_api', as: 'test_api'
+  end
 end
