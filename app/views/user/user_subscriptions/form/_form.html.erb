@@ -59,30 +59,33 @@
                               if subscription.title.to_s != 'Free' && @user_subscription.subscription_id != subscription.id
                             %>
 
-                            <%# binding.pry %>
 
-                            <%= form_with(
-                                # url: subscribe_user_user_subscriptions_path,  
-                                url: form_url,  
-                                class: "form-floating", 
-                                id: "sub_plan_form",
-                                model: @user_subscription,
-                                method: form_method, 
-                                html: { autocomplete: "off" }) do |f| %>
+                              <%= form_with(
+                                  # url: subscribe_user_user_subscriptions_path,  
+                                  url: form_url,  
+                                  class: "form-floating", 
+                                  id: "sub_plan_form",
+                                  model: @user_subscription,
+                                  method: form_method, 
+                                  html: { autocomplete: "off" }) do |f| %>
 
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                                data-description="A month's subscription"
-                                data-amount="<%= subscription.price * 100 %>"
-                                data-email="<%= @current_client_user.email %>"
-                                data-locale="auto"></script>
-                              <input type="hidden"  name="user_subscription[sub_id]" value="<%= subscription.id %>" />
-                              <input type="hidden"  name="user_subscription[user_id]" value="<%= @current_client_user.id %>" />
+                                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                  data-description="A month's subscription"
+                                  data-amount="<%= subscription.price * 100 %>"
+                                  data-email="<%= @current_client_user.email %>"
+                                  data-locale="auto"></script>
+                                <input type="hidden"  name="user_subscription[sub_id]" value="<%= subscription.id %>" />
+                                <input type="hidden"  name="user_subscription[user_id]" value="<%= @current_client_user.id %>" />
 
-                            <% end %>
+
+                              <% end %>
 
 
                             <% else %> 
+                              <% if subscription.title.to_s != 'Free' %>
+                                <a href="javascript:void(0);" class="mt-4" style="color: blue;"  onclick="downgradePlan(<%#= subscription.id %>)"> Downgrade Plan</a>
+                              <% end %>
                               <!-- <a href="javascript:void(0);"  class="price-buy" onclick="updatePlan(<%#= subscription.id %>)"> -->
                                 <%#= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
                                 <!-- Down Grade -->
@@ -322,5 +325,20 @@
        success: function(data) {
          }
        });
-  }
+    }
+
+    function downgradePlan(sub_id) {
+      var user_id = <%= @current_client_user.id %>
+       $.ajax({
+       url: "/user/user_subscriptions/downgrade_subscription.js",
+       type: "POST",
+         headers: {
+          'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+        },
+       data: {"subscription": {"user_id" : user_id}},
+       // dataType: "json",
+       success: function(data) {
+         }
+       });
+    }
 </script>

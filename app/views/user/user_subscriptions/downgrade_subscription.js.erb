@@ -1,0 +1,16 @@
+<% if @user_subscription.errors.blank? %>
+  
+  window.location.reload();
+  
+  // Showing Growl Like Message
+  notifySuccess("<%= escape_javascript(@notification[:title]) %>", "Successfully Downgraded");
+  
+
+<% else %>
+
+  // Showing Growl Like Message
+  notifyError("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");
+
+
+<% end %>
+
