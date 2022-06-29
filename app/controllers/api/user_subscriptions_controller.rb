@@ -11,14 +11,22 @@ module Api
     end
     
     def test_api
-      puts "------------------ ** Testing API result ** -----------------".white
-      puts " Params ".white
+      puts "------------------ ** Testing API result POST ** -----------------".white
+      puts " Params in Post".white
       puts params.to_json
       puts params['subscription'].to_json
       render json: {"status": "Done"}
 
     end
 
+    def test_api_2
+      puts "------------------ ** Testing API result GET ** -----------------".white
+      puts " Params in get".white
+      puts params.to_json
+      puts params['subscription'].to_json
+      render json: {"status": "Done"}
+
+    end
 
 
   end

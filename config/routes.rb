@@ -180,5 +180,6 @@ Rails.application.routes.draw do
   namespace :api, module: :api do
         post 'api_downgrade', to: 'user_subscriptions#api_downgrade', as: 'api_downgrade'
         post 'test_api', to: 'user_subscriptions#test_api', as: 'test_api'
+        get 'test_api', to: 'user_subscriptions#test_api_2', as: 'test_api2'
   end
 end
