@@ -29,6 +29,17 @@ class StripeChargesServices
     return create_subscription(sub, find_customer, stripe_price_token)
   end
 
+  def delete_subscription
+    user_subscription = UserSubscription.find_by(user_id: @user.id)
+
+    # binding.pry
+    
+    Stripe::Subscription.delete(
+      user_subscription.usr_subscr_strip_token,
+      # 'sub_1JbjFX2eZvKYlo2CQdChmkpk',
+    )
+  end
+
   private
 
   attr_accessor :user, :stripe_email, :stripe_token, :order
