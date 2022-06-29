@@ -75,14 +75,16 @@ module User
     def downgrade_subscription
       # binding.pry
       user_id = params['subscription']['user_id']
+      sub_id = params['subscription']['sub_id']
       GeneralServices.new(user_id, nil).downgrade_plan
       
+      StripeChargesServices.new(charges_params, current_client_user, sub_id).delete_subscription
     end
     
     def subscribe
       # binding.pry
 
-      StripeChargesServices.new(charges_params, current_client_user).susbscribe
+      StripeChargesServices.new(nil, current_client_user, ).susbscribe
     end
 
     private

@@ -102,7 +102,7 @@
               <tbody>
                 <tr>
                   <td></td>
-                  <td colspan="2">Monthly Subscription</td>
+                  <td colspan="5">Monthly Subscription</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Monthly Subscription</td>
@@ -114,7 +114,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Customer Registration</td>
+                  <td colspan="5">Customer Registration</td>
                 </tr>
                 <tr>
                   <td>Customer Registration</td>
@@ -126,7 +126,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Free Translation Access</td>
+                  <td colspan="5">Free Translation Access</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Free Translation Access</td>
@@ -138,7 +138,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Languages</td>
+                  <td colspan="5">Languages</td>
                 </tr>
                 <tr>
                   <td>Languages</td>
@@ -150,7 +150,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Output to PDF</td>
+                  <td colspan="5">Output to PDF</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Output to PDF</td>
@@ -162,7 +162,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Online Archiving & Storage*</td>
+                  <td colspan="5">Online Archiving & Storage*</td>
                 </tr>
                 <tr>
                   <td>Online Archiving & Storage*</td>
@@ -174,7 +174,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Label Output Sizing</td>
+                  <td colspan="5">Label Output Sizing</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Label Output Sizing</td>
@@ -186,7 +186,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Basic Template Features</td>
+                  <td colspan="5">Basic Template Features</td>
                 </tr>
                 <tr>
                   <td>Basic Template Features</td>
@@ -198,7 +198,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Advanced Template Features</td>
+                  <td colspan="5">Advanced Template Features</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Advanced Template Features</td>
@@ -210,7 +210,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Nutrition Panel Template</td>
+                  <td colspan="5">Nutrition Panel Template</td>
                 </tr>
                 <tr>
                   <td>Nutrition Panel Template</td>
@@ -222,7 +222,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Customer Response 24hrs</td>
+                  <td colspan="5">Customer Response 24hrs</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Customer Response 24hrs</td>
@@ -234,7 +234,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Customer Response 12hrs</td>
+                  <td colspan="5">Customer Response 12hrs</td>
                 </tr>
                 <tr>
                   <td>Customer Response 12hrs</td>
@@ -246,7 +246,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">Option to Customise Interface</td>
+                  <td colspan="5">Option to Customise Interface</td>
                 </tr>
                 <tr class="compare-row">
                   <td>Option to Customise Interface</td>
@@ -258,7 +258,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">24 hr Customer Support</td>
+                  <td colspan="5">24 hr Customer Support</td>
                 </tr>
                 <tr>
                   <td>24 hr Customer Support</td>
@@ -270,7 +270,7 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td colspan="2">Dedicated Server</td>
+                    <td colspan="5">Dedicated Server</td>
                   </tr>
                   <tr class="compare-row">
                     <td>Dedicated Server</td>
@@ -282,7 +282,7 @@
                   </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="2">User Licenses Per Account (simultaneous log-ins)</td>
+                  <td colspan="5">User Licenses Per Account (simultaneous log-ins)</td>
                 </tr>
                 <tr>
                   <td>User Licenses Per Account (simultaneous log-ins)</td>
@@ -335,7 +335,7 @@
          headers: {
           'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
         },
-       data: {"subscription": {"user_id" : user_id}},
+       data: {"subscription": {"user_id" : user_id, "sub_id": sub_id}},
        // dataType: "json",
        success: function(data) {
          }

@@ -23,3 +23,6 @@ module Api
 
   end
 end
+
+# http://demo.itslabel.me/api/test_api
+# http://demo.itslabel.me/api/api_downgrade
