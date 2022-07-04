@@ -84,7 +84,7 @@ class StripeChargesServices
           price: stripe_price_token,
         },
       ],
-      trial_end: 1656689857
+      # trial_end: 1656689857
       # trial_start: 1632138523
     })
 
