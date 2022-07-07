@@ -50,27 +50,37 @@ module User
 
       stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
       # binding.pry
-      @user_subscription.usr_subscr_strip_token = stripe_sub.id
-     
-      if @user_subscription.valid?
-        @user_subscription.save
-        set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
-        set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
-        redirect_to user_user_subscriptions_path
-        # respond_to do |format|
-        #   format.js { render inline: "location.reload();" }
-        # end
+
+      if stripe_sub.status == "incomplete"
+        @user_subscription.usr_subscr_strip_token = stripe_sub.id
+        
+
+        if @user_subscription.valid?
+          @user_subscription.save
+          set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
+          set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
+          redirect_to user_user_subscriptions_path
+          # respond_to do |format|
+          #   format.js { render inline: "location.reload();" }
+          # end
+        else
+          @per_page=params[:page]
+          message = I18n.t('errors.failed_to_create', item: "subscription")
+          @user_subscription.errors.add :base, message
+          set_notification(false, I18n.t('status.error'), message)
+          set_flash_message('The form has some errors. Please correct them and submit again', :error)
+        end
+
+
       else
-        @per_page=params[:page]
-        message = I18n.t('errors.failed_to_create', item: "subscription")
+        message = I18n.t('Issues on Subscription Payment', item: "subscription")
         @user_subscription.errors.add :base, message
         set_notification(false, I18n.t('status.error'), message)
         set_flash_message('The form has some errors. Please correct them and submit again', :error)
       end
+      
     end
 
-    def destroy
-    end
 
     def downgrade_subscription
       # binding.pry
