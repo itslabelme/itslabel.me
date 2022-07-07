@@ -7,14 +7,31 @@ module Api
     def api_downgrade
       user_id = params['subscription']['user_id']
       GeneralServices.new(user_id, nil).downgrade_plan
+
+      # case event.type
+      # when "invoice.created"
+
+      #   GeneralServices.new(user_id, nil).downgrade_plan
+
+      # when "customer.subscription.created"
+
+      #   GeneralServices.new(user_id, nil).downgrade_plan
+
+      # when "customer.subscription.created"
+
+      #   GeneralServices.new(user_id, nil).downgrade_plan
+
+      # end
+
+
       render json: {"status": "Done"}
     end
     
     def test_api
       puts "------------------ ** Testing API result POST ** -----------------".white
       puts " Params in Post".white
-      puts params.to_json
-      puts params['subscription'].to_json
+      puts params['Parameters']['type']
+      # puts params['subscription'].to_json
       render json: {"status": "Done"}
 
     end
