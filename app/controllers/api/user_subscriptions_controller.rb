@@ -40,7 +40,7 @@ module Api
       # payload = Hash.from_xml(response).to_json
       # puts payload
 
-      out_hash = Hash.from_xml(response.parsed_response.gsub("\n", ""))
+      out_hash = Hash.from_xml(response.body.gsub("\n", ""))
       puts out_hash
 
 
