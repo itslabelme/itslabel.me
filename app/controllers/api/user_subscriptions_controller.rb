@@ -37,29 +37,29 @@ module Api
 
       # Its working------>>
       # payload = Hash.from_xml(request.body.read)
-      # puts payload
+      payload = Hash.from_xml(response.body.read).to_json
+      puts payload
 
 
 
-      payload = request.body.read
-      sig_header = request.env['HTTP_STRIPE_SIGNATURE']
-      event = nil
+      # payload = request.body.read
+      # sig_header = request.env['HTTP_STRIPE_SIGNATURE']
+      # event = nil
 
-      begin
-        event = Stripe::Webhook.construct_event(
-          payload, sig_header, Rails.application.credentials[:stripe][:webhook]
-        )
-      rescue JSON::ParserError => e
-        status 400
-        return
-      rescue Stripe::SignatureVerificationError => e
-        # Invalid signature
-        puts "Signature error"
-        p e
-        return
-      end
-
-      puts event
+      # begin
+      #   event = Stripe::Webhook.construct_event(
+      #     payload, sig_header, Rails.application.credentials[:stripe][:webhook]
+      #   )
+      # rescue JSON::ParserError => e
+      #   status 400
+      #   return
+      # rescue Stripe::SignatureVerificationError => e
+      #   # Invalid signature
+      #   puts "Signature error"
+      #   p e
+      #   return
+      # end
+      # puts event
 
 
 
