@@ -30,7 +30,8 @@ module Api
     def test_api
       # puts "------------------ ** Testing API result POST ** -----------------".white
       # puts " Params in Post".white
-      puts params['Parameters']
+      # puts params['Parameters']
+      puts params
       # puts params['subscription'].to_json
       render json: {"status": "Done"}
 
