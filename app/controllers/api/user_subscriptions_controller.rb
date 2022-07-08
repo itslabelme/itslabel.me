@@ -31,7 +31,9 @@ module Api
       # puts "------------------ ** Testing API result POST ** -----------------".white
       # puts " Params in Post".white
       # puts params['Parameters']
-      puts params
+      # puts params
+      payload = request.body.read
+      puts payload
       # puts params['subscription'].to_json
       render json: {"status": "Done"}
 
