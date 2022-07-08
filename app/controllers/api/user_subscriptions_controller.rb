@@ -37,9 +37,11 @@ module Api
 
       # Its working------>>
       # payload = Hash.from_xml(request.body.read)
-      payload = Hash.from_xml(response).to_json
-      puts payload
+      # payload = Hash.from_xml(response).to_json
+      # puts payload
 
+      out_hash = Hash.from_xml(response.parsed_response.gsub("\n", ""))
+      puts out_hash
 
 
       # payload = request.body.read
