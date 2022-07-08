@@ -37,7 +37,7 @@ module Api
 
       # Its working------>>
       # payload = Hash.from_xml(request.body.read)
-      payload = Hash.from_xml(response.body.read).to_json
+      payload = Hash.from_xml(response.body).to_json
       puts payload
 
 
