@@ -37,10 +37,10 @@ module Api
     end
 
     def test_api_2
-      puts "------------------ ** Testing API result GET ** -----------------".white
-      puts " Params in get".white
-      puts params.to_json
-      puts params['subscription'].to_json
+      # puts "------------------ ** Testing API result GET ** -----------------".white
+      # puts " Params in get".white
+      # puts params.to_json
+      # puts params['subscription'].to_json
       render json: {"status": "Done"}
 
     end
