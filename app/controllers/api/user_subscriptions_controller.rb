@@ -30,7 +30,44 @@ module Api
     def test_api
       # puts "------------------ ** Testing API result POST ** -----------------".white
       # puts " Params in Post".white
-      puts params['Parameters']
+      # puts params['Parameters']
+      # puts params
+      # payload = request.body.read
+
+
+      # Its working------>>
+      # payload = Hash.from_xml(request.body.read)
+      # payload = Hash.from_xml(response).to_json
+      # puts payload
+
+      # out_hash = Hash.from_xml(request.body.read)
+      out_hash = Hash.from_xml(request.body.read.gsub("\n", "").gsub("\n", ""))
+      # out_hash = Hash.from_xml(request.body.read.gsub("\n", ""))
+      puts out_hash
+      # puts out_hash.Parameters
+
+
+      # payload = request.body.read
+      # sig_header = request.env['HTTP_STRIPE_SIGNATURE']
+      # event = nil
+
+      # begin
+      #   event = Stripe::Webhook.construct_event(
+      #     payload, sig_header, Rails.application.credentials[:stripe][:webhook]
+      #   )
+      # rescue JSON::ParserError => e
+      #   status 400
+      #   return
+      # rescue Stripe::SignatureVerificationError => e
+      #   # Invalid signature
+      #   puts "Signature error"
+      #   p e
+      #   return
+      # end
+      # puts event
+
+
+
       # puts params['subscription'].to_json
       render json: {"status": "Done"}
 
