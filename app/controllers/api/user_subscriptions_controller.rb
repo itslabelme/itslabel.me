@@ -41,7 +41,8 @@ module Api
       # puts payload
 
       # out_hash = Hash.from_xml(request.body.read)
-      out_hash = Hash.from_xml(request.body.read.gsub("\n", ""))
+      out_hash = Hash.from_xml(request.body.read.gsub("\n", "").gsub("\n", ""))
+      # out_hash = Hash.from_xml(request.body.read.gsub("\n", ""))
       puts out_hash
       # puts out_hash.Parameters
 
