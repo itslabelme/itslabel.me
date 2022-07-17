@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_02_148533) do
+ActiveRecord::Schema.define(version: 2022_07_15_337593) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 2022_07_02_148533) do
 
   create_table "client_feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "client_user_id"
-    t.text "input", null: false
-    t.text "output", null: false
+    t.text "input", limit: 16777215, null: false
+    t.text "output", limit: 16777215, null: false
     t.string "remarks", null: false
     t.string "category"
     t.string "input_language", null: false
@@ -230,9 +230,9 @@ ActiveRecord::Schema.define(version: 2022_07_02_148533) do
   end
 
   create_table "translation_query_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.text "input_phrase", null: false
+    t.text "input_phrase", limit: 16777215, null: false
     t.string "input_language", limit: 16, null: false
-    t.text "output_phrase", null: false
+    t.text "output_phrase", limit: 16777215, null: false
     t.string "output_language", limit: 16, null: false
     t.boolean "error", default: false
     t.json "error_message"
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(version: 2022_07_02_148533) do
     t.index ["client_user_id"], name: "index_translation_query_histories_on_client_user_id"
   end
 
-  create_table "translation_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "translation_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "requested_by_id"
     t.text "input_phrase", null: false
     t.string "input_language", limit: 16, null: false
@@ -272,14 +272,14 @@ ActiveRecord::Schema.define(version: 2022_07_02_148533) do
     t.index ["input_length"], name: "index_translations_on_input_length"
   end
 
-  create_table "uploads_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "uploads_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "admin_user", limit: 256, null: false
     t.string "file_path", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "uploads_summaries", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "translation_uploads_history_id", null: false
     t.json "summary_new", null: false
     t.datetime "created_at", null: false

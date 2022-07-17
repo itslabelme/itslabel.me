@@ -51,6 +51,7 @@ module User
       stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
       # binding.pry
 
+      # if stripe_sub.status == "active"
       if stripe_sub.status == "incomplete"
         @user_subscription.usr_subscr_strip_token = stripe_sub.id
         
