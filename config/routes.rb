@@ -33,8 +33,8 @@ Rails.application.routes.draw do
       # Parse CSV data
     post 'csv_parse', to: 'table_documents#csv_parse', as: 'csv_parse'
     
-    # root to: 'home#index'
-    root to: 'user_subscriptions#index'  #Redirect to susbscription page after login or registration
+    root to: 'home#index'
+    # root to: 'user_subscriptions#index'  #Redirect to susbscription page after login or registration
 
     #for payment
     resources :charges, only: [:index, :new, :create]

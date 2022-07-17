@@ -44,14 +44,15 @@ module User
     end
     
     def update
-      # binding.pry
       # @user_subscription.assign_attributes(user_subscription_params)
       assign_user_subscription_params
 
       stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
       # binding.pry
 
-      if stripe_sub.status == "incomplete"
+      # if stripe_sub.status == "active" # In Active mode and sucessfull subscription
+      if stripe_sub.status == "trialing"  # When in trail mode
+      # if stripe_sub.status == "incomplete" # In Test Mode
         @user_subscription.usr_subscr_strip_token = stripe_sub.id
         
 
@@ -73,10 +74,11 @@ module User
 
 
       else
-        message = I18n.t('Issues on Subscription Payment', item: "subscription")
-        @user_subscription.errors.add :base, message
-        set_notification(false, I18n.t('status.error'), message)
+        set_notification(false, 'The form has some errors. Please correct them and submit again', 'The form has some errors. Please correct them and submit again')
+        # message = I18n.t('Issues on Subscription Payment', item: "subscription")
+        # @user_subscription.errors.add :base, message
         set_flash_message('The form has some errors. Please correct them and submit again', :error)
+        redirect_to controller: :user_subscriptions, action: :index
       end
       
     end
