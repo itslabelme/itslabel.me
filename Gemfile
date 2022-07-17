@@ -33,6 +33,9 @@ gem "kaminari", '~> 1.0', '>= 1.0.1'
 gem 'bootstrap4-kaminari-views'
 gem 'country_select'
 
+#payment gateway
+gem 'stripe'
+
 # Wikded PDF
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

@@ -20,27 +20,33 @@ module User
       
       @subcription=UserSubscription.find_by('user_id=?',current_client_user)
      
-      if @subcription.present?
-        @subcription_id= @subcription.subscription_id 
+      if @subcription.subscription.title == "Free"
+        redirect_to :user_user_subscriptions
       else
-        @subcription_id=1
-      end
-      
-      @access=SubscriptionPermission.connection.select_all("select permission_id from subscription_permissions where subscription_id=#{@subcription_id}").to_a
-      permissionArray = Array.new
-      @access.each do |mode|
-        permissionArray.push mode['permission_id']
+        if @subcription.present?
+          @subcription_id= @subcription.subscription_id 
+        else
+          @subcription_id=1
+        end
+
+        # binding.pry 
         
+        @access=SubscriptionPermission.connection.select_all("select permission_id from subscription_permissions where subscription_id=#{@subcription_id}").to_a
+        permissionArray = Array.new
+        @access.each do |mode|
+          permissionArray.push mode['permission_id']
+        end
+
+        @relation = Permission.find_by('route = ?',("#{get_current_route}"))
+           
+        if !permissionArray.include?(@relation.id)
+          redirect_to :user_unauthorized
+        end
       end
-           @relation = Permission.find_by('route = ?',("#{get_current_route}"))
-         
-           if !permissionArray.include?(@relation.id)
-             redirect_to :user_unauthorized
-           end
-          
-      end 
+
+    end 
     
-    def get_current_route
+  def get_current_route
     @route="#{params[:controller]}##{params[:action]}"
        @route=@route.split("/")
       return @route[1]

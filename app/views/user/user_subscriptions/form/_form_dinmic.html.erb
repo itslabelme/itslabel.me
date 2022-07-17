@@ -28,17 +28,17 @@
                       <thead>
                         <tr>
                           <th class="tl"></th>
-                          <th class="compare-heading <%= (@user_subscription.subscription_id == 1)? 'sub-current-plan' : '' %>">
+                          <th class="compare-heading <%= (@user_subscription.subscription_id == Subscription.find_by_title("Free").id )? 'sub-current-plan' : '' %>">
                             Free Version
                           </th>
-                          <th class="compare-heading <%= (@user_subscription.subscription_id == 2)? 'sub-current-plan' : '' %>">
+                          <th class="compare-heading <%= (@user_subscription.subscription_id == Subscription.find_by_title("Premium").id)? 'sub-current-plan' : '' %>">
                               Biz Lite
                           </th>
-                          <th class="compare-heading <%= (@user_subscription.subscription_id == 3)? 'sub-current-plan' : '' %>">
-                              Biz Pro
+                          <!-- <th class="compare-heading <%#= (@user_subscription.subscription_id == 3)? 'sub-current-plan' : '' %>"> -->
+                              <!-- Biz Pro -->
                           </th>
-                          <th class="compare-heading <%= (@user_subscription.subscription_id == 4)? 'sub-current-plan' : '' %>">
-                              Enterprise
+                          <!-- <th class="compare-heading <%#= (@user_subscription.subscription_id == 4)? 'sub-current-plan' : '' %>"> -->
+                              <!-- Enterprise -->
                           </th>
                         </tr>
                         <tr>
@@ -70,30 +70,31 @@
                         
                         <% if @permissions.present? %>
                             <% @permissions.each_with_index do |permission, i| @tickblue=false %>
-                              <% @sub=permission.subscription_permission.find_by(subscription_id:1)
+                              <% @sub=permission.subscription_permission.find_by(subscription_id:Subscription.find_by_title("Free").id)
                                   if !@sub.blank?
                                     @tickblue=true
                                    else
                                     @tickblue=false
                                   end
-                                  @sub1=permission.subscription_permission.find_by(subscription_id:2)
+
+                                  @sub1=permission.subscription_permission.find_by(subscription_id:Subscription.find_by_title("Premium").id)
                                   if !@sub1.blank?
                                     @tickblue1=true
                                    else
                                     @tickblue1=false
                                   end
-                                  @sub2=permission.subscription_permission.find_by(subscription_id:3)
-                                  if !@sub2.blank?
-                                    @tickblue2=true
-                                   else
-                                    @tickblue2=false
-                                  end
-                                  @sub2=permission.subscription_permission.find_by(subscription_id:4)
-                                  if !@sub3.blank?
-                                    @tickblue3=true
-                                   else
-                                    @tickblue3=false
-                                  end
+                                  # @sub2=permission.subscription_permission.find_by(subscription_id:3)
+                                  # if !@sub2.blank?
+                                    # @tickblue2=true
+                                   # else
+                                    # @tickblue2=false
+                                  # end
+                                  # @sub2=permission.subscription_permission.find_by(subscription_id:4)
+                                  # if !@sub3.blank?
+                                    # @tickblue3=true
+                                   # else
+                                    # @tickblue3=false
+                                  # end
                               %>
                               <tr class="compare-row">
                                 <td><%=permission.title%></td>
