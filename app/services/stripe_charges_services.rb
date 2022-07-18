@@ -1,6 +1,16 @@
 class StripeChargesServices
   DEFAULT_CURRENCY = 'inr'.freeze
   
+  # What We do For subscription
+    # 1. Create product in stripe by manualy with specifing price
+    # 2. Keep the "Price App Id" in our secret.yml file to refer while subscription
+    # 3. By calling 'susbscribe' function for subscription
+    # 4. In 'susbscribe' function fetch the 'App Id' from yml file based on his selection
+    # 5. Check user is already created(If the user created then stripe token saved in user table), else create new user and save stripe token
+    # 6. Using costomer token, price token and trial period create subscription
+
+
+
   def initialize(params, user, subscription_id)
     @stripe_email = params[:stripeEmail]
     @stripe_token = params[:stripeToken]
