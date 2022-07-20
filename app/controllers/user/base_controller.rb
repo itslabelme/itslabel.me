@@ -18,9 +18,18 @@ module User
     end
     def access_denied
       
+      
       @subcription=UserSubscription.find_by('user_id=?',current_client_user)
-     
-      if @subcription.subscription.title == "Free"
+      @trial_period = (Date.today.to_date - current_client_user.created_at.to_date).to_i
+      # @trial_period = (@subcription.updated_at.to_date - Date.today.to_date).to_i
+      
+      # binding.pry
+
+      if @trial_period <= 7
+      # if @subcription.subscription.title == "Free"
+      # elsif @trial_period <= 7
+      elsif @subcription.subscription.title == "Free" # For testing
+          #User can aceess all features
         redirect_to :user_user_subscriptions
       else
         if @subcription.present?
