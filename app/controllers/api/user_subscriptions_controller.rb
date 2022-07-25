@@ -45,62 +45,99 @@ module Api
       Rails.logger.debug( event_type)
       # Rails.logger.debug( data_object)
 
-      puts event_type
+      # puts event_type
       # puts data_object
 
 
       if event_type == 'customer.created'
-        puts "------- customer.created --------- "
-        puts event_type
-        puts data_object
+        Rails.logger.debug("------- customer.created --------- ")
+        Rails.logger.debug(data_object)
       end
 
       if event_type == 'customer.updated'
-        puts "------ customer.updated ------------>>> "
+        Rails.logger.debug("------ customer.updated ------------>>> ")
+        Rails.logger.debug(data_object)
         # puts data_object
       end
 
+
+
+
       if event_type == 'invoice.upcoming'
-        puts "------ invoice.upcoming ------------>>> "
+        Rails.logger.debug("------ invoice.upcoming ------------>>> ")
+        Rails.logger.debug(data_object)
         # puts data_object
+      end
+
+      if event_type == 'invoice.paid'
+        Rails.logger.debug("------ invoice.paid ------------>>> ")
+        Rails.logger.debug(data_object)
       end
 
       if event_type == 'invoice.created'
-        puts "------ invoice.created ------------>>> "
+        Rails.logger.debug("------ invoice.created ------------>>> ")
+        Rails.logger.debug(data_object)
         # puts data_object
       end
 
       if event_type == 'invoice.finalized'
-        puts "------ invoice.finalized ------------>>> "
+        Rails.logger.debug("------ invoice.finalized ------------>>> ")
+        Rails.logger.debug(data_object)
         # puts data_object
       end
 
       if event_type == 'invoice.payment_succeeded'
-        puts "------ invoice.payment_succeeded ------------>>> "
+        Rails.logger.debug("------ invoice.payment_succeeded ------------>>> ")
+        Rails.logger.debug(data_object)
         # puts data_object
       end
 
       if event_type == 'invoice.payment_failed'
-        puts "------ invoice.payment_failed ------------>>> "
+        Rails.logger.debug("------ invoice.payment_failed ------------>>> ")
+        Rails.logger.debug(data_object)
         # puts data_object
       end
+
+      if event_type == 'invoice.upcoming'
+        Rails.logger.debug("------ invoice.upcoming ------------>>> ")
+        Rails.logger.debug(data_object)
+      end
+
+
 
 
       if event_type == 'charge.pending'
-        puts "------ Charge Pending ------------>>> "
+        Rails.logger.debug("------ Charge Pending ------------>>> ")
+        Rails.logger.debug(data_object)
       end
 
       if event_type == 'charge.failed'
-        puts "------ Charge Failed ------------>>> "
+        Rails.logger.debug("------ Charge Failed ------------>>> ")
+        Rails.logger.debug(data_object)
       end
 
       if event_type == 'payment_intent.succeeded'
-        puts "------ payment_intent.succeeded ------------>>> "
+        Rails.logger.debug("------ payment_intent.succeeded ------------>>> ")
+        Rails.logger.debug(data_object)
         # puts data_object
       end
 
+
+
+
+      if event_type == 'setup_intent.succeeded'
+        Rails.logger.debug("------ setup_intent.succeeded ------------>>> ")
+        Rails.logger.debug(data_object)
+      end
+
+      if event_type == 'setup_intent.created'
+        Rails.logger.debug("------ setup_intent.created ------------>>> ")
+        Rails.logger.debug(data_object)
+      end
+
       if event_type == 'customer.subscription.created'
-        puts "------ customer.subscription.created ------------>>> "
+        Rails.logger.debug("------ customer.subscription.created ------------>>> ")
+        Rails.logger.debug(data_object)
         # puts data_object
       end
 
