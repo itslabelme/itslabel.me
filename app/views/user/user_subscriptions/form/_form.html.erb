@@ -84,7 +84,7 @@
 
                             <% else %> 
                               <% if subscription.title.to_s != 'Free' %>
-                                <a href="javascript:void(0);" class="mt-4" style="color: blue;"  onclick="downgradePlan(<%#= subscription.id %>)"> Downgrade Plan</a>
+                                <a href="javascript:void(0);" class="mt-4" style="color: #ada9df;"  onclick="downgradePlan(<%#= subscription.id %>)"> Downgrade Plan</a>
                               <% end %>
                               <!-- <a href="javascript:void(0);"  class="price-buy" onclick="updatePlan(<%#= subscription.id %>)"> -->
                                 <%#= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
