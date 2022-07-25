@@ -31,8 +31,6 @@ module Api
     def test_api
       # out_hash = Hash.from_xml(request.body.read.gsub("\n", "").gsub("\n", ""))
       # puts out_hash
-      puts "<<<<<<<< ====== >>>>>>>>>>>>"
-      Rails.logger.debug("debug::" + "person.name")
 
       payload = request.body.read
       payld_data = JSON.parse(payload, symbolize_names: true)
@@ -43,8 +41,10 @@ module Api
       data = payld_event['data']
       data_object = data['object']
 
-      Rails.logger.debug( data_object)
-      puts "------ >>>>>>>> -"
+      Rails.logger.debug( "------ >>>>>>>> - <<<<<<<< ------- ")
+      Rails.logger.debug( event_type)
+      # Rails.logger.debug( data_object)
+
       puts event_type
       # puts data_object
 
