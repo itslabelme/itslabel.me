@@ -40,7 +40,7 @@ module Api
       data = payld_event['data']
       data_object = data['object']
 
-      puts "-------"
+      puts "------ >>>>>>>> -"
       puts event_type
       # puts data_object
 
@@ -52,26 +52,32 @@ module Api
       end
 
       if event_type == 'customer.updated'
+        puts "------ customer.updated ------------>>> "
         # puts data_object
       end
 
       if event_type == 'invoice.upcoming'
+        puts "------ invoice.upcoming ------------>>> "
         # puts data_object
       end
 
       if event_type == 'invoice.created'
+        puts "------ invoice.created ------------>>> "
         # puts data_object
       end
 
       if event_type == 'invoice.finalized'
+        puts "------ invoice.finalized ------------>>> "
         # puts data_object
       end
 
       if event_type == 'invoice.payment_succeeded'
+        puts "------ invoice.payment_succeeded ------------>>> "
         # puts data_object
       end
 
       if event_type == 'invoice.payment_failed'
+        puts "------ invoice.payment_failed ------------>>> "
         # puts data_object
       end
 
@@ -85,10 +91,12 @@ module Api
       end
 
       if event_type == 'payment_intent.succeeded'
+        puts "------ payment_intent.succeeded ------------>>> "
         # puts data_object
       end
 
       if event_type == 'customer.subscription.created'
+        puts "------ customer.subscription.created ------------>>> "
         # puts data_object
       end
 
