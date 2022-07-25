@@ -106,6 +106,31 @@ module Api
 
 
 
+      if event_type == 'charge.captured'
+        Rails.logger.debug("------ Charge captured ------------>>> ")
+        Rails.logger.debug(data_object)
+      end
+
+      if event_type == 'charge.expired'
+        Rails.logger.debug("------ Charge expired ------------>>> ")
+        Rails.logger.debug(data_object)
+      end
+
+      if event_type == 'charge.updated'
+        Rails.logger.debug("------ Charge updated ------------>>> ")
+        Rails.logger.debug(data_object)
+      end
+
+      if event_type == 'charge.refunded'
+        Rails.logger.debug("------ Charge refunded ------------>>> ")
+        Rails.logger.debug(data_object)
+      end
+
+      if event_type == 'charge.succeeded'
+        Rails.logger.debug("------ Charge succeeded ------------>>> ")
+        Rails.logger.debug(data_object)
+      end
+
       if event_type == 'charge.pending'
         Rails.logger.debug("------ Charge Pending ------------>>> ")
         Rails.logger.debug(data_object)
@@ -115,6 +140,9 @@ module Api
         Rails.logger.debug("------ Charge Failed ------------>>> ")
         Rails.logger.debug(data_object)
       end
+
+
+
 
       if event_type == 'payment_intent.succeeded'
         Rails.logger.debug("------ payment_intent.succeeded ------------>>> ")
