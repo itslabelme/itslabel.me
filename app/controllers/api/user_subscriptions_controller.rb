@@ -4,9 +4,10 @@ module Api
     
 
 
-    def api_downgrade
-      user_id = params['subscription']['user_id']
-      GeneralServices.new(user_id, nil).downgrade_plan
+    def downgrading_api
+      puts "<<<<<<<< === downgrading_api === >>>>>>>>>>>>"
+      # user_id = params['subscription']['user_id']
+      # GeneralServices.new(user_id, nil).downgrade_plan
 
       # case event.type
       # when "invoice.created"
@@ -31,6 +32,7 @@ module Api
       # out_hash = Hash.from_xml(request.body.read.gsub("\n", "").gsub("\n", ""))
       # puts out_hash
       puts "<<<<<<<< ====== >>>>>>>>>>>>"
+      Rails.logger.debug("debug::" + "person.name")
 
       payload = request.body.read
       payld_data = JSON.parse(payload, symbolize_names: true)
@@ -41,6 +43,7 @@ module Api
       data = payld_event['data']
       data_object = data['object']
 
+      Rails.logger.debug( data_object)
       puts "------ >>>>>>>> -"
       puts event_type
       # puts data_object
