@@ -97,7 +97,7 @@ class StripeChargesServices
           price: stripe_price_token,
         },
       ],
-      trial_end: traila_time_stamp
+      # trial_end: traila_time_stamp
 
 
     })
