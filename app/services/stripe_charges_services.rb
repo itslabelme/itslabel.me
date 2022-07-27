@@ -87,7 +87,8 @@ class StripeChargesServices
 
   def create_subscription(subscription, customer, stripe_price_token)
     # binding.pry 
-    traila_time = Time.now + 7.days
+    # traila_time = Time.now + 7.days
+    traila_time = Time.now + (10 * 60) # 10 minit + time stamp
     traila_time_stamp = traila_time.to_i
 
     strip_sub = Stripe::Subscription.create({
@@ -97,7 +98,7 @@ class StripeChargesServices
           price: stripe_price_token,
         },
       ],
-      # trial_end: traila_time_stamp
+      trial_end: traila_time_stamp
 
 
     })
