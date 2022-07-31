@@ -7,6 +7,7 @@ module User
     def index
       get_permissions
       @subscriptions=Subscription.all
+      # binding.pry
       if !@user_subscription.blank?
      
         get_user_subscription
@@ -47,40 +48,85 @@ module User
       # @user_subscription.assign_attributes(user_subscription_params)
       assign_user_subscription_params
 
-      stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
+      @stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
       # binding.pry
+      if @stripe_sub[:status] == 200
+        # if @stripe_sub.status == "active" # In Active mode and sucessfull subscription
+        if @stripe_sub[:data].status == "trialing"  # When in trail mode
+        # if @stripe_sub[:data].status == "incomplete" # In Test Mode
+          @user_subscription.usr_subscr_strip_token = @stripe_sub[:data].id
+          
 
-      # if stripe_sub.status == "active" # In Active mode and sucessfull subscription
-      if stripe_sub.status == "trialing"  # When in trail mode
-      # if stripe_sub.status == "incomplete" # In Test Mode
-        @user_subscription.usr_subscr_strip_token = stripe_sub.id
-        
+          if @user_subscription.valid?
+            @user_subscription.save
+            redirect_to user_user_subscriptions_path
+            set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
+            set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
+            # respond_to do |format|
+            #   format.js { render inline: "location.reload();" }
+            # end
+          else
+            @per_page=params[:page]
+            message = I18n.t('errors.failed_to_create', item: "subscription")
+            @user_subscription.errors.add :base, message
+            set_notification(false, I18n.t('status.error'), message)
+            set_flash_message('The form has some errors. Please correct them and submit again', :error)
+          end
 
-        if @user_subscription.valid?
-          @user_subscription.save
-          set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
-          set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
-          redirect_to user_user_subscriptions_path
-          # respond_to do |format|
-          #   format.js { render inline: "location.reload();" }
-          # end
+
         else
-          @per_page=params[:page]
-          message = I18n.t('errors.failed_to_create', item: "subscription")
-          @user_subscription.errors.add :base, message
-          set_notification(false, I18n.t('status.error'), message)
+          set_notification(false, 'The form has some errors. Please correct them and submit again', 'The form has some errors. Please correct them and submit again')
+          # message = I18n.t('Issues on Subscription Payment', item: "subscription")
+          # @user_subscription.errors.add :base, message
           set_flash_message('The form has some errors. Please correct them and submit again', :error)
+          redirect_to controller: :user_subscriptions, action: :index
+        end
+      else
+
+        get_permissions
+        @subscriptions=Subscription.all
+        if !@user_subscription.blank?
+       
+          get_user_subscription
+          # raise @user_subscription.subscription_id.inspect
+        else
+          new_user_subscription
+          # @user_subscription.subscription_id=1   // changed by sanoop to fix susbcription time issue
+          sub_id = Subscription.find_by_title("Free")
+          @user_subscription.subscription_id= sub_id.id
         end
 
 
-      else
-        set_notification(false, 'The form has some errors. Please correct them and submit again', 'The form has some errors. Please correct them and submit again')
-        # message = I18n.t('Issues on Subscription Payment', item: "subscription")
-        # @user_subscription.errors.add :base, message
-        set_flash_message('The form has some errors. Please correct them and submit again', :error)
-        redirect_to controller: :user_subscriptions, action: :index
+        # set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
+        # set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
+        # redirect_to user_user_subscriptions_path
+
+
+
+
+        # render 'update.js.erb'
+        # render :js => "alert('Hello Rails');"
+        # format.html { redirect_to video_tag_users_path(format: :js) }
+        # format.js { redirect_to controller: 'user_subscriptions', action: 'update'}
+        # respond_to do |format|
+        #   # format.html 
+        #   format.js # renders show.js.erb
+        # end
+        # respond_to do |format|
+          # format.js { location: user_user_subscriptions_path }
+          # format.js { render :partial => update.js }
+
+          # format.js {
+          #    template: "user/user_subscriptions/update.js.erb", 
+          #    layout: false
+          # }
+
+        # end
+          # redirect_to controller: :user_subscriptions, action: :index
+          # redirect_to controller: 'thing', action: 'edit', id: 3, something: 'else'
+
+
       end
-      
     end
 
 
