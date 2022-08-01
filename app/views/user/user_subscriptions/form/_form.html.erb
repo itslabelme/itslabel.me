@@ -71,7 +71,7 @@
 
                                   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                   data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                                  data-description="A month's subscription"
+                                  data-description="<%= subscription.title.titleize %> subscription"
                                   data-amount="<%= subscription.price * 100 %>"
                                   data-email="<%= @current_client_user.email %>"
                                   data-locale="auto"></script>
