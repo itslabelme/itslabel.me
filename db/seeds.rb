@@ -1,5 +1,31 @@
 require 'colorize'
 
+puts "Adding Subscriptions".green
+
+# Adding free subscription
+Subscription.create([{ title: 'Free',  price: "0", status: "Active"}])
+
+# Adding other subscritions
+susbscription_date = [
+      { title: 'Monthly',  price: 49.99, status: "Active"}, 
+      { title: '3 Months',  price: 149.99, status: "Active"},
+      { title: '6 Months',  price: 269.99, status: "Active"}, 
+      { title: '12 Months',  price: 509.99, status: "Active"}, 
+  ]
+
+susbscription_date.each do |sub_data|
+  susbscription = Subscription.new
+  susbscription.title = sub_data[:title]
+  susbscription.price = sub_data[:price]
+  susbscription.status = sub_data[:status]
+
+  if susbscription.valid?
+    susbscription.save
+  else
+    puts "Couldn't save susbscription with title #{sub_data[:title]}".red
+  end
+end
+
 puts "Adding Admin Users".green
 if Rails.env.production?
   AdminUser.create([
@@ -167,15 +193,6 @@ LabelTemplate.create([
 ])
 
 
-puts "Adding Subscriptions".green
-  Subscription.create([
-                  { title: 'Free',  price: "0", status: "Active"}, 
-                  { title: 'Premium',  price: "49.99", status: "Active"}, 
-                  # { title: 'Biz Lite',  price: "39.99", status: "Active"}, 
-                  # { title: 'Biz Pro',  price: "49.99", status: "Active"}, 
-                  # { title: 'Enterprise',  price: "99.99", status: "Active"}, 
-                ])
-              
 puts "Adding Permissions".green
 
   Permission.create([
