@@ -35,8 +35,19 @@ class StripeChargesServices
       stripe_price_token = Rails.configuration.stripe[:stripe_price_token_12_month]
     end
 
-    # binding.pry
-    return create_subscription(sub, find_customer, stripe_price_token)
+    customer_data = find_customer
+    if customer_data[:status] == 200
+      # binding.pry
+
+      subscription_data = create_subscription(sub, customer_data[:data], stripe_price_token)
+      if subscription_data[:status] == 200
+        return subscription_data
+      else
+        return subscription_data
+      end
+    else
+      return customer_data
+    end
   end
 
   def delete_subscription
@@ -56,7 +67,9 @@ class StripeChargesServices
 
   def find_customer
     if user.stripe_token
-      retrieve_customer(user.stripe_token)
+      # binding.pry 
+      customer_data = retrieve_customer(user.stripe_token)
+      return {status: 200, data: customer_data, message: "Successfully Credited" }
     else
       create_customer
     end
@@ -68,42 +81,85 @@ class StripeChargesServices
 
 
   def create_customer
-    customer = Stripe::Customer.create(
-      name: "#{@user.first_name} #{@user.last_name}",
-      email: @user.email,
-      source: stripe_token,
-      address: {
-        line1: "#{@user.organisation},#{@user.country}",
-        city: "#{@user.country}",
-        country: 'US',
-        # postal_code: '683578',
-        # state: 'Kerala',
-      },
-    )
-    @user.update(stripe_token: customer.id)
-    customer
+    begin
+      customer = Stripe::Customer.create(
+        name: "#{@user.first_name} #{@user.last_name}",
+        email: @user.email,
+        source: stripe_token,
+        address: {
+          line1: "#{@user.organisation},#{@user.country}",
+          city: "#{@user.country}",
+          country: 'US',
+          # postal_code: '683578',
+          # state: 'Kerala',
+        },
+      )
+      # binding.pry
+    rescue Stripe::CardError => e 
+      # e.error.message
+      return {status: 400, data: customer, message: e.error.message }
+    rescue Stripe::RateLimitError => e
+      return {status: 400, data: customer, message: e.error.message }
+    rescue Stripe::InvalidRequestError => e
+      return {status: 400, data: customer, message: e.error.message }
+    rescue Stripe::AuthenticationError => e
+      return {status: 400, data: customer, message: e.error.message }
+    rescue Stripe::APIConnectionError => e
+      return {status: 400, data: customer, message: e.error.message }
+    rescue Stripe::StripeError => e
+      return {status: 400, data: customer, message: e.error.message }
+    rescue => e
+      return {status: 400, data: customer, message: e.error.message }
+    else
+      if customer
+        @user.update(stripe_token: customer.id)
+        return {status: 200, data: customer, message: "Successfully Credited" }
+      end
+    end
+
+
   end
 
 
   def create_subscription(subscription, customer, stripe_price_token)
-    # binding.pry 
     # traila_time = Time.now + 7.days
     traila_time = Time.now + (10 * 60) # 10 minit + time stamp
     traila_time_stamp = traila_time.to_i
 
-    strip_sub = Stripe::Subscription.create({
-      customer: customer.id,
-      items: [
-        {
-          price: stripe_price_token,
-        },
-      ],
-      # trial_end: traila_time_stamp
+    begin
+      strip_sub = Stripe::Subscription.create({
+        customer: customer.id,
+        items: [
+          {
+            price: stripe_price_token,
+          },
+        ],
+        # trial_end: traila_time_stamp
 
 
-    })
+      })
 
-    return strip_sub
+    # binding.pry 
+    rescue Stripe::CardError => e 
+      # e.error.message
+      return {status: 400, data: strip_sub, message: e.error.message }
+    rescue Stripe::RateLimitError => e
+      return {status: 400, data: strip_sub, message: e.error.message }
+    rescue Stripe::InvalidRequestError => e
+      return {status: 400, data: strip_sub, message: e.error.message }
+    rescue Stripe::AuthenticationError => e
+      return {status: 400, data: strip_sub, message: e.error.message }
+    rescue Stripe::APIConnectionError => e
+      return {status: 400, data: strip_sub, message: e.error.message }
+    rescue Stripe::StripeError => e
+      return {status: 400, data: strip_sub, message: e.error.message }
+    rescue => e
+      return {status: 400, data: strip_sub, message: e.error.message }
+    else
+      return {status: 200, data: strip_sub, message: "Successfully Subscribed" }
+    end
+
+    # return strip_sub
     # user_subs = UserSubscription.where(user_id: customer.id, subscription_id: subscription.id).first
     # user_subs.update(usr_subscr_strip_token: strip_sub.id)
 
