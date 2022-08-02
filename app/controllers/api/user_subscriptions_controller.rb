@@ -3,23 +3,6 @@ module Api
     
     skip_before_action :verify_authenticity_token
 
-    # def downgrading_api
-      
-    #   puts "<<<<<<<< === downgrading_api === >>>>>>>>>>>>"
-
-    #   # user_id = params['subscription']['user_id']
-    #   # GeneralServices.new(user_id, nil).downgrade_plan
-    #   # case event.type
-    #   # when "invoice.created"
-    #   #   GeneralServices.new(user_id, nil).downgrade_plan
-    #   # when "customer.subscription.created"
-    #   #   GeneralServices.new(user_id, nil).downgrade_plan
-    #   # when "customer.subscription.created"
-    #   #   GeneralServices.new(user_id, nil).downgrade_plan
-    #   # end
-
-    #   render json: {"status": "Done"}
-    # end
     
     # def handle_charge_failed
     def downgrading_api
@@ -30,25 +13,25 @@ module Api
 
       # Get the type of webhook event sent - used to check the status of PaymentIntents.
       event_type = payld_event['type']
-      
-      # data = payld_event['data']
-      # data_object = data['object']
+      data = payld_event['data']
+      data_object = data['object']
 
       Rails.logger.debug( "------ >>>>>>>> - downgrading_api - <<<<<<<< ------- ")
       Rails.logger.debug("------- Event Type: #{event_type} --------- ")
-      Rails.logger.debug(data_object)
+      # Rails.logger.debug(data_object)
       
       if ['payment_intent.requires_action', 'charge.failed'].include?(event_type)
         # check for stripe customer id from the payload
         if payld_data[:data] && payld_data[:data][:object] && payld_data[:data][:object][:customer]
           
-          customer_id = payld_data[:data][:object][:customer]
-          # customer = ClientUser.find_by_stripe_token(customer_id)
-          # customer.downgrade_to_free_plan()
+          customer_token = payld_data[:data][:object][:customer]
+          customer = ClientUser.find_by_stripe_token(customer_token)
 
-          Rails.logger.debug( "------ >>>>>>>>  customer_id  <<<<<<<< ------- #{customer_id}")
+          Rails.logger.debug( "------ >>>>>>>>  customer_token  <<<<<<<< ------- #{customer_token}")
+          Rails.logger.debug( "------ >>>>>>>>  customer id  <<<<<<<< -------")
+          Rails.logger.debug(customer.id)
 
-          # GeneralServices.new(customer.id, nil).downgrade_plan
+          GeneralServices.new(customer.id, nil).downgrade_plan
 
           render json: {"status": "success"}
         else
@@ -62,9 +45,6 @@ module Api
     end
     
     def test_api
-      # out_hash = Hash.from_xml(request.body.read.gsub("\n", "").gsub("\n", ""))
-      # puts out_hash
-
       # binding.pry
 
       payload = request.body.read
@@ -84,11 +64,11 @@ module Api
         # check for stripe customer id from the payload
         if payld_data[:data] && payld_data[:data][:object] && payld_data[:data][:object][:customer]
           
-          customer_id = payld_data[:data][:object][:customer]
-          Rails.logger.debug( "------ >>>>>>>>  customer_id  <<<<<<<< ------- #{customer_id}")
-          customer = ClientUser.find_by_stripe_token(customer_id)
+          customer_token = payld_data[:data][:object][:customer]
+          Rails.logger.debug( "------ >>>>>>>>  customer_token  <<<<<<<< ------- #{customer_token}")
+          customer = ClientUser.find_by_stripe_token(customer_token)
 
-          Rails.logger.debug( "------ >>>>>>>>  customer data  <<<<<<<< -------")
+          Rails.logger.debug( "------ >>>>>>>>  customer id  <<<<<<<< -------")
           Rails.logger.debug(customer.id)
           json_costomer = customer.as_json
           Rails.logger.debug(json_costomer)
@@ -121,9 +101,6 @@ module Api
       #   Rails.logger.debug(data_object)
       #   # puts data_object
       # end
-
-
-
 
       # if event_type == 'invoice.upcoming'
       #   Rails.logger.debug("------ invoice.upcoming ------------>>> ")
@@ -165,9 +142,6 @@ module Api
       #   Rails.logger.debug(data_object)
       # end
 
-
-
-
       # if event_type == 'charge.captured'
       #   Rails.logger.debug("------ Charge captured ------------>>> ")
       #   Rails.logger.debug(data_object)
@@ -203,18 +177,11 @@ module Api
       #   Rails.logger.debug(data_object)
       # end
 
-
-
-
       # if event_type == 'payment_intent.succeeded'
       #   Rails.logger.debug("------ payment_intent.succeeded ------------>>> ")
       #   Rails.logger.debug(data_object)
       #   # puts data_object
       # end
-
-
-
-
       # if event_type == 'setup_intent.succeeded'
       #   Rails.logger.debug("------ setup_intent.succeeded ------------>>> ")
       #   Rails.logger.debug(data_object)
@@ -230,8 +197,7 @@ module Api
       #   Rails.logger.debug(data_object)
       #   # puts data_object
       # end
-
-      render json: {"status": "success"}
+      # render json: {"status": "success"}
     end
 
 
