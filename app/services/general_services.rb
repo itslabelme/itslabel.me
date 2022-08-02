@@ -1,9 +1,9 @@
 class GeneralServices
 
   def initialize(user, subscription_id)
+    @user = user
     @subscription_id = subscription_id
     # @stripe_price_token = Rails.configuration.stripe[:stripe_price_token]
-    @user = user
   end
 
   def downgrade_plan

@@ -133,6 +133,7 @@ Rails.application.routes.draw do
 
     # FIXME - not sure why we need this
     root to: 'home#index'
+    
     # Client Feedbacks
     resources :client_feedbacks, only: [:index]
     
