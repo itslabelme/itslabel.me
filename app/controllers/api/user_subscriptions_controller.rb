@@ -89,7 +89,7 @@ module Api
           customer = ClientUser.find_by_stripe_token(customer_id)
 
           Rails.logger.debug( "------ >>>>>>>>  customer data  <<<<<<<< -------")
-          Rails.logger.debug(customer)
+          Rails.logger.debug(JSON.parse(customer, symbolize_names: true))
           # GeneralServices.new(customer.id, nil).downgrade_plan
 
           render json: {"status": "success"}
