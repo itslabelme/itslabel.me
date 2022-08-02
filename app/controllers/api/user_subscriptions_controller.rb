@@ -40,7 +40,7 @@ module Api
       
       if ['payment_intent.requires_action', 'charge.failed'].include?(event_type)
         # check for stripe customer id from the payload
-        if payld_data[:data] && && payld_data[:data][:object] && payld_data[:data][:object][:customer]
+        if payld_data[:data] && payld_data[:data][:object] && payld_data[:data][:object][:customer]
           
           customer_id = payld_data[:data][:object][:customer]
           # customer = ClientUser.find_by_stripe_token(customer_id)
@@ -82,7 +82,7 @@ module Api
 
       if ['payment_intent.requires_action', 'charge.failed'].include?(event_type)
         # check for stripe customer id from the payload
-        if payld_data[:data] && && payld_data[:data][:object] && payld_data[:data][:object][:customer]
+        if payld_data[:data] && payld_data[:data][:object] && payld_data[:data][:object][:customer]
           
           customer_id = payld_data[:data][:object][:customer]
           Rails.logger.debug( "------ >>>>>>>>  customer_id  <<<<<<<< ------- #{customer_id}")
