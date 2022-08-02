@@ -86,8 +86,10 @@ module Api
           
           customer_id = payld_data[:data][:object][:customer]
           Rails.logger.debug( "------ >>>>>>>>  customer_id  <<<<<<<< ------- #{customer_id}")
-          # customer = ClientUser.find_by_stripe_token(customer_id)
+          customer = ClientUser.find_by_stripe_token(customer_id)
 
+          Rails.logger.debug( "------ >>>>>>>>  customer data  <<<<<<<< -------")
+          Rails.logger.debug(customer)
           # GeneralServices.new(customer.id, nil).downgrade_plan
 
           render json: {"status": "success"}
@@ -106,125 +108,125 @@ module Api
       # puts data_object
 
 
-      if event_type == 'customer.created'
-        Rails.logger.debug("------- customer.created --------- ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'customer.created'
+      #   Rails.logger.debug("------- customer.created --------- ")
+      #   Rails.logger.debug(data_object)
+      # end
 
-      if event_type == 'customer.updated'
-        Rails.logger.debug("------ customer.updated ------------>>> ")
-        Rails.logger.debug(data_object)
-        # puts data_object
-      end
-
-
-
-
-      if event_type == 'invoice.upcoming'
-        Rails.logger.debug("------ invoice.upcoming ------------>>> ")
-        Rails.logger.debug(data_object)
-        # puts data_object
-      end
-
-      if event_type == 'invoice.paid'
-        Rails.logger.debug("------ invoice.paid ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
-
-      if event_type == 'invoice.created'
-        Rails.logger.debug("------ invoice.created ------------>>> ")
-        Rails.logger.debug(data_object)
-        # puts data_object
-      end
-
-      if event_type == 'invoice.finalized'
-        Rails.logger.debug("------ invoice.finalized ------------>>> ")
-        Rails.logger.debug(data_object)
-        # puts data_object
-      end
-
-      if event_type == 'invoice.payment_succeeded'
-        Rails.logger.debug("------ invoice.payment_succeeded ------------>>> ")
-        Rails.logger.debug(data_object)
-        # puts data_object
-      end
-
-      if event_type == 'invoice.payment_failed'
-        Rails.logger.debug("------ invoice.payment_failed ------------>>> ")
-        Rails.logger.debug(data_object)
-        # puts data_object
-      end
-
-      if event_type == 'invoice.upcoming'
-        Rails.logger.debug("------ invoice.upcoming ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'customer.updated'
+      #   Rails.logger.debug("------ customer.updated ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      #   # puts data_object
+      # end
 
 
 
 
-      if event_type == 'charge.captured'
-        Rails.logger.debug("------ Charge captured ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'invoice.upcoming'
+      #   Rails.logger.debug("------ invoice.upcoming ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      #   # puts data_object
+      # end
 
-      if event_type == 'charge.expired'
-        Rails.logger.debug("------ Charge expired ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'invoice.paid'
+      #   Rails.logger.debug("------ invoice.paid ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
 
-      if event_type == 'charge.updated'
-        Rails.logger.debug("------ Charge updated ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'invoice.created'
+      #   Rails.logger.debug("------ invoice.created ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      #   # puts data_object
+      # end
 
-      if event_type == 'charge.refunded'
-        Rails.logger.debug("------ Charge refunded ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'invoice.finalized'
+      #   Rails.logger.debug("------ invoice.finalized ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      #   # puts data_object
+      # end
 
-      if event_type == 'charge.succeeded'
-        Rails.logger.debug("------ Charge succeeded ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'invoice.payment_succeeded'
+      #   Rails.logger.debug("------ invoice.payment_succeeded ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      #   # puts data_object
+      # end
 
-      if event_type == 'charge.pending'
-        Rails.logger.debug("------ Charge Pending ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'invoice.payment_failed'
+      #   Rails.logger.debug("------ invoice.payment_failed ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      #   # puts data_object
+      # end
 
-      if event_type == 'charge.failed'
-        Rails.logger.debug("------ Charge Failed ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
-
-
-
-
-      if event_type == 'payment_intent.succeeded'
-        Rails.logger.debug("------ payment_intent.succeeded ------------>>> ")
-        Rails.logger.debug(data_object)
-        # puts data_object
-      end
+      # if event_type == 'invoice.upcoming'
+      #   Rails.logger.debug("------ invoice.upcoming ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
 
 
 
 
-      if event_type == 'setup_intent.succeeded'
-        Rails.logger.debug("------ setup_intent.succeeded ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'charge.captured'
+      #   Rails.logger.debug("------ Charge captured ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
 
-      if event_type == 'setup_intent.created'
-        Rails.logger.debug("------ setup_intent.created ------------>>> ")
-        Rails.logger.debug(data_object)
-      end
+      # if event_type == 'charge.expired'
+      #   Rails.logger.debug("------ Charge expired ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
 
-      if event_type == 'customer.subscription.created'
-        Rails.logger.debug("------ customer.subscription.created ------------>>> ")
-        Rails.logger.debug(data_object)
-        # puts data_object
-      end
+      # if event_type == 'charge.updated'
+      #   Rails.logger.debug("------ Charge updated ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
+
+      # if event_type == 'charge.refunded'
+      #   Rails.logger.debug("------ Charge refunded ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
+
+      # if event_type == 'charge.succeeded'
+      #   Rails.logger.debug("------ Charge succeeded ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
+
+      # if event_type == 'charge.pending'
+      #   Rails.logger.debug("------ Charge Pending ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
+
+      # if event_type == 'charge.failed'
+      #   Rails.logger.debug("------ Charge Failed ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
+
+
+
+
+      # if event_type == 'payment_intent.succeeded'
+      #   Rails.logger.debug("------ payment_intent.succeeded ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      #   # puts data_object
+      # end
+
+
+
+
+      # if event_type == 'setup_intent.succeeded'
+      #   Rails.logger.debug("------ setup_intent.succeeded ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
+
+      # if event_type == 'setup_intent.created'
+      #   Rails.logger.debug("------ setup_intent.created ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      # end
+
+      # if event_type == 'customer.subscription.created'
+      #   Rails.logger.debug("------ customer.subscription.created ------------>>> ")
+      #   Rails.logger.debug(data_object)
+      #   # puts data_object
+      # end
 
       render json: {"status": "success"}
     end
