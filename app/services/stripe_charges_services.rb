@@ -90,8 +90,6 @@ class StripeChargesServices
           line1: "#{@user.organisation},#{@user.country}",
           city: "#{@user.country}",
           country: 'US',
-          # postal_code: '683578',
-          # state: 'Kerala',
         },
       )
       # binding.pry
@@ -122,8 +120,8 @@ class StripeChargesServices
 
 
   def create_subscription(subscription, customer, stripe_price_token)
-    # traila_time = Time.now + 7.days
-    traila_time = Time.now + (5 * 60) # 10 minit + time stamp
+    traila_time = Time.now + 7.days
+    # traila_time = Time.now + (5 * 60) # 10 minit + time stamp
     traila_time_stamp = traila_time.to_i
 
     begin
