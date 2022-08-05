@@ -52,8 +52,8 @@ module User
       # binding.pry
       if @stripe_sub[:status] == 200
         # if @stripe_sub.status == "active" # In Active mode and sucessfull subscription
-        if @stripe_sub[:data].status == "trialing"  # When in trail mode
-        # if @stripe_sub[:data].status == "incomplete" # In Test Mode
+        # if @stripe_sub[:data].status == "trialing"  # When in trail mode
+        if @stripe_sub[:data].status == "incomplete" # In Test Mode
           @user_subscription.usr_subscr_strip_token = @stripe_sub[:data].id
           
 
