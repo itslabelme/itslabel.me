@@ -4,7 +4,6 @@ module Api
     skip_before_action :verify_authenticity_token
 
     
-    # def handle_charge_failed
     def downgrading_api
       
       payload = request.body.read
@@ -16,8 +15,7 @@ module Api
       data = payld_event['data']
       data_object = data['object']
 
-      Rails.logger.debug( "------ >>>>>>>> - downgrading_api - <<<<<<<< ------- ")
-      Rails.logger.debug("------- Event Type: #{event_type} --------- ")
+      Rails.logger.debug("In downgrading_api and the Event Type =  #{event_type}")
       # Rails.logger.debug(data_object)
       
       if ['payment_intent.requires_action', 'charge.failed'].include?(event_type)
@@ -27,26 +25,21 @@ module Api
           customer_token = payld_data[:data][:object][:customer]
           customer = ClientUser.find_by_stripe_token(customer_token)
 
-          Rails.logger.debug( "------ >>>>>>>>  customer_token  <<<<<<<< ------- #{customer_token}")
-          Rails.logger.debug( "------ >>>>>>>>  customer id  <<<<<<<< -------")
-          Rails.logger.debug(customer.id)
-
+          Rails.logger.debug( "customer id id #{customer.id}")
           GeneralServices.new(customer.id, nil).downgrade_plan
 
           render json: {"status": "success"}
         else
-          Rails.logger.debug( "------ >>>>>>>>  error on payld_data  <<<<<<<< -------")
+          Rails.logger.debug("Enterd in else part of payld_data[:data][:object][:customer] ")
           render json: {"status": "failed", errors: ["customer id missing in stripe payload"]}
         end
       else
-          Rails.logger.debug( "------ >>>>>>>>  no payment_intent.requires_action', 'charge.failed' events  <<<<<<<< ------- ")
+          Rails.logger.debug( "Enterd in else part of payment_intent.requires_action and charge failed condition")
         render json: {"status": "failed", errors: ["uncaptured stripe event #{event_type}"]}
       end
     end
     
     def test_api
-      # binding.pry
-
       payload = request.body.read
       payld_data = JSON.parse(payload, symbolize_names: true)
       payld_event = Stripe::Event.construct_from(payld_data)
@@ -56,8 +49,7 @@ module Api
       data = payld_event['data']
       data_object = data['object']
 
-      Rails.logger.debug( "------ >>>>>>>> - Test API - <<<<<<<< ------- ")
-      Rails.logger.debug( event_type)
+      Rails.logger.debug("In downgrading_api and the Event Type =  #{event_type}")
       # Rails.logger.debug( data_object)
 
       if ['payment_intent.requires_action', 'charge.failed'].include?(event_type)
@@ -65,25 +57,19 @@ module Api
         if payld_data[:data] && payld_data[:data][:object] && payld_data[:data][:object][:customer]
           
           customer_token = payld_data[:data][:object][:customer]
-          Rails.logger.debug( "------ >>>>>>>>  customer_token  <<<<<<<< ------- #{customer_token}")
           customer = ClientUser.find_by_stripe_token(customer_token)
 
-          Rails.logger.debug( "------ >>>>>>>>  customer id  <<<<<<<< -------")
-          Rails.logger.debug(customer.id)
-          json_costomer = customer.as_json
-          Rails.logger.debug(json_costomer)
-          Rails.logger.debug(json_costomer["id"])
+          Rails.logger.debug( "customer id is #{customer.id}")
+          # costomer_in_jsonfrmt = customer.as_json
           # GeneralServices.new(customer.id, nil).downgrade_plan
 
           render json: {"status": "success"}
         else
-          Rails.logger.debug( "------ >>>>>>>>  error on payld_data  <<<<<<<< -------")
-
+          Rails.logger.debug("Enterd in else part of payld_data[:data][:object][:customer] ")
           render json: {"status": "failed", errors: ["customer id missing in stripe payload"]}
         end
       else
-        Rails.logger.debug( "------ >>>>>>>>  no payment_intent.requires_action', 'charge.failed' events  <<<<<<<< ------- ")
-
+        Rails.logger.debug("Enterd in else part of payment_intent.requires_action and charge failed condition")
         render json: {"status": "failed", errors: ["uncaptured stripe event #{event_type}"]}
       end
 
@@ -206,6 +192,3 @@ module Api
 
   end
 end
-
-# http://demo.itslabel.me/api/test_api
-# http://demo.itslabel.me/api/api_downgrade

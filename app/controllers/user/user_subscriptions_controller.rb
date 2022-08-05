@@ -91,41 +91,9 @@ module User
           # raise @user_subscription.subscription_id.inspect
         else
           new_user_subscription
-          # @user_subscription.subscription_id=1   // changed by sanoop to fix susbcription time issue
           sub_id = Subscription.find_by_title("Free")
           @user_subscription.subscription_id= sub_id.id
         end
-
-
-        # set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
-        # set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
-        # redirect_to user_user_subscriptions_path
-
-
-
-
-        # render 'update.js.erb'
-        # render :js => "alert('Hello Rails');"
-        # format.html { redirect_to video_tag_users_path(format: :js) }
-        # format.js { redirect_to controller: 'user_subscriptions', action: 'update'}
-        # respond_to do |format|
-        #   # format.html 
-        #   format.js # renders show.js.erb
-        # end
-        # respond_to do |format|
-          # format.js { location: user_user_subscriptions_path }
-          # format.js { render :partial => update.js }
-
-          # format.js {
-          #    template: "user/user_subscriptions/update.js.erb", 
-          #    layout: false
-          # }
-
-        # end
-          # redirect_to controller: :user_subscriptions, action: :index
-          # redirect_to controller: 'thing', action: 'edit', id: 3, something: 'else'
-
-
       end
     end
 
