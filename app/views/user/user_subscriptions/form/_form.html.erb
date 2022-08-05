@@ -21,6 +21,22 @@
       method: form_method, 
       html: { autocomplete: "off" }) do |f| %>
 
+
+
+    <div class="col-lg-12">
+      <%
+        @trial_period_end_date = (current_client_user.created_at.to_date + 7.days)
+        @trial_period = (Date.today.to_date - current_client_user.created_at.to_date).to_i
+      %>
+      <% if @trial_period >= 7 %>
+        <div class="alert alert-primary" role="alert">
+
+          You are on the trial plan. You will be able to access full features on the platform for first 7 days. Your trial will expire on <%= @trial_period_end_date.strftime('%d-%m-%Y') %>"
+
+        </div>
+      <% end %>
+    </div>
+
     <%= hidden_field_tag "called_from", params[:called_from] %>
     <div class="body">
       <%#= f.hidden_field :user_id, :value => @current_client_user.id %>
@@ -84,12 +100,8 @@
 
                             <% else %> 
                               <% if subscription.title.to_s != 'Free' %>
-                                <a href="javascript:void(0);" class="mt-4" style="color: #ada9df;"  onclick="downgradePlan(<%#= subscription.id %>)"> Downgrade Plan</a>
+                                <a href="javascript:void(0);" class="mt-4" style="color: #ada9df;"  onclick="downgradePlan()"> Downgrade Plan</a>
                               <% end %>
-                              <!-- <a href="javascript:void(0);"  class="price-buy" onclick="updatePlan(<%#= subscription.id %>)"> -->
-                                <%#= (@user_subscription.subscription_id == subscription.id)? 'Current Plan' : 'Update' %>
-                                <!-- Down Grade -->
-                              <!-- </a> -->
                             <% end %>
 
 
@@ -306,45 +318,27 @@
     </div>
 
 
-
-
-
-
-
-
 <%# end %>
 
 
 <script type="text/javascript">
   
-    // Function to update plane. The function triggered on click event
-    function updatePlan(sub_id) {
-      var user_id = <%= @current_client_user.id %>
-       $.ajax({
-       url: "/user/user_subscriptions.js",
-       type: "PUT",
-         headers: {
-          'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
-        },
-       data: {"user_subscription": {"user_id" : user_id, "sub_id": sub_id}},
-       // dataType: "json",
-       success: function(data) {
-         }
-       });
-    }
+    function downgradePlan() {
+      let text = "Do you realy want to downgrade the plan?";
+      if (confirm(text) == true) {
+        var user_id = <%= @current_client_user.id %>
+         $.ajax({
+         url: "/user/user_subscriptions/downgrade_subscription.js",
+         type: "POST",
+           headers: {
+            'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+          },
+         data: {"subscription": {"user_id" : user_id}},
+         // dataType: "json",
+         success: function(data) {
+           }
+         });
+      } 
 
-    function downgradePlan(sub_id) {
-      var user_id = <%= @current_client_user.id %>
-       $.ajax({
-       url: "/user/user_subscriptions/downgrade_subscription.js",
-       type: "POST",
-         headers: {
-          'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
-        },
-       data: {"subscription": {"user_id" : user_id, "sub_id": sub_id}},
-       // dataType: "json",
-       success: function(data) {
-         }
-       });
     }
 </script>
