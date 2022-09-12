@@ -50,9 +50,6 @@ module User
 
       @stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
       # binding.pry
-      Rails.logger.debug( "Stripe result ----- #{@stripe_sub}")
-      Rails.logger.debug( "Stripe status ----- #{@stripe_sub[:status]}")
-      Rails.logger.debug( "Stripe data ----- #{@stripe_sub[:data]}")
       if @stripe_sub[:status] == 200
         # if @stripe_sub.status == "active" # In Active mode and sucessfull subscription
         # if @stripe_sub[:data].status == "trialing"  # When in trail mode
