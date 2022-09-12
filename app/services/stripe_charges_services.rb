@@ -12,11 +12,23 @@ class StripeChargesServices
 
 
   def initialize(params, user, subscription_id)
-    @stripe_email = params[:stripeEmail]
-    @stripe_token = params[:stripeToken]
-    @subscription_id = subscription_id
+    @stripe_email = params[:stripeEmail] if params
+    @stripe_token = params[:stripeToken] if params
+    @subscription_id = subscription_id if subscription_id
     # @stripe_price_token = Rails.configuration.stripe[:stripe_price_token]
     @user = user
+  end
+
+  def delete_card
+
+    customer_data = retrieve_customer(user.stripe_token)
+    if customer_data.default_source
+      customer_dflt_card = customer_data.default_source
+      Stripe::Customer.delete_source(
+        user.stripe_token,
+        customer_dflt_card,
+      )
+    end
   end
 
   def susbscribe

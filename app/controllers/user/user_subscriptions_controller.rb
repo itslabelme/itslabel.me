@@ -50,6 +50,9 @@ module User
 
       @stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
       # binding.pry
+      Rails.logger.debug( "Stripe result ----- #{@stripe_sub}")
+      Rails.logger.debug( "Stripe status ----- #{@stripe_sub[:status]}")
+      Rails.logger.debug( "Stripe data status ----- #{@stripe_sub[:data].status}")
       if @stripe_sub[:status] == 200
         # if @stripe_sub.status == "active" # In Active mode and sucessfull subscription
         # if @stripe_sub[:data].status == "trialing"  # When in trail mode
@@ -102,7 +105,9 @@ module User
       sub_id = params['subscription']['sub_id']
       
       GeneralServices.new(user_id, nil).downgrade_plan
-      StripeChargesServices.new(charges_params, current_client_user, sub_id).delete_subscription
+      # StripeChargesServices.new(nil, current_client_user, nil).delete_card  # Delete card after downgrade plan
+      # StripeChargesServices.new(charges_params, current_client_user, sub_id).delete_subscription
+
     end
     
     def subscribe

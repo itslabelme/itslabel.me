@@ -27,6 +27,7 @@ module Api
 
           Rails.logger.debug( "customer id id #{customer.id}")
           GeneralServices.new(customer.id, nil).downgrade_plan
+          # StripeChargesServices.new(nil, customer.id, nil).delete_card # Delete card after downgrade plan
 
           render json: {"status": "success"}
         else
