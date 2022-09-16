@@ -50,13 +50,12 @@ module User
 
       @stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
       # binding.pry
-      Rails.logger.debug( "Stripe result ----- #{@stripe_sub}")
       Rails.logger.debug( "Stripe status ----- #{@stripe_sub[:status]}")
-      Rails.logger.debug( "Stripe data status ----- #{@stripe_sub[:data].status}")
       if @stripe_sub[:status] == 200
         # if @stripe_sub.status == "active" # In Active mode and sucessfull subscription
         # if @stripe_sub[:data].status == "trialing"  # When in trail mode
         # if @stripe_sub[:data].status == "incomplete" # In Test Mode
+        Rails.logger.debug( "Stripe data status ----- #{@stripe_sub[:data].status}")
         if ['incomplete', 'active'].include? @stripe_sub[:data].status # to solve if give active status and incomplete status
           @user_subscription.usr_subscr_strip_token = @stripe_sub[:data].id
           
