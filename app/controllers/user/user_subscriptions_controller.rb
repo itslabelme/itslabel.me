@@ -52,8 +52,8 @@ module User
       # binding.pry
       Rails.logger.debug( "Stripe result ----- #{@stripe_sub}")
       Rails.logger.debug( "Stripe status ----- #{@stripe_sub[:status]}")
+      Rails.logger.debug( "Stripe data status ----- #{@stripe_sub[:data].status}")
       if @stripe_sub[:status] == 200
-        Rails.logger.debug( "Stripe data status ----- #{@stripe_sub[:data].status}")
         # if @stripe_sub.status == "active" # In Active mode and sucessfull subscription
         # if @stripe_sub[:data].status == "trialing"  # When in trail mode
         # if @stripe_sub[:data].status == "incomplete" # In Test Mode
