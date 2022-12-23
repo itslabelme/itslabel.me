@@ -47,7 +47,11 @@
                   <th class="tl"></th>
                   <% @subscriptions.each_with_index do |subscription, i| %>
                     <th class="compare-heading <%= (@user_subscription.subscription_id == subscription.id )? 'sub-current-plan' : '' %> ">
-                      <%= subscription.title.titleize %>
+                      <% if subscription.title.to_s == 'Free' %>
+                        7-day Trial
+                      <% else %>
+                        <%= subscription.title.titleize %>
+                      <% end %>
                     </th>
                   <% end %>
                 </tr>
@@ -112,7 +116,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+<!--                 <tr>
                   <td></td>
                   <td colspan="5">Monthly Subscription</td>
                 </tr>
@@ -123,91 +127,104 @@
                   <td><span class="tickblue">$ 149.99</span></td> 
                   <td><span class="tickblue">$ 269.99</td>
                   <td><span class="tickblue">$ 509.99</td>
+                </tr> -->
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Access over 6,000+ comprehensively researched food ingredients in 4 languages.</td>
+                </tr>
+                <tr>
+                  <td>Access over 6,000+ comprehensively researched food ingredients in 4 languages.</td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="5">Customer Registration</td>
-                </tr>
-                <tr>
-                  <td>Customer Registration</td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td colspan="5">Free Translation Access</td>
+                  <td colspan="5">Translation from/to English, Arabic, French, and Spanish.</td>
                 </tr>
                 <tr class="compare-row">
-                  <td>Free Translation Access</td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td>Translation from/to English, Arabic, French, and Spanish.</td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="5">Languages</td>
+                  <td colspan="5">Free-form ingredient translation with PDF exporting.</td>
                 </tr>
                 <tr>
-                  <td>Languages</td>
-                  <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td>Free-form ingredient translation with PDF exporting.</td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="5">Output to PDF</td>
+                  <td colspan="5">Table-based ingredient translation with CSV importing and exporting.</td>
                 </tr>
                 <tr class="compare-row">
-                  <td>Output to PDF</td>
-                  <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td>Table-based ingredient translation with CSV importing and exporting.</td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="5">Online Archiving & Storage*</td>
+                  <td colspan="5">Label/Template ingredient translation with PDF exporting.</td>
                 </tr>
                 <tr>
-                  <td>Online Archiving & Storage*</td>
-                  <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td>Label/Template ingredient translation with PDF exporting.</td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="5">Label Output Sizing</td>
+                  <td colspan="5">Management system to store your translations on the cloud.</td>
                 </tr>
                 <tr class="compare-row">
-                  <td>Label Output Sizing</td>
-                  <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td>Management system to store your translations on the cloud.</td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td colspan="5">Basic Template Features</td>
+                  <td colspan="5">Customer support response within 24 hours.</td>
                 </tr>
                 <tr>
-                  <td>Basic Template Features</td>
-                  <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue">-</span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
-                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td>Customer support response within 24 hours.</td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
+                  <td><span class="tickblue"><img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"></span></td>
                 </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
                 <tr>
                   <td>&nbsp;</td>
                   <td colspan="5">Advanced Template Features</td>
@@ -303,12 +320,18 @@
                   <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
                   <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
                   <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
-                </tr>
+                </tr> -->
+
+
             </tbody>
             </table>
             <div class="row mt-4">
               <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: left;">
-                <span><i class="fa fa-check"></i>* : Limited scope</span>
+                <span><!-- <i class="fa fa-check"></i> -->
+                  <li>Terms & conditions apply, along with the standard cancellation policy based on a minimum subscription of 1 month.</li>
+                  <li>All registered users will have full free access to all available features for 7 days. After 7 days, users are required to subscribe and pay to continue using the translation web app service. ITS will not take credit cards or any billing information at the beginning of the trial period. For more information, please view our <a href="https://itslabel.me/frequently-asked-questions">FAQ</a> 
+                  </li>
+                </span>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 mt-2" style="text-align: left;">
                 <!-- <span>TBC* : Please contact us on (contact email) to find our how we can customise and integrate ITS Label into you organisation's workflow. </span> -->
