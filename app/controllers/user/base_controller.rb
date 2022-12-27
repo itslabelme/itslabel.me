@@ -25,8 +25,10 @@ module User
       
       # binding.pry
 
+      # if @trial_period <= 0
       if @trial_period <= 7
       # if @subcription.subscription.title == "Free"
+        redirect_to :user_user_subscriptions
       # elsif @trial_period <= 7
       elsif @subcription.subscription.title == "Free" # For testing
           #User can aceess all features
