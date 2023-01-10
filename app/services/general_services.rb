@@ -7,7 +7,8 @@ class GeneralServices
   end
 
   def downgrade_plan
-    user_subscription = UserSubscription.find_by(user_id: @user)
+    # user_subscription = UserSubscription.find_by(user_id: @user)
+    user_subscription = ZohoSubData.find_by('client_user_id=?',@user)
     free_subscription = Subscription.find_by_title("Free")
 
     if @subscription_id

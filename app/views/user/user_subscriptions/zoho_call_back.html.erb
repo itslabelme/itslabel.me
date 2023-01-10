@@ -1,0 +1,75 @@
+<style type="text/css">
+
+
+   
+</style>
+
+
+<div class="container-fluid">
+  
+  <!-- Header -->
+  <%= render partial: 'user/user_subscriptions/index/sucess_message_header' %>
+  
+  <!-- Controls -->
+  <%#= render partial: 'admin/admin_users/index/controls' %>
+  
+  <div class="row clearfix">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="tab-content mt-0">
+          
+        <div class="tab-pane active show" id="SUBSCRIPTIONS_LIST">
+
+
+          <div class="body">
+            <div class="comparison">
+              <!-- <p> Sucessfully Created</p> -->
+
+                <div class="container">
+                   <div class="row">
+                      <div class="col-md-9 mx-auto mt-5">
+                         <div class="payment">
+                            <% if @plan_status %>
+                                <div class="payment_header payment-success" > 
+                                   <div class="paymnet-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                                </div>
+                            <% else %>
+                                <div class="payment_header payment-error"> 
+                                   <div class="paymnet-check"><i class="fa fa-times" aria-hidden="true"></i></div>
+                                </div>
+                            <% end %>
+                            <div class="payment-content">
+                              <% if @plan_status %>
+                                <h1>Success !</h1>
+                                <p>Payment for the subscription plan "<%= @plan_name %>"" is sucessfully created and Amount <%= @plan_price %> deducted from your aaccount </p>
+                                <a href="home">Go to Home</a>
+                              <% else %>
+                                <h1>Error !</h1>
+                                <p>Error on Payment for the subscription. Please try again </p>
+                                <a href="user_subscriptions">Go to Subscription</a>
+                              <% end %>
+
+
+                            </div>
+                            
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+
+
+            </div>
+          </div>
+            <%#= render partial: 'user/user_subscriptions/form/form' %>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'user/common/copyright' %>
+</div>
+
+<%= content_for :javascript_footer do %>
+  <%#= render :partial=>"admin/admin_users/index/table.js.erb"  %>
+<% end %>

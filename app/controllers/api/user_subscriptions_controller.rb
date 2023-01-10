@@ -3,6 +3,13 @@ module Api
     
     skip_before_action :verify_authenticity_token
 
+    # def zoho_test
+    #   binding.pry
+    # end
+
+    # def zoho_test2
+    #   binding.pry
+    # end
     
     def downgrading_api
       

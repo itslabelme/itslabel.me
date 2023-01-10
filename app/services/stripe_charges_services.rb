@@ -63,7 +63,8 @@ class StripeChargesServices
   end
 
   def delete_subscription
-    user_subscription = UserSubscription.find_by(user_id: @user.id)
+    # user_subscription = UserSubscription.find_by(user_id: @user.id)
+    user_subscription = ZohoSubData.find_by('client_user_id=?',@user.id)
 
     # binding.pry
     
