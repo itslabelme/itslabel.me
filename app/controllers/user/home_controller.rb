@@ -23,8 +23,9 @@ module User
     end
 
     def check_subscription_plan
-      # user_subscription = ZohoSubData.find_by('client_user_id=?',current_client_user)
-      user_subscription = UserSubscription.find_by(user_id:current_client_user)
+      # binding.pry
+      user_subscription = ZohoSubData.find_by('client_user_id=?',current_client_user)
+      # user_subscription = UserSubscription.find_by(user_id:current_client_user)
       @trial_period = (Date.today.to_date - current_client_user.created_at.to_date).to_i
 
       if user_subscription.subscription.title.downcase == "Free".downcase && @trial_period >= 7

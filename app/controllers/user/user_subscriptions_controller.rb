@@ -14,6 +14,7 @@ module User
       if !@user_subscription.blank?
      
         get_user_subscription
+        # @plan = @user_subscription.zoho_plan_code
         # raise @user_subscription.subscription_id.inspect
       else
         new_user_subscription
@@ -108,30 +109,10 @@ module User
 
     def zoho_call_back
 
-      # Examples
-
-        # # GET request with modified headers
-        # RestClient.get 'http://example.com/resource', {:Authorization => 'Bearer cT0febFoD5lxAlNAXHo6g'}
-
-        # # POST request with modified headers
-        # RestClient.post 'http://example.com/resource', {:foo => 'bar', :baz => 'qux'}, {:Authorization => 'Bearer cT0febFoD5lxAlNAXHo6g'}
-
-        # # DELETE request with modified headers
-        # RestClient.delete 'http://example.com/resource', {:Authorization => 'Bearer cT0febFoD5lxAlNAXHo6g'}
-
-        # client_token = 
-        # client_id = 
-        # code = 
-        # access_token = 
-        # refresh_token = 
-        # parameters = {'client_token': '12', 'client_id': '13', 'code': '14'}
-        # ZohoSubscription.new(parameters).get_hostedpages_details
-
-
-        # hostedpages_id = '2-8a55a069e007bc990b9825803d96bd1418a3f91e7f92be9aae83f416ab6f5de705fca12d11bacc6ccd8887b17b8ad7f2'
+     
         hostedpages_id = params[:hostedpage_id]
+        refresh_token = Rails.application.secrets.zoho_refresh_token
 
-        refresh_token = '1000.3b2750d37e26adefc8a6ba67dfc848c8.829e016bac3b60ca9129e8d3a3689177'
         parameters = {'hostedpages_id': hostedpages_id, 'refresh_token': refresh_token}
         hostedpage_pay_loads = ZohoSubscription.new(parameters).get_hostedpages_details
 
@@ -168,16 +149,6 @@ module User
         else
           puts "Failure in send API of Hosted page details".red
         end
-
-      # {"sub"=>"Test-3 Months", "plan"=>"3 Months", "hostedpage_id"=>"2-8a55a069e007bc994414ee32022e961061935fc4a5cad80c21b9c48d67314df3fecbf94c9c1b92f7cd8887b17b8ad7f2", "controller"=>"api/user_subscriptions", "action"=>"zoho_test"}
-
-      # response = RestClient.get('https://subscriptions.zoho.com/api/v1/hostedpages/2-8a55a069e007bc99f3b7add3f8a199ed61935fc4a5cad80c050fa3e2d20e50d096cfc2adf26dbb03cd8887b17b8ad7f2', {accept: :json})
-      # response = RestClient.get('https://subscriptions.zoho.com/api/v1/hostedpages/2-8a55a069e007bc99f3b7add3f8a199ed61935fc4a5cad80c050fa3e2d20e50d096cfc2adf26dbb03cd8887b17b8ad7f2', {:Authorization => 'Zoho-oauthtoken 1000.eb70547d22cb5f7ecb2c5bff4b12eec2.10abe5f9eb4b99017d3780137cb5594f'})
-      # data = JSON.parse(response.body)
-      # binding.pry
-
-
-
     end
 
     def downgrade_subscription
@@ -203,8 +174,8 @@ module User
     end
 
     def get_user_subscription
-      # @user_subscription = ZohoSubData.find_by('client_user_id=?',current_client_user)
-      @user_subscription = UserSubscription.find_by(user_id:current_client_user)
+      @user_subscription = ZohoSubData.find_by('client_user_id=?',current_client_user)
+      # @user_subscription = UserSubscription.find_by(user_id:current_client_user)
     end
 
     def assign_user_subscription_params
