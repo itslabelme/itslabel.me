@@ -21,12 +21,14 @@ class ClientUser < ApplicationRecord
   has_many :document_folders, class_name: "DocumentFolder", foreign_key: :user_id
 
   has_one :user_subscription, class_name: "UserSubscription", foreign_key: :user_id
+  has_one :zoho_sub_data, class_name: "ZohoSubData"
 
   # Callback
   after_create :create_default_folder
 
   #call back function to create default(free) subscription plan after registration
   after_create :create_user_subscription
+  after_create :create_zoho_sub_data
 
 
   # TODO:- For Welcome mail for new user
@@ -54,6 +56,23 @@ class ClientUser < ApplicationRecord
     country1 = ISO3166::Country[country]
     # country1.translations[I18n.locale.to_s] || country1.name
     country1.try(:name)
+  end
+
+  def create_zoho_sub_data
+    if self.zoho_sub_data
+      self.zoho_sub_data.update(subscription_id: Subscription.find_by_title("Free").id)
+    else
+      # binding.pry
+      zoho_sub_data = ZohoSubData.new
+      zoho_sub_data.client_user_id = self.id
+      zoho_sub_data.subscription_id = Subscription.find_by_title("Free").id
+      zoho_sub_data.zoho_customer_id = "1"
+      zoho_sub_data.zoho_subscription_id = "1"
+      zoho_sub_data.zoho_plan_code = "1"
+      if zoho_sub_data.valid?
+        zoho_sub_data.save
+      end
+    end
   end
 
   def create_user_subscription

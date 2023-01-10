@@ -3,7 +3,10 @@ module User
     before_action :authenticate_client_user!, except: [:api_downgrade]
     before_action :get_user_subscription
     #before_action :access_denied, only: [:index, :new]
-    
+
+      require 'rest-client'
+      require 'json'
+
     def index
       get_permissions
       @subscriptions=Subscription.all
@@ -11,6 +14,7 @@ module User
       if !@user_subscription.blank?
      
         get_user_subscription
+        # @plan = @user_subscription.zoho_plan_code
         # raise @user_subscription.subscription_id.inspect
       else
         new_user_subscription
@@ -41,6 +45,9 @@ module User
       end
     end
     
+    def show
+    end
+
     def edit
     end
     
@@ -100,6 +107,50 @@ module User
       end
     end
 
+    def zoho_call_back
+
+     
+        hostedpages_id = params[:hostedpage_id]
+        refresh_token = Rails.application.secrets.zoho_refresh_token
+
+        parameters = {'hostedpages_id': hostedpages_id, 'refresh_token': refresh_token}
+        hostedpage_pay_loads = ZohoSubscription.new(parameters).get_hostedpages_details
+
+        @plan_name = nil
+        @plan_price = nil
+        @plan_status = false
+
+        # binding.pry
+        if hostedpage_pay_loads
+          if hostedpage_pay_loads['status'] = 'success'
+
+            @plan_name = hostedpage_pay_loads['data']['subscription']['plan']['name']
+            @plan_price = hostedpage_pay_loads['data']['subscription']['plan']['price']
+            @plan_status = true
+
+            @zoho_sub_data = ZohoSubData.new
+            @zoho_sub_data.client_user_id = @current_client_user.id
+
+            subscription_plan = hostedpage_pay_loads['data']['subscription']['plan']['plan_code'].gsub(/\s+/, "")
+            @zoho_sub_data.subscription = Subscription.find_by_title(subscription_plan) || Subscription.find_by_title("Free")
+
+            @zoho_sub_data.zoho_customer_id = hostedpage_pay_loads['data']['subscription']['customer_id']
+            @zoho_sub_data.zoho_subscription_id = hostedpage_pay_loads['data']['subscription']['subscription_id']
+            @zoho_sub_data.zoho_plan_code = hostedpage_pay_loads['data']['subscription']['plan']['plan_code']
+
+          # binding.pry
+            if @zoho_sub_data.valid?
+              @zoho_sub_data.save
+            end
+            puts "Successfully Saved".green
+          else
+            puts "Failure in subscription".red
+          end
+        else
+          puts "Failure in send API of Hosted page details".red
+        end
+    end
+
     def downgrade_subscription
       user_id = params['subscription']['user_id']
       sub_id = params['subscription']['sub_id']
@@ -123,7 +174,8 @@ module User
     end
 
     def get_user_subscription
-      @user_subscription = UserSubscription.find_by(user_id:current_client_user)
+      @user_subscription = ZohoSubData.find_by('client_user_id=?',current_client_user)
+      # @user_subscription = UserSubscription.find_by(user_id:current_client_user)
     end
 
     def assign_user_subscription_params
@@ -132,6 +184,7 @@ module User
     end
 
     def new_user_subscription
+      # @user_subscription = ZohoSubData.new
       @user_subscription = UserSubscription.new
     end
     def user_subscription_params

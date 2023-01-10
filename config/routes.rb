@@ -110,6 +110,7 @@ Rails.application.routes.draw do
     get 'edit_client_profile', to: 'client_profile#edit'
     put 'update_client_profile', to: 'client_profile#update'
     put 'update_client_password', to: 'client_profile#update_password'
+    get 'zoho_call_back', to: 'user_subscriptions#zoho_call_back', as: 'zoho_call_back'
     resources :user_subscriptions
     resources :user_subscriptions, only: [:create, :index, :update] do
      collection do
@@ -182,5 +183,7 @@ Rails.application.routes.draw do
         post 'downgrading_api', to: 'user_subscriptions#downgrading_api', as: 'downgrading_api'
         post 'test_api', to: 'user_subscriptions#test_api', as: 'test_api'
         get 'test_api', to: 'user_subscriptions#test_api_2', as: 'test_api2'
+        get 'zoho_test', to: 'user_subscriptions#zoho_test', as: 'zoho_test'
+        post 'zoho_test', to: 'user_subscriptions#zoho_test2', as: 'zoho_test2'
   end
 end
