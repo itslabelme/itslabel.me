@@ -122,7 +122,10 @@ module User
 
         # binding.pry
         if hostedpage_pay_loads
+          puts "User subscription got payload ".green
+          
           if hostedpage_pay_loads['status'] = 'success'
+            puts "User subscription got payload and its sucess".green
 
             @plan_name = hostedpage_pay_loads['data']['subscription']['plan']['name']
             @plan_price = hostedpage_pay_loads['data']['subscription']['plan']['price']
