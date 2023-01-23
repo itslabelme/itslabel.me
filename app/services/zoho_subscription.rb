@@ -148,7 +148,8 @@ class ZohoSubscription
 
     if access_token
           # subscription data
-        subscription_data = {subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: "http://localhost:3000/user/zoho_call_back" }
+        # subscription_data = {subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: "http://localhost:3000/user/zoho_call_back" }
+        subscription_data = {subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: "http://demo.itslabel.me//user/zoho_call_back" } 
                  
         begin
            # Create the HTTP request
