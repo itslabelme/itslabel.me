@@ -57,7 +57,7 @@ module Admin
       if @admin_user.valid?
         @admin_user.save
        set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "AdminUser"))
-       set_flash_message(I18n.translate("success.updated", item: "AdminUser"), :success)
+       # set_flash_message(I18n.translate("success.updated", item: "AdminUser"), :success)
       else
         message = I18n.t('errors.failed_to_update', item: "AdminUser")
         @admin_user.errors.add :base, message
