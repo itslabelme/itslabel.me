@@ -1,50 +1,194 @@
+require 'net/http'
 class ZohoSubscription
 
   def initialize(params)
     @params = params
-    @refresh_token = @params[:refresh_token]
-    # @client_token = client_token
-    # @client_id = client_id
-    # @access_token = get_access_token
-    # @code = create_code
-    
+    @refresh_token = @params[:refresh_token]    
+  end
+
+  def check_token_expiry_fetch_tocken
+    zoho_token_details = ZohoToken.first
+    time_diff = (Time.current - zoho_token_details.updated_at).to_i
+    if time_diff > zoho_token_details.token_expires_in.to_i  
+        # Fetch Access token
+        begin
+          new_token_response = RestClient.post("https://accounts.zoho.com/oauth/v2/token", {:refresh_token => @refresh_token , :client_id => Rails.application.secrets.zoho_client_id, :client_secret => Rails.application.secrets.zoho_client_secret, :redirect_uri => Rails.application.secrets.zoho_redirect_uri, :grant_type => "refresh_token"})
+        rescue StandardError => e
+        end
+
+        # Parse Json data
+        if new_token_response
+          new_token = JSON.parse(new_token_response.body)
+        end
+
+        # Save Access token to DB
+        zoho_token_details.access_token = new_token['access_token']
+        zoho_token_details.token_expires_in = new_token['expires_in']
+        if zoho_token_details.valid?
+          zoho_token_details.save
+        end
+
+        # Fetch Hosted page payload
+        return new_token['access_token']
+    else
+        # Fetch Hosted page payload
+      return zoho_token_details.access_token
+    end
+
+  end
+
+  def fetch_subscription_hosted_data
+    # Fetch access token - If time.now is larger than last update in data entry then create new token else fetch from DB
+    access_token = check_token_expiry_fetch_tocken
+    hostedpage_id = @params[:hostedpage_id]
+
+    begin
+       # Create the HTTP request
+      uri = URI("https://subscriptions.zoho.com/api/v1/hostedpages/#{hostedpage_id}?organization_id=794973394")
+      # binding.pry
+      req = Net::HTTP::Get.new(uri)
+      req["Content-Type"] = "application/json"
+      req["Authorization"] = "Zoho-oauthtoken #{access_token}"
+      # req.body = subscription_data.to_json
+
+      # Send the request and get the response
+      res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+        http.request(req)
+      end
+
+    rescue StandardError => e
+    end
+
+    # Parse the response
+    hosted_data = JSON.parse(res.body)
+
+    # Check if the subscription was created successfully
+    if res.is_a?(Net::HTTPSuccess)
+      puts "Successfully fetched subscription data"
+      result_data = {status: true, message: "Success", data: hosted_data}
+    else  
+      puts "Failed to create subscription: #{hosted_data["message"]}"
+      result_data = {status: false, message: hosted_data["message"], data: nil}
+    end
   end
 
   # Function to fetch hostedpage payload using access token and hostedpage id
-  def fet_hostedpages_payload(access_token)
+  def fetch_hostedpages_payload(access_token)
 
       if access_token
         hostedpage_id = @params[:hostedpages_id]
-
-        puts "------- call initiated for payload ".yellow
 
         begin
           hostedpages_response = RestClient.get("https://subscriptions.zoho.com/api/v1/hostedpages/#{hostedpage_id}", {:Authorization => "Zoho-oauthtoken #{access_token}"})
         rescue StandardError => e
         end
 
-        # binding.pry
         if hostedpages_response
           hostedpages_data = JSON.parse(hostedpages_response.body)
         end
 
-        puts "------- got the payload ".yellow
-
         return hostedpages_data
       else
-        puts "------- no access token while go for payload so payload fetching function not working ".yellow
         return nil
       end
   end
 
-  def get_hostedpages_details
 
-    puts "------- get_hostedpages_details function triggered ".blue
+    # Create subscription using free plan
+  def create_zoho_free_subscription
+
+    # Fetch access token - If time.now is larger than last update in data entry then create new token else fetch from DB
+    access_token = check_token_expiry_fetch_tocken
+
+    if access_token
+          # subscription data
+        subscription_data = {customer: {display_name: @params[:display_name], first_name: @params[:first_name], last_name: @params[:last_name], email: @params[:email], company_name: @params[:company_name]}, plan: {name: "Free Plan", plan_code: "Free", plan_description: "Free Plan", price: 0, quantity: 1}, auto_collect: false}
+
+        begin
+           # Create the HTTP request
+          uri = URI("https://subscriptions.zoho.com/api/v1/subscriptions?organization_id=794973394")
+          req = Net::HTTP::Post.new(uri)
+          req["Content-Type"] = "application/json"
+          req["Authorization"] = "Zoho-oauthtoken #{access_token}"
+          req.body = subscription_data.to_json
+
+          # Send the request and get the response
+          res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+            http.request(req)
+          end
+
+        rescue StandardError => e
+        end
+
+        # Parse the response
+        response_data = JSON.parse(res.body)
+
+        # Check if the subscription was created successfully
+        if res.is_a?(Net::HTTPSuccess)
+          subscription_id = response_data["subscription"]["subscription_id"]
+          puts "Successfully created subscription with ID: #{subscription_id}"
+          result_data = {status: true, message: "Success", data: response_data}
+        else  
+          puts "Failed to create subscription: #{response_data["message"]}"
+          result_data = {status: false, message: response_data["message"], data: nil}
+        end
+
+    else
+      return {status: false, message: "Error on get Access token", data: nil}
+    end
+
+  end
+
+
+
+  def update_zoho_subscription
+
+  # Fetch access token - If time.now is larger than last update in data entry then create new token else fetch from DB
+    access_token = check_token_expiry_fetch_tocken
+
+    if access_token
+          # subscription data
+        subscription_data = {subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: "http://localhost:3000/user/zoho_call_back" }
+                 
+        begin
+           # Create the HTTP request
+          uri = URI("https://subscriptions.zoho.com/api/v1/hostedpages/updatesubscription?organization_id=794973394")
+          req = Net::HTTP::Post.new(uri)
+          req["Content-Type"] = "application/json"
+          req["Authorization"] = "Zoho-oauthtoken #{access_token}"
+          req.body = subscription_data.to_json
+
+          # Send the request and get the response
+          res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+            http.request(req)
+          end
+
+        rescue StandardError => e
+        end
+
+        # Parse the response
+        response_data = JSON.parse(res.body)
+        # binding.pry 
+
+        # Check if the subscription was created successfully
+        if res.is_a?(Net::HTTPSuccess)
+          puts "Successfully updated subscription with ID:"
+          return {status: true, message: "Success", data: response_data}
+        else  
+          puts "Failed to updated subscription: #{response_data["message"]}"
+          return {status: false, message: response_data["message"], data: nil}
+        end
+
+    else
+      return {status: false, message: "Error on get Access token", data: nil}
+    end
+  end
+
+
+  def get_hostedpages_details
 
     zoho_token_details = ZohoToken.first
     time_diff = (Time.current - zoho_token_details.updated_at).to_i
-
-    puts "------- time diff -  #{time_diff} ".blue
 
     # binding.pry 
     # Rails.application.secrets.zoho_client_id
@@ -52,8 +196,6 @@ class ZohoSubscription
     # Check the aceess token is expired or not. Normaly access token has 1 hrs of expiry.
     # Once its expired, fetch the access token using refresh token and save the same to our DB
     if time_diff > zoho_token_details.token_expires_in.to_i  
-
-        puts "------- time diff is grater than token so go for create token ".green
 
         # Fetch Access token
         begin
@@ -66,8 +208,6 @@ class ZohoSubscription
           new_token = JSON.parse(new_token_response.body)
         end
 
-        puts "------- token created -  #{new_token['access_token']} ".green
-
         # Save Access token to DB
         zoho_token_details.access_token = new_token['access_token']
         zoho_token_details.token_expires_in = new_token['expires_in']
@@ -75,48 +215,15 @@ class ZohoSubscription
           zoho_token_details.save
         end
 
-        puts "------- access token saved to DB ".green
-
         # Fetch Hosted page payload
-        return fet_hostedpages_payload(new_token['access_token'])
+        return fetch_hostedpages_payload(new_token['access_token'])
     else
-        puts "------- time diff is less than than token so token fetch from DB".red
         # Fetch Hosted page payload
         # access_token = zoho_token_details.access_token
-      return fet_hostedpages_payload(zoho_token_details.access_token)
+      return fetch_hostedpages_payload(zoho_token_details.access_token)
     end
   end
 
-
-  # def get_access_token
-  #     zoho_token_details = ZohoToken.first
-  #     time_diff = (Time.current - zoho_token_details.updated_at).to_i
-
-  #     # if time_diff > zoho_token_details.token_expires_in.to_i  #Correct one
-  #     if time_diff < zoho_token_details.token_expires_in.to_i
-  #       puts "expired............"
-  #       begin
-  #         new_token_response = RestClient.post("https://accounts.zoho.com/oauth/v2/token", {:refresh_token => "1000.1f60701ed10cd9e4218ce6269fac16d2.9e36c2a7b3f94bb542d5073b9d542d59", :client_id => "1000.7JII82RGSEMA3RSUCOXA4RZL6PM4BE", :client_secret => "a54e2c40317f8a3f211df6b5697b19f91f3ca04198", :redirect_uri => "http://www.zoho.com/subscriptions", :grant_type => "refresh_token"})
-  #       rescue StandardError => e
-  #       end
-
-  #       if new_token_response
-  #         new_token = JSON.parse(new_token_response.body)
-  #       end
-
-  #       zoho_token_details.access_token = new_token['access_token']
-  #       zoho_token_details.token_expires_in = new_token['expires_in']
-  #       if zoho_token_details.valid?
-  #         zoho_token_details.save
-  #       end
-
-  #     else
-  #       puts "Not expired.........."
-  #       new_token = zoho_token_details.access_token
-  #     end
-  #     # binding.pry
-  #     return new_token
-  # end
 
 
 end

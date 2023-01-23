@@ -7,8 +7,9 @@ class CreateZohoSubDatas < ActiveRecord::Migration[5.2]
       t.string :zoho_customer_id, null: true   
       t.string :zoho_subscription_id, null: true   
       t.string :zoho_plan_code, null: true   
+      t.string :zoho_plan, null: true   
 
-      t.string :status, default: "SUCCESS", limit: 16, null: false
+      t.string :status, default: "FREE", limit: 16, null: false # FREE, EXPIRED, LIVE & CANCELLED
       t.timestamps 
     end
   end

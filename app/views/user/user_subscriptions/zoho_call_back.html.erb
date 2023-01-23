@@ -29,6 +29,7 @@
                    <div class="row">
                       <div class="col-md-9 mx-auto mt-5">
                          <div class="payment">
+
                             <% if @plan_status %>
                                 <div class="payment_header payment-success" > 
                                    <div class="paymnet-check"><i class="fa fa-check" aria-hidden="true"></i></div>
@@ -38,6 +39,7 @@
                                    <div class="paymnet-check"><i class="fa fa-times" aria-hidden="true"></i></div>
                                 </div>
                             <% end %>
+                            
                             <div class="payment-content">
                               <% if @plan_status %>
                                 <h1>Success !</h1>
