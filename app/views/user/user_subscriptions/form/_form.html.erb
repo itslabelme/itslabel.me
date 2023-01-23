@@ -1,7 +1,11 @@
 <%
   if @user_subscription.new_record?
-    form_method = :post
-    form_url = {action: :create}
+    # form_method = :post
+    # form_url = {action: :create}
+
+    form_method = :put
+    id=@user_subscription.id
+    form_url = {action: :update}
   else
     # form_method = :post
     form_method = :put
@@ -12,23 +16,12 @@
 
 
 
-<%#= form_with(
-      # url: subscribe_user_user_subscriptions_path,  
-      url: form_url,  
-      class: "form-floating", 
-      id: "sub_plan_form",
-      model: @user_subscription,
-      method: form_method, 
-      html: { autocomplete: "off" }) do |f| %>
-
-
-
     <div class="col-lg-12">
       <%
         @trial_period_end_date = (current_client_user.created_at.to_date + 7.days)
         @trial_period = (Date.today.to_date - current_client_user.created_at.to_date).to_i
       %>
-      <% if @trial_period <= 7 %>
+      <% if @trial_period <= 7 &&  @user_subscription['zoho_plan_code'].to_s == "Free" %>
         <div class="alert alert-primary" role="alert">
 
           You are on the trial plan. You will be able to access full features on the platform for first 7 days. Your trial will expire on <%= @trial_period_end_date.strftime('%d-%m-%Y') %>
@@ -40,35 +33,416 @@
     <%= hidden_field_tag "called_from", params[:called_from] %>
 
 
-  <div class="body">
-    <div class="comparison">
-        <%= @plan %>
-        <div id="zf-widget-root-id"></div> <script type="text/javascript" src='https://js.zohostatic.com/books/zfwidgets/assets/js/zf-widget.js'></script> <script> var pricingTableComponentOptions = { id: 'zf-widget-root-id', product_id: '2-8a55a069e007bc99a49eae90086f4b41d7844952fd01f8e62e7d9f42c7ee5295aa01f03b8b4ee52558bcad6fd428a6fd8b2289af99eff7f85eb36ff696767231', template: 'elegant_pro', most_popular_plan: '', is_group_by_frequency: false, isFrequencyDropdown: false, isCurrencyDropdown: false, can_show_plan_freq: true, pricebooks: [ { pricebook_id: '3638956000000011001', currency_code: 'AED', currency_symbol: 'AED', plans: [ { plan_code: 'Free', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/Free', recurring_price: '0', recurring_price_formatted: 'AED0.00', hp_settings_id: '3638956000000024003' }, { plan_code: '3Months', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/3Months', recurring_price: '149.99', recurring_price_formatted: 'AED149.99', hp_settings_id: '3638956000000024003' }, { plan_code: 'Monthly', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/Monthly', recurring_price: '49.99', recurring_price_formatted: 'AED49.99', hp_settings_id: '3638956000000024003' }, { plan_code: '6Months', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/6Months', recurring_price: '269.99', recurring_price_formatted: 'AED269.99', hp_settings_id: '3638956000000024003' }, { plan_code: '12Months', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/12Months', recurring_price: '509.99', recurring_price_formatted: 'AED509.99', hp_settings_id: '3638956000000024003' }, ] }, ], group_options: [ ], plans: [ { plan_code: 'Free', selectedAddons: [ ] }, { plan_code: '3Months', selectedAddons: [ ] }, { plan_code: 'Monthly', selectedAddons: [ ] }, { plan_code: '6Months', selectedAddons: [ ] }, { plan_code: '12Months', selectedAddons: [ ] }, ], theme: { color: '#00664c', theme_color_light: ''}, button_text: 'Subscribe', product_url: 'https://subscriptions.zoho.com', price_caption: '', language_code: 'en', open_inSameTab: false }; ZFWidget.init('zf-pricing-table', pricingTableComponentOptions); </script>
+    <div class="body">
+      <%#= f.hidden_field :user_id, :value => @current_client_user.id %>
+        <div class="comparison">
+            <table>
+              <thead>
+                <tr>
+                  <th class="tl"></th>
+                    <th class="compare-heading <%= (@user_subscription['zoho_plan_code'].to_s == "Free" )? 'sub-current-plan' : '' %> ">
+                        7-day Trial
+                    </th>
+
+                    <th class="compare-heading <%= (@user_subscription['zoho_plan_code'].to_s == "Monthly" )? 'sub-current-plan' : '' %> ">
+                        Monthly
+                    </th>
+
+                    <th class="compare-heading <%= (@user_subscription['zoho_plan_code'].to_s == "3Months" )? 'sub-current-plan' : '' %> ">
+                        3 Months
+                    </th>
+
+                    <th class="compare-heading <%= (@user_subscription['zoho_plan_code'].to_s == "6Months" )? 'sub-current-plan' : '' %> ">
+                        6 Months
+                    </th>
+
+                    <th class="compare-heading <%= (@user_subscription['zoho_plan_code'].to_s == "12Months" )? 'sub-current-plan' : '' %> ">
+                        12 Months
+                    </th>
+                </tr>
+                <tr>
+                  <th></th>
+
+
+                      <th class="price-info <%= (@user_subscription['zoho_plan_code'].to_s == "Free" )? 'sub-current-plan' : '' %> ">
+                        <div class="price-now">
+                          <!-- <span> 0.00 </span> -->
+                        </div>
+                        <div>
+                          <div class="subscription-free-btn">  
+                            <!-- 31px -->
+                            <% if (@user_subscription['zoho_plan_code'].to_s == "Free") %>
+                              <a href="javascript:void(0);" class="price-buy mt-2"> Active </a>
+                            <% else %>
+                            <% end %>
+                          </div>
+                              <%# if subscription.title.to_s != 'Free' %>
+                                <!-- <a href="javascript:void(0);" class="mt-4" style="color: #ada9df;"  onclick="downgradePlan()"> Downgrade Plan</a> -->
+                              <%# end %>
+
+                        </div>
+                      </th>
+
+                      <th class="price-info <%= (@user_subscription['zoho_plan_code'].to_s == "Monthly" )? 'sub-current-plan' : '' %>">
+                        <div class="price-now">
+                          <span> 49.99 </span>
+                        </div>
+                        <div>
+                          <%= form_for(@user_subscription, :url => {action: :update}, :method => "put" ) do |f| %>
+                              <div>
+
+                                <% if (@user_subscription['zoho_plan_code'].to_s == "Monthly") %>
+                                  <a href="javascript:void(0);" class="price-buy"> Active </a>
+                                <% else %>
+                                  <input class="price-buy" type="submit" value="Update" name="Update">
+                                <% end %>
+
+                                <input type="hidden"  name="user_subscription[plan_code]" value="Monthly" />
+                                <input type="hidden"  name="user_subscription[plan_description]" value="Monthly Plan" />
+                                <input type="hidden"  name="user_subscription[price]" value="49.99" />
+                              </div>
+                          <% end %>
+                              <%# if subscription.title.to_s != 'Free' %>
+                                <!-- <a href="javascript:void(0);" class="mt-4" style="color: #ada9df;"  onclick="downgradePlan()"> Downgrade Plan</a> -->
+                              <%# end %>
+                        </div>
+                      </th>
+
+                      <th class="price-info <%= (@user_subscription['zoho_plan_code'].to_s == "3Months" )? 'sub-current-plan' : '' %>">
+                        <div class="price-now">
+                          <span> 149.99 </span>
+                        </div>
+                        <div>
+                          <%= form_for(@user_subscription, :url => {action: :update}, :method => "put" ) do |f| %>
+                              <div>
+
+                                <% if (@user_subscription['zoho_plan_code'].to_s == "3Months") %>
+                                  <a href="javascript:void(0);" class="price-buy"> Active </a>
+                                <% else %>
+                                  <input class="price-buy" type="submit" value="Update" name="Update">
+                                <% end %>
+
+                                <input type="hidden"  name="user_subscription[plan_code]" value="3Months" />
+                                <input type="hidden"  name="user_subscription[plan_description]" value="3 Months plan Plan" />
+                                <input type="hidden"  name="user_subscription[price]" value="149.99" />
+                              </div>
+                          <% end %>
+                              <%# if subscription.title.to_s != 'Free' %>
+                                <!-- <a href="javascript:void(0);" class="mt-4" style="color: #ada9df;"  onclick="downgradePlan()"> Downgrade Plan</a> -->
+                              <%# end %>
+                        </div>
+                      </th>
+
+                      <th class="price-info <%= (@user_subscription['zoho_plan_code'].to_s == "6Months" )? 'sub-current-plan' : '' %>">
+                        <div class="price-now">
+
+                          <span> 269.99 </span>
+                        </div>
+                        <div>
+                          <%= form_for(@user_subscription, :url => {action: :update}, :method => "put" ) do |f| %>
+                              <div>
+
+                                <% if (@user_subscription['zoho_plan_code'].to_s == "6Months") %>
+                                  <a href="javascript:void(0);" class="price-buy"> Active </a>
+                                <% else %>
+                                  <input class="price-buy" type="submit" value="Update" name="Update">
+                                <% end %>
+
+                                <input type="hidden"  name="user_subscription[plan_code]" value="6Months" />
+                                <input type="hidden"  name="user_subscription[plan_description]" value="6 Months plan" />
+                                <input type="hidden"  name="user_subscription[price]" value="269.99" />
+                              </div>
+                          <% end %>
+                              <%# if subscription.title.to_s != 'Free' %>
+                                <!-- <a href="javascript:void(0);" class="mt-4" style="color: #ada9df;"  onclick="downgradePlan()"> Downgrade Plan</a> -->
+                              <%# end %>
+                        </div>
+                      </th>
+
+                      <th class="price-info <%= (@user_subscription['zoho_plan_code'].to_s == "12Months" )? 'sub-current-plan' : '' %>">
+                        <div class="price-now">
+                          <span> 509.99 </span>
+                        </div>
+                        <div>
+                          <%= form_for(@user_subscription, :url => {action: :update}, :method => "put" ) do |f| %>
+                              <div>
+
+                                <% if (@user_subscription['zoho_plan_code'].to_s == "12Months") %>
+                                  <a href="javascript:void(0);" class="price-buy"> Active </a>
+                                <% else %>
+                                  <input class="price-buy" type="submit" value="Update" name="Update">
+                                <% end %>
+
+                                <input type="hidden"  name="user_subscription[plan_code]" value="12Months" />
+                                <input type="hidden"  name="user_subscription[plan_description]" value="12 Months plan" />
+                                <input type="hidden"  name="user_subscription[price]" value="509.99" />
+                              </div>
+                          <% end %>
+                              <%# if subscription.title.to_s != 'Free' %>
+                                <!-- <a href="javascript:void(0);" class="mt-4" style="color: #ada9df;"  onclick="downgradePlan()"> Downgrade Plan</a> -->
+                              <%# end %>
+                        </div>
+                      </th>
+                </tr>
+              </thead>
+              <tbody>
+<!--                 <tr>
+                  <td></td>
+                  <td colspan="5">Monthly Subscription</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Monthly Subscription</td>
+                  <td><span class="tickblue">Free</span></td>
+                  <td><span class="tickblue">$ 49.99</span></td>
+                  <td><span class="tickblue">$ 149.99</span></td> 
+                  <td><span class="tickblue">$ 269.99</td>
+                  <td><span class="tickblue">$ 509.99</td>
+                </tr> -->
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Access over 6,000+ comprehensively researched food ingredients in 4 languages.</td>
+                </tr>
+                <tr>
+                  <td>Access over 6,000+ comprehensively researched food ingredients in 4 languages.</td>
+                  <td><span class="tickblue">
+                    <%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%>
+                    <!-- <img alt="user icon" src="/assets/icons/tick.png" style="height: 50px;width: 50px;"> -->
+                      </span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Translation from/to English, Arabic, French, and Spanish.</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Translation from/to English, Arabic, French, and Spanish.</td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Free-form ingredient translation with PDF exporting.</td>
+                </tr>
+                <tr>
+                  <td>Free-form ingredient translation with PDF exporting.</td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Table-based ingredient translation with CSV importing and exporting.</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Table-based ingredient translation with CSV importing and exporting.</td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Label/Template ingredient translation with PDF exporting.</td>
+                </tr>
+                <tr>
+                  <td>Label/Template ingredient translation with PDF exporting.</td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Management system to store your translations on the cloud.</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Management system to store your translations on the cloud.</td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Customer support response within 24 hours.</td>
+                </tr>
+                <tr>
+                  <td>Customer support response within 24 hours.</td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                  <td><span class="tickblue"><%= image_tag "icons/tick.png", alt: "tick icon", style: 'height:25px; width:20px;'%></span></td>
+                </tr>
 
 
 
 
 
-      <!-- Old -->
- <!--      <div id="zf-widget-root-id"></div> 
-      <script type="text/javascript" src='https://js.zohostatic.com/books/zfwidgets/assets/js/zf-widget.js'></script> 
-      <script> var pricingTableComponentOptions = { id: 'zf-widget-root-id', product_id: '2-8a55a069e007bc994f4e833228e99bb7a3d2dbb01bacca4b45b886e5ade086dcbc1e1c8e69f1c47f58bcad6fd428a6fd8b2289af99eff7f85eb36ff696767231', template: 'elegant', most_popular_plan: '', is_group_by_frequency: false, isFrequencyDropdown: false, isCurrencyDropdown: false, can_show_plan_freq: true, pricebooks: [ { pricebook_id: '3638956000000011001', currency_code: 'AED', currency_symbol: 'AED', plans: [ { plan_code: 'tes_free_plan', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/tes_free_plan', recurring_price: '0', recurring_price_formatted: 'AED0.00', hp_settings_id: '3638956000000024003' }, { plan_code: 'test_month_plan', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/test_month_plan', recurring_price: '49.99', recurring_price_formatted: 'AED49.99', hp_settings_id: '3638956000000024003' }, { plan_code: 'test_thre_plan', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/test_thre_plan', recurring_price: '149.99', recurring_price_formatted: 'AED149.99', hp_settings_id: '3638956000000024003' }, { plan_code: '6_mon', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/6_mon', recurring_price: '269.99', recurring_price_formatted: 'AED269.99', hp_settings_id: '3638956000000024003' }, { plan_code: '12_mont', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/12_mont', recurring_price: '509.99', recurring_price_formatted: 'AED509.99', hp_settings_id: '3638956000000024003' }, ] }, ], group_options: [ ], plans: [ { plan_code: 'tes_free_plan', selectedAddons: [ ] }, { plan_code: 'test_month_plan', selectedAddons: [ ] }, { plan_code: 'test_thre_plan', selectedAddons: [ ] }, { plan_code: '6_mon', selectedAddons: [ ] }, { plan_code: '12_mont', selectedAddons: [ ] }, ], theme: { color: '#00664c', theme_color_light: ''}, button_text: 'Subscribe', product_url: 'https://subscriptions.zoho.com', price_caption: '', language_code: 'en', open_inSameTab: false }; ZFWidget.init('zf-pricing-table', pricingTableComponentOptions); </script> -->
 
 
 
+
+
+
+
+<!-- 
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Advanced Template Features</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Advanced Template Features</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Nutrition Panel Template</td>
+                </tr>
+                <tr>
+                  <td>Nutrition Panel Template</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Customer Response 24hrs</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Customer Response 24hrs</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">1 Language</span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Customer Response 12hrs</td>
+                </tr>
+                <tr>
+                  <td>Customer Response 12hrs</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">Option to Customise Interface</td>
+                </tr>
+                <tr class="compare-row">
+                  <td>Option to Customise Interface</td>
+                  <td><span class="tickblue">-</span></td>
+                  <td><span class="tickblue"><i class="fa fa-check"></i>*</span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">24 hr Customer Support</td>
+                </tr>
+                <tr>
+                  <td>24 hr Customer Support</td>
+                  <td class="tickblue">-</td>
+                  <td class="tickblue">-</td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="5">Dedicated Server</td>
+                  </tr>
+                  <tr class="compare-row">
+                    <td>Dedicated Server</td>
+                    <td class="tickblue">-</td>
+                    <td class="tickblue">-</td>
+                    <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                    <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                    <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="5">User Licenses Per Account (simultaneous log-ins)</td>
+                </tr>
+                <tr>
+                  <td>User Licenses Per Account (simultaneous log-ins)</td>
+                  <td class="tickblue">1</td>
+                  <td class="tickblue">3</td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                  <td><span class="tickgreen"><i class="fa fa-check"></i></span></td>
+                </tr> -->
+
+
+            </tbody>
+            </table>
+            <div class="row mt-4">
+              <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: left;">
+                <span><!-- <i class="fa fa-check"></i> -->
+                  <li>Terms & conditions apply, along with the standard cancellation policy based on a minimum subscription of 1 month.</li>
+                  <li>All registered users will have full free access to all available features for 7 days. After 7 days, users are required to subscribe and pay to continue using the translation web app service. ITS will not take credit cards or any billing information at the beginning of the trial period. For more information, please view our <a href="https://itslabel.me/frequently-asked-questions">FAQ.</a> 
+                  </li>
+                </span>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 mt-2" style="text-align: left;">
+                <!-- <span>TBC* : Please contact us on (contact email) to find our how we can customise and integrate ITS Label into you organisation's workflow. </span> -->
+              </div>
+            </div>
+        </div> 
     </div>
-  </div>
-
-
-
-
 
 
 <%# end %>
 
 
+
+
+
+
+
+
+
+
 <script type="text/javascript">
-  
+
+      // Function to update plane. The function triggered on click event
+    function updatePlan(plan_code, plan_description, price) {
+        var user_id = <%= @current_client_user.id %>
+         $.ajax({
+         url: "/user/user_subscriptions.js",
+         type: "PUT",
+           headers: {
+            'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+          },
+        data: {"user_id" : user_id, "plan_code": plan_code, "plan_description":plan_description, "price": price},
+         // dataType: "json",
+         success: function(data) {
+           }
+         });
+    }
+
     function downgradePlan() {
       let text = "Do you realy want to downgrade the plan?";
       if (confirm(text) == true) {
