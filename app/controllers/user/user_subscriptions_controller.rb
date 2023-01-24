@@ -59,9 +59,13 @@ module User
                    }
       free_subscription_data = ZohoSubscription.new(parameters).update_zoho_subscription
 
+      # binding.pry 
+
       if free_subscription_data[:status]
         redirect_to free_subscription_data[:data]['hostedpage']['url']
       else
+        set_notification(false, I18n.t('status.error'), "Error on subscription")
+        set_flash_message('The form has some errors. Please correct them and submit again', :error)
         redirect_to :user_user_subscriptions
       end
     end

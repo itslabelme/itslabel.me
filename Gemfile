@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'net-http'
 gem 'rest-client'
 
+# enable soft delete
+gem "paranoia", "~> 2.2"
 
 gem "kaminari", '~> 1.0', '>= 1.0.1'
 gem 'bootstrap4-kaminari-views'

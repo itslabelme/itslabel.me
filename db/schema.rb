@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_29_153215) do
+ActiveRecord::Schema.define(version: 2023_01_23_513572) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -95,7 +95,9 @@ ActiveRecord::Schema.define(version: 2022_12_29_153215) do
     t.text "image"
     t.boolean "t_c_accepted"
     t.string "stripe_token"
+    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_client_users_on_confirmation_token", unique: true
+    t.index ["deleted_at"], name: "index_client_users_on_deleted_at"
     t.index ["email"], name: "index_client_users_on_email", unique: true
     t.index ["mobile_number"], name: "index_client_users_on_mobile_number"
     t.index ["reset_password_token"], name: "index_client_users_on_reset_password_token", unique: true

@@ -1,4 +1,5 @@
-<% if @user_subscription.errors.blank? %>
+alert("0o")
+<% if @free_subscription_data[:status] %>
   
   // Showing Growl Like Message
   notifySuccess("<%= escape_javascript(@notification[:title]) %>", "<%= escape_javascript(@notification[:message]) %>");

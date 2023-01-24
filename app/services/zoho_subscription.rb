@@ -44,7 +44,7 @@ class ZohoSubscription
 
     begin
        # Create the HTTP request
-      uri = URI("https://subscriptions.zoho.com/api/v1/hostedpages/#{hostedpage_id}?organization_id=794973394")
+      uri = URI("https://subscriptions.zoho.com/api/v1/hostedpages/#{hostedpage_id}?organization_id=#{Rails.application.secrets.zoho_organization_id}")
       # binding.pry
       req = Net::HTTP::Get.new(uri)
       req["Content-Type"] = "application/json"
@@ -106,7 +106,7 @@ class ZohoSubscription
 
         begin
            # Create the HTTP request
-          uri = URI("https://subscriptions.zoho.com/api/v1/subscriptions?organization_id=794973394")
+          uri = URI("https://subscriptions.zoho.com/api/v1/subscriptions?organization_id=#{Rails.application.secrets.zoho_organization_id}")
           req = Net::HTTP::Post.new(uri)
           req["Content-Type"] = "application/json"
           req["Authorization"] = "Zoho-oauthtoken #{access_token}"
@@ -149,11 +149,11 @@ class ZohoSubscription
     if access_token
           # subscription data
         # subscription_data = {subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: "http://localhost:3000/user/zoho_call_back" }
-        subscription_data = {subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: "http://demo.itslabel.me//user/zoho_call_back" } 
+        subscription_data = {subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: Rails.application.secrets.zoho_call_back_url } 
                  
         begin
            # Create the HTTP request
-          uri = URI("https://subscriptions.zoho.com/api/v1/hostedpages/updatesubscription?organization_id=794973394")
+          uri = URI("https://subscriptions.zoho.com/api/v1/hostedpages/updatesubscription?organization_id=#{Rails.application.secrets.zoho_organization_id}")
           req = Net::HTTP::Post.new(uri)
           req["Content-Type"] = "application/json"
           req["Authorization"] = "Zoho-oauthtoken #{access_token}"
