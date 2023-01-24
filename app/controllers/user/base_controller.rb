@@ -26,10 +26,11 @@ module User
       @trial_period = (Date.today.to_date - current_client_user.created_at.to_date).to_i
       # @trial_period = (@subcription.updated_at.to_date - Date.today.to_date).to_i
       
+      @user_subscription = ZohoSubData.find_by('client_user_id=?',current_client_user)
       # binding.pry
 
-      # if @trial_period <= 0
-      if @trial_period >= 7
+      # if @trial_period <= 0 && @user_subscription.zoho_plan_code == "Free" # for testing
+      if @trial_period >= 7 && @user_subscription.zoho_plan_code == "Free"
       # if @subcription.subscription.title == "Free"
         redirect_to :user_user_subscriptions
       # elsif @trial_period <= 7

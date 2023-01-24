@@ -6,7 +6,10 @@ class ClientUser < ApplicationRecord
 
   # Includes
   include Itslabel::Scopes::ClientUserScopes
-  
+
+  # paranoid gem for enable soft delet
+  acts_as_paranoid
+
   # Validations
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
   validates :last_name, presence: true, length: {maximum: 256}, allow_blank: false
@@ -28,7 +31,7 @@ class ClientUser < ApplicationRecord
 
   #call back function to create default(free) subscription plan after registration
   after_create :create_user_subscription
-  after_create :create_zoho_free_plan_subscription
+  after_create :create_zoho_free_plan_subscription #move this code to controller no need call back
 
 
   # TODO:- For Welcome mail for new user
