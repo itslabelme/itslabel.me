@@ -102,7 +102,8 @@ class ZohoSubscription
 
     if access_token
           # subscription data
-        subscription_data = {customer: {display_name: @params[:display_name], first_name: @params[:first_name], last_name: @params[:last_name], email: @params[:email], company_name: @params[:company_name]}, plan: {name: "Free Plan", plan_code: "Free", plan_description: "Free Plan", price: 0, quantity: 1}, auto_collect: false}
+        # subscription_data = {customer: {display_name: @params[:display_name], first_name: @params[:first_name], last_name: @params[:last_name], email: @params[:email], company_name: @params[:company_name], currency_code: 'USD'}, plan: {name: "Free Plan", plan_code: "Free", plan_description: "Free Plan", price: 0, quantity: 1}, auto_collect: false}
+        subscription_data = {pricebook_id: Rails.application.secrets.zoho_pricebook_id, customer: {display_name: @params[:display_name], first_name: @params[:first_name], last_name: @params[:last_name], email: @params[:email], company_name: @params[:company_name], currency_code: 'USD'}, plan: {name: "Free Plan", plan_code: "Free", plan_description: "Free Plan", price: 0, quantity: 1}, auto_collect: false}
 
         begin
            # Create the HTTP request
@@ -149,7 +150,7 @@ class ZohoSubscription
     if access_token
           # subscription data
         # subscription_data = {subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: "http://localhost:3000/user/zoho_call_back" }
-        subscription_data = {subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: Rails.application.secrets.zoho_call_back_url } 
+        subscription_data = {pricebook_id: Rails.application.secrets.zoho_pricebook_id, subscription_id: @params[:zoho_subscription_id], plan: {plan_code: @params[:plan_code], plan_description: @params[:plan_description], price: @params[:price], quantity: 1}, redirect_url: Rails.application.secrets.zoho_call_back_url } 
                  
         begin
            # Create the HTTP request
