@@ -3,13 +3,23 @@ module Api
     
     skip_before_action :verify_authenticity_token
 
-    # def zoho_test
-    #   binding.pry
-    # end
 
-    # def zoho_test2
-    #   binding.pry
-    # end
+    def zoho_test
+      # binding.pry
+      Rails.logger.debug( "enter in zoho_test function ")
+      payload = request.body.read
+      payld_data = JSON.parse(payload, symbolize_names: true)
+      Rails.logger.debug(payld_data)
+    end
+
+    def zoho_test2
+      # binding.pry
+      Rails.logger.debug( "enter in zoho_test function 2 ")
+      payload = request.body.read
+      payld_data = JSON.parse(payload, symbolize_names: true)
+      Rails.logger.debug(payld_data)
+    end
+    
     
     def downgrading_api
       
