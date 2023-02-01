@@ -37,7 +37,7 @@ module User
       # if @trial_period_in_mint >= 15 && @user_subscription.zoho_plan_code == "Free" # test based in minit
       # if @trial_period <= 0 && @user_subscription.zoho_plan_code == "Free" # for testing
       
-      if @trial_period >= 7 && @user_subscription.zoho_plan_code == Rails.application.secrets.zoho_free_plan_code.to_s # Real
+      if @trial_period >= 7 && @user_subscription.zoho_plan_code == Rails.application.secrets.zoho_free_plan_code # Real
         
         redirect_to :user_user_subscriptions
 
