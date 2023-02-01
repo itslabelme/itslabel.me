@@ -10,6 +10,9 @@ module User
     def index
       get_permissions
       @subscriptions=Subscription.all
+
+      # binding.pry
+      
       if !@user_subscription.blank?
      
         get_user_subscription
