@@ -91,7 +91,7 @@
 
                       <th class="price-info <%= (@user_subscription['zoho_plan_code'].to_s == Rails.application.secrets.zoho_month_plan_code )? 'sub-current-plan' : '' %>">
                         <div class="price-now">
-                          <span> $ 49.99 <%= Rails.application.secrets.zoho_month_plan_code %> </span>
+                          <span> $ 49.99 </span>
                         </div>
                         <div>
                           <%= form_for(@user_subscription, :url => {action: :update}, :method => "put" ) do |f| %>
