@@ -36,6 +36,10 @@ module User
     
       # if @trial_period_in_mint >= 15 && @user_subscription.zoho_plan_code == "Free" # test based in minit
       # if @trial_period <= 0 && @user_subscription.zoho_plan_code == "Free" # for testing
+
+      Rails.logger.debug( "@trial_period ========>>>>> <<<<<< = #{@trial_period}")
+      Rails.logger.debug( "@user_subscription.zoho_plan_code ========>>>>> <<<<<< = #{@user_subscription.zoho_plan_code}")
+      Rails.logger.debug( "Rails.application.secrets.zoho_free_plan_code ========>>>>> <<<<<< = #{Rails.application.secrets.zoho_free_plan_code}")
       
       if @trial_period >= 7 && @user_subscription.zoho_plan_code == Rails.application.secrets.zoho_free_plan_code # Real
         
