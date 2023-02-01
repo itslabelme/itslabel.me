@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_15_337593) do
+ActiveRecord::Schema.define(version: 2023_01_23_513573) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -93,7 +93,9 @@ ActiveRecord::Schema.define(version: 2022_07_15_337593) do
     t.text "image"
     t.boolean "t_c_accepted"
     t.string "stripe_token"
+    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_client_users_on_confirmation_token", unique: true
+    t.index ["deleted_at"], name: "index_client_users_on_deleted_at"
     t.index ["email"], name: "index_client_users_on_email", unique: true
     t.index ["mobile_number"], name: "index_client_users_on_mobile_number"
     t.index ["reset_password_token"], name: "index_client_users_on_reset_password_token", unique: true
@@ -297,6 +299,27 @@ ActiveRecord::Schema.define(version: 2022_07_15_337593) do
     t.index ["user_id"], name: "index_user_subscriptions_on_user_id"
   end
 
+  create_table "zoho_sub_datas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.bigint "client_user_id"
+    t.string "zoho_customer_id", null: false
+    t.string "zoho_subscription_id", null: false
+    t.bigint "subscription_id"
+    t.string "zoho_plan_code", null: false
+    t.string "status", limit: 16, default: "SUCCESS", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_user_id"], name: "index_zoho_sub_datas_on_client_user_id"
+    t.index ["subscription_id"], name: "index_zoho_sub_datas_on_subscription_id"
+  end
+
+  create_table "zoho_tokens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "access_token", null: false
+    t.string "refresh_token", null: false
+    t.string "token_expires_in", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "client_users"
   add_foreign_key "label_templates", "admin_users"
@@ -306,4 +329,5 @@ ActiveRecord::Schema.define(version: 2022_07_15_337593) do
   add_foreign_key "template_documents", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "user_subscriptions", "client_users", column: "user_id", on_delete: :cascade
   add_foreign_key "user_subscriptions", "subscriptions", on_delete: :cascade
+  add_foreign_key "zoho_sub_datas", "subscriptions", on_delete: :cascade
 end

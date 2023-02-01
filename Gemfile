@@ -29,6 +29,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# HTTP Clients
+# gem 'net-http'
+gem 'rest-client'
+
+# enable soft delete
+gem "paranoia", "~> 2.2"
+
 gem "kaminari", '~> 1.0', '>= 1.0.1'
 gem 'bootstrap4-kaminari-views'
 gem 'country_select'

@@ -6,7 +6,10 @@ class ClientUser < ApplicationRecord
 
   # Includes
   include Itslabel::Scopes::ClientUserScopes
-  
+
+  # paranoid gem for enable soft delet
+  acts_as_paranoid
+
   # Validations
   validates :first_name, presence: true, length: {maximum: 256}, allow_blank: false
   validates :last_name, presence: true, length: {maximum: 256}, allow_blank: false
@@ -21,12 +24,14 @@ class ClientUser < ApplicationRecord
   has_many :document_folders, class_name: "DocumentFolder", foreign_key: :user_id
 
   has_one :user_subscription, class_name: "UserSubscription", foreign_key: :user_id
+  has_one :zoho_sub_data, class_name: "ZohoSubData"
 
   # Callback
   after_create :create_default_folder
 
   #call back function to create default(free) subscription plan after registration
   after_create :create_user_subscription
+  after_create :create_zoho_free_plan_subscription #move this code to controller no need call back
 
 
   # TODO:- For Welcome mail for new user
@@ -54,6 +59,44 @@ class ClientUser < ApplicationRecord
     country1 = ISO3166::Country[country]
     # country1.translations[I18n.locale.to_s] || country1.name
     country1.try(:name)
+  end
+
+  def create_zoho_free_plan_subscription
+    if self.zoho_sub_data
+      self.zoho_sub_data.update(subscription_id: Subscription.find_by_title("Free").id)
+    else
+      zoho_sub_data = ZohoSubData.new
+      zoho_sub_data.client_user_id = self.id
+      zoho_sub_data.subscription_id = Subscription.find_by_title("Free").id
+
+      refresh_token = Rails.application.secrets.zoho_refresh_token
+      parameters = {
+                    'refresh_token': refresh_token,
+                    'display_name': "#{self.first_name} #{self.last_name}",
+                    'first_name': self.first_name,
+                    'last_name': self.last_name,
+                    'email': self.email,
+                    'company_name': self.organisation
+                  }
+      free_subscription_data = ZohoSubscription.new(parameters).create_zoho_free_subscription
+
+
+      if free_subscription_data[:status]
+        zoho_sub_data.zoho_customer_id = free_subscription_data[:data]['subscription']['customer']['customer_id']
+        zoho_sub_data.zoho_subscription_id = free_subscription_data[:data]['subscription']['subscription_id']
+        zoho_sub_data.zoho_plan_code = free_subscription_data[:data]['subscription']['plan']['plan_code']
+        zoho_sub_data.status = "FREE"
+      else
+        zoho_sub_data.zoho_customer_id = "1"
+        zoho_sub_data.zoho_subscription_id = "1"
+        zoho_sub_data.zoho_plan_code = Rails.application.secrets.zoho_free_plan_code
+        zoho_sub_data.status = "FREE"
+      end
+
+      if zoho_sub_data.valid?
+        zoho_sub_data.save
+      end
+    end
   end
 
   def create_user_subscription

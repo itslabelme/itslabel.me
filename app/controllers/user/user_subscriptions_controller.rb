@@ -3,11 +3,16 @@ module User
     before_action :authenticate_client_user!, except: [:api_downgrade]
     before_action :get_user_subscription
     #before_action :access_denied, only: [:index, :new]
-    
+
+    require 'rest-client'
+    require 'json'
+
     def index
       get_permissions
       @subscriptions=Subscription.all
+
       # binding.pry
+      
       if !@user_subscription.blank?
      
         get_user_subscription
@@ -41,62 +46,68 @@ module User
       end
     end
     
+    def show
+    end
+
     def edit
     end
     
     def update
-      # @user_subscription.assign_attributes(user_subscription_params)
-      assign_user_subscription_params
+      refresh_token = Rails.application.secrets.zoho_refresh_token
+      parameters = {'refresh_token': refresh_token,
+                    'zoho_subscription_id': @user_subscription.zoho_subscription_id,
+                    'plan_code':  params['user_subscription']['plan_code'],
+                    'plan_description':  params['user_subscription']['plan_description'],
+                    'price':  params['user_subscription']['price']
+                   }
+      free_subscription_data = ZohoSubscription.new(parameters).update_zoho_subscription
 
-      @stripe_sub = StripeChargesServices.new(charges_params, current_client_user, params['user_subscription']['sub_id']).susbscribe
-      # binding.pry
-      Rails.logger.debug( "Stripe status ----- #{@stripe_sub[:status]}")
-      if @stripe_sub[:status] == 200
-        # if @stripe_sub.status == "active" # In Active mode and sucessfull subscription
-        # if @stripe_sub[:data].status == "trialing"  # When in trail mode
-        # if @stripe_sub[:data].status == "incomplete" # In Test Mode
-        Rails.logger.debug( "Stripe data status ----- #{@stripe_sub[:data].status}")
-        if ['incomplete', 'active'].include? @stripe_sub[:data].status # to solve if give active status and incomplete status
-          @user_subscription.usr_subscr_strip_token = @stripe_sub[:data].id
-          
+      # binding.pry 
+
+      if free_subscription_data[:status]
+        redirect_to free_subscription_data[:data]['hostedpage']['url']
+      else
+        set_notification(false, I18n.t('status.error'), "Error on subscription")
+        set_flash_message('The form has some errors. Please correct them and submit again', :error)
+        redirect_to :user_user_subscriptions
+      end
+    end
+
+
+
+    def zoho_call_back
+      refresh_token = Rails.application.secrets.zoho_refresh_token
+      parameters = {'refresh_token': refresh_token,
+                    'hostedpage_id': params[:hostedpage_id],
+                   }
+      subscription_payload = ZohoSubscription.new(parameters).fetch_subscription_hosted_data
+
+      if subscription_payload[:status]
+        @plan_status = true
+        @plan_name = subscription_payload[:data]['data']['subscription']['plan']['name']
+        @plan_price = subscription_payload[:data]['data']['subscription']['plan']['price']
+
+        if @user_subscription['status'] == "Free"
+          @user_subscription['status'] = 'LIVE'
+        end
+          @user_subscription['zoho_plan_code'] = subscription_payload[:data]['data']['subscription']['plan']['plan_code']
 
           if @user_subscription.valid?
             @user_subscription.save
-            redirect_to user_user_subscriptions_path
-            set_notification(true, I18n.t('status.success'), I18n.t('success.updated', item: "Subscription"))
-            set_flash_message(I18n.translate("success.updated", item: "Subscription"), :success)
-            # respond_to do |format|
-            #   format.js { render inline: "location.reload();" }
-            # end
+            set_notification(true, I18n.t('status.success'), I18n.t('success.created', item: "Subscription"))
+            set_flash_message(I18n.translate("success.created", item: "Subscription"), :success)
           else
-            @per_page=params[:page]
             message = I18n.t('errors.failed_to_create', item: "subscription")
             @user_subscription.errors.add :base, message
             set_notification(false, I18n.t('status.error'), message)
             set_flash_message('The form has some errors. Please correct them and submit again', :error)
           end
-
-
-        else
-          set_notification(false, 'The form has some errors. Please correct them and submit again', 'The form has some errors. Please correct them and submit again')
-          # message = I18n.t('Issues on Subscription Payment', item: "subscription")
-          # @user_subscription.errors.add :base, message
-          set_flash_message('The form has some errors. Please correct them and submit again', :error)
-          redirect_to controller: :user_subscriptions, action: :index
-        end
       else
-
-        get_permissions
-        @subscriptions=Subscription.all
-        if !@user_subscription.blank?
-       
-          get_user_subscription
-          # raise @user_subscription.subscription_id.inspect
-        else
-          new_user_subscription
-          sub_id = Subscription.find_by_title("Free")
-          @user_subscription.subscription_id= sub_id.id
-        end
+          @plan_status = false
+          message = I18n.t('errors.failed_to_create', item: "subscription")
+          @user_subscription.errors.add :base, message
+          set_notification(false, I18n.t('status.error'), message)
+          set_flash_message('The form has some errors. Please correct them and submit again', :error)
       end
     end
 
@@ -111,8 +122,6 @@ module User
     end
     
     def subscribe
-      # binding.pry
-
       StripeChargesServices.new(nil, current_client_user, ).susbscribe
     end
 
@@ -123,7 +132,8 @@ module User
     end
 
     def get_user_subscription
-      @user_subscription = UserSubscription.find_by(user_id:current_client_user)
+      @user_subscription = ZohoSubData.find_by('client_user_id=?',current_client_user)
+      # @user_subscription = UserSubscription.find_by(user_id:current_client_user)
     end
 
     def assign_user_subscription_params
@@ -132,6 +142,7 @@ module User
     end
 
     def new_user_subscription
+      # @user_subscription = ZohoSubData.new
       @user_subscription = UserSubscription.new
     end
     def user_subscription_params

@@ -24,42 +24,8 @@
   </div>
 
 
-    <!-- Popup for subscription error messages -->
-    <div class="modal fade" id="STRIPE-ERROR" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header" style="padding: 0px;position: absolute;right: 0px;border: none;top: -24px;right: -20px;color: #fff">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1">
-            <span aria-hidden="true"><i class="icon-close" style="color: #fff"></i></span>
-            </button>
-          </div>
-
-
-              <div class="modal-header" >
-
-            <!-- <h5 class="modal-title" id="exampleModalLabel">Client Feedbacks Details</h5>    -->
-
-              <% if @stripe_sub[:status] == 200 %>
-                <span class=" col-lg-12 col-md-12 col-sm-12 compare-heading" style="color: green; text-align: center;">Successfully Subscribed.</span>
-              <% else %>
-                <span class=" col-lg-12 col-md-12 col-sm-12 compare-heading" style="color: red; text-align: center;">Opps Error While Subscription.</span>
-              <% end %>
-
-          </div>
-          <div class="modal-body" style="padding:20px">
-            
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center; padding-bottom: 15px; margin-top: 30px;">
-                <%= @stripe_sub[:message] %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>  
-    </div>
-
 
 <%= content_for :javascript_footer do %>
-  <%= render :partial=>"user/user_subscriptions/custom.js.erb"  %>
+  <%= render :partial=>"user/user_subscriptions/update_custom.js.erb"  %>
 <% end %>
 

@@ -1,0 +1,90 @@
+<%
+  if @user_subscription.new_record?
+    form_method = :post
+    form_url = {action: :create}
+  else
+    # form_method = :post
+    form_method = :put
+    id=@user_subscription.id
+    form_url = {action: :update}
+  end
+%>
+
+
+
+<%#= form_with(
+      # url: subscribe_user_user_subscriptions_path,  
+      url: form_url,  
+      class: "form-floating", 
+      id: "sub_plan_form",
+      model: @user_subscription,
+      method: form_method, 
+      html: { autocomplete: "off" }) do |f| %>
+
+
+
+    <div class="col-lg-12">
+      <%
+        @trial_period_end_date = (current_client_user.created_at.to_date + 7.days)
+        @trial_period = (Date.today.to_date - current_client_user.created_at.to_date).to_i
+      %>
+      <% if @trial_period <= 7 %>
+        <div class="alert alert-primary" role="alert">
+
+          You are on the trial plan. You will be able to access full features on the platform for first 7 days. Your trial will expire on <%= @trial_period_end_date.strftime('%d-%m-%Y') %>
+
+        </div>
+      <% end %>
+    </div>
+
+    <%= hidden_field_tag "called_from", params[:called_from] %>
+
+
+  <div class="body">
+    <div class="comparison">
+        <%= @plan %>
+        <div id="zf-widget-root-id"></div> <script type="text/javascript" src='https://js.zohostatic.com/books/zfwidgets/assets/js/zf-widget.js'></script> <script> var pricingTableComponentOptions = { id: 'zf-widget-root-id', product_id: '2-8a55a069e007bc99a49eae90086f4b41d7844952fd01f8e62e7d9f42c7ee5295aa01f03b8b4ee52558bcad6fd428a6fd8b2289af99eff7f85eb36ff696767231', template: 'elegant_pro', most_popular_plan: '', is_group_by_frequency: false, isFrequencyDropdown: false, isCurrencyDropdown: false, can_show_plan_freq: true, pricebooks: [ { pricebook_id: '3638956000000011001', currency_code: 'AED', currency_symbol: 'AED', plans: [ { plan_code: 'Free', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/Free', recurring_price: '0', recurring_price_formatted: 'AED0.00', hp_settings_id: '3638956000000024003' }, { plan_code: '3Months', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/3Months', recurring_price: '149.99', recurring_price_formatted: 'AED149.99', hp_settings_id: '3638956000000024003' }, { plan_code: 'Monthly', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/Monthly', recurring_price: '49.99', recurring_price_formatted: 'AED49.99', hp_settings_id: '3638956000000024003' }, { plan_code: '6Months', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/6Months', recurring_price: '269.99', recurring_price_formatted: 'AED269.99', hp_settings_id: '3638956000000024003' }, { plan_code: '12Months', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/12Months', recurring_price: '509.99', recurring_price_formatted: 'AED509.99', hp_settings_id: '3638956000000024003' }, ] }, ], group_options: [ ], plans: [ { plan_code: 'Free', selectedAddons: [ ] }, { plan_code: '3Months', selectedAddons: [ ] }, { plan_code: 'Monthly', selectedAddons: [ ] }, { plan_code: '6Months', selectedAddons: [ ] }, { plan_code: '12Months', selectedAddons: [ ] }, ], theme: { color: '#00664c', theme_color_light: ''}, button_text: 'Subscribe', product_url: 'https://subscriptions.zoho.com', price_caption: '', language_code: 'en', open_inSameTab: false }; ZFWidget.init('zf-pricing-table', pricingTableComponentOptions); </script>
+
+
+
+
+
+      <!-- Old -->
+ <!--      <div id="zf-widget-root-id"></div> 
+      <script type="text/javascript" src='https://js.zohostatic.com/books/zfwidgets/assets/js/zf-widget.js'></script> 
+      <script> var pricingTableComponentOptions = { id: 'zf-widget-root-id', product_id: '2-8a55a069e007bc994f4e833228e99bb7a3d2dbb01bacca4b45b886e5ade086dcbc1e1c8e69f1c47f58bcad6fd428a6fd8b2289af99eff7f85eb36ff696767231', template: 'elegant', most_popular_plan: '', is_group_by_frequency: false, isFrequencyDropdown: false, isCurrencyDropdown: false, can_show_plan_freq: true, pricebooks: [ { pricebook_id: '3638956000000011001', currency_code: 'AED', currency_symbol: 'AED', plans: [ { plan_code: 'tes_free_plan', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/tes_free_plan', recurring_price: '0', recurring_price_formatted: 'AED0.00', hp_settings_id: '3638956000000024003' }, { plan_code: 'test_month_plan', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/test_month_plan', recurring_price: '49.99', recurring_price_formatted: 'AED49.99', hp_settings_id: '3638956000000024003' }, { plan_code: 'test_thre_plan', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/test_thre_plan', recurring_price: '149.99', recurring_price_formatted: 'AED149.99', hp_settings_id: '3638956000000024003' }, { plan_code: '6_mon', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/6_mon', recurring_price: '269.99', recurring_price_formatted: 'AED269.99', hp_settings_id: '3638956000000024003' }, { plan_code: '12_mont', url: 'https://subscriptions.zoho.com/subscribe/8b2289af99eff7f8427b56f1926f9b9a7906f5e6327bed22ad482bf477cf719e/12_mont', recurring_price: '509.99', recurring_price_formatted: 'AED509.99', hp_settings_id: '3638956000000024003' }, ] }, ], group_options: [ ], plans: [ { plan_code: 'tes_free_plan', selectedAddons: [ ] }, { plan_code: 'test_month_plan', selectedAddons: [ ] }, { plan_code: 'test_thre_plan', selectedAddons: [ ] }, { plan_code: '6_mon', selectedAddons: [ ] }, { plan_code: '12_mont', selectedAddons: [ ] }, ], theme: { color: '#00664c', theme_color_light: ''}, button_text: 'Subscribe', product_url: 'https://subscriptions.zoho.com', price_caption: '', language_code: 'en', open_inSameTab: false }; ZFWidget.init('zf-pricing-table', pricingTableComponentOptions); </script> -->
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+<%# end %>
+
+
+<script type="text/javascript">
+  
+    function downgradePlan() {
+      let text = "Do you realy want to downgrade the plan?";
+      if (confirm(text) == true) {
+        var user_id = <%= @current_client_user.id %>
+         $.ajax({
+         url: "/user/user_subscriptions/downgrade_subscription.js",
+         type: "POST",
+           headers: {
+            'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+          },
+         data: {"subscription": {"user_id" : user_id}},
+         // dataType: "json",
+         success: function(data) {
+           }
+         });
+      } 
+
+    }
+</script>
