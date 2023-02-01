@@ -89,7 +89,7 @@ class ClientUser < ApplicationRecord
       else
         zoho_sub_data.zoho_customer_id = "1"
         zoho_sub_data.zoho_subscription_id = "1"
-        zoho_sub_data.zoho_plan_code = "Free"
+        zoho_sub_data.zoho_plan_code = Rails.application.secrets.zoho_free_plan_code
         zoho_sub_data.status = "FREE"
       end
 
