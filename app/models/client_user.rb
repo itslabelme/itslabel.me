@@ -80,6 +80,8 @@ class ClientUser < ApplicationRecord
                   }
       free_subscription_data = ZohoSubscription.new(parameters).create_zoho_free_subscription
 
+      # binding.pry 
+      Rails.logger.debug(free_subscription_data)
 
       if free_subscription_data[:status]
         zoho_sub_data.zoho_customer_id = free_subscription_data[:data]['subscription']['customer']['customer_id']
