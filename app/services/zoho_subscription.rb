@@ -103,12 +103,13 @@ class ZohoSubscription
     if access_token
           # subscription data
         # subscription_data = {customer: {display_name: @params[:display_name], first_name: @params[:first_name], last_name: @params[:last_name], email: @params[:email], company_name: @params[:company_name], currency_code: 'USD'}, plan: {name: "Free Plan", plan_code: "Free", plan_description: "Free Plan", price: 0, quantity: 1}, auto_collect: false}
-        subscription_data = {pricebook_id: '3630804000000089048', customer: {display_name: @params[:display_name], first_name: @params[:first_name], last_name: @params[:last_name], email: @params[:email], company_name: @params[:company_name], currency_code: 'USD'}, plan: {name: "Free Plan", plan_code: "Free", plan_description: "Free Plan", price: 0, quantity: 1}, auto_collect: false}
+        subscription_data = {pricebook_id: Rails.application.secrets.zoho_pricebook_id, customer: {display_name: @params[:display_name], first_name: @params[:first_name], last_name: @params[:last_name], email: @params[:email], company_name: @params[:company_name], currency_code: 'USD'}, plan: {name: "Free Plan", plan_code: "Free", plan_description: "Free Plan", price: 0, quantity: 1}, auto_collect: false}
 
+        Rails.logger.debug("price book id ------->> -------- #{Rails.application.secrets.zoho_pricebook_id}")
+        Rails.logger.debug("Org  id ------------>> --- #{Rails.application.secrets.zoho_organization_id}")
         begin
            # Create the HTTP request
-          # uri = URI("https://subscriptions.zoho.com/api/v1/subscriptions?organization_id=#{Rails.application.secrets.zoho_organization_id}")
-          uri = URI("https://subscriptions.zoho.com/api/v1/subscriptions?organization_id=794958424")
+          uri = URI("https://subscriptions.zoho.com/api/v1/subscriptions?organization_id=#{Rails.application.secrets.zoho_organization_id}")
           req = Net::HTTP::Post.new(uri)
           req["Content-Type"] = "application/json"
           req["Authorization"] = "Zoho-oauthtoken #{access_token}"
