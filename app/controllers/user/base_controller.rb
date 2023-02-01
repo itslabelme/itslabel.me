@@ -23,7 +23,6 @@ module User
 
     def access_denied
       
-      # binding.pry
 
       @subcription = ZohoSubData.find_by('client_user_id=?',current_client_user)
       @user_subscription = ZohoSubData.find_by('client_user_id=?',current_client_user) # to check custemor in free plan or not
@@ -33,11 +32,12 @@ module User
       # @trial_period_in_mint = sec_to_min(@trial_period)  #test based in minit
       
 
+      # binding.pry
     
       # if @trial_period_in_mint >= 15 && @user_subscription.zoho_plan_code == "Free" # test based in minit
       # if @trial_period <= 0 && @user_subscription.zoho_plan_code == "Free" # for testing
       
-      if @trial_period >= 0 && @user_subscription.zoho_plan_code == Rails.application.secrets.zoho_free_plan_code # Real
+      if @trial_period >= 7 && @user_subscription.zoho_plan_code == Rails.application.secrets.zoho_free_plan_code.to_s # Real
         
         redirect_to :user_user_subscriptions
 

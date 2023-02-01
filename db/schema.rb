@@ -55,8 +55,6 @@ ActiveRecord::Schema.define(version: 2023_01_23_513573) do
     t.text "output", limit: 16777215, null: false
     t.string "remarks", null: false
     t.string "category"
-    t.string "input_language", null: false
-    t.string "output_language", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_user_id"], name: "index_client_feedbacks_on_client_user_id"
