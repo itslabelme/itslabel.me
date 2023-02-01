@@ -21,7 +21,7 @@
         @trial_period_end_date = (current_client_user.created_at.to_date + 7.days)
         @trial_period = (Date.today.to_date - current_client_user.created_at.to_date).to_i
       %>
-      <% if @trial_period <= 7 &&  @user_subscription['zoho_plan_code'].to_s == "Free" %>
+      <% if @trial_period <= 7 &&  @user_subscription['zoho_plan_code'].to_s == Rails.application.secrets.zoho_free_plan_code %>
         <div class="alert alert-primary" role="alert">
 
           You are on the trial plan. You will be able to access full features on the platform for first 7 days. Your trial will expire on <%= @trial_period_end_date.strftime('%d-%m-%Y') %>

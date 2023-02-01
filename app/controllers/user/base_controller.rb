@@ -25,7 +25,6 @@ module User
       
       # binding.pry
 
-      # @subcription=UserSubscription.find_by('user_id=?',current_client_user)
       @subcription = ZohoSubData.find_by('client_user_id=?',current_client_user)
       @user_subscription = ZohoSubData.find_by('client_user_id=?',current_client_user) # to check custemor in free plan or not
 
@@ -34,29 +33,20 @@ module User
       # @trial_period_in_mint = sec_to_min(@trial_period)  #test based in minit
       
 
-      
-      # binding.pry
-
+    
       # if @trial_period_in_mint >= 15 && @user_subscription.zoho_plan_code == "Free" # test based in minit
       # if @trial_period <= 0 && @user_subscription.zoho_plan_code == "Free" # for testing
       
-      if @trial_period >= 7 && @user_subscription.zoho_plan_code == "Free" # Real
-
-
-      # if @subcription.subscription.title == "Free"
+      if @trial_period >= 0 && @user_subscription.zoho_plan_code == Rails.application.secrets.zoho_free_plan_code # Real
+        
         redirect_to :user_user_subscriptions
-      # elsif @trial_period <= 7
-      # elsif @subcription.subscription.title == "Free" # For testing
-          #User can aceess all features
-        # redirect_to :user_user_subscriptions
+
       else
         if @subcription.present?
           @subcription_id= @subcription.subscription_id 
         else
           @subcription_id=1
         end
-
-        # binding.pry 
         
         @access=SubscriptionPermission.connection.select_all("select permission_id from subscription_permissions where subscription_id=#{@subcription_id}").to_a
         permissionArray = Array.new
