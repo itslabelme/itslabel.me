@@ -12,6 +12,8 @@
     id=@user_subscription.id
     form_url = {action: :update}
   end
+
+  current_plan_index = UserSubscription::SUBSCRIPTION_PLAN_ORDER[:"#{@user_subscription['zoho_plan_code'].to_s}"]
 %>
 
 
@@ -24,7 +26,7 @@
       <% if @trial_period <= 7 &&  @user_subscription['zoho_plan_code'].to_s == Rails.application.secrets.zoho_free_plan_code %>
         <div class="alert alert-primary" role="alert">
 
-          You are on the trial plan. You will be able to access full features on the platform for first 7 days. Your trial will expire on <%= @trial_period_end_date.strftime('%d-%m-%Y') %>
+          You are on the trial plan. You will be able to access full features on the platform for the first 7 days. Your trial will expire on <%= @trial_period_end_date.strftime('%d-%m-%Y') %>
 
         </div>
       <% end %>
@@ -75,19 +77,31 @@
                           <span> Free </span>
                         </div>
                         <div>
-                          <div>  
-                            <!-- 31px -->
-                            <% if (@user_subscription['zoho_plan_code'].to_s == Rails.application.secrets.zoho_free_plan_code) %>
-                              <a href="javascript:void(0);" class="price-buy mt-2"> Active </a>
-                            <% else %>
-                            <% end %>
-                          </div>
+
+                          <%= form_for(@user_subscription, :url => {action: :update}, :method => "put" ) do |f| %>
+
+                              <div>  
+                                <!-- 31px -->
+                                <% if (@user_subscription['zoho_plan_code'].to_s == Rails.application.secrets.zoho_free_plan_code) %>
+                                  <a href="javascript:void(0);" class="price-buy mt-2"> Current Plan </a>
+                                <% else %>
+                                  <input class="price-buy" type="submit" value="Downgrade " name="update">
+                                <% end %>
+                              </div>
+
+                                <input type="hidden"  name="user_subscription[plan_code]" value="<%= Rails.application.secrets.zoho_free_plan_code %>" />
+                                <input type="hidden"  name="user_subscription[plan_description]" value="Free Plan" />
+                                <input type="hidden"  name="user_subscription[price]" value="0.00" />
+
+                          <% end %>
                               <%# if subscription.title.to_s != 'Free' %>
                                 <!-- <a href="javascript:void(0);" class="mt-4" style="color: #ada9df;"  onclick="downgradePlan()"> Downgrade Plan</a> -->
                               <%# end %>
 
                         </div>
                       </th>
+
+                      <%# binding.pry %>
 
                       <th class="price-info <%= (@user_subscription['zoho_plan_code'].to_s == Rails.application.secrets.zoho_month_plan_code )? 'sub-current-plan' : '' %>">
                         <div class="price-now">
@@ -98,9 +112,15 @@
                               <div>
 
                                 <% if (@user_subscription['zoho_plan_code'].to_s == Rails.application.secrets.zoho_month_plan_code) %>
-                                  <a href="javascript:void(0);" class="price-buy"> Active </a>
+                                  <a href="javascript:void(0);" class="price-buy"> Current Plan </a>
                                 <% else %>
-                                  <input class="price-buy" type="submit" value="Update" name="update">
+
+                                  <% if current_plan_index > UserSubscription::SUBSCRIPTION_PLAN_ORDER[:"#{Rails.application.secrets.zoho_month_plan_code}"] %>
+                                    <input class="price-buy" type="submit" value="Downgrade " name="update">
+                                  <% else %>
+                                    <input class="price-buy" type="submit" value="Upgrade" name="update">
+                                  <% end %>
+
                                 <% end %>
 
                                 <input type="hidden"  name="user_subscription[plan_code]" value="<%= Rails.application.secrets.zoho_month_plan_code %>" />
@@ -123,9 +143,15 @@
                               <div>
 
                                 <% if (@user_subscription['zoho_plan_code'].to_s == Rails.application.secrets.zoho_3month_plan_code) %>
-                                  <a href="javascript:void(0);" class="price-buy"> Active </a>
+                                  <a href="javascript:void(0);" class="price-buy"> Current Plan </a>
                                 <% else %>
-                                  <input class="price-buy" type="submit" value="Update" name="update">
+
+                                  <% if current_plan_index > UserSubscription::SUBSCRIPTION_PLAN_ORDER[:"#{Rails.application.secrets.zoho_3month_plan_code}"] %>
+                                    <input class="price-buy" type="submit" value="Downgrade " name="update">
+                                  <% else %>
+                                    <input class="price-buy" type="submit" value="Upgrade" name="update">
+                                  <% end %>
+
                                 <% end %>
 
                                 <input type="hidden"  name="user_subscription[plan_code]" value="<%= Rails.application.secrets.zoho_3month_plan_code %>" />
@@ -149,9 +175,17 @@
                               <div>
 
                                 <% if (@user_subscription['zoho_plan_code'].to_s == Rails.application.secrets.zoho_6month_plan_code) %>
-                                  <a href="javascript:void(0);" class="price-buy"> Active </a>
+                                  <a href="javascript:void(0);" class="price-buy"> Current Plan </a>
                                 <% else %>
-                                  <input class="price-buy" type="submit" value="Update" name="update">
+
+
+                                  <% if current_plan_index > UserSubscription::SUBSCRIPTION_PLAN_ORDER[:"#{Rails.application.secrets.zoho_6month_plan_code}"] %>
+                                    <input class="price-buy" type="submit" value="Downgrade " name="update">
+                                  <% else %>
+                                    <input class="price-buy" type="submit" value="Upgrade" name="update">
+                                  <% end %>
+
+
                                 <% end %>
 
                                 <input type="hidden"  name="user_subscription[plan_code]" value="<%= Rails.application.secrets.zoho_6month_plan_code %>" />
@@ -174,9 +208,17 @@
                               <div>
 
                                 <% if (@user_subscription['zoho_plan_code'].to_s == "Rails.application.secrets.zoho_12month_plan_code") %>
-                                  <a href="javascript:void(0);" class="price-buy"> Active </a>
+                                  <a href="javascript:void(0);" class="price-buy"> Current Plan </a>
                                 <% else %>
-                                  <input class="price-buy" type="submit" value="Update" name="Update">
+
+
+                                  <% if current_plan_index > UserSubscription::SUBSCRIPTION_PLAN_ORDER[:"#{Rails.application.secrets.zoho_12month_plan_code}"] %>
+                                    <input class="price-buy" type="submit" value="Downgrade " name="update">
+                                  <% else %>
+                                    <input class="price-buy" type="submit" value="Upgrade" name="update">
+                                  <% end %>
+
+
                                 <% end %>
 
                                 <input type="hidden"  name="user_subscription[plan_code]" value="<%= Rails.application.secrets.zoho_12month_plan_code %>" />
@@ -201,9 +243,13 @@
                                   <div>
 
                                     <% if (@user_subscription['zoho_plan_code'].to_s == "Rails.application.secrets.zoho_test_plan_code") %>
-                                      <a href="javascript:void(0);" class="price-buy"> Active </a>
+                                      <a href="javascript:void(0);" class="price-buy"> Current Plan </a>
                                     <% else %>
+
+
                                       <input class="price-buy" type="submit" value="Update" name="Update">
+
+
                                     <% end %>
 
                                     <input type="hidden"  name="user_subscription[plan_code]" value="<%= Rails.application.secrets.zoho_test_plan_code %>" />
