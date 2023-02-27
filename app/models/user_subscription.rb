@@ -2,7 +2,14 @@ class UserSubscription < ApplicationRecord
 
   # Constants
   #LANGUAGES = ["ENGLISH", "ARABIC", "FRENCH"].freeze
-
+  
+  SUBSCRIPTION_PLAN_ORDER = {
+                             "#{Rails.application.secrets.zoho_free_plan_code}": 0, 
+                             "#{Rails.application.secrets.zoho_month_plan_code}": 1,
+                             "#{Rails.application.secrets.zoho_3month_plan_code}": 2,
+                             "#{Rails.application.secrets.zoho_6month_plan_code}": 3,
+                             "#{Rails.application.secrets.zoho_12month_plan_code}": 4
+                            } 
   # Set Table Name
   #self.table_name = "user_subscriptions"
 
