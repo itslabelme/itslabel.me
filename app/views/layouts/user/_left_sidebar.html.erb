@@ -66,6 +66,12 @@
                   <%= image_tag "icons/user.svg", alt: "user icon"%>
                   <span>My Profile</span>
               <% end %>
+          </li>          
+          <li> 
+              <%= link_to "#{Rails.application.secrets.zoho_client_portel_url}", target: :_blank do %>
+                  <%= image_tag "icons/user.svg", alt: "user icon"%>
+                  <span>Client Portal</span>
+              <% end %>
           </li>
           <li>
               <%= link_to user_user_subscriptions_url do %>
