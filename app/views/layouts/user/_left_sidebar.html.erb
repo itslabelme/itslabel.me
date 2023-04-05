@@ -69,7 +69,9 @@
           </li>          
           <li> 
               <%= link_to "#{Rails.application.secrets.zoho_client_portel_url}", target: :_blank do %>
-                  <%= image_tag "icons/user.svg", alt: "user icon"%>
+                  <%= image_tag "icons/client-portal.svg", alt: "user icon"%>
+                  <%#= image_tag "icons/client-portal.svg", alt: "user icon", size: "18x18" %>
+                  <%#= image_tag "icons/client-portal.svg", alt: "user icon", height: "50", width: "50" %>
                   <span>Client Portal</span>
               <% end %>
           </li>
